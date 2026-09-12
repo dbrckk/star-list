@@ -57,6 +57,8 @@ Liste reconstruite depuis les captures du 12 septembre 2026.
 - xai-org/x-algorithm
 - cathrynlavery/diagram-design
 - sdmg15/Best-websites-a-programmer-should-visit
+- ChrisTitusTech/winutil
+- harry2141985/Google-Colab-Notebooks
 
 ## Média / voix / vidéo
 - CorentinJ/Real-Time-Voice-Cloning
