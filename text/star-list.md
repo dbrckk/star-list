@@ -113,6 +113,21 @@ Les scores restent des notes internes de pertinence. Pour éviter qu'un agent ch
 - quantopian/zipline — 8.3/10 — SPÉCIALISÉ
 - hudson-and-thames/mlfinlab — 8.2/10 — SPÉCIALISÉ
 
+## Trading / alpha discovery / régimes / ML
+- scikit-learn/scikit-learn — 9.8/10 — CORE
+- dmlc/xgboost — 9.7/10 — CORE
+- catboost/catboost — 9.6/10 — CORE
+- shap/shap — 9.6/10 — CORE
+- anyoptimization/pymoo — 9.5/10 — CORE
+- DEAP/deap — 9.2/10 — RECOMMANDÉ
+- tslearn-team/tslearn — 9.1/10 — RECOMMANDÉ
+- hmmlearn/hmmlearn — 9.0/10 — RECOMMANDÉ
+- feature-engine/feature_engine — 9.0/10 — RECOMMANDÉ
+- scikit-learn-contrib/imbalanced-learn — 8.8/10 — SPÉCIALISÉ
+
+### Politique anti-overfitting trading
+L'optimisation vise le profit net robuste hors échantillon, pas le meilleur résultat in-sample. Séparer strictement train/validation/test temporels; utiliser walk-forward et validation purgée lorsque pertinent; inclure spread, slippage, commissions et latence; pénaliser drawdown, turnover et instabilité des paramètres; tester plusieurs régimes et sous-périodes; comparer à des baselines simples; conserver un holdout final jamais utilisé pendant la recherche. Une amélioration n'est retenue que si elle survit aux coûts réalistes, perturbations de paramètres et tests hors échantillon.
+
 ## Trading / Gold XAUUSD / macro / diagnostic
 - OpenBB-finance/OpenBB — 9.7/10 — CORE
 - plotly/plotly.py — 9.4/10 — RECOMMANDÉ
