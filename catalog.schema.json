@@ -48,6 +48,24 @@
           "category": {
             "type": "string",
             "minLength": 1
+          },
+          "domain": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "agentSuitability": {
+            "enum": [
+              "high",
+              "medium-high",
+              "medium",
+              "low"
+            ]
           }
         },
         "additionalProperties": false
