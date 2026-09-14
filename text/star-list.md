@@ -76,6 +76,21 @@ Liste reconstruite depuis les captures du 12 septembre 2026.
 - milvus-io/milvus — 9.3/10
 - deepset-ai/haystack — 9.1/10
 
+## Analyse de code / transformation / qualité
+- tree-sitter/tree-sitter — 9.8/10
+- semgrep/semgrep — 9.6/10
+- github/codeql — 9.6/10
+- ast-grep/ast-grep — 9.5/10
+- sourcegraph/zoekt — 9.2/10
+- comby-tools/comby — 8.7/10
+- astral-sh/uv — 9.7/10
+- benfred/py-spy — 9.0/10
+
+## Tests génératifs / fuzzing
+- HypothesisWorks/hypothesis — 9.5/10
+- google/oss-fuzz — 9.2/10
+- boxed/mutmut — 8.8/10
+
 ## Tests / évaluation / observabilité
 - microsoft/playwright — 9.8/10
 - pytest-dev/pytest — 9.7/10
