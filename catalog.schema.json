@@ -50,7 +50,24 @@
             "minLength": 1
           },
           "domain": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "ai_agents",
+              "ai_memory",
+              "ai_media",
+              "software_engineering",
+              "web_frontend",
+              "backend",
+              "mobile",
+              "graphics",
+              "game_dev",
+              "trading",
+              "cybersecurity",
+              "data_ml",
+              "devops",
+              "productivity",
+              "other"
+            ]
           },
           "roles": {
             "type": "array",
@@ -66,6 +83,13 @@
               "medium",
               "low"
             ]
+          },
+          "capabilities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
           }
         },
         "additionalProperties": false
