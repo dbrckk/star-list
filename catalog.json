@@ -1229,289 +1229,598 @@
       "repo": "QuantConnect/Lean",
       "score": 9.9,
       "tier": "core",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "backtest",
+        "execution",
+        "portfolio",
+        "xauusd"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "nautechsystems/nautilus_trader",
       "score": 9.8,
       "tier": "core",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "backtest",
+        "execution",
+        "microstructure"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "polakowo/vectorbt",
       "score": 9.7,
       "tier": "core",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "backtest",
+        "alpha",
+        "risk",
+        "portfolio"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "microsoft/qlib",
       "score": 9.7,
       "tier": "core",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "alpha",
+        "ml",
+        "backtest"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "ccxt/ccxt",
       "score": 9.7,
       "tier": "core",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "data",
+        "execution"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "freqtrade/freqtrade",
       "score": 9.6,
       "tier": "core",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "backtest",
+        "execution",
+        "alpha",
+        "risk"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "hummingbot/hummingbot",
       "score": 9.5,
       "tier": "core",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "execution",
+        "microstructure"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "AI4Finance-Foundation/FinRL",
       "score": 9.4,
       "tier": "recommended",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "alpha",
+        "ml",
+        "portfolio"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "kernc/backtesting.py",
       "score": 9.3,
       "tier": "recommended",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "backtest"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "vnpy/vnpy",
       "score": 9.3,
       "tier": "recommended",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "execution",
+        "backtest"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "TA-Lib/ta-lib-python",
       "score": 9.2,
       "tier": "recommended",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "alpha"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "ranaroussi/yfinance",
       "score": 9.1,
       "tier": "recommended",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "data",
+        "macro"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "stefan-jansen/machine-learning-for-trading",
       "score": 9.1,
       "tier": "recommended",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "alpha",
+        "ml",
+        "backtest"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "pmorissette/bt",
       "score": 8.9,
       "tier": "specialized",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "backtest",
+        "portfolio"
+      ],
+      "agentSuitability": "medium"
     },
     {
       "repo": "mementum/backtrader",
       "score": 8.7,
       "tier": "specialized",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "backtest"
+      ],
+      "agentSuitability": "medium"
     },
     {
       "repo": "quantopian/zipline",
       "score": 8.3,
       "tier": "specialized",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "backtest"
+      ],
+      "agentSuitability": "medium"
     },
     {
       "repo": "hudson-and-thames/mlfinlab",
       "score": 8.2,
       "tier": "specialized",
-      "category": "Trading / quant / backtesting"
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "roles": [
+        "alpha",
+        "risk",
+        "microstructure"
+      ],
+      "agentSuitability": "medium"
     },
     {
       "repo": "skfolio/skfolio",
       "score": 9.7,
       "tier": "core",
-      "category": "Trading / optimisation du rendement et du risque"
+      "category": "Trading / optimisation du rendement et du risque",
+      "domain": "trading",
+      "roles": [
+        "portfolio",
+        "risk",
+        "backtest"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "PyPortfolio/PyPortfolioOpt",
       "score": 9.5,
       "tier": "core",
-      "category": "Trading / optimisation du rendement et du risque"
+      "category": "Trading / optimisation du rendement et du risque",
+      "domain": "trading",
+      "roles": [
+        "portfolio",
+        "risk"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "dcajasn/Riskfolio-Lib",
       "score": 9.5,
       "tier": "core",
-      "category": "Trading / optimisation du rendement et du risque"
+      "category": "Trading / optimisation du rendement et du risque",
+      "domain": "trading",
+      "roles": [
+        "portfolio",
+        "risk"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "ranaroussi/quantstats",
       "score": 9.4,
       "tier": "recommended",
-      "category": "Trading / optimisation du rendement et du risque"
+      "category": "Trading / optimisation du rendement et du risque",
+      "domain": "trading",
+      "roles": [
+        "risk",
+        "performance"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "statsmodels/statsmodels",
       "score": 9.5,
       "tier": "core",
-      "category": "Trading / optimisation du rendement et du risque"
+      "category": "Trading / optimisation du rendement et du risque",
+      "domain": "trading",
+      "roles": [
+        "alpha",
+        "regime",
+        "macro"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "bashtage/arch",
       "score": 9.2,
       "tier": "recommended",
-      "category": "Trading / optimisation du rendement et du risque"
+      "category": "Trading / optimisation du rendement et du risque",
+      "domain": "trading",
+      "roles": [
+        "risk",
+        "regime",
+        "volatility"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "optuna/optuna",
       "score": 9.6,
       "tier": "core",
-      "category": "Trading / optimisation du rendement et du risque"
+      "category": "Trading / optimisation du rendement et du risque",
+      "domain": "trading",
+      "roles": [
+        "alpha",
+        "optimization",
+        "ml"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "hyperopt/hyperopt",
       "score": 8.8,
       "tier": "specialized",
-      "category": "Trading / optimisation du rendement et du risque"
+      "category": "Trading / optimisation du rendement et du risque",
+      "domain": "trading",
+      "roles": [
+        "alpha",
+        "optimization",
+        "ml"
+      ],
+      "agentSuitability": "medium"
     },
     {
       "repo": "stefan-jansen/alphalens-reloaded",
       "score": 8.9,
       "tier": "specialized",
-      "category": "Trading / optimisation du rendement et du risque"
+      "category": "Trading / optimisation du rendement et du risque",
+      "domain": "trading",
+      "roles": [
+        "alpha",
+        "performance"
+      ],
+      "agentSuitability": "medium"
     },
     {
       "repo": "quantopian/pyfolio",
       "score": 8.4,
       "tier": "specialized",
-      "category": "Trading / optimisation du rendement et du risque"
+      "category": "Trading / optimisation du rendement et du risque",
+      "domain": "trading",
+      "roles": [
+        "risk",
+        "performance"
+      ],
+      "agentSuitability": "medium"
     },
     {
       "repo": "unit8co/darts",
       "score": 9.4,
       "tier": "recommended",
-      "category": "Trading / microstructure / séries temporelles / exécution"
+      "category": "Trading / microstructure / séries temporelles / exécution",
+      "domain": "trading",
+      "roles": [
+        "regime",
+        "ml",
+        "forecasting"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "sktime/sktime",
       "score": 9.4,
       "tier": "recommended",
-      "category": "Trading / microstructure / séries temporelles / exécution"
+      "category": "Trading / microstructure / séries temporelles / exécution",
+      "domain": "trading",
+      "roles": [
+        "regime",
+        "ml",
+        "forecasting"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "Nixtla/neuralforecast",
       "score": 9.3,
       "tier": "recommended",
-      "category": "Trading / microstructure / séries temporelles / exécution"
+      "category": "Trading / microstructure / séries temporelles / exécution",
+      "domain": "trading",
+      "roles": [
+        "regime",
+        "ml",
+        "forecasting"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "facebookresearch/Kats",
       "score": 9,
       "tier": "recommended",
-      "category": "Trading / microstructure / séries temporelles / exécution"
+      "category": "Trading / microstructure / séries temporelles / exécution",
+      "domain": "trading",
+      "roles": [
+        "regime",
+        "forecasting"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "blue-yonder/tsfresh",
       "score": 9.2,
       "tier": "recommended",
-      "category": "Trading / microstructure / séries temporelles / exécution"
+      "category": "Trading / microstructure / séries temporelles / exécution",
+      "domain": "trading",
+      "roles": [
+        "alpha",
+        "ml",
+        "feature-engineering"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "akfamily/akshare",
       "score": 9,
       "tier": "recommended",
-      "category": "Trading / microstructure / séries temporelles / exécution"
+      "category": "Trading / microstructure / séries temporelles / exécution",
+      "domain": "trading",
+      "roles": [
+        "data",
+        "macro"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "vollib/py_vollib",
       "score": 8.5,
       "tier": "specialized",
-      "category": "Trading / microstructure / séries temporelles / exécution"
+      "category": "Trading / microstructure / séries temporelles / exécution",
+      "domain": "trading",
+      "roles": [
+        "derivatives",
+        "volatility"
+      ],
+      "agentSuitability": "medium"
     },
     {
       "repo": "OpenBB-finance/OpenBB",
       "score": 9.7,
       "tier": "core",
-      "category": "Trading / Gold XAUUSD / macro / diagnostic"
+      "category": "Trading / Gold XAUUSD / macro / diagnostic",
+      "domain": "trading",
+      "roles": [
+        "data",
+        "macro",
+        "xauusd"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "plotly/plotly.py",
       "score": 9.4,
       "tier": "recommended",
-      "category": "Trading / Gold XAUUSD / macro / diagnostic"
+      "category": "Trading / Gold XAUUSD / macro / diagnostic",
+      "domain": "trading",
+      "roles": [
+        "diagnostic",
+        "xauusd"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "matplotlib/mplfinance",
       "score": 9.1,
       "tier": "recommended",
-      "category": "Trading / Gold XAUUSD / macro / diagnostic"
+      "category": "Trading / Gold XAUUSD / macro / diagnostic",
+      "domain": "trading",
+      "roles": [
+        "diagnostic",
+        "xauusd"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "scikit-learn/scikit-learn",
       "score": 9.8,
       "tier": "core",
-      "category": "Trading / alpha discovery / régimes / ML"
+      "category": "Trading / alpha discovery / régimes / ML",
+      "domain": "trading",
+      "roles": [
+        "alpha",
+        "ml",
+        "regime"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "dmlc/xgboost",
       "score": 9.7,
       "tier": "core",
-      "category": "Trading / alpha discovery / régimes / ML"
+      "category": "Trading / alpha discovery / régimes / ML",
+      "domain": "trading",
+      "roles": [
+        "alpha",
+        "ml"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "catboost/catboost",
       "score": 9.6,
       "tier": "core",
-      "category": "Trading / alpha discovery / régimes / ML"
+      "category": "Trading / alpha discovery / régimes / ML",
+      "domain": "trading",
+      "roles": [
+        "alpha",
+        "ml"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "shap/shap",
       "score": 9.6,
       "tier": "core",
-      "category": "Trading / alpha discovery / régimes / ML"
+      "category": "Trading / alpha discovery / régimes / ML",
+      "domain": "trading",
+      "roles": [
+        "alpha",
+        "ml",
+        "feature-selection"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "anyoptimization/pymoo",
       "score": 9.5,
       "tier": "core",
-      "category": "Trading / alpha discovery / régimes / ML"
+      "category": "Trading / alpha discovery / régimes / ML",
+      "domain": "trading",
+      "roles": [
+        "optimization",
+        "portfolio",
+        "risk"
+      ],
+      "agentSuitability": "high"
     },
     {
       "repo": "DEAP/deap",
       "score": 9.2,
       "tier": "recommended",
-      "category": "Trading / alpha discovery / régimes / ML"
+      "category": "Trading / alpha discovery / régimes / ML",
+      "domain": "trading",
+      "roles": [
+        "optimization",
+        "alpha"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "tslearn-team/tslearn",
       "score": 9.1,
       "tier": "recommended",
-      "category": "Trading / alpha discovery / régimes / ML"
+      "category": "Trading / alpha discovery / régimes / ML",
+      "domain": "trading",
+      "roles": [
+        "regime",
+        "ml"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "hmmlearn/hmmlearn",
       "score": 9,
       "tier": "recommended",
-      "category": "Trading / alpha discovery / régimes / ML"
+      "category": "Trading / alpha discovery / régimes / ML",
+      "domain": "trading",
+      "roles": [
+        "regime",
+        "ml"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "feature-engine/feature_engine",
       "score": 9,
       "tier": "recommended",
-      "category": "Trading / alpha discovery / régimes / ML"
+      "category": "Trading / alpha discovery / régimes / ML",
+      "domain": "trading",
+      "roles": [
+        "alpha",
+        "feature-engineering"
+      ],
+      "agentSuitability": "medium-high"
     },
     {
       "repo": "scikit-learn-contrib/imbalanced-learn",
       "score": 8.8,
       "tier": "specialized",
-      "category": "Trading / alpha discovery / régimes / ML"
+      "category": "Trading / alpha discovery / régimes / ML",
+      "domain": "trading",
+      "roles": [
+        "ml",
+        "alpha"
+      ],
+      "agentSuitability": "medium"
     },
     {
       "repo": "pykalman/pykalman",
       "score": 9,
       "tier": "recommended",
-      "category": "Trading / ensembles / allocation dynamique / regime switching"
+      "category": "Trading / ensembles / allocation dynamique / regime switching",
+      "domain": "trading",
+      "roles": [
+        "regime",
+        "filtering",
+        "xauusd"
+      ],
+      "agentSuitability": "medium-high"
     }
   ]
 }
