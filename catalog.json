@@ -15,7 +15,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "harry0703/MoneyPrinterTurbo",
@@ -25,7 +39,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "hiyouga/LlamaFactory",
@@ -35,7 +63,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Skyvern-AI/skyvern",
@@ -45,7 +87,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "BasedHardware/omi",
@@ -55,7 +111,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "OpenHands/OpenHands",
@@ -81,7 +151,21 @@
       ],
       "avoidWhen": [
         "very lightweight edits"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "danielmiessler/Fabric",
@@ -91,7 +175,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "ollama/ollama",
@@ -115,7 +213,21 @@
       ],
       "avoidWhen": [
         "very large models on constrained hardware"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "khoj-ai/khoj",
@@ -125,7 +237,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "modelcontextprotocol/servers",
@@ -147,7 +273,21 @@
       ],
       "avoidWhen": [
         "no tool integration needed"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "browser-use/browser-use",
@@ -158,7 +298,22 @@
       "capabilities": [
         "agent",
         "web-retrieval"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web",
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "mksglu/context-mode",
@@ -168,7 +323,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "mattpocock/skills",
@@ -178,7 +347,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "DietrichGebert/ponytail",
@@ -188,7 +371,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "affaan-m/ECC",
@@ -198,7 +395,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "THU-MAIC/OpenMAIC",
@@ -208,7 +419,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "diegosouzapw/OmniRoute",
@@ -218,7 +443,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "obra/superpowers",
@@ -228,7 +467,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "ayghri/i-have-adhd",
@@ -238,7 +491,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "p-e-w/heretic",
@@ -248,7 +515,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "deepseek-ai/deepseek-harness",
@@ -258,7 +539,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "msitarzewski/agency-agents",
@@ -268,7 +563,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Alisharvr1/free-claude-code",
@@ -278,7 +587,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "vercel-labs/agent-browser",
@@ -289,7 +612,22 @@
       "capabilities": [
         "agent",
         "web-retrieval"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web",
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "ultraworkers/claw-code",
@@ -299,7 +637,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "666ghj/MiroFish",
@@ -309,7 +661,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "punkpeye/awesome-mcp-servers",
@@ -319,7 +685,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Shubhamsaboo/awesome-llm-apps",
@@ -329,7 +709,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "pascalorg/editor",
@@ -339,7 +733,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "nashsu/llm_wiki",
@@ -349,7 +757,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "milind-soni/OpenMausBot",
@@ -359,7 +781,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "akitaonrails/ai-memory",
@@ -370,7 +806,21 @@
       "capabilities": [
         "agent",
         "memory"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "volcengine/OpenViking",
@@ -380,7 +830,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "anomalyco/opencode",
@@ -406,7 +870,21 @@
       ],
       "avoidWhen": [
         "GUI-first workflows"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "ruvnet/ruflo",
@@ -416,7 +894,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "NousResearch/hermes-agent",
@@ -426,7 +918,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "ChromeDevTools/chrome-devtools-mcp",
@@ -436,7 +942,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "heygen-com/hyperframes",
@@ -446,7 +966,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "danny-avila/LibreChat",
@@ -456,7 +990,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "f/prompts.chat",
@@ -466,7 +1014,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Aider-AI/aider",
@@ -476,7 +1038,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "plandex-ai/plandex",
@@ -486,7 +1062,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "langchain-ai/langgraph",
@@ -496,7 +1086,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "microsoft/autogen",
@@ -506,7 +1110,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "crewAIInc/crewAI",
@@ -516,7 +1134,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "google/adk-python",
@@ -526,7 +1158,22 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "python",
+        "go"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "camel-ai/camel",
@@ -536,7 +1183,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "public-apis/public-apis",
@@ -547,7 +1208,21 @@
       "capabilities": [
         "api-directory",
         "data-sources"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": "partial",
+      "runtime": [
+        "local",
+        "external-services"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "lisys93/web-check",
@@ -558,7 +1233,21 @@
       "capabilities": [
         "web-diagnostics",
         "osint"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "trimstray/the-book-of-secret-knowledge",
@@ -568,7 +1257,21 @@
       "domain": "productivity",
       "capabilities": [
         "memory"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "bnmf/tron",
@@ -578,7 +1281,21 @@
       "domain": "productivity",
       "capabilities": [
         "automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "ReVanced/revanced-manager",
@@ -589,7 +1306,22 @@
       "capabilities": [
         "android",
         "patch-management"
-      ]
+      ],
+      "languages": [
+        "java",
+        "kotlin"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "sudoguy/tiktokpy",
@@ -599,7 +1331,21 @@
       "domain": "productivity",
       "capabilities": [
         "social-media-automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "simonfarah/tiktok-bot",
@@ -609,7 +1355,21 @@
       "domain": "productivity",
       "capabilities": [
         "social-media-automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "freeCodeCamp/freeCodeCamp",
@@ -620,7 +1380,21 @@
       "capabilities": [
         "learning",
         "software-engineering"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "autoscrape-labs/pydoll",
@@ -630,7 +1404,21 @@
       "domain": "productivity",
       "capabilities": [
         "web-retrieval"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "xai-org/x-algorithm",
@@ -641,7 +1429,21 @@
       "capabilities": [
         "ranking",
         "recommendation-systems"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "cathrynlavery/diagram-design",
@@ -652,7 +1454,21 @@
       "capabilities": [
         "diagrams",
         "architecture"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "sdmg15/Best-websites-a-programmer-should-visit",
@@ -663,7 +1479,21 @@
       "capabilities": [
         "learning",
         "developer-resources"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "ChrisTitusTech/winutil",
@@ -674,7 +1504,21 @@
       "capabilities": [
         "windows-automation",
         "system-tuning"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "windows"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "harry2141985/Google-Colab-Notebooks",
@@ -685,7 +1529,21 @@
       "capabilities": [
         "notebooks",
         "cloud-compute"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "browserbase/stagehand",
@@ -695,7 +1553,21 @@
       "domain": "productivity",
       "capabilities": [
         "web-retrieval"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "qdrant/qdrant",
@@ -721,7 +1593,21 @@
       ],
       "avoidWhen": [
         "tiny in-memory prototypes"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "chroma-core/chroma",
@@ -732,7 +1618,21 @@
       "capabilities": [
         "memory",
         "vector-animation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "milvus-io/milvus",
@@ -743,7 +1643,21 @@
       "capabilities": [
         "memory",
         "vector-animation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "deepset-ai/haystack",
@@ -754,7 +1668,21 @@
       "capabilities": [
         "memory",
         "vector-animation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "squidfunk/mkdocs-material",
@@ -765,7 +1693,21 @@
       "capabilities": [
         "documentation",
         "docs-site"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "mkdocs/mkdocs",
@@ -776,7 +1718,21 @@
       "capabilities": [
         "documentation",
         "docs-site"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "facebook/docusaurus",
@@ -787,7 +1743,22 @@
       "capabilities": [
         "documentation",
         "docs-site"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "withastro/starlight",
@@ -798,7 +1769,21 @@
       "capabilities": [
         "documentation",
         "docs-site"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "swagger-api/swagger-ui",
@@ -809,7 +1794,21 @@
       "capabilities": [
         "api-documentation",
         "openapi"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Redocly/redoc",
@@ -820,7 +1819,21 @@
       "capabilities": [
         "api-documentation",
         "openapi"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "mermaid-js/mermaid",
@@ -832,7 +1845,21 @@
         "diagrams",
         "architecture",
         "documentation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "plantuml/plantuml",
@@ -842,7 +1869,21 @@
       "domain": "backend",
       "capabilities": [
         "machine-learning"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "plantuml-stdlib/C4-PlantUML",
@@ -852,7 +1893,21 @@
       "domain": "backend",
       "capabilities": [
         "machine-learning"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "thomvaill/log4brains",
@@ -864,7 +1919,21 @@
         "adr",
         "architecture",
         "documentation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "orhun/git-cliff",
@@ -875,7 +1944,21 @@
       "capabilities": [
         "changelog",
         "release-automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "conventional-changelog/conventional-changelog",
@@ -886,7 +1969,21 @@
       "capabilities": [
         "changelog",
         "release-automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "postgres/postgres",
@@ -911,7 +2008,21 @@
       ],
       "avoidWhen": [
         "pure cache or ephemeral state"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "redis/redis",
@@ -923,7 +2034,21 @@
         "cache",
         "database",
         "messaging"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "supabase/supabase",
@@ -951,7 +2076,21 @@
       ],
       "avoidWhen": [
         "highly custom backend architecture"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "appwrite/appwrite",
@@ -964,7 +2103,21 @@
         "auth",
         "database",
         "storage"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "pocketbase/pocketbase",
@@ -976,7 +2129,21 @@
         "backend-as-a-service",
         "database",
         "auth"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "prisma/prisma",
@@ -988,7 +2155,22 @@
         "orm",
         "database",
         "typescript"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "drizzle-team/drizzle-orm",
@@ -1000,7 +2182,22 @@
         "orm",
         "database",
         "typescript"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "fastapi/fastapi",
@@ -1027,7 +2224,21 @@
       ],
       "avoidWhen": [
         "TypeScript-only backend teams"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "nestjs/nest",
@@ -1039,7 +2250,22 @@
         "api",
         "typescript",
         "backend"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "trpc/trpc",
@@ -1051,7 +2277,22 @@
         "api",
         "typescript",
         "rpc"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "graphql/graphql-js",
@@ -1062,7 +2303,21 @@
       "capabilities": [
         "graphql",
         "api"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "apollographql/apollo-server",
@@ -1074,7 +2329,21 @@
         "graphql",
         "api",
         "backend"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "keycloak/keycloak",
@@ -1086,7 +2355,21 @@
         "auth",
         "identity",
         "sso"
-      ]
+      ],
+      "languages": [
+        "java"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source"
     },
     {
       "repo": "ory/kratos",
@@ -1097,7 +2380,21 @@
       "capabilities": [
         "auth",
         "identity"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "seaweedfs/seaweedfs",
@@ -1108,7 +2405,21 @@
       "capabilities": [
         "object-storage",
         "distributed-storage"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "facebook/react",
@@ -1135,7 +2446,22 @@
       ],
       "avoidWhen": [
         "native-only mobile apps"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "vercel/next.js",
@@ -1162,7 +2488,22 @@
       ],
       "avoidWhen": [
         "simple static SPA with minimal server needs"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "vitejs/vite",
@@ -1173,7 +2514,22 @@
       "capabilities": [
         "frontend-build",
         "bundler"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "tailwindlabs/tailwindcss",
@@ -1184,7 +2540,22 @@
       "capabilities": [
         "css",
         "design-system"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "shadcn-ui/ui",
@@ -1210,7 +2581,22 @@
       ],
       "avoidWhen": [
         "teams wanting a fully opinionated component library"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "mui/material-ui",
@@ -1221,7 +2607,21 @@
       "capabilities": [
         "ui-components",
         "design-system"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "chakra-ui/chakra-ui",
@@ -1233,7 +2633,21 @@
         "ui-components",
         "design-system",
         "accessibility"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "microsoft/fluentui",
@@ -1244,7 +2658,21 @@
       "capabilities": [
         "ui-components",
         "design-system"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "storybookjs/storybook",
@@ -1256,7 +2684,22 @@
         "ui-components",
         "visual-testing",
         "documentation"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "motiondivision/motion",
@@ -1267,7 +2710,22 @@
       "capabilities": [
         "ui-animation",
         "frontend"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "pmndrs/react-three-fiber",
@@ -1279,7 +2737,22 @@
         "3d",
         "webgl",
         "react"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "android/nowinandroid",
@@ -1289,7 +2762,22 @@
       "domain": "mobile",
       "capabilities": [
         "mobile"
-      ]
+      ],
+      "languages": [
+        "java",
+        "kotlin"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "JetBrains/compose-multiplatform",
@@ -1299,7 +2787,22 @@
       "domain": "mobile",
       "capabilities": [
         "mobile"
-      ]
+      ],
+      "languages": [
+        "java",
+        "kotlin"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "flutter/flutter",
@@ -1309,7 +2812,22 @@
       "domain": "mobile",
       "capabilities": [
         "mobile"
-      ]
+      ],
+      "languages": [
+        "java",
+        "kotlin"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "facebook/react-native",
@@ -1319,7 +2837,25 @@
       "domain": "mobile",
       "capabilities": [
         "mobile"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript",
+        "java",
+        "kotlin"
+      ],
+      "platforms": [
+        "android",
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "expo/expo",
@@ -1329,7 +2865,22 @@
       "domain": "mobile",
       "capabilities": [
         "mobile"
-      ]
+      ],
+      "languages": [
+        "java",
+        "kotlin"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "appium/appium",
@@ -1339,7 +2890,22 @@
       "domain": "mobile",
       "capabilities": [
         "mobile"
-      ]
+      ],
+      "languages": [
+        "java",
+        "kotlin"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "wix/Detox",
@@ -1349,7 +2915,22 @@
       "domain": "mobile",
       "capabilities": [
         "mobile"
-      ]
+      ],
+      "languages": [
+        "java",
+        "kotlin"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "GoogleChrome/lighthouse",
@@ -1361,7 +2942,21 @@
         "performance-audit",
         "accessibility",
         "seo"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "dequelabs/axe-core",
@@ -1372,7 +2967,21 @@
       "capabilities": [
         "accessibility",
         "testing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "dagger/dagger",
@@ -1384,7 +2993,21 @@
         "ci-cd",
         "pipelines",
         "containers"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "nektos/act",
@@ -1395,7 +3018,21 @@
       "capabilities": [
         "github-actions",
         "local-ci"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "earthly/earthly",
@@ -1407,7 +3044,21 @@
         "build-system",
         "ci-cd",
         "containers"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "docker/compose",
@@ -1431,7 +3082,21 @@
       ],
       "avoidWhen": [
         "large-scale cluster orchestration"
-      ]
+      ],
+      "languages": [
+        "kotlin"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "podman-container-tools/podman",
@@ -1442,7 +3107,21 @@
       "capabilities": [
         "containers",
         "runtime"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "kubernetes/kubernetes",
@@ -1466,7 +3145,21 @@
       ],
       "avoidWhen": [
         "small single-host deployments"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source"
     },
     {
       "repo": "helm/helm",
@@ -1477,7 +3170,21 @@
       "capabilities": [
         "kubernetes",
         "package-management"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source"
     },
     {
       "repo": "opentofu/opentofu",
@@ -1488,7 +3195,21 @@
       "capabilities": [
         "iac",
         "infrastructure"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source"
     },
     {
       "repo": "hashicorp/terraform",
@@ -1499,7 +3220,21 @@
       "capabilities": [
         "iac",
         "infrastructure"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source"
     },
     {
       "repo": "ansible/ansible",
@@ -1510,7 +3245,21 @@
       "capabilities": [
         "configuration-management",
         "automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "argoproj/argo-cd",
@@ -1522,7 +3271,21 @@
         "gitops",
         "deployment",
         "kubernetes"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source"
     },
     {
       "repo": "fluxcd/flux2",
@@ -1534,7 +3297,21 @@
         "gitops",
         "deployment",
         "kubernetes"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source"
     },
     {
       "repo": "prometheus/prometheus",
@@ -1544,7 +3321,21 @@
       "domain": "devops",
       "capabilities": [
         "observability"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "grafana/grafana",
@@ -1566,7 +3357,21 @@
       ],
       "avoidWhen": [
         "no telemetry sources available"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "getsentry/sentry",
@@ -1576,7 +3381,21 @@
       "domain": "devops",
       "capabilities": [
         "observability"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "semantic-release/semantic-release",
@@ -1586,7 +3405,21 @@
       "domain": "devops",
       "capabilities": [
         "observability"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "release-it/release-it",
@@ -1596,7 +3429,21 @@
       "domain": "devops",
       "capabilities": [
         "observability"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "tree-sitter/tree-sitter",
@@ -1622,7 +3469,21 @@
       ],
       "avoidWhen": [
         "simple text search is sufficient"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "semgrep/semgrep",
@@ -1647,7 +3508,21 @@
       ],
       "avoidWhen": [
         "deep whole-program query analysis is required"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "github/codeql",
@@ -1658,7 +3533,21 @@
       "capabilities": [
         "static-analysis",
         "security-scanning"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "ast-grep/ast-grep",
@@ -1670,7 +3559,21 @@
         "ast",
         "code-search",
         "refactoring"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "sourcegraph/zoekt",
@@ -1681,7 +3584,21 @@
       "capabilities": [
         "code-search",
         "indexing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "comby-tools/comby",
@@ -1692,7 +3609,21 @@
       "capabilities": [
         "code-transformation",
         "refactoring"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "astral-sh/uv",
@@ -1704,7 +3635,22 @@
         "python",
         "package-management",
         "environment-management"
-      ]
+      ],
+      "languages": [
+        "python",
+        "rust"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "benfred/py-spy",
@@ -1715,7 +3661,21 @@
       "capabilities": [
         "profiling",
         "python"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "HypothesisWorks/hypothesis",
@@ -1725,7 +3685,21 @@
       "domain": "software_engineering",
       "capabilities": [
         "code-quality"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "google/oss-fuzz",
@@ -1735,7 +3709,21 @@
       "domain": "software_engineering",
       "capabilities": [
         "code-quality"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "boxed/mutmut",
@@ -1745,7 +3733,21 @@
       "domain": "software_engineering",
       "capabilities": [
         "code-quality"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "microsoft/playwright",
@@ -1770,7 +3772,21 @@
       ],
       "avoidWhen": [
         "native mobile-only testing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "pytest-dev/pytest",
@@ -1780,7 +3796,21 @@
       "domain": "software_engineering",
       "capabilities": [
         "code-quality"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "astral-sh/ruff",
@@ -1790,7 +3820,21 @@
       "domain": "software_engineering",
       "capabilities": [
         "code-quality"
-      ]
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "langfuse/langfuse",
@@ -1801,7 +3845,21 @@
       "capabilities": [
         "observability",
         "code-quality"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "promptfoo/promptfoo",
@@ -1811,7 +3869,21 @@
       "domain": "software_engineering",
       "capabilities": [
         "code-quality"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "confident-ai/deepeval",
@@ -1821,7 +3893,21 @@
       "domain": "software_engineering",
       "capabilities": [
         "code-quality"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Arize-ai/phoenix",
@@ -1831,7 +3917,21 @@
       "domain": "software_engineering",
       "capabilities": [
         "code-quality"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "EleutherAI/lm-evaluation-harness",
@@ -1841,7 +3941,21 @@
       "domain": "software_engineering",
       "capabilities": [
         "code-quality"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "openai/evals",
@@ -1851,7 +3965,21 @@
       "domain": "software_engineering",
       "capabilities": [
         "code-quality"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "testcontainers/testcontainers-python",
@@ -1861,7 +3989,21 @@
       "domain": "software_engineering",
       "capabilities": [
         "code-quality"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "e2b-dev/E2B",
@@ -1872,7 +4014,21 @@
       "capabilities": [
         "sandbox",
         "code-execution"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "firecracker-microvm/firecracker",
@@ -1884,7 +4040,21 @@
         "sandbox",
         "microvm",
         "isolation"
-      ]
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source"
     },
     {
       "repo": "motion-canvas/motion-canvas",
@@ -1909,7 +4079,22 @@
       ],
       "avoidWhen": [
         "native mobile runtime-only playback"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "svgdotjs/svg.js",
@@ -1920,7 +4105,21 @@
       "capabilities": [
         "memory",
         "vector-animation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "airbnb/lottie-web",
@@ -1944,7 +4143,22 @@
       ],
       "avoidWhen": [
         "complex interactive state-machine animation"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "paperjs/paper.js",
@@ -1955,7 +4169,21 @@
       "capabilities": [
         "memory",
         "vector-animation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "jonobr1/two.js",
@@ -1966,7 +4194,21 @@
       "capabilities": [
         "memory",
         "vector-animation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "rough-stuff/rough",
@@ -1977,7 +4219,21 @@
       "capabilities": [
         "memory",
         "vector-animation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "maxwellito/vivus",
@@ -1988,7 +4244,21 @@
       "capabilities": [
         "memory",
         "vector-animation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "CorentinJ/Real-Time-Voice-Cloning",
@@ -1998,7 +4268,21 @@
       "domain": "ai_media",
       "capabilities": [
         "voice-audio"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "vega-org/vega-app",
@@ -2009,7 +4293,21 @@
       "capabilities": [
         "visualization",
         "graphics"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "RVC-Project/Retrieval-based-Voice-Conversion-WebUI",
@@ -2019,7 +4317,21 @@
       "domain": "ai_media",
       "capabilities": [
         "voice-audio"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "camenduru/SMPLer-X-colab",
@@ -2030,7 +4342,21 @@
       "capabilities": [
         "3d-human",
         "colab"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "deepfakes/faceswap",
@@ -2041,7 +4367,21 @@
       "capabilities": [
         "face-swap",
         "video"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Tencent-Hunyuan/HunyuanVideo",
@@ -2051,7 +4391,21 @@
       "domain": "ai_media",
       "capabilities": [
         "video"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "dream80/roop_colab",
@@ -2062,7 +4416,21 @@
       "capabilities": [
         "face-swap",
         "colab"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "hacksider/Deep-Live-Cam",
@@ -2073,7 +4441,21 @@
       "capabilities": [
         "face-swap",
         "realtime-video"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "camenduru/dust3r-jupyter",
@@ -2084,7 +4466,21 @@
       "capabilities": [
         "3d-reconstruction",
         "notebooks"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "RayVentura/ShortGPT",
@@ -2095,7 +4491,21 @@
       "capabilities": [
         "video-generation",
         "automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "FujiwaraChoki/MoneyPrinterV2",
@@ -2106,7 +4516,21 @@
       "capabilities": [
         "video-generation",
         "automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "FujiwaraChoki/MoneyPrinter",
@@ -2117,7 +4541,21 @@
       "capabilities": [
         "video-generation",
         "automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "KRTirtho/spotube",
@@ -2128,7 +4566,21 @@
       "capabilities": [
         "music",
         "streaming-client"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "ali-vilab/AnyDoor",
@@ -2139,7 +4591,21 @@
       "capabilities": [
         "image-generation",
         "object-insertion"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "facefusion/facefusion",
@@ -2150,7 +4616,21 @@
       "capabilities": [
         "face-swap",
         "video"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "SociallyIneptWeeb/AICoverGen",
@@ -2161,7 +4641,21 @@
       "capabilities": [
         "voice-conversion",
         "music"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "debpalash/VoiceStudio",
@@ -2171,7 +4665,21 @@
       "domain": "ai_media",
       "capabilities": [
         "voice-audio"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "freestylfly/awesome-gpt-image-2",
@@ -2182,7 +4690,21 @@
       "capabilities": [
         "image-generation",
         "prompt-library"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "comfyanonymous/ComfyUI",
@@ -2194,7 +4716,21 @@
         "image-generation",
         "workflow",
         "diffusion"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "invoke-ai/InvokeAI",
@@ -2205,7 +4741,21 @@
       "capabilities": [
         "image-generation",
         "diffusion"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "mudler/LocalAI",
@@ -2216,7 +4766,21 @@
       "capabilities": [
         "local-inference",
         "model-serving"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "swisskyrepo/PayloadsAllTheThings",
@@ -2226,7 +4790,22 @@
       "domain": "cybersecurity",
       "capabilities": [
         "osint"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "megadose/holehe",
@@ -2236,7 +4815,21 @@
       "domain": "cybersecurity",
       "capabilities": [
         "osint"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "usestrix/strix",
@@ -2246,7 +4839,21 @@
       "domain": "cybersecurity",
       "capabilities": [
         "osint"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "0x4m4/hexstrike-ai",
@@ -2256,7 +4863,21 @@
       "domain": "cybersecurity",
       "capabilities": [
         "osint"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "CVEProject/cvelistV5",
@@ -2266,7 +4887,21 @@
       "domain": "cybersecurity",
       "capabilities": [
         "osint"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "bilawalsidhu/gods-eye-view",
@@ -2276,7 +4911,21 @@
       "domain": "cybersecurity",
       "capabilities": [
         "osint"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "dutly1/x64dbg-mcp-server",
@@ -2286,7 +4935,21 @@
       "domain": "cybersecurity",
       "capabilities": [
         "osint"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Narasimha1997/fake-sms",
@@ -2297,7 +4960,21 @@
       "capabilities": [
         "messaging",
         "simulation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "massgravel/Microsoft-Activation-Scripts",
@@ -2308,7 +4985,21 @@
       "capabilities": [
         "windows",
         "activation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "windows"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "friuns2/BlackFriday-GPTs-Prompts",
@@ -2318,7 +5009,21 @@
       "domain": "other",
       "capabilities": [
         "prompt-library"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "charlesbel/Microsoft-Rewards-Farmer",
@@ -2328,7 +5033,21 @@
       "domain": "other",
       "capabilities": [
         "automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Illyasviel/Paints-UNDO",
@@ -2339,7 +5058,21 @@
       "capabilities": [
         "image-generation",
         "image-editing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "bleeeline/aimoneyhunter",
@@ -2349,7 +5082,21 @@
       "domain": "other",
       "capabilities": [
         "automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "LargeWorldModel/LWM",
@@ -2360,7 +5107,21 @@
       "capabilities": [
         "multimodal",
         "world-model"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "teacat/chaturbate-dvr",
@@ -2370,7 +5131,21 @@
       "domain": "other",
       "capabilities": [
         "video-recording"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "GuallaGang508/SMSBotBypass",
@@ -2381,7 +5156,21 @@
       "capabilities": [
         "messaging",
         "automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Cyb0r9/SocialBox",
@@ -2392,7 +5181,21 @@
       "capabilities": [
         "osint",
         "social-media"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Ha3MrX/InstaBrute",
@@ -2403,7 +5206,21 @@
       "capabilities": [
         "credential-testing",
         "social-media"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "GH05T-HUNTER5/GH05T-INSTA",
@@ -2414,7 +5231,21 @@
       "capabilities": [
         "social-media",
         "automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "ShadowHackrs/Gmail-infinity",
@@ -2425,7 +5256,21 @@
       "capabilities": [
         "email",
         "automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "alsk1992/CloddsBot",
@@ -2436,7 +5281,21 @@
       "capabilities": [
         "trading",
         "automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "BloodOnTop/Stealerium",
@@ -2446,7 +5305,21 @@
       "domain": "cybersecurity",
       "capabilities": [
         "malware-research"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "QuantConnect/Lean",
@@ -2485,7 +5358,22 @@
       ],
       "avoidWhen": [
         "ultra-light exploratory notebooks"
-      ]
+      ],
+      "languages": [
+        "c++",
+        "c#"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source"
     },
     {
       "repo": "nautechsystems/nautilus_trader",
@@ -2520,7 +5408,21 @@
       ],
       "avoidWhen": [
         "very simple strategy research"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source"
     },
     {
       "repo": "polakowo/vectorbt",
@@ -2559,7 +5461,21 @@
       ],
       "avoidWhen": [
         "high-fidelity event-driven execution simulation"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "microsoft/qlib",
@@ -2595,7 +5511,21 @@
       ],
       "avoidWhen": [
         "manual discretionary-only trading"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "ccxt/ccxt",
@@ -2614,7 +5544,21 @@
         "market-data",
         "code-quality",
         "data"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "freqtrade/freqtrade",
@@ -2636,7 +5580,21 @@
         "code-quality",
         "backtest",
         "alpha"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "hummingbot/hummingbot",
@@ -2654,7 +5612,21 @@
         "execution",
         "code-quality",
         "microstructure"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "AI4Finance-Foundation/FinRL",
@@ -2676,7 +5648,21 @@
         "alpha",
         "ml",
         "portfolio"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "kernc/backtesting.py",
@@ -2692,7 +5678,21 @@
         "backtesting",
         "code-quality",
         "backtest"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "vnpy/vnpy",
@@ -2710,7 +5710,21 @@
         "execution",
         "code-quality",
         "backtest"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "TA-Lib/ta-lib-python",
@@ -2726,7 +5740,21 @@
         "backtesting",
         "code-quality",
         "alpha"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "ranaroussi/yfinance",
@@ -2745,7 +5773,21 @@
         "code-quality",
         "data",
         "macro"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": "partial",
+      "runtime": [
+        "local",
+        "external-services"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "stefan-jansen/machine-learning-for-trading",
@@ -2766,7 +5808,21 @@
         "alpha",
         "ml",
         "backtest"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "pmorissette/bt",
@@ -2785,7 +5841,21 @@
         "code-quality",
         "backtest",
         "portfolio"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "mementum/backtrader",
@@ -2801,7 +5871,21 @@
         "backtesting",
         "code-quality",
         "backtest"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "quantopian/zipline",
@@ -2817,7 +5901,21 @@
         "backtesting",
         "code-quality",
         "backtest"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "hudson-and-thames/mlfinlab",
@@ -2838,7 +5936,21 @@
         "code-quality",
         "alpha",
         "microstructure"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "skfolio/skfolio",
@@ -2858,7 +5970,21 @@
         "code-quality",
         "portfolio",
         "backtest"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "PyPortfolio/PyPortfolioOpt",
@@ -2874,7 +6000,21 @@
       "capabilities": [
         "risk",
         "portfolio"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "dcajasn/Riskfolio-Lib",
@@ -2904,7 +6044,21 @@
       ],
       "avoidWhen": [
         "single-position strategies without allocation needs"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "ranaroussi/quantstats",
@@ -2920,7 +6074,21 @@
       "capabilities": [
         "risk",
         "performance"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "statsmodels/statsmodels",
@@ -2938,7 +6106,21 @@
         "alpha",
         "regime",
         "macro"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "bashtage/arch",
@@ -2956,7 +6138,21 @@
         "risk",
         "regime",
         "volatility"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "optuna/optuna",
@@ -2975,7 +6171,21 @@
         "optimization",
         "alpha",
         "ml"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "hyperopt/hyperopt",
@@ -2994,7 +6204,21 @@
         "optimization",
         "alpha",
         "ml"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "stefan-jansen/alphalens-reloaded",
@@ -3010,7 +6234,21 @@
       "capabilities": [
         "alpha",
         "performance"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "quantopian/pyfolio",
@@ -3026,7 +6264,21 @@
       "capabilities": [
         "risk",
         "performance"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "unit8co/darts",
@@ -3045,7 +6297,21 @@
         "regime",
         "ml",
         "forecasting"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "sktime/sktime",
@@ -3064,7 +6330,21 @@
         "regime",
         "ml",
         "forecasting"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Nixtla/neuralforecast",
@@ -3083,7 +6363,21 @@
         "regime",
         "ml",
         "forecasting"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "facebookresearch/Kats",
@@ -3099,7 +6393,21 @@
       "capabilities": [
         "regime",
         "forecasting"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "blue-yonder/tsfresh",
@@ -3118,7 +6426,21 @@
         "alpha",
         "ml",
         "feature-engineering"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "akfamily/akshare",
@@ -3135,7 +6457,21 @@
         "market-data",
         "data",
         "macro"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "vollib/py_vollib",
@@ -3151,7 +6487,21 @@
       "capabilities": [
         "derivatives",
         "volatility"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "OpenBB-finance/OpenBB",
@@ -3185,7 +6535,21 @@
       ],
       "avoidWhen": [
         "single-source minimal data ingestion"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": "partial",
+      "runtime": [
+        "local",
+        "external-services"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "plotly/plotly.py",
@@ -3201,7 +6565,21 @@
       "capabilities": [
         "diagnostic",
         "xauusd"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "matplotlib/mplfinance",
@@ -3217,7 +6595,21 @@
       "capabilities": [
         "diagnostic",
         "xauusd"
-      ]
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "scikit-learn/scikit-learn",
@@ -3236,7 +6628,21 @@
         "alpha",
         "ml",
         "regime"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "dmlc/xgboost",
@@ -3267,7 +6673,21 @@
       ],
       "avoidWhen": [
         "tiny datasets with unstable labels"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "catboost/catboost",
@@ -3284,7 +6704,21 @@
         "machine-learning",
         "alpha",
         "ml"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "shap/shap",
@@ -3303,7 +6737,21 @@
         "alpha",
         "ml",
         "feature-selection"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "anyoptimization/pymoo",
@@ -3322,7 +6770,21 @@
         "machine-learning",
         "optimization",
         "portfolio"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "DEAP/deap",
@@ -3339,7 +6801,21 @@
         "machine-learning",
         "optimization",
         "alpha"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "tslearn-team/tslearn",
@@ -3356,7 +6832,21 @@
         "machine-learning",
         "regime",
         "ml"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "hmmlearn/hmmlearn",
@@ -3373,7 +6863,21 @@
         "machine-learning",
         "regime",
         "ml"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "feature-engine/feature_engine",
@@ -3390,7 +6894,21 @@
         "machine-learning",
         "alpha",
         "feature-engineering"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "scikit-learn-contrib/imbalanced-learn",
@@ -3407,7 +6925,21 @@
         "machine-learning",
         "ml",
         "alpha"
-      ]
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "pykalman/pykalman",
@@ -3425,7 +6957,21 @@
         "regime",
         "filtering",
         "xauusd"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "blader/humanizer",
@@ -3435,7 +6981,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "freestylefly/awesome-gpt-image-2",
@@ -3446,7 +7006,21 @@
       "capabilities": [
         "image-generation",
         "prompt-library"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source"
     },
     {
       "repo": "cursor/plugins",
@@ -3456,7 +7030,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "tt-a1i/archify",
@@ -3468,7 +7056,21 @@
         "architecture",
         "diagrams",
         "agent-skill"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "bluscreenofjeff/Red-Team-Infrastructure-Wiki",
@@ -3478,7 +7080,21 @@
       "domain": "cybersecurity",
       "capabilities": [
         "security-testing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "PurpleAILAB/Decepticon",
@@ -3488,7 +7104,21 @@
       "domain": "cybersecurity",
       "capabilities": [
         "security-testing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "yeyintminthuhtut/Awesome-Red-Teaming",
@@ -3498,7 +7128,21 @@
       "domain": "cybersecurity",
       "capabilities": [
         "security-testing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "A-poc/RedTeam-Tools",
@@ -3508,7 +7152,21 @@
       "domain": "cybersecurity",
       "capabilities": [
         "security-testing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "infosecn1nja/Red-Teaming-Toolkit",
@@ -3518,7 +7176,21 @@
       "domain": "cybersecurity",
       "capabilities": [
         "security-testing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "redcanaryco/atomic-red-team",
@@ -3540,7 +7212,21 @@
       ],
       "avoidWhen": [
         "unauthorized environments"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "enaqx/awesome-pentest",
@@ -3551,7 +7237,21 @@
       "capabilities": [
         "code-quality",
         "security-testing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "GreyDGL/PentestGPT",
@@ -3562,7 +7262,21 @@
       "capabilities": [
         "code-quality",
         "security-testing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "vxcontrol/pentagi",
@@ -3573,7 +7287,21 @@
       "capabilities": [
         "code-quality",
         "security-testing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "SnailSploit/Claude-Red",
@@ -3584,7 +7312,21 @@
       "capabilities": [
         "agent",
         "security-testing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "asgeirtj/system_prompts_leaks",
@@ -3595,7 +7337,21 @@
       "capabilities": [
         "prompt-research",
         "system-prompts"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "headroomlabs-ai/headroom",
@@ -3606,7 +7362,21 @@
       "capabilities": [
         "machine-learning",
         "optimization"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "langchain-ai/langchain",
@@ -3616,7 +7386,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "microsoft/markitdown",
@@ -3627,7 +7411,21 @@
       "capabilities": [
         "document-conversion",
         "markdown"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "langgenius/dify",
@@ -3637,7 +7435,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "firebase/flutterfire",
@@ -3647,7 +7459,21 @@
       "domain": "mobile",
       "capabilities": [
         "mobile"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Solido/awesome-flutter",
@@ -3657,7 +7483,21 @@
       "domain": "mobile",
       "capabilities": [
         "mobile"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "AgriciDaniel/claude-obsidian",
@@ -3667,7 +7507,21 @@
       "domain": "ai_memory",
       "capabilities": [
         "memory"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "kepano/obsidian-skills",
@@ -3677,7 +7531,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "blaCCkHatHacEEkr/PENTESTING-BIBLE",
@@ -3688,7 +7556,21 @@
       "capabilities": [
         "code-quality",
         "security-testing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "mem0ai/mem0",
@@ -3713,7 +7595,21 @@
       ],
       "avoidWhen": [
         "stateless short-lived agents"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "thedotmack/claude-mem",
@@ -3723,7 +7619,21 @@
       "domain": "ai_memory",
       "capabilities": [
         "memory"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "academic/awesome-datascience",
@@ -3733,7 +7643,21 @@
       "domain": "data_ml",
       "capabilities": [
         "market-data"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "DeusData/codebase-memory-mcp",
@@ -3744,7 +7668,21 @@
       "capabilities": [
         "memory",
         "market-data"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "usememos/memos",
@@ -3754,7 +7692,21 @@
       "domain": "ai_memory",
       "capabilities": [
         "memory"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "bytedance/UI-TARS-desktop",
@@ -3765,7 +7717,21 @@
       "capabilities": [
         "computer-use",
         "desktop-agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "animate-css/animate.css",
@@ -3775,7 +7741,21 @@
       "domain": "graphics",
       "capabilities": [
         "vector-animation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "microsoft/magentic-ui",
@@ -3785,7 +7765,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "microsoft/ai-agents-for-beginners",
@@ -3796,7 +7790,21 @@
       "capabilities": [
         "agent",
         "machine-learning"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "FlowiseAI/Flowise",
@@ -3806,7 +7814,22 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "BerriAI/litellm",
@@ -3832,7 +7855,22 @@
       ],
       "avoidWhen": [
         "single-provider minimal stacks"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "bytedance/deer-flow",
@@ -3842,7 +7880,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "lettier/3d-game-shaders-for-beginners",
@@ -3853,7 +7905,21 @@
       "capabilities": [
         "rendering",
         "game-development"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Donchitos/Claude-Code-Game-Studios",
@@ -3865,7 +7931,23 @@
         "agent",
         "mobile",
         "game-development"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "android",
+        "ios",
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "godotengine/godot",
@@ -3889,7 +7971,22 @@
       ],
       "avoidWhen": [
         "web-only non-game apps"
-      ]
+      ],
+      "languages": [
+        "go",
+        "c++"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "libgdx/libgdx",
@@ -3899,7 +7996,21 @@
       "domain": "game_dev",
       "capabilities": [
         "game-development"
-      ]
+      ],
+      "languages": [
+        "java"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "google/filament",
@@ -3922,7 +8033,23 @@
       ],
       "avoidWhen": [
         "simple 2D UI"
-      ]
+      ],
+      "languages": [
+        "rust",
+        "go",
+        "c++"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "soxoj/maigret",
@@ -3932,7 +8059,21 @@
       "domain": "cybersecurity",
       "capabilities": [
         "osint"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "sherlock-project/sherlock",
@@ -3952,7 +8093,21 @@
       ],
       "avoidWhen": [
         "identity claims require high-confidence attribution"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "payloadcms/payload",
@@ -3964,7 +8119,23 @@
         "cms",
         "backend",
         "typescript"
-      ]
+      ],
+      "languages": [
+        "typescript",
+        "javascript"
+      ],
+      "platforms": [
+        "web",
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "danielmiessler/SecLists",
@@ -3974,7 +8145,21 @@
       "domain": "cybersecurity",
       "capabilities": [
         "security-testing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "infoslack/awesome-web-hacking",
@@ -3984,7 +8169,22 @@
       "domain": "cybersecurity",
       "capabilities": [
         "security-testing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web",
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "rapid7/metasploit-framework",
@@ -3995,7 +8195,21 @@
       "capabilities": [
         "code-quality",
         "security-testing"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source"
     },
     {
       "repo": "huggingface/transformers",
@@ -4005,7 +8219,21 @@
       "domain": "data_ml",
       "capabilities": [
         "machine-learning"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "jihe520/MathModelAgent",
@@ -4015,7 +8243,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "alibaba/open-code-review",
@@ -4025,7 +8267,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "code-quality"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "multimodal-art-projection/YuE",
@@ -4035,7 +8291,21 @@
       "domain": "ai_media",
       "capabilities": [
         "voice-audio"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "calesthio/OpenMontage",
@@ -4045,7 +8315,21 @@
       "domain": "ai_media",
       "capabilities": [
         "video"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "tech-leads-club/agent-skills",
@@ -4055,7 +8339,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "EsotericSoftware/spine-runtimes",
@@ -4067,7 +8365,21 @@
         "memory",
         "vector-animation",
         "rendering"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "online-ml/river",
@@ -4078,7 +8390,21 @@
       "capabilities": [
         "machine-learning",
         "vector-animation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "airbnb/lottie-ios",
@@ -4091,7 +8417,22 @@
         "vector-animation",
         "rendering",
         "mobile"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "android",
+        "ios"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "airbnb/lottie-android",
@@ -4104,7 +8445,22 @@
         "vector-animation",
         "rendering",
         "mobile"
-      ]
+      ],
+      "languages": [
+        "java",
+        "kotlin"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Calinou/awesome-godot",
@@ -4114,7 +8470,22 @@
       "domain": "game_dev",
       "capabilities": [
         "game-development"
-      ]
+      ],
+      "languages": [
+        "go",
+        "c++"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "heroiclabs/nakama",
@@ -4124,7 +8495,21 @@
       "domain": "game_dev",
       "capabilities": [
         "game-development"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "unclecode/crawl4ai",
@@ -4148,7 +8533,21 @@
       ],
       "avoidWhen": [
         "managed API preferred"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "firecrawl/firecrawl",
@@ -4172,7 +8571,21 @@
       ],
       "avoidWhen": [
         "pure browser interaction without extraction"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "jo-inc/camoufox-browser",
@@ -4182,7 +8595,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "web-retrieval"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "AgriciDaniel/claude-ads",
@@ -4192,7 +8619,21 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Open-LLM-VTuber/Open-LLM-VTuber",
@@ -4202,7 +8643,21 @@
       "domain": "ai_media",
       "capabilities": [
         "voice-audio"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "HKUDS/Vibe-Trading",
@@ -4223,7 +8678,21 @@
         "alpha",
         "ml",
         "data"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "The-Swarm-Corporation/AutoHedge",
@@ -4242,7 +8711,21 @@
         "execution",
         "risk",
         "alpha"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "OpenBMB/VoxCPM",
@@ -4252,7 +8735,21 @@
       "domain": "ai_media",
       "capabilities": [
         "voice-audio"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "Fincept-Corporation/FinceptTerminal",
@@ -4271,7 +8768,21 @@
         "data",
         "macro",
         "diagnostic"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "TauricResearch/TradingAgents",
@@ -4293,7 +8804,21 @@
         "alpha",
         "ml",
         "portfolio"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     },
     {
       "repo": "ever-co/ever-gauzy",
@@ -4305,7 +8830,21 @@
         "erp",
         "crm",
         "business-automation"
-      ]
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source"
     }
   ]
 }
