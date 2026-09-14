@@ -113,6 +113,18 @@ Les scores restent des notes internes de pertinence. Pour éviter qu'un agent ch
 - quantopian/zipline — 8.3/10 — SPÉCIALISÉ
 - hudson-and-thames/mlfinlab — 8.2/10 — SPÉCIALISÉ
 
+## Trading / optimisation du rendement et du risque
+- skfolio/skfolio — 9.7/10 — CORE
+- PyPortfolio/PyPortfolioOpt — 9.5/10 — CORE
+- dcajasn/Riskfolio-Lib — 9.5/10 — CORE
+- ranaroussi/quantstats — 9.4/10 — RECOMMANDÉ
+- statsmodels/statsmodels — 9.5/10 — CORE
+- bashtage/arch — 9.2/10 — RECOMMANDÉ
+- optuna/optuna — 9.6/10 — CORE
+- hyperopt/hyperopt — 8.8/10 — SPÉCIALISÉ
+- stefan-jansen/alphalens-reloaded — 8.9/10 — SPÉCIALISÉ
+- quantopian/pyfolio — 8.4/10 — SPÉCIALISÉ
+
 ## Documentation / architecture / API
 - squidfunk/mkdocs-material — 9.7/10 — CORE
 - mkdocs/mkdocs — 9.4/10 — RECOMMANDÉ
