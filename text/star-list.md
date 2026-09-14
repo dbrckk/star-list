@@ -45,6 +45,13 @@ Liste reconstruite depuis les captures du 12 septembre 2026.
 - heygen-com/hyperframes — 8.6/10
 - danny-avila/LibreChat — 9.4/10
 - f/prompts.chat — 8.6/10
+- Aider-AI/aider — 9.6/10
+- plandex-ai/plandex — 8.8/10
+- langchain-ai/langgraph — 9.6/10
+- microsoft/autogen — 9.4/10
+- crewAIInc/crewAI — 9.2/10
+- google/adk-python — 9.3/10
+- camel-ai/camel — 9.0/10
 
 ## Automatisation / outils / données
 - public-apis/public-apis — 9.4/10
@@ -61,6 +68,13 @@ Liste reconstruite depuis les captures du 12 septembre 2026.
 - sdmg15/Best-websites-a-programmer-should-visit — 8.3/10
 - ChrisTitusTech/winutil — 9.2/10
 - harry2141985/Google-Colab-Notebooks — 7.8/10
+- browserbase/stagehand — 9.2/10
+
+## Mémoire / RAG / bases vectorielles
+- qdrant/qdrant — 9.5/10
+- chroma-core/chroma — 9.2/10
+- milvus-io/milvus — 9.3/10
+- deepset-ai/haystack — 9.1/10
 
 ## Graphisme vectoriel / animation
 - motion-canvas/motion-canvas — 9.5/10
@@ -90,6 +104,11 @@ Liste reconstruite depuis les captures du 12 septembre 2026.
 - SociallyIneptWeeb/AICoverGen — 7.8/10
 - debpalash/VoiceStudio — 8.0/10
 - freestylfly/awesome-gpt-image-2 — 8.2/10
+- comfyanonymous/ComfyUI — 9.7/10
+- invoke-ai/InvokeAI — 9.1/10
+
+## Infrastructure IA locale
+- mudler/LocalAI — 9.3/10
 
 ## Sécurité / OSINT
 - swisskyrepo/PayloadsAllTheThings — 9.5/10
