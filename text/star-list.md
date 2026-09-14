@@ -76,6 +76,32 @@ Liste reconstruite depuis les captures du 12 septembre 2026.
 - milvus-io/milvus — 9.3/10
 - deepset-ai/haystack — 9.1/10
 
+## Frontend / UI / design systems
+- facebook/react — 9.8/10
+- vercel/next.js — 9.8/10
+- vitejs/vite — 9.7/10
+- tailwindlabs/tailwindcss — 9.7/10
+- shadcn-ui/ui — 9.8/10
+- mui/material-ui — 9.5/10
+- chakra-ui/chakra-ui — 9.1/10
+- microsoft/fluentui — 9.1/10
+- storybookjs/storybook — 9.7/10
+- motiondivision/motion — 9.7/10
+- pmndrs/react-three-fiber — 9.3/10
+
+## Mobile / Android / multiplateforme
+- android/nowinandroid — 9.7/10
+- JetBrains/compose-multiplatform — 9.6/10
+- flutter/flutter — 9.7/10
+- facebook/react-native — 9.7/10
+- expo/expo — 9.7/10
+- appium/appium — 9.5/10
+- wix/Detox — 9.2/10
+
+## UX / accessibilité / qualité frontend
+- GoogleChrome/lighthouse — 9.8/10
+- dequelabs/axe-core — 9.7/10
+
 ## DevOps / CI-CD / infrastructure
 - dagger/dagger — 9.6/10
 - nektos/act — 9.4/10
