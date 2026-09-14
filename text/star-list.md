@@ -76,6 +76,22 @@ Liste reconstruite depuis les captures du 12 septembre 2026.
 - milvus-io/milvus — 9.3/10
 - deepset-ai/haystack — 9.1/10
 
+## Tests / évaluation / observabilité
+- microsoft/playwright — 9.8/10
+- pytest-dev/pytest — 9.7/10
+- astral-sh/ruff — 9.7/10
+- langfuse/langfuse — 9.6/10
+- promptfoo/promptfoo — 9.6/10
+- confident-ai/deepeval — 9.4/10
+- Arize-ai/phoenix — 9.3/10
+- EleutherAI/lm-evaluation-harness — 9.3/10
+- openai/evals — 8.8/10
+- testcontainers/testcontainers-python — 9.0/10
+
+## Sandboxing / exécution isolée
+- e2b-dev/E2B — 9.5/10
+- firecracker-microvm/firecracker — 9.4/10
+
 ## Graphisme vectoriel / animation
 - motion-canvas/motion-canvas — 9.5/10
 - svgdotjs/svg.js — 9.3/10
