@@ -486,7 +486,10 @@
       "tier": "recommended",
       "category": "Automatisation / outils / données",
       "domain": "productivity",
-      "capabilities": []
+      "capabilities": [
+        "api-directory",
+        "data-sources"
+      ]
     },
     {
       "repo": "lisys93/web-check",
@@ -494,7 +497,10 @@
       "tier": "specialized",
       "category": "Automatisation / outils / données",
       "domain": "productivity",
-      "capabilities": []
+      "capabilities": [
+        "web-diagnostics",
+        "osint"
+      ]
     },
     {
       "repo": "trimstray/the-book-of-secret-knowledge",
@@ -512,7 +518,9 @@
       "tier": "audit",
       "category": "Automatisation / outils / données",
       "domain": "productivity",
-      "capabilities": []
+      "capabilities": [
+        "automation"
+      ]
     },
     {
       "repo": "ReVanced/revanced-manager",
@@ -520,7 +528,10 @@
       "tier": "specialized",
       "category": "Automatisation / outils / données",
       "domain": "productivity",
-      "capabilities": []
+      "capabilities": [
+        "android",
+        "patch-management"
+      ]
     },
     {
       "repo": "sudoguy/tiktokpy",
@@ -528,7 +539,9 @@
       "tier": "audit",
       "category": "Automatisation / outils / données",
       "domain": "productivity",
-      "capabilities": []
+      "capabilities": [
+        "social-media-automation"
+      ]
     },
     {
       "repo": "simonfarah/tiktok-bot",
@@ -536,7 +549,9 @@
       "tier": "audit",
       "category": "Automatisation / outils / données",
       "domain": "productivity",
-      "capabilities": []
+      "capabilities": [
+        "social-media-automation"
+      ]
     },
     {
       "repo": "freeCodeCamp/freeCodeCamp",
@@ -544,7 +559,10 @@
       "tier": "core",
       "category": "Automatisation / outils / données",
       "domain": "productivity",
-      "capabilities": []
+      "capabilities": [
+        "learning",
+        "software-engineering"
+      ]
     },
     {
       "repo": "autoscrape-labs/pydoll",
@@ -562,7 +580,10 @@
       "tier": "specialized",
       "category": "Automatisation / outils / données",
       "domain": "productivity",
-      "capabilities": []
+      "capabilities": [
+        "ranking",
+        "recommendation-systems"
+      ]
     },
     {
       "repo": "cathrynlavery/diagram-design",
@@ -570,7 +591,10 @@
       "tier": "specialized",
       "category": "Automatisation / outils / données",
       "domain": "productivity",
-      "capabilities": []
+      "capabilities": [
+        "diagrams",
+        "architecture"
+      ]
     },
     {
       "repo": "sdmg15/Best-websites-a-programmer-should-visit",
@@ -578,7 +602,10 @@
       "tier": "specialized",
       "category": "Automatisation / outils / données",
       "domain": "productivity",
-      "capabilities": []
+      "capabilities": [
+        "learning",
+        "developer-resources"
+      ]
     },
     {
       "repo": "ChrisTitusTech/winutil",
@@ -586,7 +613,10 @@
       "tier": "recommended",
       "category": "Automatisation / outils / données",
       "domain": "productivity",
-      "capabilities": []
+      "capabilities": [
+        "windows-automation",
+        "system-tuning"
+      ]
     },
     {
       "repo": "harry2141985/Google-Colab-Notebooks",
@@ -594,7 +624,10 @@
       "tier": "audit",
       "category": "Automatisation / outils / données",
       "domain": "productivity",
-      "capabilities": []
+      "capabilities": [
+        "notebooks",
+        "cloud-compute"
+      ]
     },
     {
       "repo": "browserbase/stagehand",
@@ -656,7 +689,10 @@
       "tier": "core",
       "category": "Documentation / architecture / API",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "documentation",
+        "docs-site"
+      ]
     },
     {
       "repo": "mkdocs/mkdocs",
@@ -664,7 +700,10 @@
       "tier": "recommended",
       "category": "Documentation / architecture / API",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "documentation",
+        "docs-site"
+      ]
     },
     {
       "repo": "facebook/docusaurus",
@@ -672,7 +711,10 @@
       "tier": "core",
       "category": "Documentation / architecture / API",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "documentation",
+        "docs-site"
+      ]
     },
     {
       "repo": "withastro/starlight",
@@ -680,7 +722,10 @@
       "tier": "recommended",
       "category": "Documentation / architecture / API",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "documentation",
+        "docs-site"
+      ]
     },
     {
       "repo": "swagger-api/swagger-ui",
@@ -688,7 +733,10 @@
       "tier": "core",
       "category": "Documentation / architecture / API",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "api-documentation",
+        "openapi"
+      ]
     },
     {
       "repo": "Redocly/redoc",
@@ -696,7 +744,10 @@
       "tier": "recommended",
       "category": "Documentation / architecture / API",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "api-documentation",
+        "openapi"
+      ]
     },
     {
       "repo": "mermaid-js/mermaid",
@@ -704,7 +755,11 @@
       "tier": "core",
       "category": "Documentation / architecture / API",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "diagrams",
+        "architecture",
+        "documentation"
+      ]
     },
     {
       "repo": "plantuml/plantuml",
@@ -732,7 +787,11 @@
       "tier": "specialized",
       "category": "Documentation / architecture / API",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "adr",
+        "architecture",
+        "documentation"
+      ]
     },
     {
       "repo": "orhun/git-cliff",
@@ -740,7 +799,10 @@
       "tier": "recommended",
       "category": "Documentation / architecture / API",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "changelog",
+        "release-automation"
+      ]
     },
     {
       "repo": "conventional-changelog/conventional-changelog",
@@ -748,7 +810,10 @@
       "tier": "recommended",
       "category": "Documentation / architecture / API",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "changelog",
+        "release-automation"
+      ]
     },
     {
       "repo": "postgres/postgres",
@@ -756,7 +821,11 @@
       "tier": "core",
       "category": "Backend / API / données",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "database",
+        "sql",
+        "relational-database"
+      ]
     },
     {
       "repo": "redis/redis",
@@ -764,7 +833,11 @@
       "tier": "core",
       "category": "Backend / API / données",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "cache",
+        "database",
+        "messaging"
+      ]
     },
     {
       "repo": "supabase/supabase",
@@ -772,7 +845,12 @@
       "tier": "core",
       "category": "Backend / API / données",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "backend-as-a-service",
+        "database",
+        "auth",
+        "storage"
+      ]
     },
     {
       "repo": "appwrite/appwrite",
@@ -780,7 +858,12 @@
       "tier": "recommended",
       "category": "Backend / API / données",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "backend-as-a-service",
+        "auth",
+        "database",
+        "storage"
+      ]
     },
     {
       "repo": "pocketbase/pocketbase",
@@ -788,7 +871,11 @@
       "tier": "recommended",
       "category": "Backend / API / données",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "backend-as-a-service",
+        "database",
+        "auth"
+      ]
     },
     {
       "repo": "prisma/prisma",
@@ -796,7 +883,11 @@
       "tier": "core",
       "category": "Backend / API / données",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "orm",
+        "database",
+        "typescript"
+      ]
     },
     {
       "repo": "drizzle-team/drizzle-orm",
@@ -804,7 +895,11 @@
       "tier": "core",
       "category": "Backend / API / données",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "orm",
+        "database",
+        "typescript"
+      ]
     },
     {
       "repo": "fastapi/fastapi",
@@ -812,7 +907,11 @@
       "tier": "core",
       "category": "Backend / API / données",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "api",
+        "python",
+        "backend"
+      ]
     },
     {
       "repo": "nestjs/nest",
@@ -820,7 +919,11 @@
       "tier": "core",
       "category": "Backend / API / données",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "api",
+        "typescript",
+        "backend"
+      ]
     },
     {
       "repo": "trpc/trpc",
@@ -828,7 +931,11 @@
       "tier": "recommended",
       "category": "Backend / API / données",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "api",
+        "typescript",
+        "rpc"
+      ]
     },
     {
       "repo": "graphql/graphql-js",
@@ -836,7 +943,10 @@
       "tier": "recommended",
       "category": "Backend / API / données",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "graphql",
+        "api"
+      ]
     },
     {
       "repo": "apollographql/apollo-server",
@@ -844,23 +954,34 @@
       "tier": "recommended",
       "category": "Backend / API / données",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "graphql",
+        "api",
+        "backend"
+      ]
     },
     {
       "repo": "keycloak/keycloak",
       "score": 9.5,
       "tier": "core",
       "category": "Authentification / identité",
-      "domain": "other",
-      "capabilities": []
+      "domain": "backend",
+      "capabilities": [
+        "auth",
+        "identity",
+        "sso"
+      ]
     },
     {
       "repo": "ory/kratos",
       "score": 9.2,
       "tier": "recommended",
       "category": "Authentification / identité",
-      "domain": "other",
-      "capabilities": []
+      "domain": "backend",
+      "capabilities": [
+        "auth",
+        "identity"
+      ]
     },
     {
       "repo": "seaweedfs/seaweedfs",
@@ -868,7 +989,10 @@
       "tier": "recommended",
       "category": "Stockage objet / distribué",
       "domain": "backend",
-      "capabilities": []
+      "capabilities": [
+        "object-storage",
+        "distributed-storage"
+      ]
     },
     {
       "repo": "facebook/react",
@@ -876,7 +1000,11 @@
       "tier": "core",
       "category": "Frontend / UI / design systems",
       "domain": "web_frontend",
-      "capabilities": []
+      "capabilities": [
+        "ui",
+        "frontend",
+        "component-framework"
+      ]
     },
     {
       "repo": "vercel/next.js",
@@ -884,7 +1012,11 @@
       "tier": "core",
       "category": "Frontend / UI / design systems",
       "domain": "web_frontend",
-      "capabilities": []
+      "capabilities": [
+        "frontend",
+        "fullstack",
+        "ssr"
+      ]
     },
     {
       "repo": "vitejs/vite",
@@ -892,7 +1024,10 @@
       "tier": "core",
       "category": "Frontend / UI / design systems",
       "domain": "web_frontend",
-      "capabilities": []
+      "capabilities": [
+        "frontend-build",
+        "bundler"
+      ]
     },
     {
       "repo": "tailwindlabs/tailwindcss",
@@ -900,7 +1035,10 @@
       "tier": "core",
       "category": "Frontend / UI / design systems",
       "domain": "web_frontend",
-      "capabilities": []
+      "capabilities": [
+        "css",
+        "design-system"
+      ]
     },
     {
       "repo": "shadcn-ui/ui",
@@ -908,7 +1046,11 @@
       "tier": "core",
       "category": "Frontend / UI / design systems",
       "domain": "web_frontend",
-      "capabilities": []
+      "capabilities": [
+        "ui-components",
+        "design-system",
+        "accessibility"
+      ]
     },
     {
       "repo": "mui/material-ui",
@@ -916,7 +1058,10 @@
       "tier": "core",
       "category": "Frontend / UI / design systems",
       "domain": "web_frontend",
-      "capabilities": []
+      "capabilities": [
+        "ui-components",
+        "design-system"
+      ]
     },
     {
       "repo": "chakra-ui/chakra-ui",
@@ -924,7 +1069,11 @@
       "tier": "recommended",
       "category": "Frontend / UI / design systems",
       "domain": "web_frontend",
-      "capabilities": []
+      "capabilities": [
+        "ui-components",
+        "design-system",
+        "accessibility"
+      ]
     },
     {
       "repo": "microsoft/fluentui",
@@ -932,7 +1081,10 @@
       "tier": "recommended",
       "category": "Frontend / UI / design systems",
       "domain": "web_frontend",
-      "capabilities": []
+      "capabilities": [
+        "ui-components",
+        "design-system"
+      ]
     },
     {
       "repo": "storybookjs/storybook",
@@ -940,7 +1092,11 @@
       "tier": "core",
       "category": "Frontend / UI / design systems",
       "domain": "web_frontend",
-      "capabilities": []
+      "capabilities": [
+        "ui-components",
+        "visual-testing",
+        "documentation"
+      ]
     },
     {
       "repo": "motiondivision/motion",
@@ -948,7 +1104,10 @@
       "tier": "core",
       "category": "Frontend / UI / design systems",
       "domain": "web_frontend",
-      "capabilities": []
+      "capabilities": [
+        "ui-animation",
+        "frontend"
+      ]
     },
     {
       "repo": "pmndrs/react-three-fiber",
@@ -956,7 +1115,11 @@
       "tier": "recommended",
       "category": "Frontend / UI / design systems",
       "domain": "web_frontend",
-      "capabilities": []
+      "capabilities": [
+        "3d",
+        "webgl",
+        "react"
+      ]
     },
     {
       "repo": "android/nowinandroid",
@@ -1034,7 +1197,11 @@
       "tier": "core",
       "category": "UX / accessibilité / qualité frontend",
       "domain": "web_frontend",
-      "capabilities": []
+      "capabilities": [
+        "performance-audit",
+        "accessibility",
+        "seo"
+      ]
     },
     {
       "repo": "dequelabs/axe-core",
@@ -1042,7 +1209,10 @@
       "tier": "core",
       "category": "UX / accessibilité / qualité frontend",
       "domain": "web_frontend",
-      "capabilities": []
+      "capabilities": [
+        "accessibility",
+        "testing"
+      ]
     },
     {
       "repo": "dagger/dagger",
@@ -1050,7 +1220,11 @@
       "tier": "core",
       "category": "DevOps / CI-CD / infrastructure",
       "domain": "devops",
-      "capabilities": []
+      "capabilities": [
+        "ci-cd",
+        "pipelines",
+        "containers"
+      ]
     },
     {
       "repo": "nektos/act",
@@ -1058,7 +1232,10 @@
       "tier": "recommended",
       "category": "DevOps / CI-CD / infrastructure",
       "domain": "devops",
-      "capabilities": []
+      "capabilities": [
+        "github-actions",
+        "local-ci"
+      ]
     },
     {
       "repo": "earthly/earthly",
@@ -1066,7 +1243,11 @@
       "tier": "recommended",
       "category": "DevOps / CI-CD / infrastructure",
       "domain": "devops",
-      "capabilities": []
+      "capabilities": [
+        "build-system",
+        "ci-cd",
+        "containers"
+      ]
     },
     {
       "repo": "docker/compose",
@@ -1074,7 +1255,10 @@
       "tier": "core",
       "category": "DevOps / CI-CD / infrastructure",
       "domain": "devops",
-      "capabilities": []
+      "capabilities": [
+        "containers",
+        "orchestration"
+      ]
     },
     {
       "repo": "podman-container-tools/podman",
@@ -1082,7 +1266,10 @@
       "tier": "core",
       "category": "DevOps / CI-CD / infrastructure",
       "domain": "devops",
-      "capabilities": []
+      "capabilities": [
+        "containers",
+        "runtime"
+      ]
     },
     {
       "repo": "kubernetes/kubernetes",
@@ -1090,7 +1277,10 @@
       "tier": "core",
       "category": "DevOps / CI-CD / infrastructure",
       "domain": "devops",
-      "capabilities": []
+      "capabilities": [
+        "containers",
+        "orchestration"
+      ]
     },
     {
       "repo": "helm/helm",
@@ -1098,7 +1288,10 @@
       "tier": "recommended",
       "category": "DevOps / CI-CD / infrastructure",
       "domain": "devops",
-      "capabilities": []
+      "capabilities": [
+        "kubernetes",
+        "package-management"
+      ]
     },
     {
       "repo": "opentofu/opentofu",
@@ -1106,7 +1299,10 @@
       "tier": "core",
       "category": "DevOps / CI-CD / infrastructure",
       "domain": "devops",
-      "capabilities": []
+      "capabilities": [
+        "iac",
+        "infrastructure"
+      ]
     },
     {
       "repo": "hashicorp/terraform",
@@ -1114,7 +1310,10 @@
       "tier": "recommended",
       "category": "DevOps / CI-CD / infrastructure",
       "domain": "devops",
-      "capabilities": []
+      "capabilities": [
+        "iac",
+        "infrastructure"
+      ]
     },
     {
       "repo": "ansible/ansible",
@@ -1122,7 +1321,10 @@
       "tier": "recommended",
       "category": "DevOps / CI-CD / infrastructure",
       "domain": "devops",
-      "capabilities": []
+      "capabilities": [
+        "configuration-management",
+        "automation"
+      ]
     },
     {
       "repo": "argoproj/argo-cd",
@@ -1130,7 +1332,11 @@
       "tier": "core",
       "category": "DevOps / CI-CD / infrastructure",
       "domain": "devops",
-      "capabilities": []
+      "capabilities": [
+        "gitops",
+        "deployment",
+        "kubernetes"
+      ]
     },
     {
       "repo": "fluxcd/flux2",
@@ -1138,7 +1344,11 @@
       "tier": "recommended",
       "category": "DevOps / CI-CD / infrastructure",
       "domain": "devops",
-      "capabilities": []
+      "capabilities": [
+        "gitops",
+        "deployment",
+        "kubernetes"
+      ]
     },
     {
       "repo": "prometheus/prometheus",
@@ -1196,7 +1406,11 @@
       "tier": "core",
       "category": "Analyse de code / transformation / qualité",
       "domain": "software_engineering",
-      "capabilities": []
+      "capabilities": [
+        "ast",
+        "parsing",
+        "code-analysis"
+      ]
     },
     {
       "repo": "semgrep/semgrep",
@@ -1204,7 +1418,10 @@
       "tier": "core",
       "category": "Analyse de code / transformation / qualité",
       "domain": "software_engineering",
-      "capabilities": []
+      "capabilities": [
+        "static-analysis",
+        "security-scanning"
+      ]
     },
     {
       "repo": "github/codeql",
@@ -1212,7 +1429,10 @@
       "tier": "core",
       "category": "Analyse de code / transformation / qualité",
       "domain": "software_engineering",
-      "capabilities": []
+      "capabilities": [
+        "static-analysis",
+        "security-scanning"
+      ]
     },
     {
       "repo": "ast-grep/ast-grep",
@@ -1220,7 +1440,11 @@
       "tier": "core",
       "category": "Analyse de code / transformation / qualité",
       "domain": "software_engineering",
-      "capabilities": []
+      "capabilities": [
+        "ast",
+        "code-search",
+        "refactoring"
+      ]
     },
     {
       "repo": "sourcegraph/zoekt",
@@ -1228,7 +1452,10 @@
       "tier": "recommended",
       "category": "Analyse de code / transformation / qualité",
       "domain": "software_engineering",
-      "capabilities": []
+      "capabilities": [
+        "code-search",
+        "indexing"
+      ]
     },
     {
       "repo": "comby-tools/comby",
@@ -1236,7 +1463,10 @@
       "tier": "specialized",
       "category": "Analyse de code / transformation / qualité",
       "domain": "software_engineering",
-      "capabilities": []
+      "capabilities": [
+        "code-transformation",
+        "refactoring"
+      ]
     },
     {
       "repo": "astral-sh/uv",
@@ -1244,7 +1474,11 @@
       "tier": "core",
       "category": "Analyse de code / transformation / qualité",
       "domain": "software_engineering",
-      "capabilities": []
+      "capabilities": [
+        "python",
+        "package-management",
+        "environment-management"
+      ]
     },
     {
       "repo": "benfred/py-spy",
@@ -1252,7 +1486,10 @@
       "tier": "recommended",
       "category": "Analyse de code / transformation / qualité",
       "domain": "software_engineering",
-      "capabilities": []
+      "capabilities": [
+        "profiling",
+        "python"
+      ]
     },
     {
       "repo": "HypothesisWorks/hypothesis",
@@ -1390,16 +1627,23 @@
       "score": 9.5,
       "tier": "core",
       "category": "Sandboxing / exécution isolée",
-      "domain": "other",
-      "capabilities": []
+      "domain": "software_engineering",
+      "capabilities": [
+        "sandbox",
+        "code-execution"
+      ]
     },
     {
       "repo": "firecracker-microvm/firecracker",
       "score": 9.4,
       "tier": "recommended",
       "category": "Sandboxing / exécution isolée",
-      "domain": "other",
-      "capabilities": []
+      "domain": "devops",
+      "capabilities": [
+        "sandbox",
+        "microvm",
+        "isolation"
+      ]
     },
     {
       "repo": "motion-canvas/motion-canvas",
@@ -1494,7 +1738,10 @@
       "tier": "specialized",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "visualization",
+        "graphics"
+      ]
     },
     {
       "repo": "RVC-Project/Retrieval-based-Voice-Conversion-WebUI",
@@ -1512,7 +1759,10 @@
       "tier": "audit",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "3d-human",
+        "colab"
+      ]
     },
     {
       "repo": "deepfakes/faceswap",
@@ -1520,7 +1770,10 @@
       "tier": "specialized",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "face-swap",
+        "video"
+      ]
     },
     {
       "repo": "Tencent-Hunyuan/HunyuanVideo",
@@ -1538,7 +1791,10 @@
       "tier": "audit",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "face-swap",
+        "colab"
+      ]
     },
     {
       "repo": "hacksider/Deep-Live-Cam",
@@ -1546,7 +1802,10 @@
       "tier": "specialized",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "face-swap",
+        "realtime-video"
+      ]
     },
     {
       "repo": "camenduru/dust3r-jupyter",
@@ -1554,7 +1813,10 @@
       "tier": "specialized",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "3d-reconstruction",
+        "notebooks"
+      ]
     },
     {
       "repo": "RayVentura/ShortGPT",
@@ -1562,7 +1824,10 @@
       "tier": "specialized",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "video-generation",
+        "automation"
+      ]
     },
     {
       "repo": "FujiwaraChoki/MoneyPrinterV2",
@@ -1570,7 +1835,10 @@
       "tier": "specialized",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "video-generation",
+        "automation"
+      ]
     },
     {
       "repo": "FujiwaraChoki/MoneyPrinter",
@@ -1578,7 +1846,10 @@
       "tier": "audit",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "video-generation",
+        "automation"
+      ]
     },
     {
       "repo": "KRTirtho/spotube",
@@ -1586,7 +1857,10 @@
       "tier": "specialized",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "music",
+        "streaming-client"
+      ]
     },
     {
       "repo": "ali-vilab/AnyDoor",
@@ -1594,7 +1868,10 @@
       "tier": "specialized",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "image-generation",
+        "object-insertion"
+      ]
     },
     {
       "repo": "facefusion/facefusion",
@@ -1602,7 +1879,10 @@
       "tier": "specialized",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "face-swap",
+        "video"
+      ]
     },
     {
       "repo": "SociallyIneptWeeb/AICoverGen",
@@ -1610,7 +1890,10 @@
       "tier": "audit",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "voice-conversion",
+        "music"
+      ]
     },
     {
       "repo": "debpalash/VoiceStudio",
@@ -1628,7 +1911,10 @@
       "tier": "specialized",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "image-generation",
+        "prompt-library"
+      ]
     },
     {
       "repo": "comfyanonymous/ComfyUI",
@@ -1636,7 +1922,11 @@
       "tier": "core",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "image-generation",
+        "workflow",
+        "diffusion"
+      ]
     },
     {
       "repo": "invoke-ai/InvokeAI",
@@ -1644,7 +1934,10 @@
       "tier": "recommended",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "image-generation",
+        "diffusion"
+      ]
     },
     {
       "repo": "mudler/LocalAI",
@@ -1652,7 +1945,10 @@
       "tier": "recommended",
       "category": "Infrastructure IA locale",
       "domain": "devops",
-      "capabilities": []
+      "capabilities": [
+        "local-inference",
+        "model-serving"
+      ]
     },
     {
       "repo": "swisskyrepo/PayloadsAllTheThings",
@@ -1729,16 +2025,22 @@
       "score": 6.8,
       "tier": "audit",
       "category": "Autres favoris visibles",
-      "domain": "other",
-      "capabilities": []
+      "domain": "productivity",
+      "capabilities": [
+        "messaging",
+        "simulation"
+      ]
     },
     {
       "repo": "massgravel/Microsoft-Activation-Scripts",
       "score": 8.6,
       "tier": "specialized",
       "category": "Autres favoris visibles",
-      "domain": "other",
-      "capabilities": []
+      "domain": "productivity",
+      "capabilities": [
+        "windows",
+        "activation"
+      ]
     },
     {
       "repo": "friuns2/BlackFriday-GPTs-Prompts",
@@ -1746,7 +2048,9 @@
       "tier": "audit",
       "category": "Autres favoris visibles",
       "domain": "other",
-      "capabilities": []
+      "capabilities": [
+        "prompt-library"
+      ]
     },
     {
       "repo": "charlesbel/Microsoft-Rewards-Farmer",
@@ -1754,15 +2058,20 @@
       "tier": "audit",
       "category": "Autres favoris visibles",
       "domain": "other",
-      "capabilities": []
+      "capabilities": [
+        "automation"
+      ]
     },
     {
       "repo": "Illyasviel/Paints-UNDO",
       "score": 9,
       "tier": "recommended",
       "category": "Autres favoris visibles",
-      "domain": "other",
-      "capabilities": []
+      "domain": "ai_media",
+      "capabilities": [
+        "image-generation",
+        "image-editing"
+      ]
     },
     {
       "repo": "bleeeline/aimoneyhunter",
@@ -1770,15 +2079,20 @@
       "tier": "audit",
       "category": "Autres favoris visibles",
       "domain": "other",
-      "capabilities": []
+      "capabilities": [
+        "automation"
+      ]
     },
     {
       "repo": "LargeWorldModel/LWM",
       "score": 8.7,
       "tier": "specialized",
       "category": "Autres favoris visibles",
-      "domain": "other",
-      "capabilities": []
+      "domain": "ai_media",
+      "capabilities": [
+        "multimodal",
+        "world-model"
+      ]
     },
     {
       "repo": "teacat/chaturbate-dvr",
@@ -1786,7 +2100,9 @@
       "tier": "audit",
       "category": "Autres favoris visibles",
       "domain": "other",
-      "capabilities": []
+      "capabilities": [
+        "video-recording"
+      ]
     },
     {
       "repo": "GuallaGang508/SMSBotBypass",
@@ -1794,23 +2110,32 @@
       "tier": "audit",
       "category": "Autres favoris visibles",
       "domain": "other",
-      "capabilities": []
+      "capabilities": [
+        "messaging",
+        "automation"
+      ]
     },
     {
       "repo": "Cyb0r9/SocialBox",
       "score": 6.2,
       "tier": "audit",
       "category": "Autres favoris visibles",
-      "domain": "other",
-      "capabilities": []
+      "domain": "cybersecurity",
+      "capabilities": [
+        "osint",
+        "social-media"
+      ]
     },
     {
       "repo": "Ha3MrX/InstaBrute",
       "score": 5.8,
       "tier": "audit",
       "category": "Autres favoris visibles",
-      "domain": "other",
-      "capabilities": []
+      "domain": "cybersecurity",
+      "capabilities": [
+        "credential-testing",
+        "social-media"
+      ]
     },
     {
       "repo": "GH05T-HUNTER5/GH05T-INSTA",
@@ -1818,7 +2143,10 @@
       "tier": "audit",
       "category": "Autres favoris visibles",
       "domain": "other",
-      "capabilities": []
+      "capabilities": [
+        "social-media",
+        "automation"
+      ]
     },
     {
       "repo": "ShadowHackrs/Gmail-infinity",
@@ -1826,23 +2154,31 @@
       "tier": "audit",
       "category": "Autres favoris visibles",
       "domain": "other",
-      "capabilities": []
+      "capabilities": [
+        "email",
+        "automation"
+      ]
     },
     {
       "repo": "alsk1992/CloddsBot",
       "score": 6.8,
       "tier": "audit",
       "category": "Autres favoris visibles",
-      "domain": "other",
-      "capabilities": []
+      "domain": "trading",
+      "capabilities": [
+        "trading",
+        "automation"
+      ]
     },
     {
       "repo": "BloodOnTop/Stealerium",
       "score": 4,
       "tier": "audit",
       "category": "Autres favoris visibles",
-      "domain": "other",
-      "capabilities": []
+      "domain": "cybersecurity",
+      "capabilities": [
+        "malware-research"
+      ]
     },
     {
       "repo": "QuantConnect/Lean",
@@ -2735,7 +3071,10 @@
       "tier": "specialized",
       "category": "AI / image generation",
       "domain": "ai_media",
-      "capabilities": []
+      "capabilities": [
+        "image-generation",
+        "prompt-library"
+      ]
     },
     {
       "repo": "cursor/plugins",
@@ -2753,7 +3092,11 @@
       "tier": "recommended",
       "category": "Architecture / diagrams",
       "domain": "software_engineering",
-      "capabilities": []
+      "capabilities": [
+        "architecture",
+        "diagrams",
+        "agent-skill"
+      ]
     },
     {
       "repo": "bluscreenofjeff/Red-Team-Infrastructure-Wiki",
@@ -2865,7 +3208,10 @@
       "tier": "specialized",
       "category": "AI / prompt research",
       "domain": "ai_agents",
-      "capabilities": []
+      "capabilities": [
+        "prompt-research",
+        "system-prompts"
+      ]
     },
     {
       "repo": "headroomlabs-ai/headroom",
@@ -2893,8 +3239,11 @@
       "score": 9.5,
       "tier": "core",
       "category": "Documents / conversion",
-      "domain": "other",
-      "capabilities": []
+      "domain": "software_engineering",
+      "capabilities": [
+        "document-conversion",
+        "markdown"
+      ]
     },
     {
       "repo": "langgenius/dify",
@@ -3014,7 +3363,10 @@
       "tier": "recommended",
       "category": "AI / computer use",
       "domain": "ai_agents",
-      "capabilities": []
+      "capabilities": [
+        "computer-use",
+        "desktop-agent"
+      ]
     },
     {
       "repo": "animate-css/animate.css",
@@ -3063,7 +3415,11 @@
       "tier": "core",
       "category": "AI / model routing",
       "domain": "ai_agents",
-      "capabilities": []
+      "capabilities": [
+        "model-routing",
+        "llm-gateway",
+        "observability"
+      ]
     },
     {
       "repo": "bytedance/deer-flow",
@@ -3154,7 +3510,11 @@
       "tier": "core",
       "category": "Web development / CMS",
       "domain": "web_frontend",
-      "capabilities": []
+      "capabilities": [
+        "cms",
+        "backend",
+        "typescript"
+      ]
     },
     {
       "repo": "danielmiessler/SecLists",
@@ -3463,7 +3823,11 @@
       "tier": "specialized",
       "category": "Business / ERP",
       "domain": "productivity",
-      "capabilities": []
+      "capabilities": [
+        "erp",
+        "crm",
+        "business-automation"
+      ]
     }
   ]
 }
