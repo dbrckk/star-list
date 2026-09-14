@@ -76,6 +76,27 @@ Liste reconstruite depuis les captures du 12 septembre 2026.
 - milvus-io/milvus — 9.3/10
 - deepset-ai/haystack — 9.1/10
 
+## DevOps / CI-CD / infrastructure
+- dagger/dagger — 9.6/10
+- nektos/act — 9.4/10
+- earthly/earthly — 9.1/10
+- docker/compose — 9.7/10
+- podman-container-tools/podman — 9.5/10
+- kubernetes/kubernetes — 9.6/10
+- helm/helm — 9.4/10
+- opentofu/opentofu — 9.5/10
+- hashicorp/terraform — 9.2/10
+- ansible/ansible — 9.4/10
+- argoproj/argo-cd — 9.5/10
+- fluxcd/flux2 — 9.2/10
+
+## Monitoring / production / releases
+- prometheus/prometheus — 9.7/10
+- grafana/grafana — 9.7/10
+- getsentry/sentry — 9.5/10
+- semantic-release/semantic-release — 9.2/10
+- release-it/release-it — 8.9/10
+
 ## Analyse de code / transformation / qualité
 - tree-sitter/tree-sitter — 9.8/10
 - semgrep/semgrep — 9.6/10
