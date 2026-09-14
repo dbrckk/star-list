@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "stacks": [
+    {
+      "name": "AI Dev Server",
+      "domain": "ai_agents",
+      "goal": "Autonomous software development with memory, observability, browser testing and model routing.",
+      "repos": [
+        "anomalyco/opencode",
+        "BerriAI/litellm",
+        "mem0ai/mem0",
+        "langfuse/langfuse",
+        "microsoft/playwright",
+        "firecrawl/firecrawl",
+        "e2b-dev/E2B"
+      ],
+      "notes": [
+        "Use OpenHands as an alternative autonomous coding engine.",
+        "Use qdrant/qdrant when vector retrieval becomes a first-class requirement."
+      ]
+    },
+    {
+      "name": "XAUUSD Research",
+      "domain": "trading",
+      "goal": "Robust Gold/USD research from data ingestion to backtest, ML, risk and execution.",
+      "repos": [
+        "OpenBB-finance/OpenBB",
+        "microsoft/qlib",
+        "dmlc/xgboost",
+        "shap/shap",
+        "optuna/optuna",
+        "polakowo/vectorbt",
+        "dcajasn/Riskfolio-Lib",
+        "QuantConnect/Lean",
+        "nautechsystems/nautilus_trader",
+        "ranaroussi/quantstats"
+      ],
+      "notes": [
+        "Prefer out-of-sample profit robustness over win rate.",
+        "Model spread, slippage and session/macro regimes explicitly."
+      ]
+    },
+    {
+      "name": "Vector Animation Android",
+      "domain": "graphics",
+      "goal": "Create and deploy high-quality vector animation on Android.",
+      "repos": [
+        "motion-canvas/motion-canvas",
+        "airbnb/lottie-android",
+        "EsotericSoftware/spine-runtimes",
+        "google/filament"
+      ],
+      "notes": [
+        "Use Lottie for lightweight playback.",
+        "Use Spine or Rive-style runtimes for richer interactive animation."
+      ]
+    },
+    {
+      "name": "Full-stack Web App",
+      "domain": "web_frontend",
+      "goal": "Modern full-stack product with strong UI, API, data and test coverage.",
+      "repos": [
+        "vercel/next.js",
+        "shadcn-ui/ui",
+        "tailwindlabs/tailwindcss",
+        "supabase/supabase",
+        "postgres/postgres",
+        "microsoft/playwright",
+        "GoogleChrome/lighthouse"
+      ],
+      "notes": [
+        "Swap Supabase for FastAPI + Postgres when backend control matters more than speed."
+      ]
+    },
+    {
+      "name": "Android Product",
+      "domain": "mobile",
+      "goal": "Production Android app with modern UI, backend integration and testing.",
+      "repos": [
+        "android/nowinandroid",
+        "JetBrains/compose-multiplatform",
+        "firebase/flutterfire",
+        "appium/appium"
+      ],
+      "notes": [
+        "Use React Native/Expo or Flutter instead when cross-platform speed matters more than native architecture."
+      ]
+    },
+    {
+      "name": "Game Production",
+      "domain": "game_dev",
+      "goal": "Cross-platform game with rendering, backend and ecosystem tooling.",
+      "repos": [
+        "godotengine/godot",
+        "google/filament",
+        "heroiclabs/nakama",
+        "Calinou/awesome-godot"
+      ],
+      "notes": [
+        "For Java ecosystems, libgdx/libgdx is the main alternative."
+      ]
+    },
+    {
+      "name": "Authorized Security Validation",
+      "domain": "cybersecurity",
+      "goal": "Defensive validation and authorized security assessment workflows.",
+      "repos": [
+        "redcanaryco/atomic-red-team",
+        "semgrep/semgrep",
+        "github/codeql",
+        "danielmiessler/SecLists"
+      ],
+      "notes": [
+        "Use only in authorized environments and keep scope controls fail-closed."
+      ]
+    }
+  ]
+}
