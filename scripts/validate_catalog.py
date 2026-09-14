@@ -11,8 +11,12 @@ for i,r in enumerate(data.get("repositories",[])):
     if not re.match(r"^[^/]+/[^/]+$",r.get("repo","")): errors.append(f"{i}: invalid repo")
     if r.get("repo") in seen: errors.append(f"{i}: duplicate {r['repo']}")
     seen.add(r.get("repo"))
-    s=r.get("score",-1); expected="core" if s>=9.5 else "recommended" if s>=9 else "specialized" if s>=8 else "audit"
-    if r.get("tier")!=expected: errors.append(f"{r.get('repo')}: tier should be {expected}")
+    s=r.get("score",-1)
+    tier=r.get("tier")
+    if tier not in {"core","recommended","specialized","audit"}: errors.append(f"{r.get('repo')}: invalid tier {tier}")
+    if tier=="core" and s<9.5: errors.append(f"{r.get('repo')}: core requires score >= 9.5")
+    if tier=="recommended" and s<9.0: errors.append(f"{r.get('repo')}: recommended requires score >= 9.0")
+    if tier=="specialized" and s<8.0: errors.append(f"{r.get('repo')}: specialized requires score >= 8.0")
     if r.get("domain")=="trading":
         roles=set(r.get("roles",[]))
         bad=roles-valid_roles
