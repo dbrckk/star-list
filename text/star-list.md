@@ -113,6 +113,14 @@ Les scores restent des notes internes de pertinence. Pour éviter qu'un agent ch
 - quantopian/zipline — 8.3/10 — SPÉCIALISÉ
 - hudson-and-thames/mlfinlab — 8.2/10 — SPÉCIALISÉ
 
+## Trading / ensembles / allocation dynamique / regime switching
+- pykalman/pykalman — 9.0/10 — RECOMMANDÉ
+
+### Politique d'ensemble de stratégies
+Ne pas rechercher une stratégie unique supposée optimale sur tous les régimes. Construire un ensemble de stratégies complémentaires (trend, breakout, mean-reversion, volatility, liquidity/SMC, macro, ML), mesurer leurs corrélations et leurs performances par régime, puis allouer dynamiquement le capital selon les conditions de marché.
+
+L'allocation doit privilégier l'espérance nette robuste, la diversification entre moteurs d'alpha et la stabilité hors échantillon. Éviter le double comptage de signaux fortement corrélés. Tester l'ensemble contre une allocation statique simple et contre le meilleur composant individuel sur un holdout final.
+
 ## Trading / alpha discovery / régimes / ML
 - scikit-learn/scikit-learn — 9.8/10 — CORE
 - dmlc/xgboost — 9.7/10 — CORE
