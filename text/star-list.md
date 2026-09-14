@@ -113,6 +113,16 @@ Les scores restent des notes internes de pertinence. Pour éviter qu'un agent ch
 - quantopian/zipline — 8.3/10 — SPÉCIALISÉ
 - hudson-and-thames/mlfinlab — 8.2/10 — SPÉCIALISÉ
 
+## Trading / Gold XAUUSD / macro / diagnostic
+- OpenBB-finance/OpenBB — 9.7/10 — CORE
+- plotly/plotly.py — 9.4/10 — RECOMMANDÉ
+- matplotlib/mplfinance — 9.1/10 — RECOMMANDÉ
+
+### Politique XAUUSD orientée profit
+Pour Gold/USD, prioriser les stratégies capables de conserver une espérance positive hors échantillon après spread, slippage, commissions et latence. Évaluer séparément les régimes de volatilité, les sessions Asie/Londres/New York, les annonces macro US, les taux réels/nominaux, le dollar, la structure de marché et la liquidité. Ne pas optimiser uniquement le win rate : privilégier profit net, expectancy, profit factor, CAGR, Calmar/Sortino, max drawdown, stabilité walk-forward et robustesse Monte-Carlo.
+
+Les connecteurs MetaTrader 5 communautaires de petite taille peuvent servir de prototypes, mais ne doivent pas être sélectionnés automatiquement comme dépendances critiques sans audit.
+
 ## Trading / microstructure / séries temporelles / exécution
 - unit8co/darts — 9.4/10 — RECOMMANDÉ
 - sktime/sktime — 9.4/10 — RECOMMANDÉ
