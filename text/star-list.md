@@ -94,6 +94,25 @@ Les scores restent des notes internes de pertinence. Pour éviter qu'un agent ch
 - milvus-io/milvus — 9.3/10 — RECOMMANDÉ
 - deepset-ai/haystack — 9.1/10 — RECOMMANDÉ
 
+## Trading / quant / backtesting
+- QuantConnect/Lean — 9.9/10 — CORE
+- nautechsystems/nautilus_trader — 9.8/10 — CORE
+- polakowo/vectorbt — 9.7/10 — CORE
+- microsoft/qlib — 9.7/10 — CORE
+- ccxt/ccxt — 9.7/10 — CORE
+- freqtrade/freqtrade — 9.6/10 — CORE
+- hummingbot/hummingbot — 9.5/10 — CORE
+- AI4Finance-Foundation/FinRL — 9.4/10 — RECOMMANDÉ
+- kernc/backtesting.py — 9.3/10 — RECOMMANDÉ
+- vnpy/vnpy — 9.3/10 — RECOMMANDÉ
+- TA-Lib/ta-lib-python — 9.2/10 — RECOMMANDÉ
+- ranaroussi/yfinance — 9.1/10 — RECOMMANDÉ
+- stefan-jansen/machine-learning-for-trading — 9.1/10 — RECOMMANDÉ
+- pmorissette/bt — 8.9/10 — SPÉCIALISÉ
+- mementum/backtrader — 8.7/10 — SPÉCIALISÉ
+- quantopian/zipline — 8.3/10 — SPÉCIALISÉ
+- hudson-and-thames/mlfinlab — 8.2/10 — SPÉCIALISÉ
+
 ## Documentation / architecture / API
 - squidfunk/mkdocs-material — 9.7/10 — CORE
 - mkdocs/mkdocs — 9.4/10 — RECOMMANDÉ
