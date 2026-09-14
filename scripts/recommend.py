@@ -103,6 +103,11 @@ def main():
     ap.add_argument("--exclude-cap", action="append", default=[], help="Excluded capability; repeatable")
     ap.add_argument("--domain", action="append", default=[], help="Force a domain; repeatable")
     ap.add_argument("--top", type=int, default=5)
+    ap.add_argument("--platform", action="append", default=[], help="Required platform; repeatable")
+    ap.add_argument("--language", action="append", default=[], help="Required language; repeatable")
+    ap.add_argument("--self-hosted", action="store_true", help="Require self-hosted/local-friendly repositories")
+    ap.add_argument("--max-resource", choices=["low","medium","high"], default="high")
+    ap.add_argument("--max-complexity", choices=["low","medium","high"], default="high")
     ap.add_argument("--json", action="store_true", dest="as_json")
     args = ap.parse_args()
 
@@ -112,8 +117,19 @@ def main():
     required_caps = set(args.cap)
     excluded_caps = set(args.exclude_cap)
 
+    level = {"low": 0, "medium": 1, "high": 2}
     ranked = []
     for r in repos:
+        if args.platform and not set(args.platform).issubset(set(r.get("platforms", []))):
+            continue
+        if args.language and not set(args.language).issubset(set(r.get("languages", []))):
+            continue
+        if args.self_hosted and r.get("selfHosted") is not True:
+            continue
+        if level.get(r.get("resourceLevel","medium"),1) > level[args.max_resource]:
+            continue
+        if level.get(r.get("integrationComplexity","medium"),1) > level[args.max_complexity]:
+            continue
         s = score_repo(r, qtokens, domains, required_caps, excluded_caps)
         if s is not None and s > 0:
             ranked.append((s, r))
@@ -132,6 +148,11 @@ def main():
             "avoidWhen": r.get("avoidWhen", []),
             "alternatives": r.get("alternatives", []),
             "complements": r.get("complements", []),
+            "languages": r.get("languages", []),
+            "platforms": r.get("platforms", []),
+            "selfHosted": r.get("selfHosted"),
+            "resourceLevel": r.get("resourceLevel"),
+            "integrationComplexity": r.get("integrationComplexity"),
         })
 
     result = {
@@ -139,6 +160,13 @@ def main():
         "inferredDomains": sorted(domains),
         "requiredCapabilities": sorted(required_caps),
         "recommendations": top,
+        "constraints": {
+            "platforms": args.platform,
+            "languages": args.language,
+            "selfHosted": args.self_hosted,
+            "maxResource": args.max_resource,
+            "maxComplexity": args.max_complexity,
+        },
         "recommendedStack": choose_stack(stacks, qtokens, domains),
     }
 
