@@ -113,6 +113,24 @@ Les scores restent des notes internes de pertinence. Pour éviter qu'un agent ch
 - quantopian/zipline — 8.3/10 — SPÉCIALISÉ
 - hudson-and-thames/mlfinlab — 8.2/10 — SPÉCIALISÉ
 
+## Trading / execution alpha / microstructure / TCA
+
+### Politique d'exécution orientée P&L réel
+L'objectif est de maximiser le P&L après coûts d'exécution, pas seulement la qualité du signal théorique. Pour chaque stratégie, mesurer séparément signal alpha, coût d'exécution et slippage réellement observé.
+
+Priorités :
+- modéliser spread, slippage, latence, partial fills et impact de marché ;
+- comparer market, limit, stop et ordres passifs selon le contexte ;
+- mesurer adverse selection après chaque type d'ordre ;
+- utiliser l'order-book imbalance, la profondeur disponible et la volatilité court terme lorsque les données le permettent ;
+- analyser le timing d'entrée/sortie par session et autour des annonces macro ;
+- calculer transaction-cost analysis (TCA) : implementation shortfall, arrival price, VWAP/TWAP et realized spread lorsque pertinent ;
+- limiter le trading lorsque le coût attendu d'exécution dépasse l'alpha attendu ;
+- pour XAUUSD, traiter séparément Londres, overlap Londres/New York, New York et périodes d'annonces US ;
+- valider l'exécution avec des hypothèses plus pessimistes que les coûts historiques moyens.
+
+Briques principales déjà présentes dans le catalogue : nautechsystems/nautilus_trader, QuantConnect/Lean, hummingbot/hummingbot, vnpy/vnpy, ccxt/ccxt, polakowo/vectorbt et hudson-and-thames/mlfinlab.
+
 ## Trading / position sizing / Kelly / drawdown control
 
 ### Politique de sizing orientée croissance
