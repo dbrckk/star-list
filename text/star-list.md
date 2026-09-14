@@ -76,6 +76,20 @@ Liste reconstruite depuis les captures du 12 septembre 2026.
 - milvus-io/milvus — 9.3/10
 - deepset-ai/haystack — 9.1/10
 
+## Documentation / architecture / API
+- squidfunk/mkdocs-material — 9.7/10
+- mkdocs/mkdocs — 9.4/10
+- facebook/docusaurus — 9.6/10
+- withastro/starlight — 9.3/10
+- swagger-api/swagger-ui — 9.6/10
+- Redocly/redoc — 9.3/10
+- mermaid-js/mermaid — 9.8/10
+- plantuml/plantuml — 9.5/10
+- plantuml-stdlib/C4-PlantUML — 9.2/10
+- thomvaill/log4brains — 8.8/10
+- orhun/git-cliff — 9.3/10
+- conventional-changelog/conventional-changelog — 9.1/10
+
 ## Backend / API / données
 - postgres/postgres — 9.8/10
 - redis/redis — 9.6/10
