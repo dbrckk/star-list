@@ -113,6 +113,21 @@ Les scores restent des notes internes de pertinence. Pour éviter qu'un agent ch
 - quantopian/zipline — 8.3/10 — SPÉCIALISÉ
 - hudson-and-thames/mlfinlab — 8.2/10 — SPÉCIALISÉ
 
+## Trading / position sizing / Kelly / drawdown control
+
+### Politique de sizing orientée croissance
+Le sizing doit maximiser la croissance géométrique robuste, pas le profit nominal d'un backtest isolé. Comparer au minimum : taille fixe, risque fixe par trade, volatility targeting, fractional Kelly et allocation dynamique par régime.
+
+Règles :
+- utiliser Kelly uniquement avec estimations prudentes de l'avantage statistique ;
+- préférer fractional Kelly lorsque l'incertitude sur l'edge est élevée ;
+- plafonner le risque par trade, l'exposition totale, la corrélation entre positions et le drawdown ;
+- réduire automatiquement le levier lorsque volatilité, spread ou slippage augmentent ;
+- mesurer risk-of-ruin, expected shortfall/CVaR, max drawdown et temps de récupération ;
+- tester le sizing sur séries de trades permutées/bootstrappées et scénarios Monte-Carlo ;
+- rejeter toute amélioration de profit qui dépend d'un levier instable ou d'un drawdown incompatible avec les contraintes du compte ;
+- pour XAUUSD, tenir compte des changements de volatilité intraday et des pics liés aux annonces macro.
+
 ## Trading / ensembles / allocation dynamique / regime switching
 - pykalman/pykalman — 9.0/10 — RECOMMANDÉ
 
