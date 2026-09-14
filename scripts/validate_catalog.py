@@ -4,6 +4,7 @@ from pathlib import Path
 p=Path(__file__).resolve().parents[1]
 data=json.loads((p/"catalog.json").read_text())
 errors=[]
+valid_domains={"ai_agents","ai_memory","ai_media","software_engineering","web_frontend","backend","mobile","graphics","game_dev","trading","cybersecurity","data_ml","devops","productivity","other"}
 valid_roles={"data","alpha","regime","backtest","risk","execution","portfolio","xauusd","macro","ml","microstructure","performance","volatility","optimization","forecasting","feature-engineering","derivatives","diagnostic","feature-selection","filtering"}
 seen=set()
 for i,r in enumerate(data.get("repositories",[])):
