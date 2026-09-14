@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Star List Catalog",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "repositories"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "generatedFrom": {
+      "type": "string"
+    },
+    "selectionPolicy": {
+      "type": "object"
+    },
+    "repositories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "repo",
+          "score",
+          "tier",
+          "category"
+        ],
+        "properties": {
+          "repo": {
+            "type": "string",
+            "pattern": "^[^/]+/[^/]+$"
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10
+          },
+          "tier": {
+            "enum": [
+              "core",
+              "recommended",
+              "specialized",
+              "audit"
+            ]
+          },
+          "category": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
