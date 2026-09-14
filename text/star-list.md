@@ -60,6 +60,15 @@ Liste reconstruite depuis les captures du 12 septembre 2026.
 - ChrisTitusTech/winutil
 - harry2141985/Google-Colab-Notebooks
 
+## Graphisme vectoriel / animation
+- motion-canvas/motion-canvas
+- svgdotjs/svg.js
+- airbnb/lottie-web
+- paperjs/paper.js
+- jonobr1/two.js
+- rough-stuff/rough
+- maxwellito/vivus
+
 ## Média / voix / vidéo
 - CorentinJ/Real-Time-Voice-Cloning
 - vega-org/vega-app
