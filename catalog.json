@@ -65,6 +65,22 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
+      ],
+      "alternatives": [
+        "anomalyco/opencode",
+        "Aider-AI/aider"
+      ],
+      "complements": [
+        "microsoft/playwright",
+        "e2b-dev/E2B",
+        "langfuse/langfuse"
+      ],
+      "bestFor": [
+        "autonomous software tasks",
+        "repo-level changes"
+      ],
+      "avoidWhen": [
+        "very lightweight edits"
       ]
     },
     {
@@ -85,6 +101,20 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
+      ],
+      "alternatives": [
+        "mudler/LocalAI"
+      ],
+      "complements": [
+        "BerriAI/litellm",
+        "danny-avila/LibreChat"
+      ],
+      "bestFor": [
+        "local model serving",
+        "offline inference"
+      ],
+      "avoidWhen": [
+        "very large models on constrained hardware"
       ]
     },
     {
@@ -105,6 +135,18 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
+      ],
+      "alternatives": [],
+      "complements": [
+        "ChromeDevTools/chrome-devtools-mcp",
+        "doobidoo/mcp-memory-service"
+      ],
+      "bestFor": [
+        "MCP integrations",
+        "tool connectivity"
+      ],
+      "avoidWhen": [
+        "no tool integration needed"
       ]
     },
     {
@@ -348,6 +390,22 @@
       "domain": "ai_agents",
       "capabilities": [
         "agent"
+      ],
+      "alternatives": [
+        "OpenHands/OpenHands",
+        "Aider-AI/aider"
+      ],
+      "complements": [
+        "BerriAI/litellm",
+        "mem0ai/mem0",
+        "langfuse/langfuse"
+      ],
+      "bestFor": [
+        "autonomous coding",
+        "terminal workflows"
+      ],
+      "avoidWhen": [
+        "GUI-first workflows"
       ]
     },
     {
@@ -648,6 +706,21 @@
       "capabilities": [
         "memory",
         "vector-animation"
+      ],
+      "alternatives": [
+        "chroma-core/chroma",
+        "milvus-io/milvus"
+      ],
+      "complements": [
+        "deepset-ai/haystack",
+        "mem0ai/mem0"
+      ],
+      "bestFor": [
+        "vector search",
+        "RAG"
+      ],
+      "avoidWhen": [
+        "tiny in-memory prototypes"
       ]
     },
     {
@@ -825,6 +898,19 @@
         "database",
         "sql",
         "relational-database"
+      ],
+      "alternatives": [],
+      "complements": [
+        "redis/redis",
+        "prisma/prisma",
+        "drizzle-team/drizzle-orm"
+      ],
+      "bestFor": [
+        "transactional data",
+        "general-purpose relational storage"
+      ],
+      "avoidWhen": [
+        "pure cache or ephemeral state"
       ]
     },
     {
@@ -850,6 +936,21 @@
         "database",
         "auth",
         "storage"
+      ],
+      "alternatives": [
+        "appwrite/appwrite",
+        "pocketbase/pocketbase"
+      ],
+      "complements": [
+        "postgres/postgres",
+        "vercel/next.js"
+      ],
+      "bestFor": [
+        "rapid full-stack backends",
+        "auth + DB + storage"
+      ],
+      "avoidWhen": [
+        "highly custom backend architecture"
       ]
     },
     {
@@ -911,6 +1012,21 @@
         "api",
         "python",
         "backend"
+      ],
+      "alternatives": [
+        "nestjs/nest"
+      ],
+      "complements": [
+        "postgres/postgres",
+        "redis/redis",
+        "supabase/supabase"
+      ],
+      "bestFor": [
+        "Python APIs",
+        "AI backends"
+      ],
+      "avoidWhen": [
+        "TypeScript-only backend teams"
       ]
     },
     {
@@ -1004,6 +1120,21 @@
         "ui",
         "frontend",
         "component-framework"
+      ],
+      "alternatives": [
+        "flutter/flutter"
+      ],
+      "complements": [
+        "vercel/next.js",
+        "vitejs/vite",
+        "shadcn-ui/ui"
+      ],
+      "bestFor": [
+        "web UI",
+        "component systems"
+      ],
+      "avoidWhen": [
+        "native-only mobile apps"
       ]
     },
     {
@@ -1016,6 +1147,21 @@
         "frontend",
         "fullstack",
         "ssr"
+      ],
+      "alternatives": [
+        "vitejs/vite"
+      ],
+      "complements": [
+        "facebook/react",
+        "shadcn-ui/ui",
+        "supabase/supabase"
+      ],
+      "bestFor": [
+        "full-stack React web apps",
+        "SSR"
+      ],
+      "avoidWhen": [
+        "simple static SPA with minimal server needs"
       ]
     },
     {
@@ -1050,6 +1196,20 @@
         "ui-components",
         "design-system",
         "accessibility"
+      ],
+      "alternatives": [
+        "mui/material-ui",
+        "chakra-ui/chakra-ui"
+      ],
+      "complements": [
+        "tailwindlabs/tailwindcss",
+        "facebook/react"
+      ],
+      "bestFor": [
+        "customizable React UI systems"
+      ],
+      "avoidWhen": [
+        "teams wanting a fully opinionated component library"
       ]
     },
     {
@@ -1258,6 +1418,19 @@
       "capabilities": [
         "containers",
         "orchestration"
+      ],
+      "alternatives": [
+        "podman-container-tools/podman"
+      ],
+      "complements": [
+        "dagger/dagger",
+        "prometheus/prometheus"
+      ],
+      "bestFor": [
+        "local multi-service stacks"
+      ],
+      "avoidWhen": [
+        "large-scale cluster orchestration"
       ]
     },
     {
@@ -1280,6 +1453,19 @@
       "capabilities": [
         "containers",
         "orchestration"
+      ],
+      "alternatives": [],
+      "complements": [
+        "helm/helm",
+        "argoproj/argo-cd",
+        "prometheus/prometheus"
+      ],
+      "bestFor": [
+        "cluster orchestration",
+        "production scale"
+      ],
+      "avoidWhen": [
+        "small single-host deployments"
       ]
     },
     {
@@ -1368,6 +1554,18 @@
       "domain": "devops",
       "capabilities": [
         "observability"
+      ],
+      "alternatives": [],
+      "complements": [
+        "prometheus/prometheus",
+        "getsentry/sentry"
+      ],
+      "bestFor": [
+        "dashboards",
+        "operational observability"
+      ],
+      "avoidWhen": [
+        "no telemetry sources available"
       ]
     },
     {
@@ -1410,6 +1608,20 @@
         "ast",
         "parsing",
         "code-analysis"
+      ],
+      "alternatives": [
+        "ast-grep/ast-grep"
+      ],
+      "complements": [
+        "sourcegraph/zoekt",
+        "semgrep/semgrep"
+      ],
+      "bestFor": [
+        "AST parsing",
+        "multi-language code intelligence"
+      ],
+      "avoidWhen": [
+        "simple text search is sufficient"
       ]
     },
     {
@@ -1421,6 +1633,20 @@
       "capabilities": [
         "static-analysis",
         "security-scanning"
+      ],
+      "alternatives": [
+        "github/codeql"
+      ],
+      "complements": [
+        "tree-sitter/tree-sitter",
+        "microsoft/playwright"
+      ],
+      "bestFor": [
+        "fast static analysis",
+        "policy checks"
+      ],
+      "avoidWhen": [
+        "deep whole-program query analysis is required"
       ]
     },
     {
@@ -1529,6 +1755,21 @@
       "domain": "software_engineering",
       "capabilities": [
         "code-quality"
+      ],
+      "alternatives": [
+        "appium/appium",
+        "wix/Detox"
+      ],
+      "complements": [
+        "storybookjs/storybook",
+        "GoogleChrome/lighthouse"
+      ],
+      "bestFor": [
+        "browser E2E",
+        "cross-browser testing"
+      ],
+      "avoidWhen": [
+        "native mobile-only testing"
       ]
     },
     {
@@ -1654,6 +1895,20 @@
       "capabilities": [
         "memory",
         "vector-animation"
+      ],
+      "alternatives": [
+        "svgdotjs/svg.js",
+        "paperjs/paper.js"
+      ],
+      "complements": [
+        "airbnb/lottie-web"
+      ],
+      "bestFor": [
+        "programmatic vector animation",
+        "TypeScript motion graphics"
+      ],
+      "avoidWhen": [
+        "native mobile runtime-only playback"
       ]
     },
     {
@@ -1676,6 +1931,19 @@
       "capabilities": [
         "memory",
         "vector-animation"
+      ],
+      "alternatives": [
+        "rive-app/rive-android",
+        "EsotericSoftware/spine-runtimes"
+      ],
+      "complements": [
+        "motion-canvas/motion-canvas"
+      ],
+      "bestFor": [
+        "vector animation playback on web"
+      ],
+      "avoidWhen": [
+        "complex interactive state-machine animation"
       ]
     },
     {
@@ -2201,6 +2469,22 @@
         "backtest",
         "portfolio",
         "xauusd"
+      ],
+      "alternatives": [
+        "nautechsystems/nautilus_trader",
+        "polakowo/vectorbt"
+      ],
+      "complements": [
+        "OpenBB-finance/OpenBB",
+        "ranaroussi/quantstats",
+        "dcajasn/Riskfolio-Lib"
+      ],
+      "bestFor": [
+        "multi-asset backtesting",
+        "live trading"
+      ],
+      "avoidWhen": [
+        "ultra-light exploratory notebooks"
       ]
     },
     {
@@ -2221,6 +2505,21 @@
         "code-quality",
         "backtest",
         "microstructure"
+      ],
+      "alternatives": [
+        "QuantConnect/Lean",
+        "freqtrade/freqtrade"
+      ],
+      "complements": [
+        "OpenBB-finance/OpenBB",
+        "ranaroussi/quantstats"
+      ],
+      "bestFor": [
+        "event-driven trading",
+        "execution realism"
+      ],
+      "avoidWhen": [
+        "very simple strategy research"
       ]
     },
     {
@@ -2245,6 +2544,21 @@
         "backtest",
         "alpha",
         "portfolio"
+      ],
+      "alternatives": [
+        "kernc/backtesting.py",
+        "QuantConnect/Lean"
+      ],
+      "complements": [
+        "optuna/optuna",
+        "ranaroussi/quantstats"
+      ],
+      "bestFor": [
+        "fast vectorized research",
+        "parameter sweeps"
+      ],
+      "avoidWhen": [
+        "high-fidelity event-driven execution simulation"
       ]
     },
     {
@@ -2266,6 +2580,21 @@
         "alpha",
         "ml",
         "backtest"
+      ],
+      "alternatives": [
+        "AI4Finance-Foundation/FinRL"
+      ],
+      "complements": [
+        "dmlc/xgboost",
+        "catboost/catboost",
+        "shap/shap"
+      ],
+      "bestFor": [
+        "quant ML research",
+        "alpha modeling"
+      ],
+      "avoidWhen": [
+        "manual discretionary-only trading"
       ]
     },
     {
@@ -2561,6 +2890,20 @@
       "capabilities": [
         "risk",
         "portfolio"
+      ],
+      "alternatives": [
+        "PyPortfolio/PyPortfolioOpt",
+        "skfolio/skfolio"
+      ],
+      "complements": [
+        "ranaroussi/quantstats"
+      ],
+      "bestFor": [
+        "portfolio risk optimization",
+        "risk parity"
+      ],
+      "avoidWhen": [
+        "single-position strategies without allocation needs"
       ]
     },
     {
@@ -2827,6 +3170,21 @@
         "data",
         "macro",
         "xauusd"
+      ],
+      "alternatives": [
+        "ranaroussi/yfinance",
+        "akfamily/akshare"
+      ],
+      "complements": [
+        "microsoft/qlib",
+        "QuantConnect/Lean"
+      ],
+      "bestFor": [
+        "financial data research",
+        "macro workflows"
+      ],
+      "avoidWhen": [
+        "single-source minimal data ingestion"
       ]
     },
     {
@@ -2895,6 +3253,20 @@
         "machine-learning",
         "alpha",
         "ml"
+      ],
+      "alternatives": [
+        "catboost/catboost"
+      ],
+      "complements": [
+        "shap/shap",
+        "optuna/optuna"
+      ],
+      "bestFor": [
+        "tabular alpha models",
+        "nonlinear feature interactions"
+      ],
+      "avoidWhen": [
+        "tiny datasets with unstable labels"
       ]
     },
     {
@@ -3156,6 +3528,18 @@
       "domain": "cybersecurity",
       "capabilities": [
         "security-testing"
+      ],
+      "alternatives": [],
+      "complements": [
+        "github/codeql",
+        "semgrep/semgrep"
+      ],
+      "bestFor": [
+        "authorized detection validation",
+        "defensive testing"
+      ],
+      "avoidWhen": [
+        "unauthorized environments"
       ]
     },
     {
@@ -3314,6 +3698,21 @@
       "domain": "ai_memory",
       "capabilities": [
         "memory"
+      ],
+      "alternatives": [
+        "thedotmack/claude-mem",
+        "doobidoo/mcp-memory-service",
+        "akitaonrails/ai-memory"
+      ],
+      "complements": [
+        "langchain-ai/langgraph",
+        "crewAIInc/crewAI"
+      ],
+      "bestFor": [
+        "persistent agent memory"
+      ],
+      "avoidWhen": [
+        "stateless short-lived agents"
       ]
     },
     {
@@ -3419,6 +3818,20 @@
         "model-routing",
         "llm-gateway",
         "observability"
+      ],
+      "alternatives": [
+        "diegosouzapw/OmniRoute"
+      ],
+      "complements": [
+        "ollama/ollama",
+        "langfuse/langfuse"
+      ],
+      "bestFor": [
+        "multi-provider LLM routing",
+        "cost and fallback control"
+      ],
+      "avoidWhen": [
+        "single-provider minimal stacks"
       ]
     },
     {
@@ -3462,6 +3875,20 @@
       "domain": "game_dev",
       "capabilities": [
         "game-development"
+      ],
+      "alternatives": [
+        "libgdx/libgdx"
+      ],
+      "complements": [
+        "heroiclabs/nakama",
+        "Calinou/awesome-godot"
+      ],
+      "bestFor": [
+        "2D/3D games",
+        "cross-platform game development"
+      ],
+      "avoidWhen": [
+        "web-only non-game apps"
       ]
     },
     {
@@ -3482,6 +3909,19 @@
       "domain": "graphics",
       "capabilities": [
         "rendering"
+      ],
+      "alternatives": [
+        "pmndrs/react-three-fiber"
+      ],
+      "complements": [
+        "godotengine/godot"
+      ],
+      "bestFor": [
+        "real-time rendering",
+        "mobile/desktop 3D"
+      ],
+      "avoidWhen": [
+        "simple 2D UI"
       ]
     },
     {
@@ -3502,6 +3942,16 @@
       "domain": "cybersecurity",
       "capabilities": [
         "osint"
+      ],
+      "alternatives": [
+        "soxoj/maigret"
+      ],
+      "complements": [],
+      "bestFor": [
+        "OSINT username enumeration"
+      ],
+      "avoidWhen": [
+        "identity claims require high-confidence attribution"
       ]
     },
     {
@@ -3684,6 +4134,20 @@
       "domain": "ai_agents",
       "capabilities": [
         "web-retrieval"
+      ],
+      "alternatives": [
+        "firecrawl/firecrawl"
+      ],
+      "complements": [
+        "langchain-ai/langchain",
+        "langgenius/dify"
+      ],
+      "bestFor": [
+        "self-hosted crawling",
+        "structured extraction"
+      ],
+      "avoidWhen": [
+        "managed API preferred"
       ]
     },
     {
@@ -3694,6 +4158,20 @@
       "domain": "ai_agents",
       "capabilities": [
         "web-retrieval"
+      ],
+      "alternatives": [
+        "unclecode/crawl4ai"
+      ],
+      "complements": [
+        "browser-use/browser-use",
+        "microsoft/playwright"
+      ],
+      "bestFor": [
+        "web extraction",
+        "LLM-ready web data"
+      ],
+      "avoidWhen": [
+        "pure browser interaction without extraction"
       ]
     },
     {
