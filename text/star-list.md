@@ -76,6 +76,27 @@ Liste reconstruite depuis les captures du 12 septembre 2026.
 - milvus-io/milvus — 9.3/10
 - deepset-ai/haystack — 9.1/10
 
+## Backend / API / données
+- postgres/postgres — 9.8/10
+- redis/redis — 9.6/10
+- supabase/supabase — 9.8/10
+- appwrite/appwrite — 9.4/10
+- pocketbase/pocketbase — 9.4/10
+- prisma/prisma — 9.5/10
+- drizzle-team/drizzle-orm — 9.5/10
+- fastapi/fastapi — 9.8/10
+- nestjs/nest — 9.6/10
+- trpc/trpc — 9.4/10
+- graphql/graphql-js — 9.4/10
+- apollographql/apollo-server — 9.1/10
+
+## Authentification / identité
+- keycloak/keycloak — 9.5/10
+- ory/kratos — 9.2/10
+
+## Stockage objet / distribué
+- seaweedfs/seaweedfs — 9.2/10
+
 ## Frontend / UI / design systems
 - facebook/react — 9.8/10
 - vercel/next.js — 9.8/10
