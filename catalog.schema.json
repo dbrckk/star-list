@@ -118,6 +118,63 @@
               "type": "string"
             },
             "uniqueItems": true
+          },
+          "languages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "platforms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "selfHosted": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "partial",
+                  "unknown"
+                ]
+              }
+            ]
+          },
+          "runtime": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "resourceLevel": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "integrationComplexity": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "costModel": {
+            "enum": [
+              "open-source",
+              "mixed",
+              "paid",
+              "unknown"
+            ]
           }
         },
         "additionalProperties": false
