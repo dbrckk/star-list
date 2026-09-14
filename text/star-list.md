@@ -113,6 +113,15 @@ Les scores restent des notes internes de pertinence. Pour éviter qu'un agent ch
 - quantopian/zipline — 8.3/10 — SPÉCIALISÉ
 - hudson-and-thames/mlfinlab — 8.2/10 — SPÉCIALISÉ
 
+## Trading / microstructure / séries temporelles / exécution
+- unit8co/darts — 9.4/10 — RECOMMANDÉ
+- sktime/sktime — 9.4/10 — RECOMMANDÉ
+- Nixtla/neuralforecast — 9.3/10 — RECOMMANDÉ
+- facebookresearch/Kats — 9.0/10 — RECOMMANDÉ
+- blue-yonder/tsfresh — 9.2/10 — RECOMMANDÉ
+- akfamily/akshare — 9.0/10 — RECOMMANDÉ
+- vollib/py_vollib — 8.5/10 — SPÉCIALISÉ
+
 ## Trading / optimisation du rendement et du risque
 - skfolio/skfolio — 9.7/10 — CORE
 - PyPortfolio/PyPortfolioOpt — 9.5/10 — CORE
