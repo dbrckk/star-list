@@ -36,6 +36,7 @@ assert baseline_trend["adaptiveBaseline"]["networkFetchRate"]==0.29
 assert baseline_trend["adaptiveBaseline"]["status"]=="anomalous"
 assert baseline_trend["adaptiveBaseline"]["confidence"]=="low"
 assert baseline_trend["adaptiveBaseline"]["confidenceScore"]==0.625
+assert baseline_trend["adaptiveSeverity"]=="watch"
 assert "below-adaptive-cache-baseline" in baseline_trend["findings"]
 assert "above-adaptive-network-baseline" in baseline_trend["findings"]
 assert "below-adaptive-body-reuse-baseline" in baseline_trend["findings"]
@@ -58,6 +59,22 @@ assert mod.adaptive_baseline(confidence_points[:5])["confidenceScore"]==0.5
 assert mod.adaptive_baseline(confidence_points[:7])["confidenceScore"]==0.75
 assert mod.adaptive_baseline(confidence_points[:9])["confidenceScore"]==1.0
 assert "Baseline confidence: **low** (62.5%)" in mod.render_markdown(baseline_trend)
+
+high_history={"schemaVersion":1,"points":[]}
+for i in range(8):
+    high_history["points"].append({
+        "date":f"2026-07-{i+1:02d}",
+        "apiCallAvoidanceRate":0.70,
+        "bodyReuseRate":0.80,
+        "networkFetchRate":0.30,
+        "staleFallbackRate":0.00,
+        "status":"healthy",
+    })
+_,high_trend=mod.update(high_history,baseline_current,date="2026-09-08",max_points=26)
+assert high_trend["adaptiveBaseline"]["confidence"]=="high"
+assert high_trend["adaptiveBaseline"]["status"]=="anomalous"
+assert high_trend["adaptiveSeverity"]=="degraded"
+assert "Adaptive severity: **degraded**" in mod.render_markdown(high_trend)
 
 for i in range(40):
     updated,_=mod.update(updated,current,date=f"2026-10-{(i%28)+1:02d}",max_points=26)
