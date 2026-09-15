@@ -4,6 +4,9 @@ import argparse, json
 from datetime import datetime, timezone
 from pathlib import Path
 
+ACCEPT_THRESHOLD=80.0
+REVIEW_THRESHOLD=55.0
+
 def age_days(value, now=None):
     if not value: return None
     try: dt=datetime.fromisoformat(value.replace("Z","+00:00"))
@@ -22,6 +25,12 @@ def text_fit(repo):
 
 def _bounded(value):
     return round(max(0.0,min(100.0,float(value))),1)
+
+def decision_for_score(score):
+    score=float(score)
+    if score>=ACCEPT_THRESHOLD: return "accept"
+    if score>=REVIEW_THRESHOLD: return "review"
+    return "reject"
 
 def evaluation_confidence(repo):
     release=repo.get("latestRelease")
@@ -137,7 +146,7 @@ def evaluate(repo, now=None):
     if stars>=500 and forks/max(1,stars)>=0.05: score+=4; reasons.append("healthy-fork-ratio")
     elif stars>=500 and forks/max(1,stars)<0.005: score-=3; reasons.append("low-fork-ratio")
     score=round(max(0,min(100,score)),1)
-    decision="accept" if score>=80 else "review" if score>=55 else "reject"
+    decision=decision_for_score(score)
     breakdown=score_breakdown(repo,fit,days,created_days,release_days,stars,contributors,topic_hits,matches,watchers,forks,open_issues)
     return {"evaluationScore":score,"decision":decision,"ageDays":days,"repositoryAgeDays":created_days,"releaseAgeDays":release_days,"textFit":round(fit,3),"openIssueRatio":round(open_issues/max(1,stars),4) if stars else None,"scoreBreakdown":breakdown,"evaluationConfidence":evaluation_confidence(repo),"reasons":reasons}
 
