@@ -34,6 +34,15 @@ def evaluate(repo, now=None):
     fit=text_fit(repo)
     if fit>=0.75: score+=8; reasons.append("strong-text-fit")
     elif fit==0: score-=6; reasons.append("weak-text-fit")
+    created_days=age_days(repo.get("createdAt"),now)
+    if created_days is not None and created_days>=730: score+=4; reasons.append("mature>=2y")
+    elif created_days is not None and created_days<90: score-=3; reasons.append("very-new<90d")
+    release=repo.get("latestRelease") or {}
+    release_days=age_days(release.get("publishedAt"),now) if isinstance(release,dict) else None
+    if release_days is not None and release_days<=180: score+=5; reasons.append("recent-release")
+    contributors=repo.get("contributors")
+    if isinstance(contributors,int) and contributors>=20: score+=4; reasons.append("broad-contributor-base")
+    elif isinstance(contributors,int) and contributors<=1 and stars>=500: score-=4; reasons.append("single-contributor-risk")
     topics={str(x).lower() for x in repo.get("topics",[])}
     target_words={w for m in repo.get("matchedTargets",[]) for w in str(m.get("target","")).lower().replace("_","-").split("-") if w}
     topic_hits=len(topics & target_words)
@@ -49,7 +58,7 @@ def evaluate(repo, now=None):
     elif stars>=500 and forks/max(1,stars)<0.005: score-=3; reasons.append("low-fork-ratio")
     score=round(max(0,min(100,score)),1)
     decision="accept" if score>=80 else "review" if score>=55 else "reject"
-    return {"evaluationScore":score,"decision":decision,"ageDays":days,"textFit":round(fit,3),"reasons":reasons}
+    return {"evaluationScore":score,"decision":decision,"ageDays":days,"repositoryAgeDays":created_days,"releaseAgeDays":release_days,"textFit":round(fit,3),"reasons":reasons}
 
 def evaluate_all(data):
     rows=[]
