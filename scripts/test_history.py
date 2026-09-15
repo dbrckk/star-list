@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
 import importlib.util
-from datetime import datetime,timezone
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]; SCRIPT=ROOT/"scripts"/"update_history.py"
 spec=importlib.util.spec_from_file_location("h",SCRIPT); h=importlib.util.module_from_spec(spec); spec.loader.exec_module(h)
-cat={"repositories":[{"repo":"a/x","github":{"stars":100,"forks":10}}]}; health={"repositories":[{"repo":"a/x","score":80,"status":"healthy"}]}
-hist={"schemaVersion":1,"repositories":{}}
-h.update(hist,cat,health,3,datetime(2026,9,1,tzinfo=timezone.utc))
-cat["repositories"][0]["github"]["stars"]=150; health["repositories"][0]["score"]=65
-h.update(hist,cat,health,3,datetime(2026,9,8,tzinfo=timezone.utc))
-t=h.trends(hist)["repositories"][0]; assert t["healthDelta"]==-15 and t["starsDelta"]==50 and t["trend"]=="declining"
-print("OK: repository history tests passed")
+pts=[{"date":"2026-08-18","health":70,"stars":100,"forks":10},{"date":"2026-08-25","health":72,"stars":114,"forks":12},{"date":"2026-09-01","health":75,"stars":128,"forks":14},{"date":"2026-09-08","health":78,"stars":142,"forks":16},{"date":"2026-09-15","health":82,"stars":156,"forks":18}]
+m=h.window_metrics(pts,5); assert m["healthDelta"]==12 and m["starsPerWeek"]==14 and m["forksPerWeek"]==2
+t=h.trends({"repositories":{"a/x":pts}})["repositories"][0]; assert t["trend"]=="improving" and t["fourWeeks"]["points"]==5 and t["week"]["points"]==2
+print("OK: multi-window trend tests passed")
