@@ -56,11 +56,18 @@ jobs:
         run: |
           STATUS=$(python -c "import json; print(json.load(open('cache-health.json'))['status'])")
           TREND=$(python -c "import json; print(json.load(open('cache-health-trend.json'))['direction'])")
+          ADAPTIVE=$(python -c "import json; print(json.load(open('cache-health-trend.json')).get('adaptiveSeverity','healthy'))")
           DISPLAY="$STATUS"
-          if [ "$STATUS" = "healthy" ] && [ "$TREND" = "declining" ]; then DISPLAY="declining"; fi
+          if [ "$ADAPTIVE" = "degraded" ]; then
+            DISPLAY="degraded"
+          elif [ "$ADAPTIVE" = "watch" ] && [ "$STATUS" = "healthy" ]; then
+            DISPLAY="watch"
+          elif [ "$STATUS" = "healthy" ] && [ "$TREND" = "declining" ]; then
+            DISPLAY="declining"
+          fi
           MARKER='<!-- star-list-cache-health -->'
           EXISTING=$(gh issue list --state open --search "$MARKER in:body" --json number --jq '.[0].number // empty')
-          if [ "$STATUS" = "healthy" ] && [ "$TREND" != "declining" ]; then
+          if [ "$STATUS" = "healthy" ] && [ "$ADAPTIVE" = "healthy" ] && [ "$TREND" != "declining" ]; then
             if [ -n "$EXISTING" ]; then gh issue close "$EXISTING" --comment "Discovery cache health returned to normal."; fi
           elif [ -n "$EXISTING" ]; then
             gh issue edit "$EXISTING" --title "Discovery cache health: $DISPLAY" --body-file cache-health.md
