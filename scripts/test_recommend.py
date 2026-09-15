@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json, subprocess, sys
+import importlib.util
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -30,5 +31,12 @@ for item in strict["recommendations"]:
 high_threshold = run("ai agent", "--min-score", "1000")
 assert high_threshold["recommendations"] == []
 assert high_threshold["diagnostics"]["returned"] == 0
+
+spec = importlib.util.spec_from_file_location("recommend", SCRIPT)
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+assert mod.activity_adjustment({"github":{"archived":True}})[0] == -30.0
+assert mod.activity_adjustment({"github":{"disabled":True}})[0] == -30.0
+assert mod.activity_adjustment({}) == (0.0, None)
 
 print("OK: recommendation engine smoke tests passed")
