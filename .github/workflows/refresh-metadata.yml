@@ -42,6 +42,22 @@ jobs:
           python scripts/build_discovery_watchlist.py coverage-report.json > discovery-watchlist.json
           python scripts/discover_candidates.py discovery-watchlist.json catalog.json --top 50 > discovery-candidates.json
           python scripts/evaluate_candidates.py discovery-candidates.json > discovery-evaluated.json
+      - name: Build discovery candidate issue
+        run: python scripts/render_discovery_issue.py discovery-evaluated.json --output discovery-review.md
+      - name: Publish discovery candidate issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ACTIONABLE=$(python -c "import json; d=json.load(open('discovery-evaluated.json')); print(d['counts']['accept']+d['counts']['review'])")
+          MARKER='<!-- star-list-discovery-candidates -->'
+          EXISTING=$(gh issue list --state open --search "$MARKER in:body" --json number --jq '.[0].number // empty')
+          if [ "$ACTIONABLE" = "0" ]; then
+            if [ -n "$EXISTING" ]; then gh issue close "$EXISTING" --comment "No actionable discovery candidates remain."; fi
+          elif [ -n "$EXISTING" ]; then
+            gh issue edit "$EXISTING" --title "Discovery candidates" --body-file discovery-review.md
+          else
+            gh issue create --title "Discovery candidates" --body-file discovery-review.md --label enhancement || gh issue create --title "Discovery candidates" --body-file discovery-review.md
+          fi
       - name: Build repository health review
         run: |
           python scripts/find_replacements.py > replacement-report.json
