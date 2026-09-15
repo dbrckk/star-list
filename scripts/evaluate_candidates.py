@@ -146,9 +146,13 @@ def evaluate(repo, now=None):
     if stars>=500 and forks/max(1,stars)>=0.05: score+=4; reasons.append("healthy-fork-ratio")
     elif stars>=500 and forks/max(1,stars)<0.005: score-=3; reasons.append("low-fork-ratio")
     score=round(max(0,min(100,score)),1)
+    confidence=evaluation_confidence(repo)
     decision=decision_for_score(score)
+    if confidence=="low" and decision=="accept":
+        decision="review"
+        reasons.append("low-confidence-cap")
     breakdown=score_breakdown(repo,fit,days,created_days,release_days,stars,contributors,topic_hits,matches,watchers,forks,open_issues)
-    return {"evaluationScore":score,"decision":decision,"ageDays":days,"repositoryAgeDays":created_days,"releaseAgeDays":release_days,"textFit":round(fit,3),"openIssueRatio":round(open_issues/max(1,stars),4) if stars else None,"scoreBreakdown":breakdown,"evaluationConfidence":evaluation_confidence(repo),"reasons":reasons}
+    return {"evaluationScore":score,"decision":decision,"ageDays":days,"repositoryAgeDays":created_days,"releaseAgeDays":release_days,"textFit":round(fit,3),"openIssueRatio":round(open_issues/max(1,stars),4) if stars else None,"scoreBreakdown":breakdown,"evaluationConfidence":confidence,"reasons":reasons}
 
 def evaluate_all(data):
     rows=[]
