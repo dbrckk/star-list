@@ -51,10 +51,11 @@ for i, r in enumerate(repos):
     for field in ("resourceLevel","integrationComplexity"):
         if r.get(field) not in valid_levels:
             errors.append(f"{prefix}: invalid {field} {r.get(field)}")
-    if "selfHosted" not in r:
+    self_hosted = r.get("selfHosted")
+    if self_hosted is None:
         warnings.append(f"{prefix}: selfHosted metadata missing")
-    elif not isinstance(r.get("selfHosted"), bool):
-        errors.append(f"{prefix}: selfHosted must be boolean when present")
+    elif not isinstance(self_hosted, bool):
+        errors.append(f"{prefix}: selfHosted must be boolean or null")
 
     gh = r.get("github")
     if gh is not None:
