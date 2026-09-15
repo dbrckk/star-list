@@ -10,7 +10,8 @@ NOW=datetime(2026,9,15,tzinfo=timezone.utc)
 strong={"repo":"a/ai-agents","description":"AI agents framework","language":"Python","discoveryScore":75,"stars":5000,"forks":500,"license":"MIT","pushedAt":"2026-09-01T00:00:00Z","createdAt":"2020-01-01T00:00:00Z","latestRelease":{"publishedAt":"2026-08-01T00:00:00Z"},"contributors":50,"watchers":200,"openIssues":20,"hasDiscussions":True,"topics":["ai","agents"],"matchedTargets":[{"target":"ai"},{"target":"agents"}]}
 weak={"repo":"b/y","description":"unrelated tool","language":"C","discoveryScore":50,"stars":20,"forks":0,"license":None,"pushedAt":"2020-01-01T00:00:00Z","matchedTargets":[{"target":"mobile"}]}
 sparse={"repo":"c/ai-tool","description":"AI tool","language":"Python","discoveryScore":60,"stars":100,"matchedTargets":[{"target":"ai"}]}
-a=mod.evaluate(strong,NOW); b=mod.evaluate(weak,NOW); c=mod.evaluate(sparse,NOW)
+sparse_high={"repo":"c/high-score-ai","description":"AI framework","language":"Python","discoveryScore":100,"stars":100,"matchedTargets":[{"target":"ai"}]}
+a=mod.evaluate(strong,NOW); b=mod.evaluate(weak,NOW); c=mod.evaluate(sparse,NOW); d=mod.evaluate(sparse_high,NOW)
 assert a["decision"]=="accept" and a["evaluationScore"]>=80
 assert b["decision"]=="reject" and b["evaluationScore"]<55
 assert a["evaluationScore"]>b["evaluationScore"]
@@ -31,6 +32,12 @@ assert a["scoreBreakdown"]["maintenance"]>=b["scoreBreakdown"]["maintenance"]
 assert a["evaluationConfidence"]=="high"
 assert c["evaluationConfidence"]=="low"
 assert c["decision"]==mod.evaluate(sparse,NOW)["decision"]
+
+# Low-confidence metadata can never produce automatic acceptance.
+assert d["evaluationScore"]>=mod.ACCEPT_THRESHOLD
+assert d["evaluationConfidence"]=="low"
+assert d["decision"]=="review"
+assert "low-confidence-cap" in d["reasons"]
 
 # Decision boundaries are part of the public calibration contract.
 assert hasattr(mod,"ACCEPT_THRESHOLD") and mod.ACCEPT_THRESHOLD==80.0
