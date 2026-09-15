@@ -31,6 +31,8 @@ jobs:
         run: python scripts/test_health_score.py
       - name: Test replacement detection
         run: python scripts/test_find_replacements.py
+      - name: Test health issue renderer
+        run: python scripts/test_render_health_issue.py
       - name: Generate replacement report
         run: python scripts/find_replacements.py > replacement-report.json
       - name: Validate replacement report
