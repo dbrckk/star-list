@@ -41,6 +41,7 @@ jobs:
           python scripts/analyze_coverage.py > coverage-report.json
           python scripts/build_discovery_watchlist.py coverage-report.json > discovery-watchlist.json
           python scripts/discover_candidates.py discovery-watchlist.json catalog.json --top 50 > discovery-candidates.json
+          python scripts/evaluate_candidates.py discovery-candidates.json > discovery-evaluated.json
       - name: Build repository health review
         run: |
           python scripts/find_replacements.py > replacement-report.json
