@@ -97,6 +97,19 @@ assert recovery_2["candidateSeverity"]=="healthy"
 assert recovery_2["alertState"]=="healthy"
 assert "Alert state: **healthy**" in mod.render_markdown(recovery_2)
 
+cooldown_points=[
+    {"date":"2026-09-08","alertState":"degraded","candidateSeverity":"degraded"},
+    {"date":"2026-09-15","alertState":"watch","candidateSeverity":"healthy"},
+    {"date":"2026-09-22","alertState":"healthy","candidateSeverity":"healthy"},
+]
+assert mod.issue_action(cooldown_points,"watch",cooldown_points=2)=="hold"
+cooldown_points.append({"date":"2026-09-29","alertState":"watch","candidateSeverity":"watch"})
+assert mod.issue_action(cooldown_points,"watch",cooldown_points=2)=="hold"
+cooldown_points.append({"date":"2026-10-06","alertState":"watch","candidateSeverity":"watch"})
+assert mod.issue_action(cooldown_points,"watch",cooldown_points=2)=="open"
+assert mod.issue_action(cooldown_points,"degraded",cooldown_points=2)=="open"
+assert mod.issue_action(cooldown_points,"healthy",cooldown_points=2)=="close"
+
 for i in range(40):
     updated,_=mod.update(updated,current,date=f"2026-10-{(i%28)+1:02d}",max_points=26)
 assert len(updated["points"])==26
