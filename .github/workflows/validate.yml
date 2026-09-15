@@ -43,6 +43,12 @@ jobs:
         run: python scripts/analyze_coverage.py > coverage-report.json
       - name: Validate coverage report
         run: python -m json.tool coverage-report.json > /dev/null
+      - name: Test discovery watchlist
+        run: python scripts/test_discovery_watchlist.py
+      - name: Generate discovery watchlist
+        run: python scripts/build_discovery_watchlist.py coverage-report.json > discovery-watchlist.json
+      - name: Validate discovery watchlist
+        run: python -m json.tool discovery-watchlist.json > /dev/null
       - name: Generate catalog statistics
         run: python scripts/catalog_stats.py > catalog-stats.json
       - name: Validate generated statistics
