@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: refresh-github-metadata
@@ -29,6 +30,26 @@ jobs:
         run: |
           python scripts/validate_catalog.py
           python scripts/test_recommend.py
+      - name: Build repository health review
+        run: |
+          python scripts/find_replacements.py > replacement-report.json
+          python scripts/render_health_issue.py replacement-report.json --output health-review.md
+      - name: Publish health review issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          COUNT=$(python -c "import json; print(json.load(open('replacement-report.json'))['findings'])")
+          MARKER='<!-- star-list-health-review -->'
+          EXISTING=$(gh issue list --state open --search "$MARKER in:body" --json number --jq '.[0].number // empty')
+          if [ "$COUNT" = "0" ]; then
+            if [ -n "$EXISTING" ]; then
+              gh issue close "$EXISTING" --comment "Automated health review is clean; no repositories currently require replacement review."
+            fi
+          elif [ -n "$EXISTING" ]; then
+            gh issue edit "$EXISTING" --title "Automated repository health review" --body-file health-review.md
+          else
+            gh issue create --title "Automated repository health review" --body-file health-review.md --label maintenance ||             gh issue create --title "Automated repository health review" --body-file health-review.md
+          fi
       - name: Commit changes
         run: |
           if git diff --quiet -- catalog.json; then
