@@ -41,7 +41,8 @@ jobs:
           python scripts/analyze_coverage.py > coverage-report.json
           python scripts/build_discovery_watchlist.py coverage-report.json > discovery-watchlist.json
           python scripts/discover_candidates.py discovery-watchlist.json catalog.json --top 50 > discovery-candidates.json
-          python scripts/evaluate_candidates.py discovery-candidates.json > discovery-evaluated.json
+          python scripts/evaluate_candidates.py discovery-candidates.json > discovery-evaluated-raw.json
+          python scripts/filter_discovery_memory.py discovery-evaluated-raw.json discovery-memory.json --output discovery-evaluated.json --write-memory
       - name: Build discovery candidate issue
         run: python scripts/render_discovery_issue.py discovery-evaluated.json --output discovery-review.md
       - name: Publish discovery candidate issue
@@ -82,12 +83,12 @@ jobs:
       - name: Commit changes
         run: |
           cp health-snapshot-current.json health-snapshot.json
-          if git diff --quiet -- catalog.json health-snapshot.json; then
+          if git diff --quiet -- catalog.json health-snapshot.json discovery-memory.json; then
             echo "No metadata or health snapshot changes"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add catalog.json health-snapshot.json
+          git add catalog.json health-snapshot.json discovery-memory.json
           git commit -m "chore: refresh GitHub repository metadata"
           git push
