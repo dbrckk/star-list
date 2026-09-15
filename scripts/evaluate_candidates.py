@@ -34,10 +34,16 @@ def evaluate(repo, now=None):
     fit=text_fit(repo)
     if fit>=0.75: score+=8; reasons.append("strong-text-fit")
     elif fit==0: score-=6; reasons.append("weak-text-fit")
+    topics={str(x).lower() for x in repo.get("topics",[])}
+    target_words={w for m in repo.get("matchedTargets",[]) for w in str(m.get("target","")).lower().replace("_","-").split("-") if w}
+    topic_hits=len(topics & target_words)
+    if topic_hits: score+=min(6,2*topic_hits); reasons.append("topic-fit")
     matches=repo.get("matchedTargets",[])
     if len(matches)>=2: score+=min(10,3*(len(matches)-1)); reasons.append("multi-gap-fit")
     stars=max(0,int(repo.get("stars",0)))
     if stars<100: score-=10; reasons.append("low-adoption")
+    watchers=max(0,int(repo.get("watchers",0) or 0))
+    if watchers>=100: score+=2; reasons.append("strong-watchers")
     forks=max(0,int(repo.get("forks",0)))
     if stars>=500 and forks/max(1,stars)>=0.05: score+=4; reasons.append("healthy-fork-ratio")
     elif stars>=500 and forks/max(1,stars)<0.005: score-=3; reasons.append("low-fork-ratio")
