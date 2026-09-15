@@ -53,10 +53,10 @@ def enrich(repo, token=None):
             payload,response_headers=api_json(f"{REPO_API.format(repo)}/{path}",headers)
             if key=="latestRelease": out[key]={"tag":payload.get("tag_name"),"publishedAt":payload.get("published_at")}
             else:
-                    link=response_headers.get("Link","")
-                    import re
-                    m=re.search(r'[?&]page=(\\d+)>; rel="last"',link)
-                    out[key]=int(m.group(1)) if m else len(payload)
+                link=response_headers.get("Link","")
+                import re
+                m=re.search(r'[?&]page=(\\d+)>; rel="last"',link)
+                out[key]=int(m.group(1)) if m else len(payload)
         except Exception: out[key]=None
     return out
 
