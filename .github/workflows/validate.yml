@@ -53,6 +53,8 @@ jobs:
         run: python scripts/test_discovery_cache_stats.py
       - name: Test cache health degradation detection
         run: python scripts/test_cache_health.py
+      - name: Test cache health history
+        run: python scripts/test_cache_health_history.py
       - name: Test candidate admission evaluation
         run: python scripts/test_evaluate_candidates.py
       - name: Test discovery issue renderer
@@ -67,6 +69,8 @@ jobs:
         run: python -m json.tool discovery-watchlist.json > /dev/null
       - name: Validate discovery cache
         run: python -m json.tool discovery-cache.json > /dev/null
+      - name: Validate cache health history
+        run: python -m json.tool cache-health-history.json > /dev/null
       - name: Generate catalog statistics
         run: python scripts/catalog_stats.py > catalog-stats.json
       - name: Validate generated statistics
