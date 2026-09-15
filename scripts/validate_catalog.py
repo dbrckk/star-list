@@ -54,6 +54,25 @@ for i, r in enumerate(repos):
     if not isinstance(r.get("selfHosted"), bool):
         errors.append(f"{prefix}: selfHosted must be boolean")
 
+    gh = r.get("github")
+    if gh is not None:
+        if not isinstance(gh, dict):
+            errors.append(f"{prefix}: github metadata must be an object")
+        else:
+            for field in ("stars", "forks", "openIssues"):
+                value = gh.get(field)
+                if not isinstance(value, int) or isinstance(value, bool) or value < 0:
+                    errors.append(f"{prefix}: github.{field} must be a non-negative integer")
+            for field in ("archived", "disabled"):
+                if not isinstance(gh.get(field), bool):
+                    errors.append(f"{prefix}: github.{field} must be boolean")
+            if not isinstance(gh.get("defaultBranch"), str) or not gh.get("defaultBranch"):
+                errors.append(f"{prefix}: github.defaultBranch must be a non-empty string")
+            if gh.get("license") is not None and not isinstance(gh.get("license"), str):
+                errors.append(f"{prefix}: github.license must be string or null")
+            if gh.get("pushedAt") is not None and not isinstance(gh.get("pushedAt"), str):
+                errors.append(f"{prefix}: github.pushedAt must be string or null")
+
     if domain == "trading":
         roles = set(r.get("roles", []))
         bad = roles - valid_roles
