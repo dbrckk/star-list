@@ -22,10 +22,22 @@ def enrich(repo, token=None):
     req=Request(REPO_API.format(repo),headers=headers)
     with urlopen(req,timeout=20) as res:
         data=json.load(res)
-    return {"topics":data.get("topics",[]),"watchers":data.get("subscribers_count",0),
-            "size":data.get("size"),"openIssues":data.get("open_issues_count",0),
-            "createdAt":data.get("created_at"),"homepage":data.get("homepage"),
-            "hasDiscussions":data.get("has_discussions",False)}
+    out={"topics":data.get("topics",[]),"watchers":data.get("subscribers_count",0),
+         "size":data.get("size"),"openIssues":data.get("open_issues_count",0),
+         "createdAt":data.get("created_at"),"homepage":data.get("homepage"),
+         "hasDiscussions":data.get("has_discussions",False)}
+    for key,path in (("latestRelease","releases/latest"),("contributors","contributors?per_page=1&anon=true")):
+        try:
+            with urlopen(Request(f"{REPO_API.format(repo)}/{path}",headers=headers),timeout=20) as extra:
+                payload=json.load(extra)
+                if key=="latestRelease": out[key]={"tag":payload.get("tag_name"),"publishedAt":payload.get("published_at")}
+                else:
+                    link=extra.headers.get("Link","")
+                    import re
+                    m=re.search(r'[?&]page=(\\d+)>; rel="last"',link)
+                    out[key]=int(m.group(1)) if m else len(payload)
+        except Exception: out[key]=None
+    return out
 
 def score(item, priority):
     stars=max(0,item.get("stargazers_count",0)); forks=max(0,item.get("forks_count",0))
