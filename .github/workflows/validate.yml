@@ -49,6 +49,8 @@ jobs:
         run: python scripts/test_discover_candidates.py
       - name: Test persistent discovery cache
         run: python scripts/test_discovery_cache.py
+      - name: Test discovery cache telemetry
+        run: python scripts/test_discovery_cache_stats.py
       - name: Test candidate admission evaluation
         run: python scripts/test_evaluate_candidates.py
       - name: Test discovery issue renderer
