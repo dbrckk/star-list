@@ -27,6 +27,8 @@ jobs:
         run: python scripts/validate_catalog.py
       - name: Test recommendation engine
         run: python scripts/test_recommend.py
+      - name: Test repository health scoring
+        run: python scripts/test_health_score.py
       - name: Generate catalog statistics
         run: python scripts/catalog_stats.py > catalog-stats.json
       - name: Validate generated statistics
