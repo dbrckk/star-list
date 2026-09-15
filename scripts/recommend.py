@@ -7,6 +7,7 @@ from health_score import health_score
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog.json"
 STACKS = ROOT / "stacks.json"
+HISTORY = ROOT / "history.json"
 
 DOMAIN_ALIASES = {
     "ai": "ai_agents", "agent": "ai_agents", "agents": "ai_agents",
@@ -60,6 +61,22 @@ def activity_adjustment(r):
     if days <= 730: return -3.0, "stale>1y"
     return -8.0, "stale>2y"
 
+def trend_adjustment(repo_name):
+    if not HISTORY.exists(): return 0.0, None
+    try:
+        pts=json.loads(HISTORY.read_text()).get("repositories",{}).get(repo_name,[])
+    except (OSError,json.JSONDecodeError): return 0.0, None
+    if len(pts)<2: return 0.0, None
+    first,last=pts[0],pts[-1]
+    a,b=first.get("health"),last.get("health")
+    if not isinstance(a,(int,float)) or not isinstance(b,(int,float)): return 0.0, None
+    delta=b-a
+    if delta>=10: return 4.0, "improving"
+    if delta<=-10: return -6.0, "declining"
+    stars_a,stars_b=first.get("stars"),last.get("stars")
+    if isinstance(stars_a,(int,float)) and isinstance(stars_b,(int,float)) and stars_b>stars_a: return 1.5, "growing"
+    return 0.0, "stable"
+
 def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps):
     caps = set(r.get("capabilities", [])) | set(r.get("roles", []))
     if excluded_caps and caps & excluded_caps:
@@ -86,6 +103,8 @@ def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps):
     health = health_score(r)
     if health["score"] is not None:
         s += 6.0 * (health["score"] / 100.0)
+    trend, _ = trend_adjustment(r["repo"])
+    s += trend
     return round(s, 3)
 
 def explain_repo(r, qtokens, domains, required_caps):
@@ -105,6 +124,8 @@ def explain_repo(r, qtokens, domains, required_caps):
     _, activity_reason = activity_adjustment(r)
     if activity_reason:
         reasons.append("activity:" + activity_reason)
+    _, trend_reason = trend_adjustment(r["repo"])
+    if trend_reason and trend_reason != "stable": reasons.append("trend:" + trend_reason)
     return reasons[:4]
 
 def choose_stack(stacks, qtokens, domains):
