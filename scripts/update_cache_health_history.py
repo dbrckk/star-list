@@ -57,12 +57,26 @@ def _point_metric(point,name):
     return float(point.get(name,0.0) or 0.0)
 
 
+def _baseline_confidence(sample_size):
+    score=round(min(1.0,max(0.0,sample_size/ADAPTIVE_MAX_SAMPLES)),3)
+    if sample_size<ADAPTIVE_MIN_SAMPLES:
+        return "insufficient-data",score
+    if sample_size>=ADAPTIVE_MAX_SAMPLES:
+        return "high",score
+    if sample_size>=6:
+        return "medium",score
+    return "low",score
+
+
 def adaptive_baseline(points,min_samples=ADAPTIVE_MIN_SAMPLES,max_samples=ADAPTIVE_MAX_SAMPLES,threshold=ADAPTIVE_THRESHOLD):
     history=points[:-1][-max_samples:] if points else []
+    confidence,confidence_score=_baseline_confidence(len(history))
     result={
         "status":"insufficient-data",
         "sampleSize":len(history),
         "threshold":threshold,
+        "confidence":confidence,
+        "confidenceScore":confidence_score,
         "findings":[],
     }
     if len(history)<min_samples or not points:
@@ -147,6 +161,7 @@ def render_markdown(trend):
             "",
             "### Adaptive baseline",
             f"Baseline samples: {adaptive['sampleSize']}",
+            f"Baseline confidence: **{adaptive['confidence']}** ({adaptive['confidenceScore']:.1%})",
             f"- API call avoidance baseline: {adaptive['apiCallAvoidanceRate']:.1%} ({deltas.get('apiCallAvoidanceRate',0):+.1%})",
             f"- Body reuse baseline: {adaptive['bodyReuseRate']:.1%} ({deltas.get('bodyReuseRate',0):+.1%})",
             f"- Network fetch baseline: {adaptive['networkFetchRate']:.1%} ({deltas.get('networkFetchRate',0):+.1%})",
