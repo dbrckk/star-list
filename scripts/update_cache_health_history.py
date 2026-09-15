@@ -101,12 +101,20 @@ def adaptive_baseline(points,min_samples=ADAPTIVE_MIN_SAMPLES,max_samples=ADAPTI
     return result
 
 
+def _adaptive_severity(adaptive):
+    if adaptive.get("status")!="anomalous":
+        return "healthy"
+    return "watch" if adaptive.get("confidence")=="low" else "degraded"
+
+
 def analyze_trend(points):
     adaptive=adaptive_baseline(points)
+    adaptive_severity=_adaptive_severity(adaptive)
     recent=points[-3:]
     if len(recent)<3:
         return {"direction":"insufficient-data","findings":list(adaptive["findings"]),"windowPoints":len(recent),
-                "apiCallAvoidanceDelta":None,"networkFetchDelta":None,"adaptiveBaseline":adaptive}
+                "apiCallAvoidanceDelta":None,"networkFetchDelta":None,"adaptiveBaseline":adaptive,
+                "adaptiveSeverity":adaptive_severity}
     first,last=recent[0],recent[-1]
     avoidance=[_point_metric(p,"apiCallAvoidanceRate") for p in recent]
     network=[_point_metric(p,"networkFetchRate") for p in recent]
@@ -129,7 +137,8 @@ def analyze_trend(points):
         direction="improving"
     return {"direction":direction,"findings":findings,"windowPoints":3,
             "apiCallAvoidanceDelta":ad,"networkFetchDelta":nd,"bodyReuseDelta":bd,
-            "fromDate":first.get("date"),"toDate":last.get("date"),"adaptiveBaseline":adaptive}
+            "fromDate":first.get("date"),"toDate":last.get("date"),"adaptiveBaseline":adaptive,
+            "adaptiveSeverity":adaptive_severity}
 
 
 def update(history,current,date=None,max_points=DEFAULT_MAX_POINTS):
@@ -162,6 +171,7 @@ def render_markdown(trend):
             "### Adaptive baseline",
             f"Baseline samples: {adaptive['sampleSize']}",
             f"Baseline confidence: **{adaptive['confidence']}** ({adaptive['confidenceScore']:.1%})",
+            f"Adaptive severity: **{trend.get('adaptiveSeverity','healthy')}**",
             f"- API call avoidance baseline: {adaptive['apiCallAvoidanceRate']:.1%} ({deltas.get('apiCallAvoidanceRate',0):+.1%})",
             f"- Body reuse baseline: {adaptive['bodyReuseRate']:.1%} ({deltas.get('bodyReuseRate',0):+.1%})",
             f"- Network fetch baseline: {adaptive['networkFetchRate']:.1%} ({deltas.get('networkFetchRate',0):+.1%})",
