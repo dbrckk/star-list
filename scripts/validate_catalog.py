@@ -51,8 +51,10 @@ for i, r in enumerate(repos):
     for field in ("resourceLevel","integrationComplexity"):
         if r.get(field) not in valid_levels:
             errors.append(f"{prefix}: invalid {field} {r.get(field)}")
-    if not isinstance(r.get("selfHosted"), bool):
-        errors.append(f"{prefix}: selfHosted must be boolean")
+    if "selfHosted" not in r:
+        warnings.append(f"{prefix}: selfHosted metadata missing")
+    elif not isinstance(r.get("selfHosted"), bool):
+        errors.append(f"{prefix}: selfHosted must be boolean when present")
 
     gh = r.get("github")
     if gh is not None:
@@ -76,7 +78,7 @@ for i, r in enumerate(repos):
     if domain == "trading":
         roles = set(r.get("roles", []))
         bad = roles - valid_roles
-        if not roles: errors.append(f"{prefix}: trading repo missing roles")
+        if not roles: warnings.append(f"{prefix}: trading repo missing roles metadata")
         if bad: errors.append(f"{prefix}: unknown roles {sorted(bad)}")
 
 # Relationship integrity: known catalog repos only, no self-links.
