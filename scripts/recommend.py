@@ -2,6 +2,7 @@
 import argparse, json, re
 from datetime import datetime, timezone
 from pathlib import Path
+from health_score import health_score
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog.json"
@@ -82,6 +83,9 @@ def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps):
         s -= 18
     activity, _ = activity_adjustment(r)
     s += activity
+    health = health_score(r)
+    if health["score"] is not None:
+        s += 6.0 * (health["score"] / 100.0)
     return round(s, 3)
 
 def explain_repo(r, qtokens, domains, required_caps):
@@ -177,6 +181,7 @@ def main():
             "platforms": r.get("platforms", []), "selfHosted": r.get("selfHosted"),
             "resourceLevel": r.get("resourceLevel"), "integrationComplexity": r.get("integrationComplexity"),
             "why": explain_repo(r, qtokens, domains, required_caps),
+            "health": health_score(r),
         })
 
     result = {
