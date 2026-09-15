@@ -154,10 +154,10 @@ def evaluate(repo, now=None):
     breakdown=score_breakdown(repo,fit,days,created_days,release_days,stars,contributors,topic_hits,matches,watchers,forks,open_issues)
     return {"evaluationScore":score,"decision":decision,"ageDays":days,"repositoryAgeDays":created_days,"releaseAgeDays":release_days,"textFit":round(fit,3),"openIssueRatio":round(open_issues/max(1,stars),4) if stars else None,"scoreBreakdown":breakdown,"evaluationConfidence":confidence,"reasons":reasons}
 
-def evaluate_all(data):
+def evaluate_all(data, now=None):
     rows=[]
     for r in data.get("repositories",[]):
-        rows.append({**r,**evaluate(r)})
+        rows.append({**r,**evaluate(r,now)})
     rows.sort(key=lambda x:({"accept":0,"review":1,"reject":2}[x["decision"]],-x["evaluationScore"],-x.get("stars",0),x["repo"].lower()))
     counts={k:sum(x["decision"]==k for x in rows) for k in ("accept","review","reject")}
     return {"candidates":len(rows),"counts":counts,"repositories":rows,"errors":data.get("errors",[])}
