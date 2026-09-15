@@ -20,6 +20,80 @@ def text_fit(repo):
         if words and any(w in text for w in words): hits+=1
     return hits/max(1,len(targets))
 
+def _bounded(value):
+    return round(max(0.0,min(100.0,float(value))),1)
+
+def evaluation_confidence(repo):
+    release=repo.get("latestRelease")
+    signals=(
+        bool(repo.get("pushedAt")),
+        bool(repo.get("createdAt")),
+        bool(repo.get("license")),
+        isinstance(release,dict) and bool(release.get("publishedAt")),
+        isinstance(repo.get("contributors"),int),
+        isinstance(repo.get("watchers"),int),
+        isinstance(repo.get("forks"),int),
+        isinstance(repo.get("openIssues"),int),
+        isinstance(repo.get("hasDiscussions"),bool),
+        isinstance(repo.get("topics"),list) and bool(repo.get("topics")),
+    )
+    coverage=sum(signals)/len(signals)
+    if coverage>=0.8: return "high"
+    if coverage>=0.5: return "medium"
+    return "low"
+
+def score_breakdown(repo,fit,days,created_days,release_days,stars,contributors,topic_hits,matches,watchers,forks,open_issues):
+    fit_score=fit*65+min(20,topic_hits*10)+min(15,max(0,len(matches)-1)*7.5)
+
+    if days is None: activity=0
+    elif days<=90: activity=70
+    elif days<=365: activity=55
+    elif days<=730: activity=35
+    else: activity=10
+    if release_days is not None and release_days<=180: activity+=30
+    elif release_days is not None and release_days<=365: activity+=15
+
+    if stars>=5000: adoption=55
+    elif stars>=1000: adoption=45
+    elif stars>=500: adoption=35
+    elif stars>=100: adoption=25
+    elif stars>=20: adoption=10
+    else: adoption=0
+    if watchers>=100: adoption+=20
+    elif watchers>=20: adoption+=10
+    elif watchers>=5: adoption+=5
+    fork_ratio=forks/max(1,stars) if stars else 0.0
+    if stars and fork_ratio>=0.05: adoption+=25
+    elif stars and fork_ratio>=0.01: adoption+=15
+    elif forks>0: adoption+=5
+
+    maturity=25 if repo.get("license") else 0
+    if created_days is not None and created_days>=730: maturity+=25
+    elif created_days is not None and created_days>=365: maturity+=15
+    elif created_days is not None and created_days>=90: maturity+=10
+    if isinstance(contributors,int) and contributors>=20: maturity+=30
+    elif isinstance(contributors,int) and contributors>=5: maturity+=20
+    elif isinstance(contributors,int) and contributors>=2: maturity+=10
+    if repo.get("hasDiscussions"): maturity+=20
+
+    maintenance=50
+    if isinstance(contributors,int) and contributors>=20: maintenance+=15
+    elif isinstance(contributors,int) and contributors<=1 and stars>=500: maintenance-=20
+    if stars>=500:
+        issue_ratio=open_issues/max(1,stars)
+        if issue_ratio<0.02: maintenance+=20
+        elif issue_ratio>0.20: maintenance-=20
+        if fork_ratio>=0.05: maintenance+=15
+        elif fork_ratio<0.005: maintenance-=15
+
+    return {
+        "fit":_bounded(fit_score),
+        "activity":_bounded(activity),
+        "adoption":_bounded(adoption),
+        "maturity":_bounded(maturity),
+        "maintenance":_bounded(maintenance),
+    }
+
 def evaluate(repo, now=None):
     score=float(repo.get("discoveryScore",0))
     reasons=[]
@@ -64,7 +138,8 @@ def evaluate(repo, now=None):
     elif stars>=500 and forks/max(1,stars)<0.005: score-=3; reasons.append("low-fork-ratio")
     score=round(max(0,min(100,score)),1)
     decision="accept" if score>=80 else "review" if score>=55 else "reject"
-    return {"evaluationScore":score,"decision":decision,"ageDays":days,"repositoryAgeDays":created_days,"releaseAgeDays":release_days,"textFit":round(fit,3),"openIssueRatio":round(open_issues/max(1,stars),4) if stars else None,"reasons":reasons}
+    breakdown=score_breakdown(repo,fit,days,created_days,release_days,stars,contributors,topic_hits,matches,watchers,forks,open_issues)
+    return {"evaluationScore":score,"decision":decision,"ageDays":days,"repositoryAgeDays":created_days,"releaseAgeDays":release_days,"textFit":round(fit,3),"openIssueRatio":round(open_issues/max(1,stars),4) if stars else None,"scoreBreakdown":breakdown,"evaluationConfidence":evaluation_confidence(repo),"reasons":reasons}
 
 def evaluate_all(data):
     rows=[]
