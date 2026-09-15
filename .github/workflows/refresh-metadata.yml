@@ -54,25 +54,15 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          STATUS=$(python -c "import json; print(json.load(open('cache-health.json'))['status'])")
-          TREND=$(python -c "import json; print(json.load(open('cache-health-trend.json'))['direction'])")
-          ADAPTIVE=$(python -c "import json; print(json.load(open('cache-health-trend.json')).get('adaptiveSeverity','healthy'))")
-          DISPLAY="$STATUS"
-          if [ "$ADAPTIVE" = "degraded" ]; then
-            DISPLAY="degraded"
-          elif [ "$ADAPTIVE" = "watch" ] && [ "$STATUS" = "healthy" ]; then
-            DISPLAY="watch"
-          elif [ "$STATUS" = "healthy" ] && [ "$TREND" = "declining" ]; then
-            DISPLAY="declining"
-          fi
+          ALERT_STATE=$(python -c "import json; print(json.load(open('cache-health-trend.json')).get('alertState','healthy'))")
           MARKER='<!-- star-list-cache-health -->'
           EXISTING=$(gh issue list --state open --search "$MARKER in:body" --json number --jq '.[0].number // empty')
-          if [ "$STATUS" = "healthy" ] && [ "$ADAPTIVE" = "healthy" ] && [ "$TREND" != "declining" ]; then
-            if [ -n "$EXISTING" ]; then gh issue close "$EXISTING" --comment "Discovery cache health returned to normal."; fi
+          if [ "$ALERT_STATE" = "healthy" ]; then
+            if [ -n "$EXISTING" ]; then gh issue close "$EXISTING" --comment "Discovery cache health returned to normal after two consecutive healthy observations."; fi
           elif [ -n "$EXISTING" ]; then
-            gh issue edit "$EXISTING" --title "Discovery cache health: $DISPLAY" --body-file cache-health.md
+            gh issue edit "$EXISTING" --title "Discovery cache health: $ALERT_STATE" --body-file cache-health.md
           else
-            gh issue create --title "Discovery cache health: $DISPLAY" --body-file cache-health.md --label maintenance || gh issue create --title "Discovery cache health: $DISPLAY" --body-file cache-health.md
+            gh issue create --title "Discovery cache health: $ALERT_STATE" --body-file cache-health.md --label maintenance || gh issue create --title "Discovery cache health: $ALERT_STATE" --body-file cache-health.md
           fi
       - name: Build discovery candidate issue
         run: python scripts/render_discovery_issue.py discovery-evaluated.json --output discovery-review.md
