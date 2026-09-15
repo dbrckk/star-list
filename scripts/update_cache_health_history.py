@@ -11,6 +11,7 @@ DEFAULT_MAX_POINTS=26
 ADAPTIVE_MIN_SAMPLES=4
 ADAPTIVE_MAX_SAMPLES=8
 ADAPTIVE_THRESHOLD=0.20
+SEVERITY_RANK={"healthy":0,"watch":1,"degraded":2}
 
 
 def empty_history():
@@ -107,6 +108,27 @@ def _adaptive_severity(adaptive):
     return "watch" if adaptive.get("confidence")=="low" else "degraded"
 
 
+def _severity(value):
+    return value if value in SEVERITY_RANK else "healthy"
+
+
+def combine_severity(status,adaptive_severity,direction):
+    values=[_severity(status),_severity(adaptive_severity)]
+    if direction=="declining":
+        values.append("watch")
+    return max(values,key=lambda value:SEVERITY_RANK[value])
+
+
+def hysteresis_state(previous_candidate,current_candidate):
+    previous=_severity(previous_candidate)
+    current=_severity(current_candidate)
+    if current=="degraded":
+        return "degraded" if previous=="degraded" else "watch"
+    if current=="healthy":
+        return "healthy" if previous=="healthy" else "watch"
+    return "watch"
+
+
 def analyze_trend(points):
     adaptive=adaptive_baseline(points)
     adaptive_severity=_adaptive_severity(adaptive)
@@ -146,17 +168,35 @@ def update(history,current,date=None,max_points=DEFAULT_MAX_POINTS):
     today=str(date or date_type.today().isoformat())
     base=history if isinstance(history,dict) else empty_history()
     points=[dict(p) for p in base.get("points",[]) if isinstance(p,dict) and p.get("date")]
-    point=point_from_report(current,today)
     points=[p for p in points if p.get("date")!=today]
+    previous=points[-1] if points else None
+    point=point_from_report(current,today)
     points.append(point)
     points.sort(key=lambda p:str(p.get("date","")))
     points=points[-max_points:]
+    trend=analyze_trend(points)
+    candidate=combine_severity(point.get("status"),trend.get("adaptiveSeverity"),trend.get("direction"))
+    previous_candidate=(previous or {}).get("candidateSeverity") or (previous or {}).get("status")
+    if previous is None:
+        alert="healthy" if candidate=="healthy" else "watch"
+    else:
+        alert=hysteresis_state(previous_candidate,candidate)
+    points[-1]["candidateSeverity"]=candidate
+    points[-1]["alertState"]=alert
+    trend["candidateSeverity"]=candidate
+    trend["alertState"]=alert
     updated={"schemaVersion":SCHEMA_VERSION,"points":points}
-    return updated,analyze_trend(points)
+    return updated,trend
 
 
 def render_markdown(trend):
-    lines=["## Multi-week trend", "", f"Direction: **{trend.get('direction','unknown')}**"]
+    lines=[
+        "## Multi-week trend",
+        "",
+        f"Direction: **{trend.get('direction','unknown')}**",
+        f"Candidate severity: **{trend.get('candidateSeverity','healthy')}**",
+        f"Alert state: **{trend.get('alertState','healthy')}**",
+    ]
     if trend.get("apiCallAvoidanceDelta") is not None:
         lines += [
             f"- API call avoidance delta: {trend['apiCallAvoidanceDelta']:+.1%}",
