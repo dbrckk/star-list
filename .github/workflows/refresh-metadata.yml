@@ -34,6 +34,13 @@ jobs:
         run: |
           python scripts/health_score.py > health-snapshot-current.json
           python scripts/detect_health_drift.py health-snapshot.json health-snapshot-current.json > health-drift.json
+      - name: Build discovery watchlist and candidate shortlist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/analyze_coverage.py > coverage-report.json
+          python scripts/build_discovery_watchlist.py coverage-report.json > discovery-watchlist.json
+          python scripts/discover_candidates.py discovery-watchlist.json catalog.json --top 50 > discovery-candidates.json
       - name: Build repository health review
         run: |
           python scripts/find_replacements.py > replacement-report.json
