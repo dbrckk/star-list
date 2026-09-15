@@ -37,15 +37,16 @@ jobs:
       - name: Build repository health review
         run: |
           python scripts/find_replacements.py > replacement-report.json
-          python scripts/render_health_issue.py replacement-report.json --output health-review.md
+          python scripts/render_health_issue.py replacement-report.json --drift health-drift.json --output health-review.md
       - name: Publish health review issue
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           COUNT=$(python -c "import json; print(json.load(open('replacement-report.json'))['findings'])")
+          DRIFT_COUNT=$(python -c "import json; print(json.load(open('health-drift.json'))['findings'])")
           MARKER='<!-- star-list-health-review -->'
           EXISTING=$(gh issue list --state open --search "$MARKER in:body" --json number --jq '.[0].number // empty')
-          if [ "$COUNT" = "0" ]; then
+          if [ "$COUNT" = "0" ] && [ "$DRIFT_COUNT" = "0" ]; then
             if [ -n "$EXISTING" ]; then
               gh issue close "$EXISTING" --comment "Automated health review is clean; no repositories currently require replacement review."
             fi
@@ -63,7 +64,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          cp health-snapshot-current.json health-snapshot.json
           git add catalog.json health-snapshot.json
           git commit -m "chore: refresh GitHub repository metadata"
           git push
