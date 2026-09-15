@@ -47,6 +47,8 @@ jobs:
         run: python scripts/test_discovery_watchlist.py
       - name: Test discovery candidate scoring
         run: python scripts/test_discover_candidates.py
+      - name: Test candidate admission evaluation
+        run: python scripts/test_evaluate_candidates.py
       - name: Generate discovery watchlist
         run: python scripts/build_discovery_watchlist.py coverage-report.json > discovery-watchlist.json
       - name: Validate discovery watchlist
