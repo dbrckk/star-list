@@ -37,6 +37,12 @@ jobs:
         run: python scripts/find_replacements.py > replacement-report.json
       - name: Validate replacement report
         run: python -m json.tool replacement-report.json > /dev/null
+      - name: Test catalog coverage analysis
+        run: python scripts/test_analyze_coverage.py
+      - name: Generate coverage report
+        run: python scripts/analyze_coverage.py > coverage-report.json
+      - name: Validate coverage report
+        run: python -m json.tool coverage-report.json > /dev/null
       - name: Generate catalog statistics
         run: python scripts/catalog_stats.py > catalog-stats.json
       - name: Validate generated statistics
