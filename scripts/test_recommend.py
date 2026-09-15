@@ -5,18 +5,30 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "recommend.py"
 
+def run(*args):
+    out = subprocess.check_output([sys.executable, str(SCRIPT), *args, "--json"], text=True)
+    return json.loads(out)
+
 cases = [
     ("xauusd backtesting risk execution", {"trading"}),
     ("android vector animation", {"mobile", "graphics"}),
     ("autonomous coding agent memory observability", {"ai_agents", "ai_memory"}),
 ]
-
 for query, expected_any in cases:
-    out = subprocess.check_output([sys.executable, str(SCRIPT), query, "--json", "--top", "5"], text=True)
-    data = json.loads(out)
+    data = run(query, "--top", "5")
     domains = set(data["inferredDomains"])
     assert domains & expected_any, (query, domains)
     assert data["recommendations"], query
-    assert all("repo" in x and "selectionScore" in x for x in data["recommendations"])
+    assert all("repo" in x and "selectionScore" in x and "why" in x for x in data["recommendations"])
+    assert data["diagnostics"]["catalogSize"] >= data["diagnostics"]["eligible"] >= data["diagnostics"]["returned"]
+
+strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
+for item in strict["recommendations"]:
+    assert "android" in item["platforms"]
+    assert "mobile" in set(item["capabilities"]), item["repo"]
+
+high_threshold = run("ai agent", "--min-score", "1000")
+assert high_threshold["recommendations"] == []
+assert high_threshold["diagnostics"]["returned"] == 0
 
 print("OK: recommendation engine smoke tests passed")
