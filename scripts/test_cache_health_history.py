@@ -34,10 +34,30 @@ assert baseline_trend["adaptiveBaseline"]["sampleSize"]==5
 assert baseline_trend["adaptiveBaseline"]["apiCallAvoidanceRate"]==0.71
 assert baseline_trend["adaptiveBaseline"]["networkFetchRate"]==0.29
 assert baseline_trend["adaptiveBaseline"]["status"]=="anomalous"
+assert baseline_trend["adaptiveBaseline"]["confidence"]=="low"
+assert baseline_trend["adaptiveBaseline"]["confidenceScore"]==0.625
 assert "below-adaptive-cache-baseline" in baseline_trend["findings"]
 assert "above-adaptive-network-baseline" in baseline_trend["findings"]
 assert "below-adaptive-body-reuse-baseline" in baseline_trend["findings"]
 assert baseline_trend["direction"]=="declining"
+
+confidence_points=[]
+for i in range(9):
+    confidence_points.append({
+        "date":f"2026-07-{i+1:02d}",
+        "apiCallAvoidanceRate":0.70,
+        "bodyReuseRate":0.80,
+        "networkFetchRate":0.30,
+        "staleFallbackRate":0.00,
+        "status":"healthy",
+    })
+assert mod.adaptive_baseline(confidence_points[:5])["confidence"]=="low"
+assert mod.adaptive_baseline(confidence_points[:7])["confidence"]=="medium"
+assert mod.adaptive_baseline(confidence_points[:9])["confidence"]=="high"
+assert mod.adaptive_baseline(confidence_points[:5])["confidenceScore"]==0.5
+assert mod.adaptive_baseline(confidence_points[:7])["confidenceScore"]==0.75
+assert mod.adaptive_baseline(confidence_points[:9])["confidenceScore"]==1.0
+assert "Baseline confidence: **low** (62.5%)" in mod.render_markdown(baseline_trend)
 
 for i in range(40):
     updated,_=mod.update(updated,current,date=f"2026-10-{(i%28)+1:02d}",max_points=26)
