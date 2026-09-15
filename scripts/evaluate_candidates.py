@@ -40,6 +40,7 @@ def evaluate(repo, now=None):
     release=repo.get("latestRelease") or {}
     release_days=age_days(release.get("publishedAt"),now) if isinstance(release,dict) else None
     if release_days is not None and release_days<=180: score+=5; reasons.append("recent-release")
+    stars=max(0,int(repo.get("stars",0)))
     contributors=repo.get("contributors")
     if isinstance(contributors,int) and contributors>=20: score+=4; reasons.append("broad-contributor-base")
     elif isinstance(contributors,int) and contributors<=1 and stars>=500: score-=4; reasons.append("single-contributor-risk")
@@ -49,7 +50,6 @@ def evaluate(repo, now=None):
     if topic_hits: score+=min(6,2*topic_hits); reasons.append("topic-fit")
     matches=repo.get("matchedTargets",[])
     if len(matches)>=2: score+=min(10,3*(len(matches)-1)); reasons.append("multi-gap-fit")
-    stars=max(0,int(repo.get("stars",0)))
     if stars<100: score-=10; reasons.append("low-adoption")
     watchers=max(0,int(repo.get("watchers",0) or 0))
     if watchers>=100: score+=2; reasons.append("strong-watchers")
