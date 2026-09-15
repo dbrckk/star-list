@@ -10,6 +10,16 @@ def age_days(value, now=None):
     except (ValueError,TypeError): return None
     return max(0,((now or datetime.now(timezone.utc))-dt).days)
 
+def text_fit(repo):
+    text=((repo.get("repo") or "")+" "+(repo.get("description") or "")+" "+(repo.get("language") or "")).lower()
+    targets=repo.get("matchedTargets",[])
+    if not targets: return 0.0
+    hits=0
+    for m in targets:
+        words=str(m.get("target","")).lower().replace("_"," ").replace("-"," ").split()
+        if words and any(w in text for w in words): hits+=1
+    return hits/max(1,len(targets))
+
 def evaluate(repo, now=None):
     score=float(repo.get("discoveryScore",0))
     reasons=[]
@@ -21,13 +31,19 @@ def evaluate(repo, now=None):
     elif days>365: score-=8; reasons.append("stale>1y")
     if repo.get("license"): score+=5; reasons.append("licensed")
     else: score-=10; reasons.append("license-missing")
+    fit=text_fit(repo)
+    if fit>=0.75: score+=8; reasons.append("strong-text-fit")
+    elif fit==0: score-=6; reasons.append("weak-text-fit")
     matches=repo.get("matchedTargets",[])
     if len(matches)>=2: score+=min(10,3*(len(matches)-1)); reasons.append("multi-gap-fit")
     stars=max(0,int(repo.get("stars",0)))
     if stars<100: score-=10; reasons.append("low-adoption")
+    forks=max(0,int(repo.get("forks",0)))
+    if stars>=500 and forks/max(1,stars)>=0.05: score+=4; reasons.append("healthy-fork-ratio")
+    elif stars>=500 and forks/max(1,stars)<0.005: score-=3; reasons.append("low-fork-ratio")
     score=round(max(0,min(100,score)),1)
     decision="accept" if score>=80 else "review" if score>=55 else "reject"
-    return {"evaluationScore":score,"decision":decision,"ageDays":days,"reasons":reasons}
+    return {"evaluationScore":score,"decision":decision,"ageDays":days,"textFit":round(fit,3),"reasons":reasons}
 
 def evaluate_all(data):
     rows=[]
