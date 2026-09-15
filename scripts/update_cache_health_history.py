@@ -4,9 +4,13 @@ import argparse
 import json
 from datetime import date as date_type
 from pathlib import Path
+from statistics import median
 
 SCHEMA_VERSION=1
 DEFAULT_MAX_POINTS=26
+ADAPTIVE_MIN_SAMPLES=4
+ADAPTIVE_MAX_SAMPLES=8
+ADAPTIVE_THRESHOLD=0.20
 
 
 def empty_history():
@@ -49,15 +53,50 @@ def point_from_report(report,date):
     }
 
 
+def _point_metric(point,name):
+    return float(point.get(name,0.0) or 0.0)
+
+
+def adaptive_baseline(points,min_samples=ADAPTIVE_MIN_SAMPLES,max_samples=ADAPTIVE_MAX_SAMPLES,threshold=ADAPTIVE_THRESHOLD):
+    history=points[:-1][-max_samples:] if points else []
+    result={
+        "status":"insufficient-data",
+        "sampleSize":len(history),
+        "threshold":threshold,
+        "findings":[],
+    }
+    if len(history)<min_samples or not points:
+        return result
+
+    current=points[-1]
+    names=("apiCallAvoidanceRate","bodyReuseRate","networkFetchRate")
+    baselines={name:round(float(median([_point_metric(p,name) for p in history])),4) for name in names}
+    deltas={name:round(_point_metric(current,name)-baselines[name],4) for name in names}
+    findings=[]
+    if deltas["apiCallAvoidanceRate"]<=-threshold:
+        findings.append("below-adaptive-cache-baseline")
+    if deltas["networkFetchRate"]>=threshold:
+        findings.append("above-adaptive-network-baseline")
+    if deltas["bodyReuseRate"]<=-threshold:
+        findings.append("below-adaptive-body-reuse-baseline")
+
+    result.update(baselines)
+    result["deltas"]={name:round(value,4) for name,value in deltas.items()}
+    result["status"]="anomalous" if findings else "normal"
+    result["findings"]=findings
+    return result
+
+
 def analyze_trend(points):
+    adaptive=adaptive_baseline(points)
     recent=points[-3:]
     if len(recent)<3:
-        return {"direction":"insufficient-data","findings":[],"windowPoints":len(recent),
-                "apiCallAvoidanceDelta":None,"networkFetchDelta":None}
+        return {"direction":"insufficient-data","findings":list(adaptive["findings"]),"windowPoints":len(recent),
+                "apiCallAvoidanceDelta":None,"networkFetchDelta":None,"adaptiveBaseline":adaptive}
     first,last=recent[0],recent[-1]
-    avoidance=[float(p.get("apiCallAvoidanceRate",0) or 0) for p in recent]
-    network=[float(p.get("networkFetchRate",0) or 0) for p in recent]
-    body=[float(p.get("bodyReuseRate",0) or 0) for p in recent]
+    avoidance=[_point_metric(p,"apiCallAvoidanceRate") for p in recent]
+    network=[_point_metric(p,"networkFetchRate") for p in recent]
+    body=[_point_metric(p,"bodyReuseRate") for p in recent]
     ad=round(avoidance[-1]-avoidance[0],4)
     nd=round(network[-1]-network[0],4)
     bd=round(body[-1]-body[0],4)
@@ -68,12 +107,15 @@ def analyze_trend(points):
         findings.append("rising-network-dependence")
     if body[0]>body[1]>body[2] and bd<=-0.20:
         findings.append("declining-body-reuse")
+    for finding in adaptive["findings"]:
+        if finding not in findings:
+            findings.append(finding)
     direction="declining" if findings else "stable"
     if not findings and avoidance[0]<avoidance[1]<avoidance[2] and ad>=0.20 and network[0]>network[1]>network[2]:
         direction="improving"
     return {"direction":direction,"findings":findings,"windowPoints":3,
             "apiCallAvoidanceDelta":ad,"networkFetchDelta":nd,"bodyReuseDelta":bd,
-            "fromDate":recent[0].get("date"),"toDate":recent[-1].get("date")}
+            "fromDate":first.get("date"),"toDate":last.get("date"),"adaptiveBaseline":adaptive}
 
 
 def update(history,current,date=None,max_points=DEFAULT_MAX_POINTS):
@@ -97,6 +139,18 @@ def render_markdown(trend):
             f"- API call avoidance delta: {trend['apiCallAvoidanceDelta']:+.1%}",
             f"- Network fetch delta: {trend['networkFetchDelta']:+.1%}",
             f"- Body reuse delta: {trend.get('bodyReuseDelta',0):+.1%}",
+        ]
+    adaptive=trend.get("adaptiveBaseline",{})
+    if adaptive.get("sampleSize",0)>=ADAPTIVE_MIN_SAMPLES:
+        deltas=adaptive.get("deltas",{})
+        lines += [
+            "",
+            "### Adaptive baseline",
+            f"Baseline samples: {adaptive['sampleSize']}",
+            f"- API call avoidance baseline: {adaptive['apiCallAvoidanceRate']:.1%} ({deltas.get('apiCallAvoidanceRate',0):+.1%})",
+            f"- Body reuse baseline: {adaptive['bodyReuseRate']:.1%} ({deltas.get('bodyReuseRate',0):+.1%})",
+            f"- Network fetch baseline: {adaptive['networkFetchRate']:.1%} ({deltas.get('networkFetchRate',0):+.1%})",
+            f"- Baseline status: **{adaptive['status']}**",
         ]
     if trend.get("findings"):
         lines += ["", "### Trend findings"]+[f"- `{x}`" for x in trend["findings"]]
