@@ -11,6 +11,7 @@ DEFAULT_MAX_POINTS=26
 ADAPTIVE_MIN_SAMPLES=4
 ADAPTIVE_MAX_SAMPLES=8
 ADAPTIVE_THRESHOLD=0.20
+COOLDOWN_POINTS=2
 SEVERITY_RANK={"healthy":0,"watch":1,"degraded":2}
 
 
@@ -129,6 +130,26 @@ def hysteresis_state(previous_candidate,current_candidate):
     return "watch"
 
 
+def _point_alert(point):
+    if not isinstance(point,dict): return "healthy"
+    return _severity(point.get("alertState") or point.get("candidateSeverity") or point.get("status"))
+
+
+def issue_action(points,current_alert,cooldown_points=COOLDOWN_POINTS):
+    current=_severity(current_alert)
+    if current=="healthy": return "close"
+    if current=="degraded": return "open"
+    if cooldown_points<1: return "open"
+    states=[_point_alert(point) for point in points]
+    last_close=None
+    for index in range(1,len(states)):
+        if states[index]=="healthy" and states[index-1]!="healthy":
+            last_close=index
+    if last_close is None: return "open"
+    observations_since_close=len(states)-1-last_close
+    return "hold" if observations_since_close<cooldown_points else "open"
+
+
 def analyze_trend(points):
     adaptive=adaptive_baseline(points)
     adaptive_severity=_adaptive_severity(adaptive)
@@ -181,10 +202,13 @@ def update(history,current,date=None,max_points=DEFAULT_MAX_POINTS):
         alert="healthy" if candidate=="healthy" else "watch"
     else:
         alert=hysteresis_state(previous_candidate,candidate)
+    action=issue_action(points[:-1],alert)
     points[-1]["candidateSeverity"]=candidate
     points[-1]["alertState"]=alert
+    points[-1]["issueAction"]=action
     trend["candidateSeverity"]=candidate
     trend["alertState"]=alert
+    trend["issueAction"]=action
     updated={"schemaVersion":SCHEMA_VERSION,"points":points}
     return updated,trend
 
@@ -196,6 +220,7 @@ def render_markdown(trend):
         f"Direction: **{trend.get('direction','unknown')}**",
         f"Candidate severity: **{trend.get('candidateSeverity','healthy')}**",
         f"Alert state: **{trend.get('alertState','healthy')}**",
+        f"Issue action: **{trend.get('issueAction','open')}**",
     ]
     if trend.get("apiCallAvoidanceDelta") is not None:
         lines += [
