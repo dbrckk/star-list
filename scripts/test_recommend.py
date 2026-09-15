@@ -38,5 +38,6 @@ spec.loader.exec_module(mod)
 assert mod.activity_adjustment({"github":{"archived":True}})[0] == -30.0
 assert mod.activity_adjustment({"github":{"disabled":True}})[0] == -30.0
 assert mod.activity_adjustment({}) == (0.0, None)
+assert mod.trend_adjustment("definitely/not-in-history")[0] == 0.0
 
 print("OK: recommendation engine smoke tests passed")
