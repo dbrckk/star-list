@@ -67,15 +67,24 @@ def trend_adjustment(repo_name):
         pts=json.loads(HISTORY.read_text()).get("repositories",{}).get(repo_name,[])
     except (OSError,json.JSONDecodeError): return 0.0, None
     if len(pts)<2: return 0.0, None
-    first,last=pts[0],pts[-1]
-    a,b=first.get("health"),last.get("health")
-    if not isinstance(a,(int,float)) or not isinstance(b,(int,float)): return 0.0, None
-    delta=b-a
-    if delta>=10: return 4.0, "improving"
-    if delta<=-10: return -6.0, "declining"
-    stars_a,stars_b=first.get("stars"),last.get("stars")
-    if isinstance(stars_a,(int,float)) and isinstance(stars_b,(int,float)) and stars_b>stars_a: return 1.5, "growing"
-    return 0.0, "stable"
+    recent=pts[-5:] if len(pts)>=5 else pts
+    first,last=recent[0],recent[-1]
+    try:
+        days=max(1,(datetime.fromisoformat(last["date"])-datetime.fromisoformat(first["date"])).days)
+    except (ValueError,TypeError,KeyError):
+        days=max(1,7*(len(recent)-1))
+    def delta(k):
+        a,b=first.get(k),last.get(k)
+        return b-a if isinstance(a,(int,float)) and isinstance(b,(int,float)) else None
+    hd,sd,fd=delta("health"),delta("stars"),delta("forks")
+    stars_week=(sd*7/days) if sd is not None else 0.0
+    forks_week=(fd*7/days) if fd is not None else 0.0
+    momentum=max(-3.0,min(3.0, stars_week/50.0)) + max(-1.0,min(1.0, forks_week/10.0))
+    if hd is not None:
+        momentum += max(-4.0,min(4.0,hd/2.5))
+    momentum=round(max(-6.0,min(6.0,momentum)),3)
+    reason="declining" if momentum<=-2 else "improving" if momentum>=2 else "growing" if momentum>0.5 else "stable"
+    return momentum, reason
 
 def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps):
     caps = set(r.get("capabilities", [])) | set(r.get("roles", []))
