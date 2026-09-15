@@ -24,6 +24,36 @@ cached_data, cached_headers = mod.api_json(url, {}, attempts=1, cache=cache, ttl
 assert cached_data == {"ok": True}
 assert cached_headers == {"Link": "next"}
 
+# Expired data may be used only as a bounded fallback when GitHub/network is unavailable.
+stale_url = "https://api.github.test/repos/stale/x"
+mod.cache_put(cache, stale_url, {"stale": True}, {"ETag": "old"}, now=1000)
+real_urlopen = mod.urlopen
+
+def offline(*args, **kwargs):
+    raise OSError("network unavailable")
+
+mod.urlopen = offline
+try:
+    stale_data, stale_headers, source = mod.api_json(
+        stale_url, {}, attempts=1, cache=cache, ttl_seconds=60,
+        stale_max_seconds=3600, now=2000, return_source=True,
+    )
+    assert stale_data == {"stale": True}
+    assert stale_headers == {"ETag": "old"}
+    assert source == "stale-cache"
+
+    too_old_failed = False
+    try:
+        mod.api_json(
+            stale_url, {}, attempts=1, cache=cache, ttl_seconds=60,
+            stale_max_seconds=300, now=2000, return_source=True,
+        )
+    except OSError:
+        too_old_failed = True
+    assert too_old_failed, "cache older than stale_max_seconds must not be used"
+finally:
+    mod.urlopen = real_urlopen
+
 with tempfile.TemporaryDirectory() as td:
     path = Path(td) / "cache.json"
     mod.save_cache(path, cache)
