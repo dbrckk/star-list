@@ -70,11 +70,32 @@ for i in range(8):
         "staleFallbackRate":0.00,
         "status":"healthy",
     })
-_,high_trend=mod.update(high_history,baseline_current,date="2026-09-08",max_points=26)
+high_updated,high_trend=mod.update(high_history,baseline_current,date="2026-09-08",max_points=26)
 assert high_trend["adaptiveBaseline"]["confidence"]=="high"
 assert high_trend["adaptiveBaseline"]["status"]=="anomalous"
 assert high_trend["adaptiveSeverity"]=="degraded"
 assert "Adaptive severity: **degraded**" in mod.render_markdown(high_trend)
+
+assert mod.hysteresis_state("healthy","degraded")=="watch"
+assert mod.hysteresis_state("degraded","degraded")=="degraded"
+assert mod.hysteresis_state("degraded","healthy")=="watch"
+assert mod.hysteresis_state("healthy","healthy")=="healthy"
+assert high_trend["candidateSeverity"]=="degraded"
+assert high_trend["alertState"]=="watch"
+assert high_updated["points"][-1]["candidateSeverity"]=="degraded"
+
+high_updated,high_trend_2=mod.update(high_updated,baseline_current,date="2026-09-15",max_points=26)
+assert high_trend_2["candidateSeverity"]=="degraded"
+assert high_trend_2["alertState"]=="degraded"
+
+healthy_current={"status":"healthy","metrics":{"logicalRequests":20,"apiCallAvoidanceRate":0.70,"bodyReuseRate":0.80,"networkFetchRate":0.30,"staleFallbackRate":0.00}}
+high_updated,recovery_1=mod.update(high_updated,healthy_current,date="2026-09-22",max_points=26)
+assert recovery_1["candidateSeverity"]=="healthy"
+assert recovery_1["alertState"]=="watch"
+high_updated,recovery_2=mod.update(high_updated,healthy_current,date="2026-09-29",max_points=26)
+assert recovery_2["candidateSeverity"]=="healthy"
+assert recovery_2["alertState"]=="healthy"
+assert "Alert state: **healthy**" in mod.render_markdown(recovery_2)
 
 for i in range(40):
     updated,_=mod.update(updated,current,date=f"2026-10-{(i%28)+1:02d}",max_points=26)
