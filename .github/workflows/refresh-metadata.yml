@@ -34,8 +34,13 @@ jobs:
         run: |
           python scripts/health_score.py > health-snapshot-current.json
           python scripts/detect_health_drift.py health-snapshot.json health-snapshot-current.json > health-drift.json
+          python scripts/validate_json_contract.py schemas/health-snapshot.schema.json health-snapshot-current.json
+          python scripts/validate_json_contract.py schemas/health-drift.schema.json health-drift.json
       - name: Update compact repository history
-        run: python scripts/update_history.py history.json catalog.json health-snapshot-current.json --write --trends health-trends.json
+        run: |
+          python scripts/update_history.py history.json catalog.json health-snapshot-current.json --write --trends health-trends.json
+          python scripts/validate_json_contract.py schemas/history.schema.json history.json
+          python scripts/validate_json_contract.py schemas/health-trends.schema.json health-trends.json
       - name: Build discovery watchlist and candidate shortlist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -45,10 +50,20 @@ jobs:
           python scripts/discover_candidates.py discovery-watchlist.json catalog.json --top 50 --cache discovery-cache.json --search-cache-ttl-hours 24 --metadata-cache-ttl-hours 336 > discovery-candidates.json
           python scripts/evaluate_candidates.py discovery-candidates.json > discovery-evaluated-raw.json
           python scripts/filter_discovery_memory.py discovery-evaluated-raw.json discovery-memory.json --output discovery-evaluated.json --write-memory
+          python scripts/validate_json_contract.py schemas/coverage-report.schema.json coverage-report.json
+          python scripts/validate_json_contract.py schemas/discovery-watchlist.schema.json discovery-watchlist.json
+          python scripts/validate_json_contract.py schemas/discovery-candidates.schema.json discovery-candidates.json
+          python scripts/validate_json_contract.py schemas/discovery-evaluated.schema.json discovery-evaluated-raw.json
+          python scripts/validate_json_contract.py schemas/discovery-evaluated.schema.json discovery-evaluated.json
+          python scripts/validate_json_contract.py schemas/discovery-cache.schema.json discovery-cache.json
+          python scripts/validate_json_contract.py schemas/discovery-memory.schema.json discovery-memory.json
       - name: Analyze discovery cache health
         run: |
           python scripts/analyze_cache_health.py discovery-candidates.json --markdown-output cache-health.md > cache-health.json
           python scripts/update_cache_health_history.py cache-health-history.json cache-health.json --write --trend-output cache-health-trend.json --markdown-output cache-health-trend.md
+          python scripts/validate_json_contract.py schemas/cache-health.schema.json cache-health.json
+          python scripts/validate_json_contract.py schemas/cache-health-trend.schema.json cache-health-trend.json
+          python scripts/validate_json_contract.py schemas/cache-health-history.schema.json cache-health-history.json
           cat cache-health-trend.md >> cache-health.md
       - name: Publish discovery cache health issue
         env:
@@ -86,6 +101,7 @@ jobs:
       - name: Build repository health review
         run: |
           python scripts/find_replacements.py > replacement-report.json
+          python scripts/validate_json_contract.py schemas/replacement-report.schema.json replacement-report.json
           python scripts/render_health_issue.py replacement-report.json --drift health-drift.json --output health-review.md
       - name: Publish health review issue
         env:
