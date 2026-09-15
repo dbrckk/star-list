@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse, json, re
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -39,6 +40,25 @@ def load():
 def infer_domains(qtokens):
     return {DOMAIN_ALIASES[t] for t in qtokens if t in DOMAIN_ALIASES}
 
+def activity_adjustment(r):
+    gh = r.get("github")
+    if not isinstance(gh, dict):
+        return 0.0, None
+    if gh.get("archived") or gh.get("disabled"):
+        return -30.0, "inactive"
+    pushed = gh.get("pushedAt")
+    if not pushed:
+        return 0.0, None
+    try:
+        dt = datetime.fromisoformat(pushed.replace("Z", "+00:00"))
+        days = max(0, (datetime.now(timezone.utc) - dt).days)
+    except (ValueError, TypeError):
+        return 0.0, None
+    if days <= 90: return 5.0, "active<=90d"
+    if days <= 365: return 2.0, "active<=1y"
+    if days <= 730: return -3.0, "stale>1y"
+    return -8.0, "stale>2y"
+
 def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps):
     caps = set(r.get("capabilities", [])) | set(r.get("roles", []))
     if excluded_caps and caps & excluded_caps:
@@ -60,6 +80,8 @@ def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps):
     avoid = tokens(" ".join(r.get("avoidWhen", [])))
     if qtokens & avoid:
         s -= 18
+    activity, _ = activity_adjustment(r)
+    s += activity
     return round(s, 3)
 
 def explain_repo(r, qtokens, domains, required_caps):
@@ -76,6 +98,9 @@ def explain_repo(r, qtokens, domains, required_caps):
         reasons.append("terms:" + ",".join(matched_terms[:6]))
     if r.get("tier") in {"core", "recommended"}:
         reasons.append("tier:" + r["tier"])
+    _, activity_reason = activity_adjustment(r)
+    if activity_reason:
+        reasons.append("activity:" + activity_reason)
     return reasons[:4]
 
 def choose_stack(stacks, qtokens, domains):
@@ -99,6 +124,7 @@ def main():
     ap.add_argument("--platform", action="append", default=[], help="Required platform; repeatable")
     ap.add_argument("--language", action="append", default=[], help="Required language; repeatable")
     ap.add_argument("--self-hosted", action="store_true", help="Require self-hosted/local-friendly repositories")
+    ap.add_argument("--include-archived", action="store_true", help="Allow archived/disabled repositories")
     ap.add_argument("--max-resource", choices=["low","medium","high"], default="high")
     ap.add_argument("--max-complexity", choices=["low","medium","high"], default="high")
     ap.add_argument("--json", action="store_true", dest="as_json")
@@ -113,7 +139,7 @@ def main():
     domains = set(args.domain) or infer_domains(qtokens)
     required_caps, excluded_caps = set(args.cap), set(args.exclude_cap)
     ranked = []
-    filtered = {"platform":0, "language":0, "selfHosted":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
+    filtered = {"platform":0, "language":0, "selfHosted":0, "inactive":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
 
     for r in repos:
         caps = set(r.get("capabilities", [])) | set(r.get("roles", []))
@@ -123,6 +149,9 @@ def main():
             filtered["language"] += 1; continue
         if args.self_hosted and r.get("selfHosted") is not True:
             filtered["selfHosted"] += 1; continue
+        gh = r.get("github", {})
+        if not args.include_archived and isinstance(gh, dict) and (gh.get("archived") or gh.get("disabled")):
+            filtered["inactive"] += 1; continue
         if LEVEL.get(r.get("resourceLevel","medium"),1) > LEVEL[args.max_resource]:
             filtered["resource"] += 1; continue
         if LEVEL.get(r.get("integrationComplexity","medium"),1) > LEVEL[args.max_complexity]:
@@ -155,7 +184,7 @@ def main():
         "requiredCapabilities": sorted(required_caps), "recommendations": top,
         "constraints": {"platforms":args.platform, "languages":args.language, "selfHosted":args.self_hosted,
                         "maxResource":args.max_resource, "maxComplexity":args.max_complexity,
-                        "requireAllCapabilities":args.require_all_caps, "minScore":args.min_score},
+                        "requireAllCapabilities":args.require_all_caps, "minScore":args.min_score, "includeArchived":args.include_archived},
         "diagnostics": {"catalogSize":len(repos), "eligible":len(ranked), "returned":len(top), "filtered":filtered},
         "recommendedStack": choose_stack(stacks, qtokens, domains),
     }
