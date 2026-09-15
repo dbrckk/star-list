@@ -54,11 +54,17 @@ def evaluate(repo, now=None):
     watchers=max(0,int(repo.get("watchers",0) or 0))
     if watchers>=100: score+=2; reasons.append("strong-watchers")
     forks=max(0,int(repo.get("forks",0)))
+    open_issues=max(0,int(repo.get("openIssues",0) or 0))
+    if stars>=500:
+        issue_ratio=open_issues/max(1,stars)
+        if issue_ratio>0.20: score-=5; reasons.append("high-open-issue-load")
+        elif issue_ratio<0.02: score+=2; reasons.append("controlled-issue-load")
+    if repo.get("hasDiscussions"): score+=1; reasons.append("community-discussions")
     if stars>=500 and forks/max(1,stars)>=0.05: score+=4; reasons.append("healthy-fork-ratio")
     elif stars>=500 and forks/max(1,stars)<0.005: score-=3; reasons.append("low-fork-ratio")
     score=round(max(0,min(100,score)),1)
     decision="accept" if score>=80 else "review" if score>=55 else "reject"
-    return {"evaluationScore":score,"decision":decision,"ageDays":days,"repositoryAgeDays":created_days,"releaseAgeDays":release_days,"textFit":round(fit,3),"reasons":reasons}
+    return {"evaluationScore":score,"decision":decision,"ageDays":days,"repositoryAgeDays":created_days,"releaseAgeDays":release_days,"textFit":round(fit,3),"openIssueRatio":round(open_issues/max(1,stars),4) if stars else None,"reasons":reasons}
 
 def evaluate_all(data):
     rows=[]
