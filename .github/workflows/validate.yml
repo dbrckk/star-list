@@ -29,6 +29,12 @@ jobs:
         run: python scripts/test_recommend.py
       - name: Test repository health scoring
         run: python scripts/test_health_score.py
+      - name: Test replacement detection
+        run: python scripts/test_find_replacements.py
+      - name: Generate replacement report
+        run: python scripts/find_replacements.py > replacement-report.json
+      - name: Validate replacement report
+        run: python -m json.tool replacement-report.json > /dev/null
       - name: Generate catalog statistics
         run: python scripts/catalog_stats.py > catalog-stats.json
       - name: Validate generated statistics
