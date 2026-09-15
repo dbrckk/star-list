@@ -17,6 +17,28 @@ DEFAULT_METADATA_STALE_MAX_HOURS=2160
 def empty_cache():
     return {"schemaVersion": CACHE_SCHEMA_VERSION, "entries": {}}
 
+def empty_cache_stats():
+    return {
+        "logicalRequests": 0,
+        "freshCacheHits": 0,
+        "notModifiedHits": 0,
+        "staleFallbacks": 0,
+        "networkFetches": 0,
+    }
+
+def finalize_cache_stats(stats):
+    result=dict(stats or empty_cache_stats())
+    total=max(0,int(result.get("logicalRequests",0)))
+    fresh=max(0,int(result.get("freshCacheHits",0)))
+    reused=(fresh + max(0,int(result.get("notModifiedHits",0))) +
+            max(0,int(result.get("staleFallbacks",0))))
+    result["apiCallAvoidanceRate"]=round(fresh/total,4) if total else 0.0
+    result["bodyReuseRate"]=round(reused/total,4) if total else 0.0
+    return result
+
+def _stat(stats, key):
+    if stats is not None: stats[key]=int(stats.get(key,0))+1
+
 def load_cache(path):
     if path is None or not path.exists(): return empty_cache()
     try:
@@ -98,10 +120,12 @@ def _not_modified_result(cache, url, response_headers, now, return_source):
     cache_put(cache,url,data,merged_headers,now)
     return _api_result(data,merged_headers,"not-modified",return_source)
 
-def api_json(url, headers, attempts=4, cache=None, ttl_seconds=0, stale_max_seconds=0, now=None, return_source=False):
+def api_json(url, headers, attempts=4, cache=None, ttl_seconds=0, stale_max_seconds=0, now=None, return_source=False, stats=None):
+    _stat(stats,"logicalRequests")
     if cache is not None and ttl_seconds>0:
         hit=cache_get(cache,url,ttl_seconds,now)
         if hit is not None:
+            _stat(stats,"freshCacheHits")
             return _api_result(hit[0],hit[1],"fresh-cache",return_source)
     request_headers=_conditional_headers(headers,cache,url) if cache is not None and ttl_seconds>0 else dict(headers or {})
     last=None
@@ -112,18 +136,23 @@ def api_json(url, headers, attempts=4, cache=None, ttl_seconds=0, stale_max_seco
                 response_headers=_headers_dict(res.headers)
                 if cache is not None and ttl_seconds>0:
                     cache_put(cache,url,data,response_headers,now)
+                _stat(stats,"networkFetches")
                 return _api_result(data,response_headers,"network",return_source)
         except HTTPError as e:
             last=e
             if e.code==304:
                 not_modified=_not_modified_result(cache,url,e.headers,now,return_source)
-                if not_modified is not None: return not_modified
+                if not_modified is not None:
+                    _stat(stats,"notModifiedHits")
+                    return not_modified
                 raise
             transient=e.code in (403,429,500,502,503,504)
             if not transient: raise
             if attempt==attempts-1:
                 stale=_stale_result(cache,url,stale_max_seconds,now,return_source)
-                if stale is not None: return stale
+                if stale is not None:
+                    _stat(stats,"staleFallbacks")
+                    return stale
                 raise
             retry=e.headers.get("Retry-After")
             reset=e.headers.get("X-RateLimit-Reset")
@@ -138,28 +167,30 @@ def api_json(url, headers, attempts=4, cache=None, ttl_seconds=0, stale_max_seco
             last=e
             if attempt==attempts-1:
                 stale=_stale_result(cache,url,stale_max_seconds,now,return_source)
-                if stale is not None: return stale
+                if stale is not None:
+                    _stat(stats,"staleFallbacks")
+                    return stale
                 raise
             time.sleep(min(30,2**attempt)+random.random())
     raise last
 
-def fetch(query, token=None, per_page=10, cache=None, ttl_seconds=0, stale_max_seconds=0, return_source=False):
+def fetch(query, token=None, per_page=10, cache=None, ttl_seconds=0, stale_max_seconds=0, return_source=False, stats=None):
     params=urlencode({"q":query,"sort":"stars","order":"desc","per_page":per_page})
     headers={"Accept":"application/vnd.github+json","User-Agent":"star-list-discovery","X-GitHub-Api-Version":"2022-11-28"}
     if token: headers["Authorization"]=f"Bearer {token}"
     data,_,source=api_json(
         f"{API}?{params}",headers,cache=cache,ttl_seconds=ttl_seconds,
-        stale_max_seconds=stale_max_seconds,return_source=True,
+        stale_max_seconds=stale_max_seconds,return_source=True,stats=stats,
     )
     return (data,source) if return_source else data
 
-def enrich(repo, token=None, cache=None, ttl_seconds=0, stale_max_seconds=0):
+def enrich(repo, token=None, cache=None, ttl_seconds=0, stale_max_seconds=0, stats=None):
     headers={"Accept":"application/vnd.github+json","User-Agent":"star-list-discovery","X-GitHub-Api-Version":"2022-11-28"}
     if token: headers["Authorization"]=f"Bearer {token}"
     stale_endpoints=[]
     data,_,source=api_json(
         REPO_API.format(repo),headers,cache=cache,ttl_seconds=ttl_seconds,
-        stale_max_seconds=stale_max_seconds,return_source=True,
+        stale_max_seconds=stale_max_seconds,return_source=True,stats=stats,
     )
     if source=="stale-cache": stale_endpoints.append("repository")
     out={"topics":data.get("topics",[]),"watchers":data.get("subscribers_count",0),
@@ -170,7 +201,7 @@ def enrich(repo, token=None, cache=None, ttl_seconds=0, stale_max_seconds=0):
         try:
             payload,response_headers,source=api_json(
                 f"{REPO_API.format(repo)}/{path}",headers,cache=cache,ttl_seconds=ttl_seconds,
-                stale_max_seconds=stale_max_seconds,return_source=True,
+                stale_max_seconds=stale_max_seconds,return_source=True,stats=stats,
             )
             if source=="stale-cache": stale_endpoints.append(key)
             if key=="latestRelease": out[key]={"tag":payload.get("tag_name"),"publishedAt":payload.get("published_at")}
@@ -196,11 +227,12 @@ def discover(watchlist, known, token=None, per_query=10, cache=None, search_ttl_
     candidates={}
     errors=[]
     stale_sources=[]
+    stats=empty_cache_stats()
     for target in watchlist.get("watchlist",[]):
         try:
             data,source=fetch(
                 target["query"],token,per_query,cache,search_ttl_seconds,
-                search_stale_max_seconds,return_source=True,
+                search_stale_max_seconds,return_source=True,stats=stats,
             )
             if source=="stale-cache":
                 stale_sources.append({"kind":"search","target":target["target"]})
@@ -222,13 +254,14 @@ def discover(watchlist, known, token=None, per_query=10, cache=None, search_ttl_
     rows=sorted(candidates.values(),key=lambda x:(-x["discoveryScore"],-x["stars"],x["repo"].lower()))
     for row in rows[:min(50,len(rows))]:
         try:
-            enriched=enrich(row["repo"],token,cache,metadata_ttl_seconds,metadata_stale_max_seconds)
+            enriched=enrich(row["repo"],token,cache,metadata_ttl_seconds,metadata_stale_max_seconds,stats=stats)
             row.update(enriched)
             if enriched.get("metadataStale"):
                 stale_sources.append({"kind":"metadata","repo":row["repo"],"endpoints":enriched.get("staleEndpoints",[])})
         except Exception as e: row["enrichmentError"]=str(e)
         time.sleep(0.1)
-    return {"candidates":len(rows),"repositories":rows,"errors":errors,"staleSources":stale_sources}
+    return {"candidates":len(rows),"repositories":rows,"errors":errors,"staleSources":stale_sources,
+            "cacheStats":finalize_cache_stats(stats)}
 
 def main():
     ap=argparse.ArgumentParser()
