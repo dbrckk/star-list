@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Execute discovery watchlist against GitHub Search API and rank novel candidates."""
-import argparse, json, math, os, time
+import argparse, json, math, os, time, random
 from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
@@ -9,30 +9,51 @@ from urllib.error import HTTPError
 API="https://api.github.com/search/repositories"
 REPO_API="https://api.github.com/repos/{}"
 
+def api_json(url, headers, attempts=4):
+    last=None
+    for attempt in range(attempts):
+        try:
+            with urlopen(Request(url,headers=headers),timeout=20) as res:
+                return json.load(res), res.headers
+        except HTTPError as e:
+            last=e
+            if e.code not in (403,429,500,502,503,504) or attempt==attempts-1: raise
+            retry=e.headers.get("Retry-After")
+            reset=e.headers.get("X-RateLimit-Reset")
+            if retry:
+                wait=min(60,float(retry))
+            elif reset:
+                wait=max(1,min(60,float(reset)-time.time()))
+            else:
+                wait=min(30,2**attempt)
+            time.sleep(wait + random.random())
+        except (TimeoutError,OSError) as e:
+            last=e
+            if attempt==attempts-1: raise
+            time.sleep(min(30,2**attempt)+random.random())
+    raise last
+
 def fetch(query, token=None, per_page=10):
     params=urlencode({"q":query,"sort":"stars","order":"desc","per_page":per_page})
     headers={"Accept":"application/vnd.github+json","User-Agent":"star-list-discovery","X-GitHub-Api-Version":"2022-11-28"}
     if token: headers["Authorization"]=f"Bearer {token}"
-    req=Request(f"{API}?{params}",headers=headers)
-    with urlopen(req,timeout=20) as res: return json.load(res)
+    data,_=api_json(f"{API}?{params}",headers)
+    return data
 
 def enrich(repo, token=None):
     headers={"Accept":"application/vnd.github+json","User-Agent":"star-list-discovery","X-GitHub-Api-Version":"2022-11-28"}
     if token: headers["Authorization"]=f"Bearer {token}"
-    req=Request(REPO_API.format(repo),headers=headers)
-    with urlopen(req,timeout=20) as res:
-        data=json.load(res)
+    data,_=api_json(REPO_API.format(repo),headers)
     out={"topics":data.get("topics",[]),"watchers":data.get("subscribers_count",0),
          "size":data.get("size"),"openIssues":data.get("open_issues_count",0),
          "createdAt":data.get("created_at"),"homepage":data.get("homepage"),
          "hasDiscussions":data.get("has_discussions",False)}
     for key,path in (("latestRelease","releases/latest"),("contributors","contributors?per_page=1&anon=true")):
         try:
-            with urlopen(Request(f"{REPO_API.format(repo)}/{path}",headers=headers),timeout=20) as extra:
-                payload=json.load(extra)
-                if key=="latestRelease": out[key]={"tag":payload.get("tag_name"),"publishedAt":payload.get("published_at")}
-                else:
-                    link=extra.headers.get("Link","")
+            payload,response_headers=api_json(f"{REPO_API.format(repo)}/{path}",headers)
+            if key=="latestRelease": out[key]={"tag":payload.get("tag_name"),"publishedAt":payload.get("published_at")}
+            else:
+                    link=response_headers.get("Link","")
                     import re
                     m=re.search(r'[?&]page=(\\d+)>; rel="last"',link)
                     out[key]=int(m.group(1)) if m else len(payload)
