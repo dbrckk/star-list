@@ -9,6 +9,19 @@ from urllib.error import HTTPError
 API="https://api.github.com/search/repositories"
 REPO_API="https://api.github.com/repos/{}"
 
+def cache_get(cache, url, ttl_seconds, now=None):
+    now=time.time() if now is None else now
+    entry=cache.get("entries",{}).get(url)
+    if not isinstance(entry,dict): return None
+    fetched=entry.get("fetchedAt")
+    if not isinstance(fetched,(int,float)) or now-fetched>ttl_seconds: return None
+    return entry.get("data"), entry.get("headers",{})
+
+def cache_put(cache, url, data, headers, now=None):
+    now=time.time() if now is None else now
+    cache.setdefault("schemaVersion",1)
+    cache.setdefault("entries",{})[url]={"fetchedAt":now,"data":data,"headers":dict(headers or {})}
+
 def api_json(url, headers, attempts=4):
     last=None
     for attempt in range(attempts):
