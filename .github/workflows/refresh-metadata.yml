@@ -34,6 +34,8 @@ jobs:
         run: |
           python scripts/health_score.py > health-snapshot-current.json
           python scripts/detect_health_drift.py health-snapshot.json health-snapshot-current.json > health-drift.json
+      - name: Update compact repository history
+        run: python scripts/update_history.py history.json catalog.json health-snapshot-current.json --write --trends health-trends.json
       - name: Build discovery watchlist and candidate shortlist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -83,12 +85,12 @@ jobs:
       - name: Commit changes
         run: |
           cp health-snapshot-current.json health-snapshot.json
-          if git diff --quiet -- catalog.json health-snapshot.json discovery-memory.json; then
+          if git diff --quiet -- catalog.json health-snapshot.json discovery-memory.json history.json; then
             echo "No metadata or health snapshot changes"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add catalog.json health-snapshot.json discovery-memory.json
+          git add catalog.json health-snapshot.json discovery-memory.json history.json
           git commit -m "chore: refresh GitHub repository metadata"
           git push
