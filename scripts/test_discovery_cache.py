@@ -2,6 +2,7 @@
 import importlib.util
 import tempfile
 from pathlib import Path
+from urllib.error import HTTPError
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "discover_candidates.py"
@@ -51,6 +52,34 @@ try:
     except OSError:
         too_old_failed = True
     assert too_old_failed, "cache older than stale_max_seconds must not be used"
+finally:
+    mod.urlopen = real_urlopen
+
+# Expired entries with an ETag should be conditionally revalidated. A 304 refreshes
+# the cache timestamp while preserving the cached body and useful response headers.
+revalidate_url = "https://api.github.test/repos/etag/x"
+mod.cache_put(
+    cache, revalidate_url, {"version": 1},
+    {"ETag": '"etag-v1"', "Link": "next"}, now=1000,
+)
+seen_headers = {}
+
+def not_modified(req, *args, **kwargs):
+    seen_headers.update({k.lower(): v for k, v in req.header_items()})
+    raise HTTPError(req.full_url, 304, "Not Modified", {"ETag": '"etag-v1"'}, None)
+
+mod.urlopen = not_modified
+try:
+    data, headers, source = mod.api_json(
+        revalidate_url, {}, attempts=1, cache=cache, ttl_seconds=60,
+        stale_max_seconds=3600, now=2000, return_source=True,
+    )
+    assert seen_headers["if-none-match"] == '"etag-v1"'
+    assert data == {"version": 1}
+    assert headers["ETag"] == '"etag-v1"'
+    assert headers["Link"] == "next"
+    assert source == "not-modified"
+    assert cache["entries"][revalidate_url]["fetchedAt"] == 2000
 finally:
     mod.urlopen = real_urlopen
 
