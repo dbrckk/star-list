@@ -41,6 +41,17 @@ def _cache_entry(cache, url):
     if not isinstance(fetched,(int,float)): return None
     return entry
 
+def _headers_dict(headers):
+    if headers is None: return {}
+    try: return dict(headers.items())
+    except AttributeError: return dict(headers)
+
+def _header_value(headers, name):
+    wanted=name.lower()
+    for key,value in (headers or {}).items():
+        if str(key).lower()==wanted: return value
+    return None
+
 def cache_get(cache, url, ttl_seconds, now=None):
     now=time.time() if now is None else now
     entry=_cache_entry(cache,url)
@@ -59,7 +70,7 @@ def cache_get_stale(cache, url, max_age_seconds, now=None):
 def cache_put(cache, url, data, headers, now=None):
     now=time.time() if now is None else now
     cache.setdefault("schemaVersion",CACHE_SCHEMA_VERSION)
-    cache.setdefault("entries",{})[url]={"fetchedAt":now,"data":data,"headers":dict(headers or {})}
+    cache.setdefault("entries",{})[url]={"fetchedAt":now,"data":data,"headers":_headers_dict(headers)}
 
 def _api_result(data, headers, source, return_source):
     return (data,headers,source) if return_source else (data,headers)
@@ -69,22 +80,45 @@ def _stale_result(cache, url, stale_max_seconds, now, return_source):
     if stale is None: return None
     return _api_result(stale[0],stale[1],"stale-cache",return_source)
 
+def _conditional_headers(headers, cache, url):
+    result=dict(headers or {})
+    entry=_cache_entry(cache,url)
+    if entry is None: return result
+    etag=_header_value(entry.get("headers",{}),"etag")
+    if etag and not _header_value(result,"if-none-match"):
+        result["If-None-Match"]=etag
+    return result
+
+def _not_modified_result(cache, url, response_headers, now, return_source):
+    entry=_cache_entry(cache,url)
+    if entry is None: return None
+    merged_headers=dict(entry.get("headers",{}) or {})
+    merged_headers.update(_headers_dict(response_headers))
+    data=entry.get("data")
+    cache_put(cache,url,data,merged_headers,now)
+    return _api_result(data,merged_headers,"not-modified",return_source)
+
 def api_json(url, headers, attempts=4, cache=None, ttl_seconds=0, stale_max_seconds=0, now=None, return_source=False):
     if cache is not None and ttl_seconds>0:
         hit=cache_get(cache,url,ttl_seconds,now)
         if hit is not None:
             return _api_result(hit[0],hit[1],"fresh-cache",return_source)
+    request_headers=_conditional_headers(headers,cache,url) if cache is not None and ttl_seconds>0 else dict(headers or {})
     last=None
     for attempt in range(attempts):
         try:
-            with urlopen(Request(url,headers=headers),timeout=20) as res:
+            with urlopen(Request(url,headers=request_headers),timeout=20) as res:
                 data=json.load(res)
-                response_headers=dict(res.headers.items())
+                response_headers=_headers_dict(res.headers)
                 if cache is not None and ttl_seconds>0:
                     cache_put(cache,url,data,response_headers,now)
                 return _api_result(data,response_headers,"network",return_source)
         except HTTPError as e:
             last=e
+            if e.code==304:
+                not_modified=_not_modified_result(cache,url,e.headers,now,return_source)
+                if not_modified is not None: return not_modified
+                raise
             transient=e.code in (403,429,500,502,503,504)
             if not transient: raise
             if attempt==attempts-1:
