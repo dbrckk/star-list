@@ -52,10 +52,8 @@ for i, r in enumerate(repos):
         if r.get(field) not in valid_levels:
             errors.append(f"{prefix}: invalid {field} {r.get(field)}")
     self_hosted = r.get("selfHosted")
-    if self_hosted is None:
-        warnings.append(f"{prefix}: selfHosted metadata missing")
-    elif not isinstance(self_hosted, bool):
-        errors.append(f"{prefix}: selfHosted must be boolean or null")
+    if not isinstance(self_hosted, bool):
+        warnings.append(f"{prefix}: selfHosted metadata is unknown or non-boolean")
 
     gh = r.get("github")
     if gh is not None:
