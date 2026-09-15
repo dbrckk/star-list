@@ -53,6 +53,8 @@ jobs:
         run: python scripts/test_render_discovery_issue.py
       - name: Test persistent discovery memory
         run: python scripts/test_discovery_memory.py
+      - name: Test repository trend history
+        run: python scripts/test_history.py
       - name: Generate discovery watchlist
         run: python scripts/build_discovery_watchlist.py coverage-report.json > discovery-watchlist.json
       - name: Validate discovery watchlist
