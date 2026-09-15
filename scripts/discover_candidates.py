@@ -7,6 +7,7 @@ from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 
 API="https://api.github.com/search/repositories"
+REPO_API="https://api.github.com/repos/{}"
 
 def fetch(query, token=None, per_page=10):
     params=urlencode({"q":query,"sort":"stars","order":"desc","per_page":per_page})
@@ -14,6 +15,17 @@ def fetch(query, token=None, per_page=10):
     if token: headers["Authorization"]=f"Bearer {token}"
     req=Request(f"{API}?{params}",headers=headers)
     with urlopen(req,timeout=20) as res: return json.load(res)
+
+def enrich(repo, token=None):
+    headers={"Accept":"application/vnd.github+json","User-Agent":"star-list-discovery","X-GitHub-Api-Version":"2022-11-28"}
+    if token: headers["Authorization"]=f"Bearer {token}"
+    req=Request(REPO_API.format(repo),headers=headers)
+    with urlopen(req,timeout=20) as res:
+        data=json.load(res)
+    return {"topics":data.get("topics",[]),"watchers":data.get("subscribers_count",0),
+            "size":data.get("size"),"openIssues":data.get("open_issues_count",0),
+            "createdAt":data.get("created_at"),"homepage":data.get("homepage"),
+            "hasDiscussions":data.get("has_discussions",False)}
 
 def score(item, priority):
     stars=max(0,item.get("stargazers_count",0)); forks=max(0,item.get("forks_count",0))
@@ -43,6 +55,10 @@ def discover(watchlist, known, token=None, per_query=10):
             else: candidates[name]=row
         time.sleep(0.2)
     rows=sorted(candidates.values(),key=lambda x:(-x["discoveryScore"],-x["stars"],x["repo"].lower()))
+    for row in rows[:min(50,len(rows))]:
+        try: row.update(enrich(row["repo"],token))
+        except Exception as e: row["enrichmentError"]=str(e)
+        time.sleep(0.1)
     return {"candidates":len(rows),"repositories":rows,"errors":errors}
 
 def main():
