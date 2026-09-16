@@ -7,12 +7,24 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 README=ROOT/"README.md"
 SCORING=ROOT/"docs"/"DISCOVERY_SCORING.md"
+VERSION=ROOT/"VERSION"
+CHANGELOG=ROOT/"CHANGELOG.md"
 
 assert README.exists(), "README.md is required"
 assert SCORING.exists(), "docs/DISCOVERY_SCORING.md is required"
+assert VERSION.exists(), "VERSION is required for stable releases"
+assert CHANGELOG.exists(), "CHANGELOG.md is required for stable releases"
 
 readme=README.read_text()
 scoring=SCORING.read_text()
+version=VERSION.read_text().strip()
+changelog=CHANGELOG.read_text()
+
+assert re.fullmatch(r"\d+\.\d+\.\d+",version), f"invalid semantic version: {version!r}"
+assert version=="1.0.0", f"expected v1 release version 1.0.0, got {version!r}"
+assert f"## {version} - 2026-09-16" in changelog, "CHANGELOG missing current release entry"
+assert "CHANGELOG.md" in readme, "README must link the changelog"
+assert f"Current stable release: **{version}**" in readme, "README stable release marker is stale"
 
 for text in (
     "python scripts/validate_catalog.py",
