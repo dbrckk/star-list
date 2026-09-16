@@ -7,8 +7,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog.json"
 
+
+def _number(value, default=0.0):
+    if isinstance(value,bool): return default
+    try: result=float(value)
+    except (TypeError,ValueError): return default
+    return result if math.isfinite(result) else default
+
+
 def age_days(pushed_at, now=None):
-    if not pushed_at: return None
+    if not pushed_at or not isinstance(pushed_at,str): return None
     try:
         dt = datetime.fromisoformat(pushed_at.replace("Z", "+00:00"))
     except (ValueError, TypeError):
@@ -34,11 +42,11 @@ def health_score(repo, now=None):
     elif days <= 730: freshness = 14.0; reasons.append("stale-over-1y")
     else: freshness = 4.0; reasons.append("stale-over-2y")
 
-    stars = max(0, gh.get("stars", 0))
-    forks = max(0, gh.get("forks", 0))
+    stars = max(0.0, _number(gh.get("stars", 0)))
+    forks = max(0.0, _number(gh.get("forks", 0)))
     adoption = min(25.0, 5.0 * math.log10(stars + 1))
     ecosystem = min(15.0, 4.0 * math.log10(forks + 1))
-    quality = max(0.0, min(20.0, 2.0 * float(repo.get("score", 0))))
+    quality = max(0.0, min(20.0, 2.0 * _number(repo.get("score", 0))))
     metadata = 5.0 if gh.get("license") else 2.0
     total = round(min(100.0, freshness + adoption + ecosystem + quality + metadata), 1)
     status = "healthy" if total >= 75 else "watch" if total >= 55 else "weak"
