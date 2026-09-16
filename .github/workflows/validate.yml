@@ -61,6 +61,8 @@ jobs:
         run: python scripts/test_json_contracts.py
       - name: Test offline discovery pipeline integration
         run: python scripts/test_pipeline_integration.py
+      - name: Test v1 documentation contract
+        run: python scripts/test_documentation.py
       - name: Test discovery issue renderer
         run: python scripts/test_render_discovery_issue.py
       - name: Test persistent discovery memory
