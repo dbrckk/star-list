@@ -24,6 +24,7 @@ FIELDS = {
     "pushedAt": "pushed_at",
 }
 
+
 def fetch(repo, token=None, retries=2):
     headers = {"Accept":"application/vnd.github+json","User-Agent":"star-list-metadata-refresh","X-GitHub-Api-Version":"2022-11-28"}
     if token: headers["Authorization"] = f"Bearer {token}"
@@ -41,6 +42,7 @@ def fetch(repo, token=None, retries=2):
                 time.sleep(2 ** attempt); continue
             raise
 
+
 def metadata(raw):
     out = {}
     for target, source in FIELDS.items():
@@ -50,6 +52,11 @@ def metadata(raw):
         else:
             out[target] = raw.get(source)
     return out
+
+
+def is_missing_repository_error(error):
+    return isinstance(error, HTTPError) and error.code in (404, 410)
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -62,7 +69,7 @@ def main():
     repos = data.get("repositories", [])
     if args.limit > 0: repos = repos[:args.limit]
     token = os.environ.get("GITHUB_TOKEN")
-    failures, changed = [], 0
+    failures, fatal_failures, changed = [], [], 0
 
     for i, r in enumerate(repos, 1):
         name = r["repo"]
@@ -73,7 +80,10 @@ def main():
                 changed += 1
             print(f"[{i}/{len(repos)}] OK {name}", file=sys.stderr)
         except Exception as e:
-            failures.append({"repo":name,"error":str(e)})
+            failure = {"repo":name,"error":str(e)}
+            failures.append(failure)
+            if args.fail_fast or not is_missing_repository_error(e):
+                fatal_failures.append(failure)
             print(f"[{i}/{len(repos)}] ERROR {name}: {e}", file=sys.stderr)
             if args.fail_fast: break
 
@@ -86,8 +96,9 @@ def main():
     else:
         print(json.dumps({"checked":len(repos),"changed":changed,"failures":failures}, indent=2))
 
-    if failures:
+    if fatal_failures:
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()

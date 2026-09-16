@@ -25,6 +25,8 @@ jobs:
         run: python -m compileall -q scripts
       - name: Validate catalog
         run: python scripts/validate_catalog.py
+      - name: Test GitHub metadata refresh resilience
+        run: python scripts/test_refresh_github_metadata.py
       - name: Test recommendation engine
         run: python scripts/test_recommend.py
       - name: Test repository health scoring
