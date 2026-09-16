@@ -4,6 +4,8 @@
 
 The repository is intentionally data-first: `catalog.json` is the source catalog, `catalog.schema.json` defines its structure, and the scripts under [`scripts/`](scripts/) validate, rank, analyze, refresh, and review that data.
 
+Current stable release: **1.0.0**. See [`CHANGELOG.md`](CHANGELOG.md) for release notes.
+
 ## What it does
 
 - validates the catalog and its metadata;
@@ -49,6 +51,8 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 | Path | Purpose |
 | --- | --- |
+| `VERSION` | Current stable semantic version. |
+| `CHANGELOG.md` | Stable release notes. |
 | `catalog.json` | Curated repository catalog. |
 | `catalog.schema.json` | Main catalog schema. |
 | `stacks.json` | Predefined repository stacks used by the recommender. |
