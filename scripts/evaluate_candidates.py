@@ -1,21 +1,37 @@
 #!/usr/bin/env python3
 """Evaluate discovered repositories into accept/review/reject buckets."""
-import argparse, json
+import argparse, json, math
 from datetime import datetime, timezone
 from pathlib import Path
 
 ACCEPT_THRESHOLD=80.0
 REVIEW_THRESHOLD=55.0
 
+
+def _number(value,default=0.0):
+    if isinstance(value,bool): return default
+    try: result=float(value)
+    except (TypeError,ValueError): return default
+    return result if math.isfinite(result) else default
+
+
+def _integer(value,default=0):
+    return int(_number(value,default))
+
+
+def _dict_list(value):
+    return [item for item in value if isinstance(item,dict)] if isinstance(value,list) else []
+
+
 def age_days(value, now=None):
-    if not value: return None
+    if not value or not isinstance(value,str): return None
     try: dt=datetime.fromisoformat(value.replace("Z","+00:00"))
     except (ValueError,TypeError): return None
     return max(0,((now or datetime.now(timezone.utc))-dt).days)
 
 def text_fit(repo):
     text=((repo.get("repo") or "")+" "+(repo.get("description") or "")+" "+(repo.get("language") or "")).lower()
-    targets=repo.get("matchedTargets",[])
+    targets=_dict_list(repo.get("matchedTargets",[]))
     if not targets: return 0.0
     hits=0
     for m in targets:
@@ -24,10 +40,10 @@ def text_fit(repo):
     return hits/max(1,len(targets))
 
 def _bounded(value):
-    return round(max(0.0,min(100.0,float(value))),1)
+    return round(max(0.0,min(100.0,_number(value))),1)
 
 def decision_for_score(score):
-    score=float(score)
+    score=_number(score)
     if score>=ACCEPT_THRESHOLD: return "accept"
     if score>=REVIEW_THRESHOLD: return "review"
     return "reject"
@@ -104,7 +120,7 @@ def score_breakdown(repo,fit,days,created_days,release_days,stars,contributors,t
     }
 
 def evaluate(repo, now=None):
-    score=float(repo.get("discoveryScore",0))
+    score=_number(repo.get("discoveryScore",0))
     reasons=[]
     days=age_days(repo.get("pushedAt"),now)
     if days is None: score-=8; reasons.append("missing-activity-date")
@@ -123,26 +139,26 @@ def evaluate(repo, now=None):
     release=repo.get("latestRelease") or {}
     release_days=age_days(release.get("publishedAt"),now) if isinstance(release,dict) else None
     if release_days is not None and release_days<=180: score+=5; reasons.append("recent-release")
-    stars=max(0,int(repo.get("stars",0)))
+    stars=max(0,_integer(repo.get("stars",0)))
     contributors=repo.get("contributors")
     if isinstance(contributors,int) and contributors>=20: score+=4; reasons.append("broad-contributor-base")
     elif isinstance(contributors,int) and contributors<=1 and stars>=500: score-=4; reasons.append("single-contributor-risk")
-    topics={str(x).lower() for x in repo.get("topics",[])}
-    target_words={w for m in repo.get("matchedTargets",[]) for w in str(m.get("target","")).lower().replace("_","-").split("-") if w}
+    topics={str(x).lower() for x in repo.get("topics",[]) if x is not None} if isinstance(repo.get("topics",[]),list) else set()
+    matches=_dict_list(repo.get("matchedTargets",[]))
+    target_words={w for m in matches for w in str(m.get("target","")).lower().replace("_","-").split("-") if w}
     topic_hits=len(topics & target_words)
     if topic_hits: score+=min(6,2*topic_hits); reasons.append("topic-fit")
-    matches=repo.get("matchedTargets",[])
     if len(matches)>=2: score+=min(10,3*(len(matches)-1)); reasons.append("multi-gap-fit")
     if stars<100: score-=10; reasons.append("low-adoption")
-    watchers=max(0,int(repo.get("watchers",0) or 0))
+    watchers=max(0,_integer(repo.get("watchers",0)))
     if watchers>=100: score+=2; reasons.append("strong-watchers")
-    forks=max(0,int(repo.get("forks",0)))
-    open_issues=max(0,int(repo.get("openIssues",0) or 0))
+    forks=max(0,_integer(repo.get("forks",0)))
+    open_issues=max(0,_integer(repo.get("openIssues",0)))
     if stars>=500:
         issue_ratio=open_issues/max(1,stars)
         if issue_ratio>0.20: score-=5; reasons.append("high-open-issue-load")
         elif issue_ratio<0.02: score+=2; reasons.append("controlled-issue-load")
-    if repo.get("hasDiscussions"): score+=1; reasons.append("community-discussions")
+    if repo.get("hasDiscussions") is True: score+=1; reasons.append("community-discussions")
     if stars>=500 and forks/max(1,stars)>=0.05: score+=4; reasons.append("healthy-fork-ratio")
     elif stars>=500 and forks/max(1,stars)<0.005: score-=3; reasons.append("low-fork-ratio")
     score=round(max(0,min(100,score)),1)
@@ -156,11 +172,12 @@ def evaluate(repo, now=None):
 
 def evaluate_all(data, now=None):
     rows=[]
-    for r in data.get("repositories",[]):
-        rows.append({**r,**evaluate(r,now)})
-    rows.sort(key=lambda x:({"accept":0,"review":1,"reject":2}[x["decision"]],-x["evaluationScore"],-x.get("stars",0),x["repo"].lower()))
+    repositories=data.get("repositories",[]) if isinstance(data,dict) else []
+    for r in repositories if isinstance(repositories,list) else []:
+        if isinstance(r,dict): rows.append({**r,**evaluate(r,now)})
+    rows.sort(key=lambda x:({"accept":0,"review":1,"reject":2}[x["decision"]],-x["evaluationScore"],-_number(x.get("stars",0)),str(x.get("repo","")).lower()))
     counts={k:sum(x["decision"]==k for x in rows) for k in ("accept","review","reject")}
-    return {"candidates":len(rows),"counts":counts,"repositories":rows,"errors":data.get("errors",[])}
+    return {"candidates":len(rows),"counts":counts,"repositories":rows,"errors":data.get("errors",[]) if isinstance(data,dict) else []}
 
 def main():
     ap=argparse.ArgumentParser()
