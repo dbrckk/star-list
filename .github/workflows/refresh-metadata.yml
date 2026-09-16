@@ -1,6 +1,11 @@
 name: Refresh GitHub metadata
 
 on:
+  push:
+    branches:
+      - test/refresh-metadata-e2e
+    paths:
+      - ".github/workflows/refresh-metadata.yml"
   schedule:
     - cron: "17 4 * * 1"
   workflow_dispatch:
