@@ -4,14 +4,49 @@ import argparse,json
 from datetime import datetime,timezone
 from pathlib import Path
 
+SCHEMA_VERSION=1
+
+
+def empty_history():
+    return {"schemaVersion":SCHEMA_VERSION,"repositories":{}}
+
+
+def load_history(path):
+    if path is None or not path.exists(): return empty_history()
+    try:
+        data=json.loads(path.read_text())
+    except (OSError,json.JSONDecodeError):
+        return empty_history()
+    if not isinstance(data,dict) or not isinstance(data.get("repositories"),dict):
+        return empty_history()
+    repositories={}
+    for repo,points in data["repositories"].items():
+        if not isinstance(repo,str) or not isinstance(points,list): continue
+        repositories[repo]=[point for point in points if isinstance(point,dict)]
+    return {"schemaVersion":SCHEMA_VERSION,"repositories":repositories}
+
+
 def update(history,catalog,health,max_points=26,now=None):
     now=(now or datetime.now(timezone.utc)).date().isoformat()
-    hmap={x["repo"]:x for x in health.get("repositories",[])}
-    store=history.setdefault("repositories",{})
-    for r in catalog.get("repositories",[]):
-        name=r["repo"]; gh=r.get("github",{}); h=hmap.get(name,{})
+    if not isinstance(history,dict): history=empty_history()
+    store=history.get("repositories")
+    if not isinstance(store,dict):
+        store={}
+        history={"schemaVersion":SCHEMA_VERSION,"repositories":store}
+    else:
+        history["schemaVersion"]=SCHEMA_VERSION
+    health_rows=health.get("repositories",[]) if isinstance(health,dict) else []
+    hmap={x.get("repo"):x for x in health_rows if isinstance(x,dict) and isinstance(x.get("repo"),str)} if isinstance(health_rows,list) else {}
+    catalog_rows=catalog.get("repositories",[]) if isinstance(catalog,dict) else []
+    for r in catalog_rows if isinstance(catalog_rows,list) else []:
+        if not isinstance(r,dict): continue
+        name=r.get("repo")
+        if not isinstance(name,str) or not name: continue
+        gh=r.get("github",{}); gh=gh if isinstance(gh,dict) else {}
+        h=hmap.get(name,{})
         point={"date":now,"health":h.get("score"),"status":h.get("status"),"stars":gh.get("stars"),"forks":gh.get("forks")}
-        points=store.setdefault(name,[])
+        points=store.get(name,[])
+        points=[p for p in points if isinstance(p,dict)] if isinstance(points,list) else []
         if points and points[-1].get("date")==now: points[-1]=point
         else: points.append(point)
         store[name]=points[-max_points:]
@@ -34,7 +69,10 @@ def window_metrics(points,size):
 
 def trends(history):
     rows=[]
-    for repo,pts in history.get("repositories",{}).items():
+    repositories=history.get("repositories",{}) if isinstance(history,dict) else {}
+    for repo,pts in repositories.items() if isinstance(repositories,dict) else []:
+        if not isinstance(pts,list): continue
+        pts=[p for p in pts if isinstance(p,dict)]
         if len(pts)<2: continue
         w1=window_metrics(pts,2); w4=window_metrics(pts,5); full=window_metrics(pts,None)
         recent=w4 or w1 or full
@@ -52,7 +90,7 @@ def main():
     ap.add_argument("--max-points",type=int,default=26); ap.add_argument("--write",action="store_true"); ap.add_argument("--trends",type=Path)
     args=ap.parse_args()
     if args.max_points<2: ap.error("--max-points must be >= 2")
-    history=json.loads(args.history.read_text()) if args.history.exists() else {"schemaVersion":1,"repositories":{}}
+    history=load_history(args.history)
     history=update(history,json.loads(args.catalog.read_text()),json.loads(args.health.read_text()),args.max_points)
     if args.write: args.history.write_text(json.dumps(history,indent=2,ensure_ascii=False)+"\n")
     if args.trends: args.trends.write_text(json.dumps(trends(history),indent=2,ensure_ascii=False)+"\n")
