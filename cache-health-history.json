@@ -1,4 +1,17 @@
 {
   "schemaVersion": 1,
-  "points": []
+  "points": [
+    {
+      "date": "2026-09-16",
+      "status": "degraded",
+      "logicalRequests": 180,
+      "apiCallAvoidanceRate": 0.0,
+      "bodyReuseRate": 0.0,
+      "networkFetchRate": 0.8833,
+      "staleFallbackRate": 0.0,
+      "candidateSeverity": "degraded",
+      "alertState": "watch",
+      "issueAction": "open"
+    }
+  ]
 }
