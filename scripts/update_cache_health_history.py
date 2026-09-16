@@ -2,6 +2,7 @@
 """Persist bounded cache-health history and derive multi-week drift signals."""
 import argparse
 import json
+import math
 from datetime import date as date_type
 from pathlib import Path
 from statistics import median
@@ -37,17 +38,25 @@ def save_history(path,history):
     tmp.replace(path)
 
 
+def _number(value,default=0.0):
+    if isinstance(value,bool): return default
+    try: result=float(value)
+    except (TypeError,ValueError): return default
+    return result if math.isfinite(result) else default
+
+
 def _metric(metrics,name):
-    value=metrics.get(name,0.0)
-    return round(float(value or 0.0),4)
+    value=metrics.get(name,0.0) if isinstance(metrics,dict) else 0.0
+    return round(_number(value),4)
 
 
 def point_from_report(report,date):
     metrics=report.get("metrics",{}) if isinstance(report,dict) else {}
+    if not isinstance(metrics,dict): metrics={}
     return {
         "date":str(date),
         "status":report.get("status","unknown") if isinstance(report,dict) else "unknown",
-        "logicalRequests":max(0,int(metrics.get("logicalRequests",0) or 0)),
+        "logicalRequests":max(0,int(_number(metrics.get("logicalRequests",0)))),
         "apiCallAvoidanceRate":_metric(metrics,"apiCallAvoidanceRate"),
         "bodyReuseRate":_metric(metrics,"bodyReuseRate"),
         "networkFetchRate":_metric(metrics,"networkFetchRate"),
@@ -56,7 +65,7 @@ def point_from_report(report,date):
 
 
 def _point_metric(point,name):
-    return float(point.get(name,0.0) or 0.0)
+    return _number(point.get(name,0.0)) if isinstance(point,dict) else 0.0
 
 
 def _baseline_confidence(sample_size):
@@ -188,7 +197,9 @@ def update(history,current,date=None,max_points=DEFAULT_MAX_POINTS):
     if max_points<1: raise ValueError("max_points must be >= 1")
     today=str(date or date_type.today().isoformat())
     base=history if isinstance(history,dict) else empty_history()
-    points=[dict(p) for p in base.get("points",[]) if isinstance(p,dict) and p.get("date")]
+    source_points=base.get("points",[])
+    if not isinstance(source_points,list): source_points=[]
+    points=[dict(p) for p in source_points if isinstance(p,dict) and p.get("date")]
     points=[p for p in points if p.get("date")!=today]
     previous=points[-1] if points else None
     point=point_from_report(current,today)
