@@ -42,6 +42,22 @@
       "in_degree": 1,
       "out_degree": 0
     },
+    "scripts/test_discovery_cache.py": {
+      "dependencies": [
+        "scripts/test_discovery_cache_stats.py"
+      ],
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 1
+    },
+    "scripts/test_discovery_cache_stats.py": {
+      "dependencies": [],
+      "dependents": [
+        "scripts/test_discovery_cache.py"
+      ],
+      "in_degree": 1,
+      "out_degree": 0
+    },
     "scripts/test_refresh_github_metadata.py": {
       "dependencies": [
         "scripts/refresh_github_metadata.py"

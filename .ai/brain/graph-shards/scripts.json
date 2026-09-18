@@ -17,6 +17,11 @@
       "type": "imports"
     },
     {
+      "source": "scripts/test_discovery_cache.py",
+      "target": "scripts/test_discovery_cache_stats.py",
+      "type": "symbol-reference"
+    },
+    {
       "source": "scripts/test_refresh_github_metadata.py",
       "target": "scripts/refresh_github_metadata.py",
       "type": "imports"
