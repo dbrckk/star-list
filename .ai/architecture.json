@@ -1,0 +1,45 @@
+{
+  "schema_version": 2,
+  "generated_by": "dbrckk/repo-standards",
+  "project_types": [
+    "python"
+  ],
+  "descriptors": [],
+  "dominant_extensions": [
+    {
+      "extension": ".py",
+      "count": 39
+    },
+    {
+      "extension": ".json",
+      "count": 23
+    },
+    {
+      "extension": ".md",
+      "count": 12
+    },
+    {
+      "extension": ".yml",
+      "count": 5
+    }
+  ],
+  "top_level_directories": [
+    ".serena",
+    "docs",
+    "schemas",
+    "scripts",
+    "text"
+  ],
+  "source_roots": [
+    "scripts"
+  ],
+  "test_roots": [],
+  "entrypoint_candidates": [],
+  "context_files": {
+    "project_state": ".ai/project-state.md",
+    "repo_health": ".ai/repo-health.md",
+    "repo_map": ".ai/repo-map.md",
+    "commands": ".ai/commands.json",
+    "change_impact": ".ai/change-impact.md"
+  }
+}
