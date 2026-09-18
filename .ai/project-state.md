@@ -22,19 +22,20 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-18T19:37:08Z
+Generated: 2026-09-18T20:01:33Z
 
 ### Git
 - Branch: `main`
-- Head: `51dd2d6693d0`
-- Commit date: 2026-09-18T21:33:09+02:00
-- Commit: chore(ai): adopt graph-first agent routing
-- Tracked files: 123
+- Head: `24579766c43b`
+- Commit date: 2026-09-18T21:57:44+02:00
+- Commit: chore(ai): add precise semantic refresh
+- Tracked files: 135
 
 ### Recently changed files
+- `.github/workflows/semantic-refresh.yml`
+- `.repo-standards.yml`
 - `AGENTS.md`
 - `.github/workflows/ai-repo-map.yml`
-- `.repo-standards.yml`
 
 ### Project signals
 - No common build descriptor detected
