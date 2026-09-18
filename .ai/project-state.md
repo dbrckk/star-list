@@ -22,19 +22,18 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-18T20:52:24Z
+Generated: 2026-09-18T21:00:30Z
 
 ### Git
 - Branch: `main`
-- Head: `2bb916f7f79e`
-- Commit date: 2026-09-18T22:51:00+02:00
-- Commit: chore(ai): enable same-package symbol graph enrichment
-- Tracked files: 164
+- Head: `07f0a5ab1e54`
+- Commit date: 2026-09-18T22:59:35+02:00
+- Commit: chore(ai): adopt repo standards v15
+- Tracked files: 165
 
 ### Recently changed files
 - `.repo-standards.yml`
 - `.github/workflows/semantic-refresh.yml`
-- `AGENTS.md`
 
 ### Project signals
 - No common build descriptor detected
