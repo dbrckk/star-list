@@ -1,0 +1,67 @@
+{
+  "areas": [
+    "scripts"
+  ],
+  "central_files": [
+    {
+      "dependencies": [],
+      "dependents": [
+        "scripts/analyze_coverage.py",
+        "scripts/find_replacements.py",
+        "scripts/recommend.py"
+      ],
+      "in_degree": 3,
+      "out_degree": 0,
+      "path": "scripts/health_score.py"
+    },
+    {
+      "dependencies": [],
+      "dependents": [
+        "scripts/test_refresh_github_metadata.py"
+      ],
+      "in_degree": 1,
+      "out_degree": 0,
+      "path": "scripts/refresh_github_metadata.py"
+    },
+    {
+      "dependencies": [
+        "scripts/health_score.py"
+      ],
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 1,
+      "path": "scripts/analyze_coverage.py"
+    },
+    {
+      "dependencies": [
+        "scripts/health_score.py"
+      ],
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 1,
+      "path": "scripts/find_replacements.py"
+    },
+    {
+      "dependencies": [
+        "scripts/health_score.py"
+      ],
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 1,
+      "path": "scripts/recommend.py"
+    },
+    {
+      "dependencies": [
+        "scripts/refresh_github_metadata.py"
+      ],
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 1,
+      "path": "scripts/test_refresh_github_metadata.py"
+    }
+  ],
+  "edge_count": 4,
+  "generated_by": "dbrckk/repo-brain-v7-graph",
+  "node_count": 6,
+  "schema_version": 1
+}
