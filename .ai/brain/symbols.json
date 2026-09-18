@@ -1,0 +1,914 @@
+{
+  "symbols": [
+    {
+      "file": "scripts/analyze_cache_health.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_ratio",
+      "line": 8
+    },
+    {
+      "file": "scripts/analyze_cache_health.py",
+      "language": "python",
+      "kind": "function",
+      "name": "analyze",
+      "line": 12
+    },
+    {
+      "file": "scripts/analyze_cache_health.py",
+      "language": "python",
+      "kind": "function",
+      "name": "render_markdown",
+      "line": 52
+    },
+    {
+      "file": "scripts/analyze_cache_health.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 75
+    },
+    {
+      "file": "scripts/analyze_coverage.py",
+      "language": "python",
+      "kind": "function",
+      "name": "analyze",
+      "line": 11
+    },
+    {
+      "file": "scripts/analyze_coverage.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 48
+    },
+    {
+      "file": "scripts/build_discovery_watchlist.py",
+      "language": "python",
+      "kind": "function",
+      "name": "build",
+      "line": 6
+    },
+    {
+      "file": "scripts/build_discovery_watchlist.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 31
+    },
+    {
+      "file": "scripts/catalog_stats.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 9
+    },
+    {
+      "file": "scripts/detect_health_drift.py",
+      "language": "python",
+      "kind": "function",
+      "name": "index",
+      "line": 6
+    },
+    {
+      "file": "scripts/detect_health_drift.py",
+      "language": "python",
+      "kind": "function",
+      "name": "detect",
+      "line": 10
+    },
+    {
+      "file": "scripts/detect_health_drift.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 26
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "empty_cache",
+      "line": 17
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "empty_cache_stats",
+      "line": 20
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "finalize_cache_stats",
+      "line": 29
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_stat",
+      "line": 39
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "load_cache",
+      "line": 42
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "save_cache",
+      "line": 53
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_cache_entry",
+      "line": 59
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_headers_dict",
+      "line": 66
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_header_value",
+      "line": 71
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "cache_get",
+      "line": 77
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "cache_get_stale",
+      "line": 83
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "cache_put",
+      "line": 92
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_api_result",
+      "line": 97
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_stale_result",
+      "line": 100
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_conditional_headers",
+      "line": 105
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_not_modified_result",
+      "line": 114
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "api_json",
+      "line": 123
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "fetch",
+      "line": 177
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "enrich",
+      "line": 187
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "score",
+      "line": 219
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "discover",
+      "line": 225
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 266
+    },
+    {
+      "file": "scripts/evaluate_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_number",
+      "line": 11
+    },
+    {
+      "file": "scripts/evaluate_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_integer",
+      "line": 18
+    },
+    {
+      "file": "scripts/evaluate_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_dict_list",
+      "line": 22
+    },
+    {
+      "file": "scripts/evaluate_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "age_days",
+      "line": 26
+    },
+    {
+      "file": "scripts/evaluate_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "text_fit",
+      "line": 32
+    },
+    {
+      "file": "scripts/evaluate_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_bounded",
+      "line": 42
+    },
+    {
+      "file": "scripts/evaluate_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "decision_for_score",
+      "line": 45
+    },
+    {
+      "file": "scripts/evaluate_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "evaluation_confidence",
+      "line": 51
+    },
+    {
+      "file": "scripts/evaluate_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "score_breakdown",
+      "line": 70
+    },
+    {
+      "file": "scripts/evaluate_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "evaluate",
+      "line": 122
+    },
+    {
+      "file": "scripts/evaluate_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "evaluate_all",
+      "line": 173
+    },
+    {
+      "file": "scripts/evaluate_candidates.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 182
+    },
+    {
+      "file": "scripts/filter_discovery_memory.py",
+      "language": "python",
+      "kind": "function",
+      "name": "empty_memory",
+      "line": 10
+    },
+    {
+      "file": "scripts/filter_discovery_memory.py",
+      "language": "python",
+      "kind": "function",
+      "name": "load_memory",
+      "line": 14
+    },
+    {
+      "file": "scripts/filter_discovery_memory.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_number",
+      "line": 26
+    },
+    {
+      "file": "scripts/filter_discovery_memory.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_targets",
+      "line": 33
+    },
+    {
+      "file": "scripts/filter_discovery_memory.py",
+      "language": "python",
+      "kind": "function",
+      "name": "fingerprint",
+      "line": 38
+    },
+    {
+      "file": "scripts/filter_discovery_memory.py",
+      "language": "python",
+      "kind": "function",
+      "name": "apply",
+      "line": 42
+    },
+    {
+      "file": "scripts/filter_discovery_memory.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 71
+    },
+    {
+      "file": "scripts/find_replacements.py",
+      "language": "python",
+      "kind": "function",
+      "name": "overlap",
+      "line": 10
+    },
+    {
+      "file": "scripts/find_replacements.py",
+      "language": "python",
+      "kind": "function",
+      "name": "replacement_score",
+      "line": 14
+    },
+    {
+      "file": "scripts/find_replacements.py",
+      "language": "python",
+      "kind": "function",
+      "name": "analyze",
+      "line": 30
+    },
+    {
+      "file": "scripts/find_replacements.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 57
+    },
+    {
+      "file": "scripts/health_score.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_number",
+      "line": 11
+    },
+    {
+      "file": "scripts/health_score.py",
+      "language": "python",
+      "kind": "function",
+      "name": "age_days",
+      "line": 18
+    },
+    {
+      "file": "scripts/health_score.py",
+      "language": "python",
+      "kind": "function",
+      "name": "health_score",
+      "line": 27
+    },
+    {
+      "file": "scripts/health_score.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 55
+    },
+    {
+      "file": "scripts/recommend.py",
+      "language": "python",
+      "kind": "function",
+      "name": "norm",
+      "line": 31
+    },
+    {
+      "file": "scripts/recommend.py",
+      "language": "python",
+      "kind": "function",
+      "name": "tokens",
+      "line": 34
+    },
+    {
+      "file": "scripts/recommend.py",
+      "language": "python",
+      "kind": "function",
+      "name": "load",
+      "line": 37
+    },
+    {
+      "file": "scripts/recommend.py",
+      "language": "python",
+      "kind": "function",
+      "name": "infer_domains",
+      "line": 42
+    },
+    {
+      "file": "scripts/recommend.py",
+      "language": "python",
+      "kind": "function",
+      "name": "activity_adjustment",
+      "line": 45
+    },
+    {
+      "file": "scripts/recommend.py",
+      "language": "python",
+      "kind": "function",
+      "name": "trend_adjustment",
+      "line": 64
+    },
+    {
+      "file": "scripts/recommend.py",
+      "language": "python",
+      "kind": "function",
+      "name": "score_repo",
+      "line": 89
+    },
+    {
+      "file": "scripts/recommend.py",
+      "language": "python",
+      "kind": "function",
+      "name": "explain_repo",
+      "line": 119
+    },
+    {
+      "file": "scripts/recommend.py",
+      "language": "python",
+      "kind": "function",
+      "name": "choose_stack",
+      "line": 140
+    },
+    {
+      "file": "scripts/recommend.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 149
+    },
+    {
+      "file": "scripts/recommend.py",
+      "language": "python",
+      "kind": "function",
+      "name": "delta",
+      "line": 76
+    },
+    {
+      "file": "scripts/refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "fetch",
+      "line": 28
+    },
+    {
+      "file": "scripts/refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "metadata",
+      "line": 46
+    },
+    {
+      "file": "scripts/refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "is_missing_repository_error",
+      "line": 57
+    },
+    {
+      "file": "scripts/refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 61
+    },
+    {
+      "file": "scripts/render_discovery_issue.py",
+      "language": "python",
+      "kind": "function",
+      "name": "score_profile",
+      "line": 8
+    },
+    {
+      "file": "scripts/render_discovery_issue.py",
+      "language": "python",
+      "kind": "function",
+      "name": "render",
+      "line": 12
+    },
+    {
+      "file": "scripts/render_discovery_issue.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 33
+    },
+    {
+      "file": "scripts/render_health_issue.py",
+      "language": "python",
+      "kind": "function",
+      "name": "render",
+      "line": 6
+    },
+    {
+      "file": "scripts/render_health_issue.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 43
+    },
+    {
+      "file": "scripts/test_degraded_inputs.py",
+      "language": "python",
+      "kind": "function",
+      "name": "load",
+      "line": 12
+    },
+    {
+      "file": "scripts/test_discovery_cache.py",
+      "language": "python",
+      "kind": "function",
+      "name": "offline",
+      "line": 33
+    },
+    {
+      "file": "scripts/test_discovery_cache.py",
+      "language": "python",
+      "kind": "function",
+      "name": "not_modified",
+      "line": 67
+    },
+    {
+      "file": "scripts/test_discovery_cache_stats.py",
+      "language": "python",
+      "kind": "function",
+      "name": "not_modified",
+      "line": 23
+    },
+    {
+      "file": "scripts/test_discovery_cache_stats.py",
+      "language": "python",
+      "kind": "function",
+      "name": "offline",
+      "line": 35
+    },
+    {
+      "file": "scripts/test_discovery_cache_stats.py",
+      "language": "python",
+      "kind": "class",
+      "name": "Response",
+      "line": 47
+    },
+    {
+      "file": "scripts/test_discovery_cache_stats.py",
+      "language": "python",
+      "kind": "function",
+      "name": "__init__",
+      "line": 48
+    },
+    {
+      "file": "scripts/test_discovery_cache_stats.py",
+      "language": "python",
+      "kind": "function",
+      "name": "__enter__",
+      "line": 49
+    },
+    {
+      "file": "scripts/test_discovery_cache_stats.py",
+      "language": "python",
+      "kind": "function",
+      "name": "__exit__",
+      "line": 50
+    },
+    {
+      "file": "scripts/test_discovery_cache_stats.py",
+      "language": "python",
+      "kind": "function",
+      "name": "read",
+      "line": 51
+    },
+    {
+      "file": "scripts/test_pipeline_integration.py",
+      "language": "python",
+      "kind": "function",
+      "name": "load",
+      "line": 13
+    },
+    {
+      "file": "scripts/test_pipeline_integration.py",
+      "language": "python",
+      "kind": "function",
+      "name": "fake_fetch",
+      "line": 72
+    },
+    {
+      "file": "scripts/test_pipeline_integration.py",
+      "language": "python",
+      "kind": "function",
+      "name": "fake_enrich",
+      "line": 77
+    },
+    {
+      "file": "scripts/test_recommend.py",
+      "language": "python",
+      "kind": "function",
+      "name": "run",
+      "line": 9
+    },
+    {
+      "file": "scripts/test_refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "http_error",
+      "line": 12
+    },
+    {
+      "file": "scripts/test_refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "run_main",
+      "line": 22
+    },
+    {
+      "file": "scripts/test_refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "test_missing_repo_is_recorded_but_nonfatal",
+      "line": 31
+    },
+    {
+      "file": "scripts/test_refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "test_server_error_remains_fatal",
+      "line": 75
+    },
+    {
+      "file": "scripts/test_refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "fake_fetch",
+      "line": 46
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "empty_history",
+      "line": 19
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "load_history",
+      "line": 23
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "save_history",
+      "line": 34
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_number",
+      "line": 41
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_metric",
+      "line": 48
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "point_from_report",
+      "line": 53
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_point_metric",
+      "line": 67
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_baseline_confidence",
+      "line": 71
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "adaptive_baseline",
+      "line": 82
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_adaptive_severity",
+      "line": 115
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_severity",
+      "line": 121
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "combine_severity",
+      "line": 125
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "hysteresis_state",
+      "line": 132
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_point_alert",
+      "line": 142
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "issue_action",
+      "line": 147
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "analyze_trend",
+      "line": 162
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "update",
+      "line": 196
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "render_markdown",
+      "line": 227
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 261
+    },
+    {
+      "file": "scripts/update_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "empty_history",
+      "line": 10
+    },
+    {
+      "file": "scripts/update_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "load_history",
+      "line": 14
+    },
+    {
+      "file": "scripts/update_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "update",
+      "line": 29
+    },
+    {
+      "file": "scripts/update_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "window_metrics",
+      "line": 55
+    },
+    {
+      "file": "scripts/update_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "trends",
+      "line": 70
+    },
+    {
+      "file": "scripts/update_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 88
+    },
+    {
+      "file": "scripts/update_history.py",
+      "language": "python",
+      "kind": "function",
+      "name": "delta",
+      "line": 62
+    },
+    {
+      "file": "scripts/validate_json_contract.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_matches_type",
+      "line": 8
+    },
+    {
+      "file": "scripts/validate_json_contract.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_path",
+      "line": 18
+    },
+    {
+      "file": "scripts/validate_json_contract.py",
+      "language": "python",
+      "kind": "function",
+      "name": "validate",
+      "line": 23
+    },
+    {
+      "file": "scripts/validate_json_contract.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 106
+    }
+  ]
+}

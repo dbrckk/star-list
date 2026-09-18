@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "generated_by": "dbrckk/repo-brain",
+  "files_indexed": 39,
+  "symbol_count": 130,
+  "edge_count": 4,
+  "languages": {
+    "python": 39
+  },
+  "top_symbol_files": [
+    {
+      "file": "scripts/discover_candidates.py",
+      "symbols": 22
+    },
+    {
+      "file": "scripts/update_cache_health_history.py",
+      "symbols": 19
+    },
+    {
+      "file": "scripts/evaluate_candidates.py",
+      "symbols": 12
+    },
+    {
+      "file": "scripts/recommend.py",
+      "symbols": 11
+    },
+    {
+      "file": "scripts/filter_discovery_memory.py",
+      "symbols": 7
+    },
+    {
+      "file": "scripts/test_discovery_cache_stats.py",
+      "symbols": 7
+    },
+    {
+      "file": "scripts/update_history.py",
+      "symbols": 7
+    },
+    {
+      "file": "scripts/test_refresh_github_metadata.py",
+      "symbols": 5
+    },
+    {
+      "file": "scripts/analyze_cache_health.py",
+      "symbols": 4
+    },
+    {
+      "file": "scripts/find_replacements.py",
+      "symbols": 4
+    },
+    {
+      "file": "scripts/health_score.py",
+      "symbols": 4
+    },
+    {
+      "file": "scripts/refresh_github_metadata.py",
+      "symbols": 4
+    },
+    {
+      "file": "scripts/validate_json_contract.py",
+      "symbols": 4
+    },
+    {
+      "file": "scripts/detect_health_drift.py",
+      "symbols": 3
+    },
+    {
+      "file": "scripts/render_discovery_issue.py",
+      "symbols": 3
+    },
+    {
+      "file": "scripts/test_pipeline_integration.py",
+      "symbols": 3
+    },
+    {
+      "file": "scripts/analyze_coverage.py",
+      "symbols": 2
+    },
+    {
+      "file": "scripts/build_discovery_watchlist.py",
+      "symbols": 2
+    },
+    {
+      "file": "scripts/render_health_issue.py",
+      "symbols": 2
+    },
+    {
+      "file": "scripts/test_discovery_cache.py",
+      "symbols": 2
+    },
+    {
+      "file": "scripts/catalog_stats.py",
+      "symbols": 1
+    },
+    {
+      "file": "scripts/test_degraded_inputs.py",
+      "symbols": 1
+    },
+    {
+      "file": "scripts/test_recommend.py",
+      "symbols": 1
+    }
+  ]
+}

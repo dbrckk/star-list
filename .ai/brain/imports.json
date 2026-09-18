@@ -1,0 +1,228 @@
+{
+  "imports": {
+    "scripts/analyze_cache_health.py": [
+      "argparse",
+      "json",
+      "pathlib"
+    ],
+    "scripts/analyze_coverage.py": [
+      "argparse",
+      "collections",
+      "health_score",
+      "json",
+      "pathlib"
+    ],
+    "scripts/build_discovery_watchlist.py": [
+      "argparse",
+      "json",
+      "pathlib"
+    ],
+    "scripts/catalog_stats.py": [
+      "collections",
+      "json",
+      "pathlib"
+    ],
+    "scripts/detect_health_drift.py": [
+      "argparse",
+      "json",
+      "pathlib"
+    ],
+    "scripts/discover_candidates.py": [
+      "argparse",
+      "json",
+      "math",
+      "os",
+      "pathlib",
+      "random",
+      "re",
+      "time",
+      "urllib.error",
+      "urllib.parse",
+      "urllib.request"
+    ],
+    "scripts/evaluate_candidates.py": [
+      "argparse",
+      "datetime",
+      "json",
+      "math",
+      "pathlib"
+    ],
+    "scripts/filter_discovery_memory.py": [
+      "argparse",
+      "datetime",
+      "json",
+      "math",
+      "pathlib"
+    ],
+    "scripts/find_replacements.py": [
+      "argparse",
+      "health_score",
+      "json",
+      "pathlib"
+    ],
+    "scripts/health_score.py": [
+      "datetime",
+      "json",
+      "math",
+      "pathlib"
+    ],
+    "scripts/recommend.py": [
+      "argparse",
+      "datetime",
+      "health_score",
+      "json",
+      "pathlib",
+      "re"
+    ],
+    "scripts/refresh_github_metadata.py": [
+      "argparse",
+      "datetime",
+      "json",
+      "os",
+      "pathlib",
+      "sys",
+      "time",
+      "urllib.error",
+      "urllib.request"
+    ],
+    "scripts/render_discovery_issue.py": [
+      "argparse",
+      "json",
+      "pathlib"
+    ],
+    "scripts/render_health_issue.py": [
+      "argparse",
+      "json",
+      "pathlib"
+    ],
+    "scripts/test_analyze_coverage.py": [
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/test_cache_health.py": [
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/test_cache_health_history.py": [
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/test_degraded_inputs.py": [
+      "datetime",
+      "importlib.util",
+      "pathlib",
+      "tempfile"
+    ],
+    "scripts/test_discover_candidates.py": [
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/test_discovery_cache.py": [
+      "importlib.util",
+      "pathlib",
+      "tempfile",
+      "urllib.error"
+    ],
+    "scripts/test_discovery_cache_stats.py": [
+      "importlib.util",
+      "pathlib",
+      "urllib.error"
+    ],
+    "scripts/test_discovery_memory.py": [
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/test_discovery_watchlist.py": [
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/test_documentation.py": [
+      "importlib.util",
+      "pathlib",
+      "re"
+    ],
+    "scripts/test_evaluate_candidates.py": [
+      "datetime",
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/test_find_replacements.py": [
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/test_health_drift.py": [
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/test_health_score.py": [
+      "datetime",
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/test_history.py": [
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/test_json_contracts.py": [
+      "importlib.util",
+      "json",
+      "pathlib"
+    ],
+    "scripts/test_pipeline_integration.py": [
+      "datetime",
+      "importlib.util",
+      "pathlib",
+      "sys"
+    ],
+    "scripts/test_recommend.py": [
+      "importlib.util",
+      "json",
+      "pathlib",
+      "subprocess",
+      "sys"
+    ],
+    "scripts/test_refresh_github_metadata.py": [
+      "json",
+      "pathlib",
+      "refresh_github_metadata",
+      "sys",
+      "tempfile",
+      "urllib.error"
+    ],
+    "scripts/test_render_discovery_issue.py": [
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/test_render_health_issue.py": [
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/update_cache_health_history.py": [
+      "argparse",
+      "datetime",
+      "json",
+      "math",
+      "pathlib",
+      "statistics"
+    ],
+    "scripts/update_history.py": [
+      "argparse",
+      "datetime",
+      "json",
+      "pathlib"
+    ],
+    "scripts/validate_catalog.py": [
+      "collections",
+      "json",
+      "pathlib",
+      "re",
+      "sys"
+    ],
+    "scripts/validate_json_contract.py": [
+      "argparse",
+      "json",
+      "pathlib",
+      "re"
+    ]
+  }
+}

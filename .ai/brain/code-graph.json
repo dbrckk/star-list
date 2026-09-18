@@ -1,0 +1,24 @@
+{
+  "edges": [
+    {
+      "source": "scripts/analyze_coverage.py",
+      "target": "scripts/health_score.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/find_replacements.py",
+      "target": "scripts/health_score.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/recommend.py",
+      "target": "scripts/health_score.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_refresh_github_metadata.py",
+      "target": "scripts/refresh_github_metadata.py",
+      "type": "imports"
+    }
+  ]
+}
