@@ -473,6 +473,13 @@
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
+      "name": "delta",
+      "line": 76
+    },
+    {
+      "file": "scripts/recommend.py",
+      "language": "python",
+      "kind": "function",
       "name": "score_repo",
       "line": 89
     },
@@ -496,13 +503,6 @@
       "kind": "function",
       "name": "main",
       "line": 149
-    },
-    {
-      "file": "scripts/recommend.py",
-      "language": "python",
-      "kind": "function",
-      "name": "delta",
-      "line": 76
     },
     {
       "file": "scripts/refresh_github_metadata.py",
@@ -690,15 +690,15 @@
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
-      "name": "test_server_error_remains_fatal",
-      "line": 75
+      "name": "fake_fetch",
+      "line": 46
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
-      "name": "fake_fetch",
-      "line": 46
+      "name": "test_server_error_remains_fatal",
+      "line": 75
     },
     {
       "file": "scripts/update_cache_health_history.py",
@@ -865,6 +865,13 @@
       "file": "scripts/update_history.py",
       "language": "python",
       "kind": "function",
+      "name": "delta",
+      "line": 62
+    },
+    {
+      "file": "scripts/update_history.py",
+      "language": "python",
+      "kind": "function",
       "name": "trends",
       "line": 70
     },
@@ -874,13 +881,6 @@
       "kind": "function",
       "name": "main",
       "line": 88
-    },
-    {
-      "file": "scripts/update_history.py",
-      "language": "python",
-      "kind": "function",
-      "name": "delta",
-      "line": 62
     },
     {
       "file": "scripts/validate_json_contract.py",

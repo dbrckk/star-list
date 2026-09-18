@@ -1,7 +1,7 @@
 # Change impact
 
-Base: 8340a469db0b163148b000d5d2dcb109f4b4f5a5
-Head: 901e425b19994dac6fbe6997d40ec6757bc6e253
+Base: 275c0cb00d18e68da737bdce6d79f149cedf9266
+Head: ab4e77660025d20ac0daf49cd9a4dd38e628d0da
 
 ## Changed files
 - M AGENTS.md
