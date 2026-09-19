@@ -1,7 +1,8 @@
 # CI status
 
-Summary: 5 success / 0 failure / 0 active
+Summary: 6 success / 0 failure / 0 active
 
+- Validate catalog: completed / success (ca797221)
 - Validate catalog: completed / success (dd065e9b)
 - Validate catalog: completed / success (b5374d1f)
 - Validate catalog: completed / success (07f0a5ab)
