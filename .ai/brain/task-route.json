@@ -1,0 +1,74 @@
+{
+  "budget": {
+    "confidence": "medium",
+    "expand_to": 12,
+    "max_files": 6,
+    "requested_max_files": 12,
+    "score_margin": 0,
+    "tier": "bounded",
+    "top_score": 17
+  },
+  "cache": {
+    "fingerprint": "08afc6529b925c9c6cfbb16ce518b92d4e0dd0790732ed3022933aa78802b938",
+    "hit": false
+  },
+  "candidate_count": 3,
+  "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
+  "files": [
+    {
+      "learning_score": 0,
+      "matched_terms": [
+        "game"
+      ],
+      "path": "scripts/recommend.py",
+      "reasons": [
+        "search-index"
+      ],
+      "score": 17,
+      "symbols": [
+        "activity_adjustment",
+        "choose_stack",
+        "delta",
+        "explain_repo",
+        "infer_domains",
+        "load",
+        "main",
+        "norm",
+        "score_repo",
+        "tokens",
+        "trend_adjustment"
+      ]
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [
+        "engine"
+      ],
+      "path": "scripts/test_recommend.py",
+      "reasons": [
+        "search-index"
+      ],
+      "score": 17,
+      "symbols": [
+        "run"
+      ]
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [],
+      "path": ".repo-standards.yml",
+      "reasons": [
+        "recently-changed"
+      ],
+      "score": 3,
+      "symbols": []
+    }
+  ],
+  "generated_by": "dbrckk/repo-brain-v8",
+  "schema_version": 1,
+  "task": "game engine",
+  "terms": [
+    "game",
+    "engine"
+  ]
+}
