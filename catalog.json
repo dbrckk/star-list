@@ -13196,6 +13196,745 @@
       "resourceLevel": "medium",
       "integrationComplexity": "medium",
       "costModel": "open-source"
+    },
+    {
+      "repo": "vercel-labs/json-render",
+      "score": 9,
+      "tier": "recommended",
+      "category": "Web / generative UI",
+      "domain": "web_frontend",
+      "capabilities": [
+        "generative-ui",
+        "agent-ui"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 17150,
+        "forks": 913,
+        "openIssues": 109,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-18T18:53:03Z"
+      }
+    },
+    {
+      "repo": "higgsfield-ai/higgsfield",
+      "score": 8.8,
+      "tier": "specialized",
+      "category": "Data / ML infrastructure",
+      "domain": "data_ml",
+      "capabilities": [
+        "machine-learning",
+        "gpu-orchestration",
+        "distributed-training"
+      ],
+      "languages": [
+        "jupyter-notebook"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 5261,
+        "forks": 945,
+        "openIssues": 13,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-14T02:46:36Z"
+      }
+    },
+    {
+      "repo": "mihail911/modern-software-dev-assignments",
+      "score": 8.3,
+      "tier": "specialized",
+      "category": "Software engineering / learning",
+      "domain": "software_engineering",
+      "capabilities": [
+        "software-engineering",
+        "learning-resources"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "github": {
+        "stars": 4490,
+        "forks": 1007,
+        "openIssues": 31,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2025-11-10T17:06:44Z"
+      }
+    },
+    {
+      "repo": "paperless-ngx/paperless-ngx",
+      "score": 9.3,
+      "tier": "recommended",
+      "category": "Productivity / document management",
+      "domain": "productivity",
+      "capabilities": [
+        "document-management",
+        "ocr",
+        "archive"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 45457,
+        "forks": 3140,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "dev",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-09-20T17:09:05Z"
+      }
+    },
+    {
+      "repo": "anthropics/financial-services",
+      "score": 9,
+      "tier": "recommended",
+      "category": "AI / financial services",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "finance"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 35277,
+        "forks": 5245,
+        "openIssues": 209,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-18T23:48:56Z"
+      }
+    },
+    {
+      "repo": "trycua/cua",
+      "score": 9.4,
+      "tier": "recommended",
+      "category": "AI / computer use",
+      "domain": "ai_agents",
+      "capabilities": [
+        "computer-use",
+        "agent",
+        "automation"
+      ],
+      "languages": [
+        "html"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 25027,
+        "forks": 1720,
+        "openIssues": 1025,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-20T11:34:25Z"
+      }
+    },
+    {
+      "repo": "Graphify-Labs/graphify",
+      "score": 9.5,
+      "tier": "recommended",
+      "category": "Software engineering / code intelligence",
+      "domain": "software_engineering",
+      "capabilities": [
+        "code-intelligence",
+        "knowledge-graph",
+        "agent-context"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 119827,
+        "forks": 11587,
+        "openIssues": 1399,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "v8",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-20T17:53:37Z"
+      }
+    },
+    {
+      "repo": "cookiy-ai/user-research-skill",
+      "score": 8.5,
+      "tier": "specialized",
+      "category": "Productivity / user research",
+      "domain": "productivity",
+      "capabilities": [
+        "agent-skill",
+        "user-research"
+      ],
+      "languages": [
+        "shell"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1553,
+        "forks": 63,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-08-19T11:20:36Z"
+      }
+    },
+    {
+      "repo": "199-biotechnologies/claude-deep-research-skill",
+      "score": 8.6,
+      "tier": "specialized",
+      "category": "AI / research agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skill",
+        "deep-research",
+        "source-validation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1051,
+        "forks": 116,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-04-11T22:18:08Z"
+      }
+    },
+    {
+      "repo": "mvanhorn/last30days-skill",
+      "score": 9.2,
+      "tier": "recommended",
+      "category": "AI / web research",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skill",
+        "web-research",
+        "social-research"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "github": {
+        "stars": 62410,
+        "forks": 5439,
+        "openIssues": 111,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-19T20:00:45Z"
+      }
+    },
+    {
+      "repo": "ZeroPointRepo/youtube-skills",
+      "score": 8.4,
+      "tier": "specialized",
+      "category": "AI / media research",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skill",
+        "youtube",
+        "transcripts"
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "github": {
+        "stars": 895,
+        "forks": 88,
+        "openIssues": 4,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-20T09:23:39Z"
+      }
+    },
+    {
+      "repo": "bevibing/tutor-skills",
+      "score": 8.4,
+      "tier": "specialized",
+      "category": "Productivity / learning",
+      "domain": "productivity",
+      "capabilities": [
+        "agent-skill",
+        "study-tools",
+        "obsidian"
+      ],
+      "languages": [
+        "shell"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1160,
+        "forks": 100,
+        "openIssues": 7,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-02-28T14:41:09Z"
+      }
+    },
+    {
+      "repo": "Paramchoudhary/ResumeSkills",
+      "score": 8.5,
+      "tier": "specialized",
+      "category": "Productivity / career",
+      "domain": "productivity",
+      "capabilities": [
+        "agent-skill",
+        "resume",
+        "job-search"
+      ],
+      "languages": [
+        "unknown"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "github": {
+        "stars": 2378,
+        "forks": 202,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-06-19T07:20:29Z"
+      }
+    },
+    {
+      "repo": "career-ops-hq/career-ops",
+      "score": 9.2,
+      "tier": "recommended",
+      "category": "Productivity / career automation",
+      "domain": "productivity",
+      "capabilities": [
+        "agent",
+        "job-search",
+        "resume",
+        "automation"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 72242,
+        "forks": 13604,
+        "openIssues": 545,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-19T18:21:38Z"
+      }
+    },
+    {
+      "repo": "Dokploy/dokploy",
+      "score": 9.2,
+      "tier": "recommended",
+      "category": "DevOps / deployment platform",
+      "domain": "devops",
+      "capabilities": [
+        "deployment",
+        "paas",
+        "self-hosting"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "linux"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 37402,
+        "forks": 2985,
+        "openIssues": 711,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "canary",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-09-18T09:12:43Z"
+      }
+    },
+    {
+      "repo": "CopilotKit/CopilotKit",
+      "score": 9.4,
+      "tier": "recommended",
+      "category": "AI / agent UI",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-ui",
+        "generative-ui",
+        "agent"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "web",
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 37431,
+        "forks": 4645,
+        "openIssues": 286,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-20T17:53:46Z"
+      }
+    },
+    {
+      "repo": "unslothai/unsloth",
+      "score": 9.6,
+      "tier": "core",
+      "category": "Data / local model training",
+      "domain": "data_ml",
+      "capabilities": [
+        "llm-training",
+        "fine-tuning",
+        "local-models"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 76488,
+        "forks": 6990,
+        "openIssues": 1248,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-20T17:51:56Z"
+      }
+    },
+    {
+      "repo": "aaif-goose/goose",
+      "score": 9.4,
+      "tier": "recommended",
+      "category": "AI / coding agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "coding",
+        "tool-use"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 54501,
+        "forks": 6281,
+        "openIssues": 400,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-19T18:33:03Z"
+      }
+    },
+    {
+      "repo": "code-yeongyu/oh-my-openagent",
+      "score": 9.2,
+      "tier": "recommended",
+      "category": "AI / agent orchestration",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "orchestration",
+        "coding"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 69222,
+        "forks": 5705,
+        "openIssues": 1056,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "dev",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-09-20T17:53:06Z"
+      }
+    },
+    {
+      "repo": "agno-agi/agno",
+      "score": 9.5,
+      "tier": "recommended",
+      "category": "AI / agent platform",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "agent-platform",
+        "orchestration"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 42268,
+        "forks": 5970,
+        "openIssues": 1557,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-20T17:44:47Z"
+      }
+    },
+    {
+      "repo": "mindsdb/mindshub",
+      "score": 9,
+      "tier": "recommended",
+      "category": "AI / model workspace",
+      "domain": "ai_agents",
+      "capabilities": [
+        "model-workspace",
+        "agent",
+        "automation"
+      ],
+      "languages": [
+        "makefile"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 39759,
+        "forks": 6242,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-16T21:37:33Z"
+      }
     }
   ],
   "metadata": {
