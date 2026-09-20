@@ -85,9 +85,13 @@ finally:
 
 with tempfile.TemporaryDirectory() as td:
     path = Path(td) / "cache.json"
-    mod.save_cache(path, cache)
+    mod.save_cache(path, cache, now=2000)
     loaded = mod.load_cache(path)
     assert loaded == cache
     assert mod.load_cache(Path(td) / "missing.json") == {"schemaVersion": 1, "entries": {}}
+    old={"schemaVersion":1,"entries":{"old":{"fetchedAt":0,"data":{}},"fresh":{"fetchedAt":1900,"data":{}}}}
+    removed=mod.prune_cache(old,max_age_seconds=500,now=2000)
+    assert removed == 1
+    assert set(old["entries"]) == {"fresh"}
 
 print("OK: discovery cache tests passed")
