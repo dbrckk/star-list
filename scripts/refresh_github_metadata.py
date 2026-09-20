@@ -54,6 +54,13 @@ def metadata(raw):
     return out
 
 
+def refresh_primary_language(repo, raw):
+    current=repo.get("languages")
+    if not isinstance(current,list) or not current or all(str(value).strip().lower()=="unknown" for value in current):
+        language=raw.get("language")
+        if isinstance(language,str) and language.strip():
+            repo["languages"]=[language.strip().lower()]
+
 def is_missing_repository_error(error):
     return isinstance(error, HTTPError) and error.code in (404, 410)
 
@@ -74,7 +81,9 @@ def main():
     for i, r in enumerate(repos, 1):
         name = r["repo"]
         try:
-            fresh = metadata(fetch(name, token))
+            raw = fetch(name, token)
+            fresh = metadata(raw)
+            refresh_primary_language(r, raw)
             if r.get("github") != fresh:
                 r["github"] = fresh
                 changed += 1
