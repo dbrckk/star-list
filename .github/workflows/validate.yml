@@ -24,7 +24,9 @@ jobs:
       - name: Compile Python utilities
         run: python -m compileall -q scripts
       - name: Validate catalog
-        run: python scripts/validate_catalog.py
+        run: |
+          python scripts/validate_catalog.py
+          python scripts/validate_json_contract.py catalog.schema.json catalog.json
       - name: Test GitHub metadata refresh resilience
         run: python scripts/test_refresh_github_metadata.py
       - name: Test recommendation engine
