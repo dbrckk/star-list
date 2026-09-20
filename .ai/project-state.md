@@ -22,18 +22,21 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-20T17:57:29Z
+Generated: 2026-09-20T19:13:28Z
 
 ### Git
 - Branch: `main`
-- Head: `6ffea28914c1`
-- Commit date: 2026-09-20T19:57:19+02:00
-- Commit: Merge pull request #16 from dbrckk/catalog/add-21-starred-repos
+- Head: `ac5c43adc275`
+- Commit date: 2026-09-20T21:13:18+02:00
+- Commit: Merge pull request #17 from dbrckk/improve/v1.1-hardening
 - Tracked files: 172
 
 ### Recently changed files
 - `catalog.json`
-- `.repo-standards.yml`
+- `scripts/test_find_replacements.py`
+- `scripts/find_replacements.py`
+- `scripts/test_discovery_cache.py`
+- `scripts/discover_candidates.py`
 
 ### Project signals
 - No common build descriptor detected

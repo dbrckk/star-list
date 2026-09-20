@@ -160,8 +160,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Refresh repository metadata
@@ -320,14 +320,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Compile Python utilities
         run: python -m compileall -q scripts
       - name: Validate catalog
-        run: python scripts/validate_catalog.py
+        run: |
+          python scripts/validate_catalog.py
+          python scripts/validate_json_contract.py catalog.schema.json catalog.json
       - name: Test GitHub metadata refresh resilience
         run: python scripts/test_refresh_github_metadata.py
       - name: Test recommendation engine
@@ -654,6 +656,7 @@ DEFAULT_SEARCH_CACHE_TTL_HOURS=24
 DEFAULT_METADATA_CACHE_TTL_HOURS=336
 DEFAULT_SEARCH_STALE_MAX_HOURS=168
 DEFAULT_METADATA_STALE_MAX_HOURS=2160
+DEFAULT_CACHE_RETENTION_HOURS=max(DEFAULT_SEARCH_STALE_MAX_HOURS,DEFAULT_METADATA_STALE_MAX_HOURS)
 ⋮----
 def empty_cache()
 ⋮----
@@ -672,7 +675,14 @@ def load_cache(path)
 ⋮----
 data=json.loads(path.read_text())
 ⋮----
-def save_cache(path, cache)
+def prune_cache(cache, max_age_seconds, now=None)
+⋮----
+now=time.time() if now is None else now
+removed=0
+⋮----
+fetched=entry.get("fetchedAt") if isinstance(entry,dict) else None
+⋮----
+def save_cache(path, cache, max_age_seconds=DEFAULT_CACHE_RETENTION_HOURS*3600, now=None)
 ⋮----
 tmp=path.with_name(path.name+".tmp")
 ⋮----
@@ -690,7 +700,6 @@ wanted=name.lower()
 ⋮----
 def cache_get(cache, url, ttl_seconds, now=None)
 ⋮----
-now=time.time() if now is None else now
 entry=_cache_entry(cache,url)
 ⋮----
 def cache_get_stale(cache, url, max_age_seconds, now=None)
@@ -979,6 +988,7 @@ health = health_score(candidate)
 domain = 1.0 if source.get("domain") == candidate.get("domain") else 0.0
 caps = overlap(source.get("capabilities"), candidate.get("capabilities"))
 roles = overlap(source.get("roles"), candidate.get("roles"))
+⋮----
 platforms = overlap(source.get("platforms"), candidate.get("platforms"))
 languages = overlap(source.get("languages"), candidate.get("languages"))
 self_hosted = 1.0 if source.get("selfHosted") == candidate.get("selfHosted") else 0.0
@@ -1184,6 +1194,12 @@ out = {}
 ⋮----
 lic = raw.get("license")
 ⋮----
+def refresh_primary_language(repo, raw)
+⋮----
+current=repo.get("languages")
+⋮----
+language=raw.get("language")
+⋮----
 def is_missing_repository_error(error)
 ⋮----
 def main()
@@ -1199,7 +1215,8 @@ token = os.environ.get("GITHUB_TOKEN")
 ⋮----
 name = r["repo"]
 ⋮----
-fresh = metadata(fetch(name, token))
+raw = fetch(name, token)
+fresh = metadata(raw)
 ⋮----
 failure = {"repo":name,"error":str(e)}
 ````
@@ -1448,6 +1465,9 @@ def not_modified(req, *args, **kwargs)
 path = Path(td) / "cache.json"
 ⋮----
 loaded = mod.load_cache(path)
+⋮----
+old={"schemaVersion":1,"entries":{"old":{"fetchedAt":0,"data":{}},"fresh":{"fetchedAt":1900,"data":{}}}}
+removed=mod.prune_cache(old,max_age_seconds=500,now=2000)
 ````
 
 ## File: scripts/test_discovery_memory.py
@@ -1597,6 +1617,13 @@ schema=json.loads((SCHEMAS/schema_name).read_text())
 errors=validator.validate(data,schema)
 ⋮----
 data=json.loads((ROOT/data_name).read_text())
+⋮----
+catalog_schema=json.loads((ROOT/"catalog.schema.json").read_text())
+catalog=json.loads((ROOT/"catalog.json").read_text())
+errors=validator.validate(catalog,catalog_schema)
+⋮----
+unsupported={"type":"object","unevaluatedProperties":False}
+errors=validator.validate({},unsupported)
 ````
 
 ## File: scripts/test_pipeline_integration.py
@@ -1976,9 +2003,13 @@ def _matches_type(value, expected)
 ⋮----
 def _path(parent, key)
 ⋮----
+SUPPORTED_KEYWORDS={
+⋮----
 def validate(value, schema, path="$")
 ⋮----
 errors=[]
+⋮----
+unsupported=sorted(set(schema)-SUPPORTED_KEYWORDS)
 ⋮----
 branches=schema.get("anyOf")
 ⋮----
@@ -2151,7 +2182,6 @@ Repository-specific rules:
 ````json
 {
   "schemaVersion": 1,
-  "generatedFrom": "text/star-list.md",
   "selectionPolicy": {
     "coreMin": 9.5,
     "recommendedMin": 9,
@@ -9360,14 +9390,14 @@ Repository-specific rules:
       "repo": "alsk1992/CloddsBot",
       "score": 6.8,
       "tier": "audit",
-      "category": "Autres favoris visibles",
+      "category": "Trading / AI agents",
       "domain": "trading",
       "capabilities": [
         "trading",
         "automation"
       ],
       "languages": [
-        "unknown"
+        "typescript"
       ],
       "platforms": [
         "linux"
@@ -9389,7 +9419,13 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-12T03:58:12Z"
-      }
+      },
+      "roles": [
+        "alpha",
+        "execution",
+        "portfolio",
+        "risk"
+      ]
     },
     {
       "repo": "BloodOnTop/Stealerium",
@@ -16307,10 +16343,99 @@ Repository-specific rules:
               "paid",
               "unknown"
             ]
+          },
+          "github": {
+            "type": "object",
+            "required": [
+              "stars",
+              "forks",
+              "openIssues",
+              "archived",
+              "disabled",
+              "defaultBranch",
+              "license",
+              "pushedAt"
+            ],
+            "properties": {
+              "stars": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "forks": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "openIssues": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "archived": {
+                "type": "boolean"
+              },
+              "disabled": {
+                "type": "boolean"
+              },
+              "defaultBranch": {
+                "type": "string",
+                "minLength": 1
+              },
+              "license": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "pushedAt": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
           }
         },
         "additionalProperties": false
       }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "githubRefreshedAt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "githubRefreshFailures": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "repo",
+              "error"
+            ],
+            "properties": {
+              "repo": {
+                "type": "string",
+                "pattern": "^[^/]+/[^/]+$"
+              },
+              "error": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": false

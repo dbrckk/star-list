@@ -1,8 +1,64 @@
 {
   "files": {
+    ".github/workflows/refresh-metadata.yml": {
+      "sha256": "3b029c000fa34be51fc33f58057865bb76c6c668d699bf5a5b927a8ee23b8ed0",
+      "size": 8643
+    },
+    ".github/workflows/validate.yml": {
+      "sha256": "2697f358f8eb6742a91d591b5734c862e6aa09593d9f9c7cd5e59e98d56722fa",
+      "size": 4093
+    },
     "catalog.json": {
-      "sha256": "4004f49ff34d64422de1bd0707e01ae37ca2692a6f29b77b9cb6d5dd2712204f",
-      "size": 321174
+      "sha256": "92247b3472176ca2e43bc6c382c3c3004efc103fca00c9580ff80011bc486c0c",
+      "size": 321233
+    },
+    "catalog.schema.json": {
+      "sha256": "010f0054cf7c79956715aa7e10809c4dc5e3b39fef4205c857f6ed698483ce64",
+      "size": 6370
+    },
+    "scripts/discover_candidates.py": {
+      "sha256": "7545ff42d65529b1ad7e9b5a729898eadb08fb770e0d569aaa7526db6b1e4eef",
+      "size": 14633
+    },
+    "scripts/find_replacements.py": {
+      "sha256": "fc4e3e288abcc1b48eaf238d09357ff7d11e5f1ce8b62aa92d4a4717c20006d9",
+      "size": 3404
+    },
+    "scripts/health_score.py": {
+      "sha256": "c16d8e8ed70025692961a42a6179051a4baaee2b1d721af26554816612f9000f",
+      "size": 2456
+    },
+    "scripts/refresh_github_metadata.py": {
+      "sha256": "008da3506f4d120648f40bf86f90ab83d0fd54cfad61fbafc7e84dc8da2189b0",
+      "size": 4033
+    },
+    "scripts/test_discover_candidates.py": {
+      "sha256": "fefe00ea3c0ce7067980bb456885cdb3ac9f465bdaf076822f6ea90fcc677d53",
+      "size": 562
+    },
+    "scripts/test_discovery_cache.py": {
+      "sha256": "c0939c9be9a47bec60c7509b8829fbc4eb740ac30f7b123aa678aa8007cee7df",
+      "size": 3616
+    },
+    "scripts/test_discovery_cache_stats.py": {
+      "sha256": "2c760da031b138ed0c07953d177ffb96196422f6a75d603622aff11e25970478",
+      "size": 2259
+    },
+    "scripts/test_find_replacements.py": {
+      "sha256": "6c8092f22f5049fe7ff6a6e688f0f3aaa4c906cf73b8c39edba0896e1d62716b",
+      "size": 1420
+    },
+    "scripts/test_json_contracts.py": {
+      "sha256": "1d67ff9642e0a8b8dae0a050245356111bc007dfab3ad8525709be9a7afd3917",
+      "size": 4864
+    },
+    "scripts/test_refresh_github_metadata.py": {
+      "sha256": "4e9b52ed8936bce2e3e030df789e0dfe8cc804ad111ac90b73f9ad97704377e8",
+      "size": 3425
+    },
+    "scripts/validate_json_contract.py": {
+      "sha256": "7b86d77770a52cbcc2038c177764fdc6b5ea0c198f2c347f58b45a41356ee8ff",
+      "size": 5696
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

@@ -249,6 +249,7 @@ DEFAULT_SEARCH_CACHE_TTL_HOURS=24
 DEFAULT_METADATA_CACHE_TTL_HOURS=336
 DEFAULT_SEARCH_STALE_MAX_HOURS=168
 DEFAULT_METADATA_STALE_MAX_HOURS=2160
+DEFAULT_CACHE_RETENTION_HOURS=max(DEFAULT_SEARCH_STALE_MAX_HOURS,DEFAULT_METADATA_STALE_MAX_HOURS)
 ⋮----
 def empty_cache()
 ⋮----
@@ -267,7 +268,14 @@ def load_cache(path)
 ⋮----
 data=json.loads(path.read_text())
 ⋮----
-def save_cache(path, cache)
+def prune_cache(cache, max_age_seconds, now=None)
+⋮----
+now=time.time() if now is None else now
+removed=0
+⋮----
+fetched=entry.get("fetchedAt") if isinstance(entry,dict) else None
+⋮----
+def save_cache(path, cache, max_age_seconds=DEFAULT_CACHE_RETENTION_HOURS*3600, now=None)
 ⋮----
 tmp=path.with_name(path.name+".tmp")
 ⋮----
@@ -285,7 +293,6 @@ wanted=name.lower()
 ⋮----
 def cache_get(cache, url, ttl_seconds, now=None)
 ⋮----
-now=time.time() if now is None else now
 entry=_cache_entry(cache,url)
 ⋮----
 def cache_get_stale(cache, url, max_age_seconds, now=None)
@@ -574,6 +581,7 @@ health = health_score(candidate)
 domain = 1.0 if source.get("domain") == candidate.get("domain") else 0.0
 caps = overlap(source.get("capabilities"), candidate.get("capabilities"))
 roles = overlap(source.get("roles"), candidate.get("roles"))
+⋮----
 platforms = overlap(source.get("platforms"), candidate.get("platforms"))
 languages = overlap(source.get("languages"), candidate.get("languages"))
 self_hosted = 1.0 if source.get("selfHosted") == candidate.get("selfHosted") else 0.0
@@ -779,6 +787,12 @@ out = {}
 ⋮----
 lic = raw.get("license")
 ⋮----
+def refresh_primary_language(repo, raw)
+⋮----
+current=repo.get("languages")
+⋮----
+language=raw.get("language")
+⋮----
 def is_missing_repository_error(error)
 ⋮----
 def main()
@@ -794,7 +808,8 @@ token = os.environ.get("GITHUB_TOKEN")
 ⋮----
 name = r["repo"]
 ⋮----
-fresh = metadata(fetch(name, token))
+raw = fetch(name, token)
+fresh = metadata(raw)
 ⋮----
 failure = {"repo":name,"error":str(e)}
 ```
@@ -1043,6 +1058,9 @@ def not_modified(req, *args, **kwargs)
 path = Path(td) / "cache.json"
 ⋮----
 loaded = mod.load_cache(path)
+⋮----
+old={"schemaVersion":1,"entries":{"old":{"fetchedAt":0,"data":{}},"fresh":{"fetchedAt":1900,"data":{}}}}
+removed=mod.prune_cache(old,max_age_seconds=500,now=2000)
 ```
 
 ## File: test_discovery_memory.py
@@ -1192,6 +1210,13 @@ schema=json.loads((SCHEMAS/schema_name).read_text())
 errors=validator.validate(data,schema)
 ⋮----
 data=json.loads((ROOT/data_name).read_text())
+⋮----
+catalog_schema=json.loads((ROOT/"catalog.schema.json").read_text())
+catalog=json.loads((ROOT/"catalog.json").read_text())
+errors=validator.validate(catalog,catalog_schema)
+⋮----
+unsupported={"type":"object","unevaluatedProperties":False}
+errors=validator.validate({},unsupported)
 ```
 
 ## File: test_pipeline_integration.py
@@ -1571,9 +1596,13 @@ def _matches_type(value, expected)
 ⋮----
 def _path(parent, key)
 ⋮----
+SUPPORTED_KEYWORDS={
+⋮----
 def validate(value, schema, path="$")
 ⋮----
 errors=[]
+⋮----
+unsupported=sorted(set(schema)-SUPPORTED_KEYWORDS)
 ⋮----
 branches=schema.get("anyOf")
 ⋮----

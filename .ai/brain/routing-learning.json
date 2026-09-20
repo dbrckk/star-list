@@ -1,1 +1,92 @@
-{"schema_version":1,"generated_by":"dbrckk/repo-brain-learning-v1","term_file_scores":{},"term_test_scores":{},"examples":[]}
+{
+  "examples": [
+    {
+      "rejected": [],
+      "task": "Merge pull request #17 from dbrckk/improve/v1.1-hardening",
+      "terms": [
+        "17",
+        "dbrckk/improve/v1.1-hardening",
+        "from",
+        "merge",
+        "pull",
+        "request"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/discover_candidates.py",
+        "scripts/find_replacements.py",
+        "scripts/refresh_github_metadata.py",
+        "scripts/test_discovery_cache.py",
+        "scripts/test_find_replacements.py",
+        "scripts/test_json_contracts.py",
+        "scripts/test_refresh_github_metadata.py",
+        "scripts/validate_json_contract.py"
+      ]
+    }
+  ],
+  "generated_by": "dbrckk/repo-brain-learning-v1",
+  "schema_version": 1,
+  "term_file_scores": {
+    "17": {
+      "scripts/discover_candidates.py": 4,
+      "scripts/find_replacements.py": 4,
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_discovery_cache.py": 4,
+      "scripts/test_find_replacements.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/validate_json_contract.py": 4
+    },
+    "dbrckk/improve/v1.1-hardening": {
+      "scripts/discover_candidates.py": 4,
+      "scripts/find_replacements.py": 4,
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_discovery_cache.py": 4,
+      "scripts/test_find_replacements.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/validate_json_contract.py": 4
+    },
+    "from": {
+      "scripts/discover_candidates.py": 4,
+      "scripts/find_replacements.py": 4,
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_discovery_cache.py": 4,
+      "scripts/test_find_replacements.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/validate_json_contract.py": 4
+    },
+    "merge": {
+      "scripts/discover_candidates.py": 4,
+      "scripts/find_replacements.py": 4,
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_discovery_cache.py": 4,
+      "scripts/test_find_replacements.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/validate_json_contract.py": 4
+    },
+    "pull": {
+      "scripts/discover_candidates.py": 4,
+      "scripts/find_replacements.py": 4,
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_discovery_cache.py": 4,
+      "scripts/test_find_replacements.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/validate_json_contract.py": 4
+    },
+    "request": {
+      "scripts/discover_candidates.py": 4,
+      "scripts/find_replacements.py": 4,
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_discovery_cache.py": 4,
+      "scripts/test_find_replacements.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/validate_json_contract.py": 4
+    }
+  },
+  "term_test_scores": {}
+}

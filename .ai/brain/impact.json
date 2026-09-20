@@ -1,17 +1,345 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "795d199f039e12651dbd4ba71e1bf0a594f73154",
-  "head": "6ffea28914c1aaa5eda03381c82cb1382f7945e6",
-  "index_mode": "incremental",
+  "base": "HEAD~1",
+  "head": "ac5c43adc2751c70154b9faec5a21f208cef4d94",
+  "index_mode": "full",
   "changed_files": [
+    {
+      "path": ".github/workflows/refresh-metadata.yml",
+      "status": "M"
+    },
+    {
+      "path": ".github/workflows/validate.yml",
+      "status": "M"
+    },
     {
       "path": "catalog.json",
       "status": "M"
+    },
+    {
+      "path": "catalog.schema.json",
+      "status": "M"
+    },
+    {
+      "path": "scripts/discover_candidates.py",
+      "status": "M"
+    },
+    {
+      "path": "scripts/find_replacements.py",
+      "status": "M"
+    },
+    {
+      "path": "scripts/refresh_github_metadata.py",
+      "status": "M"
+    },
+    {
+      "path": "scripts/test_discovery_cache.py",
+      "status": "M"
+    },
+    {
+      "path": "scripts/test_find_replacements.py",
+      "status": "M"
+    },
+    {
+      "path": "scripts/test_json_contracts.py",
+      "status": "M"
+    },
+    {
+      "path": "scripts/test_refresh_github_metadata.py",
+      "status": "M"
+    },
+    {
+      "path": "scripts/validate_json_contract.py",
+      "status": "M"
     }
   ],
-  "changed_source_files": [],
-  "impacted_files": [],
-  "impacted_symbols": [],
-  "selected_tests": []
+  "changed_source_files": [
+    "scripts/discover_candidates.py",
+    "scripts/find_replacements.py",
+    "scripts/refresh_github_metadata.py",
+    "scripts/test_discovery_cache.py",
+    "scripts/test_find_replacements.py",
+    "scripts/test_json_contracts.py",
+    "scripts/test_refresh_github_metadata.py",
+    "scripts/validate_json_contract.py"
+  ],
+  "impacted_files": [
+    "scripts/discover_candidates.py",
+    "scripts/find_replacements.py",
+    "scripts/refresh_github_metadata.py",
+    "scripts/test_discovery_cache.py",
+    "scripts/test_find_replacements.py",
+    "scripts/test_json_contracts.py",
+    "scripts/test_refresh_github_metadata.py",
+    "scripts/validate_json_contract.py"
+  ],
+  "impacted_symbols": [
+    {
+      "name": "empty_cache",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 18
+    },
+    {
+      "name": "empty_cache_stats",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 21
+    },
+    {
+      "name": "finalize_cache_stats",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 30
+    },
+    {
+      "name": "_stat",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 40
+    },
+    {
+      "name": "load_cache",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 43
+    },
+    {
+      "name": "prune_cache",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 54
+    },
+    {
+      "name": "save_cache",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 66
+    },
+    {
+      "name": "_cache_entry",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 73
+    },
+    {
+      "name": "_headers_dict",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 80
+    },
+    {
+      "name": "_header_value",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 85
+    },
+    {
+      "name": "cache_get",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 91
+    },
+    {
+      "name": "cache_get_stale",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 97
+    },
+    {
+      "name": "cache_put",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 106
+    },
+    {
+      "name": "_api_result",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 111
+    },
+    {
+      "name": "_stale_result",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 114
+    },
+    {
+      "name": "_conditional_headers",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 119
+    },
+    {
+      "name": "_not_modified_result",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 128
+    },
+    {
+      "name": "api_json",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 137
+    },
+    {
+      "name": "fetch",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 191
+    },
+    {
+      "name": "enrich",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 201
+    },
+    {
+      "name": "score",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 233
+    },
+    {
+      "name": "discover",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 239
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 280
+    },
+    {
+      "name": "overlap",
+      "kind": "function",
+      "file": "scripts/find_replacements.py",
+      "line": 10
+    },
+    {
+      "name": "replacement_score",
+      "kind": "function",
+      "file": "scripts/find_replacements.py",
+      "line": 14
+    },
+    {
+      "name": "analyze",
+      "kind": "function",
+      "file": "scripts/find_replacements.py",
+      "line": 34
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/find_replacements.py",
+      "line": 61
+    },
+    {
+      "name": "fetch",
+      "kind": "function",
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 28
+    },
+    {
+      "name": "metadata",
+      "kind": "function",
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 46
+    },
+    {
+      "name": "refresh_primary_language",
+      "kind": "function",
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 57
+    },
+    {
+      "name": "is_missing_repository_error",
+      "kind": "function",
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 64
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 68
+    },
+    {
+      "name": "offline",
+      "kind": "function",
+      "file": "scripts/test_discovery_cache.py",
+      "line": 33
+    },
+    {
+      "name": "not_modified",
+      "kind": "function",
+      "file": "scripts/test_discovery_cache.py",
+      "line": 67
+    },
+    {
+      "name": "http_error",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 12
+    },
+    {
+      "name": "run_main",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 22
+    },
+    {
+      "name": "test_missing_repo_is_recorded_but_nonfatal",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 31
+    },
+    {
+      "name": "fake_fetch",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 46
+    },
+    {
+      "name": "test_server_error_remains_fatal",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 77
+    },
+    {
+      "name": "_matches_type",
+      "kind": "function",
+      "file": "scripts/validate_json_contract.py",
+      "line": 8
+    },
+    {
+      "name": "_path",
+      "kind": "function",
+      "file": "scripts/validate_json_contract.py",
+      "line": 18
+    },
+    {
+      "name": "validate",
+      "kind": "function",
+      "file": "scripts/validate_json_contract.py",
+      "line": 29
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/validate_json_contract.py",
+      "line": 115
+    }
+  ],
+  "selected_tests": [
+    "scripts/test_discover_candidates.py",
+    "scripts/test_discovery_cache.py",
+    "scripts/test_discovery_cache_stats.py",
+    "scripts/test_find_replacements.py",
+    "scripts/test_json_contracts.py",
+    "scripts/test_refresh_github_metadata.py"
+  ]
 }
