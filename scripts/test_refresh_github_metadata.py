@@ -34,7 +34,7 @@ def test_missing_repo_is_recorded_but_nonfatal():
         catalog.write_text(json.dumps({
             "metadata": {},
             "repositories": [
-                {"repo": "live/repo", "github": {"stars": 1}},
+                {"repo": "live/repo", "github": {"stars": 1}, "languages": ["unknown"]},
                 {"repo": "gone/repo", "github": {"stars": 9}},
             ],
         }))
@@ -55,6 +55,7 @@ def test_missing_repo_is_recorded_but_nonfatal():
                     "default_branch": "main",
                     "license": {"spdx_id": "MIT"},
                     "pushed_at": "2026-09-15T12:00:00Z",
+                    "language": "Python",
                 }
 
             refresh.fetch = fake_fetch
@@ -65,6 +66,7 @@ def test_missing_repo_is_recorded_but_nonfatal():
         written = json.loads(catalog.read_text())
         live, gone = written["repositories"]
         assert live["github"]["stars"] == 42
+        assert live["languages"] == ["python"]
         assert gone["github"] == {"stars": 9}, "missing repos must keep their last known metadata"
         assert written["metadata"]["githubRefreshFailures"] == [
             {"repo": "gone/repo", "error": "HTTP Error 404: Not Found"}
