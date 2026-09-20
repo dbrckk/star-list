@@ -19,5 +19,5 @@ rows = mod.analyze([bad, good, other])
 assert len(rows) == 1
 assert rows[0]["repo"] == "x/bad"
 assert rows[0]["suggestedReplacements"][0]["repo"] == "x/good"
-assert rows[0]["suggestedReplacements"][0]["replacementScore"] > rows[0]["suggestedReplacements"][1]["replacementScore"]
+assert [item["repo"] for item in rows[0]["suggestedReplacements"]] == ["x/good"]
 print("OK: replacement detection tests passed")

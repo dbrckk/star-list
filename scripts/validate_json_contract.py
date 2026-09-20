@@ -20,10 +20,19 @@ def _path(parent, key):
         return f"{parent}[{key}]"
     return f"{parent}.{key}" if parent != "$" else f"$.{key}"
 
+SUPPORTED_KEYWORDS={
+    "$schema","title","type","required","properties","additionalProperties",
+    "anyOf","const","enum","items","minItems","maxItems","uniqueItems",
+    "minLength","pattern","minimum","maximum"
+}
+
 def validate(value, schema, path="$"):
     errors=[]
     if not isinstance(schema, dict):
         return [f"{path}: schema must be an object"]
+    unsupported=sorted(set(schema)-SUPPORTED_KEYWORDS)
+    if unsupported:
+        errors.extend(f"{path}: unsupported schema keyword {key!r}" for key in unsupported)
 
     if "anyOf" in schema:
         branches=schema.get("anyOf")

@@ -89,4 +89,13 @@ for data_name,schema_name in (
     errors=validator.validate(data,schema)
     assert not errors, f"{data_name}: {errors}"
 
-print("OK: pipeline JSON contract tests passed")
+catalog_schema=json.loads((ROOT/"catalog.schema.json").read_text())
+catalog=json.loads((ROOT/"catalog.json").read_text())
+errors=validator.validate(catalog,catalog_schema)
+assert not errors, f"catalog.json: {errors}"
+
+unsupported={"type":"object","unevaluatedProperties":False}
+errors=validator.validate({},unsupported)
+assert errors and any("unsupported schema keyword" in error for error in errors), errors
+
+print("OK: pipeline and catalog JSON contract tests passed")
