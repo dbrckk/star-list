@@ -13,6 +13,7 @@ DEFAULT_SEARCH_CACHE_TTL_HOURS=24
 DEFAULT_METADATA_CACHE_TTL_HOURS=336
 DEFAULT_SEARCH_STALE_MAX_HOURS=168
 DEFAULT_METADATA_STALE_MAX_HOURS=2160
+DEFAULT_CACHE_RETENTION_HOURS=max(DEFAULT_SEARCH_STALE_MAX_HOURS,DEFAULT_METADATA_STALE_MAX_HOURS)
 
 def empty_cache():
     return {"schemaVersion": CACHE_SCHEMA_VERSION, "entries": {}}
@@ -50,7 +51,20 @@ def load_cache(path):
     data["schemaVersion"]=CACHE_SCHEMA_VERSION
     return data
 
-def save_cache(path, cache):
+def prune_cache(cache, max_age_seconds, now=None):
+    if not isinstance(cache,dict) or not isinstance(cache.get("entries"),dict):
+        return 0
+    now=time.time() if now is None else now
+    removed=0
+    for url,entry in list(cache["entries"].items()):
+        fetched=entry.get("fetchedAt") if isinstance(entry,dict) else None
+        if not isinstance(fetched,(int,float)) or now-fetched>max_age_seconds:
+            del cache["entries"][url]
+            removed+=1
+    return removed
+
+def save_cache(path, cache, max_age_seconds=DEFAULT_CACHE_RETENTION_HOURS*3600, now=None):
+    prune_cache(cache,max_age_seconds,now)
     path.parent.mkdir(parents=True,exist_ok=True)
     tmp=path.with_name(path.name+".tmp")
     tmp.write_text(json.dumps(cache,indent=2,ensure_ascii=False)+"\n")
