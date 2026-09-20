@@ -1,10 +1,10 @@
 # Change impact
 
-Base: d8ac1cd161da79700de21701ccf537e604fa40ca
-Head: 96d6c29a4b3e5e3a6a5678d02940dc14812966af
+Base: 23ec6c22cee74637929906d0ca321a7ab957a5d7
+Head: 795d199f039e12651dbd4ba71e1bf0a594f73154
 
 ## Changed files
-- M .repo-standards.yml
+- M catalog.json
 
 ## Affected areas
 - (root)

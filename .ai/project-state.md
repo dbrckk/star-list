@@ -22,16 +22,17 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-19T07:41:43Z
+Generated: 2026-09-20T16:44:01Z
 
 ### Git
 - Branch: `main`
-- Head: `96d6c29a4b3e`
-- Commit date: 2026-09-19T09:38:00+02:00
-- Commit: chore(ai): adopt stable repo standards v20
-- Tracked files: 170
+- Head: `795d199f039e`
+- Commit date: 2026-09-20T18:43:52+02:00
+- Commit: Merge pull request #14 from dbrckk/chore/import-favorites-2026-09-20
+- Tracked files: 171
 
 ### Recently changed files
+- `catalog.json`
 - `.repo-standards.yml`
 
 ### Project signals
