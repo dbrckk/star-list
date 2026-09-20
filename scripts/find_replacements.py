@@ -20,6 +20,10 @@ def replacement_score(source, candidate):
     domain = 1.0 if source.get("domain") == candidate.get("domain") else 0.0
     caps = overlap(source.get("capabilities"), candidate.get("capabilities"))
     roles = overlap(source.get("roles"), candidate.get("roles"))
+    if domain and caps == 0 and roles == 0:
+        return None
+    if not domain and caps < 0.34 and roles < 0.5:
+        return None
     platforms = overlap(source.get("platforms"), candidate.get("platforms"))
     languages = overlap(source.get("languages"), candidate.get("languages"))
     self_hosted = 1.0 if source.get("selfHosted") == candidate.get("selfHosted") else 0.0
