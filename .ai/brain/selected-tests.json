@@ -1,28 +1,7 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "selected_test_files": [
-    "scripts/test_discover_candidates.py",
-    "scripts/test_discovery_cache.py",
-    "scripts/test_discovery_cache_stats.py",
-    "scripts/test_find_replacements.py",
-    "scripts/test_json_contracts.py",
-    "scripts/test_refresh_github_metadata.py"
-  ],
-  "commands": [
-    {
-      "command": "python -m pytest scripts/test_discover_candidates.py scripts/test_discovery_cache.py scripts/test_discovery_cache_stats.py scripts/test_find_replacements.py scripts/test_json_contracts.py scripts/test_refresh_github_metadata.py",
-      "purpose": "targeted tests",
-      "confidence": "high",
-      "files": [
-        "scripts/test_discover_candidates.py",
-        "scripts/test_discovery_cache.py",
-        "scripts/test_discovery_cache_stats.py",
-        "scripts/test_find_replacements.py",
-        "scripts/test_json_contracts.py",
-        "scripts/test_refresh_github_metadata.py"
-      ]
-    }
-  ],
+  "selected_test_files": [],
+  "commands": [],
   "fallback": "Use .ai/commands.json or the repository's canonical full validation when no targeted test is selected."
 }

@@ -9,10 +9,10 @@
     "top_score": 17
   },
   "cache": {
-    "fingerprint": "a623f3d16be41343d252a8bf689ea6a042031b7e5e67851ef033fe0fcbe579cb",
+    "fingerprint": "9117467e6c9f7ab353503a75e07bca93341a2cc0462701d82ee36b481e04ce58",
     "hit": false
   },
-  "candidate_count": 14,
+  "candidate_count": 8,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -56,81 +56,42 @@
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": "scripts/discover_candidates.py",
+      "path": "cache-health-history.json",
       "reasons": [
-        "impact",
         "recently-changed"
       ],
-      "score": 9,
-      "symbols": [
-        "_api_result",
-        "_cache_entry",
-        "_conditional_headers",
-        "_header_value",
-        "_headers_dict",
-        "_not_modified_result",
-        "_stale_result",
-        "_stat",
-        "api_json",
-        "cache_get",
-        "cache_get_stale",
-        "cache_put",
-        "discover",
-        "empty_cache",
-        "empty_cache_stats",
-        "enrich",
-        "fetch",
-        "finalize_cache_stats",
-        "load_cache",
-        "main"
-      ]
+      "score": 3,
+      "symbols": []
     },
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": "scripts/find_replacements.py",
+      "path": "catalog.json",
       "reasons": [
-        "impact",
         "recently-changed"
       ],
-      "score": 9,
-      "symbols": [
-        "analyze",
-        "main",
-        "overlap",
-        "replacement_score"
-      ]
+      "score": 3,
+      "symbols": []
     },
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": "scripts/refresh_github_metadata.py",
+      "path": "discovery-cache.json",
       "reasons": [
-        "impact",
         "recently-changed"
       ],
-      "score": 9,
-      "symbols": [
-        "fetch",
-        "is_missing_repository_error",
-        "main",
-        "metadata",
-        "refresh_primary_language"
-      ]
+      "score": 3,
+      "symbols": []
     },
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": "scripts/test_discovery_cache.py",
+      "path": "discovery-memory.json",
       "reasons": [
-        "impact",
         "recently-changed"
       ],
-      "score": 9,
-      "symbols": [
-        "not_modified",
-        "offline"
-      ]
+      "score": 3,
+      "symbols": []
     }
   ],
   "generated_by": "dbrckk/repo-brain-v8",

@@ -1,33 +1,8 @@
 {
-  "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": true,
-  "learning_result": {
-    "example_count": 1,
-    "rejected_count": 0,
-    "terms": [
-      "17",
-      "dbrckk/improve/v1.1-hardening",
-      "from",
-      "merge",
-      "pull",
-      "request"
-    ],
-    "test_count": 0,
-    "useful_count": 8
-  },
-  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
-  "rejected": [],
   "schema_version": 1,
-  "task": "Merge pull request #17 from dbrckk/improve/v1.1-hardening",
-  "tests_selected": [],
-  "useful": [
-    "scripts/discover_candidates.py",
-    "scripts/find_replacements.py",
-    "scripts/refresh_github_metadata.py",
-    "scripts/test_discovery_cache.py",
-    "scripts/test_find_replacements.py",
-    "scripts/test_json_contracts.py",
-    "scripts/test_refresh_github_metadata.py",
-    "scripts/validate_json_contract.py"
-  ]
+  "generated_by": "dbrckk/repo-brain-auto-learning-v1",
+  "learned": false,
+  "reason": "missing-task-or-source-change",
+  "task": "Merge pull request #18 from dbrckk/chore/sync-refresh-390-state",
+  "useful": []
 }

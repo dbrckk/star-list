@@ -1,26 +1,18 @@
 # Change impact
 
-Base: a6c201f51172113c858b761f46f3d8f233378f03
-Head: ac5c43adc2751c70154b9faec5a21f208cef4d94
+Base: 27e2e03eeac1088e0a100bef3ec3f05991c14e47
+Head: d0e5586595a5bdb2ccfb726bd6158a80ccfd583a
 
 ## Changed files
-- M .github/workflows/refresh-metadata.yml
-- M .github/workflows/validate.yml
+- M cache-health-history.json
 - M catalog.json
-- M catalog.schema.json
-- M scripts/discover_candidates.py
-- M scripts/find_replacements.py
-- M scripts/refresh_github_metadata.py
-- M scripts/test_discovery_cache.py
-- M scripts/test_find_replacements.py
-- M scripts/test_json_contracts.py
-- M scripts/test_refresh_github_metadata.py
-- M scripts/validate_json_contract.py
+- M discovery-cache.json
+- M discovery-memory.json
+- M health-snapshot.json
+- M history.json
 
 ## Affected areas
-- .github
 - (root)
-- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.

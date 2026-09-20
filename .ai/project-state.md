@@ -22,21 +22,25 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-20T19:13:28Z
+Generated: 2026-09-20T19:19:20Z
 
 ### Git
 - Branch: `main`
-- Head: `ac5c43adc275`
-- Commit date: 2026-09-20T21:13:18+02:00
-- Commit: Merge pull request #17 from dbrckk/improve/v1.1-hardening
-- Tracked files: 172
+- Head: `d0e5586595a5`
+- Commit date: 2026-09-20T21:19:11+02:00
+- Commit: Merge pull request #18 from dbrckk/chore/sync-refresh-390-state
+- Tracked files: 174
 
 ### Recently changed files
+- `cache-health-history.json`
 - `catalog.json`
+- `discovery-cache.json`
+- `discovery-memory.json`
+- `health-snapshot.json`
+- `history.json`
 - `scripts/test_find_replacements.py`
 - `scripts/find_replacements.py`
 - `scripts/test_discovery_cache.py`
-- `scripts/discover_candidates.py`
 
 ### Project signals
 - No common build descriptor detected

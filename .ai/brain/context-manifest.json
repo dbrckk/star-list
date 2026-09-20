@@ -2,23 +2,38 @@
   "generated_by": "dbrckk/repo-brain-v6",
   "packets": [
     {
+      "area": "cache-health-history.json",
+      "file_count": 1,
+      "path": ".ai/brain/context/cache-health-history.json.json"
+    },
+    {
       "area": "catalog.json",
       "file_count": 1,
       "path": ".ai/brain/context/catalog.json.json"
     },
     {
-      "area": "catalog.schema.json",
+      "area": "discovery-cache.json",
       "file_count": 1,
-      "path": ".ai/brain/context/catalog.schema.json.json"
+      "path": ".ai/brain/context/discovery-cache.json.json"
     },
     {
-      "area": "github",
-      "file_count": 2,
-      "path": ".ai/brain/context/github.json"
+      "area": "discovery-memory.json",
+      "file_count": 1,
+      "path": ".ai/brain/context/discovery-memory.json.json"
+    },
+    {
+      "area": "health-snapshot.json",
+      "file_count": 1,
+      "path": ".ai/brain/context/health-snapshot.json.json"
+    },
+    {
+      "area": "history.json",
+      "file_count": 1,
+      "path": ".ai/brain/context/history.json.json"
     },
     {
       "area": "scripts",
-      "file_count": 11,
+      "file_count": 4,
       "path": ".ai/brain/context/scripts.json"
     }
   ],
