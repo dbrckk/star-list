@@ -12,6 +12,18 @@
       "candidateSeverity": "degraded",
       "alertState": "watch",
       "issueAction": "open"
+    },
+    {
+      "date": "2026-09-20",
+      "status": "watch",
+      "logicalRequests": 180,
+      "apiCallAvoidanceRate": 0.4944,
+      "bodyReuseRate": 0.4944,
+      "networkFetchRate": 0.4,
+      "staleFallbackRate": 0.0,
+      "candidateSeverity": "watch",
+      "alertState": "watch",
+      "issueAction": "open"
     }
   ]
 }
