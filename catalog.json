@@ -7208,14 +7208,14 @@
       "repo": "alsk1992/CloddsBot",
       "score": 6.8,
       "tier": "audit",
-      "category": "Autres favoris visibles",
+      "category": "Trading / AI agents",
       "domain": "trading",
       "capabilities": [
         "trading",
         "automation"
       ],
       "languages": [
-        "unknown"
+        "typescript"
       ],
       "platforms": [
         "linux"
@@ -7237,7 +7237,13 @@
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-12T03:58:12Z"
-      }
+      },
+      "roles": [
+        "alpha",
+        "execution",
+        "portfolio",
+        "risk"
+      ]
     },
     {
       "repo": "BloodOnTop/Stealerium",
