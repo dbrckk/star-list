@@ -1,7 +1,7 @@
 # Change impact
 
-Base: 23ec6c22cee74637929906d0ca321a7ab957a5d7
-Head: 795d199f039e12651dbd4ba71e1bf0a594f73154
+Base: 5f719b6a88adaa7a23daaedbd4db6bef2937121a
+Head: 6ffea28914c1aaa5eda03381c82cb1382f7945e6
 
 ## Changed files
 - M catalog.json

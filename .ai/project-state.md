@@ -22,14 +22,14 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-20T16:44:01Z
+Generated: 2026-09-20T17:57:29Z
 
 ### Git
 - Branch: `main`
-- Head: `795d199f039e`
-- Commit date: 2026-09-20T18:43:52+02:00
-- Commit: Merge pull request #14 from dbrckk/chore/import-favorites-2026-09-20
-- Tracked files: 171
+- Head: `6ffea28914c1`
+- Commit date: 2026-09-20T19:57:19+02:00
+- Commit: Merge pull request #16 from dbrckk/catalog/add-21-starred-repos
+- Tracked files: 172
 
 ### Recently changed files
 - `catalog.json`
