@@ -44,19 +44,46 @@ def analyze(repos, stale_days=730, now=None):
         if not isinstance(gh, dict):
             add(name, "review", "missing-github-metadata", "GitHub metadata is missing.")
         else:
+            tier = entry.get("tier")
+            lifecycle = entry.get("lifecycle")
             if gh.get("archived") is True:
-                add(name, "review", "archived", "Repository is archived on GitHub.")
+                if tier == "audit" or lifecycle in {"reference", "legacy"}:
+                    code = f"archived-{lifecycle or 'audit'}-retained"
+                    label = lifecycle or "audit"
+                    add(
+                        name,
+                        "info",
+                        code,
+                        f"Repository is archived and intentionally retained as {label}.",
+                    )
+                else:
+                    add(name, "review", "archived", "Repository is archived on GitHub.")
             if gh.get("disabled") is True:
                 add(name, "review", "disabled", "Repository is disabled on GitHub.")
 
             age = _age_days(gh.get("pushedAt"), now)
             if age is not None and age >= stale_days and not gh.get("archived") and not gh.get("disabled"):
-                add(
-                    name,
-                    "review",
-                    "stale-over-threshold",
-                    f"No GitHub push for {age} days (threshold: {stale_days}).",
-                )
+                if lifecycle in {"stable", "reference", "legacy"}:
+                    add(
+                        name,
+                        "info",
+                        f"stale-{lifecycle}",
+                        f"No GitHub push for {age} days; classified as {lifecycle}.",
+                    )
+                elif tier == "audit":
+                    add(
+                        name,
+                        "info",
+                        "stale-audit-retained",
+                        f"No GitHub push for {age} days; retained in the audit tier.",
+                    )
+                else:
+                    add(
+                        name,
+                        "review",
+                        "stale-over-threshold",
+                        f"No GitHub push for {age} days (threshold: {stale_days}).",
+                    )
 
             license_name = gh.get("license")
             if license_name in (None, "", "NOASSERTION"):
