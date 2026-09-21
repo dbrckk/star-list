@@ -28,6 +28,7 @@ DOMAIN_ALIASES = {
 TIER_BONUS = {"core": 1.0, "recommended": 0.6, "specialized": 0.25, "audit": -0.4}
 LEVEL = {"low": 0, "medium": 1, "high": 2}
 GUIDANCE_WEIGHT = {"curated": 1.0, "inferred": 0.55}
+SPECIALIZED_INFERRED_WEIGHT = 0.35
 
 def norm(s):
     return re.sub(r"[^a-z0-9+.#_-]+", " ", (s or "").lower()).strip()
@@ -89,6 +90,8 @@ def trend_adjustment(repo_name):
 
 def guidance_weight(r):
     source = r.get("guidanceSource")
+    if source == "inferred" and r.get("tier") == "specialized":
+        return SPECIALIZED_INFERRED_WEIGHT
     return GUIDANCE_WEIGHT.get(source, 1.0)
 
 

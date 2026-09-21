@@ -42,6 +42,7 @@ assert mod.trend_adjustment("definitely/not-in-history")[0] == 0.0
 assert -6.0 <= mod.trend_adjustment("definitely/not-in-history")[0] <= 6.0
 assert mod.guidance_weight({"guidanceSource":"curated"}) == 1.0
 assert mod.guidance_weight({"guidanceSource":"inferred"}) == 0.55
+assert mod.guidance_weight({"guidanceSource":"inferred", "tier":"specialized"}) == 0.35
 assert mod.guidance_weight({}) == 1.0
 
 base = {
