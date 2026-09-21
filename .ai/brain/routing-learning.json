@@ -109,6 +109,23 @@
         "scripts/recommend.py",
         "scripts/test_recommend.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "Backfill selection guidance for specialized repositories (#25)",
+      "terms": [
+        "25",
+        "backfill",
+        "guidance",
+        "repositories",
+        "selection",
+        "specialized"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/recommend.py",
+        "scripts/test_recommend.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -145,6 +162,10 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "25": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -160,6 +181,8 @@
     },
     "backfill": {
       "scripts/infer_selection_guidance.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 4
     },
@@ -200,8 +223,8 @@
     },
     "guidance": {
       "scripts/infer_selection_guidance.py": 4,
-      "scripts/recommend.py": 4,
-      "scripts/test_recommend.py": 4,
+      "scripts/recommend.py": 8,
+      "scripts/test_recommend.py": 8,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 8
     },
@@ -253,7 +276,9 @@
     "repositories": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/infer_selection_guidance.py": 4,
+      "scripts/recommend.py": 4,
       "scripts/test_catalog_quality.py": 4,
+      "scripts/test_recommend.py": 4,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 12
     },
@@ -269,8 +294,14 @@
     },
     "selection": {
       "scripts/infer_selection_guidance.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 8
+    },
+    "specialized": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "stale": {
       "scripts/audit_catalog_quality.py": 4,

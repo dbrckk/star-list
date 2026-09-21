@@ -22,20 +22,20 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-21T08:31:16Z
+Generated: 2026-09-21T08:40:35Z
 
 ### Git
 - Branch: `main`
-- Head: `0b3a16a8847a`
-- Commit date: 2026-09-21T10:31:05+02:00
-- Commit: Weight inferred guidance below curated metadata (#24)
-- Tracked files: 185
+- Head: `d4e03c8e0050`
+- Commit date: 2026-09-21T10:40:26+02:00
+- Commit: Backfill selection guidance for specialized repositories (#25)
+- Tracked files: 186
 
 ### Recently changed files
+- `catalog.json`
 - `scripts/recommend.py`
 - `scripts/test_recommend.py`
 - `.github/workflows/validate.yml`
-- `catalog.json`
 - `catalog.schema.json`
 - `scripts/infer_selection_guidance.py`
 - `scripts/test_selection_guidance.py`

@@ -9,10 +9,10 @@
     "top_score": 26
   },
   "cache": {
-    "fingerprint": "b9407d489e5623212c5da546305e1ee1a28a377c8aab6d9fd664c91a61489ac5",
+    "fingerprint": "c341240829c0e7510b4a03574200f19459321a62dce5a5a48646c3dac6f6a659",
     "hit": false
   },
-  "candidate_count": 3,
+  "candidate_count": 4,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -74,6 +74,16 @@
         "infer_guidance",
         "main"
       ]
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [],
+      "path": "catalog.json",
+      "reasons": [
+        "recently-changed"
+      ],
+      "score": 3,
+      "symbols": []
     }
   ],
   "generated_by": "dbrckk/repo-brain-v8",

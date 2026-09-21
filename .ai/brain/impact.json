@@ -1,10 +1,14 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "4ee1f4fbf9fe58d858060ee22bc11b542d261188",
-  "head": "0b3a16a8847aecadee45b7c36f616cc614b5195d",
+  "base": "0b3a16a8847aecadee45b7c36f616cc614b5195d",
+  "head": "d4e03c8e00500cf947d947c677a16e17b77069d9",
   "index_mode": "incremental",
   "changed_files": [
+    {
+      "path": "catalog.json",
+      "status": "M"
+    },
     {
       "path": "scripts/recommend.py",
       "status": "M"
@@ -27,73 +31,73 @@
       "name": "norm",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 32
+      "line": 33
     },
     {
       "name": "tokens",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 35
+      "line": 36
     },
     {
       "name": "load",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 38
+      "line": 39
     },
     {
       "name": "infer_domains",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 43
+      "line": 44
     },
     {
       "name": "activity_adjustment",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 46
+      "line": 47
     },
     {
       "name": "trend_adjustment",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 65
+      "line": 66
     },
     {
       "name": "delta",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 77
+      "line": 78
     },
     {
       "name": "guidance_weight",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 90
+      "line": 91
     },
     {
       "name": "score_repo",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 95
+      "line": 98
     },
     {
       "name": "explain_repo",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 126
+      "line": 129
     },
     {
       "name": "choose_stack",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 149
+      "line": 152
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 158
+      "line": 161
     },
     {
       "name": "run",

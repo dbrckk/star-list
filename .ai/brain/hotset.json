@@ -6,10 +6,11 @@
         "changed",
         "changed-source",
         "impact",
+        "recent-project-state",
         "selected-test",
         "symbol-indexed"
       ],
-      "score": 375
+      "score": 435
     },
     {
       "path": "scripts/recommend.py",
@@ -17,26 +18,21 @@
         "changed",
         "changed-source",
         "impact",
+        "recent-project-state",
         "symbol-indexed"
       ],
-      "score": 360
+      "score": 420
     },
     {
       "path": "catalog.json",
       "reasons": [
+        "changed",
         "recent-project-state"
       ],
-      "score": 60
+      "score": 160
     },
     {
       "path": "catalog.schema.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "schemas/catalog-quality.schema.json",
       "reasons": [
         "recent-project-state"
       ],

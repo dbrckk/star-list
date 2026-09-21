@@ -786,6 +786,7 @@ DOMAIN_ALIASES = {
 TIER_BONUS = {"core": 1.0, "recommended": 0.6, "specialized": 0.25, "audit": -0.4}
 LEVEL = {"low": 0, "medium": 1, "high": 2}
 GUIDANCE_WEIGHT = {"curated": 1.0, "inferred": 0.55}
+SPECIALIZED_INFERRED_WEIGHT = 0.35
 ⋮----
 def norm(s)
 ⋮----

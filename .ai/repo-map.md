@@ -1397,6 +1397,7 @@ DOMAIN_ALIASES = {
 TIER_BONUS = {"core": 1.0, "recommended": 0.6, "specialized": 0.25, "audit": -0.4}
 LEVEL = {"low": 0, "medium": 1, "high": 2}
 GUIDANCE_WEIGHT = {"curated": 1.0, "inferred": 0.55}
+SPECIALIZED_INFERRED_WEIGHT = 0.35
 ⋮----
 def norm(s)
 ⋮----
@@ -2643,7 +2644,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T13:57:25Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "hiyouga/LlamaFactory",
@@ -2760,7 +2768,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T19:12:30Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "OpenHands/OpenHands",
@@ -2933,7 +2948,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "AGPL-3.0",
         "pushedAt": "2026-08-02T01:55:40Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "modelcontextprotocol/servers",
@@ -3057,7 +3079,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "NOASSERTION",
         "pushedAt": "2026-09-20T12:05:59Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "mattpocock/skills",
@@ -3091,7 +3120,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-18T10:12:48Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "DietrichGebert/ponytail",
@@ -3193,7 +3229,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T13:14:20Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "diegosouzapw/OmniRoute",
@@ -3227,7 +3270,14 @@ Repository-specific rules:
         "defaultBranch": "release/v3.8.51",
         "license": "MIT",
         "pushedAt": "2026-09-19T08:30:04Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "obra/superpowers",
@@ -3336,7 +3386,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "AGPL-3.0",
         "pushedAt": "2026-09-19T02:38:32Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "deepseek-ai/deepseek-harness",
@@ -3411,7 +3468,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T13:58:53Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "Alishahryar1/free-claude-code",
@@ -3445,7 +3509,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-21T02:44:42Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "vercel-labs/agent-browser",
@@ -3523,7 +3594,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-08-16T06:18:45Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "666ghj/MiroFish",
@@ -3557,7 +3635,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "AGPL-3.0",
         "pushedAt": "2026-09-16T03:31:58Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "punkpeye/awesome-mcp-servers",
@@ -3673,7 +3758,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-19T21:06:05Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "nashsu/llm_wiki",
@@ -3741,7 +3833,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-20T19:00:23Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "akitaonrails/ai-memory",
@@ -3776,7 +3875,15 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T19:06:15Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows",
+        "agent memory and context retention"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "volcengine/OpenViking",
@@ -3810,7 +3917,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "AGPL-3.0",
         "pushedAt": "2026-09-20T13:30:05Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "anomalyco/opencode",
@@ -3894,7 +4008,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T14:59:45Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "NousResearch/hermes-agent",
@@ -4010,7 +4131,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-20T19:12:22Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "danny-avila/LibreChat",
@@ -4085,7 +4213,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "NOASSERTION",
         "pushedAt": "2026-09-09T10:27:05Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "Aider-AI/aider",
@@ -4160,7 +4295,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2025-10-03T21:49:58Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "langchain-ai/langgraph",
@@ -4444,7 +4586,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-09-20T21:08:24Z"
-      }
+      },
+      "bestFor": [
+        "open-source intelligence research"
+      ],
+      "avoidWhen": [
+        "specialized low-level systems work"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "trimstray/the-book-of-secret-knowledge",
@@ -4555,7 +4704,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "GPL-3.0",
         "pushedAt": "2026-07-29T18:18:23Z"
-      }
+      },
+      "bestFor": [
+        "android workflows"
+      ],
+      "avoidWhen": [
+        "specialized low-level systems work"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "sudoguy/tiktokpy",
@@ -4701,7 +4857,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-16T18:29:37Z"
-      }
+      },
+      "bestFor": [
+        "browser and web retrieval"
+      ],
+      "avoidWhen": [
+        "specialized low-level systems work"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "xai-org/x-algorithm",
@@ -4736,7 +4899,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-18T23:55:40Z"
-      }
+      },
+      "bestFor": [
+        "ranking workflows"
+      ],
+      "avoidWhen": [
+        "specialized low-level systems work"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "cathrynlavery/diagram-design",
@@ -4771,7 +4941,15 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-19T17:47:52Z"
-      }
+      },
+      "bestFor": [
+        "technical diagrams",
+        "software architecture diagrams"
+      ],
+      "avoidWhen": [
+        "specialized low-level systems work"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "sdmg15/Best-websites-a-programmer-should-visit",
@@ -5546,7 +5724,15 @@ Repository-specific rules:
         "defaultBranch": "develop",
         "license": "Apache-2.0",
         "pushedAt": "2024-12-17T16:51:30Z"
-      }
+      },
+      "bestFor": [
+        "software architecture diagrams",
+        "technical documentation"
+      ],
+      "avoidWhen": [
+        "frontend-only UI work"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "orhun/git-cliff",
@@ -7958,7 +8144,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-17T06:47:25Z"
-      }
+      },
+      "bestFor": [
+        "monitoring and observability"
+      ],
+      "avoidWhen": [
+        "local-only scripts with no deployment or operations needs"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "tree-sitter/tree-sitter",
@@ -8222,7 +8415,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "Apache-2.0",
         "pushedAt": "2026-06-08T07:27:09Z"
-      }
+      },
+      "bestFor": [
+        "large-scale code refactoring"
+      ],
+      "avoidWhen": [
+        "non-development workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "astral-sh/uv",
@@ -8427,7 +8627,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "BSD-3-Clause",
         "pushedAt": "2026-09-12T22:05:54Z"
-      }
+      },
+      "bestFor": [
+        "code-quality automation"
+      ],
+      "avoidWhen": [
+        "non-development workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "microsoft/playwright",
@@ -8801,7 +9008,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "NOASSERTION",
         "pushedAt": "2026-04-14T15:29:57Z"
-      }
+      },
+      "bestFor": [
+        "code-quality automation"
+      ],
+      "avoidWhen": [
+        "non-development workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "testcontainers/testcontainers-python",
@@ -9105,7 +9319,14 @@ Repository-specific rules:
         "license": "NOASSERTION",
         "pushedAt": "2024-07-23T00:58:54Z"
       },
-      "lifecycle": "stable"
+      "lifecycle": "stable",
+      "bestFor": [
+        "vector animation"
+      ],
+      "avoidWhen": [
+        "non-visual workloads"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "jonobr1/two.js",
@@ -9140,7 +9361,14 @@ Repository-specific rules:
         "defaultBranch": "dev",
         "license": "MIT",
         "pushedAt": "2026-09-15T04:36:20Z"
-      }
+      },
+      "bestFor": [
+        "vector animation"
+      ],
+      "avoidWhen": [
+        "non-visual workloads"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "rough-stuff/rough",
@@ -9176,7 +9404,14 @@ Repository-specific rules:
         "license": "MIT",
         "pushedAt": "2024-07-28T21:12:58Z"
       },
-      "lifecycle": "stable"
+      "lifecycle": "stable",
+      "bestFor": [
+        "vector animation"
+      ],
+      "avoidWhen": [
+        "non-visual workloads"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "maxwellito/vivus",
@@ -9212,7 +9447,14 @@ Repository-specific rules:
         "license": "MIT",
         "pushedAt": "2022-07-06T22:16:59Z"
       },
-      "lifecycle": "stable"
+      "lifecycle": "stable",
+      "bestFor": [
+        "vector animation"
+      ],
+      "avoidWhen": [
+        "non-visual workloads"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "CorentinJ/Real-Time-Voice-Cloning",
@@ -9246,7 +9488,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "NOASSERTION",
         "pushedAt": "2026-03-09T10:31:58Z"
-      }
+      },
+      "bestFor": [
+        "speech and audio processing"
+      ],
+      "avoidWhen": [
+        "non-generative media workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "vega-org/vega-app",
@@ -9281,7 +9530,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-19T09:11:17Z"
-      }
+      },
+      "bestFor": [
+        "visualization workflows"
+      ],
+      "avoidWhen": [
+        "non-generative media workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "RVC-Project/Retrieval-based-Voice-Conversion-WebUI",
@@ -9392,7 +9648,15 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "GPL-3.0",
         "pushedAt": "2026-08-05T11:39:37Z"
-      }
+      },
+      "bestFor": [
+        "video-generation workflows"
+      ],
+      "avoidWhen": [
+        "low-resource environments",
+        "non-generative media workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "Tencent-Hunyuan/HunyuanVideo",
@@ -9504,7 +9768,15 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "AGPL-3.0",
         "pushedAt": "2026-09-15T11:05:04Z"
-      }
+      },
+      "bestFor": [
+        "face swap workflows"
+      ],
+      "avoidWhen": [
+        "low-resource environments",
+        "non-generative media workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "camenduru/dust3r-jupyter",
@@ -9582,7 +9854,14 @@ Repository-specific rules:
         "defaultBranch": "stable",
         "license": "MIT",
         "pushedAt": "2025-02-10T19:33:18Z"
-      }
+      },
+      "bestFor": [
+        "workflow automation"
+      ],
+      "avoidWhen": [
+        "non-generative media workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "FujiwaraChoki/MoneyPrinterV2",
@@ -9617,7 +9896,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "AGPL-3.0",
         "pushedAt": "2026-09-15T22:35:17Z"
-      }
+      },
+      "bestFor": [
+        "workflow automation"
+      ],
+      "avoidWhen": [
+        "non-generative media workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "FujiwaraChoki/MoneyPrinter",
@@ -9687,7 +9973,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "NOASSERTION",
         "pushedAt": "2026-09-12T04:09:08Z"
-      }
+      },
+      "bestFor": [
+        "music workflows"
+      ],
+      "avoidWhen": [
+        "non-generative media workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "ali-vilab/AnyDoor",
@@ -9765,7 +10058,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "NOASSERTION",
         "pushedAt": "2026-09-14T08:48:04Z"
-      }
+      },
+      "bestFor": [
+        "video-generation workflows"
+      ],
+      "avoidWhen": [
+        "non-generative media workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "SociallyIneptWeeb/AICoverGen",
@@ -9834,7 +10134,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "AGPL-3.0",
         "pushedAt": "2026-09-20T18:51:38Z"
-      }
+      },
+      "bestFor": [
+        "speech and audio processing"
+      ],
+      "avoidWhen": [
+        "non-generative media workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "comfyanonymous/ComfyUI",
@@ -10123,7 +10430,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-08-03T14:33:09Z"
-      }
+      },
+      "bestFor": [
+        "open-source intelligence research"
+      ],
+      "avoidWhen": [
+        "non-security workloads"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "CVEProject/cvelistV5",
@@ -10232,7 +10546,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-17T13:02:00Z"
-      }
+      },
+      "bestFor": [
+        "open-source intelligence research"
+      ],
+      "avoidWhen": [
+        "non-security workloads"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "Narasimha1997/fake-sms",
@@ -10302,7 +10623,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "GPL-3.0",
         "pushedAt": "2026-09-10T22:33:44Z"
-      }
+      },
+      "bestFor": [
+        "windows workflows"
+      ],
+      "avoidWhen": [
+        "specialized low-level systems work"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "friuns2/BlackFriday-GPTs-Prompts",
@@ -10489,7 +10817,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2024-10-19T03:27:38Z"
-      }
+      },
+      "bestFor": [
+        "multimodal workflows"
+      ],
+      "avoidWhen": [
+        "non-generative media workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "teacat/chaturbate-dvr",
@@ -11537,7 +11872,16 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-09-20T17:34:50Z"
-      }
+      },
+      "bestFor": [
+        "strategy backtesting",
+        "risk analysis",
+        "code-quality automation"
+      ],
+      "avoidWhen": [
+        "non-financial applications"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "mementum/backtrader",
@@ -12101,7 +12445,16 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "NOASSERTION",
         "pushedAt": "2026-09-14T21:42:02Z"
-      }
+      },
+      "bestFor": [
+        "machine-learning workflows",
+        "optimization workflows",
+        "quantitative alpha research"
+      ],
+      "avoidWhen": [
+        "non-financial applications"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "stefan-jansen/alphalens-reloaded",
@@ -12141,7 +12494,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2025-12-15T04:03:16Z"
-      }
+      },
+      "bestFor": [
+        "quantitative alpha research"
+      ],
+      "avoidWhen": [
+        "non-financial applications"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "quantopian/pyfolio",
@@ -12541,7 +12901,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-05-29T02:58:13Z"
-      }
+      },
+      "bestFor": [
+        "derivatives workflows"
+      ],
+      "avoidWhen": [
+        "non-financial applications"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "OpenBB-finance/OpenBB",
@@ -13197,7 +13564,16 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-06-29T16:33:16Z"
-      }
+      },
+      "bestFor": [
+        "machine-learning workflows",
+        "machine-learning experiments",
+        "quantitative alpha research"
+      ],
+      "avoidWhen": [
+        "non-financial applications"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "pykalman/pykalman",
@@ -13323,7 +13699,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-11T13:41:32Z"
-      }
+      },
+      "bestFor": [
+        "image-generation workflows"
+      ],
+      "avoidWhen": [
+        "non-generative media workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "cursor/plugins",
@@ -13441,7 +13824,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "BSD-3-Clause",
         "pushedAt": "2025-10-01T17:10:58Z"
-      }
+      },
+      "bestFor": [
+        "authorized security testing"
+      ],
+      "avoidWhen": [
+        "non-security workloads"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "PurpleAILAB/Decepticon",
@@ -13558,7 +13948,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": null,
         "pushedAt": "2026-04-18T09:27:42Z"
-      }
+      },
+      "bestFor": [
+        "authorized security testing"
+      ],
+      "avoidWhen": [
+        "non-security workloads"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "infosecn1nja/Red-Teaming-Toolkit",
@@ -13809,7 +14206,15 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-19T23:46:22Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows",
+        "authorized security testing"
+      ],
+      "avoidWhen": [
+        "non-security workloads"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "asgeirtj/system_prompts_leaks",
@@ -13844,7 +14249,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "CC0-1.0",
         "pushedAt": "2026-09-20T03:22:38Z"
-      }
+      },
+      "bestFor": [
+        "prompt research workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "headroomlabs-ai/headroom",
@@ -14086,7 +14498,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": null,
         "pushedAt": "2026-09-03T04:34:54Z"
-      }
+      },
+      "bestFor": [
+        "mobile application development"
+      ],
+      "avoidWhen": [
+        "web-only applications"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "AgriciDaniel/claude-obsidian",
@@ -14120,7 +14539,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-10T17:44:23Z"
-      }
+      },
+      "bestFor": [
+        "retrieval and persistent-memory workflows"
+      ],
+      "avoidWhen": [
+        "stateless applications with no retrieval or memory needs"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "kepano/obsidian-skills",
@@ -15165,7 +15591,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-09-18T02:51:45Z"
-      }
+      },
+      "bestFor": [
+        "authorized security testing"
+      ],
+      "avoidWhen": [
+        "non-security workloads"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "rapid7/metasploit-framework",
@@ -15286,7 +15719,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": null,
         "pushedAt": "2026-09-20T14:30:01Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "alibaba/open-code-review",
@@ -15443,7 +15883,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "NOASSERTION",
         "pushedAt": "2026-09-20T12:37:19Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "EsotericSoftware/spine-runtimes",
@@ -15878,7 +16325,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-18T21:06:40Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "Open-LLM-VTuber/Open-LLM-VTuber",
@@ -16016,7 +16470,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-05-11T05:44:09Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows",
+        "trading execution systems",
+        "risk analysis"
+      ],
+      "avoidWhen": [
+        "non-financial applications"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "OpenBMB/VoxCPM",
@@ -16200,7 +16663,14 @@ Repository-specific rules:
         "defaultBranch": "develop",
         "license": "AGPL-3.0",
         "pushedAt": "2026-09-20T18:58:28Z"
-      }
+      },
+      "bestFor": [
+        "erp workflows"
+      ],
+      "avoidWhen": [
+        "specialized low-level systems work"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "kyegomez/awesome-multi-agent-papers",
@@ -16235,7 +16705,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "NOASSERTION",
         "pushedAt": "2026-08-20T19:37:51Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "doobidoo/mcp-memory-service",
@@ -16313,7 +16790,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T08:15:15Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "inkscape/inkscape",
@@ -16391,7 +16875,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-09-20T00:00:37Z"
-      }
+      },
+      "bestFor": [
+        "animation workflows"
+      ],
+      "avoidWhen": [
+        "web-only applications"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "plattysoft/Leonids",
@@ -16469,7 +16960,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "ISC",
         "pushedAt": "2025-08-21T10:03:22Z"
-      }
+      },
+      "bestFor": [
+        "particle effects"
+      ],
+      "avoidWhen": [
+        "web-only applications"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "ruvnet/RuView",
@@ -16504,7 +17002,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T18:16:47Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "deterministic non-ML tasks"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "rlaope/oh-my-hermes",
@@ -16539,7 +17044,15 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T15:41:59Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows",
+        "agentic coding tasks"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "stablyai/orca",
@@ -16574,7 +17087,15 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T19:13:32Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows",
+        "agentic coding tasks"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "Panniantong/Agent-Reach",
@@ -16609,7 +17130,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-15T16:16:24Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "trailhq/Graft",
@@ -16644,7 +17172,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T15:27:38Z"
-      }
+      },
+      "bestFor": [
+        "agentic coding tasks"
+      ],
+      "avoidWhen": [
+        "non-development workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "opensandbox-group/OpenSandbox",
@@ -16722,7 +17257,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-09-19T15:49:13Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "roboflow/supervision",
@@ -16969,7 +17511,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-08-09T00:03:42Z"
-      }
+      },
+      "bestFor": [
+        "audio workflows"
+      ],
+      "avoidWhen": [
+        "non-generative media workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "JustVugg/colibri",
@@ -17004,7 +17553,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-20T15:56:11Z"
-      }
+      },
+      "bestFor": [
+        "inference workflows"
+      ],
+      "avoidWhen": [
+        "deterministic non-ML tasks"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "cloudflare/security-audit-skill",
@@ -17081,7 +17637,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "AGPL-3.0",
         "pushedAt": "2026-09-18T18:10:57Z"
-      }
+      },
+      "bestFor": [
+        "security learning workflows"
+      ],
+      "avoidWhen": [
+        "non-security workloads"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "block/buzz",
@@ -17115,7 +17678,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-20T19:09:45Z"
-      }
+      },
+      "bestFor": [
+        "communication workflows"
+      ],
+      "avoidWhen": [
+        "specialized low-level systems work"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "Lakr233/vphone-cli",
@@ -17150,7 +17720,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-18T14:05:30Z"
-      }
+      },
+      "bestFor": [
+        "mobile automation workflows"
+      ],
+      "avoidWhen": [
+        "web-only applications"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "Tencent/WeKnora",
@@ -17227,7 +17804,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T12:54:38Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "openai/codex",
@@ -17442,7 +18026,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-20T16:02:04Z"
-      }
+      },
+      "bestFor": [
+        "inference workflows"
+      ],
+      "avoidWhen": [
+        "deterministic non-ML tasks"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "ruanyf/weekly",
@@ -17476,7 +18067,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": null,
         "pushedAt": "2026-09-19T11:38:43Z"
-      }
+      },
+      "bestFor": [
+        "developer resources workflows"
+      ],
+      "avoidWhen": [
+        "specialized low-level systems work"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "docling-project/docling",
@@ -17558,7 +18156,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "AGPL-3.0",
         "pushedAt": "2026-09-19T13:13:19Z"
-      }
+      },
+      "bestFor": [
+        "market-data ingestion",
+        "data pipelines",
+        "quantitative alpha research"
+      ],
+      "avoidWhen": [
+        "non-financial applications"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "kaiiyer/awesome-vulnerable",
@@ -17593,7 +18200,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-06-22T17:46:43Z"
-      }
+      },
+      "bestFor": [
+        "penetration testing workflows"
+      ],
+      "avoidWhen": [
+        "non-security workloads"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "latent-spaces/brag",
@@ -17628,7 +18242,15 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-19T16:21:37Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows",
+        "workflow automation"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "ahmedkhaleel2004/gitdiagram",
@@ -17710,7 +18332,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "NOASSERTION",
         "pushedAt": "2026-07-28T17:28:37Z"
-      }
+      },
+      "bestFor": [
+        "market-data ingestion",
+        "diagnostics and analysis",
+        "data pipelines"
+      ],
+      "avoidWhen": [
+        "non-financial applications"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "supermemoryai/supermemory",
@@ -17962,7 +18593,14 @@ Repository-specific rules:
         "defaultBranch": "dev",
         "license": "AGPL-3.0",
         "pushedAt": "2026-09-20T07:09:04Z"
-      }
+      },
+      "bestFor": [
+        "rss workflows"
+      ],
+      "avoidWhen": [
+        "specialized low-level systems work"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "MemPalace/mempalace",
@@ -17997,7 +18635,15 @@ Repository-specific rules:
         "defaultBranch": "develop",
         "license": "MIT",
         "pushedAt": "2026-09-20T17:03:11Z"
-      }
+      },
+      "bestFor": [
+        "retrieval and persistent-memory workflows",
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "stateless applications with no retrieval or memory needs"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "infiniflow/ragflow",
@@ -18077,7 +18723,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T17:13:09Z"
-      }
+      },
+      "bestFor": [
+        "agentic workflows"
+      ],
+      "avoidWhen": [
+        "non-security workloads"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "vercel-labs/json-render",
@@ -18155,7 +18808,15 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-14T02:46:36Z"
-      }
+      },
+      "bestFor": [
+        "machine-learning workflows"
+      ],
+      "avoidWhen": [
+        "low-resource environments",
+        "projects requiring minimal setup and operational complexity"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "mihail911/modern-software-dev-assignments",
@@ -18189,7 +18850,14 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": null,
         "pushedAt": "2025-11-10T17:06:44Z"
-      }
+      },
+      "bestFor": [
+        "software engineering workflows"
+      ],
+      "avoidWhen": [
+        "non-development workflows"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "paperless-ngx/paperless-ngx",
@@ -18393,7 +19061,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-08-19T11:20:36Z"
-      }
+      },
+      "bestFor": [
+        "agent skill workflows"
+      ],
+      "avoidWhen": [
+        "specialized low-level systems work"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "199-biotechnologies/claude-deep-research-skill",
@@ -18428,7 +19103,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": null,
         "pushedAt": "2026-04-11T22:18:08Z"
-      }
+      },
+      "bestFor": [
+        "agent skill workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "mvanhorn/last30days-skill",
@@ -18505,7 +19187,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T09:23:39Z"
-      }
+      },
+      "bestFor": [
+        "agent skill workflows"
+      ],
+      "avoidWhen": [
+        "simple deterministic scripts without agent orchestration"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "bevibing/tutor-skills",
@@ -18540,7 +19229,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-02-28T14:41:09Z"
-      }
+      },
+      "bestFor": [
+        "agent skill workflows"
+      ],
+      "avoidWhen": [
+        "specialized low-level systems work"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "Paramchoudhary/ResumeSkills",
@@ -18575,7 +19271,14 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-06-19T07:20:29Z"
-      }
+      },
+      "bestFor": [
+        "agent skill workflows"
+      ],
+      "avoidWhen": [
+        "specialized low-level systems work"
+      ],
+      "guidanceSource": "inferred"
     },
     {
       "repo": "career-ops-hq/career-ops",
