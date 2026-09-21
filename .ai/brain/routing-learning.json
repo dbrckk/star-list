@@ -145,6 +145,22 @@
         "scripts/recommend.py",
         "scripts/test_recommend.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "Infer recommendation relations dynamically (#28)",
+      "terms": [
+        "28",
+        "dynamically",
+        "infer",
+        "recommendation",
+        "relations"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/recommend.py",
+        "scripts/test_recommend.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -186,6 +202,10 @@
       "scripts/test_recommend.py": 4
     },
     "26": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
+    },
+    "28": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
@@ -246,6 +266,10 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "dynamically": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "exclude": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
@@ -268,6 +292,10 @@
       "scripts/test_recommend.py": 8,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 8
+    },
+    "infer": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "inferred": {
       "scripts/recommend.py": 4,
@@ -309,6 +337,10 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
     },
+    "recommendation": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "recommendations": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
@@ -317,6 +349,10 @@
       "scripts/infer_selection_guidance.py": 4,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 4
+    },
+    "relations": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "repositories": {
       "scripts/audit_catalog_quality.py": 4,

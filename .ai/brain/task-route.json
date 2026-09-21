@@ -6,15 +6,61 @@
     "requested_max_files": 12,
     "score_margin": 0,
     "tier": "bounded",
-    "top_score": 17
+    "top_score": 26
   },
   "cache": {
-    "fingerprint": "137adfc52072150025b0b6167e75dc2a4289c813ca922e704b5881e57254a09f",
+    "fingerprint": "9dff28299663befb67322c3192426e122dbde45eb2d24d61f84662099efdec57",
     "hit": false
   },
-  "candidate_count": 4,
+  "candidate_count": 3,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
+    {
+      "learning_score": 0,
+      "matched_terms": [
+        "game"
+      ],
+      "path": "scripts/recommend.py",
+      "reasons": [
+        "impact",
+        "recently-changed",
+        "search-index"
+      ],
+      "score": 26,
+      "symbols": [
+        "activity_adjustment",
+        "choose_stack",
+        "delta",
+        "explain_repo",
+        "guidance_weight",
+        "infer_alternatives",
+        "infer_complements",
+        "infer_domains",
+        "load",
+        "main",
+        "norm",
+        "resolve_relations",
+        "score_repo",
+        "tokens",
+        "trend_adjustment"
+      ]
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [
+        "engine"
+      ],
+      "path": "scripts/test_recommend.py",
+      "reasons": [
+        "impact",
+        "recently-changed",
+        "search-index"
+      ],
+      "score": 26,
+      "symbols": [
+        "run"
+      ]
+    },
     {
       "learning_score": 0,
       "matched_terms": [
@@ -31,55 +77,6 @@
         "infer_guidance",
         "main"
       ]
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [
-        "game"
-      ],
-      "path": "scripts/recommend.py",
-      "reasons": [
-        "search-index"
-      ],
-      "score": 17,
-      "symbols": [
-        "activity_adjustment",
-        "choose_stack",
-        "delta",
-        "explain_repo",
-        "guidance_weight",
-        "infer_domains",
-        "load",
-        "main",
-        "norm",
-        "score_repo",
-        "tokens",
-        "trend_adjustment"
-      ]
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [
-        "engine"
-      ],
-      "path": "scripts/test_recommend.py",
-      "reasons": [
-        "search-index"
-      ],
-      "score": 17,
-      "symbols": [
-        "run"
-      ]
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [],
-      "path": "catalog.json",
-      "reasons": [
-        "recently-changed"
-      ],
-      "score": 3,
-      "symbols": []
     }
   ],
   "generated_by": "dbrckk/repo-brain-v8",

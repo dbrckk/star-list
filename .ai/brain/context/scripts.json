@@ -2,21 +2,30 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/infer_selection_guidance.py",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
       "path": "scripts/recommend.py",
       "reasons": [
-        "recent-project-state"
+        "changed",
+        "changed-source",
+        "impact",
+        "recent-project-state",
+        "symbol-indexed"
       ],
-      "score": 60
+      "score": 435
     },
     {
       "path": "scripts/test_recommend.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "recent-project-state",
+        "selected-test",
+        "symbol-indexed"
+      ],
+      "score": 435
+    },
+    {
+      "path": "scripts/infer_selection_guidance.py",
       "reasons": [
         "recent-project-state"
       ],
@@ -35,6 +44,20 @@
         "recent-project-state"
       ],
       "score": 60
+    },
+    {
+      "path": "scripts/find_replacements.py",
+      "reasons": [
+        "dependency-neighbor"
+      ],
+      "score": 25
+    },
+    {
+      "path": "scripts/health_score.py",
+      "reasons": [
+        "dependency-neighbor"
+      ],
+      "score": 25
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

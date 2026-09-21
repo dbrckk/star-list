@@ -22,24 +22,19 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-21T08:44:55Z
+Generated: 2026-09-21T08:48:02Z
 
 ### Git
 - Branch: `main`
-- Head: `aa3f9a633bc2`
-- Commit date: 2026-09-21T10:44:44+02:00
-- Commit: Normalize self-hosted metadata (#27)
+- Head: `75870e00dc0e`
+- Commit date: 2026-09-21T10:47:52+02:00
+- Commit: Infer recommendation relations dynamically (#28)
 - Tracked files: 186
 
 ### Recently changed files
-- `catalog.json`
 - `scripts/recommend.py`
 - `scripts/test_recommend.py`
-- `.github/workflows/validate.yml`
-- `catalog.schema.json`
-- `scripts/infer_selection_guidance.py`
-- `scripts/test_selection_guidance.py`
-- `scripts/validate_catalog.py`
+- `catalog.json`
 
 ### Project signals
 - No common build descriptor detected

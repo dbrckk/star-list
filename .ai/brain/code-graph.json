@@ -12,6 +12,11 @@
     },
     {
       "source": "scripts/recommend.py",
+      "target": "scripts/find_replacements.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/recommend.py",
       "target": "scripts/health_score.py",
       "type": "imports"
     },

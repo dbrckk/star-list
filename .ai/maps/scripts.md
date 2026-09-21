@@ -863,12 +863,37 @@ def choose_stack(stacks, qtokens, domains)
 stoks = tokens(st.get("name", "") + " " + st.get("goal", "") + " " + " ".join(st.get("notes", [])))
 score = 2*len(qtokens & stoks) + (3 if st.get("domain") in domains else 0)
 ⋮----
+def infer_alternatives(source, repos, top=3)
+⋮----
+candidates = []
+⋮----
+result = replacement_score(source, candidate)
+⋮----
+def infer_complements(source, stacks, repo_by_name, top=4)
+⋮----
+seen = set()
+complements = []
+⋮----
+members = stack.get("repos", [])
+⋮----
+candidate = repo_by_name.get(name)
+⋮----
+health = health_score(candidate)
+⋮----
+def resolve_relations(source, repos, stacks, repo_by_name)
+⋮----
+explicit_alternatives = source.get("alternatives", [])
+explicit_complements = source.get("complements", [])
+alternatives = explicit_alternatives or infer_alternatives(source, repos)
+complements = explicit_complements or infer_complements(source, stacks, repo_by_name)
+⋮----
 def main()
 ⋮----
 ap = argparse.ArgumentParser(description="Recommend repositories from star-list catalog.")
 ⋮----
 args = ap.parse_args()
 ⋮----
+repo_by_name = {r["repo"]: r for r in repos}
 qtokens = tokens(args.query)
 domains = set(args.domain) or infer_domains(qtokens)
 ⋮----
@@ -880,6 +905,8 @@ gh = r.get("github", {})
 s = score_repo(r, qtokens, domains, required_caps, excluded_caps)
 ⋮----
 top = []
+⋮----
+relations = resolve_relations(r, repos, stacks, repo_by_name)
 ⋮----
 result = {
 ⋮----
@@ -1440,6 +1467,17 @@ base = {
 qtokens = mod.tokens("specialized phrase")
 curated = dict(base, guidanceSource="curated")
 inferred = dict(base, guidanceSource="inferred")
+⋮----
+source = {
+candidate = {
+audit_candidate = dict(candidate, repo="x/audit", tier="audit")
+⋮----
+stack_repo = dict(candidate, repo="x/stack-tool", capabilities=["cache"])
+repo_by_name = {r["repo"]: r for r in [source, stack_repo]}
+stacks = [{"name":"Backend Stack","repos":["x/source","x/stack-tool"]}]
+⋮----
+curated_rel = dict(source, alternatives=["x/manual"], complements=["x/manual-comp"])
+resolved = mod.resolve_relations(curated_rel, [curated_rel, candidate], stacks, repo_by_name)
 ```
 
 ## File: test_refresh_github_metadata.py
