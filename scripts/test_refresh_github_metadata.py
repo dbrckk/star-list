@@ -87,6 +87,9 @@ Version 3, 29 June 2007
 """) == "GPL-3.0"
     assert refresh.detect_license_text("""Mozilla Public License Version 2.0
 """) == "MPL-2.0"
+    assert refresh.detect_license_text("This work is licensed under a Creative Commons Attribution 4.0 International License.") == "CC-BY-4.0"
+    assert refresh.detect_license_text("To the extent possible under law, Example Author has waived all copyright and related or neighboring rights to this work.") == "CC0-1.0"
+    assert refresh.detect_license_text("## License\nMIT") == "MIT"
     assert refresh.detect_license_text("custom proprietary terms") is None
 
 
@@ -106,6 +109,22 @@ def test_license_fallback_reads_root_license_file():
             return {"type": "file", "name": "LICENSE", "path": "LICENSE", "content": content}
         refresh.fetch_contents = fake_contents
         assert refresh.fallback_license("x/repo", "main") == "MIT"
+    finally:
+        refresh.fetch_contents = original
+
+
+def test_license_fallback_reads_readme_when_root_license_is_absent():
+    original = refresh.fetch_contents
+    try:
+        def fake_contents(repo, path="", ref=None, token=None, retries=2):
+            if not path:
+                return [{"type": "file", "name": "README.md", "path": "README.md"}]
+            content = base64.b64encode(
+                b"## License\nThis work is licensed under a Creative Commons Attribution 4.0 International License."
+            ).decode()
+            return {"type": "file", "name": "README.md", "path": "README.md", "content": content}
+        refresh.fetch_contents = fake_contents
+        assert refresh.fallback_license("x/repo", "main") == "CC-BY-4.0"
     finally:
         refresh.fetch_contents = original
 
@@ -201,6 +220,7 @@ if __name__ == "__main__":
     test_missing_repo_is_recorded_but_nonfatal()
     test_license_signature_detection()
     test_license_fallback_reads_root_license_file()
+    test_license_fallback_reads_readme_when_root_license_is_absent()
     test_metadata_refresh_uses_license_fallback()
     test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive()
     test_server_error_remains_fatal()
