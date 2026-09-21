@@ -87,10 +87,14 @@ repos = [
         },
     },
     {"repo": "x/missing", "tier": "audit", "selfHosted": True},
+    {"repo":"x/custom","tier":"specialized","selfHosted":True,"licenseStatus":"custom-restrictive","github":{"archived":False,"disabled":False,"license":None,"pushedAt":"2026-09-01T00:00:00Z"}},
+    {"repo":"x/partial","tier":"audit","selfHosted":True,"licenseStatus":"partial","github":{"archived":False,"disabled":False,"license":None,"pushedAt":"2026-09-01T00:00:00Z"}},
+    {"repo":"x/external","tier":"audit","selfHosted":True,"licenseStatus":"external-terms","github":{"archived":False,"disabled":False,"license":None,"pushedAt":"2026-09-01T00:00:00Z"}},
+    {"repo":"x/notfound","tier":"specialized","selfHosted":True,"licenseStatus":"not-found","github":{"archived":False,"disabled":False,"license":None,"pushedAt":"2026-09-01T00:00:00Z"}},
 ]
 
 report = mod.analyze(repos, stale_days=730, now=now)
-assert report["repositories"] == 7
+assert report["repositories"] == 11
 assert report["summary"]["review"] == 2
 assert report["summary"]["byCode"]["stale-over-threshold"] == 1
 assert report["summary"]["byCode"]["stale-stable"] == 1
@@ -101,7 +105,11 @@ assert report["summary"]["byCode"]["missing-github-metadata"] == 1
 assert report["summary"]["byCode"]["license-unknown"] == 1
 assert report["summary"]["byCode"]["license-file-missing"] == 1
 assert report["summary"]["byCode"]["self-hosting-uncertain"] == 1
-assert report["guidanceCoverage"]["bestFor"] == {"populated": 1, "missing": 6}
+assert report["summary"]["byCode"]["license-custom-restrictive"] == 1
+assert report["summary"]["byCode"]["license-partial"] == 1
+assert report["summary"]["byCode"]["license-external-terms"] == 1
+assert report["summary"]["byCode"]["license-not-found"] == 1
+assert report["guidanceCoverage"]["bestFor"] == {"populated": 1, "missing": 10}
 markdown = mod.render_markdown(report)
 assert "<!-- star-list-catalog-quality -->" in markdown
 assert "x/stable" in markdown
