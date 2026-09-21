@@ -31,6 +31,7 @@ repos = [
         "repo": "x/stale",
         "tier": "specialized",
         "selfHosted": "unknown",
+        "licenseEvidence": "no-root-license-file",
         "github": {
             "archived": False,
             "disabled": False,
@@ -97,7 +98,8 @@ assert report["summary"]["byCode"]["stale-reference"] == 1
 assert report["summary"]["byCode"]["archived-legacy-retained"] == 1
 assert report["summary"]["byCode"]["stale-audit-retained"] == 1
 assert report["summary"]["byCode"]["missing-github-metadata"] == 1
-assert report["summary"]["byCode"]["license-unknown"] == 2
+assert report["summary"]["byCode"]["license-unknown"] == 1
+assert report["summary"]["byCode"]["license-file-missing"] == 1
 assert report["summary"]["byCode"]["self-hosting-uncertain"] == 1
 assert report["guidanceCoverage"]["bestFor"] == {"populated": 1, "missing": 6}
 markdown = mod.render_markdown(report)
