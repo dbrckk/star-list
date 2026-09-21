@@ -45,13 +45,16 @@ def analyze(repos, stale_days=730, now=None):
             add(name, "review", "missing-github-metadata", "GitHub metadata is missing.")
         else:
             tier = entry.get("tier")
+            lifecycle = entry.get("lifecycle")
             if gh.get("archived") is True:
-                if tier == "audit":
+                if tier == "audit" or lifecycle in {"reference", "legacy"}:
+                    code = f"archived-{lifecycle or 'audit'}-retained"
+                    label = lifecycle or "audit"
                     add(
                         name,
                         "info",
-                        "archived-audit-retained",
-                        "Repository is archived and intentionally retained in the audit tier.",
+                        code,
+                        f"Repository is archived and intentionally retained as {label}.",
                     )
                 else:
                     add(name, "review", "archived", "Repository is archived on GitHub.")
@@ -60,7 +63,14 @@ def analyze(repos, stale_days=730, now=None):
 
             age = _age_days(gh.get("pushedAt"), now)
             if age is not None and age >= stale_days and not gh.get("archived") and not gh.get("disabled"):
-                if tier == "audit":
+                if lifecycle in {"stable", "reference", "legacy"}:
+                    add(
+                        name,
+                        "info",
+                        f"stale-{lifecycle}",
+                        f"No GitHub push for {age} days; classified as {lifecycle}.",
+                    )
+                elif tier == "audit":
                     add(
                         name,
                         "info",
