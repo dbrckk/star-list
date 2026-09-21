@@ -2,14 +2,19 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 9,
+    "example_count": 10,
     "rejected_count": 0,
     "terms": [
-      "28",
-      "dynamically",
-      "infer",
-      "recommendation",
-      "relations"
+      "29",
+      "detect",
+      "files",
+      "from",
+      "github",
+      "inconclusive",
+      "is",
+      "licenses",
+      "repository",
+      "when"
     ],
     "test_count": 0,
     "useful_count": 2
@@ -17,10 +22,10 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "Infer recommendation relations dynamically (#28)",
+  "task": "Detect licenses from repository files when GitHub is inconclusive (#29)",
   "tests_selected": [],
   "useful": [
-    "scripts/recommend.py",
-    "scripts/test_recommend.py"
+    "scripts/refresh_github_metadata.py",
+    "scripts/test_refresh_github_metadata.py"
   ]
 }

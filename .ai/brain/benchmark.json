@@ -12,7 +12,7 @@
       },
       "cache_hit": true,
       "candidate_count": 2,
-      "elapsed_ms": 43.853,
+      "elapsed_ms": 45.037,
       "ok": true,
       "selected_files": 2,
       "task": "purchase billing"
@@ -29,7 +29,7 @@
       },
       "cache_hit": true,
       "candidate_count": 2,
-      "elapsed_ms": 43.762,
+      "elapsed_ms": 45.355,
       "ok": true,
       "selected_files": 2,
       "task": "income progression"
@@ -46,7 +46,7 @@
       },
       "cache_hit": true,
       "candidate_count": 2,
-      "elapsed_ms": 43.725,
+      "elapsed_ms": 45.093,
       "ok": true,
       "selected_files": 2,
       "task": "privacy consent"
@@ -63,7 +63,7 @@
       },
       "cache_hit": true,
       "candidate_count": 5,
-      "elapsed_ms": 42.21,
+      "elapsed_ms": 44.055,
       "ok": true,
       "selected_files": 5,
       "task": "offline progress"
@@ -76,13 +76,13 @@
         "requested_max_files": 12,
         "score_margin": 0,
         "tier": "bounded",
-        "top_score": 26
+        "top_score": 17
       },
       "cache_hit": true,
-      "candidate_count": 3,
-      "elapsed_ms": 41.554,
+      "candidate_count": 5,
+      "elapsed_ms": 43.67,
       "ok": true,
-      "selected_files": 3,
+      "selected_files": 5,
       "task": "game engine"
     }
   ],
@@ -99,7 +99,7 @@
       },
       "cache_hit": false,
       "candidate_count": 2,
-      "elapsed_ms": 49.96,
+      "elapsed_ms": 71.248,
       "ok": true,
       "selected_files": 2,
       "task": "purchase billing"
@@ -116,7 +116,7 @@
       },
       "cache_hit": false,
       "candidate_count": 2,
-      "elapsed_ms": 48.25,
+      "elapsed_ms": 53.585,
       "ok": true,
       "selected_files": 2,
       "task": "income progression"
@@ -133,7 +133,7 @@
       },
       "cache_hit": false,
       "candidate_count": 2,
-      "elapsed_ms": 48.228,
+      "elapsed_ms": 53.832,
       "ok": true,
       "selected_files": 2,
       "task": "privacy consent"
@@ -150,7 +150,7 @@
       },
       "cache_hit": false,
       "candidate_count": 5,
-      "elapsed_ms": 49.454,
+      "elapsed_ms": 53.512,
       "ok": true,
       "selected_files": 5,
       "task": "offline progress"
@@ -163,13 +163,13 @@
         "requested_max_files": 12,
         "score_margin": 0,
         "tier": "bounded",
-        "top_score": 26
+        "top_score": 17
       },
       "cache_hit": false,
-      "candidate_count": 3,
-      "elapsed_ms": 50.347,
+      "candidate_count": 5,
+      "elapsed_ms": 52.51,
       "ok": true,
-      "selected_files": 3,
+      "selected_files": 5,
       "task": "game engine"
     }
   ],
@@ -177,11 +177,11 @@
   "graph_edge_count": 6,
   "schema_version": 1,
   "search_file_count": 25,
-  "search_token_count": 1285,
+  "search_token_count": 1364,
   "summary": {
     "all_cached_second_pass": true,
-    "avg_selected_files": 2.8,
-    "cached_pass_ms": 215.104,
-    "first_pass_ms": 246.239
+    "avg_selected_files": 3.2,
+    "cached_pass_ms": 223.21,
+    "first_pass_ms": 284.687
   }
 }

@@ -2,7 +2,7 @@
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
   "files_indexed": 43,
-  "symbol_count": 145,
+  "symbol_count": 153,
   "edge_count": 5,
   "languages": {
     "python": 43
@@ -27,6 +27,14 @@
       "symbols": 12
     },
     {
+      "file": "scripts/refresh_github_metadata.py",
+      "symbols": 9
+    },
+    {
+      "file": "scripts/test_refresh_github_metadata.py",
+      "symbols": 9
+    },
+    {
       "file": "scripts/filter_discovery_memory.py",
       "symbols": 7
     },
@@ -40,14 +48,6 @@
     },
     {
       "file": "scripts/audit_catalog_quality.py",
-      "symbols": 5
-    },
-    {
-      "file": "scripts/refresh_github_metadata.py",
-      "symbols": 5
-    },
-    {
-      "file": "scripts/test_refresh_github_metadata.py",
       "symbols": 5
     },
     {

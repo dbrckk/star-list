@@ -925,13 +925,46 @@ recommended in CI to avoid anonymous API rate limits.
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog.json"
 API = "https://api.github.com/repos/{}"
+CONTENTS_API = "https://api.github.com/repos/{}/contents/{}"
+LICENSE_NAMES = ("license", "licence", "copying", "notice")
 FIELDS = {
 ⋮----
-def fetch(repo, token=None, retries=2)
+def _request_json(url, token=None, retries=2)
 ⋮----
 headers = {"Accept":"application/vnd.github+json","User-Agent":"star-list-metadata-refresh","X-GitHub-Api-Version":"2022-11-28"}
 ⋮----
-req = Request(API.format(repo), headers=headers)
+req = Request(url, headers=headers)
+⋮----
+def fetch(repo, token=None, retries=2)
+⋮----
+def fetch_contents(repo, path="", ref=None, token=None, retries=2)
+⋮----
+encoded = quote(path, safe="/")
+url = CONTENTS_API.format(repo, encoded)
+⋮----
+def detect_license_text(text)
+⋮----
+normalized = re.sub(r"\s+", " ", (text or "")).strip().lower()
+signatures = [
+⋮----
+def fallback_license(repo, default_branch, token=None)
+⋮----
+root = fetch_contents(repo, ref=default_branch, token=token)
+⋮----
+candidates = []
+⋮----
+name = str(item.get("name", "")).lower()
+stem = re.split(r"[._-]", name, maxsplit=1)[0]
+⋮----
+path = item.get("path")
+⋮----
+payload = fetch_contents(repo, path=path, ref=default_branch, token=token)
+⋮----
+encoded = payload.get("content")
+⋮----
+text = base64.b64decode(encoded, validate=False).decode("utf-8", errors="replace")
+⋮----
+detected = detect_license_text(text)
 ⋮----
 def metadata(raw)
 ⋮----
@@ -962,6 +995,8 @@ name = r["repo"]
 ⋮----
 raw = fetch(name, token)
 fresh = metadata(raw)
+⋮----
+detected = fallback_license(name, raw.get("default_branch"), token)
 ⋮----
 failure = {"repo":name,"error":str(e)}
 ```
@@ -1498,6 +1533,18 @@ catalog = Path(tmp) / "catalog.json"
 def fake_fetch(repo, token=None, retries=2)
 ⋮----
 written = json.loads(catalog.read_text())
+⋮----
+def test_license_signature_detection()
+⋮----
+def test_license_fallback_reads_root_license_file()
+⋮----
+original = refresh.fetch_contents
+⋮----
+def fake_contents(repo, path="", ref=None, token=None, retries=2)
+⋮----
+content = base64.b64encode(
+⋮----
+def test_metadata_refresh_uses_license_fallback()
 ⋮----
 def test_server_error_remains_fatal()
 ```

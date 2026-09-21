@@ -22,16 +22,18 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-21T08:48:02Z
+Generated: 2026-09-21T08:51:39Z
 
 ### Git
 - Branch: `main`
-- Head: `75870e00dc0e`
-- Commit date: 2026-09-21T10:47:52+02:00
-- Commit: Infer recommendation relations dynamically (#28)
+- Head: `311dad67a7df`
+- Commit date: 2026-09-21T10:51:25+02:00
+- Commit: Detect licenses from repository files when GitHub is inconclusive (#29)
 - Tracked files: 186
 
 ### Recently changed files
+- `scripts/refresh_github_metadata.py`
+- `scripts/test_refresh_github_metadata.py`
 - `scripts/recommend.py`
 - `scripts/test_recommend.py`
 - `catalog.json`

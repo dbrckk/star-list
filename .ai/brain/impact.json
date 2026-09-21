@@ -1,126 +1,138 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "aa3f9a633bc280d561c22e896145b39913471a00",
-  "head": "75870e00dc0e14310f63873b9be7cb1fbe7ad40a",
+  "base": "75870e00dc0e14310f63873b9be7cb1fbe7ad40a",
+  "head": "311dad67a7dfeef5b77bd26003a4d48351bfbb86",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": "scripts/recommend.py",
+      "path": "scripts/refresh_github_metadata.py",
       "status": "M"
     },
     {
-      "path": "scripts/test_recommend.py",
+      "path": "scripts/test_refresh_github_metadata.py",
       "status": "M"
     }
   ],
   "changed_source_files": [
-    "scripts/recommend.py",
-    "scripts/test_recommend.py"
+    "scripts/refresh_github_metadata.py",
+    "scripts/test_refresh_github_metadata.py"
   ],
   "impacted_files": [
-    "scripts/recommend.py",
-    "scripts/test_recommend.py"
+    "scripts/refresh_github_metadata.py",
+    "scripts/test_refresh_github_metadata.py"
   ],
   "impacted_symbols": [
     {
-      "name": "norm",
+      "name": "_request_json",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 34
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 31
     },
     {
-      "name": "tokens",
+      "name": "fetch",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 37
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 49
     },
     {
-      "name": "load",
+      "name": "fetch_contents",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 40
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 53
     },
     {
-      "name": "infer_domains",
+      "name": "detect_license_text",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 45
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 61
     },
     {
-      "name": "activity_adjustment",
+      "name": "fallback_license",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 48
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 90
     },
     {
-      "name": "trend_adjustment",
+      "name": "metadata",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 67
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 129
     },
     {
-      "name": "delta",
+      "name": "refresh_primary_language",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 79
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 140
     },
     {
-      "name": "guidance_weight",
+      "name": "is_missing_repository_error",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 92
-    },
-    {
-      "name": "score_repo",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 99
-    },
-    {
-      "name": "explain_repo",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 130
-    },
-    {
-      "name": "choose_stack",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 153
-    },
-    {
-      "name": "infer_alternatives",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 163
-    },
-    {
-      "name": "infer_complements",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 182
-    },
-    {
-      "name": "resolve_relations",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 205
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 147
     },
     {
       "name": "main",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 217
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 151
     },
     {
-      "name": "run",
+      "name": "http_error",
       "kind": "function",
-      "file": "scripts/test_recommend.py",
-      "line": 9
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 13
+    },
+    {
+      "name": "run_main",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 23
+    },
+    {
+      "name": "test_missing_repo_is_recorded_but_nonfatal",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 32
+    },
+    {
+      "name": "fake_fetch",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 47
+    },
+    {
+      "name": "test_license_signature_detection",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 78
+    },
+    {
+      "name": "test_license_fallback_reads_root_license_file",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 93
+    },
+    {
+      "name": "fake_contents",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 96
+    },
+    {
+      "name": "test_metadata_refresh_uses_license_fallback",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 113
+    },
+    {
+      "name": "test_server_error_remains_fatal",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 142
     }
   ],
   "selected_tests": [
-    "scripts/test_recommend.py"
+    "scripts/test_refresh_github_metadata.py"
   ]
 }

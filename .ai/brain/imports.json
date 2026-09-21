@@ -89,13 +89,16 @@
     ],
     "scripts/refresh_github_metadata.py": [
       "argparse",
+      "base64",
       "datetime",
       "json",
       "os",
       "pathlib",
+      "re",
       "sys",
       "time",
       "urllib.error",
+      "urllib.parse",
       "urllib.request"
     ],
     "scripts/render_discovery_issue.py": [
@@ -200,6 +203,7 @@
       "sys"
     ],
     "scripts/test_refresh_github_metadata.py": [
+      "base64",
       "json",
       "pathlib",
       "refresh_github_metadata",

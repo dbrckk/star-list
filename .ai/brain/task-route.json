@@ -6,13 +6,13 @@
     "requested_max_files": 12,
     "score_margin": 0,
     "tier": "bounded",
-    "top_score": 26
+    "top_score": 17
   },
   "cache": {
-    "fingerprint": "9dff28299663befb67322c3192426e122dbde45eb2d24d61f84662099efdec57",
+    "fingerprint": "a65cce1047e4bffe71ab87de8a9379c8cd52ee839e289f923d1d02eab6810a3a",
     "hit": false
   },
-  "candidate_count": 3,
+  "candidate_count": 5,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -20,13 +20,28 @@
       "matched_terms": [
         "game"
       ],
-      "path": "scripts/recommend.py",
+      "path": "scripts/infer_selection_guidance.py",
       "reasons": [
-        "impact",
-        "recently-changed",
         "search-index"
       ],
-      "score": 26,
+      "score": 17,
+      "symbols": [
+        "_humanize",
+        "enrich",
+        "infer_guidance",
+        "main"
+      ]
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [
+        "game"
+      ],
+      "path": "scripts/recommend.py",
+      "reasons": [
+        "search-index"
+      ],
+      "score": 17,
       "symbols": [
         "activity_adjustment",
         "choose_stack",
@@ -52,30 +67,53 @@
       ],
       "path": "scripts/test_recommend.py",
       "reasons": [
-        "impact",
-        "recently-changed",
         "search-index"
       ],
-      "score": 26,
+      "score": 17,
       "symbols": [
         "run"
       ]
     },
     {
       "learning_score": 0,
-      "matched_terms": [
-        "game"
-      ],
-      "path": "scripts/infer_selection_guidance.py",
+      "matched_terms": [],
+      "path": "scripts/refresh_github_metadata.py",
       "reasons": [
-        "search-index"
+        "impact",
+        "recently-changed"
       ],
-      "score": 17,
+      "score": 9,
       "symbols": [
-        "_humanize",
-        "enrich",
-        "infer_guidance",
-        "main"
+        "_request_json",
+        "detect_license_text",
+        "fallback_license",
+        "fetch",
+        "fetch_contents",
+        "is_missing_repository_error",
+        "main",
+        "metadata",
+        "refresh_primary_language"
+      ]
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [],
+      "path": "scripts/test_refresh_github_metadata.py",
+      "reasons": [
+        "impact",
+        "recently-changed"
+      ],
+      "score": 9,
+      "symbols": [
+        "fake_contents",
+        "fake_fetch",
+        "http_error",
+        "run_main",
+        "test_license_fallback_reads_root_license_file",
+        "test_license_signature_detection",
+        "test_metadata_refresh_uses_license_fallback",
+        "test_missing_repo_is_recorded_but_nonfatal",
+        "test_server_error_remains_fatal"
       ]
     }
   ],

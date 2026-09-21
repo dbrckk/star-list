@@ -3,7 +3,7 @@
 - Index mode: incremental
 - Files indexed: 43
 - Files reparsed this run: 2
-- Symbols: 145
+- Symbols: 153
 - Internal import edges: 5
 - Impacted files: 2
 - Selected tests: 1
@@ -16,12 +16,12 @@
 - scripts/update_cache_health_history.py: 19 symbols
 - scripts/recommend.py: 15 symbols
 - scripts/evaluate_candidates.py: 12 symbols
+- scripts/refresh_github_metadata.py: 9 symbols
+- scripts/test_refresh_github_metadata.py: 9 symbols
 - scripts/filter_discovery_memory.py: 7 symbols
 - scripts/test_discovery_cache_stats.py: 7 symbols
 - scripts/update_history.py: 7 symbols
 - scripts/audit_catalog_quality.py: 5 symbols
-- scripts/refresh_github_metadata.py: 5 symbols
-- scripts/test_refresh_github_metadata.py: 5 symbols
 - scripts/analyze_cache_health.py: 4 symbols
 - scripts/find_replacements.py: 4 symbols
 - scripts/health_score.py: 4 symbols
@@ -44,7 +44,7 @@
 - AST index mode: incremental
 - AST files reparsed this run: 2
 - outline files retained: 43
-- top-level items retained: 582
+- top-level items retained: 593
 - direct members retained: 4
 - symbol shards: 23
 - route named symbols via ast-routing.json, then fetch one ast-symbols/<initial>.json shard

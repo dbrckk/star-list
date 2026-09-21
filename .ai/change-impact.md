@@ -1,11 +1,11 @@
 # Change impact
 
-Base: 3e728eba248c71a52f69129c204094a41297ce57
-Head: 75870e00dc0e14310f63873b9be7cb1fbe7ad40a
+Base: 2e6956d0dab9e0d84399e7e1d8ff7c5374b423bb
+Head: 311dad67a7dfeef5b77bd26003a4d48351bfbb86
 
 ## Changed files
-- M scripts/recommend.py
-- M scripts/test_recommend.py
+- M scripts/refresh_github_metadata.py
+- M scripts/test_refresh_github_metadata.py
 
 ## Affected areas
 - scripts
