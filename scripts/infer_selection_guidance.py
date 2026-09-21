@@ -70,6 +70,33 @@ CAPABILITY_BEST_FOR = {
     "fine-tuning": "model fine-tuning",
     "llm-training": "LLM training",
     "local-models": "local model workflows",
+    "api-directory": "API discovery and reference",
+    "data-sources": "data-source discovery",
+    "windows-automation": "Windows administration automation",
+    "system-tuning": "Windows system tuning",
+    "object-storage": "object storage",
+    "distributed-storage": "distributed storage systems",
+    "3d": "3D application development",
+    "webgl": "WebGL rendering",
+    "react": "React application development",
+    "accessibility": "accessibility testing and remediation",
+    "testing": "automated testing",
+    "github-actions": "GitHub Actions workflows",
+    "local-ci": "local CI validation",
+    "build-system": "build automation",
+    "ci-cd": "CI/CD pipelines",
+    "containers": "container workflows",
+    "runtime": "container runtime operations",
+    "iac": "infrastructure as code",
+    "infrastructure": "infrastructure management",
+    "ast": "AST-based code analysis",
+    "code-search": "code search and indexing",
+    "refactoring": "large-scale code refactoring",
+    "profiling": "performance profiling",
+    "python": "Python development",
+    "video": "video-generation workflows",
+    "code-quality": "code-quality automation",
+    "particles": "particle effects",
 }
 
 DOMAIN_AVOID_WHEN = {
@@ -98,13 +125,30 @@ def _humanize(value):
 def infer_guidance(repo):
     caps = list(dict.fromkeys(repo.get("capabilities", []) + repo.get("roles", [])))
     best = []
+    domain = repo.get("domain")
     for cap in caps:
-        if cap == "vector-animation":
-            phrase = (
-                "vector search and embedding retrieval"
-                if repo.get("domain") == "ai_memory"
-                else "vector animation"
-            )
+        if cap == "memory":
+            if domain == "ai_memory":
+                phrase = "retrieval and persistent-memory workflows"
+            elif domain == "ai_agents":
+                phrase = "agent memory and context retention"
+            elif domain == "productivity":
+                phrase = "knowledge retention and reference workflows"
+            elif domain == "graphics":
+                continue
+            else:
+                phrase = "stateful memory workflows"
+        elif cap == "vector-animation":
+            if domain == "ai_memory":
+                phrase = "vector search and embedding retrieval"
+            elif domain == "graphics":
+                phrase = "vector animation"
+            else:
+                continue
+        elif cap in {"market-data", "xauusd", "alpha", "risk", "regime", "backtesting", "backtest", "execution", "portfolio", "macro"} and domain not in {"trading", "data_ml"}:
+            continue
+        elif cap == "mobile" and domain == "game_dev":
+            continue
         else:
             phrase = CAPABILITY_BEST_FOR.get(cap)
         if phrase and phrase not in best:
@@ -131,19 +175,20 @@ def infer_guidance(repo):
     return best[:3], avoid[:2]
 
 
-def enrich(repos, tier="recommended"):
+def enrich(repos, tier="recommended", refresh_inferred=False):
     changed = 0
     for repo in repos:
         if repo.get("tier") != tier:
             continue
         missing_best = not repo.get("bestFor")
         missing_avoid = not repo.get("avoidWhen")
-        if not (missing_best or missing_avoid):
+        refresh = refresh_inferred and repo.get("guidanceSource") == "inferred"
+        if not (missing_best or missing_avoid or refresh):
             continue
         best, avoid = infer_guidance(repo)
-        if missing_best:
+        if missing_best or refresh:
             repo["bestFor"] = best
-        if missing_avoid:
+        if missing_avoid or refresh:
             repo["avoidWhen"] = avoid
         repo["guidanceSource"] = "inferred"
         changed += 1
@@ -154,10 +199,11 @@ def main():
     parser = argparse.ArgumentParser(description="Backfill deterministic selection guidance.")
     parser.add_argument("--tier", default="recommended", choices=["core","recommended","specialized","audit"])
     parser.add_argument("--write", action="store_true")
+    parser.add_argument("--refresh-inferred", action="store_true")
     args = parser.parse_args()
 
     data = json.loads(CATALOG.read_text())
-    changed = enrich(data.get("repositories", []), tier=args.tier)
+    changed = enrich(data.get("repositories", []), tier=args.tier, refresh_inferred=args.refresh_inferred)
     print(json.dumps({"tier": args.tier, "changed": changed}, indent=2))
     if args.write and changed:
         CATALOG.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
