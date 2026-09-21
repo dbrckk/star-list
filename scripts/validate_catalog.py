@@ -12,6 +12,7 @@ valid_tiers = {"core","recommended","specialized","audit"}
 valid_levels = {"low","medium","high"}
 valid_lifecycles = {"active","stable","reference","legacy"}
 valid_guidance_sources = {"curated","inferred"}
+valid_license_evidence = {"verified-file","no-root-license-file"}
 seen = set()
 repos = data.get("repositories", [])
 
@@ -54,6 +55,9 @@ for i, r in enumerate(repos):
     guidance_source = r.get("guidanceSource")
     if guidance_source is not None and guidance_source not in valid_guidance_sources:
         errors.append(f"{prefix}: invalid guidanceSource {guidance_source}")
+    license_evidence = r.get("licenseEvidence")
+    if license_evidence is not None and license_evidence not in valid_license_evidence:
+        errors.append(f"{prefix}: invalid licenseEvidence {license_evidence}")
 
     for field in ("capabilities","roles","bestFor","avoidWhen","alternatives","complements","languages","platforms"):
         value = r.get(field, [])
