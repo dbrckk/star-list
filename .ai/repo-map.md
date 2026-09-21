@@ -41,6 +41,7 @@ The content is organized as follows:
 .github/
   workflows/
     ai-repo-map.yml
+    license-backfill.yml
     refresh-metadata.yml
     semantic-refresh.yml
     validate.yml
@@ -141,6 +142,56 @@ concurrency:
 jobs:
   repository-standards:
     uses: dbrckk/repo-standards/.github/workflows/reusable-unified.yml@main
+````
+
+## File: .github/workflows/license-backfill.yml
+````yaml
+name: One-shot license backfill
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/license-backfill.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: one-shot-license-backfill
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Refresh metadata with license fallback
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/refresh_github_metadata.py --write
+      - name: Validate catalog
+        run: |
+          python scripts/validate_catalog.py
+          python scripts/validate_json_contract.py catalog.schema.json catalog.json
+          python scripts/test_refresh_github_metadata.py
+      - name: Commit catalog backfill
+        run: |
+          if git diff --quiet -- catalog.json; then
+            echo "No catalog changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add catalog.json
+          git commit -m "chore: backfill detected repository licenses"
+          git push
 ````
 
 ## File: .github/workflows/refresh-metadata.yml

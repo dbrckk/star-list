@@ -2,29 +2,6 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/test_refresh_github_metadata.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 445
-    },
-    {
-      "path": "scripts/refresh_github_metadata.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 370
-    },
-    {
       "path": "scripts/recommend.py",
       "reasons": [
         "recent-project-state"
@@ -32,7 +9,21 @@
       "score": 60
     },
     {
+      "path": "scripts/refresh_github_metadata.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
       "path": "scripts/test_recommend.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/test_refresh_github_metadata.py",
       "reasons": [
         "recent-project-state"
       ],

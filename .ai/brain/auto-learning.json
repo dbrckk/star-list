@@ -1,31 +1,8 @@
 {
-  "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": true,
-  "learning_result": {
-    "example_count": 10,
-    "rejected_count": 0,
-    "terms": [
-      "29",
-      "detect",
-      "files",
-      "from",
-      "github",
-      "inconclusive",
-      "is",
-      "licenses",
-      "repository",
-      "when"
-    ],
-    "test_count": 0,
-    "useful_count": 2
-  },
-  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
-  "rejected": [],
   "schema_version": 1,
-  "task": "Detect licenses from repository files when GitHub is inconclusive (#29)",
-  "tests_selected": [],
-  "useful": [
-    "scripts/refresh_github_metadata.py",
-    "scripts/test_refresh_github_metadata.py"
-  ]
+  "generated_by": "dbrckk/repo-brain-auto-learning-v1",
+  "learned": false,
+  "reason": "missing-task-or-source-change",
+  "task": "Run one-shot license backfill (#30)",
+  "useful": []
 }

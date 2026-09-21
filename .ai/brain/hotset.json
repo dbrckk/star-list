@@ -1,27 +1,11 @@
 {
   "files": [
     {
-      "path": "scripts/test_refresh_github_metadata.py",
+      "path": ".github/workflows/license-backfill.yml",
       "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
+        "changed"
       ],
-      "score": 445
-    },
-    {
-      "path": "scripts/refresh_github_metadata.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 370
+      "score": 100
     },
     {
       "path": "catalog.json",
@@ -38,7 +22,21 @@
       "score": 60
     },
     {
+      "path": "scripts/refresh_github_metadata.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
       "path": "scripts/test_recommend.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/test_refresh_github_metadata.py",
       "reasons": [
         "recent-project-state"
       ],

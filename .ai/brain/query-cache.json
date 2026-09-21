@@ -1593,6 +1593,100 @@
       },
       "task": "game engine"
     },
+    "47bf89ab135e68491dc26a398406fb75a53b4a148b209af6f498d8c2a8064281": {
+      "route": {
+        "budget": {
+          "confidence": "medium",
+          "expand_to": 12,
+          "max_files": 6,
+          "requested_max_files": 12,
+          "score_margin": 0,
+          "tier": "bounded",
+          "top_score": 17
+        },
+        "candidate_count": 4,
+        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
+        "files": [
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "game"
+            ],
+            "path": "scripts/infer_selection_guidance.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 17,
+            "symbols": [
+              "_humanize",
+              "enrich",
+              "infer_guidance",
+              "main"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "game"
+            ],
+            "path": "scripts/recommend.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 17,
+            "symbols": [
+              "activity_adjustment",
+              "choose_stack",
+              "delta",
+              "explain_repo",
+              "guidance_weight",
+              "infer_alternatives",
+              "infer_complements",
+              "infer_domains",
+              "load",
+              "main",
+              "norm",
+              "resolve_relations",
+              "score_repo",
+              "tokens",
+              "trend_adjustment"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "engine"
+            ],
+            "path": "scripts/test_recommend.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 17,
+            "symbols": [
+              "run"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": ".github/workflows/license-backfill.yml",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          }
+        ],
+        "generated_by": "dbrckk/repo-brain-v8",
+        "schema_version": 1,
+        "task": "game engine",
+        "terms": [
+          "game",
+          "engine"
+        ]
+      },
+      "task": "game engine"
+    },
     "4b7e634159c7fddded29d320230a358909a035324e59c4c9514749ef5ecbe528": {
       "route": {
         "budget": {
@@ -2486,6 +2580,41 @@
       },
       "task": "purchase billing"
     },
+    "6d191e3947d78a6f6c9897692d87a132b30d27d8926a54adada02b5197aed220": {
+      "route": {
+        "budget": {
+          "confidence": "low",
+          "expand_to": 12,
+          "max_files": 6,
+          "requested_max_files": 12,
+          "score_margin": 3,
+          "tier": "broad",
+          "top_score": 3
+        },
+        "candidate_count": 1,
+        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
+        "files": [
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": ".github/workflows/license-backfill.yml",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          }
+        ],
+        "generated_by": "dbrckk/repo-brain-v8",
+        "schema_version": 1,
+        "task": "privacy consent",
+        "terms": [
+          "privacy",
+          "consent"
+        ]
+      },
+      "task": "privacy consent"
+    },
     "6e291a1a5e7585c38c13a5db4f23a74eb467e3e620e01f2e33446a9796b095cd": {
       "route": {
         "budget": {
@@ -2811,6 +2940,41 @@
       },
       "task": "privacy consent"
     },
+    "748278be020bb5e334fe0b021d40b6af26dbfd471bcae148bb264ec966f22309": {
+      "route": {
+        "budget": {
+          "confidence": "low",
+          "expand_to": 12,
+          "max_files": 6,
+          "requested_max_files": 12,
+          "score_margin": 3,
+          "tier": "broad",
+          "top_score": 3
+        },
+        "candidate_count": 1,
+        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
+        "files": [
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": ".github/workflows/license-backfill.yml",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          }
+        ],
+        "generated_by": "dbrckk/repo-brain-v8",
+        "schema_version": 1,
+        "task": "income progression",
+        "terms": [
+          "income",
+          "progression"
+        ]
+      },
+      "task": "income progression"
+    },
     "7826b1853703679b18c4d597bff70f36cb08712c308bd939a5e84bb0e94f33e8": {
       "route": {
         "budget": {
@@ -3085,6 +3249,92 @@
         ]
       },
       "task": "privacy consent"
+    },
+    "81df6507e8cc9349a0651abc6894458c114d87603125a0231be6c620a8cdfe08": {
+      "route": {
+        "budget": {
+          "confidence": "medium",
+          "expand_to": 12,
+          "max_files": 6,
+          "requested_max_files": 12,
+          "score_margin": 0,
+          "tier": "bounded",
+          "top_score": 21
+        },
+        "candidate_count": 4,
+        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
+        "files": [
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "offline"
+            ],
+            "path": "scripts/test_discovery_cache.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 21,
+            "symbols": [
+              "not_modified",
+              "offline"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "offline"
+            ],
+            "path": "scripts/test_discovery_cache_stats.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 21,
+            "symbols": [
+              "Response",
+              "__enter__",
+              "__exit__",
+              "__init__",
+              "not_modified",
+              "offline",
+              "read"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "offline"
+            ],
+            "path": "scripts/test_pipeline_integration.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 17,
+            "symbols": [
+              "fake_enrich",
+              "fake_fetch",
+              "load"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": ".github/workflows/license-backfill.yml",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          }
+        ],
+        "generated_by": "dbrckk/repo-brain-v8",
+        "schema_version": 1,
+        "task": "offline progress",
+        "terms": [
+          "offline",
+          "progress"
+        ]
+      },
+      "task": "offline progress"
     },
     "88f40f45ec0a6de7312af7f574ad871107a86afc6801aa0ec05046d59b5449d8": {
       "route": {
@@ -3688,6 +3938,41 @@
         ]
       },
       "task": "income progression"
+    },
+    "937597ec822ba8378c6eace6c3834b23630547ca050cc50a23aff87e4fcddfc0": {
+      "route": {
+        "budget": {
+          "confidence": "low",
+          "expand_to": 12,
+          "max_files": 6,
+          "requested_max_files": 12,
+          "score_margin": 3,
+          "tier": "broad",
+          "top_score": 3
+        },
+        "candidate_count": 1,
+        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
+        "files": [
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": ".github/workflows/license-backfill.yml",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          }
+        ],
+        "generated_by": "dbrckk/repo-brain-v8",
+        "schema_version": 1,
+        "task": "purchase billing",
+        "terms": [
+          "purchase",
+          "billing"
+        ]
+      },
+      "task": "purchase billing"
     },
     "9ca0ead26a9821eac183cb0a1a298545f6fdc7e38611305093f11fcd845d4754": {
       "route": {
@@ -6641,7 +6926,12 @@
     "b0285b803de074c31cd831e31afd9280823d3a9db9618ab90c9765c4a45fb8cd",
     "cb6d44e8d67e1ccab058edb1b82b68543db51ee11dfec4b480b2a657a5bd5631",
     "8dc08656e2f4a14d2d250bb227a132b823c0a291c1a52db523544212714ac753",
-    "a65cce1047e4bffe71ab87de8a9379c8cd52ee839e289f923d1d02eab6810a3a"
+    "a65cce1047e4bffe71ab87de8a9379c8cd52ee839e289f923d1d02eab6810a3a",
+    "937597ec822ba8378c6eace6c3834b23630547ca050cc50a23aff87e4fcddfc0",
+    "748278be020bb5e334fe0b021d40b6af26dbfd471bcae148bb264ec966f22309",
+    "6d191e3947d78a6f6c9897692d87a132b30d27d8926a54adada02b5197aed220",
+    "81df6507e8cc9349a0651abc6894458c114d87603125a0231be6c620a8cdfe08",
+    "47bf89ab135e68491dc26a398406fb75a53b4a148b209af6f498d8c2a8064281"
   ],
   "schema_version": 1
 }

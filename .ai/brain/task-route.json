@@ -9,10 +9,10 @@
     "top_score": 17
   },
   "cache": {
-    "fingerprint": "a65cce1047e4bffe71ab87de8a9379c8cd52ee839e289f923d1d02eab6810a3a",
+    "fingerprint": "47bf89ab135e68491dc26a398406fb75a53b4a148b209af6f498d8c2a8064281",
     "hit": false
   },
-  "candidate_count": 5,
+  "candidate_count": 4,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -77,44 +77,12 @@
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": "scripts/refresh_github_metadata.py",
+      "path": ".github/workflows/license-backfill.yml",
       "reasons": [
-        "impact",
         "recently-changed"
       ],
-      "score": 9,
-      "symbols": [
-        "_request_json",
-        "detect_license_text",
-        "fallback_license",
-        "fetch",
-        "fetch_contents",
-        "is_missing_repository_error",
-        "main",
-        "metadata",
-        "refresh_primary_language"
-      ]
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [],
-      "path": "scripts/test_refresh_github_metadata.py",
-      "reasons": [
-        "impact",
-        "recently-changed"
-      ],
-      "score": 9,
-      "symbols": [
-        "fake_contents",
-        "fake_fetch",
-        "http_error",
-        "run_main",
-        "test_license_fallback_reads_root_license_file",
-        "test_license_signature_detection",
-        "test_metadata_refresh_uses_license_fallback",
-        "test_missing_repo_is_recorded_but_nonfatal",
-        "test_server_error_remains_fatal"
-      ]
+      "score": 3,
+      "symbols": []
     }
   ],
   "generated_by": "dbrckk/repo-brain-v8",
