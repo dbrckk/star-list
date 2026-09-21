@@ -30,6 +30,26 @@ jobs:
         run: |
           python scripts/validate_catalog.py
           python scripts/test_recommend.py
+      - name: Build catalog quality audit
+        run: |
+          python scripts/audit_catalog_quality.py --markdown-output catalog-quality.md > catalog-quality.json
+          python scripts/validate_json_contract.py schemas/catalog-quality.schema.json catalog-quality.json
+      - name: Publish catalog quality audit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REVIEW=$(python -c "import json; print(json.load(open('catalog-quality.json'))['summary']['review'])")
+          INFO=$(python -c "import json; print(json.load(open('catalog-quality.json'))['summary']['info'])")
+          TOTAL=$(python -c "import json; print(json.load(open('catalog-quality.json'))['summary']['findings'])")
+          MARKER='<!-- star-list-catalog-quality -->'
+          EXISTING=$(gh issue list --state open --search "$MARKER in:body" --json number --jq '.[0].number // empty')
+          if [ "$TOTAL" = "0" ]; then
+            if [ -n "$EXISTING" ]; then gh issue close "$EXISTING" --comment "Catalog quality audit is clean."; fi
+          elif [ -n "$EXISTING" ]; then
+            gh issue edit "$EXISTING" --title "Catalog quality: $REVIEW review / $INFO info" --body-file catalog-quality.md
+          else
+            gh issue create --title "Catalog quality: $REVIEW review / $INFO info" --body-file catalog-quality.md --label maintenance || gh issue create --title "Catalog quality: $REVIEW review / $INFO info" --body-file catalog-quality.md
+          fi
       - name: Build current health snapshot and drift report
         run: |
           python scripts/health_score.py > health-snapshot-current.json
