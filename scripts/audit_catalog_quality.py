@@ -87,13 +87,18 @@ def analyze(repos, stale_days=730, now=None):
 
             license_name = gh.get("license")
             if license_name in (None, "", "NOASSERTION"):
-                if entry.get("licenseEvidence") == "no-root-license-file":
-                    add(
-                        name,
-                        "info",
-                        "license-file-missing",
-                        "No root-level license file was found; license remains unresolved.",
-                    )
+                license_status = entry.get("licenseStatus")
+                status_messages = {
+                    "custom-restrictive": ("license-custom-restrictive", "Repository declares custom/restrictive licensing terms."),
+                    "partial": ("license-partial", "Licensing applies only to part of the repository content."),
+                    "external-terms": ("license-external-terms", "Usage is governed by external licensing or registration terms."),
+                    "not-found": ("license-not-found", "No reliable repository license declaration was found."),
+                }
+                if license_status in status_messages:
+                    code, message = status_messages[license_status]
+                    add(name, "info", code, message)
+                elif entry.get("licenseEvidence") == "no-root-license-file":
+                    add(name, "info", "license-file-missing", "No root-level license file was found; license remains unresolved.")
                 else:
                     add(name, "info", "license-unknown", "GitHub license metadata is unknown.")
 
