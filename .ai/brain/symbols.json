@@ -78,6 +78,20 @@
       "line": 166
     },
     {
+      "file": "scripts/backfill_licenses.py",
+      "language": "python",
+      "kind": "function",
+      "name": "backfill",
+      "line": 15
+    },
+    {
+      "file": "scripts/backfill_licenses.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 34
+    },
+    {
       "file": "scripts/build_discovery_watchlist.py",
       "language": "python",
       "kind": "function",
@@ -701,6 +715,13 @@
       "line": 43
     },
     {
+      "file": "scripts/test_backfill_licenses.py",
+      "language": "python",
+      "kind": "function",
+      "name": "resolver",
+      "line": 18
+    },
+    {
       "file": "scripts/test_degraded_inputs.py",
       "language": "python",
       "kind": "function",
@@ -858,8 +879,15 @@
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
+      "name": "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
+      "line": 143
+    },
+    {
+      "file": "scripts/test_refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
       "name": "test_server_error_remains_fatal",
-      "line": 142
+      "line": 176
     },
     {
       "file": "scripts/update_cache_health_history.py",

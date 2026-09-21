@@ -1,13 +1,16 @@
 # Change impact
 
-Base: e49cdc9c3a5fa2b299741c7a81b86bff66dd42cf
-Head: 5bbfee6cc7a46541ca66fdd7c4c53efbe063bbe4
+Base: e7e9468383fcf9bbf0d738a7da2e8674bd3b2cb4
+Head: 765a6d947b6fcdb55c7752197d73a3cc2e99d014
 
 ## Changed files
-- A .github/workflows/license-backfill.yml
+- M catalog.json
+- M scripts/refresh_github_metadata.py
+- M scripts/test_refresh_github_metadata.py
 
 ## Affected areas
-- .github
+- (root)
+- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.

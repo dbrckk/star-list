@@ -2,32 +2,49 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/recommend.py",
+      "path": "scripts/test_refresh_github_metadata.py",
       "reasons": [
-        "recent-project-state"
+        "changed",
+        "changed-source",
+        "impact",
+        "reverse-dependency-neighbor",
+        "selected-test",
+        "symbol-indexed"
       ],
-      "score": 60
+      "score": 450
     },
     {
       "path": "scripts/refresh_github_metadata.py",
       "reasons": [
-        "recent-project-state"
+        "changed",
+        "changed-source",
+        "dependency-neighbor",
+        "impact",
+        "symbol-indexed"
       ],
-      "score": 60
+      "score": 395
     },
     {
-      "path": "scripts/test_recommend.py",
+      "path": "scripts/test_backfill_licenses.py",
       "reasons": [
-        "recent-project-state"
+        "changed",
+        "changed-source",
+        "impact",
+        "selected-test",
+        "symbol-indexed"
       ],
-      "score": 60
+      "score": 375
     },
     {
-      "path": "scripts/test_refresh_github_metadata.py",
+      "path": "scripts/backfill_licenses.py",
       "reasons": [
-        "recent-project-state"
+        "changed",
+        "changed-source",
+        "impact",
+        "reverse-dependency-neighbor",
+        "symbol-indexed"
       ],
-      "score": 60
+      "score": 340
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

@@ -1,7 +1,66 @@
 {
   "files": [
     {
+      "path": "scripts/test_refresh_github_metadata.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "reverse-dependency-neighbor",
+        "selected-test",
+        "symbol-indexed"
+      ],
+      "score": 450
+    },
+    {
+      "path": "scripts/refresh_github_metadata.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "dependency-neighbor",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 395
+    },
+    {
+      "path": "scripts/test_backfill_licenses.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "selected-test",
+        "symbol-indexed"
+      ],
+      "score": 375
+    },
+    {
+      "path": "scripts/backfill_licenses.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "reverse-dependency-neighbor",
+        "symbol-indexed"
+      ],
+      "score": 340
+    },
+    {
       "path": ".github/workflows/license-backfill.yml",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": ".github/workflows/validate.yml",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "cache-health-history.json",
       "reasons": [
         "changed"
       ],
@@ -10,37 +69,30 @@
     {
       "path": "catalog.json",
       "reasons": [
-        "recent-project-state"
+        "changed"
       ],
-      "score": 60
+      "score": 100
     },
     {
-      "path": "scripts/recommend.py",
+      "path": "discovery-memory.json",
       "reasons": [
-        "recent-project-state"
+        "changed"
       ],
-      "score": 60
+      "score": 100
     },
     {
-      "path": "scripts/refresh_github_metadata.py",
+      "path": "health-snapshot.json",
       "reasons": [
-        "recent-project-state"
+        "changed"
       ],
-      "score": 60
+      "score": 100
     },
     {
-      "path": "scripts/test_recommend.py",
+      "path": "history.json",
       "reasons": [
-        "recent-project-state"
+        "changed"
       ],
-      "score": 60
-    },
-    {
-      "path": "scripts/test_refresh_github_metadata.py",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
+      "score": 100
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

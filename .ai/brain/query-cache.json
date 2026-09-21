@@ -1050,6 +1050,138 @@
       },
       "task": "offline progress"
     },
+    "30dc1fde3871413c4777a174f038c87c5bc892f217297e8cf6c68c92b5cfc0e4": {
+      "route": {
+        "budget": {
+          "confidence": "medium",
+          "expand_to": 12,
+          "max_files": 6,
+          "requested_max_files": 12,
+          "score_margin": 0,
+          "tier": "bounded",
+          "top_score": 17
+        },
+        "candidate_count": 14,
+        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
+        "files": [
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "game"
+            ],
+            "path": "scripts/infer_selection_guidance.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 17,
+            "symbols": [
+              "_humanize",
+              "enrich",
+              "infer_guidance",
+              "main"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "game"
+            ],
+            "path": "scripts/recommend.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 17,
+            "symbols": [
+              "activity_adjustment",
+              "choose_stack",
+              "delta",
+              "explain_repo",
+              "guidance_weight",
+              "infer_alternatives",
+              "infer_complements",
+              "infer_domains",
+              "load",
+              "main",
+              "norm",
+              "resolve_relations",
+              "score_repo",
+              "tokens",
+              "trend_adjustment"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "engine"
+            ],
+            "path": "scripts/test_recommend.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 17,
+            "symbols": [
+              "run"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/backfill_licenses.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "backfill",
+              "main"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/refresh_github_metadata.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "_request_json",
+              "detect_license_text",
+              "fallback_license",
+              "fetch",
+              "fetch_contents",
+              "is_missing_repository_error",
+              "main",
+              "metadata",
+              "refresh_primary_language"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/test_backfill_licenses.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "resolver"
+            ]
+          }
+        ],
+        "generated_by": "dbrckk/repo-brain-v8",
+        "schema_version": 1,
+        "task": "game engine",
+        "terms": [
+          "game",
+          "engine"
+        ]
+      },
+      "task": "game engine"
+    },
     "3205fa2107f5ae974b219c899b5a9810fa41fdb4d92a59c9400366b0dcedccbe": {
       "route": {
         "budget": {
@@ -2046,6 +2178,130 @@
         ]
       },
       "task": "income progression"
+    },
+    "56a4e8fc21c94ec4f9ca0d0400cdc6d528f9c1c37c95eccf82d89ef5fac412c6": {
+      "route": {
+        "budget": {
+          "confidence": "medium",
+          "expand_to": 12,
+          "max_files": 6,
+          "requested_max_files": 12,
+          "score_margin": 0,
+          "tier": "bounded",
+          "top_score": 21
+        },
+        "candidate_count": 14,
+        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
+        "files": [
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "offline"
+            ],
+            "path": "scripts/test_discovery_cache.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 21,
+            "symbols": [
+              "not_modified",
+              "offline"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "offline"
+            ],
+            "path": "scripts/test_discovery_cache_stats.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 21,
+            "symbols": [
+              "Response",
+              "__enter__",
+              "__exit__",
+              "__init__",
+              "not_modified",
+              "offline",
+              "read"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "offline"
+            ],
+            "path": "scripts/test_pipeline_integration.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 17,
+            "symbols": [
+              "fake_enrich",
+              "fake_fetch",
+              "load"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/backfill_licenses.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "backfill",
+              "main"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/refresh_github_metadata.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "_request_json",
+              "detect_license_text",
+              "fallback_license",
+              "fetch",
+              "fetch_contents",
+              "is_missing_repository_error",
+              "main",
+              "metadata",
+              "refresh_primary_language"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/test_backfill_licenses.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "resolver"
+            ]
+          }
+        ],
+        "generated_by": "dbrckk/repo-brain-v8",
+        "schema_version": 1,
+        "task": "offline progress",
+        "terms": [
+          "offline",
+          "progress"
+        ]
+      },
+      "task": "offline progress"
     },
     "5d11eaa57508cc741b8637393f6f54fb0d116c7ae91673713018607af70fdf24": {
       "route": {
@@ -3598,6 +3854,121 @@
         ]
       },
       "task": "offline progress"
+    },
+    "8b27d787cc8b2f5fe591682509d5c385aec68becb002544a5e7b477aa28ec3c7": {
+      "route": {
+        "budget": {
+          "confidence": "low",
+          "expand_to": 12,
+          "max_files": 6,
+          "requested_max_files": 12,
+          "score_margin": 0,
+          "tier": "broad",
+          "top_score": 9
+        },
+        "candidate_count": 11,
+        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
+        "files": [
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/backfill_licenses.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "backfill",
+              "main"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/refresh_github_metadata.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "_request_json",
+              "detect_license_text",
+              "fallback_license",
+              "fetch",
+              "fetch_contents",
+              "is_missing_repository_error",
+              "main",
+              "metadata",
+              "refresh_primary_language"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/test_backfill_licenses.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "resolver"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/test_refresh_github_metadata.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "fake_contents",
+              "fake_fetch",
+              "http_error",
+              "run_main",
+              "test_license_fallback_reads_root_license_file",
+              "test_license_signature_detection",
+              "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
+              "test_metadata_refresh_uses_license_fallback",
+              "test_missing_repo_is_recorded_but_nonfatal",
+              "test_server_error_remains_fatal"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": ".github/workflows/license-backfill.yml",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": ".github/workflows/validate.yml",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          }
+        ],
+        "generated_by": "dbrckk/repo-brain-v8",
+        "schema_version": 1,
+        "task": "purchase billing",
+        "terms": [
+          "purchase",
+          "billing"
+        ]
+      },
+      "task": "purchase billing"
     },
     "8dc08656e2f4a14d2d250bb227a132b823c0a291c1a52db523544212714ac753": {
       "route": {
@@ -5338,6 +5709,121 @@
       },
       "task": "game engine"
     },
+    "c863726c337435e443af0b98025a5acf32f0a411d211c104b4ab6c45a2052416": {
+      "route": {
+        "budget": {
+          "confidence": "low",
+          "expand_to": 12,
+          "max_files": 6,
+          "requested_max_files": 12,
+          "score_margin": 0,
+          "tier": "broad",
+          "top_score": 9
+        },
+        "candidate_count": 11,
+        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
+        "files": [
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/backfill_licenses.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "backfill",
+              "main"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/refresh_github_metadata.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "_request_json",
+              "detect_license_text",
+              "fallback_license",
+              "fetch",
+              "fetch_contents",
+              "is_missing_repository_error",
+              "main",
+              "metadata",
+              "refresh_primary_language"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/test_backfill_licenses.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "resolver"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/test_refresh_github_metadata.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "fake_contents",
+              "fake_fetch",
+              "http_error",
+              "run_main",
+              "test_license_fallback_reads_root_license_file",
+              "test_license_signature_detection",
+              "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
+              "test_metadata_refresh_uses_license_fallback",
+              "test_missing_repo_is_recorded_but_nonfatal",
+              "test_server_error_remains_fatal"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": ".github/workflows/license-backfill.yml",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": ".github/workflows/validate.yml",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          }
+        ],
+        "generated_by": "dbrckk/repo-brain-v8",
+        "schema_version": 1,
+        "task": "privacy consent",
+        "terms": [
+          "privacy",
+          "consent"
+        ]
+      },
+      "task": "privacy consent"
+    },
     "cb6d44e8d67e1ccab058edb1b82b68543db51ee11dfec4b480b2a657a5bd5631": {
       "route": {
         "budget": {
@@ -5960,6 +6446,121 @@
         ]
       },
       "task": "offline progress"
+    },
+    "e140310852f0f4d859fc094f790bb44019291cd51e471e63f8e973a56c0a77a4": {
+      "route": {
+        "budget": {
+          "confidence": "low",
+          "expand_to": 12,
+          "max_files": 6,
+          "requested_max_files": 12,
+          "score_margin": 0,
+          "tier": "broad",
+          "top_score": 9
+        },
+        "candidate_count": 11,
+        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
+        "files": [
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/backfill_licenses.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "backfill",
+              "main"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/refresh_github_metadata.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "_request_json",
+              "detect_license_text",
+              "fallback_license",
+              "fetch",
+              "fetch_contents",
+              "is_missing_repository_error",
+              "main",
+              "metadata",
+              "refresh_primary_language"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/test_backfill_licenses.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "resolver"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/test_refresh_github_metadata.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "fake_contents",
+              "fake_fetch",
+              "http_error",
+              "run_main",
+              "test_license_fallback_reads_root_license_file",
+              "test_license_signature_detection",
+              "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
+              "test_metadata_refresh_uses_license_fallback",
+              "test_missing_repo_is_recorded_but_nonfatal",
+              "test_server_error_remains_fatal"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": ".github/workflows/license-backfill.yml",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": ".github/workflows/validate.yml",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          }
+        ],
+        "generated_by": "dbrckk/repo-brain-v8",
+        "schema_version": 1,
+        "task": "income progression",
+        "terms": [
+          "income",
+          "progression"
+        ]
+      },
+      "task": "income progression"
     },
     "e2bed7854de7abc3b8578a5aa6320ffebd6d91b2ae9b309bfdf1ba59ed7ade26": {
       "route": {
@@ -6931,7 +7532,12 @@
     "748278be020bb5e334fe0b021d40b6af26dbfd471bcae148bb264ec966f22309",
     "6d191e3947d78a6f6c9897692d87a132b30d27d8926a54adada02b5197aed220",
     "81df6507e8cc9349a0651abc6894458c114d87603125a0231be6c620a8cdfe08",
-    "47bf89ab135e68491dc26a398406fb75a53b4a148b209af6f498d8c2a8064281"
+    "47bf89ab135e68491dc26a398406fb75a53b4a148b209af6f498d8c2a8064281",
+    "8b27d787cc8b2f5fe591682509d5c385aec68becb002544a5e7b477aa28ec3c7",
+    "e140310852f0f4d859fc094f790bb44019291cd51e471e63f8e973a56c0a77a4",
+    "c863726c337435e443af0b98025a5acf32f0a411d211c104b4ab6c45a2052416",
+    "56a4e8fc21c94ec4f9ca0d0400cdc6d528f9c1c37c95eccf82d89ef5fac412c6",
+    "30dc1fde3871413c4777a174f038c87c5bc892f217297e8cf6c68c92b5cfc0e4"
   ],
   "schema_version": 1
 }

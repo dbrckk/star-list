@@ -22,22 +22,27 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-21T08:52:55Z
+Generated: 2026-09-21T16:12:49Z
 
 ### Git
 - Branch: `main`
-- Head: `5bbfee6cc7a4`
-- Commit date: 2026-09-21T10:52:45+02:00
-- Commit: Run one-shot license backfill (#30)
-- Tracked files: 187
+- Head: `765a6d947b6f`
+- Commit date: 2026-09-21T18:12:38+02:00
+- Commit: Verify license metadata from repository files (#33)
+- Tracked files: 189
 
 ### Recently changed files
-- `.github/workflows/license-backfill.yml`
+- `catalog.json`
 - `scripts/refresh_github_metadata.py`
 - `scripts/test_refresh_github_metadata.py`
-- `scripts/recommend.py`
-- `scripts/test_recommend.py`
-- `catalog.json`
+- `cache-health-history.json`
+- `discovery-memory.json`
+- `health-snapshot.json`
+- `history.json`
+- `.github/workflows/license-backfill.yml`
+- `.github/workflows/validate.yml`
+- `scripts/backfill_licenses.py`
+- `scripts/test_backfill_licenses.py`
 
 ### Project signals
 - No common build descriptor detected

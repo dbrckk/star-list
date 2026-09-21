@@ -182,6 +182,26 @@
         "scripts/refresh_github_metadata.py",
         "scripts/test_refresh_github_metadata.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "Verify license metadata from repository files (#33)",
+      "terms": [
+        "33",
+        "files",
+        "from",
+        "license",
+        "metadata",
+        "repository",
+        "verify"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/backfill_licenses.py",
+        "scripts/refresh_github_metadata.py",
+        "scripts/test_backfill_licenses.py",
+        "scripts/test_refresh_github_metadata.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -232,6 +252,12 @@
     },
     "29": {
       "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4
+    },
+    "33": {
+      "scripts/backfill_licenses.py": 4,
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_backfill_licenses.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
     },
     "add": {
@@ -304,19 +330,23 @@
       "scripts/test_recommend.py": 4
     },
     "files": {
-      "scripts/refresh_github_metadata.py": 4,
-      "scripts/test_refresh_github_metadata.py": 4
+      "scripts/backfill_licenses.py": 4,
+      "scripts/refresh_github_metadata.py": 8,
+      "scripts/test_backfill_licenses.py": 4,
+      "scripts/test_refresh_github_metadata.py": 8
     },
     "from": {
+      "scripts/backfill_licenses.py": 4,
       "scripts/discover_candidates.py": 4,
       "scripts/find_replacements.py": 4,
       "scripts/recommend.py": 4,
-      "scripts/refresh_github_metadata.py": 8,
+      "scripts/refresh_github_metadata.py": 12,
+      "scripts/test_backfill_licenses.py": 4,
       "scripts/test_discovery_cache.py": 4,
       "scripts/test_find_replacements.py": 4,
       "scripts/test_json_contracts.py": 4,
       "scripts/test_recommend.py": 4,
-      "scripts/test_refresh_github_metadata.py": 8,
+      "scripts/test_refresh_github_metadata.py": 12,
       "scripts/validate_json_contract.py": 4
     },
     "github": {
@@ -346,6 +376,12 @@
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
     },
+    "license": {
+      "scripts/backfill_licenses.py": 4,
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_backfill_licenses.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4
+    },
     "licenses": {
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
@@ -367,9 +403,13 @@
     },
     "metadata": {
       "scripts/audit_catalog_quality.py": 4,
+      "scripts/backfill_licenses.py": 4,
       "scripts/recommend.py": 4,
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_backfill_licenses.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_recommend.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4,
       "scripts/validate_catalog.py": 4
     },
     "pull": {
@@ -413,8 +453,10 @@
       "scripts/validate_catalog.py": 12
     },
     "repository": {
-      "scripts/refresh_github_metadata.py": 4,
-      "scripts/test_refresh_github_metadata.py": 4
+      "scripts/backfill_licenses.py": 4,
+      "scripts/refresh_github_metadata.py": 8,
+      "scripts/test_backfill_licenses.py": 4,
+      "scripts/test_refresh_github_metadata.py": 8
     },
     "request": {
       "scripts/discover_candidates.py": 4,
@@ -446,6 +488,12 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
+    },
+    "verify": {
+      "scripts/backfill_licenses.py": 4,
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_backfill_licenses.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4
     },
     "weight": {
       "scripts/recommend.py": 4,

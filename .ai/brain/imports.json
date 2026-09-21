@@ -19,6 +19,13 @@
       "json",
       "pathlib"
     ],
+    "scripts/backfill_licenses.py": [
+      "argparse",
+      "json",
+      "os",
+      "pathlib",
+      "refresh_github_metadata"
+    ],
     "scripts/build_discovery_watchlist.py": [
       "argparse",
       "json",
@@ -112,6 +119,10 @@
       "pathlib"
     ],
     "scripts/test_analyze_coverage.py": [
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/test_backfill_licenses.py": [
       "importlib.util",
       "pathlib"
     ],

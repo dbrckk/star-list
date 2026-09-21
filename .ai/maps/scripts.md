@@ -41,6 +41,7 @@ The content is organized as follows:
 analyze_cache_health.py
 analyze_coverage.py
 audit_catalog_quality.py
+backfill_licenses.py
 build_discovery_watchlist.py
 catalog_stats.py
 detect_health_drift.py
@@ -55,6 +56,7 @@ refresh_github_metadata.py
 render_discovery_issue.py
 render_health_issue.py
 test_analyze_coverage.py
+test_backfill_licenses.py
 test_cache_health_history.py
 test_cache_health.py
 test_catalog_quality.py
@@ -222,6 +224,39 @@ args = parser.parse_args()
 ⋮----
 repos = json.loads(CATALOG.read_text()).get("repositories", [])
 report = analyze(repos, stale_days=args.stale_days)
+```
+
+## File: backfill_licenses.py
+```python
+#!/usr/bin/env python3
+"""Backfill only unknown repository licenses using conservative root-file detection."""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+CATALOG = ROOT / "catalog.json"
+UNKNOWN = {None, "", "NOASSERTION"}
+⋮----
+def backfill(repos, resolver, token=None)
+⋮----
+changed = []
+checked = 0
+⋮----
+github = repo.get("github")
+⋮----
+name = repo.get("repo")
+branch = github.get("defaultBranch")
+⋮----
+detected = resolver(name, branch, token)
+⋮----
+def main()
+⋮----
+parser = argparse.ArgumentParser(description="Backfill unknown licenses without refreshing unrelated metadata.")
+⋮----
+args = parser.parse_args()
+⋮----
+data = json.loads(CATALOG.read_text())
+token = os.environ.get("GITHUB_TOKEN")
+⋮----
+result = {"checked": checked, "changed": len(changed), "licenses": changed}
 ```
 
 ## File: build_discovery_watchlist.py
@@ -998,6 +1033,9 @@ fresh = metadata(raw)
 ⋮----
 detected = fallback_license(name, raw.get("default_branch"), token)
 ⋮----
+current_github = r.get("github")
+current_license = current_github.get("license") if isinstance(current_github, dict) else None
+⋮----
 failure = {"repo":name,"error":str(e)}
 ```
 
@@ -1069,6 +1107,20 @@ spec=importlib.util.spec_from_file_location("coverage",SCRIPT)
 mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 repos=[
 r=mod.analyze(repos,min_domain=2,min_capability=2)
+```
+
+## File: test_backfill_licenses.py
+```python
+#!/usr/bin/env python3
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+SCRIPT = ROOT / "scripts" / "backfill_licenses.py"
+spec = importlib.util.spec_from_file_location("backfill_licenses", SCRIPT)
+mod = importlib.util.module_from_spec(spec)
+⋮----
+repos = [
+seen = []
+def resolver(repo, branch, token=None)
 ```
 
 ## File: test_cache_health_history.py
@@ -1545,6 +1597,8 @@ def fake_contents(repo, path="", ref=None, token=None, retries=2)
 content = base64.b64encode(
 ⋮----
 def test_metadata_refresh_uses_license_fallback()
+⋮----
+def test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive()
 ⋮----
 def test_server_error_remains_fatal()
 ```

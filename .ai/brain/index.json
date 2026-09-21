@@ -1,14 +1,14 @@
 {
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
-  "files_indexed": 43,
-  "symbol_count": 153,
-  "edge_count": 5,
+  "files_indexed": 45,
+  "symbol_count": 157,
+  "edge_count": 6,
   "languages": {
-    "python": 43
+    "python": 45
   },
   "index_mode": "incremental",
-  "reparsed_files": 0,
+  "reparsed_files": 4,
   "top_symbol_files": [
     {
       "file": "scripts/discover_candidates.py",
@@ -27,11 +27,11 @@
       "symbols": 12
     },
     {
-      "file": "scripts/refresh_github_metadata.py",
-      "symbols": 9
+      "file": "scripts/test_refresh_github_metadata.py",
+      "symbols": 10
     },
     {
-      "file": "scripts/test_refresh_github_metadata.py",
+      "file": "scripts/refresh_github_metadata.py",
       "symbols": 9
     },
     {
@@ -87,6 +87,10 @@
       "symbols": 2
     },
     {
+      "file": "scripts/backfill_licenses.py",
+      "symbols": 2
+    },
+    {
       "file": "scripts/build_discovery_watchlist.py",
       "symbols": 2
     },
@@ -100,6 +104,10 @@
     },
     {
       "file": "scripts/catalog_stats.py",
+      "symbols": 1
+    },
+    {
+      "file": "scripts/test_backfill_licenses.py",
       "symbols": 1
     },
     {

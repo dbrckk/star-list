@@ -7,6 +7,11 @@
       "type": "imports"
     },
     {
+      "source": "scripts/backfill_licenses.py",
+      "target": "scripts/refresh_github_metadata.py",
+      "type": "imports"
+    },
+    {
       "source": "scripts/find_replacements.py",
       "target": "scripts/health_score.py",
       "type": "imports"
