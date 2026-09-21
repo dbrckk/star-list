@@ -170,6 +170,11 @@ def main():
                 detected = fallback_license(name, raw.get("default_branch"), token)
                 if detected:
                     fresh["license"] = detected
+                else:
+                    current_github = r.get("github")
+                    current_license = current_github.get("license") if isinstance(current_github, dict) else None
+                    if current_license not in (None, "", "NOASSERTION"):
+                        fresh["license"] = current_license
             refresh_primary_language(r, raw)
             if r.get("github") != fresh:
                 r["github"] = fresh

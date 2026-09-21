@@ -139,6 +139,40 @@ def test_metadata_refresh_uses_license_fallback():
         assert written["repositories"][0]["github"]["license"] == "MIT"
 
 
+
+def test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive():
+    with tempfile.TemporaryDirectory() as tmp:
+        catalog = Path(tmp) / "catalog.json"
+        catalog.write_text(json.dumps({
+            "metadata": {},
+            "repositories": [{
+                "repo": "x/repo",
+                "github": {"license": "Custom Verified License"},
+                "languages": ["python"],
+            }],
+        }))
+        old_catalog, old_fetch, old_fallback = refresh.CATALOG, refresh.fetch, refresh.fallback_license
+        try:
+            refresh.CATALOG = catalog
+            refresh.fetch = lambda repo, token=None, retries=2: {
+                "stargazers_count": 10,
+                "forks_count": 2,
+                "open_issues_count": 1,
+                "archived": False,
+                "disabled": False,
+                "default_branch": "main",
+                "license": {"spdx_id": "NOASSERTION"},
+                "pushed_at": "2026-09-20T00:00:00Z",
+                "language": "Python",
+            }
+            refresh.fallback_license = lambda repo, default_branch, token=None: None
+            run_main(["--write"])
+        finally:
+            refresh.CATALOG, refresh.fetch, refresh.fallback_license = old_catalog, old_fetch, old_fallback
+        written = json.loads(catalog.read_text())
+        assert written["repositories"][0]["github"]["license"] == "Custom Verified License"
+
+
 def test_server_error_remains_fatal():
     with tempfile.TemporaryDirectory() as tmp:
         catalog = Path(tmp) / "catalog.json"
@@ -168,5 +202,6 @@ if __name__ == "__main__":
     test_license_signature_detection()
     test_license_fallback_reads_root_license_file()
     test_metadata_refresh_uses_license_fallback()
+    test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive()
     test_server_error_remains_fatal()
     print("refresh metadata resilience tests passed")
