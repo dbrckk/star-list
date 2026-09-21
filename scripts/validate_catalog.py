@@ -10,6 +10,7 @@ valid_domains = {"ai_agents","ai_memory","ai_media","software_engineering","web_
 valid_roles = {"data","alpha","regime","backtest","risk","execution","portfolio","xauusd","macro","ml","microstructure","performance","volatility","optimization","forecasting","feature-engineering","derivatives","diagnostic","feature-selection","filtering"}
 valid_tiers = {"core","recommended","specialized","audit"}
 valid_levels = {"low","medium","high"}
+valid_lifecycles = {"active","stable","reference","legacy"}
 seen = set()
 repos = data.get("repositories", [])
 
@@ -40,6 +41,10 @@ for i, r in enumerate(repos):
     domain = r.get("domain")
     if domain not in valid_domains:
         errors.append(f"{prefix}: invalid domain {domain}")
+
+    lifecycle = r.get("lifecycle")
+    if lifecycle is not None and lifecycle not in valid_lifecycles:
+        errors.append(f"{prefix}: invalid lifecycle {lifecycle}")
 
     for field in ("capabilities","roles","bestFor","avoidWhen","alternatives","complements","languages","platforms"):
         value = r.get(field, [])
