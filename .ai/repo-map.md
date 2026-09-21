@@ -1484,7 +1484,7 @@ qtokens = tokens(args.query)
 domains = set(args.domain) or infer_domains(qtokens)
 ⋮----
 ranked = []
-filtered = {"platform":0, "language":0, "selfHosted":0, "inactive":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
+filtered = {"platform":0, "language":0, "selfHosted":0, "inactive":0, "audit":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
 ⋮----
 gh = r.get("github", {})
 ⋮----
@@ -2039,6 +2039,10 @@ domains = set(data["inferredDomains"])
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 ⋮----
 high_threshold = run("ai agent", "--min-score", "1000")
+⋮----
+default_audit = run("ponytail agent", "--top", "20")
+⋮----
+with_audit = run("ponytail agent", "--top", "20", "--include-audit")
 ⋮----
 spec = importlib.util.spec_from_file_location("recommend", SCRIPT)
 mod = importlib.util.module_from_spec(spec)

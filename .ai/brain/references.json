@@ -80,13 +80,13 @@
         },
         {
           "file": "scripts/recommend.py",
-          "line": 184,
+          "line": 185,
           "preview": "qtokens = tokens(args.query)",
           "definition_candidate": false
         },
         {
           "file": "scripts/test_recommend.py",
-          "line": 53,
+          "line": 62,
           "preview": "qtokens = mod.tokens(\"specialized phrase\")",
           "definition_candidate": false
         }
@@ -127,7 +127,7 @@
         },
         {
           "file": "scripts/recommend.py",
-          "line": 183,
+          "line": 184,
           "preview": "repos, stacks = load()",
           "definition_candidate": false
         },
@@ -240,7 +240,7 @@
         },
         {
           "file": "scripts/recommend.py",
-          "line": 185,
+          "line": 186,
           "preview": "domains = set(args.domain) or infer_domains(qtokens)",
           "definition_candidate": false
         }
@@ -275,19 +275,19 @@
         },
         {
           "file": "scripts/test_recommend.py",
-          "line": 38,
+          "line": 47,
           "preview": "assert mod.activity_adjustment({\"github\":{\"archived\":True}})[0] == -30.0",
           "definition_candidate": false
         },
         {
           "file": "scripts/test_recommend.py",
-          "line": 39,
+          "line": 48,
           "preview": "assert mod.activity_adjustment({\"github\":{\"disabled\":True}})[0] == -30.0",
           "definition_candidate": false
         },
         {
           "file": "scripts/test_recommend.py",
-          "line": 40,
+          "line": 49,
           "preview": "assert mod.activity_adjustment({}) == (0.0, None)",
           "definition_candidate": false
         }
@@ -322,13 +322,13 @@
         },
         {
           "file": "scripts/test_recommend.py",
-          "line": 41,
+          "line": 50,
           "preview": "assert mod.trend_adjustment(\"definitely/not-in-history\")[0] == 0.0",
           "definition_candidate": false
         },
         {
           "file": "scripts/test_recommend.py",
-          "line": 42,
+          "line": 51,
           "preview": "assert -6.0 <= mod.trend_adjustment(\"definitely/not-in-history\")[0] <= 6.0",
           "definition_candidate": false
         }
@@ -458,25 +458,25 @@
         },
         {
           "file": "scripts/test_recommend.py",
-          "line": 43,
+          "line": 52,
           "preview": "assert mod.guidance_weight({\"guidanceSource\":\"curated\"}) == 1.0",
           "definition_candidate": false
         },
         {
           "file": "scripts/test_recommend.py",
-          "line": 44,
+          "line": 53,
           "preview": "assert mod.guidance_weight({\"guidanceSource\":\"inferred\"}) == 0.55",
           "definition_candidate": false
         },
         {
           "file": "scripts/test_recommend.py",
-          "line": 45,
+          "line": 54,
           "preview": "assert mod.guidance_weight({\"guidanceSource\":\"inferred\", \"tier\":\"specialized\"}) == 0.35",
           "definition_candidate": false
         },
         {
           "file": "scripts/test_recommend.py",
-          "line": 46,
+          "line": 55,
           "preview": "assert mod.guidance_weight({}) == 1.0",
           "definition_candidate": false
         }
@@ -499,13 +499,13 @@
         },
         {
           "file": "scripts/recommend.py",
-          "line": 207,
+          "line": 211,
           "preview": "s = score_repo(r, qtokens, domains, required_caps, excluded_caps)",
           "definition_candidate": false
         },
         {
           "file": "scripts/test_recommend.py",
-          "line": 56,
+          "line": 65,
           "preview": "assert mod.score_repo(curated, qtokens, set(), set(), set()) > mod.score_repo(inferred, qtokens, set(), set(), set())",
           "definition_candidate": false
         }
@@ -528,7 +528,7 @@
         },
         {
           "file": "scripts/recommend.py",
-          "line": 226,
+          "line": 230,
           "preview": "\"why\": explain_repo(r, qtokens, domains, required_caps),",
           "definition_candidate": false
         }
@@ -551,7 +551,7 @@
         },
         {
           "file": "scripts/recommend.py",
-          "line": 237,
+          "line": 242,
           "preview": "\"recommendedStack\": choose_stack(stacks, qtokens, domains),",
           "definition_candidate": false
         }
@@ -718,7 +718,7 @@
         },
         {
           "file": "scripts/recommend.py",
-          "line": 256,
+          "line": 261,
           "preview": "main()",
           "definition_candidate": false
         },
@@ -840,9 +840,21 @@
           "line": 31,
           "preview": "high_threshold = run(\"ai agent\", \"--min-score\", \"1000\")",
           "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_recommend.py",
+          "line": 35,
+          "preview": "default_audit = run(\"ponytail agent\", \"--top\", \"20\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_recommend.py",
+          "line": 40,
+          "preview": "with_audit = run(\"ponytail agent\", \"--top\", \"20\", \"--include-audit\")",
+          "definition_candidate": false
         }
       ],
-      "occurrence_count": 4
+      "occurrence_count": 6
     }
   }
 }

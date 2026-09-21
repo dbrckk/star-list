@@ -22,26 +22,24 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-21T08:40:35Z
+Generated: 2026-09-21T08:42:50Z
 
 ### Git
 - Branch: `main`
-- Head: `d4e03c8e0050`
-- Commit date: 2026-09-21T10:40:26+02:00
-- Commit: Backfill selection guidance for specialized repositories (#25)
+- Head: `c8c384964ba6`
+- Commit date: 2026-09-21T10:42:40+02:00
+- Commit: Exclude audit-tier repositories from recommendations by default (#26)
 - Tracked files: 186
 
 ### Recently changed files
-- `catalog.json`
 - `scripts/recommend.py`
 - `scripts/test_recommend.py`
+- `catalog.json`
 - `.github/workflows/validate.yml`
 - `catalog.schema.json`
 - `scripts/infer_selection_guidance.py`
 - `scripts/test_selection_guidance.py`
 - `scripts/validate_catalog.py`
-- `scripts/audit_catalog_quality.py`
-- `scripts/test_catalog_quality.py`
 
 ### Project signals
 - No common build descriptor detected

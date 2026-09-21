@@ -126,6 +126,25 @@
         "scripts/recommend.py",
         "scripts/test_recommend.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "Exclude audit-tier repositories from recommendations by default (#26)",
+      "terms": [
+        "26",
+        "audit-tier",
+        "by",
+        "default",
+        "exclude",
+        "from",
+        "recommendations",
+        "repositories"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/recommend.py",
+        "scripts/test_recommend.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -166,6 +185,10 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "26": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -174,6 +197,10 @@
     "audit": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
+    },
+    "audit-tier": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "automated": {
       "scripts/audit_catalog_quality.py": 4,
@@ -187,6 +214,10 @@
       "scripts/validate_catalog.py": 4
     },
     "below": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
+    },
+    "by": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
@@ -211,13 +242,23 @@
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/validate_json_contract.py": 4
     },
+    "default": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
+    },
+    "exclude": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "from": {
       "scripts/discover_candidates.py": 4,
       "scripts/find_replacements.py": 4,
+      "scripts/recommend.py": 4,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_discovery_cache.py": 4,
       "scripts/test_find_replacements.py": 4,
       "scripts/test_json_contracts.py": 4,
+      "scripts/test_recommend.py": 4,
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/validate_json_contract.py": 4
     },
@@ -268,6 +309,10 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
     },
+    "recommendations": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "recommended": {
       "scripts/infer_selection_guidance.py": 4,
       "scripts/test_selection_guidance.py": 4,
@@ -276,9 +321,9 @@
     "repositories": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/infer_selection_guidance.py": 4,
-      "scripts/recommend.py": 4,
+      "scripts/recommend.py": 8,
       "scripts/test_catalog_quality.py": 4,
-      "scripts/test_recommend.py": 4,
+      "scripts/test_recommend.py": 8,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 12
     },

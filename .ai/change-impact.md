@@ -1,15 +1,13 @@
 # Change impact
 
-Base: ec57ae30fccefd86688163cd1cfc94e445659840
-Head: d4e03c8e00500cf947d947c677a16e17b77069d9
+Base: 2588c54b8c2111cb56578f4948a7cfa069bf89d1
+Head: c8c384964ba6708b07fe06cc25256931d2542e98
 
 ## Changed files
-- M catalog.json
 - M scripts/recommend.py
 - M scripts/test_recommend.py
 
 ## Affected areas
-- (root)
 - scripts
 
 ## Related test candidates
