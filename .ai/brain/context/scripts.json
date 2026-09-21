@@ -2,24 +2,11 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/test_catalog_quality.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "selected-test"
-      ],
-      "score": 370
-    },
-    {
       "path": "scripts/audit_catalog_quality.py",
       "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "symbol-indexed"
+        "recent-project-state"
       ],
-      "score": 325
+      "score": 60
     },
     {
       "path": "scripts/find_replacements.py",
@@ -29,7 +16,7 @@
       "score": 60
     },
     {
-      "path": "scripts/test_discovery_cache.py",
+      "path": "scripts/test_catalog_quality.py",
       "reasons": [
         "recent-project-state"
       ],

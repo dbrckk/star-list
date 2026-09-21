@@ -3266,7 +3266,7 @@ Repository-specific rules:
       }
     },
     {
-      "repo": "Alisharvr1/free-claude-code",
+      "repo": "Alishahryar1/free-claude-code",
       "score": 8.2,
       "tier": "specialized",
       "category": "Agents / IA / développement",
@@ -3287,7 +3287,17 @@ Repository-specific rules:
       ],
       "resourceLevel": "medium",
       "integrationComplexity": "medium",
-      "costModel": "open-source"
+      "costModel": "open-source",
+      "github": {
+        "stars": 55554,
+        "forks": 8888,
+        "openIssues": 396,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-21T02:44:42Z"
+      }
     },
     {
       "repo": "vercel-labs/agent-browser",
@@ -4161,7 +4171,7 @@ Repository-specific rules:
       }
     },
     {
-      "repo": "lisys93/web-check",
+      "repo": "lissy93/web-check",
       "score": 8.8,
       "tier": "specialized",
       "category": "Automatisation / outils / données",
@@ -4183,7 +4193,17 @@ Repository-specific rules:
       ],
       "resourceLevel": "medium",
       "integrationComplexity": "medium",
-      "costModel": "open-source"
+      "costModel": "open-source",
+      "github": {
+        "stars": 34882,
+        "forks": 2861,
+        "openIssues": 33,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-09-20T21:08:24Z"
+      }
     },
     {
       "repo": "trimstray/the-book-of-secret-knowledge",
@@ -4220,7 +4240,7 @@ Repository-specific rules:
       }
     },
     {
-      "repo": "bnmf/tron",
+      "repo": "bmrf/tron",
       "score": 7.7,
       "tier": "audit",
       "category": "Automatisation / outils / données",
@@ -4241,7 +4261,17 @@ Repository-specific rules:
       ],
       "resourceLevel": "medium",
       "integrationComplexity": "medium",
-      "costModel": "open-source"
+      "costModel": "open-source",
+      "github": {
+        "stars": 6571,
+        "forks": 416,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-09-09T17:39:58Z"
+      }
     },
     {
       "repo": "ReVanced/revanced-manager",
@@ -4557,7 +4587,7 @@ Repository-specific rules:
       }
     },
     {
-      "repo": "harry2141985/Google-Colab-Notebooks",
+      "repo": "harry2141985/Google-Collab-Notebooks",
       "score": 7.8,
       "tier": "audit",
       "category": "Automatisation / outils / données",
@@ -4579,7 +4609,17 @@ Repository-specific rules:
       ],
       "resourceLevel": "medium",
       "integrationComplexity": "medium",
-      "costModel": "open-source"
+      "costModel": "open-source",
+      "github": {
+        "stars": 65,
+        "forks": 42,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-04-06T10:21:50Z"
+      }
     },
     {
       "repo": "browserbase/stagehand",
@@ -8881,31 +8921,6 @@ Repository-specific rules:
       }
     },
     {
-      "repo": "freestylfly/awesome-gpt-image-2",
-      "score": 8.2,
-      "tier": "specialized",
-      "category": "Média / voix / vidéo",
-      "domain": "ai_media",
-      "capabilities": [
-        "image-generation",
-        "prompt-library"
-      ],
-      "languages": [
-        "unknown"
-      ],
-      "platforms": [
-        "cross-platform"
-      ],
-      "selfHosted": true,
-      "runtime": [
-        "local",
-        "self-hosted"
-      ],
-      "resourceLevel": "low",
-      "integrationComplexity": "low",
-      "costModel": "open-source"
-    },
-    {
       "repo": "comfyanonymous/ComfyUI",
       "score": 9.7,
       "tier": "core",
@@ -9217,7 +9232,7 @@ Repository-specific rules:
       }
     },
     {
-      "repo": "dutly1/x64dbg-mcp-server",
+      "repo": "duty1g/x64dbg-mcp-server",
       "score": 8.4,
       "tier": "specialized",
       "category": "Sécurité / OSINT",
@@ -9238,7 +9253,17 @@ Repository-specific rules:
       ],
       "resourceLevel": "medium",
       "integrationComplexity": "medium",
-      "costModel": "open-source"
+      "costModel": "open-source",
+      "github": {
+        "stars": 2026,
+        "forks": 205,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-17T13:02:00Z"
+      }
     },
     {
       "repo": "Narasimha1997/fake-sms",
@@ -9379,7 +9404,7 @@ Repository-specific rules:
       }
     },
     {
-      "repo": "Illyasviel/Paints-UNDO",
+      "repo": "lllyasviel/Paints-UNDO",
       "score": 9,
       "tier": "recommended",
       "category": "Autres favoris visibles",
@@ -9401,10 +9426,20 @@ Repository-specific rules:
       ],
       "resourceLevel": "medium",
       "integrationComplexity": "medium",
-      "costModel": "open-source"
+      "costModel": "open-source",
+      "github": {
+        "stars": 4067,
+        "forks": 394,
+        "openIssues": 70,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2025-08-13T22:11:05Z"
+      }
     },
     {
-      "repo": "bleeeline/aimoneyhunter",
+      "repo": "bleedline/aimoneyhunter",
       "score": 7,
       "tier": "audit",
       "category": "Autres favoris visibles",
@@ -9425,7 +9460,17 @@ Repository-specific rules:
       ],
       "resourceLevel": "medium",
       "integrationComplexity": "medium",
-      "costModel": "open-source"
+      "costModel": "open-source",
+      "github": {
+        "stars": 18162,
+        "forks": 1762,
+        "openIssues": 32,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2025-10-20T00:24:54Z"
+      }
     },
     {
       "repo": "LargeWorldModel/LWM",
@@ -15117,7 +15162,7 @@ Repository-specific rules:
       }
     },
     {
-      "repo": "jamiepiene/voicebox",
+      "repo": "jamiepine/voicebox",
       "score": 8.9,
       "tier": "specialized",
       "category": "AI / voice",
@@ -15139,7 +15184,17 @@ Repository-specific rules:
       ],
       "resourceLevel": "medium",
       "integrationComplexity": "medium",
-      "costModel": "open-source"
+      "costModel": "open-source",
+      "github": {
+        "stars": 55316,
+        "forks": 6903,
+        "openIssues": 702,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-08-09T00:03:42Z"
+      }
     },
     {
       "repo": "JustVugg/colibri",
@@ -16033,7 +16088,7 @@ Repository-specific rules:
       }
     },
     {
-      "repo": "MemPlace/mempalace",
+      "repo": "MemPalace/mempalace",
       "score": 8.9,
       "tier": "specialized",
       "category": "AI / memory",
@@ -16055,7 +16110,17 @@ Repository-specific rules:
       ],
       "resourceLevel": "medium",
       "integrationComplexity": "medium",
-      "costModel": "open-source"
+      "costModel": "open-source",
+      "github": {
+        "stars": 59190,
+        "forks": 7563,
+        "openIssues": 744,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "develop",
+        "license": "MIT",
+        "pushedAt": "2026-09-20T17:03:11Z"
+      }
     },
     {
       "repo": "infiniflow/ragflow",
@@ -16871,48 +16936,7 @@ Repository-specific rules:
   ],
   "metadata": {
     "githubRefreshedAt": "2026-09-20T19:16:02.340872Z",
-    "githubRefreshFailures": [
-      {
-        "repo": "Alisharvr1/free-claude-code",
-        "error": "HTTP Error 404: Not Found"
-      },
-      {
-        "repo": "lisys93/web-check",
-        "error": "HTTP Error 404: Not Found"
-      },
-      {
-        "repo": "bnmf/tron",
-        "error": "HTTP Error 404: Not Found"
-      },
-      {
-        "repo": "harry2141985/Google-Colab-Notebooks",
-        "error": "HTTP Error 404: Not Found"
-      },
-      {
-        "repo": "freestylfly/awesome-gpt-image-2",
-        "error": "HTTP Error 404: Not Found"
-      },
-      {
-        "repo": "dutly1/x64dbg-mcp-server",
-        "error": "HTTP Error 404: Not Found"
-      },
-      {
-        "repo": "Illyasviel/Paints-UNDO",
-        "error": "HTTP Error 404: Not Found"
-      },
-      {
-        "repo": "bleeeline/aimoneyhunter",
-        "error": "HTTP Error 404: Not Found"
-      },
-      {
-        "repo": "jamiepiene/voicebox",
-        "error": "HTTP Error 404: Not Found"
-      },
-      {
-        "repo": "MemPlace/mempalace",
-        "error": "HTTP Error 404: Not Found"
-      }
-    ]
+    "githubRefreshFailures": []
   }
 }
 ````

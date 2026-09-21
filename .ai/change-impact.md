@@ -1,19 +1,13 @@
 # Change impact
 
-Base: 9c041f6653bf4c4e5a7f0ac94378559cc8678542
-Head: 5ad9b00d2dfa593c6a946c80a98048e59ecd0015
+Base: 5e19516375da7ff844487dde9f35cf4bdf3c0500
+Head: 8109c77986b7651df798de104834d6d9ff002c87
 
 ## Changed files
-- M .github/workflows/refresh-metadata.yml
-- M .github/workflows/validate.yml
-- A schemas/catalog-quality.schema.json
-- A scripts/audit_catalog_quality.py
-- A scripts/test_catalog_quality.py
+- M catalog.json
 
 ## Affected areas
-- .github
-- schemas
-- scripts
+- (root)
 
 ## Related test candidates
 - No direct filename-based test match detected.
