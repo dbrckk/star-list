@@ -27,6 +27,7 @@ DOMAIN_ALIASES = {
 }
 TIER_BONUS = {"core": 1.0, "recommended": 0.6, "specialized": 0.25, "audit": -0.4}
 LEVEL = {"low": 0, "medium": 1, "high": 2}
+GUIDANCE_WEIGHT = {"curated": 1.0, "inferred": 0.55}
 
 def norm(s):
     return re.sub(r"[^a-z0-9+.#_-]+", " ", (s or "").lower()).strip()
@@ -86,13 +87,18 @@ def trend_adjustment(repo_name):
     reason="declining" if momentum<=-2 else "improving" if momentum>=2 else "growing" if momentum>0.5 else "stable"
     return momentum, reason
 
+def guidance_weight(r):
+    source = r.get("guidanceSource")
+    return GUIDANCE_WEIGHT.get(source, 1.0)
+
+
 def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps):
     caps = set(r.get("capabilities", [])) | set(r.get("roles", []))
     if excluded_caps and caps & excluded_caps:
         return None
     rtoks = tokens(" ".join([
         r.get("repo", ""), r.get("category", ""), r.get("domain", ""),
-        " ".join(caps), " ".join(r.get("bestFor", []))
+        " ".join(caps)
     ]))
     lexical = len(qtokens & rtoks) / max(1, len(qtokens))
     cap_match = len(required_caps & caps) / max(1, len(required_caps)) if required_caps else 0.0
@@ -101,12 +107,13 @@ def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps):
     tier = TIER_BONUS.get(r.get("tier"), 0.0)
     best_for = tokens(" ".join(r.get("bestFor", [])))
     best_match = len(qtokens & best_for) / max(1, len(qtokens)) if best_for else 0.0
-    s = 34*cap_match + 22*domain_match + 18*lexical + 12*best_match + 10*quality + 4*max(0.0, tier)
+    guidance = guidance_weight(r)
+    s = 34*cap_match + 22*domain_match + 18*lexical + 12*guidance*best_match + 10*quality + 4*max(0.0, tier)
     if not required_caps:
         s += 12*lexical
     avoid = tokens(" ".join(r.get("avoidWhen", [])))
     if qtokens & avoid:
-        s -= 18
+        s -= 18 * guidance
     activity, _ = activity_adjustment(r)
     s += activity
     health = health_score(r)
@@ -130,6 +137,8 @@ def explain_repo(r, qtokens, domains, required_caps):
         reasons.append("terms:" + ",".join(matched_terms[:6]))
     if r.get("tier") in {"core", "recommended"}:
         reasons.append("tier:" + r["tier"])
+    if r.get("guidanceSource") == "inferred":
+        reasons.append("guidance:inferred")
     _, activity_reason = activity_adjustment(r)
     if activity_reason:
         reasons.append("activity:" + activity_reason)
@@ -210,6 +219,7 @@ def main():
             "complements": r.get("complements", []), "languages": r.get("languages", []),
             "platforms": r.get("platforms", []), "selfHosted": r.get("selfHosted"),
             "resourceLevel": r.get("resourceLevel"), "integrationComplexity": r.get("integrationComplexity"),
+            "guidanceSource": r.get("guidanceSource", "curated"),
             "why": explain_repo(r, qtokens, domains, required_caps),
             "health": health_score(r),
         })
