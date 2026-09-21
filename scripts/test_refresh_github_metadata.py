@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Regression tests for resilient GitHub metadata refresh behavior."""
+import base64
 import json
 import sys
 import tempfile
@@ -74,6 +75,70 @@ def test_missing_repo_is_recorded_but_nonfatal():
         assert written["metadata"]["githubRefreshedAt"].endswith("Z")
 
 
+def test_license_signature_detection():
+    assert refresh.detect_license_text("""MIT License
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software...
+""") == "MIT"
+    assert refresh.detect_license_text("""Apache License
+Version 2.0, January 2004
+""") == "Apache-2.0"
+    assert refresh.detect_license_text("""GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+""") == "GPL-3.0"
+    assert refresh.detect_license_text("""Mozilla Public License Version 2.0
+""") == "MPL-2.0"
+    assert refresh.detect_license_text("custom proprietary terms") is None
+
+
+def test_license_fallback_reads_root_license_file():
+    original = refresh.fetch_contents
+    try:
+        def fake_contents(repo, path="", ref=None, token=None, retries=2):
+            if not path:
+                return [
+                    {"type": "file", "name": "README.md", "path": "README.md"},
+                    {"type": "file", "name": "LICENSE", "path": "LICENSE"},
+                ]
+            assert path == "LICENSE"
+            content = base64.b64encode(
+                b"MIT License\nPermission is hereby granted, free of charge, to any person obtaining a copy"
+            ).decode()
+            return {"type": "file", "name": "LICENSE", "path": "LICENSE", "content": content}
+        refresh.fetch_contents = fake_contents
+        assert refresh.fallback_license("x/repo", "main") == "MIT"
+    finally:
+        refresh.fetch_contents = original
+
+
+def test_metadata_refresh_uses_license_fallback():
+    with tempfile.TemporaryDirectory() as tmp:
+        catalog = Path(tmp) / "catalog.json"
+        catalog.write_text(json.dumps({
+            "metadata": {},
+            "repositories": [{"repo": "x/repo", "github": {}, "languages": ["python"]}],
+        }))
+        old_catalog, old_fetch, old_fallback = refresh.CATALOG, refresh.fetch, refresh.fallback_license
+        try:
+            refresh.CATALOG = catalog
+            refresh.fetch = lambda repo, token=None, retries=2: {
+                "stargazers_count": 10,
+                "forks_count": 2,
+                "open_issues_count": 1,
+                "archived": False,
+                "disabled": False,
+                "default_branch": "main",
+                "license": {"spdx_id": "NOASSERTION"},
+                "pushed_at": "2026-09-20T00:00:00Z",
+                "language": "Python",
+            }
+            refresh.fallback_license = lambda repo, default_branch, token=None: "MIT"
+            run_main(["--write"])
+        finally:
+            refresh.CATALOG, refresh.fetch, refresh.fallback_license = old_catalog, old_fetch, old_fallback
+        written = json.loads(catalog.read_text())
+        assert written["repositories"][0]["github"]["license"] == "MIT"
+
+
 def test_server_error_remains_fatal():
     with tempfile.TemporaryDirectory() as tmp:
         catalog = Path(tmp) / "catalog.json"
@@ -100,5 +165,8 @@ def test_server_error_remains_fatal():
 
 if __name__ == "__main__":
     test_missing_repo_is_recorded_but_nonfatal()
+    test_license_signature_detection()
+    test_license_fallback_reads_root_license_file()
+    test_metadata_refresh_uses_license_fallback()
     test_server_error_remains_fatal()
     print("refresh metadata resilience tests passed")
