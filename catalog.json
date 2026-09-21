@@ -45,7 +45,8 @@
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "harry0703/MoneyPrinterTurbo",
@@ -521,7 +522,8 @@
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "mattpocock/skills",
@@ -3302,7 +3304,8 @@
         "defaultBranch": "master",
         "license": "PostgreSQL",
         "pushedAt": "2026-09-20T05:17:27Z"
-      }
+      },
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "redis/redis",
@@ -3347,7 +3350,8 @@
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "supabase/supabase",
@@ -5504,7 +5508,8 @@
       "avoidWhen": [
         "local-only scripts with no deployment or operations needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "semantic-release/semantic-release",
@@ -5987,7 +5992,8 @@
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "google/oss-fuzz",
@@ -6368,7 +6374,8 @@
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "EleutherAI/lm-evaluation-harness",
@@ -7048,7 +7055,8 @@
         "defaultBranch": "main",
         "license": null,
         "pushedAt": "2024-03-03T16:36:55Z"
-      }
+      },
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "deepfakes/faceswap",
@@ -7168,7 +7176,8 @@
         "defaultBranch": "main",
         "license": null,
         "pushedAt": "2025-08-19T01:37:38Z"
-      }
+      },
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "hacksider/Deep-Live-Cam",
@@ -7254,7 +7263,8 @@
       "avoidWhen": [
         "current 3D reconstruction workflows",
         "maintained notebook environments"
-      ]
+      ],
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "RayVentura/ShortGPT",
@@ -7500,7 +7510,8 @@
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "SociallyIneptWeeb/AICoverGen",
@@ -7913,7 +7924,8 @@
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "bilawalsidhu/gods-eye-view",
@@ -8217,7 +8229,8 @@
         "defaultBranch": "main",
         "license": null,
         "pushedAt": "2025-10-20T00:24:54Z"
-      }
+      },
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "LargeWorldModel/LWM",
@@ -8336,7 +8349,8 @@
         "defaultBranch": "master",
         "license": null,
         "pushedAt": "2024-06-27T21:58:30Z"
-      }
+      },
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "Cyb0r9/SocialBox",
@@ -8406,7 +8420,8 @@
         "defaultBranch": "master",
         "license": null,
         "pushedAt": "2026-06-10T19:03:50Z"
-      }
+      },
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "GH05T-HUNTER5/GH05T-INSTA",
@@ -8441,7 +8456,8 @@
         "defaultBranch": "main",
         "license": "GH05T-HUNTER5 Software License",
         "pushedAt": "2024-07-20T06:09:18Z"
-      }
+      },
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "ShadowHackrs/Gmail-infinity",
@@ -8476,7 +8492,8 @@
         "defaultBranch": "main",
         "license": null,
         "pushedAt": "2026-09-16T21:16:57Z"
-      }
+      },
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "alsk1992/CloddsBot",
@@ -9482,7 +9499,8 @@
         "microsoft/qlib",
         "skfolio/skfolio",
         "polakowo/vectorbt"
-      ]
+      ],
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "skfolio/skfolio",
@@ -10498,7 +10516,8 @@
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "scikit-learn/scikit-learn",
@@ -11182,7 +11201,8 @@
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "tt-a1i/archify",
@@ -11390,7 +11410,8 @@
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "infosecn1nja/Red-Teaming-Toolkit",
@@ -11520,7 +11541,8 @@
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "GreyDGL/PentestGPT",
@@ -11858,7 +11880,8 @@
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "firebase/flutterfire",
@@ -11940,7 +11963,8 @@
       "avoidWhen": [
         "web-only applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "AgriciDaniel/claude-obsidian",
@@ -12365,7 +12389,8 @@
       "avoidWhen": [
         "non-visual workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "microsoft/magentic-ui",
@@ -12632,7 +12657,8 @@
       "avoidWhen": [
         "current engine-specific shader APIs",
         "actively maintained rendering examples"
-      ]
+      ],
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "Donchitos/Claude-Code-Game-Studios",
@@ -13161,7 +13187,8 @@
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "alibaba/open-code-review",
@@ -13369,7 +13396,8 @@
       "avoidWhen": [
         "non-visual workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "online-ml/river",
@@ -14275,7 +14303,8 @@
       "avoidWhen": [
         "tracking current Inkscape development",
         "using GitHub as the canonical upstream"
-      ]
+      ],
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "rive-app/rive-android",
@@ -14785,7 +14814,8 @@
       "avoidWhen": [
         "offline-only workflows",
         "tasks that do not need an autonomous coding agent"
-      ]
+      ],
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "NationalSecurityAgency/ghidra",
@@ -14869,7 +14899,8 @@
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "anthropics/knowledge-work-plugins",
@@ -15509,7 +15540,8 @@
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "docling-project/docling",
@@ -15948,7 +15980,8 @@
       "avoidWhen": [
         "hard real-time processing",
         "ultra-light embedded automation"
-      ]
+      ],
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "mindsdb/mindsdb",
@@ -16292,7 +16325,8 @@
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "paperless-ngx/paperless-ngx",
@@ -16545,7 +16579,8 @@
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "no-root-license-file"
     },
     {
       "repo": "mvanhorn/last30days-skill",
@@ -16799,7 +16834,8 @@
       "avoidWhen": [
         "local-only scripts with no deployment or operations needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "CopilotKit/CopilotKit",
@@ -16974,7 +17010,8 @@
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "licenseEvidence": "verified-file"
     },
     {
       "repo": "agno-agi/agno",
