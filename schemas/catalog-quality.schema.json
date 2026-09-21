@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Catalog Quality Audit",
+  "type": "object",
+  "required": ["staleDays", "repositories", "summary", "guidanceCoverage", "findings"],
+  "properties": {
+    "staleDays": {"type": "integer", "minimum": 1},
+    "repositories": {"type": "integer", "minimum": 0},
+    "summary": {
+      "type": "object",
+      "required": ["findings", "review", "info", "byCode"],
+      "properties": {
+        "findings": {"type": "integer", "minimum": 0},
+        "review": {"type": "integer", "minimum": 0},
+        "info": {"type": "integer", "minimum": 0},
+        "byCode": {
+          "type": "object",
+          "additionalProperties": {"type": "integer", "minimum": 0}
+        }
+      },
+      "additionalProperties": false
+    },
+    "guidanceCoverage": {
+      "type": "object",
+      "required": ["bestFor", "avoidWhen", "alternatives", "complements"],
+      "properties": {
+        "bestFor": {"$ref": "#/$defs/coverage"},
+        "avoidWhen": {"$ref": "#/$defs/coverage"},
+        "alternatives": {"$ref": "#/$defs/coverage"},
+        "complements": {"$ref": "#/$defs/coverage"}
+      },
+      "additionalProperties": false
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["repo", "severity", "code", "message"],
+        "properties": {
+          "repo": {"type": "string", "minLength": 1},
+          "severity": {"enum": ["review", "info"]},
+          "code": {"type": "string", "minLength": 1},
+          "message": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "coverage": {
+      "type": "object",
+      "required": ["populated", "missing"],
+      "properties": {
+        "populated": {"type": "integer", "minimum": 0},
+        "missing": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
