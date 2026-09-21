@@ -22,19 +22,19 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-21T08:42:50Z
+Generated: 2026-09-21T08:44:55Z
 
 ### Git
 - Branch: `main`
-- Head: `c8c384964ba6`
-- Commit date: 2026-09-21T10:42:40+02:00
-- Commit: Exclude audit-tier repositories from recommendations by default (#26)
+- Head: `aa3f9a633bc2`
+- Commit date: 2026-09-21T10:44:44+02:00
+- Commit: Normalize self-hosted metadata (#27)
 - Tracked files: 186
 
 ### Recently changed files
+- `catalog.json`
 - `scripts/recommend.py`
 - `scripts/test_recommend.py`
-- `catalog.json`
 - `.github/workflows/validate.yml`
 - `catalog.schema.json`
 - `scripts/infer_selection_guidance.py`

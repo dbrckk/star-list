@@ -1,20 +1,12 @@
 {
   "files": {
     "catalog.json": {
-      "sha256": "8c82bc0604dc0b0e4f969e52d7aa5437db5c9f59e99a3fad805ddf43c099bb8d",
-      "size": 405973
+      "sha256": "465dc3e3ac1530170d3c2419973e6a29243207d56f190cf3bef5624d2cd870d9",
+      "size": 405958
     },
     "catalog.schema.json": {
       "sha256": "03c0f8e435904f38f1d2b32f1c89fad3f9b1591e35e042fd1345ecaa5ea05b72",
       "size": 6671
-    },
-    "scripts/audit_catalog_quality.py": {
-      "sha256": "e46445afac33b3ca30c415af0f0972261c0199e2f48aa3e747addc61b8ee22ce",
-      "size": 6809
-    },
-    "scripts/health_score.py": {
-      "sha256": "c16d8e8ed70025692961a42a6179051a4baaee2b1d721af26554816612f9000f",
-      "size": 2456
     },
     "scripts/infer_selection_guidance.py": {
       "sha256": "7e8f14cd51a15c7b73cbc6bef275a1ec31e2077c6affbcc6c2181d152843f3a9",
@@ -23,10 +15,6 @@
     "scripts/recommend.py": {
       "sha256": "2b375d28eebcc1ce8d179cdf8c4b7eb952c8f31c1ba193b7da015b52c2b0a483",
       "size": 12981
-    },
-    "scripts/test_catalog_quality.py": {
-      "sha256": "232acdc00f03f10096e6df8492fc76b6576f5a95fb10042900c97a1e2d11e68c",
-      "size": 3331
     },
     "scripts/test_recommend.py": {
       "sha256": "383b276a933a08952f340f9184bb2ea4aa1bce99c93c085c6983a01e16e0fe02",

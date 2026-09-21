@@ -1,44 +1,15 @@
 {
   "files": [
     {
-      "path": "scripts/test_recommend.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "recent-project-state",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 435
-    },
-    {
-      "path": "scripts/recommend.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "recent-project-state",
-        "symbol-indexed"
-      ],
-      "score": 420
-    },
-    {
       "path": "catalog.json",
       "reasons": [
+        "changed",
         "recent-project-state"
       ],
-      "score": 60
+      "score": 160
     },
     {
       "path": "catalog.schema.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "scripts/audit_catalog_quality.py",
       "reasons": [
         "recent-project-state"
       ],
@@ -52,7 +23,14 @@
       "score": 60
     },
     {
-      "path": "scripts/test_catalog_quality.py",
+      "path": "scripts/recommend.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/test_recommend.py",
       "reasons": [
         "recent-project-state"
       ],
@@ -71,13 +49,6 @@
         "recent-project-state"
       ],
       "score": 60
-    },
-    {
-      "path": "scripts/health_score.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

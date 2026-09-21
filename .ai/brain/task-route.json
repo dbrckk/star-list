@@ -6,13 +6,13 @@
     "requested_max_files": 12,
     "score_margin": 0,
     "tier": "bounded",
-    "top_score": 26
+    "top_score": 17
   },
   "cache": {
-    "fingerprint": "1c47108778ca4b558fa2bee5cc406722381610e494db44add7b1f399ececd92a",
+    "fingerprint": "137adfc52072150025b0b6167e75dc2a4289c813ca922e704b5881e57254a09f",
     "hit": false
   },
-  "candidate_count": 3,
+  "candidate_count": 4,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -20,13 +20,28 @@
       "matched_terms": [
         "game"
       ],
-      "path": "scripts/recommend.py",
+      "path": "scripts/infer_selection_guidance.py",
       "reasons": [
-        "impact",
-        "recently-changed",
         "search-index"
       ],
-      "score": 26,
+      "score": 17,
+      "symbols": [
+        "_humanize",
+        "enrich",
+        "infer_guidance",
+        "main"
+      ]
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [
+        "game"
+      ],
+      "path": "scripts/recommend.py",
+      "reasons": [
+        "search-index"
+      ],
+      "score": 17,
       "symbols": [
         "activity_adjustment",
         "choose_stack",
@@ -49,31 +64,22 @@
       ],
       "path": "scripts/test_recommend.py",
       "reasons": [
-        "impact",
-        "recently-changed",
         "search-index"
       ],
-      "score": 26,
+      "score": 17,
       "symbols": [
         "run"
       ]
     },
     {
       "learning_score": 0,
-      "matched_terms": [
-        "game"
-      ],
-      "path": "scripts/infer_selection_guidance.py",
+      "matched_terms": [],
+      "path": "catalog.json",
       "reasons": [
-        "search-index"
+        "recently-changed"
       ],
-      "score": 17,
-      "symbols": [
-        "_humanize",
-        "enrich",
-        "infer_guidance",
-        "main"
-      ]
+      "score": 3,
+      "symbols": []
     }
   ],
   "generated_by": "dbrckk/repo-brain-v8",

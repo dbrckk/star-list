@@ -6,15 +6,15 @@
         "expand_to": 12,
         "max_files": 6,
         "requested_max_files": 12,
-        "score_margin": 0,
+        "score_margin": 3,
         "tier": "broad",
-        "top_score": 9
+        "top_score": 3
       },
       "cache_hit": true,
-      "candidate_count": 2,
-      "elapsed_ms": 50.502,
+      "candidate_count": 1,
+      "elapsed_ms": 36.575,
       "ok": true,
-      "selected_files": 2,
+      "selected_files": 1,
       "task": "purchase billing"
     },
     {
@@ -23,15 +23,15 @@
         "expand_to": 12,
         "max_files": 6,
         "requested_max_files": 12,
-        "score_margin": 0,
+        "score_margin": 3,
         "tier": "broad",
-        "top_score": 9
+        "top_score": 3
       },
       "cache_hit": true,
-      "candidate_count": 2,
-      "elapsed_ms": 44.916,
+      "candidate_count": 1,
+      "elapsed_ms": 35.778,
       "ok": true,
-      "selected_files": 2,
+      "selected_files": 1,
       "task": "income progression"
     },
     {
@@ -40,15 +40,15 @@
         "expand_to": 12,
         "max_files": 6,
         "requested_max_files": 12,
-        "score_margin": 0,
+        "score_margin": 3,
         "tier": "broad",
-        "top_score": 9
+        "top_score": 3
       },
       "cache_hit": true,
-      "candidate_count": 2,
-      "elapsed_ms": 45.115,
+      "candidate_count": 1,
+      "elapsed_ms": 35.88,
       "ok": true,
-      "selected_files": 2,
+      "selected_files": 1,
       "task": "privacy consent"
     },
     {
@@ -62,10 +62,10 @@
         "top_score": 21
       },
       "cache_hit": true,
-      "candidate_count": 5,
-      "elapsed_ms": 44.113,
+      "candidate_count": 4,
+      "elapsed_ms": 36.198,
       "ok": true,
-      "selected_files": 5,
+      "selected_files": 4,
       "task": "offline progress"
     },
     {
@@ -76,13 +76,13 @@
         "requested_max_files": 12,
         "score_margin": 0,
         "tier": "bounded",
-        "top_score": 26
+        "top_score": 17
       },
       "cache_hit": true,
-      "candidate_count": 3,
-      "elapsed_ms": 45.422,
+      "candidate_count": 4,
+      "elapsed_ms": 35.406,
       "ok": true,
-      "selected_files": 3,
+      "selected_files": 4,
       "task": "game engine"
     }
   ],
@@ -93,15 +93,15 @@
         "expand_to": 12,
         "max_files": 6,
         "requested_max_files": 12,
-        "score_margin": 0,
+        "score_margin": 3,
         "tier": "broad",
-        "top_score": 9
+        "top_score": 3
       },
       "cache_hit": false,
-      "candidate_count": 2,
-      "elapsed_ms": 50.435,
+      "candidate_count": 1,
+      "elapsed_ms": 41.195,
       "ok": true,
-      "selected_files": 2,
+      "selected_files": 1,
       "task": "purchase billing"
     },
     {
@@ -110,15 +110,15 @@
         "expand_to": 12,
         "max_files": 6,
         "requested_max_files": 12,
-        "score_margin": 0,
+        "score_margin": 3,
         "tier": "broad",
-        "top_score": 9
+        "top_score": 3
       },
       "cache_hit": false,
-      "candidate_count": 2,
-      "elapsed_ms": 50.634,
+      "candidate_count": 1,
+      "elapsed_ms": 41.848,
       "ok": true,
-      "selected_files": 2,
+      "selected_files": 1,
       "task": "income progression"
     },
     {
@@ -127,15 +127,15 @@
         "expand_to": 12,
         "max_files": 6,
         "requested_max_files": 12,
-        "score_margin": 0,
+        "score_margin": 3,
         "tier": "broad",
-        "top_score": 9
+        "top_score": 3
       },
       "cache_hit": false,
-      "candidate_count": 2,
-      "elapsed_ms": 49.962,
+      "candidate_count": 1,
+      "elapsed_ms": 41.161,
       "ok": true,
-      "selected_files": 2,
+      "selected_files": 1,
       "task": "privacy consent"
     },
     {
@@ -149,10 +149,10 @@
         "top_score": 21
       },
       "cache_hit": false,
-      "candidate_count": 5,
-      "elapsed_ms": 50.377,
+      "candidate_count": 4,
+      "elapsed_ms": 40.197,
       "ok": true,
-      "selected_files": 5,
+      "selected_files": 4,
       "task": "offline progress"
     },
     {
@@ -163,13 +163,13 @@
         "requested_max_files": 12,
         "score_margin": 0,
         "tier": "bounded",
-        "top_score": 26
+        "top_score": 17
       },
       "cache_hit": false,
-      "candidate_count": 3,
-      "elapsed_ms": 51.589,
+      "candidate_count": 4,
+      "elapsed_ms": 41.491,
       "ok": true,
-      "selected_files": 3,
+      "selected_files": 4,
       "task": "game engine"
     }
   ],
@@ -180,8 +180,8 @@
   "search_token_count": 1267,
   "summary": {
     "all_cached_second_pass": true,
-    "avg_selected_files": 2.8,
-    "cached_pass_ms": 230.068,
-    "first_pass_ms": 252.997
+    "avg_selected_files": 2.2,
+    "cached_pass_ms": 179.837,
+    "first_pass_ms": 205.892
   }
 }

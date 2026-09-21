@@ -4530,7 +4530,7 @@ Repository-specific rules:
       "platforms": [
         "cross-platform"
       ],
-      "selfHosted": "partial",
+      "selfHosted": true,
       "runtime": [
         "local",
         "external-services"
@@ -11753,7 +11753,7 @@ Repository-specific rules:
       "platforms": [
         "linux"
       ],
-      "selfHosted": "partial",
+      "selfHosted": true,
       "runtime": [
         "local",
         "external-services"
@@ -12953,7 +12953,7 @@ Repository-specific rules:
       "platforms": [
         "linux"
       ],
-      "selfHosted": "partial",
+      "selfHosted": true,
       "runtime": [
         "local",
         "external-services"

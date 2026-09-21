@@ -1,108 +1,17 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "d4e03c8e00500cf947d947c677a16e17b77069d9",
-  "head": "c8c384964ba6708b07fe06cc25256931d2542e98",
+  "base": "c8c384964ba6708b07fe06cc25256931d2542e98",
+  "head": "aa3f9a633bc280d561c22e896145b39913471a00",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": "scripts/recommend.py",
-      "status": "M"
-    },
-    {
-      "path": "scripts/test_recommend.py",
+      "path": "catalog.json",
       "status": "M"
     }
   ],
-  "changed_source_files": [
-    "scripts/recommend.py",
-    "scripts/test_recommend.py"
-  ],
-  "impacted_files": [
-    "scripts/recommend.py",
-    "scripts/test_recommend.py"
-  ],
-  "impacted_symbols": [
-    {
-      "name": "norm",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 33
-    },
-    {
-      "name": "tokens",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 36
-    },
-    {
-      "name": "load",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 39
-    },
-    {
-      "name": "infer_domains",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 44
-    },
-    {
-      "name": "activity_adjustment",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 47
-    },
-    {
-      "name": "trend_adjustment",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 66
-    },
-    {
-      "name": "delta",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 78
-    },
-    {
-      "name": "guidance_weight",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 91
-    },
-    {
-      "name": "score_repo",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 98
-    },
-    {
-      "name": "explain_repo",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 129
-    },
-    {
-      "name": "choose_stack",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 152
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 161
-    },
-    {
-      "name": "run",
-      "kind": "function",
-      "file": "scripts/test_recommend.py",
-      "line": 9
-    }
-  ],
-  "selected_tests": [
-    "scripts/test_recommend.py"
-  ]
+  "changed_source_files": [],
+  "impacted_files": [],
+  "impacted_symbols": [],
+  "selected_tests": []
 }
