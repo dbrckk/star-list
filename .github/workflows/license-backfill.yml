@@ -24,15 +24,16 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
-      - name: Refresh metadata with license fallback
+      - name: Backfill unknown licenses
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/refresh_github_metadata.py --write
+        run: python scripts/backfill_licenses.py --write
       - name: Validate catalog
         run: |
           python scripts/validate_catalog.py
           python scripts/validate_json_contract.py catalog.schema.json catalog.json
           python scripts/test_refresh_github_metadata.py
+          python scripts/test_backfill_licenses.py
       - name: Commit catalog backfill
         run: |
           if git diff --quiet -- catalog.json; then
@@ -43,4 +44,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add catalog.json
           git commit -m "chore: backfill detected repository licenses"
+          git pull --rebase origin main
           git push
