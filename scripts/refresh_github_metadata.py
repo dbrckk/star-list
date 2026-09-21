@@ -4,15 +4,18 @@
 Uses only the Python standard library. GITHUB_TOKEN is optional but strongly
 recommended in CI to avoid anonymous API rate limits.
 """
-import argparse, json, os, sys, time
+import argparse, base64, json, os, re, sys, time
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
+from urllib.parse import quote
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog.json"
 API = "https://api.github.com/repos/{}"
+CONTENTS_API = "https://api.github.com/repos/{}/contents/{}"
+LICENSE_NAMES = ("license", "licence", "copying", "notice")
 FIELDS = {
     "stars": "stargazers_count",
     "forks": "forks_count",
@@ -25,10 +28,10 @@ FIELDS = {
 }
 
 
-def fetch(repo, token=None, retries=2):
+def _request_json(url, token=None, retries=2):
     headers = {"Accept":"application/vnd.github+json","User-Agent":"star-list-metadata-refresh","X-GitHub-Api-Version":"2022-11-28"}
     if token: headers["Authorization"] = f"Bearer {token}"
-    req = Request(API.format(repo), headers=headers)
+    req = Request(url, headers=headers)
     for attempt in range(retries + 1):
         try:
             with urlopen(req, timeout=20) as res:
@@ -41,6 +44,86 @@ def fetch(repo, token=None, retries=2):
             if attempt < retries:
                 time.sleep(2 ** attempt); continue
             raise
+
+
+def fetch(repo, token=None, retries=2):
+    return _request_json(API.format(repo), token=token, retries=retries)
+
+
+def fetch_contents(repo, path="", ref=None, token=None, retries=2):
+    encoded = quote(path, safe="/")
+    url = CONTENTS_API.format(repo, encoded)
+    if ref:
+        url += "?ref=" + quote(ref, safe="")
+    return _request_json(url, token=token, retries=retries)
+
+
+def detect_license_text(text):
+    normalized = re.sub(r"\s+", " ", (text or "")).strip().lower()
+    signatures = [
+        ("Apache-2.0", ("apache license", "version 2.0, january 2004")),
+        ("AGPL-3.0", ("gnu affero general public license", "version 3, 19 november 2007")),
+        ("LGPL-3.0", ("gnu lesser general public license", "version 3, 29 june 2007")),
+        ("LGPL-2.1", ("gnu lesser general public license", "version 2.1, february 1999")),
+        ("GPL-3.0", ("gnu general public license", "version 3, 29 june 2007")),
+        ("GPL-2.0", ("gnu general public license", "version 2, june 1991")),
+        ("MPL-2.0", ("mozilla public license version 2.0",)),
+        ("BSD-3-Clause", ("redistribution and use in source and binary forms", "neither the name of")),
+        ("ISC", ("permission to use, copy, modify, and/or distribute this software for any purpose with or without fee",)),
+        ("Unlicense", ("this is free and unencumbered software released into the public domain",)),
+        ("BUSL-1.1", ("business source license 1.1",)),
+        ("MIT", ("permission is hereby granted, free of charge, to any person obtaining a copy",)),
+    ]
+    for spdx, parts in signatures:
+        if all(part in normalized for part in parts):
+            return spdx
+    if (
+        "redistribution and use in source and binary forms" in normalized
+        and "redistributions of source code must retain" in normalized
+        and "redistributions in binary form must reproduce" in normalized
+        and "neither the name of" not in normalized
+    ):
+        return "BSD-2-Clause"
+    return None
+
+
+def fallback_license(repo, default_branch, token=None):
+    try:
+        root = fetch_contents(repo, ref=default_branch, token=token)
+    except Exception:
+        return None
+    if not isinstance(root, list):
+        return None
+    candidates = []
+    for item in root:
+        if not isinstance(item, dict) or item.get("type") != "file":
+            continue
+        name = str(item.get("name", "")).lower()
+        stem = re.split(r"[._-]", name, maxsplit=1)[0]
+        if stem in LICENSE_NAMES:
+            candidates.append(item)
+    candidates.sort(key=lambda item: (0 if str(item.get("name","")).lower().startswith(("license","licence")) else 1, str(item.get("name","")).lower()))
+    for item in candidates[:4]:
+        path = item.get("path")
+        if not path:
+            continue
+        try:
+            payload = fetch_contents(repo, path=path, ref=default_branch, token=token)
+        except Exception:
+            continue
+        if not isinstance(payload, dict):
+            continue
+        encoded = payload.get("content")
+        if not isinstance(encoded, str):
+            continue
+        try:
+            text = base64.b64decode(encoded, validate=False).decode("utf-8", errors="replace")
+        except Exception:
+            continue
+        detected = detect_license_text(text)
+        if detected:
+            return detected
+    return None
 
 
 def metadata(raw):
@@ -83,6 +166,10 @@ def main():
         try:
             raw = fetch(name, token)
             fresh = metadata(raw)
+            if fresh.get("license") in (None, "", "NOASSERTION"):
+                detected = fallback_license(name, raw.get("default_branch"), token)
+                if detected:
+                    fresh["license"] = detected
             refresh_primary_language(r, raw)
             if r.get("github") != fresh:
                 r["github"] = fresh
