@@ -2544,6 +2544,7 @@ valid_levels = {"low","medium","high"}
 valid_lifecycles = {"active","stable","reference","legacy"}
 valid_guidance_sources = {"curated","inferred"}
 valid_license_evidence = {"verified-file","no-root-license-file"}
+valid_license_statuses = {"not-found","custom-restrictive","partial","external-terms"}
 seen = set()
 repos = data.get("repositories", [])
 ⋮----
@@ -2563,6 +2564,10 @@ lifecycle = r.get("lifecycle")
 guidance_source = r.get("guidanceSource")
 ⋮----
 license_evidence = r.get("licenseEvidence")
+⋮----
+license_status = r.get("licenseStatus")
+⋮----
+gh_license = (r.get("github") or {}).get("license") if isinstance(r.get("github"), dict) else None
 ⋮----
 value = r.get(field, [])
 ⋮----

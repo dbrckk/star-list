@@ -1,68 +1,21 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "3faf7565160864e983815545e9086a534f669f5f",
-  "head": "1b6bc2ac9686f88590eacd88b4c14d2f2dd63afb",
+  "base": "1b6bc2ac9686f88590eacd88b4c14d2f2dd63afb",
+  "head": "4e24a54d9467e8781faf2a2bfa06990123885f16",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": "catalog.json",
-      "status": "M"
-    },
-    {
-      "path": "catalog.schema.json",
-      "status": "M"
-    },
-    {
-      "path": "scripts/audit_catalog_quality.py",
-      "status": "M"
-    },
-    {
-      "path": "scripts/test_catalog_quality.py",
+      "path": "scripts/validate_catalog.py",
       "status": "M"
     }
   ],
   "changed_source_files": [
-    "scripts/audit_catalog_quality.py",
-    "scripts/test_catalog_quality.py"
+    "scripts/validate_catalog.py"
   ],
   "impacted_files": [
-    "scripts/audit_catalog_quality.py",
-    "scripts/test_catalog_quality.py"
+    "scripts/validate_catalog.py"
   ],
-  "impacted_symbols": [
-    {
-      "name": "_age_days",
-      "kind": "function",
-      "file": "scripts/audit_catalog_quality.py",
-      "line": 14
-    },
-    {
-      "name": "analyze",
-      "kind": "function",
-      "file": "scripts/audit_catalog_quality.py",
-      "line": 26
-    },
-    {
-      "name": "add",
-      "kind": "function",
-      "file": "scripts/audit_catalog_quality.py",
-      "line": 33
-    },
-    {
-      "name": "render_markdown",
-      "kind": "function",
-      "file": "scripts/audit_catalog_quality.py",
-      "line": 138
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/audit_catalog_quality.py",
-      "line": 179
-    }
-  ],
-  "selected_tests": [
-    "scripts/test_catalog_quality.py"
-  ]
+  "impacted_symbols": [],
+  "selected_tests": []
 }

@@ -1,45 +1,31 @@
 {
   "files": [
     {
-      "path": "scripts/test_catalog_quality.py",
+      "path": "scripts/validate_catalog.py",
       "reasons": [
         "changed",
         "changed-source",
         "impact",
-        "recent-project-state",
-        "selected-test"
+        "recent-project-state"
       ],
-      "score": 430
+      "score": 360
     },
     {
-      "path": "scripts/audit_catalog_quality.py",
+      "path": "cache-health-history.json",
       "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "recent-project-state",
-        "symbol-indexed"
+        "recent-project-state"
       ],
-      "score": 385
+      "score": 60
     },
     {
       "path": "catalog.json",
       "reasons": [
-        "changed",
         "recent-project-state"
       ],
-      "score": 160
+      "score": 60
     },
     {
       "path": "catalog.schema.json",
-      "reasons": [
-        "changed",
-        "recent-project-state"
-      ],
-      "score": 160
-    },
-    {
-      "path": "cache-health-history.json",
       "reasons": [
         "recent-project-state"
       ],
@@ -67,6 +53,13 @@
       "score": 60
     },
     {
+      "path": "scripts/audit_catalog_quality.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
       "path": "scripts/refresh_github_metadata.py",
       "reasons": [
         "recent-project-state"
@@ -74,14 +67,14 @@
       "score": 60
     },
     {
-      "path": "scripts/test_refresh_github_metadata.py",
+      "path": "scripts/test_catalog_quality.py",
       "reasons": [
         "recent-project-state"
       ],
       "score": 60
     },
     {
-      "path": "scripts/validate_catalog.py",
+      "path": "scripts/test_refresh_github_metadata.py",
       "reasons": [
         "recent-project-state"
       ],

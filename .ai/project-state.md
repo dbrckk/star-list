@@ -22,27 +22,23 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-21T17:55:57Z
+Generated: 2026-09-21T18:46:05Z
 
 ### Git
 - Branch: `main`
-- Head: `1b6bc2ac9686`
-- Commit date: 2026-09-21T19:55:46+02:00
-- Commit: Classify unresolved repository licenses (#36)
+- Head: `4e24a54d9467`
+- Commit date: 2026-09-21T20:45:51+02:00
+- Commit: Enforce unresolved license status validation (#37)
 - Tracked files: 189
 
 ### Recently changed files
+- `scripts/validate_catalog.py`
 - `catalog.json`
 - `catalog.schema.json`
 - `scripts/audit_catalog_quality.py`
 - `scripts/test_catalog_quality.py`
 - `scripts/refresh_github_metadata.py`
 - `scripts/test_refresh_github_metadata.py`
-- `scripts/validate_catalog.py`
-- `cache-health-history.json`
-- `discovery-memory.json`
-- `health-snapshot.json`
-- `history.json`
 
 ### Project signals
 - No common build descriptor detected

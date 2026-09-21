@@ -254,6 +254,22 @@
         "scripts/audit_catalog_quality.py",
         "scripts/test_catalog_quality.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "Enforce unresolved license status validation (#37)",
+      "terms": [
+        "37",
+        "enforce",
+        "license",
+        "status",
+        "unresolved",
+        "validation"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/validate_catalog.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -324,6 +340,9 @@
     "36": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
+    },
+    "37": {
+      "scripts/validate_catalog.py": 4
     },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
@@ -400,6 +419,9 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "enforce": {
+      "scripts/validate_catalog.py": 4
+    },
     "evidence": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -475,7 +497,7 @@
       "scripts/test_backfill_licenses.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_refresh_github_metadata.py": 8,
-      "scripts/validate_catalog.py": 4
+      "scripts/validate_catalog.py": 8
     },
     "licenses": {
       "scripts/audit_catalog_quality.py": 4,
@@ -588,6 +610,9 @@
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
     },
+    "status": {
+      "scripts/validate_catalog.py": 4
+    },
     "track": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -600,7 +625,11 @@
     },
     "unresolved": {
       "scripts/audit_catalog_quality.py": 4,
-      "scripts/test_catalog_quality.py": 4
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/validate_catalog.py": 4
+    },
+    "validation": {
+      "scripts/validate_catalog.py": 4
     },
     "verify": {
       "scripts/backfill_licenses.py": 4,

@@ -9,10 +9,10 @@
     "top_score": 17
   },
   "cache": {
-    "fingerprint": "bbe1882a9af35dbe0f0dd7a31ca57658d65eb18f3caded673d99f173fc1308ed",
+    "fingerprint": "2f30a0b6fee4c22c19ca4127eae1cdb2646859acbae4c1f72a6ba8018c4d8427",
     "hit": false
   },
-  "candidate_count": 7,
+  "candidate_count": 4,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -77,39 +77,12 @@
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": "scripts/audit_catalog_quality.py",
+      "path": "scripts/validate_catalog.py",
       "reasons": [
         "impact",
         "recently-changed"
       ],
       "score": 9,
-      "symbols": [
-        "_age_days",
-        "add",
-        "analyze",
-        "main",
-        "render_markdown"
-      ]
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [],
-      "path": "scripts/test_catalog_quality.py",
-      "reasons": [
-        "impact",
-        "recently-changed"
-      ],
-      "score": 9,
-      "symbols": []
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [],
-      "path": "catalog.json",
-      "reasons": [
-        "recently-changed"
-      ],
-      "score": 3,
       "symbols": []
     }
   ],

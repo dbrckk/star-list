@@ -1,16 +1,12 @@
 # Change impact
 
-Base: 82f0b68eb49e335311f33f2dea7e3b320d710c47
-Head: 1b6bc2ac9686f88590eacd88b4c14d2f2dd63afb
+Base: 4d666d98aff74de5a83c8e2ef45dba63b56626a4
+Head: 4e24a54d9467e8781faf2a2bfa06990123885f16
 
 ## Changed files
-- M catalog.json
-- M catalog.schema.json
-- M scripts/audit_catalog_quality.py
-- M scripts/test_catalog_quality.py
+- M scripts/validate_catalog.py
 
 ## Affected areas
-- (root)
 - scripts
 
 ## Related test candidates
