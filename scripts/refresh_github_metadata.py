@@ -87,7 +87,7 @@ def detect_license_text(text):
         and "neither the name of" not in normalized
     ):
         return "BSD-2-Clause"
-    if re.search(r"(^|[^a-z0-9])mit license([^a-z0-9]|$)", normalized):
+    if re.search(r"(^|[^a-z0-9])mit(?: license)?([^a-z0-9]|$)", normalized):
         return "MIT"
     return None
 
