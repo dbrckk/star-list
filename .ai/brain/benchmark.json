@@ -8,13 +8,13 @@
         "requested_max_files": 12,
         "score_margin": 0,
         "tier": "broad",
-        "top_score": 3
+        "top_score": 9
       },
       "cache_hit": true,
-      "candidate_count": 6,
-      "elapsed_ms": 45.682,
+      "candidate_count": 5,
+      "elapsed_ms": 45.069,
       "ok": true,
-      "selected_files": 6,
+      "selected_files": 5,
       "task": "purchase billing"
     },
     {
@@ -25,13 +25,13 @@
         "requested_max_files": 12,
         "score_margin": 0,
         "tier": "broad",
-        "top_score": 3
+        "top_score": 9
       },
       "cache_hit": true,
-      "candidate_count": 6,
-      "elapsed_ms": 45.786,
+      "candidate_count": 5,
+      "elapsed_ms": 43.807,
       "ok": true,
-      "selected_files": 6,
+      "selected_files": 5,
       "task": "income progression"
     },
     {
@@ -42,13 +42,13 @@
         "requested_max_files": 12,
         "score_margin": 0,
         "tier": "broad",
-        "top_score": 3
+        "top_score": 9
       },
       "cache_hit": true,
-      "candidate_count": 6,
-      "elapsed_ms": 46.38,
+      "candidate_count": 5,
+      "elapsed_ms": 43.446,
       "ok": true,
-      "selected_files": 6,
+      "selected_files": 5,
       "task": "privacy consent"
     },
     {
@@ -62,8 +62,8 @@
         "top_score": 21
       },
       "cache_hit": true,
-      "candidate_count": 9,
-      "elapsed_ms": 46.046,
+      "candidate_count": 8,
+      "elapsed_ms": 42.875,
       "ok": true,
       "selected_files": 6,
       "task": "offline progress"
@@ -79,8 +79,8 @@
         "top_score": 17
       },
       "cache_hit": true,
-      "candidate_count": 8,
-      "elapsed_ms": 45.938,
+      "candidate_count": 7,
+      "elapsed_ms": 43.305,
       "ok": true,
       "selected_files": 6,
       "task": "game engine"
@@ -95,13 +95,13 @@
         "requested_max_files": 12,
         "score_margin": 0,
         "tier": "broad",
-        "top_score": 3
+        "top_score": 9
       },
       "cache_hit": false,
-      "candidate_count": 6,
-      "elapsed_ms": 50.76,
+      "candidate_count": 5,
+      "elapsed_ms": 47.924,
       "ok": true,
-      "selected_files": 6,
+      "selected_files": 5,
       "task": "purchase billing"
     },
     {
@@ -112,13 +112,13 @@
         "requested_max_files": 12,
         "score_margin": 0,
         "tier": "broad",
-        "top_score": 3
+        "top_score": 9
       },
       "cache_hit": false,
-      "candidate_count": 6,
-      "elapsed_ms": 51.474,
+      "candidate_count": 5,
+      "elapsed_ms": 47.834,
       "ok": true,
-      "selected_files": 6,
+      "selected_files": 5,
       "task": "income progression"
     },
     {
@@ -129,13 +129,13 @@
         "requested_max_files": 12,
         "score_margin": 0,
         "tier": "broad",
-        "top_score": 3
+        "top_score": 9
       },
       "cache_hit": false,
-      "candidate_count": 6,
-      "elapsed_ms": 50.91,
+      "candidate_count": 5,
+      "elapsed_ms": 47.485,
       "ok": true,
-      "selected_files": 6,
+      "selected_files": 5,
       "task": "privacy consent"
     },
     {
@@ -149,8 +149,8 @@
         "top_score": 21
       },
       "cache_hit": false,
-      "candidate_count": 9,
-      "elapsed_ms": 49.392,
+      "candidate_count": 8,
+      "elapsed_ms": 48.141,
       "ok": true,
       "selected_files": 6,
       "task": "offline progress"
@@ -166,8 +166,8 @@
         "top_score": 17
       },
       "cache_hit": false,
-      "candidate_count": 8,
-      "elapsed_ms": 49.547,
+      "candidate_count": 7,
+      "elapsed_ms": 48.408,
       "ok": true,
       "selected_files": 6,
       "task": "game engine"
@@ -176,12 +176,12 @@
   "generated_by": "dbrckk/repo-brain-benchmark-v1",
   "graph_edge_count": 5,
   "schema_version": 1,
-  "search_file_count": 23,
-  "search_token_count": 1071,
+  "search_file_count": 24,
+  "search_token_count": 1097,
   "summary": {
     "all_cached_second_pass": true,
-    "avg_selected_files": 6.0,
-    "cached_pass_ms": 229.832,
-    "first_pass_ms": 252.083
+    "avg_selected_files": 5.4,
+    "cached_pass_ms": 218.502,
+    "first_pass_ms": 239.792
   }
 }

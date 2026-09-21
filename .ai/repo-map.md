@@ -50,6 +50,7 @@ schemas/
   cache-health-history.schema.json
   cache-health-trend.schema.json
   cache-health.schema.json
+  catalog-quality.schema.json
   catalog-stats.schema.json
   coverage-report.schema.json
   discovery-cache.schema.json
@@ -65,6 +66,7 @@ schemas/
 scripts/
   analyze_cache_health.py
   analyze_coverage.py
+  audit_catalog_quality.py
   build_discovery_watchlist.py
   catalog_stats.py
   detect_health_drift.py
@@ -80,6 +82,7 @@ scripts/
   test_analyze_coverage.py
   test_cache_health_history.py
   test_cache_health.py
+  test_catalog_quality.py
   test_degraded_inputs.py
   test_discover_candidates.py
   test_discovery_cache_stats.py
@@ -172,6 +175,26 @@ jobs:
         run: |
           python scripts/validate_catalog.py
           python scripts/test_recommend.py
+      - name: Build catalog quality audit
+        run: |
+          python scripts/audit_catalog_quality.py --markdown-output catalog-quality.md > catalog-quality.json
+          python scripts/validate_json_contract.py schemas/catalog-quality.schema.json catalog-quality.json
+      - name: Publish catalog quality audit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REVIEW=$(python -c "import json; print(json.load(open('catalog-quality.json'))['summary']['review'])")
+          INFO=$(python -c "import json; print(json.load(open('catalog-quality.json'))['summary']['info'])")
+          TOTAL=$(python -c "import json; print(json.load(open('catalog-quality.json'))['summary']['findings'])")
+          MARKER='<!-- star-list-catalog-quality -->'
+          EXISTING=$(gh issue list --state open --search "$MARKER in:body" --json number --jq '.[0].number // empty')
+          if [ "$TOTAL" = "0" ]; then
+            if [ -n "$EXISTING" ]; then gh issue close "$EXISTING" --comment "Catalog quality audit is clean."; fi
+          elif [ -n "$EXISTING" ]; then
+            gh issue edit "$EXISTING" --title "Catalog quality: $REVIEW review / $INFO info" --body-file catalog-quality.md
+          else
+            gh issue create --title "Catalog quality: $REVIEW review / $INFO info" --body-file catalog-quality.md --label maintenance || gh issue create --title "Catalog quality: $REVIEW review / $INFO info" --body-file catalog-quality.md
+          fi
       - name: Build current health snapshot and drift report
         run: |
           python scripts/health_score.py > health-snapshot-current.json
@@ -330,6 +353,12 @@ jobs:
         run: |
           python scripts/validate_catalog.py
           python scripts/validate_json_contract.py catalog.schema.json catalog.json
+      - name: Test catalog quality audit
+        run: python scripts/test_catalog_quality.py
+      - name: Generate catalog quality audit
+        run: python scripts/audit_catalog_quality.py > catalog-quality.json
+      - name: Validate catalog quality audit contract
+        run: python scripts/validate_json_contract.py schemas/catalog-quality.schema.json catalog-quality.json
       - name: Test GitHub metadata refresh resilience
         run: python scripts/test_refresh_github_metadata.py
       - name: Test recommendation engine
@@ -426,6 +455,181 @@ initial_prompt: |
 ## File: schemas/cache-health.schema.json
 ````json
 {"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Cache Health Report","type":"object","required":["status","findings","metrics"],"properties":{"status":{"enum":["healthy","watch","degraded"]},"findings":{"type":"array","items":{"type":"string"}},"metrics":{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Cache Health Metrics","type":"object","required":["logicalRequests","freshCacheHits","notModifiedHits","staleFallbacks","networkFetches","apiCallAvoidanceRate","bodyReuseRate","networkFetchRate","staleFallbackRate"],"properties":{"logicalRequests":{"type":"integer","minimum":0},"freshCacheHits":{"type":"integer","minimum":0},"notModifiedHits":{"type":"integer","minimum":0},"staleFallbacks":{"type":"integer","minimum":0},"networkFetches":{"type":"integer","minimum":0},"apiCallAvoidanceRate":{"type":"number","minimum":0,"maximum":1},"bodyReuseRate":{"type":"number","minimum":0,"maximum":1},"networkFetchRate":{"type":"number","minimum":0,"maximum":1},"staleFallbackRate":{"type":"number","minimum":0,"maximum":1}},"additionalProperties":false}},"additionalProperties":false}
+````
+
+## File: schemas/catalog-quality.schema.json
+````json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Catalog Quality Audit",
+  "type": "object",
+  "required": [
+    "staleDays",
+    "repositories",
+    "summary",
+    "guidanceCoverage",
+    "findings"
+  ],
+  "properties": {
+    "staleDays": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "repositories": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "findings",
+        "review",
+        "info",
+        "byCode"
+      ],
+      "properties": {
+        "findings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "review": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "info": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byCode": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "guidanceCoverage": {
+      "type": "object",
+      "required": [
+        "bestFor",
+        "avoidWhen",
+        "alternatives",
+        "complements"
+      ],
+      "properties": {
+        "bestFor": {
+          "type": "object",
+          "required": [
+            "populated",
+            "missing"
+          ],
+          "properties": {
+            "populated": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "missing": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "avoidWhen": {
+          "type": "object",
+          "required": [
+            "populated",
+            "missing"
+          ],
+          "properties": {
+            "populated": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "missing": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "alternatives": {
+          "type": "object",
+          "required": [
+            "populated",
+            "missing"
+          ],
+          "properties": {
+            "populated": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "missing": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "complements": {
+          "type": "object",
+          "required": [
+            "populated",
+            "missing"
+          ],
+          "properties": {
+            "populated": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "missing": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "repo",
+          "severity",
+          "code",
+          "message"
+        ],
+        "properties": {
+          "repo": {
+            "type": "string",
+            "minLength": 1
+          },
+          "severity": {
+            "enum": [
+              "review",
+              "info"
+            ]
+          },
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
 ````
 
 ## File: schemas/catalog-stats.schema.json
@@ -567,6 +771,58 @@ ap=argparse.ArgumentParser()
 args=ap.parse_args()
 ⋮----
 repos=json.loads(CATALOG.read_text()).get("repositories",[])
+````
+
+## File: scripts/audit_catalog_quality.py
+````python
+#!/usr/bin/env python3
+"""Audit catalog maintenance debt without mutating catalog.json."""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+CATALOG = ROOT / "catalog.json"
+SEVERITY_ORDER = {"review": 0, "info": 1}
+⋮----
+def _age_days(value, now)
+⋮----
+pushed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+⋮----
+pushed = pushed.replace(tzinfo=timezone.utc)
+⋮----
+def analyze(repos, stale_days=730, now=None)
+⋮----
+now = now or datetime.now(timezone.utc)
+findings = []
+guidance_fields = ("bestFor", "avoidWhen", "alternatives", "complements")
+⋮----
+def add(repo, severity, code, message)
+⋮----
+name = entry.get("repo", "<unknown>")
+gh = entry.get("github")
+⋮----
+age = _age_days(gh.get("pushedAt"), now)
+⋮----
+license_name = gh.get("license")
+⋮----
+severity_counts = Counter(row["severity"] for row in findings)
+code_counts = Counter(row["code"] for row in findings)
+guidance = {
+⋮----
+def render_markdown(report)
+⋮----
+summary = report["summary"]
+lines = [
+⋮----
+review = [row for row in report["findings"] if row["severity"] == "review"]
+info = [row for row in report["findings"] if row["severity"] == "info"]
+⋮----
+def main()
+⋮----
+parser = argparse.ArgumentParser(description="Audit catalog maintenance debt.")
+⋮----
+args = parser.parse_args()
+⋮----
+repos = json.loads(CATALOG.read_text()).get("repositories", [])
+report = analyze(repos, stale_days=args.stale_days)
 ````
 
 ## File: scripts/build_discovery_watchlist.py
@@ -1329,6 +1585,23 @@ healthy = mod.analyze({
 watch = mod.analyze({
 ⋮----
 degraded = mod.analyze({
+````
+
+## File: scripts/test_catalog_quality.py
+````python
+#!/usr/bin/env python3
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+SCRIPT = ROOT / "scripts" / "audit_catalog_quality.py"
+spec = importlib.util.spec_from_file_location("audit_catalog_quality", SCRIPT)
+mod = importlib.util.module_from_spec(spec)
+⋮----
+now = datetime(2026, 9, 21, tzinfo=timezone.utc)
+repos = [
+⋮----
+report = mod.analyze(repos, stale_days=730, now=now)
+⋮----
+markdown = mod.render_markdown(report)
 ````
 
 ## File: scripts/test_degraded_inputs.py

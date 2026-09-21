@@ -2,11 +2,24 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/discover_candidates.py",
+      "path": "scripts/test_catalog_quality.py",
       "reasons": [
-        "recent-project-state"
+        "changed",
+        "changed-source",
+        "impact",
+        "selected-test"
       ],
-      "score": 60
+      "score": 370
+    },
+    {
+      "path": "scripts/audit_catalog_quality.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 325
     },
     {
       "path": "scripts/find_replacements.py",

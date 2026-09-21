@@ -41,6 +41,7 @@ The content is organized as follows:
 cache-health-history.schema.json
 cache-health-trend.schema.json
 cache-health.schema.json
+catalog-quality.schema.json
 catalog-stats.schema.json
 coverage-report.schema.json
 discovery-cache.schema.json
@@ -70,6 +71,181 @@ replacement-report.schema.json
 ## File: cache-health.schema.json
 ```json
 {"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Cache Health Report","type":"object","required":["status","findings","metrics"],"properties":{"status":{"enum":["healthy","watch","degraded"]},"findings":{"type":"array","items":{"type":"string"}},"metrics":{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Cache Health Metrics","type":"object","required":["logicalRequests","freshCacheHits","notModifiedHits","staleFallbacks","networkFetches","apiCallAvoidanceRate","bodyReuseRate","networkFetchRate","staleFallbackRate"],"properties":{"logicalRequests":{"type":"integer","minimum":0},"freshCacheHits":{"type":"integer","minimum":0},"notModifiedHits":{"type":"integer","minimum":0},"staleFallbacks":{"type":"integer","minimum":0},"networkFetches":{"type":"integer","minimum":0},"apiCallAvoidanceRate":{"type":"number","minimum":0,"maximum":1},"bodyReuseRate":{"type":"number","minimum":0,"maximum":1},"networkFetchRate":{"type":"number","minimum":0,"maximum":1},"staleFallbackRate":{"type":"number","minimum":0,"maximum":1}},"additionalProperties":false}},"additionalProperties":false}
+```
+
+## File: catalog-quality.schema.json
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Catalog Quality Audit",
+  "type": "object",
+  "required": [
+    "staleDays",
+    "repositories",
+    "summary",
+    "guidanceCoverage",
+    "findings"
+  ],
+  "properties": {
+    "staleDays": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "repositories": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "findings",
+        "review",
+        "info",
+        "byCode"
+      ],
+      "properties": {
+        "findings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "review": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "info": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "byCode": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "guidanceCoverage": {
+      "type": "object",
+      "required": [
+        "bestFor",
+        "avoidWhen",
+        "alternatives",
+        "complements"
+      ],
+      "properties": {
+        "bestFor": {
+          "type": "object",
+          "required": [
+            "populated",
+            "missing"
+          ],
+          "properties": {
+            "populated": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "missing": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "avoidWhen": {
+          "type": "object",
+          "required": [
+            "populated",
+            "missing"
+          ],
+          "properties": {
+            "populated": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "missing": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "alternatives": {
+          "type": "object",
+          "required": [
+            "populated",
+            "missing"
+          ],
+          "properties": {
+            "populated": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "missing": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "complements": {
+          "type": "object",
+          "required": [
+            "populated",
+            "missing"
+          ],
+          "properties": {
+            "populated": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "missing": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "repo",
+          "severity",
+          "code",
+          "message"
+        ],
+        "properties": {
+          "repo": {
+            "type": "string",
+            "minLength": 1
+          },
+          "severity": {
+            "enum": [
+              "review",
+              "info"
+            ]
+          },
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
 ```
 
 ## File: catalog-stats.schema.json

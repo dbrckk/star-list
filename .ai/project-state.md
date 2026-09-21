@@ -22,16 +22,21 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-20T19:19:20Z
+Generated: 2026-09-21T07:42:42Z
 
 ### Git
 - Branch: `main`
-- Head: `d0e5586595a5`
-- Commit date: 2026-09-20T21:19:11+02:00
-- Commit: Merge pull request #18 from dbrckk/chore/sync-refresh-390-state
-- Tracked files: 174
+- Head: `5ad9b00d2dfa`
+- Commit date: 2026-09-21T09:42:31+02:00
+- Commit: Add automated catalog quality audit (#19)
+- Tracked files: 182
 
 ### Recently changed files
+- `.github/workflows/refresh-metadata.yml`
+- `.github/workflows/validate.yml`
+- `schemas/catalog-quality.schema.json`
+- `scripts/audit_catalog_quality.py`
+- `scripts/test_catalog_quality.py`
 - `cache-health-history.json`
 - `catalog.json`
 - `discovery-cache.json`
@@ -40,7 +45,6 @@ Generated: 2026-09-20T19:19:20Z
 - `history.json`
 - `scripts/test_find_replacements.py`
 - `scripts/find_replacements.py`
-- `scripts/test_discovery_cache.py`
 
 ### Project signals
 - No common build descriptor detected

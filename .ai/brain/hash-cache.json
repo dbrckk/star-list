@@ -1,5 +1,13 @@
 {
   "files": {
+    ".github/workflows/refresh-metadata.yml": {
+      "sha256": "dc8f5a924c1667a1cf5683ea451ffb8502188a48bcbebefdbab1c091132b70c7",
+      "size": 10130
+    },
+    ".github/workflows/validate.yml": {
+      "sha256": "5b4959f9bb08d6184315c0245dd80b87768d7fd206b54a98446f2532136a6941",
+      "size": 4472
+    },
     "cache-health-history.json": {
       "sha256": "2c02c05cf56390a399bf9b48bde10318158bd70bc03380930e9546c79fedeb3e",
       "size": 688
@@ -24,13 +32,21 @@
       "sha256": "e42490eaa9cf436ebcf55adb2d1d8139d0e42ea15f2eacbed3fa1a4ff944d90e",
       "size": 117808
     },
-    "scripts/discover_candidates.py": {
-      "sha256": "7545ff42d65529b1ad7e9b5a729898eadb08fb770e0d569aaa7526db6b1e4eef",
-      "size": 14633
+    "schemas/catalog-quality.schema.json": {
+      "sha256": "b5acdef4a0beddb2c36cc3c0e069808dbd8c6dc0ab80197f322f4cc9102f8341",
+      "size": 3674
+    },
+    "scripts/audit_catalog_quality.py": {
+      "sha256": "41a430ca7294bf6d917ec9ccdd8b0579f5120f8701d01f5fd156e36677f096b1",
+      "size": 5638
     },
     "scripts/find_replacements.py": {
       "sha256": "fc4e3e288abcc1b48eaf238d09357ff7d11e5f1ce8b62aa92d4a4717c20006d9",
       "size": 3404
+    },
+    "scripts/test_catalog_quality.py": {
+      "sha256": "cdb9c2ec3d31c2da43ad78e641333d29553b22557a1576a71982f972f4af35b2",
+      "size": 2045
     },
     "scripts/test_discovery_cache.py": {
       "sha256": "c0939c9be9a47bec60c7509b8829fbc4eb740ac30f7b123aa678aa8007cee7df",

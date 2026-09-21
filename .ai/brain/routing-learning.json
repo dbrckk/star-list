@@ -22,6 +22,23 @@
         "scripts/test_refresh_github_metadata.py",
         "scripts/validate_json_contract.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "Add automated catalog quality audit (#19)",
+      "terms": [
+        "19",
+        "add",
+        "audit",
+        "automated",
+        "catalog",
+        "quality"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/audit_catalog_quality.py",
+        "scripts/test_catalog_quality.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -36,6 +53,26 @@
       "scripts/test_json_contracts.py": 4,
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/validate_json_contract.py": 4
+    },
+    "19": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4
+    },
+    "add": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4
+    },
+    "audit": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4
+    },
+    "automated": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4
+    },
+    "catalog": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4
     },
     "dbrckk/improve/v1.1-hardening": {
       "scripts/discover_candidates.py": 4,
@@ -76,6 +113,10 @@
       "scripts/test_json_contracts.py": 4,
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/validate_json_contract.py": 4
+    },
+    "quality": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4
     },
     "request": {
       "scripts/discover_candidates.py": 4,

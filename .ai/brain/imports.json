@@ -12,6 +12,13 @@
       "json",
       "pathlib"
     ],
+    "scripts/audit_catalog_quality.py": [
+      "argparse",
+      "collections",
+      "datetime",
+      "json",
+      "pathlib"
+    ],
     "scripts/build_discovery_watchlist.py": [
       "argparse",
       "json",
@@ -104,6 +111,11 @@
       "pathlib"
     ],
     "scripts/test_cache_health_history.py": [
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/test_catalog_quality.py": [
+      "datetime",
       "importlib.util",
       "pathlib"
     ],

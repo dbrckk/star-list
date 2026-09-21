@@ -1,50 +1,83 @@
 {
   "files": [
     {
-      "path": "catalog.json",
+      "path": "scripts/test_catalog_quality.py",
       "reasons": [
         "changed",
-        "recent-project-state"
+        "changed-source",
+        "impact",
+        "selected-test"
       ],
-      "score": 160
+      "score": 370
+    },
+    {
+      "path": "scripts/audit_catalog_quality.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 325
+    },
+    {
+      "path": ".github/workflows/refresh-metadata.yml",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": ".github/workflows/validate.yml",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "schemas/catalog-quality.schema.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
     },
     {
       "path": "cache-health-history.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
+    },
+    {
+      "path": "catalog.json",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     },
     {
       "path": "discovery-cache.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
     },
     {
       "path": "discovery-memory.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
     },
     {
       "path": "health-snapshot.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
     },
     {
       "path": "history.json",
-      "reasons": [
-        "changed"
-      ],
-      "score": 100
-    },
-    {
-      "path": "scripts/discover_candidates.py",
       "reasons": [
         "recent-project-state"
       ],

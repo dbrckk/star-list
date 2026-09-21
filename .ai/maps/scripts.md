@@ -40,6 +40,7 @@ The content is organized as follows:
 ```
 analyze_cache_health.py
 analyze_coverage.py
+audit_catalog_quality.py
 build_discovery_watchlist.py
 catalog_stats.py
 detect_health_drift.py
@@ -55,6 +56,7 @@ render_health_issue.py
 test_analyze_coverage.py
 test_cache_health_history.py
 test_cache_health.py
+test_catalog_quality.py
 test_degraded_inputs.py
 test_discover_candidates.py
 test_discovery_cache_stats.py
@@ -160,6 +162,58 @@ ap=argparse.ArgumentParser()
 args=ap.parse_args()
 ⋮----
 repos=json.loads(CATALOG.read_text()).get("repositories",[])
+```
+
+## File: audit_catalog_quality.py
+```python
+#!/usr/bin/env python3
+"""Audit catalog maintenance debt without mutating catalog.json."""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+CATALOG = ROOT / "catalog.json"
+SEVERITY_ORDER = {"review": 0, "info": 1}
+⋮----
+def _age_days(value, now)
+⋮----
+pushed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+⋮----
+pushed = pushed.replace(tzinfo=timezone.utc)
+⋮----
+def analyze(repos, stale_days=730, now=None)
+⋮----
+now = now or datetime.now(timezone.utc)
+findings = []
+guidance_fields = ("bestFor", "avoidWhen", "alternatives", "complements")
+⋮----
+def add(repo, severity, code, message)
+⋮----
+name = entry.get("repo", "<unknown>")
+gh = entry.get("github")
+⋮----
+age = _age_days(gh.get("pushedAt"), now)
+⋮----
+license_name = gh.get("license")
+⋮----
+severity_counts = Counter(row["severity"] for row in findings)
+code_counts = Counter(row["code"] for row in findings)
+guidance = {
+⋮----
+def render_markdown(report)
+⋮----
+summary = report["summary"]
+lines = [
+⋮----
+review = [row for row in report["findings"] if row["severity"] == "review"]
+info = [row for row in report["findings"] if row["severity"] == "info"]
+⋮----
+def main()
+⋮----
+parser = argparse.ArgumentParser(description="Audit catalog maintenance debt.")
+⋮----
+args = parser.parse_args()
+⋮----
+repos = json.loads(CATALOG.read_text()).get("repositories", [])
+report = analyze(repos, stale_days=args.stale_days)
 ```
 
 ## File: build_discovery_watchlist.py
@@ -922,6 +976,23 @@ healthy = mod.analyze({
 watch = mod.analyze({
 ⋮----
 degraded = mod.analyze({
+```
+
+## File: test_catalog_quality.py
+```python
+#!/usr/bin/env python3
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+SCRIPT = ROOT / "scripts" / "audit_catalog_quality.py"
+spec = importlib.util.spec_from_file_location("audit_catalog_quality", SCRIPT)
+mod = importlib.util.module_from_spec(spec)
+⋮----
+now = datetime(2026, 9, 21, tzinfo=timezone.utc)
+repos = [
+⋮----
+report = mod.analyze(repos, stale_days=730, now=now)
+⋮----
+markdown = mod.render_markdown(report)
 ```
 
 ## File: test_degraded_inputs.py

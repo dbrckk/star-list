@@ -9,10 +9,10 @@
     "top_score": 17
   },
   "cache": {
-    "fingerprint": "9117467e6c9f7ab353503a75e07bca93341a2cc0462701d82ee36b481e04ce58",
+    "fingerprint": "4706f89d7d237b29b1b8c7baf14c79a9bb0868b5d44cc66ee8409cc7534deaf0",
     "hit": false
   },
-  "candidate_count": 8,
+  "candidate_count": 7,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -56,7 +56,35 @@
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": "cache-health-history.json",
+      "path": "scripts/audit_catalog_quality.py",
+      "reasons": [
+        "impact",
+        "recently-changed"
+      ],
+      "score": 9,
+      "symbols": [
+        "_age_days",
+        "add",
+        "analyze",
+        "main",
+        "render_markdown"
+      ]
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [],
+      "path": "scripts/test_catalog_quality.py",
+      "reasons": [
+        "impact",
+        "recently-changed"
+      ],
+      "score": 9,
+      "symbols": []
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [],
+      "path": ".github/workflows/refresh-metadata.yml",
       "reasons": [
         "recently-changed"
       ],
@@ -66,27 +94,7 @@
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": "catalog.json",
-      "reasons": [
-        "recently-changed"
-      ],
-      "score": 3,
-      "symbols": []
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [],
-      "path": "discovery-cache.json",
-      "reasons": [
-        "recently-changed"
-      ],
-      "score": 3,
-      "symbols": []
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [],
-      "path": "discovery-memory.json",
+      "path": ".github/workflows/validate.yml",
       "reasons": [
         "recently-changed"
       ],
