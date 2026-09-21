@@ -97,6 +97,8 @@ CAPABILITY_BEST_FOR = {
     "video": "video-generation workflows",
     "code-quality": "code-quality automation",
     "particles": "particle effects",
+    "diagrams": "technical diagrams",
+    "architecture": "software architecture diagrams",
 }
 
 DOMAIN_AVOID_WHEN = {
