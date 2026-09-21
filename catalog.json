@@ -1839,7 +1839,8 @@
         "pushedAt": "2026-09-18T19:39:43Z"
       },
       "bestFor": [
-        "api directory workflows"
+        "API discovery and reference",
+        "data-source discovery"
       ],
       "avoidWhen": [
         "specialized low-level systems work"
@@ -1915,7 +1916,7 @@
         "pushedAt": "2024-11-19T14:00:38Z"
       },
       "bestFor": [
-        "retrieval and persistent-memory workflows"
+        "knowledge retention and reference workflows"
       ],
       "avoidWhen": [
         "specialized low-level systems work"
@@ -2290,7 +2291,8 @@
         "pushedAt": "2026-09-19T23:16:16Z"
       },
       "bestFor": [
-        "windows automation workflows"
+        "Windows administration automation",
+        "Windows system tuning"
       ],
       "avoidWhen": [
         "specialized low-level systems work"
@@ -3736,7 +3738,8 @@
         "pushedAt": "2026-09-20T08:15:13Z"
       },
       "bestFor": [
-        "object storage workflows"
+        "object storage",
+        "distributed storage systems"
       ],
       "avoidWhen": [
         "frontend-only UI work"
@@ -4066,7 +4069,8 @@
       },
       "bestFor": [
         "reusable UI component systems",
-        "design systems"
+        "design systems",
+        "accessibility testing and remediation"
       ],
       "avoidWhen": [
         "backend-only services"
@@ -4241,7 +4245,9 @@
         "pushedAt": "2026-09-16T09:36:08Z"
       },
       "bestFor": [
-        "3d workflows"
+        "3D application development",
+        "WebGL rendering",
+        "React application development"
       ],
       "avoidWhen": [
         "backend-only services"
@@ -4634,7 +4640,8 @@
         "pushedAt": "2026-09-18T18:02:42Z"
       },
       "bestFor": [
-        "accessibility workflows"
+        "accessibility testing and remediation",
+        "automated testing"
       ],
       "avoidWhen": [
         "backend-only services"
@@ -4721,7 +4728,8 @@
         "pushedAt": "2026-08-09T22:50:11Z"
       },
       "bestFor": [
-        "github actions workflows"
+        "GitHub Actions workflows",
+        "local CI validation"
       ],
       "avoidWhen": [
         "local-only scripts with no deployment or operations needs"
@@ -4764,7 +4772,9 @@
         "pushedAt": "2025-10-23T20:10:46Z"
       },
       "bestFor": [
-        "build system workflows"
+        "build automation",
+        "CI/CD pipelines",
+        "container workflows"
       ],
       "avoidWhen": [
         "local-only scripts with no deployment or operations needs"
@@ -4854,7 +4864,8 @@
         "pushedAt": "2026-09-19T19:27:59Z"
       },
       "bestFor": [
-        "containers workflows"
+        "container workflows",
+        "container runtime operations"
       ],
       "avoidWhen": [
         "local-only scripts with no deployment or operations needs"
@@ -4987,7 +4998,8 @@
         "pushedAt": "2026-09-18T15:10:12Z"
       },
       "bestFor": [
-        "iac workflows"
+        "infrastructure as code",
+        "infrastructure management"
       ],
       "avoidWhen": [
         "projects requiring minimal setup and operational complexity",
@@ -5030,7 +5042,8 @@
         "pushedAt": "2026-09-18T18:44:41Z"
       },
       "bestFor": [
-        "iac workflows"
+        "infrastructure as code",
+        "infrastructure management"
       ],
       "avoidWhen": [
         "projects requiring minimal setup and operational complexity",
@@ -5553,7 +5566,9 @@
         "pushedAt": "2026-09-20T04:53:38Z"
       },
       "bestFor": [
-        "ast workflows"
+        "AST-based code analysis",
+        "code search and indexing",
+        "large-scale code refactoring"
       ],
       "avoidWhen": [
         "non-development workflows"
@@ -5595,7 +5610,7 @@
         "pushedAt": "2026-09-16T03:51:18Z"
       },
       "bestFor": [
-        "code search workflows"
+        "code search and indexing"
       ],
       "avoidWhen": [
         "non-development workflows"
@@ -5718,7 +5733,8 @@
         "pushedAt": "2026-08-14T01:33:58Z"
       },
       "bestFor": [
-        "profiling workflows"
+        "performance profiling",
+        "Python development"
       ],
       "avoidWhen": [
         "non-development workflows"
@@ -5759,7 +5775,7 @@
         "pushedAt": "2026-09-20T00:08:57Z"
       },
       "bestFor": [
-        "code quality workflows"
+        "code-quality automation"
       ],
       "avoidWhen": [
         "non-development workflows"
@@ -5800,7 +5816,7 @@
         "pushedAt": "2026-09-19T20:03:29Z"
       },
       "bestFor": [
-        "code quality workflows"
+        "code-quality automation"
       ],
       "avoidWhen": [
         "non-development workflows"
@@ -5924,7 +5940,7 @@
         "pushedAt": "2026-09-20T00:45:42Z"
       },
       "bestFor": [
-        "code quality workflows"
+        "code-quality automation"
       ],
       "avoidWhen": [
         "non-development workflows"
@@ -6009,7 +6025,8 @@
         "pushedAt": "2026-09-20T17:32:19Z"
       },
       "bestFor": [
-        "monitoring and observability"
+        "monitoring and observability",
+        "code-quality automation"
       ],
       "avoidWhen": [
         "non-development workflows"
@@ -6050,7 +6067,7 @@
         "pushedAt": "2026-09-20T18:32:00Z"
       },
       "bestFor": [
-        "code quality workflows"
+        "code-quality automation"
       ],
       "avoidWhen": [
         "non-development workflows"
@@ -6091,7 +6108,7 @@
         "pushedAt": "2026-09-20T16:48:03Z"
       },
       "bestFor": [
-        "code quality workflows"
+        "code-quality automation"
       ],
       "avoidWhen": [
         "non-development workflows"
@@ -6132,7 +6149,7 @@
         "pushedAt": "2026-09-20T13:31:32Z"
       },
       "bestFor": [
-        "code quality workflows"
+        "code-quality automation"
       ],
       "avoidWhen": [
         "non-development workflows"
@@ -6173,7 +6190,7 @@
         "pushedAt": "2026-09-14T10:51:06Z"
       },
       "bestFor": [
-        "code quality workflows"
+        "code-quality automation"
       ],
       "avoidWhen": [
         "non-development workflows"
@@ -6248,7 +6265,7 @@
         "pushedAt": "2026-09-14T23:33:51Z"
       },
       "bestFor": [
-        "code quality workflows"
+        "code-quality automation"
       ],
       "avoidWhen": [
         "non-development workflows"
@@ -6426,7 +6443,6 @@
         "pushedAt": "2026-08-04T07:48:43Z"
       },
       "bestFor": [
-        "retrieval and persistent-memory workflows",
         "vector animation"
       ],
       "avoidWhen": [
@@ -6840,7 +6856,7 @@
         "pushedAt": "2026-06-29T09:33:50Z"
       },
       "bestFor": [
-        "video workflows"
+        "video-generation workflows"
       ],
       "avoidWhen": [
         "low-resource environments",
@@ -8591,7 +8607,8 @@
       },
       "bestFor": [
         "strategy backtesting",
-        "trading execution systems"
+        "trading execution systems",
+        "code-quality automation"
       ],
       "avoidWhen": [
         "non-financial applications"
@@ -8693,7 +8710,8 @@
         "pushedAt": "2026-08-05T12:39:16Z"
       },
       "bestFor": [
-        "strategy backtesting"
+        "strategy backtesting",
+        "code-quality automation"
       ],
       "avoidWhen": [
         "non-financial applications"
@@ -8743,7 +8761,8 @@
       },
       "bestFor": [
         "strategy backtesting",
-        "trading execution systems"
+        "trading execution systems",
+        "code-quality automation"
       ],
       "avoidWhen": [
         "non-financial applications"
@@ -8791,6 +8810,7 @@
       },
       "bestFor": [
         "strategy backtesting",
+        "code-quality automation",
         "quantitative alpha research"
       ],
       "avoidWhen": [
@@ -8843,7 +8863,7 @@
       "bestFor": [
         "strategy backtesting",
         "market-data ingestion",
-        "data pipelines"
+        "code-quality automation"
       ],
       "avoidWhen": [
         "non-financial applications"
@@ -8897,7 +8917,7 @@
       "bestFor": [
         "strategy backtesting",
         "machine-learning workflows",
-        "quantitative alpha research"
+        "code-quality automation"
       ],
       "avoidWhen": [
         "non-financial applications"
@@ -9159,7 +9179,7 @@
       "bestFor": [
         "strategy backtesting",
         "risk analysis",
-        "portfolio construction and analysis"
+        "code-quality automation"
       ],
       "avoidWhen": [
         "non-financial applications"
@@ -11090,6 +11110,7 @@
         "pushedAt": "2026-07-25T12:15:45Z"
       },
       "bestFor": [
+        "code-quality automation",
         "authorized security testing"
       ],
       "avoidWhen": [
@@ -11132,6 +11153,7 @@
         "pushedAt": "2026-07-14T12:58:31Z"
       },
       "bestFor": [
+        "code-quality automation",
         "authorized security testing"
       ],
       "avoidWhen": [
@@ -11174,6 +11196,7 @@
         "pushedAt": "2026-09-10T05:45:01Z"
       },
       "bestFor": [
+        "code-quality automation",
         "authorized security testing"
       ],
       "avoidWhen": [
@@ -11779,8 +11802,7 @@
         "pushedAt": "2026-09-20T16:34:33Z"
       },
       "bestFor": [
-        "retrieval and persistent-memory workflows",
-        "market-data ingestion"
+        "retrieval and persistent-memory workflows"
       ],
       "avoidWhen": [
         "stateless applications with no retrieval or memory needs"
@@ -12218,7 +12240,6 @@
       },
       "bestFor": [
         "agentic workflows",
-        "mobile application development",
         "game development"
       ],
       "avoidWhen": [
@@ -12729,7 +12750,7 @@
         "pushedAt": "2026-09-20T07:57:28Z"
       },
       "bestFor": [
-        "code quality workflows"
+        "code-quality automation"
       ],
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
@@ -12811,7 +12832,7 @@
         "pushedAt": "2026-09-06T05:02:34Z"
       },
       "bestFor": [
-        "video workflows"
+        "video-generation workflows"
       ],
       "avoidWhen": [
         "non-generative media workflows"
@@ -12888,7 +12909,6 @@
         "pushedAt": "2026-09-17T18:23:31Z"
       },
       "bestFor": [
-        "retrieval and persistent-memory workflows",
         "vector animation",
         "graphics rendering"
       ],
@@ -12932,8 +12952,7 @@
         "pushedAt": "2026-09-20T13:42:26Z"
       },
       "bestFor": [
-        "machine-learning workflows",
-        "vector animation"
+        "machine-learning workflows"
       ],
       "avoidWhen": [
         "deterministic non-ML tasks"
@@ -12978,9 +12997,9 @@
         "pushedAt": "2026-09-19T18:03:13Z"
       },
       "bestFor": [
-        "retrieval and persistent-memory workflows",
         "vector animation",
-        "graphics rendering"
+        "graphics rendering",
+        "mobile application development"
       ],
       "avoidWhen": [
         "non-visual workloads"
@@ -13025,9 +13044,9 @@
         "pushedAt": "2026-02-15T22:03:57Z"
       },
       "bestFor": [
-        "retrieval and persistent-memory workflows",
         "vector animation",
-        "graphics rendering"
+        "graphics rendering",
+        "mobile application development"
       ],
       "avoidWhen": [
         "non-visual workloads"
