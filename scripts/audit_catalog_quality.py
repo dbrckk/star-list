@@ -87,7 +87,15 @@ def analyze(repos, stale_days=730, now=None):
 
             license_name = gh.get("license")
             if license_name in (None, "", "NOASSERTION"):
-                add(name, "info", "license-unknown", "GitHub license metadata is unknown.")
+                if entry.get("licenseEvidence") == "no-root-license-file":
+                    add(
+                        name,
+                        "info",
+                        "license-file-missing",
+                        "No root-level license file was found; license remains unresolved.",
+                    )
+                else:
+                    add(name, "info", "license-unknown", "GitHub license metadata is unknown.")
 
         if not isinstance(entry.get("selfHosted"), bool):
             add(
