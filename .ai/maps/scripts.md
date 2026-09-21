@@ -962,6 +962,7 @@ CATALOG = ROOT / "catalog.json"
 API = "https://api.github.com/repos/{}"
 CONTENTS_API = "https://api.github.com/repos/{}/contents/{}"
 LICENSE_NAMES = ("license", "licence", "copying", "notice")
+README_NAMES = ("readme",)
 FIELDS = {
 ⋮----
 def _request_json(url, token=None, retries=2)
@@ -982,6 +983,10 @@ def detect_license_text(text)
 normalized = re.sub(r"\s+", " ", (text or "")).strip().lower()
 signatures = [
 ⋮----
+def _decode_content(payload)
+⋮----
+encoded = payload.get("content")
+⋮----
 def fallback_license(repo, default_branch, token=None)
 ⋮----
 root = fetch_contents(repo, ref=default_branch, token=token)
@@ -995,11 +1000,15 @@ path = item.get("path")
 ⋮----
 payload = fetch_contents(repo, path=path, ref=default_branch, token=token)
 ⋮----
-encoded = payload.get("content")
-⋮----
-text = base64.b64decode(encoded, validate=False).decode("utf-8", errors="replace")
+text = _decode_content(payload)
 ⋮----
 detected = detect_license_text(text)
+⋮----
+# Some curated lists and documentation repositories state their license
+# only in the README. Use this as a secondary signal, never as a guess.
+readmes = []
+⋮----
+payload = fetch_contents(repo, path=item.get("path"), ref=default_branch, token=token)
 ⋮----
 def metadata(raw)
 ⋮----
@@ -1595,6 +1604,8 @@ original = refresh.fetch_contents
 def fake_contents(repo, path="", ref=None, token=None, retries=2)
 ⋮----
 content = base64.b64encode(
+⋮----
+def test_license_fallback_reads_readme_when_root_license_is_absent()
 ⋮----
 def test_metadata_refresh_uses_license_fallback()
 ⋮----

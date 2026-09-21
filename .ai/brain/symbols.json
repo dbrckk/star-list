@@ -621,63 +621,70 @@
       "language": "python",
       "kind": "function",
       "name": "_request_json",
-      "line": 31
+      "line": 32
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "fetch",
-      "line": 49
+      "line": 50
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "fetch_contents",
-      "line": 53
+      "line": 54
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "detect_license_text",
-      "line": 61
+      "line": 62
+    },
+    {
+      "file": "scripts/refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_decode_content",
+      "line": 95
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "fallback_license",
-      "line": 90
+      "line": 107
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "metadata",
-      "line": 129
+      "line": 162
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "refresh_primary_language",
-      "line": 140
+      "line": 173
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "is_missing_repository_error",
-      "line": 147
+      "line": 180
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "main",
-      "line": 151
+      "line": 184
     },
     {
       "file": "scripts/render_discovery_issue.py",
@@ -859,35 +866,49 @@
       "language": "python",
       "kind": "function",
       "name": "test_license_fallback_reads_root_license_file",
-      "line": 93
-    },
-    {
-      "file": "scripts/test_refresh_github_metadata.py",
-      "language": "python",
-      "kind": "function",
-      "name": "fake_contents",
       "line": 96
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
+      "name": "fake_contents",
+      "line": 99
+    },
+    {
+      "file": "scripts/test_refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "test_license_fallback_reads_readme_when_root_license_is_absent",
+      "line": 116
+    },
+    {
+      "file": "scripts/test_refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "fake_contents",
+      "line": 119
+    },
+    {
+      "file": "scripts/test_refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
       "name": "test_metadata_refresh_uses_license_fallback",
-      "line": 113
+      "line": 132
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
-      "line": 143
+      "line": 162
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "test_server_error_remains_fatal",
-      "line": 176
+      "line": 195
     },
     {
       "file": "scripts/update_cache_health_history.py",

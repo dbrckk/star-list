@@ -2,43 +2,42 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/test_catalog_quality.py",
+      "path": "scripts/test_refresh_github_metadata.py",
       "reasons": [
         "changed",
         "changed-source",
         "impact",
-        "selected-test"
-      ],
-      "score": 370
-    },
-    {
-      "path": "scripts/audit_catalog_quality.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
+        "recent-project-state",
+        "reverse-dependency-neighbor",
+        "selected-test",
         "symbol-indexed"
       ],
-      "score": 325
+      "score": 520
     },
     {
-      "path": "scripts/validate_catalog.py",
+      "path": "scripts/refresh_github_metadata.py",
       "reasons": [
         "changed",
         "changed-source",
-        "impact"
+        "dependency-neighbor",
+        "impact",
+        "recent-project-state",
+        "symbol-indexed"
       ],
-      "score": 300
+      "score": 460
     },
     {
       "path": "scripts/backfill_licenses.py",
       "reasons": [
-        "recent-project-state"
+        "impact",
+        "recent-project-state",
+        "reverse-dependency-neighbor",
+        "symbol-indexed"
       ],
-      "score": 60
+      "score": 180
     },
     {
-      "path": "scripts/refresh_github_metadata.py",
+      "path": "scripts/audit_catalog_quality.py",
       "reasons": [
         "recent-project-state"
       ],
@@ -52,7 +51,14 @@
       "score": 60
     },
     {
-      "path": "scripts/test_refresh_github_metadata.py",
+      "path": "scripts/test_catalog_quality.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/validate_catalog.py",
       "reasons": [
         "recent-project-state"
       ],

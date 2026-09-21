@@ -5,28 +5,103 @@
   "semantic": false,
   "note": "Dependencies are known symbol names lexically present inside the symbol's AST/source range.",
   "symbols": {
-    "_age_days": {
+    "_request_json": {
       "source": {
-        "file": "scripts/audit_catalog_quality.py",
-        "start": 14,
-        "end": 23
+        "file": "scripts/refresh_github_metadata.py",
+        "start": 32,
+        "end": 47
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "metadata",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 162,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "fetch": {
+      "source": {
+        "file": "scripts/refresh_github_metadata.py",
+        "start": 50,
+        "end": 51
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "_request_json",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 32,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "fetch_contents": {
+      "source": {
+        "file": "scripts/refresh_github_metadata.py",
+        "start": 54,
+        "end": 59
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "_request_json",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 32,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "detect_license_text": {
+      "source": {
+        "file": "scripts/refresh_github_metadata.py",
+        "start": 62,
+        "end": 92
       },
       "symbol_dependencies": [],
       "dependency_count": 0
     },
-    "analyze": {
+    "_decode_content": {
       "source": {
-        "file": "scripts/audit_catalog_quality.py",
-        "start": 26,
-        "end": 130
+        "file": "scripts/refresh_github_metadata.py",
+        "start": 95,
+        "end": 104
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "fallback_license": {
+      "source": {
+        "file": "scripts/refresh_github_metadata.py",
+        "start": 107,
+        "end": 159
       },
       "symbol_dependencies": [
         {
-          "symbol": "_age_days",
+          "symbol": "_decode_content",
           "definitions": [
             {
-              "file": "scripts/audit_catalog_quality.py",
-              "line": 14,
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 95,
               "kind": "function",
               "language": "python"
             }
@@ -34,33 +109,11 @@
           "relation": "same_file"
         },
         {
-          "symbol": "add",
+          "symbol": "detect_license_text",
           "definitions": [
             {
-              "file": "scripts/audit_catalog_quality.py",
-              "line": 33,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 2
-    },
-    "add": {
-      "source": {
-        "file": "scripts/audit_catalog_quality.py",
-        "start": 33,
-        "end": 153
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "_age_days",
-          "definitions": [
-            {
-              "file": "scripts/audit_catalog_quality.py",
-              "line": 14,
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 62,
               "kind": "function",
               "language": "python"
             }
@@ -68,11 +121,11 @@
           "relation": "same_file"
         },
         {
-          "symbol": "render_markdown",
+          "symbol": "fetch_contents",
           "definitions": [
             {
-              "file": "scripts/audit_catalog_quality.py",
-              "line": 133,
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 54,
               "kind": "function",
               "language": "python"
             }
@@ -80,30 +133,48 @@
           "relation": "same_file"
         }
       ],
-      "dependency_count": 2
+      "dependency_count": 3
     },
-    "render_markdown": {
+    "metadata": {
       "source": {
-        "file": "scripts/audit_catalog_quality.py",
-        "start": 133,
-        "end": 171
+        "file": "scripts/refresh_github_metadata.py",
+        "start": 162,
+        "end": 170
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "refresh_primary_language": {
+      "source": {
+        "file": "scripts/refresh_github_metadata.py",
+        "start": 173,
+        "end": 178
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "is_missing_repository_error": {
+      "source": {
+        "file": "scripts/refresh_github_metadata.py",
+        "start": 180,
+        "end": 181
       },
       "symbol_dependencies": [],
       "dependency_count": 0
     },
     "main": {
       "source": {
-        "file": "scripts/audit_catalog_quality.py",
-        "start": 174,
-        "end": 189
+        "file": "scripts/refresh_github_metadata.py",
+        "start": 184,
+        "end": 234
       },
       "symbol_dependencies": [
         {
-          "symbol": "analyze",
+          "symbol": "fallback_license",
           "definitions": [
             {
-              "file": "scripts/audit_catalog_quality.py",
-              "line": 26,
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 107,
               "kind": "function",
               "language": "python"
             }
@@ -111,11 +182,47 @@
           "relation": "same_file"
         },
         {
-          "symbol": "render_markdown",
+          "symbol": "fetch",
           "definitions": [
             {
-              "file": "scripts/audit_catalog_quality.py",
-              "line": 133,
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 50,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "is_missing_repository_error",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 180,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "metadata",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 162,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "refresh_primary_language",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 173,
               "kind": "function",
               "language": "python"
             }
@@ -123,7 +230,794 @@
           "relation": "same_file"
         }
       ],
-      "dependency_count": 2
+      "dependency_count": 5
+    },
+    "http_error": {
+      "source": {
+        "file": "scripts/test_refresh_github_metadata.py",
+        "start": 13,
+        "end": 20
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "run_main": {
+      "source": {
+        "file": "scripts/test_refresh_github_metadata.py",
+        "start": 23,
+        "end": 29
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "main",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 184,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "test_missing_repo_is_recorded_but_nonfatal": {
+      "source": {
+        "file": "scripts/test_refresh_github_metadata.py",
+        "start": 32,
+        "end": 75
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "fake_fetch",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 47,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "fetch",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 50,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "http_error",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 13,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "main",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 184,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "metadata",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 162,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "run_main",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 23,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 6
+    },
+    "fake_fetch": {
+      "source": {
+        "file": "scripts/test_refresh_github_metadata.py",
+        "start": 47,
+        "end": 167
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "detect_license_text",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 62,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "fake_contents",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 99,
+              "kind": "function",
+              "language": "python"
+            },
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 119,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "fallback_license",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 107,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "fetch",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 50,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "fetch_contents",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 54,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "http_error",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 13,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "main",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 184,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "metadata",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 162,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "run_main",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 23,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "test_license_fallback_reads_readme_when_root_license_is_absent",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 116,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "test_license_fallback_reads_root_license_file",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 96,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "test_license_signature_detection",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 78,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 162,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "test_metadata_refresh_uses_license_fallback",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 132,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 14
+    },
+    "test_license_signature_detection": {
+      "source": {
+        "file": "scripts/test_refresh_github_metadata.py",
+        "start": 78,
+        "end": 93
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "detect_license_text",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 62,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "test_license_fallback_reads_root_license_file": {
+      "source": {
+        "file": "scripts/test_refresh_github_metadata.py",
+        "start": 96,
+        "end": 113
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "fake_contents",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 99,
+              "kind": "function",
+              "language": "python"
+            },
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 119,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "fallback_license",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 107,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "fetch_contents",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 54,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "main",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 184,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 4
+    },
+    "fake_contents": {
+      "source": {
+        "file": "scripts/test_refresh_github_metadata.py",
+        "start": 99,
+        "end": 219
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "fallback_license",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 107,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "fetch",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 50,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "fetch_contents",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 54,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "http_error",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 13,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "main",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 184,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "metadata",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 162,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "run_main",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 23,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "test_license_fallback_reads_readme_when_root_license_is_absent",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 116,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 162,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "test_metadata_refresh_uses_license_fallback",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 132,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "test_server_error_remains_fatal",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 195,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 11
+    },
+    "test_license_fallback_reads_readme_when_root_license_is_absent": {
+      "source": {
+        "file": "scripts/test_refresh_github_metadata.py",
+        "start": 116,
+        "end": 129
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "fake_contents",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 99,
+              "kind": "function",
+              "language": "python"
+            },
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 119,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "fallback_license",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 107,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "fetch_contents",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 54,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "main",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 184,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 4
+    },
+    "test_metadata_refresh_uses_license_fallback": {
+      "source": {
+        "file": "scripts/test_refresh_github_metadata.py",
+        "start": 132,
+        "end": 158
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "fallback_license",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 107,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "fetch",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 50,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "main",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 184,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "metadata",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 162,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "run_main",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 23,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 5
+    },
+    "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive": {
+      "source": {
+        "file": "scripts/test_refresh_github_metadata.py",
+        "start": 162,
+        "end": 192
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "fallback_license",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 107,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "fetch",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 50,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "main",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 184,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "metadata",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 162,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "run_main",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 23,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 5
+    },
+    "test_server_error_remains_fatal": {
+      "source": {
+        "file": "scripts/test_refresh_github_metadata.py",
+        "start": 195,
+        "end": 216
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "fetch",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 50,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "http_error",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 13,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "metadata",
+          "definitions": [
+            {
+              "file": "scripts/refresh_github_metadata.py",
+              "line": 162,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "run_main",
+          "definitions": [
+            {
+              "file": "scripts/test_refresh_github_metadata.py",
+              "line": 23,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 4
     }
   }
 }

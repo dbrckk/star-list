@@ -2,28 +2,26 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 12,
+    "example_count": 13,
     "rejected_count": 0,
     "terms": [
-      "34",
-      "evidence",
-      "from",
-      "identity",
+      "35",
+      "catalog",
+      "detection",
+      "improve",
       "license",
-      "separately",
-      "track"
+      "metadata"
     ],
     "test_count": 0,
-    "useful_count": 3
+    "useful_count": 2
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "Track license evidence separately from license identity (#34)",
+  "task": "Improve license detection for catalog metadata (#35)",
   "tests_selected": [],
   "useful": [
-    "scripts/audit_catalog_quality.py",
-    "scripts/test_catalog_quality.py",
-    "scripts/validate_catalog.py"
+    "scripts/refresh_github_metadata.py",
+    "scripts/test_refresh_github_metadata.py"
   ]
 }

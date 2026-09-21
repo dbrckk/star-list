@@ -22,31 +22,27 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-21T16:15:56Z
+Generated: 2026-09-21T17:32:40Z
 
 ### Git
 - Branch: `main`
-- Head: `2b767ff8bdb1`
-- Commit date: 2026-09-21T18:15:44+02:00
-- Commit: Track license evidence separately from license identity (#34)
+- Head: `3faf75651608`
+- Commit date: 2026-09-21T19:32:29+02:00
+- Commit: Improve license detection for catalog metadata (#35)
 - Tracked files: 189
 
 ### Recently changed files
 - `catalog.json`
+- `scripts/refresh_github_metadata.py`
+- `scripts/test_refresh_github_metadata.py`
 - `catalog.schema.json`
 - `scripts/audit_catalog_quality.py`
 - `scripts/test_catalog_quality.py`
 - `scripts/validate_catalog.py`
-- `scripts/refresh_github_metadata.py`
-- `scripts/test_refresh_github_metadata.py`
 - `cache-health-history.json`
 - `discovery-memory.json`
 - `health-snapshot.json`
 - `history.json`
-- `.github/workflows/license-backfill.yml`
-- `.github/workflows/validate.yml`
-- `scripts/backfill_licenses.py`
-- `scripts/test_backfill_licenses.py`
 
 ### Project signals
 - No common build descriptor detected

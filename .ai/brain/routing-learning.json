@@ -221,6 +221,23 @@
         "scripts/test_catalog_quality.py",
         "scripts/validate_catalog.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "Improve license detection for catalog metadata (#35)",
+      "terms": [
+        "35",
+        "catalog",
+        "detection",
+        "improve",
+        "license",
+        "metadata"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/refresh_github_metadata.py",
+        "scripts/test_refresh_github_metadata.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -284,6 +301,10 @@
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
     },
+    "35": {
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -318,7 +339,9 @@
     },
     "catalog": {
       "scripts/audit_catalog_quality.py": 4,
-      "scripts/test_catalog_quality.py": 4
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4
     },
     "core": {
       "scripts/validate_catalog.py": 4
@@ -342,6 +365,10 @@
       "scripts/test_recommend.py": 4
     },
     "detect": {
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4
+    },
+    "detection": {
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
     },
@@ -397,6 +424,10 @@
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
     },
+    "improve": {
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4
+    },
     "inconclusive": {
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
@@ -416,10 +447,10 @@
     "license": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/backfill_licenses.py": 4,
-      "scripts/refresh_github_metadata.py": 4,
+      "scripts/refresh_github_metadata.py": 8,
       "scripts/test_backfill_licenses.py": 4,
       "scripts/test_catalog_quality.py": 4,
-      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 8,
       "scripts/validate_catalog.py": 4
     },
     "licenses": {
@@ -445,11 +476,11 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/backfill_licenses.py": 4,
       "scripts/recommend.py": 4,
-      "scripts/refresh_github_metadata.py": 4,
+      "scripts/refresh_github_metadata.py": 8,
       "scripts/test_backfill_licenses.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_recommend.py": 4,
-      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 8,
       "scripts/validate_catalog.py": 4
     },
     "pull": {

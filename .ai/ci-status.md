@@ -1,14 +1,18 @@
 # CI status
 
-Summary: 3 success / 0 failure / 1 active
+Summary: 2 success / 1 failure / 1 active
 
-- Validate catalog: in_progress / pending (2b767ff8)
-- Validate catalog: completed / success (96220cd6)
-- Validate catalog: completed / success (96220cd6)
-- Validate catalog: completed / cancelled (633a109c)
-- Validate catalog: completed / cancelled (3df2a741)
-- Validate catalog: completed / cancelled (1b670567)
-- Validate catalog: completed / cancelled (9db872ea)
-- Validate catalog: completed / success (890a7ba5)
+- Validate catalog: in_progress / pending (3faf7565)
+- Validate catalog: completed / success (c2ef6bf3)
+- Validate catalog: completed / success (c2ef6bf3)
+- Validate catalog: completed / failure (13414f98)
+- Validate catalog: completed / cancelled (13414f98)
+- Validate catalog: completed / cancelled (5da461a1)
+- Validate catalog: completed / cancelled (7b312f88)
+- Validate catalog: completed / cancelled (72d95a0b)
+
+## Latest failed run structure
+- Job: validate
+  - Failed step: Test GitHub metadata refresh resilience
 
 > Generated summary only; inspect GitHub Actions for full logs when needed.
