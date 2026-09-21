@@ -32,6 +32,15 @@ high_threshold = run("ai agent", "--min-score", "1000")
 assert high_threshold["recommendations"] == []
 assert high_threshold["diagnostics"]["returned"] == 0
 
+default_audit = run("ponytail agent", "--top", "20")
+assert all(item["tier"] != "audit" for item in default_audit["recommendations"])
+assert default_audit["diagnostics"]["filtered"]["audit"] > 0
+assert default_audit["constraints"]["includeAudit"] is False
+
+with_audit = run("ponytail agent", "--top", "20", "--include-audit")
+assert any(item["repo"] == "DietrichGebert/ponytail" for item in with_audit["recommendations"])
+assert with_audit["constraints"]["includeAudit"] is True
+
 spec = importlib.util.spec_from_file_location("recommend", SCRIPT)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)

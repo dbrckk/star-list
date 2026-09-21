@@ -171,6 +171,7 @@ def main():
     ap.add_argument("--language", action="append", default=[], help="Required language; repeatable")
     ap.add_argument("--self-hosted", action="store_true", help="Require self-hosted/local-friendly repositories")
     ap.add_argument("--include-archived", action="store_true", help="Allow archived/disabled repositories")
+    ap.add_argument("--include-audit", action="store_true", help="Allow audit-tier repositories in recommendations")
     ap.add_argument("--max-resource", choices=["low","medium","high"], default="high")
     ap.add_argument("--max-complexity", choices=["low","medium","high"], default="high")
     ap.add_argument("--json", action="store_true", dest="as_json")
@@ -185,9 +186,12 @@ def main():
     domains = set(args.domain) or infer_domains(qtokens)
     required_caps, excluded_caps = set(args.cap), set(args.exclude_cap)
     ranked = []
-    filtered = {"platform":0, "language":0, "selfHosted":0, "inactive":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
+    filtered = {"platform":0, "language":0, "selfHosted":0, "inactive":0, "audit":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
 
     for r in repos:
+        if r.get("tier") == "audit" and not args.include_audit:
+            filtered["audit"] += 1
+            continue
         caps = set(r.get("capabilities", [])) | set(r.get("roles", []))
         if args.platform and not set(args.platform).issubset(set(r.get("platforms", []))):
             filtered["platform"] += 1; continue
@@ -232,7 +236,8 @@ def main():
         "requiredCapabilities": sorted(required_caps), "recommendations": top,
         "constraints": {"platforms":args.platform, "languages":args.language, "selfHosted":args.self_hosted,
                         "maxResource":args.max_resource, "maxComplexity":args.max_complexity,
-                        "requireAllCapabilities":args.require_all_caps, "minScore":args.min_score, "includeArchived":args.include_archived},
+                        "requireAllCapabilities":args.require_all_caps, "minScore":args.min_score,
+                        "includeArchived":args.include_archived, "includeAudit":args.include_audit},
         "diagnostics": {"catalogSize":len(repos), "eligible":len(ranked), "returned":len(top), "filtered":filtered},
         "recommendedStack": choose_stack(stacks, qtokens, domains),
     }
