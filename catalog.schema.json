@@ -241,6 +241,12 @@
               "reference",
               "legacy"
             ]
+          },
+          "guidanceSource": {
+            "enum": [
+              "curated",
+              "inferred"
+            ]
           }
         },
         "additionalProperties": false
