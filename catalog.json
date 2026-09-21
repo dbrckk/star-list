@@ -2052,7 +2052,7 @@
     {
       "repo": "sdmg15/Best-websites-a-programmer-should-visit",
       "score": 8.3,
-      "tier": "specialized",
+      "tier": "audit",
       "category": "Automatisation / outils / données",
       "domain": "productivity",
       "capabilities": [
@@ -2082,7 +2082,18 @@
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2025-09-16T18:34:24Z"
-      }
+      },
+      "bestFor": [
+        "historical curated developer-resource index"
+      ],
+      "avoidWhen": [
+        "current developer recommendations",
+        "actively maintained resource discovery"
+      ],
+      "alternatives": [
+        "freeCodeCamp/freeCodeCamp",
+        "ruanyf/weekly"
+      ]
     },
     {
       "repo": "ChrisTitusTech/winutil",
@@ -6934,7 +6945,14 @@
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2024-08-05T01:55:49Z"
-      }
+      },
+      "bestFor": [
+        "legacy Microsoft Rewards automation reference"
+      ],
+      "avoidWhen": [
+        "actively maintained automation",
+        "account-safe production use"
+      ]
     },
     {
       "repo": "lllyasviel/Paints-UNDO",
@@ -7072,7 +7090,14 @@
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2025-11-03T00:34:43Z"
-      }
+      },
+      "bestFor": [
+        "legacy stream-recording reference"
+      ],
+      "avoidWhen": [
+        "new deployments",
+        "actively maintained recording tooling"
+      ]
     },
     {
       "repo": "GuallaGang508/SMSBotBypass",
@@ -10622,7 +10647,7 @@
     {
       "repo": "FlowiseAI/Flowise",
       "score": 9.5,
-      "tier": "recommended",
+      "tier": "audit",
       "category": "AI / agent platforms",
       "domain": "ai_agents",
       "capabilities": [
@@ -10652,7 +10677,19 @@
         "defaultBranch": "main",
         "license": "NOASSERTION",
         "pushedAt": "2026-08-13T12:38:19Z"
-      }
+      },
+      "bestFor": [
+        "legacy Flowise deployments",
+        "migration reference for visual agent workflows"
+      ],
+      "avoidWhen": [
+        "new production deployments",
+        "actively maintained visual agent builder"
+      ],
+      "alternatives": [
+        "langflow-ai/langflow",
+        "langgenius/dify"
+      ]
     },
     {
       "repo": "BerriAI/litellm",
@@ -14464,6 +14501,59 @@
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-16T21:37:33Z"
+      }
+    },
+    {
+      "repo": "langflow-ai/langflow",
+      "score": 9.6,
+      "tier": "recommended",
+      "category": "AI / agent platforms",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "workflow",
+        "visual-builder",
+        "mcp-server"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "bestFor": [
+        "visual AI agent workflows",
+        "self-hosted agent orchestration",
+        "deploying workflows as APIs or MCP servers"
+      ],
+      "avoidWhen": [
+        "minimal headless-only agent runtime",
+        "very low-resource environments"
+      ],
+      "alternatives": [
+        "langgenius/dify",
+        "FlowiseAI/Flowise"
+      ],
+      "complements": [
+        "modelcontextprotocol/servers"
+      ],
+      "github": {
+        "stars": 155076,
+        "forks": 10122,
+        "openIssues": 1125,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-21T07:26:04Z"
       }
     }
   ],
