@@ -253,6 +253,14 @@
               "verified-file",
               "no-root-license-file"
             ]
+          },
+          "licenseStatus": {
+            "enum": [
+              "not-found",
+              "custom-restrictive",
+              "partial",
+              "external-terms"
+            ]
           }
         },
         "additionalProperties": false
