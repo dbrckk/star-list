@@ -1,72 +1,108 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "6d6dabdbafa83f500b42f710ab809f471c14d5e2",
-  "head": "4ee1f4fbf9fe58d858060ee22bc11b542d261188",
+  "base": "4ee1f4fbf9fe58d858060ee22bc11b542d261188",
+  "head": "0b3a16a8847aecadee45b7c36f616cc614b5195d",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": ".github/workflows/validate.yml",
+      "path": "scripts/recommend.py",
       "status": "M"
     },
     {
-      "path": "catalog.json",
-      "status": "M"
-    },
-    {
-      "path": "catalog.schema.json",
-      "status": "M"
-    },
-    {
-      "path": "scripts/infer_selection_guidance.py",
-      "status": "A"
-    },
-    {
-      "path": "scripts/test_selection_guidance.py",
-      "status": "A"
-    },
-    {
-      "path": "scripts/validate_catalog.py",
+      "path": "scripts/test_recommend.py",
       "status": "M"
     }
   ],
   "changed_source_files": [
-    "scripts/infer_selection_guidance.py",
-    "scripts/test_selection_guidance.py",
-    "scripts/validate_catalog.py"
+    "scripts/recommend.py",
+    "scripts/test_recommend.py"
   ],
   "impacted_files": [
-    "scripts/infer_selection_guidance.py",
-    "scripts/test_selection_guidance.py",
-    "scripts/validate_catalog.py"
+    "scripts/recommend.py",
+    "scripts/test_recommend.py"
   ],
   "impacted_symbols": [
     {
-      "name": "_humanize",
+      "name": "norm",
       "kind": "function",
-      "file": "scripts/infer_selection_guidance.py",
-      "line": 123
+      "file": "scripts/recommend.py",
+      "line": 32
     },
     {
-      "name": "infer_guidance",
+      "name": "tokens",
       "kind": "function",
-      "file": "scripts/infer_selection_guidance.py",
-      "line": 127
+      "file": "scripts/recommend.py",
+      "line": 35
     },
     {
-      "name": "enrich",
+      "name": "load",
       "kind": "function",
-      "file": "scripts/infer_selection_guidance.py",
-      "line": 180
+      "file": "scripts/recommend.py",
+      "line": 38
+    },
+    {
+      "name": "infer_domains",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 43
+    },
+    {
+      "name": "activity_adjustment",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 46
+    },
+    {
+      "name": "trend_adjustment",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 65
+    },
+    {
+      "name": "delta",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 77
+    },
+    {
+      "name": "guidance_weight",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 90
+    },
+    {
+      "name": "score_repo",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 95
+    },
+    {
+      "name": "explain_repo",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 126
+    },
+    {
+      "name": "choose_stack",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 149
     },
     {
       "name": "main",
       "kind": "function",
-      "file": "scripts/infer_selection_guidance.py",
-      "line": 200
+      "file": "scripts/recommend.py",
+      "line": 158
+    },
+    {
+      "name": "run",
+      "kind": "function",
+      "file": "scripts/test_recommend.py",
+      "line": 9
     }
   ],
   "selected_tests": [
-    "scripts/test_selection_guidance.py"
+    "scripts/test_recommend.py"
   ]
 }

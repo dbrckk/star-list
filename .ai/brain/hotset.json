@@ -1,88 +1,35 @@
 {
   "files": [
     {
-      "path": "scripts/test_selection_guidance.py",
+      "path": "scripts/test_recommend.py",
       "reasons": [
         "changed",
         "changed-source",
         "impact",
-        "selected-test"
+        "selected-test",
+        "symbol-indexed"
       ],
-      "score": 370
+      "score": 375
     },
     {
-      "path": "scripts/validate_catalog.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "recent-project-state"
-      ],
-      "score": 360
-    },
-    {
-      "path": "scripts/infer_selection_guidance.py",
+      "path": "scripts/recommend.py",
       "reasons": [
         "changed",
         "changed-source",
         "impact",
         "symbol-indexed"
       ],
-      "score": 320
+      "score": 360
     },
     {
       "path": "catalog.json",
       "reasons": [
-        "changed",
         "recent-project-state"
       ],
-      "score": 160
+      "score": 60
     },
     {
       "path": "catalog.schema.json",
-      "reasons": [
-        "changed",
-        "recent-project-state"
-      ],
-      "score": 160
-    },
-    {
-      "path": ".github/workflows/validate.yml",
-      "reasons": [
-        "changed"
-      ],
-      "score": 100
-    },
-    {
-      "path": "cache-health-history.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "discovery-cache.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "discovery-memory.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "health-snapshot.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "history.json",
       "reasons": [
         "recent-project-state"
       ],
@@ -103,11 +50,39 @@
       "score": 60
     },
     {
+      "path": "scripts/infer_selection_guidance.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
       "path": "scripts/test_catalog_quality.py",
       "reasons": [
         "recent-project-state"
       ],
       "score": 60
+    },
+    {
+      "path": "scripts/test_selection_guidance.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/validate_catalog.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/health_score.py",
+      "reasons": [
+        "dependency-neighbor"
+      ],
+      "score": 25
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

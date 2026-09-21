@@ -4,15 +4,15 @@
     "expand_to": 12,
     "max_files": 6,
     "requested_max_files": 12,
-    "score_margin": 9,
+    "score_margin": 0,
     "tier": "bounded",
     "top_score": 26
   },
   "cache": {
-    "fingerprint": "eafe8cb20d9ce98ae11c4ba0714ff761755650c5434e6d63e5eeb825c8ba91af",
+    "fingerprint": "b9407d489e5623212c5da546305e1ee1a28a377c8aab6d9fd664c91a61489ac5",
     "hit": false
   },
-  "candidate_count": 8,
+  "candidate_count": 3,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -20,7 +20,7 @@
       "matched_terms": [
         "game"
       ],
-      "path": "scripts/infer_selection_guidance.py",
+      "path": "scripts/recommend.py",
       "reasons": [
         "impact",
         "recently-changed",
@@ -28,27 +28,11 @@
       ],
       "score": 26,
       "symbols": [
-        "_humanize",
-        "enrich",
-        "infer_guidance",
-        "main"
-      ]
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [
-        "game"
-      ],
-      "path": "scripts/recommend.py",
-      "reasons": [
-        "search-index"
-      ],
-      "score": 17,
-      "symbols": [
         "activity_adjustment",
         "choose_stack",
         "delta",
         "explain_repo",
+        "guidance_weight",
         "infer_domains",
         "load",
         "main",
@@ -65,44 +49,31 @@
       ],
       "path": "scripts/test_recommend.py",
       "reasons": [
+        "impact",
+        "recently-changed",
         "search-index"
       ],
-      "score": 17,
+      "score": 26,
       "symbols": [
         "run"
       ]
     },
     {
       "learning_score": 0,
-      "matched_terms": [],
-      "path": "scripts/test_selection_guidance.py",
-      "reasons": [
-        "impact",
-        "recently-changed"
+      "matched_terms": [
+        "game"
       ],
-      "score": 9,
-      "symbols": []
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [],
-      "path": "scripts/validate_catalog.py",
+      "path": "scripts/infer_selection_guidance.py",
       "reasons": [
-        "impact",
-        "recently-changed"
+        "search-index"
       ],
-      "score": 9,
-      "symbols": []
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [],
-      "path": ".github/workflows/validate.yml",
-      "reasons": [
-        "recently-changed"
-      ],
-      "score": 3,
-      "symbols": []
+      "score": 17,
+      "symbols": [
+        "_humanize",
+        "enrich",
+        "infer_guidance",
+        "main"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-v8",

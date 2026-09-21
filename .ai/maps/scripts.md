@@ -785,6 +785,7 @@ HISTORY = ROOT / "history.json"
 DOMAIN_ALIASES = {
 TIER_BONUS = {"core": 1.0, "recommended": 0.6, "specialized": 0.25, "audit": -0.4}
 LEVEL = {"low": 0, "medium": 1, "high": 2}
+GUIDANCE_WEIGHT = {"curated": 1.0, "inferred": 0.55}
 ⋮----
 def norm(s)
 ⋮----
@@ -824,6 +825,10 @@ momentum=max(-3.0,min(3.0, stars_week/50.0)) + max(-1.0,min(1.0, forks_week/10.0
 momentum=round(max(-6.0,min(6.0,momentum)),3)
 reason="declining" if momentum<=-2 else "improving" if momentum>=2 else "growing" if momentum>0.5 else "stable"
 ⋮----
+def guidance_weight(r)
+⋮----
+source = r.get("guidanceSource")
+⋮----
 def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps)
 ⋮----
 caps = set(r.get("capabilities", [])) | set(r.get("roles", []))
@@ -836,7 +841,8 @@ quality = max(0.0, min(1.0, r.get("score", 0) / 10.0))
 tier = TIER_BONUS.get(r.get("tier"), 0.0)
 best_for = tokens(" ".join(r.get("bestFor", [])))
 best_match = len(qtokens & best_for) / max(1, len(qtokens)) if best_for else 0.0
-s = 34*cap_match + 22*domain_match + 18*lexical + 12*best_match + 10*quality + 4*max(0.0, tier)
+guidance = guidance_weight(r)
+s = 34*cap_match + 22*domain_match + 18*lexical + 12*guidance*best_match + 10*quality + 4*max(0.0, tier)
 ⋮----
 avoid = tokens(" ".join(r.get("avoidWhen", [])))
 ⋮----
@@ -1424,6 +1430,11 @@ high_threshold = run("ai agent", "--min-score", "1000")
 ⋮----
 spec = importlib.util.spec_from_file_location("recommend", SCRIPT)
 mod = importlib.util.module_from_spec(spec)
+⋮----
+base = {
+qtokens = mod.tokens("specialized phrase")
+curated = dict(base, guidanceSource="curated")
+inferred = dict(base, guidanceSource="inferred")
 ```
 
 ## File: test_refresh_github_metadata.py

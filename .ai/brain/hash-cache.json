@@ -1,13 +1,5 @@
 {
   "files": {
-    ".github/workflows/validate.yml": {
-      "sha256": "1e1d01bbfa8b590bdfeb37a31058274fbe8875f31b850eb2bd2605919e1f9783",
-      "size": 4575
-    },
-    "cache-health-history.json": {
-      "sha256": "2c02c05cf56390a399bf9b48bde10318158bd70bc03380930e9546c79fedeb3e",
-      "size": 688
-    },
     "catalog.json": {
       "sha256": "0618d8c436e28c201bbac6878fe61f69bbc7aefc6ea38237456391891aae2415",
       "size": 388154
@@ -15,22 +7,6 @@
     "catalog.schema.json": {
       "sha256": "03c0f8e435904f38f1d2b32f1c89fad3f9b1591e35e042fd1345ecaa5ea05b72",
       "size": 6671
-    },
-    "discovery-cache.json": {
-      "sha256": "3751189d88443b33ffd60499c713b4a76102366416980214e2fcc8ea92e9368e",
-      "size": 4752432
-    },
-    "discovery-memory.json": {
-      "sha256": "6c6793a947ef877b98c3dbc7f20cf3943dc75c5feadb401cffbbaa87f9df9c28",
-      "size": 23577
-    },
-    "health-snapshot.json": {
-      "sha256": "7effd2dea1477250671b96d7d516d0b7cea0ded2d2589205c1a6e6cba5cc7093",
-      "size": 55867
-    },
-    "history.json": {
-      "sha256": "e42490eaa9cf436ebcf55adb2d1d8139d0e42ea15f2eacbed3fa1a4ff944d90e",
-      "size": 117808
     },
     "schemas/catalog-quality.schema.json": {
       "sha256": "b5acdef4a0beddb2c36cc3c0e069808dbd8c6dc0ab80197f322f4cc9102f8341",
@@ -40,13 +16,25 @@
       "sha256": "e46445afac33b3ca30c415af0f0972261c0199e2f48aa3e747addc61b8ee22ce",
       "size": 6809
     },
+    "scripts/health_score.py": {
+      "sha256": "c16d8e8ed70025692961a42a6179051a4baaee2b1d721af26554816612f9000f",
+      "size": 2456
+    },
     "scripts/infer_selection_guidance.py": {
       "sha256": "7e8f14cd51a15c7b73cbc6bef275a1ec31e2077c6affbcc6c2181d152843f3a9",
       "size": 8750
     },
+    "scripts/recommend.py": {
+      "sha256": "a04fab7347d3ffe970b342c2bd496364f80b38c4c23333f35c1bc03057dd6b43",
+      "size": 12532
+    },
     "scripts/test_catalog_quality.py": {
       "sha256": "232acdc00f03f10096e6df8492fc76b6576f5a95fb10042900c97a1e2d11e68c",
       "size": 3331
+    },
+    "scripts/test_recommend.py": {
+      "sha256": "7a69335c677e4abfd9a201b606dc09d25f2b0e10c6b60560f6c41ad526e8ca35",
+      "size": 2526
     },
     "scripts/test_selection_guidance.py": {
       "sha256": "fe2197213696b3ddf3bf15f2391b0d6ad2ceddfa24ac53130985546a844d99a8",

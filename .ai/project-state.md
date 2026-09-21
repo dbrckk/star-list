@@ -22,16 +22,18 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-21T08:28:39Z
+Generated: 2026-09-21T08:31:16Z
 
 ### Git
 - Branch: `main`
-- Head: `4ee1f4fbf9fe`
-- Commit date: 2026-09-21T10:28:28+02:00
-- Commit: Backfill selection guidance for recommended repositories (#23)
+- Head: `0b3a16a8847a`
+- Commit date: 2026-09-21T10:31:05+02:00
+- Commit: Weight inferred guidance below curated metadata (#24)
 - Tracked files: 185
 
 ### Recently changed files
+- `scripts/recommend.py`
+- `scripts/test_recommend.py`
 - `.github/workflows/validate.yml`
 - `catalog.json`
 - `catalog.schema.json`
@@ -40,8 +42,6 @@ Generated: 2026-09-21T08:28:39Z
 - `scripts/validate_catalog.py`
 - `scripts/audit_catalog_quality.py`
 - `scripts/test_catalog_quality.py`
-- `.github/workflows/refresh-metadata.yml`
-- `schemas/catalog-quality.schema.json`
 
 ### Project signals
 - No common build descriptor detected

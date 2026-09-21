@@ -2,27 +2,27 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 5,
+    "example_count": 6,
     "rejected_count": 0,
     "terms": [
-      "23",
-      "backfill",
+      "24",
+      "below",
+      "curated",
       "guidance",
-      "recommended",
-      "repositories",
-      "selection"
+      "inferred",
+      "metadata",
+      "weight"
     ],
     "test_count": 0,
-    "useful_count": 3
+    "useful_count": 2
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "Backfill selection guidance for recommended repositories (#23)",
+  "task": "Weight inferred guidance below curated metadata (#24)",
   "tests_selected": [],
   "useful": [
-    "scripts/infer_selection_guidance.py",
-    "scripts/test_selection_guidance.py",
-    "scripts/validate_catalog.py"
+    "scripts/recommend.py",
+    "scripts/test_recommend.py"
   ]
 }

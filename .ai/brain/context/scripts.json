@@ -2,37 +2,35 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/test_selection_guidance.py",
+      "path": "scripts/test_recommend.py",
       "reasons": [
         "changed",
         "changed-source",
         "impact",
-        "selected-test"
+        "selected-test",
+        "symbol-indexed"
       ],
-      "score": 370
+      "score": 375
     },
     {
-      "path": "scripts/validate_catalog.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "recent-project-state"
-      ],
-      "score": 360
-    },
-    {
-      "path": "scripts/infer_selection_guidance.py",
+      "path": "scripts/recommend.py",
       "reasons": [
         "changed",
         "changed-source",
         "impact",
         "symbol-indexed"
       ],
-      "score": 320
+      "score": 360
     },
     {
       "path": "scripts/audit_catalog_quality.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/infer_selection_guidance.py",
       "reasons": [
         "recent-project-state"
       ],
@@ -44,6 +42,27 @@
         "recent-project-state"
       ],
       "score": 60
+    },
+    {
+      "path": "scripts/test_selection_guidance.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/validate_catalog.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/health_score.py",
+      "reasons": [
+        "dependency-neighbor"
+      ],
+      "score": 25
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

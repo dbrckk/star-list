@@ -2,10 +2,10 @@
 
 - Index mode: incremental
 - Files indexed: 43
-- Files reparsed this run: 3
-- Symbols: 141
+- Files reparsed this run: 2
+- Symbols: 142
 - Internal import edges: 4
-- Impacted files: 3
+- Impacted files: 2
 - Selected tests: 1
 
 ## Languages
@@ -15,7 +15,7 @@
 - scripts/discover_candidates.py: 23 symbols
 - scripts/update_cache_health_history.py: 19 symbols
 - scripts/evaluate_candidates.py: 12 symbols
-- scripts/recommend.py: 11 symbols
+- scripts/recommend.py: 12 symbols
 - scripts/filter_discovery_memory.py: 7 symbols
 - scripts/test_discovery_cache_stats.py: 7 symbols
 - scripts/update_history.py: 7 symbols
@@ -42,10 +42,10 @@
 ## ast-grep enrichment
 - ast-grep outline: available
 - AST index mode: incremental
-- AST files reparsed this run: 3
+- AST files reparsed this run: 2
 - outline files retained: 43
-- top-level items retained: 561
+- top-level items retained: 567
 - direct members retained: 4
-- symbol shards: 22
+- symbol shards: 23
 - route named symbols via ast-routing.json, then fetch one ast-symbols/<initial>.json shard
 

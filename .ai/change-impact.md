@@ -1,19 +1,13 @@
 # Change impact
 
-Base: 9277b6dbd74c3fdfb772f3a3c42c4d7f618f0775
-Head: 4ee1f4fbf9fe58d858060ee22bc11b542d261188
+Base: 8cefe2afd33ed515a2abe80f9bff84217cc072e0
+Head: 0b3a16a8847aecadee45b7c36f616cc614b5195d
 
 ## Changed files
-- M .github/workflows/validate.yml
-- M catalog.json
-- M catalog.schema.json
-- A scripts/infer_selection_guidance.py
-- A scripts/test_selection_guidance.py
-- M scripts/validate_catalog.py
+- M scripts/recommend.py
+- M scripts/test_recommend.py
 
 ## Affected areas
-- .github
-- (root)
 - scripts
 
 ## Related test candidates
