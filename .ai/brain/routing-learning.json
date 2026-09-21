@@ -238,6 +238,22 @@
         "scripts/refresh_github_metadata.py",
         "scripts/test_refresh_github_metadata.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "Classify unresolved repository licenses (#36)",
+      "terms": [
+        "36",
+        "classify",
+        "licenses",
+        "repository",
+        "unresolved"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/audit_catalog_quality.py",
+        "scripts/test_catalog_quality.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -305,6 +321,10 @@
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
     },
+    "36": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -342,6 +362,10 @@
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
+    },
+    "classify": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4
     },
     "core": {
       "scripts/validate_catalog.py": 4
@@ -454,7 +478,9 @@
       "scripts/validate_catalog.py": 4
     },
     "licenses": {
+      "scripts/audit_catalog_quality.py": 4,
       "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_catalog_quality.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
     },
     "lifecycle": {
@@ -524,9 +550,11 @@
       "scripts/validate_catalog.py": 12
     },
     "repository": {
+      "scripts/audit_catalog_quality.py": 4,
       "scripts/backfill_licenses.py": 4,
       "scripts/refresh_github_metadata.py": 8,
       "scripts/test_backfill_licenses.py": 4,
+      "scripts/test_catalog_quality.py": 4,
       "scripts/test_refresh_github_metadata.py": 8
     },
     "request": {
@@ -569,6 +597,10 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
+    },
+    "unresolved": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4
     },
     "verify": {
       "scripts/backfill_licenses.py": 4,

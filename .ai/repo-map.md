@@ -870,6 +870,9 @@ age = _age_days(gh.get("pushedAt"), now)
 ⋮----
 license_name = gh.get("license")
 ⋮----
+license_status = entry.get("licenseStatus")
+status_messages = {
+⋮----
 severity_counts = Counter(row["severity"] for row in findings)
 code_counts = Counter(row["code"] for row in findings)
 guidance = {
@@ -9845,7 +9848,8 @@ Repository-specific rules:
         "license": null,
         "pushedAt": "2024-03-03T16:36:55Z"
       },
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "licenseStatus": "external-terms"
     },
     {
       "repo": "deepfakes/faceswap",
@@ -9966,7 +9970,8 @@ Repository-specific rules:
         "license": null,
         "pushedAt": "2025-08-19T01:37:38Z"
       },
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "licenseStatus": "not-found"
     },
     {
       "repo": "hacksider/Deep-Live-Cam",
@@ -10053,7 +10058,8 @@ Repository-specific rules:
         "current 3D reconstruction workflows",
         "maintained notebook environments"
       ],
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "licenseStatus": "not-found"
     },
     {
       "repo": "RayVentura/ShortGPT",
@@ -10714,7 +10720,8 @@ Repository-specific rules:
         "non-security workloads"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "licenseStatus": "not-found"
     },
     {
       "repo": "bilawalsidhu/gods-eye-view",
@@ -11019,7 +11026,8 @@ Repository-specific rules:
         "license": null,
         "pushedAt": "2025-10-20T00:24:54Z"
       },
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "licenseStatus": "not-found"
     },
     {
       "repo": "LargeWorldModel/LWM",
@@ -11139,7 +11147,8 @@ Repository-specific rules:
         "license": null,
         "pushedAt": "2024-06-27T21:58:30Z"
       },
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "licenseStatus": "not-found"
     },
     {
       "repo": "Cyb0r9/SocialBox",
@@ -11210,7 +11219,8 @@ Repository-specific rules:
         "license": null,
         "pushedAt": "2026-06-10T19:03:50Z"
       },
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "licenseStatus": "not-found"
     },
     {
       "repo": "GH05T-HUNTER5/GH05T-INSTA",
@@ -11282,7 +11292,8 @@ Repository-specific rules:
         "license": null,
         "pushedAt": "2026-09-16T21:16:57Z"
       },
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "licenseStatus": "custom-restrictive"
     },
     {
       "repo": "alsk1992/CloddsBot",
@@ -14200,7 +14211,8 @@ Repository-specific rules:
         "non-security workloads"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "licenseStatus": "not-found"
     },
     {
       "repo": "infosecn1nja/Red-Teaming-Toolkit",
@@ -15447,7 +15459,8 @@ Repository-specific rules:
         "current engine-specific shader APIs",
         "actively maintained rendering examples"
       ],
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "licenseStatus": "partial"
     },
     {
       "repo": "Donchitos/Claude-Code-Game-Studios",
@@ -15977,7 +15990,8 @@ Repository-specific rules:
         "simple deterministic scripts without agent orchestration"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "licenseStatus": "custom-restrictive"
     },
     {
       "repo": "alibaba/open-code-review",
@@ -17093,7 +17107,8 @@ Repository-specific rules:
         "tracking current Inkscape development",
         "using GitHub as the canonical upstream"
       ],
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "licenseStatus": "not-found"
     },
     {
       "repo": "rive-app/rive-android",
@@ -18330,7 +18345,8 @@ Repository-specific rules:
         "specialized low-level systems work"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "licenseStatus": "not-found"
     },
     {
       "repo": "docling-project/docling",
@@ -19115,7 +19131,8 @@ Repository-specific rules:
         "non-development workflows"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "licenseStatus": "not-found"
     },
     {
       "repo": "paperless-ngx/paperless-ngx",
@@ -20320,6 +20337,14 @@ Repository-specific rules:
             "enum": [
               "verified-file",
               "no-root-license-file"
+            ]
+          },
+          "licenseStatus": {
+            "enum": [
+              "not-found",
+              "custom-restrictive",
+              "partial",
+              "external-terms"
             ]
           }
         },

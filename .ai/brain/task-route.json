@@ -9,7 +9,7 @@
     "top_score": 17
   },
   "cache": {
-    "fingerprint": "7512cc1a376729d898ac5cf8b0acac092ffd729e20f7878fe4856fdfb5c383e9",
+    "fingerprint": "bbe1882a9af35dbe0f0dd7a31ca57658d65eb18f3caded673d99f173fc1308ed",
     "hit": false
   },
   "candidate_count": 7,
@@ -77,60 +77,40 @@
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": "scripts/refresh_github_metadata.py",
+      "path": "scripts/audit_catalog_quality.py",
       "reasons": [
         "impact",
         "recently-changed"
       ],
       "score": 9,
       "symbols": [
-        "_decode_content",
-        "_request_json",
-        "detect_license_text",
-        "fallback_license",
-        "fetch",
-        "fetch_contents",
-        "is_missing_repository_error",
+        "_age_days",
+        "add",
+        "analyze",
         "main",
-        "metadata",
-        "refresh_primary_language"
+        "render_markdown"
       ]
     },
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": "scripts/test_refresh_github_metadata.py",
+      "path": "scripts/test_catalog_quality.py",
       "reasons": [
         "impact",
         "recently-changed"
       ],
       "score": 9,
-      "symbols": [
-        "fake_contents",
-        "fake_fetch",
-        "http_error",
-        "run_main",
-        "test_license_fallback_reads_readme_when_root_license_is_absent",
-        "test_license_fallback_reads_root_license_file",
-        "test_license_signature_detection",
-        "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
-        "test_metadata_refresh_uses_license_fallback",
-        "test_missing_repo_is_recorded_but_nonfatal",
-        "test_server_error_remains_fatal"
-      ]
+      "symbols": []
     },
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": "scripts/backfill_licenses.py",
+      "path": "catalog.json",
       "reasons": [
-        "impact"
+        "recently-changed"
       ],
-      "score": 6,
-      "symbols": [
-        "backfill",
-        "main"
-      ]
+      "score": 3,
+      "symbols": []
     }
   ],
   "generated_by": "dbrckk/repo-brain-v8",

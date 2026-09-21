@@ -204,6 +204,9 @@ age = _age_days(gh.get("pushedAt"), now)
 ⋮----
 license_name = gh.get("license")
 ⋮----
+license_status = entry.get("licenseStatus")
+status_messages = {
+⋮----
 severity_counts = Counter(row["severity"] for row in findings)
 code_counts = Counter(row["code"] for row in findings)
 guidance = {

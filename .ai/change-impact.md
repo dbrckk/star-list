@@ -1,12 +1,13 @@
 # Change impact
 
-Base: 72d95a0b89b4d91347084f3754c1933108c4c04a
-Head: 3faf7565160864e983815545e9086a534f669f5f
+Base: 82f0b68eb49e335311f33f2dea7e3b320d710c47
+Head: 1b6bc2ac9686f88590eacd88b4c14d2f2dd63afb
 
 ## Changed files
 - M catalog.json
-- M scripts/refresh_github_metadata.py
-- M scripts/test_refresh_github_metadata.py
+- M catalog.schema.json
+- M scripts/audit_catalog_quality.py
+- M scripts/test_catalog_quality.py
 
 ## Affected areas
 - (root)

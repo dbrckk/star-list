@@ -2,15 +2,15 @@
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
   "selected_test_files": [
-    "scripts/test_refresh_github_metadata.py"
+    "scripts/test_catalog_quality.py"
   ],
   "commands": [
     {
-      "command": "python -m pytest scripts/test_refresh_github_metadata.py",
+      "command": "python -m pytest scripts/test_catalog_quality.py",
       "purpose": "targeted tests",
       "confidence": "high",
       "files": [
-        "scripts/test_refresh_github_metadata.py"
+        "scripts/test_catalog_quality.py"
       ]
     }
   ],
