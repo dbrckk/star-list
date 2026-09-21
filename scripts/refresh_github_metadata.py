@@ -16,6 +16,7 @@ CATALOG = ROOT / "catalog.json"
 API = "https://api.github.com/repos/{}"
 CONTENTS_API = "https://api.github.com/repos/{}/contents/{}"
 LICENSE_NAMES = ("license", "licence", "copying", "notice")
+README_NAMES = ("readme",)
 FIELDS = {
     "stars": "stargazers_count",
     "forks": "forks_count",
@@ -72,6 +73,8 @@ def detect_license_text(text):
         ("ISC", ("permission to use, copy, modify, and/or distribute this software for any purpose with or without fee",)),
         ("Unlicense", ("this is free and unencumbered software released into the public domain",)),
         ("BUSL-1.1", ("business source license 1.1",)),
+        ("CC-BY-4.0", ("creative commons attribution 4.0 international license",)),
+        ("CC0-1.0", ("waived all copyright and related or neighboring rights",)),
         ("MIT", ("permission is hereby granted, free of charge, to any person obtaining a copy",)),
     ]
     for spdx, parts in signatures:
@@ -84,7 +87,21 @@ def detect_license_text(text):
         and "neither the name of" not in normalized
     ):
         return "BSD-2-Clause"
+    if re.search(r"(^|[^a-z0-9])mit(?: license)?([^a-z0-9]|$)", normalized):
+        return "MIT"
     return None
+
+
+def _decode_content(payload):
+    if not isinstance(payload, dict):
+        return None
+    encoded = payload.get("content")
+    if not isinstance(encoded, str):
+        return None
+    try:
+        return base64.b64decode(encoded, validate=False).decode("utf-8", errors="replace")
+    except Exception:
+        return None
 
 
 def fallback_license(repo, default_branch, token=None):
@@ -111,14 +128,30 @@ def fallback_license(repo, default_branch, token=None):
             payload = fetch_contents(repo, path=path, ref=default_branch, token=token)
         except Exception:
             continue
-        if not isinstance(payload, dict):
+        text = _decode_content(payload)
+        if text is None:
             continue
-        encoded = payload.get("content")
-        if not isinstance(encoded, str):
+        detected = detect_license_text(text)
+        if detected:
+            return detected
+
+    # Some curated lists and documentation repositories state their license
+    # only in the README. Use this as a secondary signal, never as a guess.
+    readmes = []
+    for item in root:
+        if not isinstance(item, dict) or item.get("type") != "file":
             continue
+        name = str(item.get("name", "")).lower()
+        stem = re.split(r"[._-]", name, maxsplit=1)[0]
+        if stem in README_NAMES:
+            readmes.append(item)
+    for item in readmes[:2]:
         try:
-            text = base64.b64decode(encoded, validate=False).decode("utf-8", errors="replace")
+            payload = fetch_contents(repo, path=item.get("path"), ref=default_branch, token=token)
         except Exception:
+            continue
+        text = _decode_content(payload)
+        if text is None:
             continue
         detected = detect_license_text(text)
         if detected:
