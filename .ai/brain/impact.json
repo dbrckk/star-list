@@ -1,203 +1,74 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "5bbfee6cc7a46541ca66fdd7c4c53efbe063bbe4",
-  "head": "765a6d947b6fcdb55c7752197d73a3cc2e99d014",
+  "base": "765a6d947b6fcdb55c7752197d73a3cc2e99d014",
+  "head": "2b767ff8bdb1cc88f58410eb7c835f398f553b42",
   "index_mode": "incremental",
   "changed_files": [
-    {
-      "path": ".github/workflows/license-backfill.yml",
-      "status": "M"
-    },
-    {
-      "path": ".github/workflows/validate.yml",
-      "status": "M"
-    },
-    {
-      "path": "cache-health-history.json",
-      "status": "M"
-    },
     {
       "path": "catalog.json",
       "status": "M"
     },
     {
-      "path": "discovery-memory.json",
+      "path": "catalog.schema.json",
       "status": "M"
     },
     {
-      "path": "health-snapshot.json",
+      "path": "scripts/audit_catalog_quality.py",
       "status": "M"
     },
     {
-      "path": "history.json",
+      "path": "scripts/test_catalog_quality.py",
       "status": "M"
     },
     {
-      "path": "scripts/backfill_licenses.py",
-      "status": "A"
-    },
-    {
-      "path": "scripts/refresh_github_metadata.py",
-      "status": "M"
-    },
-    {
-      "path": "scripts/test_backfill_licenses.py",
-      "status": "A"
-    },
-    {
-      "path": "scripts/test_refresh_github_metadata.py",
+      "path": "scripts/validate_catalog.py",
       "status": "M"
     }
   ],
   "changed_source_files": [
-    "scripts/backfill_licenses.py",
-    "scripts/refresh_github_metadata.py",
-    "scripts/test_backfill_licenses.py",
-    "scripts/test_refresh_github_metadata.py"
+    "scripts/audit_catalog_quality.py",
+    "scripts/test_catalog_quality.py",
+    "scripts/validate_catalog.py"
   ],
   "impacted_files": [
-    "scripts/backfill_licenses.py",
-    "scripts/refresh_github_metadata.py",
-    "scripts/test_backfill_licenses.py",
-    "scripts/test_refresh_github_metadata.py"
+    "scripts/audit_catalog_quality.py",
+    "scripts/test_catalog_quality.py",
+    "scripts/validate_catalog.py"
   ],
   "impacted_symbols": [
     {
-      "name": "backfill",
+      "name": "_age_days",
       "kind": "function",
-      "file": "scripts/backfill_licenses.py",
-      "line": 15
+      "file": "scripts/audit_catalog_quality.py",
+      "line": 14
+    },
+    {
+      "name": "analyze",
+      "kind": "function",
+      "file": "scripts/audit_catalog_quality.py",
+      "line": 26
+    },
+    {
+      "name": "add",
+      "kind": "function",
+      "file": "scripts/audit_catalog_quality.py",
+      "line": 33
+    },
+    {
+      "name": "render_markdown",
+      "kind": "function",
+      "file": "scripts/audit_catalog_quality.py",
+      "line": 133
     },
     {
       "name": "main",
       "kind": "function",
-      "file": "scripts/backfill_licenses.py",
-      "line": 34
-    },
-    {
-      "name": "_request_json",
-      "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 31
-    },
-    {
-      "name": "fetch",
-      "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 49
-    },
-    {
-      "name": "fetch_contents",
-      "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 53
-    },
-    {
-      "name": "detect_license_text",
-      "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 61
-    },
-    {
-      "name": "fallback_license",
-      "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 90
-    },
-    {
-      "name": "metadata",
-      "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 129
-    },
-    {
-      "name": "refresh_primary_language",
-      "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 140
-    },
-    {
-      "name": "is_missing_repository_error",
-      "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 147
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 151
-    },
-    {
-      "name": "resolver",
-      "kind": "function",
-      "file": "scripts/test_backfill_licenses.py",
-      "line": 18
-    },
-    {
-      "name": "http_error",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 13
-    },
-    {
-      "name": "run_main",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 23
-    },
-    {
-      "name": "test_missing_repo_is_recorded_but_nonfatal",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 32
-    },
-    {
-      "name": "fake_fetch",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 47
-    },
-    {
-      "name": "test_license_signature_detection",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 78
-    },
-    {
-      "name": "test_license_fallback_reads_root_license_file",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 93
-    },
-    {
-      "name": "fake_contents",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 96
-    },
-    {
-      "name": "test_metadata_refresh_uses_license_fallback",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 113
-    },
-    {
-      "name": "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 143
-    },
-    {
-      "name": "test_server_error_remains_fatal",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 176
+      "file": "scripts/audit_catalog_quality.py",
+      "line": 174
     }
   ],
   "selected_tests": [
-    "scripts/test_backfill_licenses.py",
-    "scripts/test_refresh_github_metadata.py"
+    "scripts/test_catalog_quality.py"
   ]
 }

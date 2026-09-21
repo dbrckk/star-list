@@ -2,29 +2,28 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 11,
+    "example_count": 12,
     "rejected_count": 0,
     "terms": [
-      "33",
-      "files",
+      "34",
+      "evidence",
       "from",
+      "identity",
       "license",
-      "metadata",
-      "repository",
-      "verify"
+      "separately",
+      "track"
     ],
     "test_count": 0,
-    "useful_count": 4
+    "useful_count": 3
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "Verify license metadata from repository files (#33)",
+  "task": "Track license evidence separately from license identity (#34)",
   "tests_selected": [],
   "useful": [
-    "scripts/backfill_licenses.py",
-    "scripts/refresh_github_metadata.py",
-    "scripts/test_backfill_licenses.py",
-    "scripts/test_refresh_github_metadata.py"
+    "scripts/audit_catalog_quality.py",
+    "scripts/test_catalog_quality.py",
+    "scripts/validate_catalog.py"
   ]
 }

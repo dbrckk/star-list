@@ -1863,6 +1863,7 @@ valid_tiers = {"core","recommended","specialized","audit"}
 valid_levels = {"low","medium","high"}
 valid_lifecycles = {"active","stable","reference","legacy"}
 valid_guidance_sources = {"curated","inferred"}
+valid_license_evidence = {"verified-file","no-root-license-file"}
 seen = set()
 repos = data.get("repositories", [])
 ⋮----
@@ -1880,6 +1881,8 @@ domain = r.get("domain")
 lifecycle = r.get("lifecycle")
 ⋮----
 guidance_source = r.get("guidanceSource")
+⋮----
+license_evidence = r.get("licenseEvidence")
 ⋮----
 value = r.get(field, [])
 ⋮----

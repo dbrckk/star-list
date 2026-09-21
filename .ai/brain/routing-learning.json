@@ -202,6 +202,25 @@
         "scripts/test_backfill_licenses.py",
         "scripts/test_refresh_github_metadata.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "Track license evidence separately from license identity (#34)",
+      "terms": [
+        "34",
+        "evidence",
+        "from",
+        "identity",
+        "license",
+        "separately",
+        "track"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/audit_catalog_quality.py",
+        "scripts/test_catalog_quality.py",
+        "scripts/validate_catalog.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -259,6 +278,11 @@
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_backfill_licenses.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
+    },
+    "34": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/validate_catalog.py": 4
     },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
@@ -325,6 +349,11 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "evidence": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/validate_catalog.py": 4
+    },
     "exclude": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
@@ -336,17 +365,20 @@
       "scripts/test_refresh_github_metadata.py": 8
     },
     "from": {
+      "scripts/audit_catalog_quality.py": 4,
       "scripts/backfill_licenses.py": 4,
       "scripts/discover_candidates.py": 4,
       "scripts/find_replacements.py": 4,
       "scripts/recommend.py": 4,
       "scripts/refresh_github_metadata.py": 12,
       "scripts/test_backfill_licenses.py": 4,
+      "scripts/test_catalog_quality.py": 4,
       "scripts/test_discovery_cache.py": 4,
       "scripts/test_find_replacements.py": 4,
       "scripts/test_json_contracts.py": 4,
       "scripts/test_recommend.py": 4,
       "scripts/test_refresh_github_metadata.py": 12,
+      "scripts/validate_catalog.py": 4,
       "scripts/validate_json_contract.py": 4
     },
     "github": {
@@ -359,6 +391,11 @@
       "scripts/test_recommend.py": 8,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 8
+    },
+    "identity": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/validate_catalog.py": 4
     },
     "inconclusive": {
       "scripts/refresh_github_metadata.py": 4,
@@ -377,10 +414,13 @@
       "scripts/test_refresh_github_metadata.py": 4
     },
     "license": {
+      "scripts/audit_catalog_quality.py": 4,
       "scripts/backfill_licenses.py": 4,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_backfill_licenses.py": 4,
-      "scripts/test_refresh_github_metadata.py": 4
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/validate_catalog.py": 4
     },
     "licenses": {
       "scripts/refresh_github_metadata.py": 4,
@@ -475,11 +515,21 @@
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 8
     },
+    "separately": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/validate_catalog.py": 4
+    },
     "specialized": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
     "stale": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/validate_catalog.py": 4
+    },
+    "track": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4

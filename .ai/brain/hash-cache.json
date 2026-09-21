@@ -1,20 +1,16 @@
 {
   "files": {
-    ".github/workflows/license-backfill.yml": {
-      "sha256": "20c9d7fd4a67a9274913ab4d527ee6071ec98492145d6daa728e2382ca19f75e",
-      "size": 1384
-    },
-    ".github/workflows/validate.yml": {
-      "sha256": "4d76fcfaebc579cebdf4091713dcfafdbe07ec8985bf5775e91027d159d7755d",
-      "size": 4674
-    },
     "cache-health-history.json": {
       "sha256": "5a7446123ca176f409fe44c7098803055a15ac877296a7384ef7d28ee05cd690",
       "size": 1013
     },
     "catalog.json": {
-      "sha256": "a8e68f90773e69390e1255cb901c776c93f5b03707746675ab0b8bb51fe69226",
-      "size": 406023
+      "sha256": "fbc8b2fa802dd1040a2f752761a892b01ddcbff50e950f8c0b1a5276ffceb7c9",
+      "size": 407703
+    },
+    "catalog.schema.json": {
+      "sha256": "559a37240ade2e2c4a71f96f085f43ffe5d8bb82179afcdf0ee95bb5074b3afb",
+      "size": 6819
     },
     "discovery-memory.json": {
       "sha256": "83f2699776a3ffdfa438be87fe15c821d2856d056e618976e133f053f90762ca",
@@ -28,6 +24,10 @@
       "sha256": "ea3a7312d2f5de928f72451d5ca4279dc721c6599aa644c181387af1395eb281",
       "size": 175289
     },
+    "scripts/audit_catalog_quality.py": {
+      "sha256": "c6c87c3cc6511dea6646edcfdff8b8803efcff29a4e0c50c6bc3a586ead6ec7e",
+      "size": 7160
+    },
     "scripts/backfill_licenses.py": {
       "sha256": "5ed31ece9790db453e65dfa5e01483821978a357d76a24440ddeedd554c585a1",
       "size": 1619
@@ -40,9 +40,17 @@
       "sha256": "77ee97f7850e20786cfcbf06e7e0a9b17cf6bd1f7b1c24ce39ce28770efdd4b7",
       "size": 1167
     },
+    "scripts/test_catalog_quality.py": {
+      "sha256": "b27fadbc5b6ebdc611e381092e3b0293a6d175da1e858e1b81ae2c4a0cfd20cf",
+      "size": 3446
+    },
     "scripts/test_refresh_github_metadata.py": {
       "sha256": "072c060bffd553056f25c9aa1b2b22b5fc24d81782b5e13e4e2e879d114d0541",
       "size": 7856
+    },
+    "scripts/validate_catalog.py": {
+      "sha256": "593ea49f2bf9f2449333eb0e19a2d1e56eaa35b340387458a9810f4ae838a66f",
+      "size": 5997
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

@@ -22,17 +22,21 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-21T16:12:49Z
+Generated: 2026-09-21T16:15:56Z
 
 ### Git
 - Branch: `main`
-- Head: `765a6d947b6f`
-- Commit date: 2026-09-21T18:12:38+02:00
-- Commit: Verify license metadata from repository files (#33)
+- Head: `2b767ff8bdb1`
+- Commit date: 2026-09-21T18:15:44+02:00
+- Commit: Track license evidence separately from license identity (#34)
 - Tracked files: 189
 
 ### Recently changed files
 - `catalog.json`
+- `catalog.schema.json`
+- `scripts/audit_catalog_quality.py`
+- `scripts/test_catalog_quality.py`
+- `scripts/validate_catalog.py`
 - `scripts/refresh_github_metadata.py`
 - `scripts/test_refresh_github_metadata.py`
 - `cache-health-history.json`
