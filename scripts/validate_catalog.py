@@ -11,6 +11,7 @@ valid_roles = {"data","alpha","regime","backtest","risk","execution","portfolio"
 valid_tiers = {"core","recommended","specialized","audit"}
 valid_levels = {"low","medium","high"}
 valid_lifecycles = {"active","stable","reference","legacy"}
+valid_guidance_sources = {"curated","inferred"}
 seen = set()
 repos = data.get("repositories", [])
 
@@ -37,11 +38,11 @@ for i, r in enumerate(repos):
     if tier == "core" and score < 9.5: errors.append(f"{prefix}: core requires score >= 9.5")
     if tier == "recommended" and score < 9.0: errors.append(f"{prefix}: recommended requires score >= 9.0")
     if tier == "specialized" and score < 8.0: errors.append(f"{prefix}: specialized requires score >= 8.0")
-    if tier == "core":
+    if tier in {"core", "recommended"}:
         if not r.get("bestFor"):
-            errors.append(f"{prefix}: core repositories require bestFor guidance")
+            errors.append(f"{prefix}: {tier} repositories require bestFor guidance")
         if not r.get("avoidWhen"):
-            errors.append(f"{prefix}: core repositories require avoidWhen guidance")
+            errors.append(f"{prefix}: {tier} repositories require avoidWhen guidance")
 
     domain = r.get("domain")
     if domain not in valid_domains:
@@ -50,6 +51,9 @@ for i, r in enumerate(repos):
     lifecycle = r.get("lifecycle")
     if lifecycle is not None and lifecycle not in valid_lifecycles:
         errors.append(f"{prefix}: invalid lifecycle {lifecycle}")
+    guidance_source = r.get("guidanceSource")
+    if guidance_source is not None and guidance_source not in valid_guidance_sources:
+        errors.append(f"{prefix}: invalid guidanceSource {guidance_source}")
 
     for field in ("capabilities","roles","bestFor","avoidWhen","alternatives","complements","languages","platforms"):
         value = r.get(field, [])
