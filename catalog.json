@@ -2865,7 +2865,9 @@
       "category": "Documentation / architecture / API",
       "domain": "backend",
       "capabilities": [
-        "machine-learning"
+        "diagrams",
+        "architecture",
+        "documentation"
       ],
       "languages": [
         "java"
@@ -2892,12 +2894,14 @@
         "pushedAt": "2026-09-20T17:56:41Z"
       },
       "bestFor": [
-        "machine-learning workflows"
+        "technical diagrams",
+        "software architecture diagrams",
+        "technical documentation"
       ],
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "curated"
     },
     {
       "repo": "plantuml-stdlib/C4-PlantUML",
@@ -2906,7 +2910,9 @@
       "category": "Documentation / architecture / API",
       "domain": "backend",
       "capabilities": [
-        "machine-learning"
+        "diagrams",
+        "architecture",
+        "documentation"
       ],
       "languages": [
         "plantuml"
@@ -2933,12 +2939,14 @@
         "pushedAt": "2026-08-26T14:58:27Z"
       },
       "bestFor": [
-        "machine-learning workflows"
+        "technical diagrams",
+        "software architecture diagrams",
+        "technical documentation"
       ],
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "curated"
     },
     {
       "repo": "thomvaill/log4brains",
