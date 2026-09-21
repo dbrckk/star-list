@@ -37,6 +37,11 @@ for i, r in enumerate(repos):
     if tier == "core" and score < 9.5: errors.append(f"{prefix}: core requires score >= 9.5")
     if tier == "recommended" and score < 9.0: errors.append(f"{prefix}: recommended requires score >= 9.0")
     if tier == "specialized" and score < 8.0: errors.append(f"{prefix}: specialized requires score >= 8.0")
+    if tier == "core":
+        if not r.get("bestFor"):
+            errors.append(f"{prefix}: core repositories require bestFor guidance")
+        if not r.get("avoidWhen"):
+            errors.append(f"{prefix}: core repositories require avoidWhen guidance")
 
     domain = r.get("domain")
     if domain not in valid_domains:
