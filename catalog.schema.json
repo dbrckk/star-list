@@ -247,6 +247,12 @@
               "curated",
               "inferred"
             ]
+          },
+          "licenseEvidence": {
+            "enum": [
+              "verified-file",
+              "no-root-license-file"
+            ]
           }
         },
         "additionalProperties": false
