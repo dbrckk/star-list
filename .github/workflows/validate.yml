@@ -27,6 +27,12 @@ jobs:
         run: |
           python scripts/validate_catalog.py
           python scripts/validate_json_contract.py catalog.schema.json catalog.json
+      - name: Test catalog quality audit
+        run: python scripts/test_catalog_quality.py
+      - name: Generate catalog quality audit
+        run: python scripts/audit_catalog_quality.py > catalog-quality.json
+      - name: Validate catalog quality audit contract
+        run: python scripts/validate_json_contract.py schemas/catalog-quality.schema.json catalog-quality.json
       - name: Test GitHub metadata refresh resilience
         run: python scripts/test_refresh_github_metadata.py
       - name: Test recommendation engine
