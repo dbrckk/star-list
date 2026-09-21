@@ -2120,7 +2120,7 @@
       }
     },
     {
-      "repo": "harry2141985/Google-Colab-Notebooks",
+      "repo": "harry2141985/Google-Collab-Notebooks",
       "score": 7.8,
       "tier": "audit",
       "category": "Automatisation / outils / données",
@@ -2142,7 +2142,17 @@
       ],
       "resourceLevel": "medium",
       "integrationComplexity": "medium",
-      "costModel": "open-source"
+      "costModel": "open-source",
+      "github": {
+        "stars": 65,
+        "forks": 42,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-04-06T10:21:50Z"
+      }
     },
     {
       "repo": "browserbase/stagehand",
@@ -6962,7 +6972,7 @@
       }
     },
     {
-      "repo": "bleeeline/aimoneyhunter",
+      "repo": "bleedline/aimoneyhunter",
       "score": 7,
       "tier": "audit",
       "category": "Autres favoris visibles",
@@ -6983,7 +6993,17 @@
       ],
       "resourceLevel": "medium",
       "integrationComplexity": "medium",
-      "costModel": "open-source"
+      "costModel": "open-source",
+      "github": {
+        "stars": 18162,
+        "forks": 1762,
+        "openIssues": 32,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2025-10-20T00:24:54Z"
+      }
     },
     {
       "repo": "LargeWorldModel/LWM",
@@ -14449,15 +14469,6 @@
   ],
   "metadata": {
     "githubRefreshedAt": "2026-09-20T19:16:02.340872Z",
-    "githubRefreshFailures": [
-      {
-        "repo": "harry2141985/Google-Colab-Notebooks",
-        "error": "HTTP Error 404: Not Found"
-      },
-      {
-        "repo": "bleeeline/aimoneyhunter",
-        "error": "HTTP Error 404: Not Found"
-      }
-    ]
+    "githubRefreshFailures": []
   }
 }
