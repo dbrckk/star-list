@@ -2093,7 +2093,8 @@
       "alternatives": [
         "freeCodeCamp/freeCodeCamp",
         "ruanyf/weekly"
-      ]
+      ],
+      "lifecycle": "reference"
     },
     {
       "repo": "ChrisTitusTech/winutil",
@@ -5766,7 +5767,8 @@
         "defaultBranch": "develop",
         "license": "NOASSERTION",
         "pushedAt": "2024-07-23T00:58:54Z"
-      }
+      },
+      "lifecycle": "stable"
     },
     {
       "repo": "jonobr1/two.js",
@@ -5836,7 +5838,8 @@
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2024-07-28T21:12:58Z"
-      }
+      },
+      "lifecycle": "stable"
     },
     {
       "repo": "maxwellito/vivus",
@@ -5871,7 +5874,8 @@
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2022-07-06T22:16:59Z"
-      }
+      },
+      "lifecycle": "stable"
     },
     {
       "repo": "CorentinJ/Real-Time-Voice-Cloning",
@@ -6153,7 +6157,7 @@
     {
       "repo": "camenduru/dust3r-jupyter",
       "score": 8,
-      "tier": "specialized",
+      "tier": "audit",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
       "capabilities": [
@@ -6183,7 +6187,15 @@
         "defaultBranch": "main",
         "license": null,
         "pushedAt": "2024-03-03T13:43:09Z"
-      }
+      },
+      "lifecycle": "reference",
+      "bestFor": [
+        "historical DUSt3R Colab/Jupyter setup reference"
+      ],
+      "avoidWhen": [
+        "current 3D reconstruction workflows",
+        "maintained notebook environments"
+      ]
     },
     {
       "repo": "RayVentura/ShortGPT",
@@ -6328,7 +6340,7 @@
     {
       "repo": "ali-vilab/AnyDoor",
       "score": 8.5,
-      "tier": "specialized",
+      "tier": "audit",
       "category": "Média / voix / vidéo",
       "domain": "ai_media",
       "capabilities": [
@@ -6358,7 +6370,15 @@
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2024-04-08T06:31:26Z"
-      }
+      },
+      "lifecycle": "reference",
+      "bestFor": [
+        "research reference for object insertion"
+      ],
+      "avoidWhen": [
+        "new production image-editing pipelines",
+        "actively maintained image models"
+      ]
     },
     {
       "repo": "facefusion/facefusion",
@@ -6608,7 +6628,7 @@
     {
       "repo": "megadose/holehe",
       "score": 8.5,
-      "tier": "specialized",
+      "tier": "audit",
       "category": "Sécurité / OSINT",
       "domain": "cybersecurity",
       "capabilities": [
@@ -6637,7 +6657,15 @@
         "defaultBranch": "master",
         "license": "GPL-3.0",
         "pushedAt": "2024-09-10T20:24:32Z"
-      }
+      },
+      "lifecycle": "legacy",
+      "bestFor": [
+        "legacy OSINT workflow reference"
+      ],
+      "avoidWhen": [
+        "fresh provider coverage",
+        "production OSINT automation"
+      ]
     },
     {
       "repo": "usestrix/strix",
@@ -6952,7 +6980,8 @@
       "avoidWhen": [
         "actively maintained automation",
         "account-safe production use"
-      ]
+      ],
+      "lifecycle": "legacy"
     },
     {
       "repo": "lllyasviel/Paints-UNDO",
@@ -7097,7 +7126,8 @@
       "avoidWhen": [
         "new deployments",
         "actively maintained recording tooling"
-      ]
+      ],
+      "lifecycle": "legacy"
     },
     {
       "repo": "GuallaGang508/SMSBotBypass",
@@ -8028,7 +8058,7 @@
     {
       "repo": "mementum/backtrader",
       "score": 8.7,
-      "tier": "specialized",
+      "tier": "audit",
       "category": "Trading / quant / backtesting",
       "domain": "trading",
       "roles": [
@@ -8063,12 +8093,26 @@
         "defaultBranch": "master",
         "license": "GPL-3.0",
         "pushedAt": "2024-08-19T17:47:36Z"
-      }
+      },
+      "lifecycle": "legacy",
+      "bestFor": [
+        "legacy Backtrader projects",
+        "historical event-driven backtesting reference"
+      ],
+      "avoidWhen": [
+        "new trading systems",
+        "actively maintained backtesting framework"
+      ],
+      "alternatives": [
+        "kernc/backtesting.py",
+        "polakowo/vectorbt",
+        "QuantConnect/Lean"
+      ]
     },
     {
       "repo": "quantopian/zipline",
       "score": 8.3,
-      "tier": "specialized",
+      "tier": "audit",
       "category": "Trading / quant / backtesting",
       "domain": "trading",
       "roles": [
@@ -8103,12 +8147,26 @@
         "defaultBranch": "master",
         "license": "Apache-2.0",
         "pushedAt": "2024-02-13T08:02:51Z"
-      }
+      },
+      "lifecycle": "legacy",
+      "bestFor": [
+        "legacy Quantopian Zipline code",
+        "historical Zipline API reference"
+      ],
+      "avoidWhen": [
+        "new backtesting projects",
+        "modern Python environments"
+      ],
+      "alternatives": [
+        "stefan-jansen/zipline-reloaded",
+        "QuantConnect/Lean",
+        "kernc/backtesting.py"
+      ]
     },
     {
       "repo": "hudson-and-thames/mlfinlab",
       "score": 8.2,
-      "tier": "specialized",
+      "tier": "audit",
       "category": "Trading / quant / backtesting",
       "domain": "trading",
       "roles": [
@@ -8148,7 +8206,20 @@
         "defaultBranch": "master",
         "license": "NOASSERTION",
         "pushedAt": "2023-10-02T03:05:19Z"
-      }
+      },
+      "lifecycle": "legacy",
+      "bestFor": [
+        "legacy financial-ML research reference"
+      ],
+      "avoidWhen": [
+        "new production research pipelines",
+        "actively maintained open-source financial ML"
+      ],
+      "alternatives": [
+        "microsoft/qlib",
+        "skfolio/skfolio",
+        "polakowo/vectorbt"
+      ]
     },
     {
       "repo": "skfolio/skfolio",
@@ -8541,7 +8612,7 @@
     {
       "repo": "quantopian/pyfolio",
       "score": 8.4,
-      "tier": "specialized",
+      "tier": "audit",
       "category": "Trading / optimisation du rendement et du risque",
       "domain": "trading",
       "roles": [
@@ -8576,7 +8647,21 @@
         "defaultBranch": "master",
         "license": "Apache-2.0",
         "pushedAt": "2023-12-23T06:14:58Z"
-      }
+      },
+      "lifecycle": "legacy",
+      "bestFor": [
+        "legacy Pyfolio notebooks",
+        "historical portfolio tear-sheet reference"
+      ],
+      "avoidWhen": [
+        "new portfolio analytics",
+        "actively maintained performance reporting"
+      ],
+      "alternatives": [
+        "stefan-jansen/pyfolio-reloaded",
+        "ranaroussi/quantstats",
+        "skfolio/skfolio"
+      ]
     },
     {
       "repo": "unit8co/darts",
@@ -9007,7 +9092,8 @@
         "defaultBranch": "master",
         "license": "NOASSERTION",
         "pushedAt": "2024-08-08T17:23:11Z"
-      }
+      },
+      "lifecycle": "stable"
     },
     {
       "repo": "scikit-learn/scikit-learn",
@@ -9691,7 +9777,7 @@
     {
       "repo": "yeyintminthuhtut/Awesome-Red-Teaming",
       "score": 8.8,
-      "tier": "specialized",
+      "tier": "audit",
       "category": "Cybersecurity / red team",
       "domain": "cybersecurity",
       "capabilities": [
@@ -9720,7 +9806,15 @@
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2023-12-28T18:10:52Z"
-      }
+      },
+      "lifecycle": "reference",
+      "bestFor": [
+        "historical red-team resource collection"
+      ],
+      "avoidWhen": [
+        "current tooling discovery",
+        "time-sensitive offensive-security references"
+      ]
     },
     {
       "repo": "A-poc/RedTeam-Tools",
@@ -10288,7 +10382,7 @@
     {
       "repo": "blaCCkHatHacEEkr/PENTESTING-BIBLE",
       "score": 8.8,
-      "tier": "specialized",
+      "tier": "audit",
       "category": "Cybersecurity / pentest",
       "domain": "cybersecurity",
       "capabilities": [
@@ -10318,7 +10412,15 @@
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2023-04-03T07:40:28Z"
-      }
+      },
+      "lifecycle": "reference",
+      "bestFor": [
+        "historical pentesting reference collection"
+      ],
+      "avoidWhen": [
+        "current toolchains",
+        "time-sensitive vulnerability research"
+      ]
     },
     {
       "repo": "mem0ai/mem0",
@@ -10573,7 +10675,8 @@
         "defaultBranch": "main",
         "license": "NOASSERTION",
         "pushedAt": "2024-07-29T19:34:21Z"
-      }
+      },
+      "lifecycle": "stable"
     },
     {
       "repo": "microsoft/magentic-ui",
@@ -10689,7 +10792,8 @@
       "alternatives": [
         "langflow-ai/langflow",
         "langgenius/dify"
-      ]
+      ],
+      "lifecycle": "legacy"
     },
     {
       "repo": "BerriAI/litellm",
@@ -10779,7 +10883,7 @@
     {
       "repo": "lettier/3d-game-shaders-for-beginners",
       "score": 9.2,
-      "tier": "recommended",
+      "tier": "audit",
       "category": "Graphics / shaders",
       "domain": "graphics",
       "capabilities": [
@@ -10809,7 +10913,15 @@
         "defaultBranch": "master",
         "license": null,
         "pushedAt": "2023-06-25T21:58:57Z"
-      }
+      },
+      "lifecycle": "reference",
+      "bestFor": [
+        "learning classic real-time shader techniques"
+      ],
+      "avoidWhen": [
+        "current engine-specific shader APIs",
+        "actively maintained rendering examples"
+      ]
     },
     {
       "repo": "Donchitos/Claude-Code-Game-Studios",
@@ -12174,7 +12286,7 @@
     {
       "repo": "inkscape/inkscape",
       "score": 9.4,
-      "tier": "recommended",
+      "tier": "audit",
       "category": "Graphics / vector design",
       "domain": "graphics",
       "capabilities": [
@@ -12204,7 +12316,15 @@
         "defaultBranch": "master",
         "license": null,
         "pushedAt": "2022-03-03T20:52:00Z"
-      }
+      },
+      "lifecycle": "reference",
+      "bestFor": [
+        "historical GitHub mirror reference for Inkscape"
+      ],
+      "avoidWhen": [
+        "tracking current Inkscape development",
+        "using GitHub as the canonical upstream"
+      ]
     },
     {
       "repo": "rive-app/rive-android",
@@ -12244,7 +12364,7 @@
     {
       "repo": "plattysoft/Leonids",
       "score": 8.5,
-      "tier": "specialized",
+      "tier": "audit",
       "category": "Mobile / particle effects",
       "domain": "mobile",
       "capabilities": [
@@ -12274,7 +12394,15 @@
         "defaultBranch": "master",
         "license": "Apache-2.0",
         "pushedAt": "2021-02-24T07:55:47Z"
-      }
+      },
+      "lifecycle": "legacy",
+      "bestFor": [
+        "legacy Android particle-effect implementations"
+      ],
+      "avoidWhen": [
+        "modern Android UI stacks",
+        "actively maintained graphics libraries"
+      ]
     },
     {
       "repo": "DanielMartinus/Konfetti",
@@ -14554,6 +14682,120 @@
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-21T07:26:04Z"
+      }
+    },
+    {
+      "repo": "stefan-jansen/zipline-reloaded",
+      "score": 8.9,
+      "tier": "specialized",
+      "category": "Trading / quant / backtesting",
+      "domain": "trading",
+      "capabilities": [
+        "backtesting",
+        "code-quality",
+        "backtest"
+      ],
+      "roles": [
+        "backtest"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "lifecycle": "active",
+      "bestFor": [
+        "maintained Zipline-compatible backtesting",
+        "event-driven Python strategy research"
+      ],
+      "avoidWhen": [
+        "ultra-low-latency execution",
+        "non-Python trading stacks"
+      ],
+      "alternatives": [
+        "QuantConnect/Lean",
+        "kernc/backtesting.py",
+        "quantopian/zipline"
+      ],
+      "complements": [
+        "ranaroussi/yfinance",
+        "stefan-jansen/pyfolio-reloaded"
+      ],
+      "github": {
+        "stars": 1941,
+        "forks": 330,
+        "openIssues": 44,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-01-06T13:01:54Z"
+      }
+    },
+    {
+      "repo": "stefan-jansen/pyfolio-reloaded",
+      "score": 8.8,
+      "tier": "specialized",
+      "category": "Trading / optimisation du rendement et du risque",
+      "domain": "trading",
+      "capabilities": [
+        "risk",
+        "performance"
+      ],
+      "roles": [
+        "performance",
+        "risk"
+      ],
+      "languages": [
+        "python",
+        "jupyter notebook"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "lifecycle": "active",
+      "bestFor": [
+        "portfolio tear sheets",
+        "Python risk and performance analytics"
+      ],
+      "avoidWhen": [
+        "full execution engines",
+        "non-Python analytics stacks"
+      ],
+      "alternatives": [
+        "ranaroussi/quantstats",
+        "quantopian/pyfolio"
+      ],
+      "complements": [
+        "stefan-jansen/zipline-reloaded",
+        "skfolio/skfolio"
+      ],
+      "github": {
+        "stars": 616,
+        "forks": 173,
+        "openIssues": 17,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2025-12-15T11:02:30Z"
       }
     }
   ],
