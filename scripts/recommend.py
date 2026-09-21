@@ -3,6 +3,7 @@ import argparse, json, re
 from datetime import datetime, timezone
 from pathlib import Path
 from health_score import health_score
+from find_replacements import replacement_score
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog.json"
@@ -158,6 +159,61 @@ def choose_stack(stacks, qtokens, domains):
             best_score, best = score, st
     return best if best_score > 0 else None
 
+
+def infer_alternatives(source, repos, top=3):
+    candidates = []
+    for candidate in repos:
+        if candidate.get("tier") == "audit":
+            continue
+        result = replacement_score(source, candidate)
+        if result is None:
+            continue
+        fit, candidate_health = result
+        candidates.append((
+            fit,
+            candidate_health.get("score") or 0,
+            candidate.get("score") or 0,
+            candidate["repo"],
+        ))
+    candidates.sort(key=lambda x: (-x[0], -x[1], -x[2], x[3].lower()))
+    return [repo for _, _, _, repo in candidates[:top]]
+
+
+def infer_complements(source, stacks, repo_by_name, top=4):
+    seen = set()
+    complements = []
+    for stack in stacks:
+        members = stack.get("repos", [])
+        if source["repo"] not in members:
+            continue
+        for name in members:
+            if name == source["repo"] or name in seen:
+                continue
+            candidate = repo_by_name.get(name)
+            if not candidate or candidate.get("tier") == "audit":
+                continue
+            health = health_score(candidate)
+            if health.get("status") in {"inactive", "weak"}:
+                continue
+            seen.add(name)
+            complements.append(name)
+            if len(complements) >= top:
+                return complements
+    return complements
+
+
+def resolve_relations(source, repos, stacks, repo_by_name):
+    explicit_alternatives = source.get("alternatives", [])
+    explicit_complements = source.get("complements", [])
+    alternatives = explicit_alternatives or infer_alternatives(source, repos)
+    complements = explicit_complements or infer_complements(source, stacks, repo_by_name)
+    return {
+        "alternatives": alternatives,
+        "alternativesSource": "curated" if explicit_alternatives else ("inferred" if alternatives else "none"),
+        "complements": complements,
+        "complementsSource": "curated" if explicit_complements else ("inferred" if complements else "none"),
+    }
+
 def main():
     ap = argparse.ArgumentParser(description="Recommend repositories from star-list catalog.")
     ap.add_argument("query", help="Natural-language task/query")
@@ -182,6 +238,7 @@ def main():
         ap.error("--min-score must be >= 0")
 
     repos, stacks = load()
+    repo_by_name = {r["repo"]: r for r in repos}
     qtokens = tokens(args.query)
     domains = set(args.domain) or infer_domains(qtokens)
     required_caps, excluded_caps = set(args.cap), set(args.exclude_cap)
@@ -218,12 +275,15 @@ def main():
     ranked.sort(key=lambda x: (-x[0], -x[1].get("score", 0), x[1]["repo"].lower()))
     top = []
     for s, r in ranked[:args.top]:
+        relations = resolve_relations(r, repos, stacks, repo_by_name)
         top.append({
             "repo": r["repo"], "selectionScore": s, "qualityScore": r.get("score"),
             "tier": r.get("tier"), "domain": r.get("domain"),
             "capabilities": r.get("capabilities", []), "bestFor": r.get("bestFor", []),
-            "avoidWhen": r.get("avoidWhen", []), "alternatives": r.get("alternatives", []),
-            "complements": r.get("complements", []), "languages": r.get("languages", []),
+            "avoidWhen": r.get("avoidWhen", []),
+            "alternatives": relations["alternatives"], "alternativesSource": relations["alternativesSource"],
+            "complements": relations["complements"], "complementsSource": relations["complementsSource"],
+            "languages": r.get("languages", []),
             "platforms": r.get("platforms", []), "selfHosted": r.get("selfHosted"),
             "resourceLevel": r.get("resourceLevel"), "integrationComplexity": r.get("integrationComplexity"),
             "guidanceSource": r.get("guidanceSource", "curated"),
