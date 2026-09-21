@@ -233,6 +233,14 @@
               }
             },
             "additionalProperties": false
+          },
+          "lifecycle": {
+            "enum": [
+              "active",
+              "stable",
+              "reference",
+              "legacy"
+            ]
           }
         },
         "additionalProperties": false
