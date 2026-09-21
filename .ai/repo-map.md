@@ -4419,7 +4419,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "BSD-3-Clause",
         "pushedAt": "2026-09-20T15:48:25Z"
-      }
+      },
+      "bestFor": [
+        "structured web-development learning",
+        "hands-on programming exercises",
+        "self-paced software-engineering study"
+      ],
+      "avoidWhen": [
+        "advanced framework-specific production reference",
+        "formal accredited coursework"
+      ]
     },
     {
       "repo": "autoscrape-labs/pydoll",
@@ -5076,7 +5085,16 @@ Repository-specific rules:
         "defaultBranch": "develop",
         "license": "MIT",
         "pushedAt": "2026-09-18T10:41:27Z"
-      }
+      },
+      "bestFor": [
+        "text-to-diagram documentation",
+        "architecture diagrams in Markdown",
+        "version-controlled technical diagrams"
+      ],
+      "avoidWhen": [
+        "pixel-perfect illustration",
+        "interactive CAD-style editing"
+      ]
     },
     {
       "repo": "plantuml/plantuml",
@@ -6314,7 +6332,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-20T18:20:03Z"
-      }
+      },
+      "bestFor": [
+        "modern Android architecture reference",
+        "Jetpack Compose patterns",
+        "reference app structure and testing"
+      ],
+      "avoidWhen": [
+        "small production dependency needs",
+        "cross-platform application development"
+      ]
     },
     {
       "repo": "JetBrains/compose-multiplatform",
@@ -6423,7 +6450,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T17:57:13Z"
-      }
+      },
+      "bestFor": [
+        "cross-platform mobile applications",
+        "shared JavaScript or TypeScript mobile UI",
+        "native-module integration"
+      ],
+      "avoidWhen": [
+        "pure native-only Android or iOS apps",
+        "web-only frontends"
+      ]
     },
     {
       "repo": "expo/expo",
@@ -6460,7 +6496,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T19:09:08Z"
-      }
+      },
+      "bestFor": [
+        "React Native app delivery",
+        "managed cross-platform mobile workflows",
+        "rapid Android and iOS iteration"
+      ],
+      "avoidWhen": [
+        "fully native-only mobile architecture",
+        "minimal runtime dependency footprints"
+      ]
     },
     {
       "repo": "appium/appium",
@@ -6566,7 +6611,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-20T12:06:48Z"
-      }
+      },
+      "bestFor": [
+        "web performance audits",
+        "accessibility and SEO diagnostics",
+        "CI quality gates for web pages"
+      ],
+      "avoidWhen": [
+        "native mobile profiling",
+        "deep backend performance analysis"
+      ]
     },
     {
       "repo": "dequelabs/axe-core",
@@ -6637,7 +6691,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-20T02:53:50Z"
-      }
+      },
+      "bestFor": [
+        "portable CI pipelines",
+        "containerized build automation",
+        "CI/CD logic as code"
+      ],
+      "avoidWhen": [
+        "very simple static CI jobs",
+        "environments without container support"
+      ]
     },
     {
       "repo": "nektos/act",
@@ -7085,7 +7148,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-20T15:19:50Z"
-      }
+      },
+      "bestFor": [
+        "metrics collection",
+        "time-series monitoring",
+        "cloud-native monitoring foundations"
+      ],
+      "avoidWhen": [
+        "log storage",
+        "full distributed tracing without complementary tooling"
+      ]
     },
     {
       "repo": "grafana/grafana",
@@ -7510,7 +7582,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-20T18:54:15Z"
-      }
+      },
+      "bestFor": [
+        "Python dependency management",
+        "fast virtual environments",
+        "reproducible Python tooling"
+      ],
+      "avoidWhen": [
+        "non-Python package management",
+        "Conda-specific environment workflows"
+      ]
     },
     {
       "repo": "benfred/py-spy",
@@ -7764,7 +7845,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-09-20T18:27:34Z"
-      }
+      },
+      "bestFor": [
+        "fast Python linting",
+        "Python formatting and static checks",
+        "CI code-quality enforcement"
+      ],
+      "avoidWhen": [
+        "non-Python codebases",
+        "semantic type checking"
+      ]
     },
     {
       "repo": "langfuse/langfuse",
@@ -8994,7 +9084,16 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "GPL-3.0",
         "pushedAt": "2026-09-20T17:32:01Z"
-      }
+      },
+      "bestFor": [
+        "node-based diffusion workflows",
+        "local image-generation pipelines",
+        "reproducible generative-media graphs"
+      ],
+      "avoidWhen": [
+        "low-resource devices",
+        "simple one-shot API-only image generation"
+      ]
     },
     {
       "repo": "invoke-ai/InvokeAI",
@@ -10142,7 +10241,16 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-09-20T12:48:58Z"
-      }
+      },
+      "bestFor": [
+        "multi-exchange crypto market data",
+        "normalized exchange APIs",
+        "crypto execution integrations"
+      ],
+      "avoidWhen": [
+        "broker-specific low-latency execution",
+        "non-crypto-only trading stacks"
+      ]
     },
     {
       "repo": "freqtrade/freqtrade",
@@ -11612,7 +11720,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "BSD-3-Clause",
         "pushedAt": "2026-09-19T19:07:47Z"
-      }
+      },
+      "bestFor": [
+        "classical machine-learning pipelines",
+        "tabular modeling and evaluation",
+        "feature preprocessing and model selection"
+      ],
+      "avoidWhen": [
+        "deep neural-network training",
+        "distributed GPU-first workloads"
+      ]
     },
     {
       "repo": "dmlc/xgboost",
@@ -12979,7 +13096,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-20T18:13:09Z"
-      }
+      },
+      "bestFor": [
+        "persistent context for Claude coding workflows",
+        "cross-session project memory",
+        "retrieving prior coding context"
+      ],
+      "avoidWhen": [
+        "stateless sessions",
+        "non-Claude agent stacks"
+      ]
     },
     {
       "repo": "academic/awesome-datascience",
@@ -13717,7 +13843,16 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-09-20T16:16:48Z"
-      }
+      },
+      "bestFor": [
+        "authorized security-testing wordlists",
+        "fuzzing dictionaries and payload lists",
+        "reproducible pentest input collections"
+      ],
+      "avoidWhen": [
+        "standalone vulnerability validation",
+        "non-security workloads"
+      ]
     },
     {
       "repo": "infoslack/awesome-web-hacking",
@@ -13787,7 +13922,16 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "NOASSERTION",
         "pushedAt": "2026-09-17T16:01:43Z"
-      }
+      },
+      "bestFor": [
+        "authorized exploit validation",
+        "penetration-testing labs",
+        "reproducible security module workflows"
+      ],
+      "avoidWhen": [
+        "non-security automation",
+        "environments where custom minimal tooling is required"
+      ]
     },
     {
       "repo": "huggingface/transformers",
@@ -13821,7 +13965,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-20T17:34:58Z"
-      }
+      },
+      "bestFor": [
+        "pretrained transformer model inference",
+        "fine-tuning NLP, vision, and audio models",
+        "model ecosystem interoperability"
+      ],
+      "avoidWhen": [
+        "small dependency-light inference",
+        "very low-resource deployments"
+      ]
     },
     {
       "repo": "jihe520/MathModelAgent",
@@ -15228,7 +15381,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": null,
         "pushedAt": "2026-09-20T16:24:05Z"
-      }
+      },
+      "bestFor": [
+        "repository-level coding tasks",
+        "terminal-driven code editing",
+        "agentic debugging and refactoring"
+      ],
+      "avoidWhen": [
+        "offline-only workflows",
+        "tasks that do not need an autonomous coding agent"
+      ]
     },
     {
       "repo": "NationalSecurityAgency/ghidra",
@@ -15647,7 +15809,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-20T18:27:11Z"
-      }
+      },
+      "bestFor": [
+        "agentic repository coding",
+        "terminal-driven implementation tasks",
+        "automated code editing and debugging"
+      ],
+      "avoidWhen": [
+        "offline-only workflows",
+        "tasks that do not require codebase modification"
+      ]
     },
     {
       "repo": "cline/cline",
@@ -16188,7 +16359,16 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "NOASSERTION",
         "pushedAt": "2026-09-20T17:43:19Z"
-      }
+      },
+      "bestFor": [
+        "self-hosted workflow automation",
+        "API and service orchestration",
+        "low-code business automations"
+      ],
+      "avoidWhen": [
+        "hard real-time processing",
+        "ultra-light embedded automation"
+      ]
     },
     {
       "repo": "mindsdb/mindsdb",
@@ -16963,7 +17143,16 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-09-20T17:51:56Z"
-      }
+      },
+      "bestFor": [
+        "efficient LLM fine-tuning",
+        "local model-training optimization",
+        "LoRA and QLoRA workflows"
+      ],
+      "avoidWhen": [
+        "CPU-only low-memory machines",
+        "non-LLM machine-learning workloads"
+      ]
     },
     {
       "repo": "aaif-goose/goose",

@@ -1,35 +1,14 @@
 {
   "files": [
     {
-      "path": "scripts/test_catalog_quality.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "recent-project-state",
-        "selected-test"
-      ],
-      "score": 430
-    },
-    {
-      "path": "scripts/audit_catalog_quality.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "recent-project-state",
-        "symbol-indexed"
-      ],
-      "score": 385
-    },
-    {
       "path": "scripts/validate_catalog.py",
       "reasons": [
         "changed",
         "changed-source",
-        "impact"
+        "impact",
+        "recent-project-state"
       ],
-      "score": 300
+      "score": 360
     },
     {
       "path": "catalog.json",
@@ -40,14 +19,14 @@
       "score": 160
     },
     {
-      "path": "catalog.schema.json",
+      "path": "cache-health-history.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
     },
     {
-      "path": "cache-health-history.json",
+      "path": "catalog.schema.json",
       "reasons": [
         "recent-project-state"
       ],
@@ -89,7 +68,14 @@
       "score": 60
     },
     {
-      "path": "scripts/test_find_replacements.py",
+      "path": "scripts/audit_catalog_quality.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/test_catalog_quality.py",
       "reasons": [
         "recent-project-state"
       ],

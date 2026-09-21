@@ -22,21 +22,21 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-21T08:05:48Z
+Generated: 2026-09-21T08:08:37Z
 
 ### Git
 - Branch: `main`
-- Head: `2449a2877c21`
-- Commit date: 2026-09-21T10:05:37+02:00
-- Commit: Triage stale repositories with lifecycle metadata (#21)
+- Head: `6d6dabdbafa8`
+- Commit date: 2026-09-21T10:08:26+02:00
+- Commit: Add selection guidance to core repositories (#22)
 - Tracked files: 183
 
 ### Recently changed files
 - `catalog.json`
+- `scripts/validate_catalog.py`
 - `catalog.schema.json`
 - `scripts/audit_catalog_quality.py`
 - `scripts/test_catalog_quality.py`
-- `scripts/validate_catalog.py`
 - `.github/workflows/refresh-metadata.yml`
 - `.github/workflows/validate.yml`
 - `schemas/catalog-quality.schema.json`
