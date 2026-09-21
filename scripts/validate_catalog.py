@@ -13,6 +13,7 @@ valid_levels = {"low","medium","high"}
 valid_lifecycles = {"active","stable","reference","legacy"}
 valid_guidance_sources = {"curated","inferred"}
 valid_license_evidence = {"verified-file","no-root-license-file"}
+valid_license_statuses = {"not-found","custom-restrictive","partial","external-terms"}
 seen = set()
 repos = data.get("repositories", [])
 
@@ -58,6 +59,12 @@ for i, r in enumerate(repos):
     license_evidence = r.get("licenseEvidence")
     if license_evidence is not None and license_evidence not in valid_license_evidence:
         errors.append(f"{prefix}: invalid licenseEvidence {license_evidence}")
+    license_status = r.get("licenseStatus")
+    if license_status is not None and license_status not in valid_license_statuses:
+        errors.append(f"{prefix}: invalid licenseStatus {license_status}")
+    gh_license = (r.get("github") or {}).get("license") if isinstance(r.get("github"), dict) else None
+    if license_status is not None and gh_license not in (None, "", "NOASSERTION"):
+        errors.append(f"{prefix}: licenseStatus is only valid when github.license is unresolved")
 
     for field in ("capabilities","roles","bestFor","avoidWhen","alternatives","complements","languages","platforms"):
         value = r.get(field, [])
