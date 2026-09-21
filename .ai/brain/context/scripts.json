@@ -2,6 +2,16 @@
   "area": "scripts",
   "files": [
     {
+      "path": "scripts/test_selection_guidance.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "selected-test"
+      ],
+      "score": 370
+    },
+    {
       "path": "scripts/validate_catalog.py",
       "reasons": [
         "changed",
@@ -10,6 +20,16 @@
         "recent-project-state"
       ],
       "score": 360
+    },
+    {
+      "path": "scripts/infer_selection_guidance.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 320
     },
     {
       "path": "scripts/audit_catalog_quality.py",

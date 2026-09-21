@@ -1,13 +1,29 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "2449a2877c2167478adf550e408d8525f9654330",
-  "head": "6d6dabdbafa83f500b42f710ab809f471c14d5e2",
+  "base": "6d6dabdbafa83f500b42f710ab809f471c14d5e2",
+  "head": "4ee1f4fbf9fe58d858060ee22bc11b542d261188",
   "index_mode": "incremental",
   "changed_files": [
     {
+      "path": ".github/workflows/validate.yml",
+      "status": "M"
+    },
+    {
       "path": "catalog.json",
       "status": "M"
+    },
+    {
+      "path": "catalog.schema.json",
+      "status": "M"
+    },
+    {
+      "path": "scripts/infer_selection_guidance.py",
+      "status": "A"
+    },
+    {
+      "path": "scripts/test_selection_guidance.py",
+      "status": "A"
     },
     {
       "path": "scripts/validate_catalog.py",
@@ -15,11 +31,42 @@
     }
   ],
   "changed_source_files": [
+    "scripts/infer_selection_guidance.py",
+    "scripts/test_selection_guidance.py",
     "scripts/validate_catalog.py"
   ],
   "impacted_files": [
+    "scripts/infer_selection_guidance.py",
+    "scripts/test_selection_guidance.py",
     "scripts/validate_catalog.py"
   ],
-  "impacted_symbols": [],
-  "selected_tests": []
+  "impacted_symbols": [
+    {
+      "name": "_humanize",
+      "kind": "function",
+      "file": "scripts/infer_selection_guidance.py",
+      "line": 123
+    },
+    {
+      "name": "infer_guidance",
+      "kind": "function",
+      "file": "scripts/infer_selection_guidance.py",
+      "line": 127
+    },
+    {
+      "name": "enrich",
+      "kind": "function",
+      "file": "scripts/infer_selection_guidance.py",
+      "line": 180
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/infer_selection_guidance.py",
+      "line": 200
+    }
+  ],
+  "selected_tests": [
+    "scripts/test_selection_guidance.py"
+  ]
 }

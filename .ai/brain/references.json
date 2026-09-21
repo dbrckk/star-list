@@ -4,5 +4,356 @@
   "scope": "symbols defined in changed source files",
   "semantic": false,
   "note": "Occurrences are lexical word matches; verify source/LSP/compiler data before relying on them.",
-  "symbols": {}
+  "symbols": {
+    "_humanize": {
+      "definition": {
+        "file": "scripts/infer_selection_guidance.py",
+        "line": 123,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/infer_selection_guidance.py",
+          "line": 123,
+          "preview": "def _humanize(value):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/infer_selection_guidance.py",
+          "line": 162,
+          "preview": "best.append(_humanize(caps[0]) + \" workflows\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/infer_selection_guidance.py",
+          "line": 164,
+          "preview": "best.append(_humanize(repo.get(\"category\", \"general-purpose tooling\")).lower())",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 3
+    },
+    "infer_guidance": {
+      "definition": {
+        "file": "scripts/infer_selection_guidance.py",
+        "line": 127,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/infer_selection_guidance.py",
+          "line": 127,
+          "preview": "def infer_guidance(repo):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/infer_selection_guidance.py",
+          "line": 190,
+          "preview": "best, avoid = infer_guidance(repo)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 2
+    },
+    "enrich": {
+      "definition": {
+        "file": "scripts/infer_selection_guidance.py",
+        "line": 180,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 201,
+          "preview": "def enrich(repo, token=None, cache=None, ttl_seconds=0, stale_max_seconds=0, stats=None):",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 271,
+          "preview": "enriched=enrich(row[\"repo\"],token,cache,metadata_ttl_seconds,metadata_stale_max_seconds,stats=stats)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/infer_selection_guidance.py",
+          "line": 180,
+          "preview": "def enrich(repos, tier=\"recommended\", refresh_inferred=False):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/infer_selection_guidance.py",
+          "line": 208,
+          "preview": "changed = enrich(data.get(\"repositories\", []), tier=args.tier, refresh_inferred=args.refresh_inferred)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_pipeline_integration.py",
+          "line": 92,
+          "preview": "discovery.enrich=fake_enrich",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_selection_guidance.py",
+          "line": 48,
+          "preview": "changed = mod.enrich(repos)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 6
+    },
+    "main": {
+      "definition": {
+        "file": "scripts/infer_selection_guidance.py",
+        "line": 200,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/analyze_cache_health.py",
+          "line": 75,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/analyze_cache_health.py",
+          "line": 88,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/analyze_coverage.py",
+          "line": 48,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/analyze_coverage.py",
+          "line": 58,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/audit_catalog_quality.py",
+          "line": 166,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/audit_catalog_quality.py",
+          "line": 185,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/build_discovery_watchlist.py",
+          "line": 31,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/build_discovery_watchlist.py",
+          "line": 40,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/catalog_stats.py",
+          "line": 9,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/catalog_stats.py",
+          "line": 43,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/detect_health_drift.py",
+          "line": 26,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/detect_health_drift.py",
+          "line": 37,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 280,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 306,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 182,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 189,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/filter_discovery_memory.py",
+          "line": 71,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/filter_discovery_memory.py",
+          "line": 82,
+          "preview": "if __name__==\"__main__\": main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/find_replacements.py",
+          "line": 61,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/find_replacements.py",
+          "line": 76,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/health_score.py",
+          "line": 55,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/health_score.py",
+          "line": 62,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/infer_selection_guidance.py",
+          "line": 200,
+          "preview": "def main():",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/infer_selection_guidance.py",
+          "line": 215,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/recommend.py",
+          "line": 149,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/recommend.py",
+          "line": 243,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/refresh_github_metadata.py",
+          "line": 68,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/refresh_github_metadata.py",
+          "line": 113,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/render_discovery_issue.py",
+          "line": 33,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/render_discovery_issue.py",
+          "line": 39,
+          "preview": "if __name__==\"__main__\": main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/render_health_issue.py",
+          "line": 43,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/render_health_issue.py",
+          "line": 55,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_refresh_github_metadata.py",
+          "line": 26,
+          "preview": "refresh.main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_refresh_github_metadata.py",
+          "line": 55,
+          "preview": "\"default_branch\": \"main\",",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/update_cache_health_history.py",
+          "line": 261,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/update_cache_health_history.py",
+          "line": 281,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/update_history.py",
+          "line": 88,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/update_history.py",
+          "line": 99,
+          "preview": "if __name__==\"__main__\": main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/validate_json_contract.py",
+          "line": 115,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/validate_json_contract.py",
+          "line": 133,
+          "preview": "main()",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 40
+    }
+  }
 }

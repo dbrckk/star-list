@@ -1,6 +1,16 @@
 {
   "files": [
     {
+      "path": "scripts/test_selection_guidance.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "selected-test"
+      ],
+      "score": 370
+    },
+    {
       "path": "scripts/validate_catalog.py",
       "reasons": [
         "changed",
@@ -11,6 +21,16 @@
       "score": 360
     },
     {
+      "path": "scripts/infer_selection_guidance.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 320
+    },
+    {
       "path": "catalog.json",
       "reasons": [
         "changed",
@@ -19,14 +39,22 @@
       "score": 160
     },
     {
-      "path": "cache-health-history.json",
+      "path": "catalog.schema.json",
       "reasons": [
+        "changed",
         "recent-project-state"
       ],
-      "score": 60
+      "score": 160
     },
     {
-      "path": "catalog.schema.json",
+      "path": ".github/workflows/validate.yml",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "cache-health-history.json",
       "reasons": [
         "recent-project-state"
       ],

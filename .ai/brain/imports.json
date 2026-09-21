@@ -73,6 +73,11 @@
       "math",
       "pathlib"
     ],
+    "scripts/infer_selection_guidance.py": [
+      "argparse",
+      "json",
+      "pathlib"
+    ],
     "scripts/recommend.py": [
       "argparse",
       "datetime",
@@ -206,6 +211,10 @@
       "pathlib"
     ],
     "scripts/test_render_health_issue.py": [
+      "importlib.util",
+      "pathlib"
+    ],
+    "scripts/test_selection_guidance.py": [
       "importlib.util",
       "pathlib"
     ],

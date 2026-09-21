@@ -49,6 +49,7 @@ evaluate_candidates.py
 filter_discovery_memory.py
 find_replacements.py
 health_score.py
+infer_selection_guidance.py
 recommend.py
 refresh_github_metadata.py
 render_discovery_issue.py
@@ -75,6 +76,7 @@ test_recommend.py
 test_refresh_github_metadata.py
 test_render_discovery_issue.py
 test_render_health_issue.py
+test_selection_guidance.py
 update_cache_health_history.py
 update_history.py
 validate_catalog.py
@@ -713,6 +715,62 @@ def main()
 ⋮----
 repos = json.loads(CATALOG.read_text()).get("repositories", [])
 rows = [{"repo":r["repo"], **health_score(r)} for r in repos]
+```
+
+## File: infer_selection_guidance.py
+```python
+#!/usr/bin/env python3
+"""Backfill conservative selection guidance from existing curated catalog metadata."""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+CATALOG = ROOT / "catalog.json"
+⋮----
+CAPABILITY_BEST_FOR = {
+⋮----
+DOMAIN_AVOID_WHEN = {
+⋮----
+def _humanize(value)
+⋮----
+def infer_guidance(repo)
+⋮----
+caps = list(dict.fromkeys(repo.get("capabilities", []) + repo.get("roles", [])))
+best = []
+domain = repo.get("domain")
+⋮----
+phrase = "retrieval and persistent-memory workflows"
+⋮----
+phrase = "agent memory and context retention"
+⋮----
+phrase = "knowledge retention and reference workflows"
+⋮----
+phrase = "stateful memory workflows"
+⋮----
+phrase = "vector search and embedding retrieval"
+⋮----
+phrase = "vector animation"
+⋮----
+phrase = CAPABILITY_BEST_FOR.get(cap)
+⋮----
+avoid = []
+⋮----
+domain_avoid = DOMAIN_AVOID_WHEN.get(repo.get("domain"))
+⋮----
+def enrich(repos, tier="recommended", refresh_inferred=False)
+⋮----
+changed = 0
+⋮----
+missing_best = not repo.get("bestFor")
+missing_avoid = not repo.get("avoidWhen")
+refresh = refresh_inferred and repo.get("guidanceSource") == "inferred"
+⋮----
+def main()
+⋮----
+parser = argparse.ArgumentParser(description="Backfill deterministic selection guidance.")
+⋮----
+args = parser.parse_args()
+⋮----
+data = json.loads(CATALOG.read_text())
+changed = enrich(data.get("repositories", []), tier=args.tier, refresh_inferred=args.refresh_inferred)
 ```
 
 ## File: recommend.py
@@ -1416,6 +1474,20 @@ report={"threshold":55,"repositories":[{"repo":"b/y","health":{"score":40,"statu
 body=mod.render(report,{"repositories":[]})
 ```
 
+## File: test_selection_guidance.py
+```python
+#!/usr/bin/env python3
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+SCRIPT = ROOT / "scripts" / "infer_selection_guidance.py"
+spec = importlib.util.spec_from_file_location("infer_selection_guidance", SCRIPT)
+mod = importlib.util.module_from_spec(spec)
+⋮----
+repos = [
+⋮----
+changed = mod.enrich(repos)
+```
+
 ## File: update_cache_health_history.py
 ```python
 #!/usr/bin/env python3
@@ -1635,6 +1707,7 @@ valid_roles = {"data","alpha","regime","backtest","risk","execution","portfolio"
 valid_tiers = {"core","recommended","specialized","audit"}
 valid_levels = {"low","medium","high"}
 valid_lifecycles = {"active","stable","reference","legacy"}
+valid_guidance_sources = {"curated","inferred"}
 seen = set()
 repos = data.get("repositories", [])
 ⋮----
@@ -1650,6 +1723,8 @@ tier = r.get("tier")
 domain = r.get("domain")
 ⋮----
 lifecycle = r.get("lifecycle")
+⋮----
+guidance_source = r.get("guidanceSource")
 ⋮----
 value = r.get(field, [])
 ⋮----

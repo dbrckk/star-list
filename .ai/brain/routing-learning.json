@@ -73,6 +73,24 @@
       "useful": [
         "scripts/validate_catalog.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "Backfill selection guidance for recommended repositories (#23)",
+      "terms": [
+        "23",
+        "backfill",
+        "guidance",
+        "recommended",
+        "repositories",
+        "selection"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/infer_selection_guidance.py",
+        "scripts/test_selection_guidance.py",
+        "scripts/validate_catalog.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -100,6 +118,11 @@
     "22": {
       "scripts/validate_catalog.py": 4
     },
+    "23": {
+      "scripts/infer_selection_guidance.py": 4,
+      "scripts/test_selection_guidance.py": 4,
+      "scripts/validate_catalog.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -112,6 +135,11 @@
     "automated": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
+    },
+    "backfill": {
+      "scripts/infer_selection_guidance.py": 4,
+      "scripts/test_selection_guidance.py": 4,
+      "scripts/validate_catalog.py": 4
     },
     "catalog": {
       "scripts/audit_catalog_quality.py": 4,
@@ -141,7 +169,9 @@
       "scripts/validate_json_contract.py": 4
     },
     "guidance": {
-      "scripts/validate_catalog.py": 4
+      "scripts/infer_selection_guidance.py": 4,
+      "scripts/test_selection_guidance.py": 4,
+      "scripts/validate_catalog.py": 8
     },
     "lifecycle": {
       "scripts/audit_catalog_quality.py": 4,
@@ -177,10 +207,17 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
     },
+    "recommended": {
+      "scripts/infer_selection_guidance.py": 4,
+      "scripts/test_selection_guidance.py": 4,
+      "scripts/validate_catalog.py": 4
+    },
     "repositories": {
       "scripts/audit_catalog_quality.py": 4,
+      "scripts/infer_selection_guidance.py": 4,
       "scripts/test_catalog_quality.py": 4,
-      "scripts/validate_catalog.py": 8
+      "scripts/test_selection_guidance.py": 4,
+      "scripts/validate_catalog.py": 12
     },
     "request": {
       "scripts/discover_candidates.py": 4,
@@ -193,7 +230,9 @@
       "scripts/validate_json_contract.py": 4
     },
     "selection": {
-      "scripts/validate_catalog.py": 4
+      "scripts/infer_selection_guidance.py": 4,
+      "scripts/test_selection_guidance.py": 4,
+      "scripts/validate_catalog.py": 8
     },
     "stale": {
       "scripts/audit_catalog_quality.py": 4,

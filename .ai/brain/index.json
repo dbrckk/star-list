@@ -1,14 +1,14 @@
 {
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
-  "files_indexed": 41,
-  "symbol_count": 137,
+  "files_indexed": 43,
+  "symbol_count": 141,
   "edge_count": 4,
   "languages": {
-    "python": 41
+    "python": 43
   },
   "index_mode": "incremental",
-  "reparsed_files": 1,
+  "reparsed_files": 3,
   "top_symbol_files": [
     {
       "file": "scripts/discover_candidates.py",
@@ -60,6 +60,10 @@
     },
     {
       "file": "scripts/health_score.py",
+      "symbols": 4
+    },
+    {
+      "file": "scripts/infer_selection_guidance.py",
       "symbols": 4
     },
     {

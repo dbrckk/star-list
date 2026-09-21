@@ -1,7 +1,18 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "selected_test_files": [],
-  "commands": [],
+  "selected_test_files": [
+    "scripts/test_selection_guidance.py"
+  ],
+  "commands": [
+    {
+      "command": "python -m pytest scripts/test_selection_guidance.py",
+      "purpose": "targeted tests",
+      "confidence": "high",
+      "files": [
+        "scripts/test_selection_guidance.py"
+      ]
+    }
+  ],
   "fallback": "Use .ai/commands.json or the repository's canonical full validation when no targeted test is selected."
 }

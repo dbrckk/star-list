@@ -4,5 +4,81 @@
   "scope": "symbols defined in changed source files",
   "semantic": false,
   "note": "Dependencies are known symbol names lexically present inside the symbol's AST/source range.",
-  "symbols": {}
+  "symbols": {
+    "_humanize": {
+      "source": {
+        "file": "scripts/infer_selection_guidance.py",
+        "start": 123,
+        "end": 124
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "infer_guidance": {
+      "source": {
+        "file": "scripts/infer_selection_guidance.py",
+        "start": 127,
+        "end": 177
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "_humanize",
+          "definitions": [
+            {
+              "file": "scripts/infer_selection_guidance.py",
+              "line": 123,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "enrich": {
+      "source": {
+        "file": "scripts/infer_selection_guidance.py",
+        "start": 180,
+        "end": 197
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "infer_guidance",
+          "definitions": [
+            {
+              "file": "scripts/infer_selection_guidance.py",
+              "line": 127,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "main": {
+      "source": {
+        "file": "scripts/infer_selection_guidance.py",
+        "start": 200,
+        "end": 211
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "enrich",
+          "definitions": [
+            {
+              "file": "scripts/infer_selection_guidance.py",
+              "line": 180,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    }
+  }
 }

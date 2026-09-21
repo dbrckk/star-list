@@ -22,29 +22,26 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-21T08:08:37Z
+Generated: 2026-09-21T08:28:39Z
 
 ### Git
 - Branch: `main`
-- Head: `6d6dabdbafa8`
-- Commit date: 2026-09-21T10:08:26+02:00
-- Commit: Add selection guidance to core repositories (#22)
-- Tracked files: 183
+- Head: `4ee1f4fbf9fe`
+- Commit date: 2026-09-21T10:28:28+02:00
+- Commit: Backfill selection guidance for recommended repositories (#23)
+- Tracked files: 185
 
 ### Recently changed files
+- `.github/workflows/validate.yml`
 - `catalog.json`
-- `scripts/validate_catalog.py`
 - `catalog.schema.json`
+- `scripts/infer_selection_guidance.py`
+- `scripts/test_selection_guidance.py`
+- `scripts/validate_catalog.py`
 - `scripts/audit_catalog_quality.py`
 - `scripts/test_catalog_quality.py`
 - `.github/workflows/refresh-metadata.yml`
-- `.github/workflows/validate.yml`
 - `schemas/catalog-quality.schema.json`
-- `cache-health-history.json`
-- `discovery-cache.json`
-- `discovery-memory.json`
-- `health-snapshot.json`
-- `history.json`
 
 ### Project signals
 - No common build descriptor detected
