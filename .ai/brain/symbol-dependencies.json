@@ -4,5 +4,126 @@
   "scope": "symbols defined in changed source files",
   "semantic": false,
   "note": "Dependencies are known symbol names lexically present inside the symbol's AST/source range.",
-  "symbols": {}
+  "symbols": {
+    "_age_days": {
+      "source": {
+        "file": "scripts/audit_catalog_quality.py",
+        "start": 14,
+        "end": 23
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "analyze": {
+      "source": {
+        "file": "scripts/audit_catalog_quality.py",
+        "start": 26,
+        "end": 122
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "_age_days",
+          "definitions": [
+            {
+              "file": "scripts/audit_catalog_quality.py",
+              "line": 14,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "add",
+          "definitions": [
+            {
+              "file": "scripts/audit_catalog_quality.py",
+              "line": 33,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "add": {
+      "source": {
+        "file": "scripts/audit_catalog_quality.py",
+        "start": 33,
+        "end": 153
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "_age_days",
+          "definitions": [
+            {
+              "file": "scripts/audit_catalog_quality.py",
+              "line": 14,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "render_markdown",
+          "definitions": [
+            {
+              "file": "scripts/audit_catalog_quality.py",
+              "line": 125,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "render_markdown": {
+      "source": {
+        "file": "scripts/audit_catalog_quality.py",
+        "start": 125,
+        "end": 163
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "main": {
+      "source": {
+        "file": "scripts/audit_catalog_quality.py",
+        "start": 166,
+        "end": 181
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "analyze",
+          "definitions": [
+            {
+              "file": "scripts/audit_catalog_quality.py",
+              "line": 26,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "render_markdown",
+          "definitions": [
+            {
+              "file": "scripts/audit_catalog_quality.py",
+              "line": 125,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    }
+  }
 }

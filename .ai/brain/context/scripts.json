@@ -2,25 +2,35 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/audit_catalog_quality.py",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "scripts/find_replacements.py",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
       "path": "scripts/test_catalog_quality.py",
       "reasons": [
-        "recent-project-state"
+        "changed",
+        "changed-source",
+        "impact",
+        "recent-project-state",
+        "selected-test"
       ],
-      "score": 60
+      "score": 430
+    },
+    {
+      "path": "scripts/audit_catalog_quality.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "recent-project-state",
+        "symbol-indexed"
+      ],
+      "score": 385
+    },
+    {
+      "path": "scripts/validate_catalog.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact"
+      ],
+      "score": 300
     },
     {
       "path": "scripts/test_find_replacements.py",

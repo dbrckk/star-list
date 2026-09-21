@@ -39,6 +39,24 @@
         "scripts/audit_catalog_quality.py",
         "scripts/test_catalog_quality.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "Triage stale repositories with lifecycle metadata (#21)",
+      "terms": [
+        "21",
+        "lifecycle",
+        "metadata",
+        "repositories",
+        "stale",
+        "triage"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/audit_catalog_quality.py",
+        "scripts/test_catalog_quality.py",
+        "scripts/validate_catalog.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -57,6 +75,11 @@
     "19": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
+    },
+    "21": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/validate_catalog.py": 4
     },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
@@ -94,6 +117,11 @@
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/validate_json_contract.py": 4
     },
+    "lifecycle": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/validate_catalog.py": 4
+    },
     "merge": {
       "scripts/discover_candidates.py": 4,
       "scripts/find_replacements.py": 4,
@@ -103,6 +131,11 @@
       "scripts/test_json_contracts.py": 4,
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/validate_json_contract.py": 4
+    },
+    "metadata": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/validate_catalog.py": 4
     },
     "pull": {
       "scripts/discover_candidates.py": 4,
@@ -118,6 +151,11 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
     },
+    "repositories": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/validate_catalog.py": 4
+    },
     "request": {
       "scripts/discover_candidates.py": 4,
       "scripts/find_replacements.py": 4,
@@ -127,6 +165,16 @@
       "scripts/test_json_contracts.py": 4,
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/validate_json_contract.py": 4
+    },
+    "stale": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/validate_catalog.py": 4
+    },
+    "triage": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/validate_catalog.py": 4
     }
   },
   "term_test_scores": {}

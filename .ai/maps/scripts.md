@@ -190,6 +190,12 @@ def add(repo, severity, code, message)
 name = entry.get("repo", "<unknown>")
 gh = entry.get("github")
 ⋮----
+tier = entry.get("tier")
+lifecycle = entry.get("lifecycle")
+⋮----
+code = f"archived-{lifecycle or 'audit'}-retained"
+label = lifecycle or "audit"
+⋮----
 age = _age_days(gh.get("pushedAt"), now)
 ⋮----
 license_name = gh.get("license")
@@ -1628,6 +1634,7 @@ valid_domains = {"ai_agents","ai_memory","ai_media","software_engineering","web_
 valid_roles = {"data","alpha","regime","backtest","risk","execution","portfolio","xauusd","macro","ml","microstructure","performance","volatility","optimization","forecasting","feature-engineering","derivatives","diagnostic","feature-selection","filtering"}
 valid_tiers = {"core","recommended","specialized","audit"}
 valid_levels = {"low","medium","high"}
+valid_lifecycles = {"active","stable","reference","legacy"}
 seen = set()
 repos = data.get("repositories", [])
 ⋮----
@@ -1641,6 +1648,8 @@ score = -1
 tier = r.get("tier")
 ⋮----
 domain = r.get("domain")
+⋮----
+lifecycle = r.get("lifecycle")
 ⋮----
 value = r.get(field, [])
 ⋮----

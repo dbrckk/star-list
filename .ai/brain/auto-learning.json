@@ -1,8 +1,28 @@
 {
-  "schema_version": 1,
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": false,
-  "reason": "missing-task-or-source-change",
-  "task": "Fix invalid catalog repository references (#20)",
-  "useful": []
+  "learned": true,
+  "learning_result": {
+    "example_count": 3,
+    "rejected_count": 0,
+    "terms": [
+      "21",
+      "lifecycle",
+      "metadata",
+      "repositories",
+      "stale",
+      "triage"
+    ],
+    "test_count": 0,
+    "useful_count": 3
+  },
+  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
+  "rejected": [],
+  "schema_version": 1,
+  "task": "Triage stale repositories with lifecycle metadata (#21)",
+  "tests_selected": [],
+  "useful": [
+    "scripts/audit_catalog_quality.py",
+    "scripts/test_catalog_quality.py",
+    "scripts/validate_catalog.py"
+  ]
 }

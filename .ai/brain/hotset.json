@@ -1,12 +1,50 @@
 {
   "files": [
     {
+      "path": "scripts/test_catalog_quality.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "recent-project-state",
+        "selected-test"
+      ],
+      "score": 430
+    },
+    {
+      "path": "scripts/audit_catalog_quality.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "recent-project-state",
+        "symbol-indexed"
+      ],
+      "score": 385
+    },
+    {
+      "path": "scripts/validate_catalog.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact"
+      ],
+      "score": 300
+    },
+    {
       "path": "catalog.json",
       "reasons": [
         "changed",
         "recent-project-state"
       ],
       "score": 160
+    },
+    {
+      "path": "catalog.schema.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
     },
     {
       "path": "cache-health-history.json",
@@ -45,27 +83,6 @@
     },
     {
       "path": "schemas/catalog-quality.schema.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "scripts/audit_catalog_quality.py",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "scripts/find_replacements.py",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "scripts/test_catalog_quality.py",
       "reasons": [
         "recent-project-state"
       ],

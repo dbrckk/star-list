@@ -5,8 +5,12 @@
       "size": 688
     },
     "catalog.json": {
-      "sha256": "241ed0f588ad1e3044e3750bf4c1563907edb9d20692f12d3cc691c35376ec9d",
-      "size": 333943
+      "sha256": "60355225f536f2f401222f082a66e80fc0dd00181eac11a0bf039a248227d56e",
+      "size": 342515
+    },
+    "catalog.schema.json": {
+      "sha256": "4fe013a7325f2884e3be01b78812e8750253c4d7dfa9e3a0a19ff353177b1388",
+      "size": 6542
     },
     "discovery-cache.json": {
       "sha256": "3751189d88443b33ffd60499c713b4a76102366416980214e2fcc8ea92e9368e",
@@ -29,20 +33,20 @@
       "size": 3674
     },
     "scripts/audit_catalog_quality.py": {
-      "sha256": "41a430ca7294bf6d917ec9ccdd8b0579f5120f8701d01f5fd156e36677f096b1",
-      "size": 5638
-    },
-    "scripts/find_replacements.py": {
-      "sha256": "fc4e3e288abcc1b48eaf238d09357ff7d11e5f1ce8b62aa92d4a4717c20006d9",
-      "size": 3404
+      "sha256": "e46445afac33b3ca30c415af0f0972261c0199e2f48aa3e747addc61b8ee22ce",
+      "size": 6809
     },
     "scripts/test_catalog_quality.py": {
-      "sha256": "cdb9c2ec3d31c2da43ad78e641333d29553b22557a1576a71982f972f4af35b2",
-      "size": 2045
+      "sha256": "232acdc00f03f10096e6df8492fc76b6576f5a95fb10042900c97a1e2d11e68c",
+      "size": 3331
     },
     "scripts/test_find_replacements.py": {
       "sha256": "6c8092f22f5049fe7ff6a6e688f0f3aaa4c906cf73b8c39edba0896e1d62716b",
       "size": 1420
+    },
+    "scripts/validate_catalog.py": {
+      "sha256": "9c9922583a11dbf823c5fddaf2936f331a56772fca06a452ba2bac3c2595de78",
+      "size": 5179
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

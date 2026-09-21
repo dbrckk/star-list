@@ -22,28 +22,29 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-21T07:47:03Z
+Generated: 2026-09-21T08:05:48Z
 
 ### Git
 - Branch: `main`
-- Head: `8109c77986b7`
-- Commit date: 2026-09-21T09:46:49+02:00
-- Commit: Fix invalid catalog repository references (#20)
+- Head: `2449a2877c21`
+- Commit date: 2026-09-21T10:05:37+02:00
+- Commit: Triage stale repositories with lifecycle metadata (#21)
 - Tracked files: 183
 
 ### Recently changed files
 - `catalog.json`
+- `catalog.schema.json`
+- `scripts/audit_catalog_quality.py`
+- `scripts/test_catalog_quality.py`
+- `scripts/validate_catalog.py`
 - `.github/workflows/refresh-metadata.yml`
 - `.github/workflows/validate.yml`
 - `schemas/catalog-quality.schema.json`
-- `scripts/audit_catalog_quality.py`
-- `scripts/test_catalog_quality.py`
 - `cache-health-history.json`
 - `discovery-cache.json`
 - `discovery-memory.json`
 - `health-snapshot.json`
 - `history.json`
-- `scripts/test_find_replacements.py`
 
 ### Project signals
 - No common build descriptor detected
