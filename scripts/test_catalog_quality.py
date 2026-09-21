@@ -14,6 +14,7 @@ repos = [
     {
         "repo": "x/healthy",
         "tier": "recommended",
+        "lifecycle": "active",
         "selfHosted": True,
         "bestFor": ["api"],
         "avoidWhen": ["mobile"],
@@ -38,8 +39,33 @@ repos = [
         },
     },
     {
-        "repo": "x/archived",
+        "repo": "x/stable",
         "tier": "recommended",
+        "lifecycle": "stable",
+        "selfHosted": True,
+        "github": {
+            "archived": False,
+            "disabled": False,
+            "license": "MIT",
+            "pushedAt": "2023-01-01T00:00:00Z",
+        },
+    },
+    {
+        "repo": "x/reference",
+        "tier": "specialized",
+        "lifecycle": "reference",
+        "selfHosted": True,
+        "github": {
+            "archived": False,
+            "disabled": False,
+            "license": "MIT",
+            "pushedAt": "2023-01-01T00:00:00Z",
+        },
+    },
+    {
+        "repo": "x/legacy-archive",
+        "tier": "audit",
+        "lifecycle": "legacy",
         "selfHosted": False,
         "github": {
             "archived": True,
@@ -59,34 +85,24 @@ repos = [
             "pushedAt": "2023-01-01T00:00:00Z",
         },
     },
-    {
-        "repo": "x/audit-archive",
-        "tier": "audit",
-        "selfHosted": True,
-        "github": {
-            "archived": True,
-            "disabled": False,
-            "license": "MIT",
-            "pushedAt": "2020-01-01T00:00:00Z",
-        },
-    },
     {"repo": "x/missing", "tier": "audit", "selfHosted": True},
 ]
 
 report = mod.analyze(repos, stale_days=730, now=now)
-assert report["repositories"] == 6
-assert report["summary"]["review"] == 3
+assert report["repositories"] == 7
+assert report["summary"]["review"] == 2
 assert report["summary"]["byCode"]["stale-over-threshold"] == 1
-assert report["summary"]["byCode"]["archived"] == 1
+assert report["summary"]["byCode"]["stale-stable"] == 1
+assert report["summary"]["byCode"]["stale-reference"] == 1
+assert report["summary"]["byCode"]["archived-legacy-retained"] == 1
 assert report["summary"]["byCode"]["stale-audit-retained"] == 1
-assert report["summary"]["byCode"]["archived-audit-retained"] == 1
 assert report["summary"]["byCode"]["missing-github-metadata"] == 1
 assert report["summary"]["byCode"]["license-unknown"] == 2
 assert report["summary"]["byCode"]["self-hosting-uncertain"] == 1
-assert report["guidanceCoverage"]["bestFor"] == {"populated": 1, "missing": 5}
+assert report["guidanceCoverage"]["bestFor"] == {"populated": 1, "missing": 6}
 markdown = mod.render_markdown(report)
 assert "<!-- star-list-catalog-quality -->" in markdown
-assert "x/stale" in markdown
-assert "x/audit-archive" in markdown
+assert "x/stable" in markdown
+assert "x/legacy-archive" in markdown
 assert "Review required" in markdown
 print("OK: catalog quality audit tests passed")
