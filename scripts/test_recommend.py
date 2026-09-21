@@ -64,4 +64,31 @@ curated = dict(base, guidanceSource="curated")
 inferred = dict(base, guidanceSource="inferred")
 assert mod.score_repo(curated, qtokens, set(), set(), set()) > mod.score_repo(inferred, qtokens, set(), set(), set())
 
+source = {
+    "repo":"x/source", "domain":"backend", "capabilities":["database"], "roles":[],
+    "platforms":["cross-platform"], "languages":["python"], "selfHosted":True,
+    "score":8.5, "tier":"recommended",
+    "github":{"archived":False,"disabled":False,"license":"MIT","stars":1000,"forks":100,"openIssues":5,"pushedAt":"2026-09-01T00:00:00Z"},
+}
+candidate = {
+    "repo":"x/candidate", "domain":"backend", "capabilities":["database","orm"], "roles":[],
+    "platforms":["cross-platform"], "languages":["python"], "selfHosted":True,
+    "score":9.0, "tier":"recommended",
+    "github":{"archived":False,"disabled":False,"license":"MIT","stars":2000,"forks":200,"openIssues":5,"pushedAt":"2026-09-01T00:00:00Z"},
+}
+audit_candidate = dict(candidate, repo="x/audit", tier="audit")
+assert mod.infer_alternatives(source, [source, candidate, audit_candidate]) == ["x/candidate"]
+
+stack_repo = dict(candidate, repo="x/stack-tool", capabilities=["cache"])
+repo_by_name = {r["repo"]: r for r in [source, stack_repo]}
+stacks = [{"name":"Backend Stack","repos":["x/source","x/stack-tool"]}]
+assert mod.infer_complements(source, stacks, repo_by_name) == ["x/stack-tool"]
+
+curated_rel = dict(source, alternatives=["x/manual"], complements=["x/manual-comp"])
+resolved = mod.resolve_relations(curated_rel, [curated_rel, candidate], stacks, repo_by_name)
+assert resolved["alternatives"] == ["x/manual"]
+assert resolved["alternativesSource"] == "curated"
+assert resolved["complements"] == ["x/manual-comp"]
+assert resolved["complementsSource"] == "curated"
+
 print("OK: recommendation engine smoke tests passed")
