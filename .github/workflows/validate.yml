@@ -35,6 +35,8 @@ jobs:
         run: python scripts/validate_json_contract.py schemas/catalog-quality.schema.json catalog-quality.json
       - name: Test GitHub metadata refresh resilience
         run: python scripts/test_refresh_github_metadata.py
+      - name: Test targeted license backfill
+        run: python scripts/test_backfill_licenses.py
       - name: Test selection guidance inference
         run: python scripts/test_selection_guidance.py
       - name: Test recommendation engine
