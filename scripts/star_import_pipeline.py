@@ -6,6 +6,7 @@ import argparse
 import copy
 import json
 import os
+import shutil
 import subprocess
 import tempfile
 from pathlib import Path
@@ -68,7 +69,6 @@ def partition_candidates(records: list[dict], catalog: dict) -> dict:
         except ValueError:
             continue
         catalog_keys[key] = entry.get("repo")
-
     first, sources, duplicate_keys = {}, {}, []
     for record in records:
         key = record["key"]
@@ -79,7 +79,6 @@ def partition_candidates(records: list[dict], catalog: dict) -> dict:
             first[key] = record
         elif key not in duplicate_keys:
             duplicate_keys.append(key)
-
     new, existing = [], []
     for key, record in first.items():
         item = {"key": key, "repo": record["repo"], "sources": sources[key]}
@@ -89,8 +88,6 @@ def partition_candidates(records: list[dict], catalog: dict) -> dict:
 
 
 def classify_candidate(candidate: dict, metadata: dict | None = None) -> dict:
-    # Catalog admission requires curated score/tier/domain/guidance. Import manifests
-    # do not contain that evidence, so local-only classification is deliberately safe.
     result = {"repo": candidate["repo"], "sources": list(candidate.get("sources", [])), "status": "needs_review"}
     if metadata and isinstance(metadata.get("catalogEntry"), dict):
         entry = copy.deepcopy(metadata["catalogEntry"])
@@ -103,36 +100,12 @@ def build_report(partition: dict, malformed: list[dict], import_files: list[str]
     classified = [classify_candidate(c) for c in partition["new"]]
     needs_review = [x for x in classified if x["status"] == "needs_review"]
     unique = len(partition["new"]) + len(partition["already_cataloged"])
-    return {
-        "importFiles": list(import_files),
-        "summary": {
-            "rawRecords": partition.get("raw_records", unique),
-            "uniqueNormalized": unique,
-            "duplicateImports": len(partition["duplicate_import"]),
-            "alreadyCataloged": len(partition["already_cataloged"]),
-            "newCandidates": len(partition["new"]),
-            "needsReview": len(needs_review),
-            "malformed": len(malformed),
-        },
-        "alreadyCataloged": partition["already_cataloged"],
-        "duplicateImports": partition["duplicate_import"],
-        "newCandidates": classified,
-        "malformed": malformed,
-    }
+    return {"importFiles": list(import_files), "summary": {"rawRecords": partition.get("raw_records", unique), "uniqueNormalized": unique, "duplicateImports": len(partition["duplicate_import"]), "alreadyCataloged": len(partition["already_cataloged"]), "newCandidates": len(partition["new"]), "needsReview": len(needs_review), "malformed": len(malformed)}, "alreadyCataloged": partition["already_cataloged"], "duplicateImports": partition["duplicate_import"], "newCandidates": classified, "malformed": malformed}
 
 
 def render_markdown(report: dict) -> str:
     s = report["summary"]
-    lines = [
-        "# GitHub Star Import Report", "",
-        f"- Raw records: {s['rawRecords']}",
-        f"- Unique normalized repositories: {s['uniqueNormalized']}",
-        f"- Duplicate imports: {s['duplicateImports']}",
-        f"- Already cataloged: {s['alreadyCataloged']}",
-        f"- New candidates: {s['newCandidates']}",
-        f"- Needs review: {s['needsReview']}",
-        f"- Malformed: {s['malformed']}", "", "## New candidates", "",
-    ]
+    lines = ["# GitHub Star Import Report", "", f"- Raw records: {s['rawRecords']}", f"- Unique normalized repositories: {s['uniqueNormalized']}", f"- Duplicate imports: {s['duplicateImports']}", f"- Already cataloged: {s['alreadyCataloged']}", f"- New candidates: {s['newCandidates']}", f"- Needs review: {s['needsReview']}", f"- Malformed: {s['malformed']}", "", "## New candidates", ""]
     lines.extend(f"- `{x['repo']}` — {x['status']}" for x in report["newCandidates"])
     return "\n".join(lines) + "\n"
 
@@ -152,23 +125,18 @@ def integrate_catalog(catalog: dict, accepted: list[dict]) -> dict:
 
 
 def validate_candidate_catalog(candidate: dict, root: Path) -> tuple[bool, str]:
-    target = root / "catalog.json"
-    original = target.read_bytes() if target.exists() else None
-    try:
-        target.write_text(json.dumps(candidate, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-        commands = (["python", "scripts/validate_catalog.py"], ["python", "scripts/test_catalog_quality.py"])
+    root = Path(root).resolve()
+    with tempfile.TemporaryDirectory(prefix="star-list-validate-") as td:
+        sandbox = Path(td) / "repo"
+        shutil.copytree(root, sandbox, ignore=shutil.ignore_patterns(".git", ".superpowers", "__pycache__", "*.pyc"))
+        (sandbox / "catalog.json").write_text(json.dumps(candidate, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         output = []
-        for command in commands:
-            proc = subprocess.run(command, cwd=root, text=True, capture_output=True)
+        for command in (["python", "scripts/validate_catalog.py"], ["python", "scripts/test_catalog_quality.py"]):
+            proc = subprocess.run(command, cwd=sandbox, text=True, capture_output=True)
             output.append(proc.stdout + proc.stderr)
             if proc.returncode:
                 return False, "".join(output)
         return True, "".join(output)
-    finally:
-        if original is None:
-            target.unlink(missing_ok=True)
-        else:
-            target.write_bytes(original)
 
 
 def write_catalog_if_valid(candidate: dict, catalog_path: Path, validator=None) -> tuple[bool, str]:
