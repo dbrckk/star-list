@@ -22,20 +22,20 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-27T11:04:34Z
+Generated: 2026-09-27T11:08:25Z
 
 ### Git
 - Branch: `main`
-- Head: `9049b4744fb8`
-- Commit date: 2026-09-27T13:04:24+02:00
-- Commit: Merge pull request #41 from dbrckk/data/add-september-27-stars-batch-4
-- Tracked files: 195
+- Head: `ec651407778d`
+- Commit date: 2026-09-27T13:08:15+02:00
+- Commit: docs: specify GitHub star import pipeline
+- Tracked files: 196
 
 ### Recently changed files
+- `docs/superpowers/specs/2026-09-27-star-import-pipeline-design.md`
 - `imports/github-stars-2026-09-27-batch-4.json`
 - `imports/github-stars-2026-09-27-batch-3.json`
 - `imports/github-stars-2026-09-27-batch-2.json`
-- `imports/github-stars-2026-09-27.json`
 
 ### Project signals
 - No common build descriptor detected

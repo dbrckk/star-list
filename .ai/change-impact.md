@@ -1,13 +1,13 @@
 # Change impact
 
-Base: 170793c1a0d8ebcfaa6d0fac86e72ae9d8bb1e7b
-Head: 9049b4744fb80ba46e8320fe174c4668cad0b2fa
+Base: ed0f3bb7dfb74769592052a71ff2edbd5de26092
+Head: ec651407778d753f3e4e1b4b8296f94f2c60b3f4
 
 ## Changed files
-- A imports/github-stars-2026-09-27-batch-4.json
+- A docs/superpowers/specs/2026-09-27-star-import-pipeline-design.md
 
 ## Affected areas
-- imports
+- docs
 
 ## Related test candidates
 - No direct filename-based test match detected.
