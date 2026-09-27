@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import json
+import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
@@ -12,6 +14,8 @@ from star_import_pipeline import (
     partition_candidates,
     write_catalog_if_valid,
 )
+
+SCRIPT = Path(__file__).with_name("star_import_pipeline.py")
 
 # Normalization
 assert normalize_repo_identity("OpenAI/Codex") == ("openai/codex", "OpenAI/Codex")
@@ -80,5 +84,27 @@ with tempfile.TemporaryDirectory() as td:
     assert ok is False
     assert "boom" in output
     assert catalog_path.read_text() == original
+
+# CLI is dry-run by default, emits requested reports, and leaves catalog unchanged.
+with tempfile.TemporaryDirectory() as td:
+    root = Path(td)
+    import_path = root / "stars.json"
+    catalog_path = root / "catalog.json"
+    report_json = root / "report.json"
+    report_md = root / "report.md"
+    import_path.write_text(json.dumps({"repositories": ["OpenAI/Codex", "New/Repo"]}))
+    catalog_payload = {"schemaVersion": 1, "repositories": [{"repo": "openai/codex"}]}
+    original = json.dumps(catalog_payload) + "\n"
+    catalog_path.write_text(original)
+    proc = subprocess.run([
+        sys.executable, str(SCRIPT), str(import_path), "--catalog", str(catalog_path),
+        "--report-json", str(report_json), "--report-md", str(report_md),
+    ], text=True, capture_output=True)
+    assert proc.returncode == 0, proc.stderr
+    assert catalog_path.read_text() == original
+    cli_report = json.loads(report_json.read_text())
+    assert cli_report["summary"]["alreadyCataloged"] == 1
+    assert cli_report["summary"]["newCandidates"] == 1
+    assert "`New/Repo` — needs_review" in report_md.read_text()
 
 print("OK: star import pipeline tests passed")
