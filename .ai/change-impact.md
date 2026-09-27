@@ -1,10 +1,10 @@
 # Change impact
 
-Base: 2de920bea481e6f6460750a3df29fcf8078b884a
-Head: a09bf0b8408874a1baaf36d7ac78163a88972cdb
+Base: 125c91f5a6d9420068149b1f13f9ae0fcaf77d5f
+Head: 1c81ec4f10d340dfde717c0fd8bae751d0395f45
 
 ## Changed files
-- A imports/github-stars-2026-09-27.json
+- A imports/github-stars-2026-09-27-batch-2.json
 
 ## Affected areas
 - imports
