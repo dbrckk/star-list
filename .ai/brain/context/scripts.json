@@ -2,16 +2,6 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/validate_catalog.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "recent-project-state"
-      ],
-      "score": 360
-    },
-    {
       "path": "scripts/audit_catalog_quality.py",
       "reasons": [
         "recent-project-state"
@@ -34,6 +24,13 @@
     },
     {
       "path": "scripts/test_refresh_github_metadata.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/validate_catalog.py",
       "reasons": [
         "recent-project-state"
       ],

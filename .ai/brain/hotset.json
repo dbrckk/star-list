@@ -1,21 +1,11 @@
 {
   "files": [
     {
-      "path": "scripts/validate_catalog.py",
+      "path": "imports/github-stars-2026-09-27.json",
       "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "recent-project-state"
+        "changed"
       ],
-      "score": 360
-    },
-    {
-      "path": "cache-health-history.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
+      "score": 100
     },
     {
       "path": "catalog.json",
@@ -26,27 +16,6 @@
     },
     {
       "path": "catalog.schema.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "discovery-memory.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "health-snapshot.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "history.json",
       "reasons": [
         "recent-project-state"
       ],
@@ -75,6 +44,13 @@
     },
     {
       "path": "scripts/test_refresh_github_metadata.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/validate_catalog.py",
       "reasons": [
         "recent-project-state"
       ],

@@ -1,13 +1,13 @@
 # Change impact
 
-Base: 4d666d98aff74de5a83c8e2ef45dba63b56626a4
-Head: 4e24a54d9467e8781faf2a2bfa06990123885f16
+Base: 2de920bea481e6f6460750a3df29fcf8078b884a
+Head: a09bf0b8408874a1baaf36d7ac78163a88972cdb
 
 ## Changed files
-- M scripts/validate_catalog.py
+- A imports/github-stars-2026-09-27.json
 
 ## Affected areas
-- scripts
+- imports
 
 ## Related test candidates
 - No direct filename-based test match detected.

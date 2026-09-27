@@ -22,16 +22,17 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-21T18:46:05Z
+Generated: 2026-09-27T10:40:33Z
 
 ### Git
 - Branch: `main`
-- Head: `4e24a54d9467`
-- Commit date: 2026-09-21T20:45:51+02:00
-- Commit: Enforce unresolved license status validation (#37)
-- Tracked files: 189
+- Head: `a09bf0b84088`
+- Commit date: 2026-09-27T12:40:22+02:00
+- Commit: Import September 27 GitHub stars (#38)
+- Tracked files: 190
 
 ### Recently changed files
+- `imports/github-stars-2026-09-27.json`
 - `scripts/validate_catalog.py`
 - `catalog.json`
 - `catalog.schema.json`
