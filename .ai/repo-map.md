@@ -50,6 +50,7 @@ The content is organized as follows:
 imports/
   github-stars-2026-09-27-batch-2.json
   github-stars-2026-09-27-batch-3.json
+  github-stars-2026-09-27-batch-4.json
   github-stars-2026-09-27.json
 schemas/
   cache-health-history.schema.json
@@ -710,6 +711,71 @@ initial_prompt: |
     "openmeterio/openmeter",
     "SigNoz/signoz",
     "promptfoo/promptfoo"
+  ]
+}
+````
+
+## File: imports/github-stars-2026-09-27-batch-4.json
+````json
+{
+  "capturedAt": "2026-09-27",
+  "source": "user-provided GitHub Stars screenshots (batch 4)",
+  "repositories": [
+    "mobile-next/mobile-mcp",
+    "actions/runner-images",
+    "anthropics/claude-code-action",
+    "llvm/llvm-project",
+    "zhaoxuya520/reverse-skill",
+    "tensorflow/tensorflow",
+    "openbao/openbao",
+    "kelseyhightower/kubernetes-the-hard-way",
+    "androoAGI/starnet",
+    "anthropics/claude-plugins-official",
+    "paperclipai/paperclip",
+    "dubinc/dub",
+    "PostHog/posthog",
+    "Coding-Solo/godot-mcp",
+    "2Retro/GodotOceanWaves",
+    "GodotSteam/GodotSteam",
+    "godotengine/godot-demo-projects",
+    "godotengine/godot-docs",
+    "NVIDIA/Model-Optimizer",
+    "slavakurilyak/awesome-ai-agents",
+    "jankeesvw/omarchy-meeting-recorder",
+    "MakazhanAlpamys/Soup",
+    "dalathegreat/Battery-Emulator",
+    "rynfarr/meridian",
+    "microsoft/vscode",
+    "vercel/next.js",
+    "open-android/Android",
+    "greensock/GSAP",
+    "lgvalle/Material-Animations",
+    "juliangarnier/anime",
+    "MisterBooo/LeetCodeAnimation",
+    "google/liquidfun",
+    "deepinsight/insightface",
+    "timzhang642/3D-Machine-Learning",
+    "mrdoob/three.js",
+    "cgwire/awesome-cg-vfx-pipeline",
+    "GodotNuts/GodotFirebase",
+    "gdquest-demos/godot-open-rpg",
+    "GDRETools/gdsdecomp",
+    "gdquest-demos/godot-shaders",
+    "KenneyNL/Starter-Kit-3D-Platformer",
+    "Zylann/godot_voxel",
+    "liangxiegame/QFramework",
+    "nibzard/awesome-agentic-patterns",
+    "awarexone/Agentic-Bug-Hunter",
+    "iamwithai/production-agentic-rag-course",
+    "cloudflare/agentic-inbox",
+    "sickn33/agentic-awesome-skills",
+    "Fosowl/agenticSeek",
+    "transitive-bullshit/agentic",
+    "JetBrains/android",
+    "wgtunnel/android",
+    "bitwarden/android",
+    "LineageOS/android",
+    "nextcloud/android"
   ]
 }
 ````

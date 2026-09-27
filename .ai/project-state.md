@@ -22,24 +22,20 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-27T10:46:16Z
+Generated: 2026-09-27T11:04:34Z
 
 ### Git
 - Branch: `main`
-- Head: `dd67496aefed`
-- Commit date: 2026-09-27T12:46:06+02:00
-- Commit: Merge pull request #40 from dbrckk/data/add-september-27-stars-batch-3
-- Tracked files: 194
+- Head: `9049b4744fb8`
+- Commit date: 2026-09-27T13:04:24+02:00
+- Commit: Merge pull request #41 from dbrckk/data/add-september-27-stars-batch-4
+- Tracked files: 195
 
 ### Recently changed files
+- `imports/github-stars-2026-09-27-batch-4.json`
 - `imports/github-stars-2026-09-27-batch-3.json`
 - `imports/github-stars-2026-09-27-batch-2.json`
 - `imports/github-stars-2026-09-27.json`
-- `scripts/validate_catalog.py`
-- `catalog.json`
-- `catalog.schema.json`
-- `scripts/audit_catalog_quality.py`
-- `scripts/test_catalog_quality.py`
 
 ### Project signals
 - No common build descriptor detected
