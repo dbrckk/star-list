@@ -23,6 +23,8 @@ jobs:
           python-version: "3.12"
       - name: Compile Python utilities
         run: python -m compileall -q scripts
+      - name: Test star import pipeline
+        run: python scripts/test_star_import_pipeline.py
       - name: Validate catalog
         run: |
           python scripts/validate_catalog.py
