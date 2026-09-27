@@ -1,7 +1,36 @@
 {
   "files": [
     {
-      "path": "docs/superpowers/specs/2026-09-27-star-import-pipeline-design.md",
+      "path": "scripts/test_star_import_pipeline.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "reverse-dependency-neighbor",
+        "selected-test"
+      ],
+      "score": 400
+    },
+    {
+      "path": "scripts/star_import_pipeline.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "dependency-neighbor",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 375
+    },
+    {
+      "path": ".github/workflows/validate.yml",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "docs/superpowers/plans/2026-09-27-star-import-pipeline.md",
       "reasons": [
         "changed"
       ],
@@ -23,13 +52,6 @@
     },
     {
       "path": "imports/github-stars-2026-09-27-batch-4.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "imports/github-stars-2026-09-27.json",
       "reasons": [
         "recent-project-state"
       ],

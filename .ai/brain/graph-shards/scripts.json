@@ -35,6 +35,11 @@
       "source": "scripts/test_refresh_github_metadata.py",
       "target": "scripts/refresh_github_metadata.py",
       "type": "imports"
+    },
+    {
+      "source": "scripts/test_star_import_pipeline.py",
+      "target": "scripts/star_import_pipeline.py",
+      "type": "imports"
     }
   ],
   "schema_version": 1

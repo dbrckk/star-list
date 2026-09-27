@@ -1,8 +1,12 @@
 {
   "files": {
-    "docs/superpowers/specs/2026-09-27-star-import-pipeline-design.md": {
-      "sha256": "87fd417798ccb1c4b6922807123362a27f593c36b4daefad1591bbbb9c60aefa",
-      "size": 7195
+    ".github/workflows/validate.yml": {
+      "sha256": "47eced14f89cdd1d60154549262d8125b1cd294fe160419289eae62e71a7b943",
+      "size": 4771
+    },
+    "docs/superpowers/plans/2026-09-27-star-import-pipeline.md": {
+      "sha256": "f4eb7c0c143ac0ab02475600bf32bea730accdbe900e676971d16f1d5332636b",
+      "size": 5727
     },
     "imports/github-stars-2026-09-27-batch-2.json": {
       "sha256": "d2096316e17f2d0813fce980aeef1cf4b9232b12da1e8fe1ae64f76376354f61",
@@ -16,9 +20,13 @@
       "sha256": "087ed4edb31f8b087132064fe1ecdc36144149d11f62c9fa99f7019846bf81db",
       "size": 1823
     },
-    "imports/github-stars-2026-09-27.json": {
-      "sha256": "45cddac2a746223096acf5db6d6211dcd6aa86798efb6bc6bb74bc0ec44bc521",
-      "size": 3014
+    "scripts/star_import_pipeline.py": {
+      "sha256": "dee10639a16ac03193634b4252b74d111930f3caded2368173ab21c759fd582f",
+      "size": 9212
+    },
+    "scripts/test_star_import_pipeline.py": {
+      "sha256": "0f46cecc9202c4735e436785750496685ba5694cbc5afbec31951c439e9d9441",
+      "size": 4509
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

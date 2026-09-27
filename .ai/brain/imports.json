@@ -118,6 +118,18 @@
       "json",
       "pathlib"
     ],
+    "scripts/star_import_pipeline.py": [
+      "__future__",
+      "argparse",
+      "copy",
+      "json",
+      "os",
+      "pathlib",
+      "shutil",
+      "subprocess",
+      "tempfile",
+      "urllib.parse"
+    ],
     "scripts/test_analyze_coverage.py": [
       "importlib.util",
       "pathlib"
@@ -233,6 +245,14 @@
     "scripts/test_selection_guidance.py": [
       "importlib.util",
       "pathlib"
+    ],
+    "scripts/test_star_import_pipeline.py": [
+      "json",
+      "pathlib",
+      "star_import_pipeline",
+      "subprocess",
+      "sys",
+      "tempfile"
     ],
     "scripts/update_cache_health_history.py": [
       "argparse",

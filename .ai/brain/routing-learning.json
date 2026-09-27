@@ -270,6 +270,24 @@
       "useful": [
         "scripts/validate_catalog.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "Build deterministic GitHub star import pipeline (#42)",
+      "terms": [
+        "42",
+        "build",
+        "deterministic",
+        "github",
+        "import",
+        "pipeline",
+        "star"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/star_import_pipeline.py",
+        "scripts/test_star_import_pipeline.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -344,6 +362,10 @@
     "37": {
       "scripts/validate_catalog.py": 4
     },
+    "42": {
+      "scripts/star_import_pipeline.py": 4,
+      "scripts/test_star_import_pipeline.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -371,6 +393,10 @@
     "below": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "build": {
+      "scripts/star_import_pipeline.py": 4,
+      "scripts/test_star_import_pipeline.py": 4
     },
     "by": {
       "scripts/recommend.py": 4,
@@ -415,6 +441,10 @@
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
     },
+    "deterministic": {
+      "scripts/star_import_pipeline.py": 4,
+      "scripts/test_star_import_pipeline.py": 4
+    },
     "dynamically": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
@@ -456,7 +486,9 @@
     },
     "github": {
       "scripts/refresh_github_metadata.py": 4,
-      "scripts/test_refresh_github_metadata.py": 4
+      "scripts/star_import_pipeline.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/test_star_import_pipeline.py": 4
     },
     "guidance": {
       "scripts/infer_selection_guidance.py": 4,
@@ -469,6 +501,10 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
+    },
+    "import": {
+      "scripts/star_import_pipeline.py": 4,
+      "scripts/test_star_import_pipeline.py": 4
     },
     "improve": {
       "scripts/refresh_github_metadata.py": 4,
@@ -530,6 +566,10 @@
       "scripts/test_recommend.py": 4,
       "scripts/test_refresh_github_metadata.py": 8,
       "scripts/validate_catalog.py": 4
+    },
+    "pipeline": {
+      "scripts/star_import_pipeline.py": 4,
+      "scripts/test_star_import_pipeline.py": 4
     },
     "pull": {
       "scripts/discover_candidates.py": 4,
@@ -609,6 +649,10 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
+    },
+    "star": {
+      "scripts/star_import_pipeline.py": 4,
+      "scripts/test_star_import_pipeline.py": 4
     },
     "status": {
       "scripts/validate_catalog.py": 4

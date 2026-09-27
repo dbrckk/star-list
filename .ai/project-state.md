@@ -22,20 +22,23 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-27T11:08:25Z
+Generated: 2026-09-27T11:22:07Z
 
 ### Git
 - Branch: `main`
-- Head: `ec651407778d`
-- Commit date: 2026-09-27T13:08:15+02:00
-- Commit: docs: specify GitHub star import pipeline
-- Tracked files: 196
+- Head: `d191b7290f72`
+- Commit date: 2026-09-27T13:21:57+02:00
+- Commit: Build deterministic GitHub star import pipeline (#42)
+- Tracked files: 200
 
 ### Recently changed files
+- `.github/workflows/validate.yml`
+- `docs/superpowers/plans/2026-09-27-star-import-pipeline.md`
+- `scripts/star_import_pipeline.py`
+- `scripts/test_star_import_pipeline.py`
 - `docs/superpowers/specs/2026-09-27-star-import-pipeline-design.md`
 - `imports/github-stars-2026-09-27-batch-4.json`
 - `imports/github-stars-2026-09-27-batch-3.json`
-- `imports/github-stars-2026-09-27-batch-2.json`
 
 ### Project signals
 - No common build descriptor detected

@@ -4,5 +4,221 @@
   "scope": "symbols defined in changed source files",
   "semantic": false,
   "note": "Dependencies are known symbol names lexically present inside the symbol's AST/source range.",
-  "symbols": {}
+  "symbols": {
+    "normalize_repo_identity": {
+      "source": {
+        "file": "scripts/star_import_pipeline.py",
+        "start": 18,
+        "end": 39
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "load_imports": {
+      "source": {
+        "file": "scripts/star_import_pipeline.py",
+        "start": 42,
+        "end": 61
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "normalize_repo_identity",
+          "definitions": [
+            {
+              "file": "scripts/star_import_pipeline.py",
+              "line": 18,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "partition_candidates": {
+      "source": {
+        "file": "scripts/star_import_pipeline.py",
+        "start": 64,
+        "end": 87
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "normalize_repo_identity",
+          "definitions": [
+            {
+              "file": "scripts/star_import_pipeline.py",
+              "line": 18,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "classify_candidate": {
+      "source": {
+        "file": "scripts/star_import_pipeline.py",
+        "start": 90,
+        "end": 96
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "build_report": {
+      "source": {
+        "file": "scripts/star_import_pipeline.py",
+        "start": 99,
+        "end": 103
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "classify_candidate",
+          "definitions": [
+            {
+              "file": "scripts/star_import_pipeline.py",
+              "line": 90,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "render_markdown": {
+      "source": {
+        "file": "scripts/star_import_pipeline.py",
+        "start": 106,
+        "end": 110
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "integrate_catalog": {
+      "source": {
+        "file": "scripts/star_import_pipeline.py",
+        "start": 113,
+        "end": 124
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "validate_candidate_catalog": {
+      "source": {
+        "file": "scripts/star_import_pipeline.py",
+        "start": 127,
+        "end": 139
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "write_catalog_if_valid": {
+      "source": {
+        "file": "scripts/star_import_pipeline.py",
+        "start": 142,
+        "end": 158
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "validate_candidate_catalog",
+          "definitions": [
+            {
+              "file": "scripts/star_import_pipeline.py",
+              "line": 127,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "main": {
+      "source": {
+        "file": "scripts/star_import_pipeline.py",
+        "start": 161,
+        "end": 189
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "build_report",
+          "definitions": [
+            {
+              "file": "scripts/star_import_pipeline.py",
+              "line": 99,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "integrate_catalog",
+          "definitions": [
+            {
+              "file": "scripts/star_import_pipeline.py",
+              "line": 113,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "load_imports",
+          "definitions": [
+            {
+              "file": "scripts/star_import_pipeline.py",
+              "line": 42,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "partition_candidates",
+          "definitions": [
+            {
+              "file": "scripts/star_import_pipeline.py",
+              "line": 64,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "render_markdown",
+          "definitions": [
+            {
+              "file": "scripts/star_import_pipeline.py",
+              "line": 106,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "write_catalog_if_valid",
+          "definitions": [
+            {
+              "file": "scripts/star_import_pipeline.py",
+              "line": 142,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 6
+    }
+  }
 }

@@ -54,6 +54,14 @@
       "in_degree": 2,
       "out_degree": 0
     },
+    "scripts/star_import_pipeline.py": {
+      "dependencies": [],
+      "dependents": [
+        "scripts/test_star_import_pipeline.py"
+      ],
+      "in_degree": 1,
+      "out_degree": 0
+    },
     "scripts/test_discovery_cache.py": {
       "dependencies": [
         "scripts/test_discovery_cache_stats.py"
@@ -73,6 +81,14 @@
     "scripts/test_refresh_github_metadata.py": {
       "dependencies": [
         "scripts/refresh_github_metadata.py"
+      ],
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 1
+    },
+    "scripts/test_star_import_pipeline.py": {
+      "dependencies": [
+        "scripts/star_import_pipeline.py"
       ],
       "dependents": [],
       "in_degree": 0,

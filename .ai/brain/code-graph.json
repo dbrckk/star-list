@@ -31,6 +31,11 @@
       "type": "imports"
     },
     {
+      "source": "scripts/test_star_import_pipeline.py",
+      "target": "scripts/star_import_pipeline.py",
+      "type": "imports"
+    },
+    {
       "source": "scripts/test_discovery_cache.py",
       "target": "scripts/test_discovery_cache_stats.py",
       "type": "symbol-reference"

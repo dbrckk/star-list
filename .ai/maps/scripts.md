@@ -55,6 +55,7 @@ recommend.py
 refresh_github_metadata.py
 render_discovery_issue.py
 render_health_issue.py
+star_import_pipeline.py
 test_analyze_coverage.py
 test_backfill_licenses.py
 test_cache_health_history.py
@@ -79,6 +80,7 @@ test_refresh_github_metadata.py
 test_render_discovery_issue.py
 test_render_health_issue.py
 test_selection_guidance.py
+test_star_import_pipeline.py
 update_cache_health_history.py
 update_history.py
 validate_catalog.py
@@ -1109,6 +1111,102 @@ drift=json.loads(args.drift.read_text()) if args.drift else None
 body=render(json.loads(args.report.read_text()),drift)
 ```
 
+## File: star_import_pipeline.py
+```python
+#!/usr/bin/env python3
+"""Deterministic ingestion for screenshot-derived GitHub star manifests."""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+⋮----
+def normalize_repo_identity(value: str) -> tuple[str, str]
+⋮----
+raw = value.strip()
+⋮----
+parsed = urlsplit(raw)
+⋮----
+parts = [p for p in parsed.path.split("/") if p]
+⋮----
+parts = raw.split("/")
+⋮----
+name = name[:-4] if name.lower().endswith(".git") else name
+⋮----
+display = f"{owner}/{name}"
+⋮----
+def load_imports(paths: list[Path]) -> tuple[list[dict], list[dict]]
+⋮----
+payload = json.loads(path.read_text(encoding="utf-8"))
+⋮----
+values = payload.get("repositories") if isinstance(payload, dict) else None
+⋮----
+def partition_candidates(records: list[dict], catalog: dict) -> dict
+⋮----
+catalog_keys = {}
+⋮----
+key = record["key"]
+⋮----
+item = {"key": key, "repo": record["repo"], "sources": sources[key]}
+⋮----
+duplicates = [{"key": key, "repo": first[key]["repo"], "sources": sources[key]} for key in duplicate_keys]
+⋮----
+def classify_candidate(candidate: dict, metadata: dict | None = None) -> dict
+⋮----
+result = {"repo": candidate["repo"], "sources": list(candidate.get("sources", [])), "status": "needs_review"}
+⋮----
+entry = copy.deepcopy(metadata["catalogEntry"])
+⋮----
+result = {"repo": candidate["repo"], "sources": list(candidate.get("sources", [])), "status": "accepted", "catalogEntry": entry}
+⋮----
+def build_report(partition: dict, malformed: list[dict], import_files: list[str]) -> dict
+⋮----
+classified = [classify_candidate(c) for c in partition["new"]]
+needs_review = [x for x in classified if x["status"] == "needs_review"]
+unique = len(partition["new"]) + len(partition["already_cataloged"])
+⋮----
+def render_markdown(report: dict) -> str
+⋮----
+s = report["summary"]
+lines = ["# GitHub Star Import Report", "", f"- Raw records: {s['rawRecords']}", f"- Unique normalized repositories: {s['uniqueNormalized']}", f"- Duplicate imports: {s['duplicateImports']}", f"- Already cataloged: {s['alreadyCataloged']}", f"- New candidates: {s['newCandidates']}", f"- Needs review: {s['needsReview']}", f"- Malformed: {s['malformed']}", "", "## New candidates", ""]
+⋮----
+def integrate_catalog(catalog: dict, accepted: list[dict]) -> dict
+⋮----
+result = copy.deepcopy(catalog)
+entries = result.setdefault("repositories", [])
+seen = {str(x.get("repo", "")).lower() for x in entries}
+additions = []
+⋮----
+key = str(entry.get("repo", "")).lower()
+⋮----
+def validate_candidate_catalog(candidate: dict, root: Path) -> tuple[bool, str]
+⋮----
+root = Path(root).resolve()
+⋮----
+sandbox = Path(td) / "repo"
+⋮----
+output = []
+⋮----
+proc = subprocess.run(command, cwd=sandbox, text=True, capture_output=True)
+⋮----
+def write_catalog_if_valid(candidate: dict, catalog_path: Path, validator=None) -> tuple[bool, str]
+⋮----
+catalog_path = Path(catalog_path)
+validator = validator or (lambda data: validate_candidate_catalog(data, catalog_path.parent))
+⋮----
+def main(argv=None) -> int
+⋮----
+parser = argparse.ArgumentParser(description=__doc__)
+⋮----
+args = parser.parse_args(argv)
+paths = args.imports or sorted((ROOT / "imports").glob("github-stars-*.json"))
+catalog = json.loads(args.catalog.read_text(encoding="utf-8"))
+⋮----
+partition = partition_candidates(records, catalog)
+report = build_report(partition, malformed, [str(p) for p in paths])
+payload = json.dumps(report, indent=2, ensure_ascii=False) + "\n"
+⋮----
+accepted = [x["catalogEntry"] for x in report["newCandidates"] if x["status"] == "accepted"]
+candidate = integrate_catalog(catalog, accepted)
+```
+
 ## File: test_analyze_coverage.py
 ```python
 #!/usr/bin/env python3
@@ -1655,6 +1753,52 @@ mod = importlib.util.module_from_spec(spec)
 repos = [
 ⋮----
 changed = mod.enrich(repos)
+```
+
+## File: test_star_import_pipeline.py
+```python
+#!/usr/bin/env python3
+⋮----
+SCRIPT = Path(__file__).with_name("star_import_pipeline.py")
+⋮----
+# Normalization
+⋮----
+root = Path(td)
+p1 = root / "one.json"
+p2 = root / "two.json"
+⋮----
+catalog = {"repositories": [{"repo": "OPENAI/CODEX", "score": 9.5}]}
+partition = partition_candidates(records, catalog)
+⋮----
+candidate = partition["new"][0]
+classified = classify_candidate(candidate)
+⋮----
+report = build_report(partition, malformed, [str(p1), str(p2)])
+⋮----
+# Integration preserves existing records, sorts only additions deterministically, and is idempotent.
+base = {"schemaVersion": 1, "repositories": [{"repo": "z/existing", "score": 8.0}]}
+accepted = [
+once = integrate_catalog(base, accepted)
+twice = integrate_catalog(once, accepted)
+⋮----
+# Failed validation never replaces the authoritative catalog.
+⋮----
+catalog_path = root / "catalog.json"
+original = json.dumps(base, indent=2) + "\n"
+⋮----
+# CLI is dry-run by default, emits requested reports, and leaves catalog unchanged.
+⋮----
+import_path = root / "stars.json"
+⋮----
+report_json = root / "report.json"
+report_md = root / "report.md"
+⋮----
+catalog_payload = {"schemaVersion": 1, "repositories": [{"repo": "openai/codex"}]}
+original = json.dumps(catalog_payload) + "\n"
+⋮----
+proc = subprocess.run([
+⋮----
+cli_report = json.loads(report_json.read_text())
 ```
 
 ## File: update_cache_health_history.py
