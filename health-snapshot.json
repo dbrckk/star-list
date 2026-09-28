@@ -15,17 +15,24 @@
       "reasons": []
     },
     {
+      "repo": "anthropics/claude-code",
+      "score": 99.6,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
       "repo": "facebook/react",
       "score": 99.6,
       "status": "healthy",
-      "ageDays": 3,
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "fastapi/fastapi",
       "score": 99.6,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 1,
       "reasons": []
     },
     {
@@ -46,7 +53,7 @@
       "repo": "ollama/ollama",
       "score": 99.6,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 0,
       "reasons": []
     },
     {
@@ -109,14 +116,14 @@
       "repo": "mermaid-js/mermaid",
       "score": 99.4,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "tailwindlabs/tailwindcss",
       "score": 99.3,
       "status": "healthy",
-      "ageDays": 12,
+      "ageDays": 2,
       "reasons": []
     },
     {
@@ -130,7 +137,7 @@
       "repo": "deepseek-ai/deepseek-harness",
       "score": 99.2,
       "status": "healthy",
-      "ageDays": 3,
+      "ageDays": 0,
       "reasons": []
     },
     {
@@ -172,19 +179,19 @@
       "repo": "modelcontextprotocol/servers",
       "score": 99.2,
       "status": "healthy",
-      "ageDays": 18,
+      "ageDays": 0,
       "reasons": []
     },
     {
-      "repo": "storybookjs/storybook",
+      "repo": "OpenHands/OpenHands",
       "score": 99.2,
       "status": "healthy",
       "ageDays": 0,
       "reasons": []
     },
     {
-      "repo": "OpenHands/OpenHands",
-      "score": 99.1,
+      "repo": "storybookjs/storybook",
+      "score": 99.2,
       "status": "healthy",
       "ageDays": 0,
       "reasons": []
@@ -200,7 +207,7 @@
       "repo": "microsoft/markitdown",
       "score": 99.0,
       "status": "healthy",
-      "ageDays": 4,
+      "ageDays": 6,
       "reasons": []
     },
     {
@@ -277,14 +284,14 @@
       "repo": "OpenBB-finance/OpenBB",
       "score": 98.7,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "scikit-learn/scikit-learn",
       "score": 98.7,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 3,
       "reasons": []
     },
     {
@@ -326,7 +333,7 @@
       "repo": "NationalSecurityAgency/ghidra",
       "score": 98.5,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 3,
       "reasons": []
     },
     {
@@ -340,14 +347,7 @@
       "repo": "punkpeye/awesome-mcp-servers",
       "score": 98.5,
       "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "swisskyrepo/PayloadsAllTheThings",
-      "score": 98.5,
-      "status": "healthy",
-      "ageDays": 25,
+      "ageDays": 1,
       "reasons": []
     },
     {
@@ -361,7 +361,7 @@
       "repo": "hiyouga/LlamaFactory",
       "score": 98.4,
       "status": "healthy",
-      "ageDays": 7,
+      "ageDays": 0,
       "reasons": []
     },
     {
@@ -375,7 +375,7 @@
       "repo": "Shubhamsaboo/awesome-llm-apps",
       "score": 98.4,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 2,
       "reasons": []
     },
     {
@@ -389,18 +389,18 @@
       "repo": "facebook/docusaurus",
       "score": 98.3,
       "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "addyosmani/agent-skills",
-      "score": 98.0,
-      "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 2,
       "reasons": []
     },
     {
       "repo": "ansible/ansible",
+      "score": 98.1,
+      "status": "healthy",
+      "ageDays": 3,
+      "reasons": []
+    },
+    {
+      "repo": "addyosmani/agent-skills",
       "score": 98.0,
       "status": "healthy",
       "ageDays": 2,
@@ -445,7 +445,7 @@
       "repo": "obra/superpowers",
       "score": 98.0,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 1,
       "reasons": []
     },
     {
@@ -464,9 +464,9 @@
     },
     {
       "repo": "microsoft/qlib",
-      "score": 97.8,
+      "score": 97.9,
       "status": "healthy",
-      "ageDays": 3,
+      "ageDays": 6,
       "reasons": []
     },
     {
@@ -508,14 +508,14 @@
       "repo": "mattpocock/skills",
       "score": 97.6,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 3,
       "reasons": []
     },
     {
       "repo": "microsoft/ai-agents-for-beginners",
       "score": 97.6,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 9,
       "reasons": []
     },
     {
@@ -529,21 +529,49 @@
       "repo": "calesthio/OpenMontage",
       "score": 97.5,
       "status": "healthy",
-      "ageDays": 15,
+      "ageDays": 22,
       "reasons": []
     },
     {
       "repo": "hacksider/Deep-Live-Cam",
       "score": 97.5,
       "status": "healthy",
-      "ageDays": 5,
+      "ageDays": 2,
       "reasons": []
     },
     {
       "repo": "Panniantong/Agent-Reach",
+      "score": 97.5,
+      "status": "healthy",
+      "ageDays": 12,
+      "reasons": []
+    },
+    {
+      "repo": "tt-a1i/archify",
+      "score": 97.5,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "ChromeDevTools/chrome-devtools-mcp",
       "score": 97.4,
       "status": "healthy",
-      "ageDays": 5,
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "Fission-AI/OpenSpec",
+      "score": 97.4,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "mvanhorn/last30days-skill",
+      "score": 97.4,
+      "status": "healthy",
+      "ageDays": 0,
       "reasons": []
     },
     {
@@ -557,25 +585,25 @@
       "repo": "virattt/ai-hedge-fund",
       "score": 97.4,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 1,
+      "reasons": []
+    },
+    {
+      "repo": "crewAIInc/crewAI",
+      "score": 97.3,
+      "status": "healthy",
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "docker/compose",
       "score": 97.3,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 2,
       "reasons": []
     },
     {
       "repo": "docling-project/docling",
-      "score": 97.3,
-      "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "Fission-AI/OpenSpec",
       "score": 97.3,
       "status": "healthy",
       "ageDays": 0,
@@ -589,38 +617,17 @@
       "reasons": []
     },
     {
-      "repo": "mvanhorn/last30days-skill",
-      "score": 97.3,
-      "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "ChromeDevTools/chrome-devtools-mcp",
-      "score": 97.2,
-      "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "crewAIInc/crewAI",
-      "score": 97.2,
-      "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
       "repo": "f/prompts.chat",
       "score": 97.2,
       "status": "healthy",
-      "ageDays": 11,
+      "ageDays": 19,
       "reasons": []
     },
     {
       "repo": "massgravel/Microsoft-Activation-Scripts",
       "score": 97.2,
       "status": "healthy",
-      "ageDays": 10,
+      "ageDays": 17,
       "reasons": []
     },
     {
@@ -631,7 +638,7 @@
       "reasons": []
     },
     {
-      "repo": "tt-a1i/archify",
+      "repo": "stablyai/orca",
       "score": 97.2,
       "status": "healthy",
       "ageDays": 0,
@@ -639,6 +646,13 @@
     },
     {
       "repo": "agno-agi/agno",
+      "score": 97.1,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "danny-avila/LibreChat",
       "score": 97.1,
       "status": "healthy",
       "ageDays": 0,
@@ -659,8 +673,8 @@
       "reasons": []
     },
     {
-      "repo": "danny-avila/LibreChat",
-      "score": 97.0,
+      "repo": "usestrix/strix",
+      "score": 97.1,
       "status": "healthy",
       "ageDays": 0,
       "reasons": []
@@ -676,28 +690,21 @@
       "repo": "GoogleChrome/lighthouse",
       "score": 97.0,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 7,
       "reasons": []
     },
     {
       "repo": "pocketbase/pocketbase",
       "score": 97.0,
       "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "usestrix/strix",
-      "score": 97.0,
-      "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 2,
       "reasons": []
     },
     {
       "repo": "hashicorp/terraform",
       "score": 96.9,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 0,
       "reasons": []
     },
     {
@@ -708,17 +715,10 @@
       "reasons": []
     },
     {
-      "repo": "stablyai/orca",
-      "score": 96.9,
-      "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
       "repo": "vnpy/vnpy",
       "score": 96.9,
       "status": "healthy",
-      "ageDays": 8,
+      "ageDays": 15,
       "reasons": []
     },
     {
@@ -729,10 +729,17 @@
       "reasons": []
     },
     {
+      "repo": "payloadcms/payload",
+      "score": 96.8,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
       "repo": "ChrisTitusTech/winutil",
       "score": 96.7,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 0,
       "reasons": []
     },
     {
@@ -746,7 +753,7 @@
       "repo": "MemPalace/mempalace",
       "score": 96.7,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 3,
       "reasons": []
     },
     {
@@ -757,17 +764,10 @@
       "reasons": []
     },
     {
-      "repo": "payloadcms/payload",
+      "repo": "Solido/awesome-flutter",
       "score": 96.7,
       "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "anthropics/claude-code",
-      "score": 96.6,
-      "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 25,
       "reasons": []
     },
     {
@@ -781,7 +781,14 @@
       "repo": "mindsdb/mindsdb",
       "score": 96.6,
       "status": "healthy",
-      "ageDays": 4,
+      "ageDays": 11,
+      "reasons": []
+    },
+    {
+      "repo": "milvus-io/milvus",
+      "score": 96.5,
+      "status": "healthy",
+      "ageDays": 0,
       "reasons": []
     },
     {
@@ -799,14 +806,14 @@
       "reasons": []
     },
     {
-      "repo": "harry0703/MoneyPrinterTurbo",
+      "repo": "CopilotKit/CopilotKit",
       "score": 96.4,
       "status": "healthy",
       "ageDays": 0,
       "reasons": []
     },
     {
-      "repo": "milvus-io/milvus",
+      "repo": "harry0703/MoneyPrinterTurbo",
       "score": 96.4,
       "status": "healthy",
       "ageDays": 0,
@@ -820,7 +827,21 @@
       "reasons": []
     },
     {
-      "repo": "CopilotKit/CopilotKit",
+      "repo": "blader/humanizer",
+      "score": 96.3,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "HKUDS/Vibe-Trading",
+      "score": 96.3,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "langfuse/langfuse",
       "score": 96.3,
       "status": "healthy",
       "ageDays": 0,
@@ -837,32 +858,18 @@
       "repo": "postgres/postgres",
       "score": 96.3,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 0,
       "reasons": []
     },
     {
-      "repo": "blader/humanizer",
+      "repo": "bytedance/UI-TARS-desktop",
       "score": 96.2,
       "status": "healthy",
-      "ageDays": 14,
+      "ageDays": 4,
       "reasons": []
     },
     {
       "repo": "helm/helm",
-      "score": 96.2,
-      "status": "healthy",
-      "ageDays": 3,
-      "reasons": []
-    },
-    {
-      "repo": "HKUDS/Vibe-Trading",
-      "score": 96.2,
-      "status": "healthy",
-      "ageDays": 1,
-      "reasons": []
-    },
-    {
-      "repo": "langfuse/langfuse",
       "score": 96.2,
       "status": "healthy",
       "ageDays": 0,
@@ -872,28 +879,42 @@
       "repo": "OpenBMB/VoxCPM",
       "score": 96.2,
       "status": "healthy",
-      "ageDays": 18,
-      "reasons": []
-    },
-    {
-      "repo": "bytedance/UI-TARS-desktop",
-      "score": 96.1,
-      "status": "healthy",
-      "ageDays": 10,
+      "ageDays": 25,
       "reasons": []
     },
     {
       "repo": "squidfunk/mkdocs-material",
       "score": 96.1,
       "status": "healthy",
-      "ageDays": 5,
+      "ageDays": 12,
+      "reasons": []
+    },
+    {
+      "repo": "danielmiessler/Fabric",
+      "score": 96.0,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "DeusData/codebase-memory-mcp",
+      "score": 96.0,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "Fincept-Corporation/FinceptTerminal",
+      "score": 96.0,
+      "status": "healthy",
+      "ageDays": 8,
       "reasons": []
     },
     {
       "repo": "mindsdb/mindshub",
       "score": 96.0,
       "status": "healthy",
-      "ageDays": 4,
+      "ageDays": 11,
       "reasons": []
     },
     {
@@ -911,20 +932,6 @@
       "reasons": []
     },
     {
-      "repo": "danielmiessler/Fabric",
-      "score": 95.9,
-      "status": "healthy",
-      "ageDays": 13,
-      "reasons": []
-    },
-    {
-      "repo": "Fincept-Corporation/FinceptTerminal",
-      "score": 95.9,
-      "status": "healthy",
-      "ageDays": 1,
-      "reasons": []
-    },
-    {
       "repo": "paperless-ngx/paperless-ngx",
       "score": 95.9,
       "status": "healthy",
@@ -939,10 +946,10 @@
       "reasons": []
     },
     {
-      "repo": "DeusData/codebase-memory-mcp",
+      "repo": "anthropics/financial-services",
       "score": 95.8,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 6,
       "reasons": []
     },
     {
@@ -953,6 +960,13 @@
       "reasons": []
     },
     {
+      "repo": "diegosouzapw/OmniRoute",
+      "score": 95.7,
+      "status": "healthy",
+      "ageDays": 1,
+      "reasons": []
+    },
+    {
       "repo": "podman-container-tools/podman",
       "score": 95.7,
       "status": "healthy",
@@ -960,31 +974,24 @@
       "reasons": []
     },
     {
-      "repo": "anthropics/financial-services",
+      "repo": "heygen-com/hyperframes",
       "score": 95.6,
       "status": "healthy",
-      "ageDays": 2,
-      "reasons": []
-    },
-    {
-      "repo": "diegosouzapw/OmniRoute",
-      "score": 95.6,
-      "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "kepano/obsidian-skills",
       "score": 95.6,
       "status": "healthy",
-      "ageDays": 5,
+      "ageDays": 12,
       "reasons": []
     },
     {
       "repo": "libgdx/libgdx",
       "score": 95.6,
       "status": "healthy",
-      "ageDays": 12,
+      "ageDays": 4,
       "reasons": []
     },
     {
@@ -992,6 +999,13 @@
       "score": 95.6,
       "status": "healthy",
       "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "swisskyrepo/PayloadsAllTheThings",
+      "score": 95.6,
+      "status": "healthy",
+      "ageDays": 32,
       "reasons": []
     },
     {
@@ -1005,28 +1019,28 @@
       "repo": "chakra-ui/chakra-ui",
       "score": 95.5,
       "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "heygen-com/hyperframes",
-      "score": 95.5,
-      "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 4,
       "reasons": []
     },
     {
       "repo": "666ghj/MiroFish",
       "score": 95.4,
       "status": "healthy",
-      "ageDays": 5,
+      "ageDays": 12,
       "reasons": []
     },
     {
       "repo": "academic/awesome-datascience",
       "score": 95.4,
       "status": "healthy",
-      "ageDays": 11,
+      "ageDays": 1,
+      "reasons": []
+    },
+    {
+      "repo": "alibaba/open-code-review",
+      "score": 95.4,
+      "status": "healthy",
+      "ageDays": 0,
       "reasons": []
     },
     {
@@ -1040,7 +1054,7 @@
       "repo": "firecracker-microvm/firecracker",
       "score": 95.3,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 2,
       "reasons": []
     },
     {
@@ -1061,28 +1075,21 @@
       "repo": "Dokploy/dokploy",
       "score": 95.2,
       "status": "healthy",
-      "ageDays": 3,
+      "ageDays": 4,
       "reasons": []
     },
     {
       "repo": "vercel-labs/agent-browser",
       "score": 95.2,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 1,
       "reasons": []
     },
     {
       "repo": "airbnb/lottie-ios",
       "score": 95.1,
       "status": "healthy",
-      "ageDays": 1,
-      "reasons": []
-    },
-    {
-      "repo": "alibaba/open-code-review",
-      "score": 95.1,
-      "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 8,
       "reasons": []
     },
     {
@@ -1093,10 +1100,31 @@
       "reasons": []
     },
     {
+      "repo": "Tencent/WeKnora",
+      "score": 95.1,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "ankitects/anki",
+      "score": 95.0,
+      "status": "healthy",
+      "ageDays": 2,
+      "reasons": []
+    },
+    {
       "repo": "DietrichGebert/ponytail",
       "score": 95.0,
       "status": "healthy",
-      "ageDays": 6,
+      "ageDays": 13,
+      "reasons": []
+    },
+    {
+      "repo": "facefusion/facefusion",
+      "score": 95.0,
+      "status": "healthy",
+      "ageDays": 2,
       "reasons": []
     },
     {
@@ -1114,15 +1142,15 @@
       "reasons": []
     },
     {
-      "repo": "ankitects/anki",
-      "score": 94.9,
+      "repo": "block/buzz",
+      "score": 94.8,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 0,
       "reasons": []
     },
     {
-      "repo": "facefusion/facefusion",
-      "score": 94.9,
+      "repo": "JustVugg/colibri",
+      "score": 94.8,
       "status": "healthy",
       "ageDays": 0,
       "reasons": []
@@ -1131,11 +1159,11 @@
       "repo": "stefan-jansen/machine-learning-for-trading",
       "score": 94.8,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 3,
       "reasons": []
     },
     {
-      "repo": "Tencent/WeKnora",
+      "repo": "trpc/trpc",
       "score": 94.8,
       "status": "healthy",
       "ageDays": 0,
@@ -1145,14 +1173,28 @@
       "repo": "vxcontrol/pentagi",
       "score": 94.8,
       "status": "healthy",
-      "ageDays": 11,
+      "ageDays": 4,
+      "reasons": []
+    },
+    {
+      "repo": "cathrynlavery/diagram-design",
+      "score": 94.7,
+      "status": "healthy",
+      "ageDays": 1,
+      "reasons": []
+    },
+    {
+      "repo": "drizzle-team/drizzle-orm",
+      "score": 94.7,
+      "status": "healthy",
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "google/adk-python",
       "score": 94.7,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 2,
       "reasons": []
     },
     {
@@ -1163,85 +1205,78 @@
       "reasons": []
     },
     {
-      "repo": "trpc/trpc",
-      "score": 94.7,
-      "status": "healthy",
-      "ageDays": 4,
-      "reasons": []
-    },
-    {
-      "repo": "block/buzz",
-      "score": 94.6,
-      "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "cathrynlavery/diagram-design",
-      "score": 94.6,
-      "status": "healthy",
-      "ageDays": 1,
-      "reasons": []
-    },
-    {
-      "repo": "drizzle-team/drizzle-orm",
-      "score": 94.6,
-      "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "JustVugg/colibri",
-      "score": 94.6,
-      "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
       "repo": "motiondivision/motion",
       "score": 94.6,
       "status": "healthy",
-      "ageDays": 4,
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "supermemoryai/supermemory",
-      "score": 94.5,
+      "score": 94.6,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 2,
       "reasons": []
     },
     {
       "repo": "THU-MAIC/OpenMAIC",
-      "score": 94.5,
+      "score": 94.6,
       "status": "healthy",
       "ageDays": 0,
       "reasons": []
     },
     {
-      "repo": "invoke-ai/InvokeAI",
-      "score": 94.4,
+      "repo": "Donchitos/Claude-Code-Game-Studios",
+      "score": 94.5,
       "status": "healthy",
-      "ageDays": 5,
-      "reasons": []
-    },
-    {
-      "repo": "ranaroussi/yfinance",
-      "score": 94.4,
-      "status": "healthy",
-      "ageDays": 3,
+      "ageDays": 4,
       "reasons": []
     },
     {
       "repo": "volcengine/OpenViking",
-      "score": 94.4,
+      "score": 94.5,
       "status": "healthy",
       "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "chroma-core/chroma",
-      "score": 94.3,
+      "score": 94.4,
+      "status": "healthy",
+      "ageDays": 2,
+      "reasons": []
+    },
+    {
+      "repo": "invoke-ai/InvokeAI",
+      "score": 94.4,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "pmndrs/react-three-fiber",
+      "score": 94.4,
+      "status": "healthy",
+      "ageDays": 1,
+      "reasons": []
+    },
+    {
+      "repo": "pytest-dev/pytest",
+      "score": 94.4,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "ranaroussi/yfinance",
+      "score": 94.4,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "xai-org/x-algorithm",
+      "score": 94.4,
       "status": "healthy",
       "ageDays": 2,
       "reasons": []
@@ -1254,59 +1289,52 @@
       "reasons": []
     },
     {
-      "repo": "pmndrs/react-three-fiber",
-      "score": 94.3,
-      "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "pytest-dev/pytest",
-      "score": 94.3,
-      "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "xai-org/x-algorithm",
-      "score": 94.3,
-      "status": "healthy",
-      "ageDays": 2,
-      "reasons": []
-    },
-    {
       "repo": "freestylefly/awesome-gpt-image-2",
-      "score": 94.2,
+      "score": 94.3,
       "status": "healthy",
-      "ageDays": 9,
+      "ageDays": 4,
       "reasons": []
     },
     {
       "repo": "google/filament",
       "score": 94.2,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "p-e-w/heretic",
+      "score": 94.2,
+      "status": "healthy",
+      "ageDays": 2,
       "reasons": []
     },
     {
       "repo": "Redocly/redoc",
       "score": 94.2,
       "status": "healthy",
-      "ageDays": 4,
+      "ageDays": 3,
       "reasons": []
     },
     {
       "repo": "ruanyf/weekly",
       "score": 94.2,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 8,
+      "reasons": []
+    },
+    {
+      "repo": "AI4Finance-Foundation/FinRL",
+      "score": 94.1,
+      "status": "healthy",
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "KRTirtho/spotube",
       "score": 94.1,
       "status": "healthy",
-      "ageDays": 9,
+      "ageDays": 2,
       "reasons": []
     },
     {
@@ -1314,13 +1342,6 @@
       "score": 94.1,
       "status": "healthy",
       "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "p-e-w/heretic",
-      "score": 94.1,
-      "status": "healthy",
-      "ageDays": 2,
       "reasons": []
     },
     {
@@ -1334,26 +1355,47 @@
       "repo": "akfamily/akshare",
       "score": 94.0,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 5,
+      "reasons": []
+    },
+    {
+      "repo": "anthropics/knowledge-work-plugins",
+      "score": 94.0,
+      "status": "healthy",
+      "ageDays": 2,
       "reasons": []
     },
     {
       "repo": "opentofu/opentofu",
       "score": 94.0,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "plotly/plotly.py",
       "score": 94.0,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 3,
       "reasons": []
     },
     {
-      "repo": "anthropics/knowledge-work-plugins",
+      "repo": "trycua/cua",
+      "score": 94.0,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "debpalash/VoiceStudio",
       "score": 93.9,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "bilawalsidhu/gods-eye-view",
+      "score": 93.8,
       "status": "healthy",
       "ageDays": 0,
       "reasons": []
@@ -1366,45 +1408,24 @@
       "reasons": []
     },
     {
-      "repo": "trycua/cua",
-      "score": 93.8,
-      "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
       "repo": "redcanaryco/atomic-red-team",
       "score": 93.7,
       "status": "healthy",
-      "ageDays": 6,
-      "reasons": []
-    },
-    {
-      "repo": "Solido/awesome-flutter",
-      "score": 93.7,
-      "status": "healthy",
-      "ageDays": 18,
-      "reasons": []
-    },
-    {
-      "repo": "bilawalsidhu/gods-eye-view",
-      "score": 93.6,
-      "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 13,
       "reasons": []
     },
     {
       "repo": "EleutherAI/lm-evaluation-harness",
       "score": 93.6,
       "status": "healthy",
-      "ageDays": 6,
+      "ageDays": 14,
       "reasons": []
     },
     {
       "repo": "graphql/graphql-js",
       "score": 93.6,
       "status": "healthy",
-      "ageDays": 3,
+      "ageDays": 10,
       "reasons": []
     },
     {
@@ -1418,28 +1439,28 @@
       "repo": "statsmodels/statsmodels",
       "score": 93.6,
       "status": "healthy",
-      "ageDays": 3,
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "ultraworkers/claw-code",
       "score": 93.6,
       "status": "healthy",
-      "ageDays": 36,
+      "ageDays": 43,
       "reasons": []
     },
     {
       "repo": "jamiepine/voicebox",
       "score": 93.5,
       "status": "healthy",
-      "ageDays": 43,
+      "ageDays": 50,
       "reasons": []
     },
     {
       "repo": "browserbase/stagehand",
-      "score": 93.3,
+      "score": 93.4,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 0,
       "reasons": []
     },
     {
@@ -1460,26 +1481,19 @@
       "repo": "nektos/act",
       "score": 93.3,
       "status": "healthy",
-      "ageDays": 42,
+      "ageDays": 49,
       "reasons": []
     },
     {
       "repo": "semantic-release/semantic-release",
       "score": 93.3,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 2,
       "reasons": []
     },
     {
       "repo": "firebase/flutterfire",
       "score": 93.1,
-      "status": "healthy",
-      "ageDays": 4,
-      "reasons": []
-    },
-    {
-      "repo": "debpalash/VoiceStudio",
-      "score": 93.0,
       "status": "healthy",
       "ageDays": 0,
       "reasons": []
@@ -1488,21 +1502,21 @@
       "repo": "FujiwaraChoki/MoneyPrinterV2",
       "score": 92.9,
       "status": "healthy",
-      "ageDays": 5,
+      "ageDays": 12,
       "reasons": []
     },
     {
       "repo": "google/oss-fuzz",
       "score": 92.8,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "RVC-Project/Retrieval-based-Voice-Conversion-WebUI",
       "score": 92.8,
       "status": "healthy",
-      "ageDays": 48,
+      "ageDays": 55,
       "reasons": []
     },
     {
@@ -1516,7 +1530,7 @@
       "repo": "camel-ai/camel",
       "score": 92.5,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 8,
       "reasons": []
     },
     {
@@ -1524,6 +1538,20 @@
       "score": 92.5,
       "status": "healthy",
       "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "Open-Dev-Society/OpenStock",
+      "score": 92.5,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "enaqx/awesome-pentest",
+      "score": 92.4,
+      "status": "healthy",
+      "ageDays": 64,
       "reasons": []
     },
     {
@@ -1541,17 +1569,24 @@
       "reasons": []
     },
     {
+      "repo": "cloudflare/security-audit-skill",
+      "score": 92.2,
+      "status": "healthy",
+      "ageDays": 13,
+      "reasons": []
+    },
+    {
       "repo": "deepfakes/faceswap",
       "score": 92.2,
       "status": "healthy",
-      "ageDays": 46,
+      "ageDays": 53,
       "reasons": []
     },
     {
       "repo": "apollographql/apollo-server",
       "score": 92.1,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 1,
       "reasons": []
     },
     {
@@ -1569,10 +1604,10 @@
       "reasons": []
     },
     {
-      "repo": "Open-Dev-Society/OpenStock",
+      "repo": "TA-Lib/ta-lib-python",
       "score": 92.1,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 6,
       "reasons": []
     },
     {
@@ -1583,8 +1618,15 @@
       "reasons": []
     },
     {
-      "repo": "TA-Lib/ta-lib-python",
-      "score": 92.0,
+      "repo": "mksglu/context-mode",
+      "score": 91.9,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "pascalorg/editor",
+      "score": 91.9,
       "status": "healthy",
       "ageDays": 0,
       "reasons": []
@@ -1593,7 +1635,7 @@
       "repo": "wix/Detox",
       "score": 91.9,
       "status": "healthy",
-      "ageDays": 13,
+      "ageDays": 20,
       "reasons": []
     },
     {
@@ -1604,24 +1646,24 @@
       "reasons": []
     },
     {
-      "repo": "mksglu/context-mode",
-      "score": 91.8,
-      "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "pascalorg/editor",
-      "score": 91.8,
-      "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
       "repo": "ahmedkhaleel2004/gitdiagram",
+      "score": 91.7,
+      "status": "healthy",
+      "ageDays": 2,
+      "reasons": []
+    },
+    {
+      "repo": "opensandbox-group/OpenSandbox",
       "score": 91.6,
       "status": "healthy",
       "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "ayghri/i-have-adhd",
+      "score": 91.5,
+      "status": "healthy",
+      "ageDays": 8,
       "reasons": []
     },
     {
@@ -1632,56 +1674,49 @@
       "reasons": []
     },
     {
-      "repo": "opensandbox-group/OpenSandbox",
-      "score": 91.5,
-      "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
       "repo": "polakowo/vectorbt",
       "score": 91.5,
       "status": "healthy",
-      "ageDays": 3,
+      "ageDays": 1,
       "reasons": []
     },
     {
-      "repo": "cloudflare/security-audit-skill",
-      "score": 91.4,
-      "status": "healthy",
-      "ageDays": 6,
-      "reasons": []
-    },
-    {
-      "repo": "ayghri/i-have-adhd",
+      "repo": "vercel-labs/json-render",
       "score": 91.3,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 2,
       "reasons": []
     },
     {
       "repo": "AgriciDaniel/claude-obsidian",
       "score": 91.2,
       "status": "healthy",
-      "ageDays": 10,
+      "ageDays": 17,
+      "reasons": []
+    },
+    {
+      "repo": "Arize-ai/phoenix",
+      "score": 91.2,
+      "status": "healthy",
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "EsotericSoftware/spine-runtimes",
       "score": 91.2,
       "status": "healthy",
-      "ageDays": 3,
+      "ageDays": 2,
       "reasons": []
     },
     {
-      "repo": "AI4Finance-Foundation/FinRL",
-      "score": 91.1,
+      "repo": "Lakr233/vphone-cli",
+      "score": 91.2,
       "status": "healthy",
-      "ageDays": 69,
+      "ageDays": 0,
       "reasons": []
     },
     {
-      "repo": "Arize-ai/phoenix",
+      "repo": "BasedHardware/omi",
       "score": 91.1,
       "status": "healthy",
       "ageDays": 0,
@@ -1691,60 +1726,46 @@
       "repo": "khoj-ai/khoj",
       "score": 91.1,
       "status": "healthy",
-      "ageDays": 50,
+      "ageDays": 57,
       "reasons": []
     },
     {
-      "repo": "vercel-labs/json-render",
-      "score": 91.1,
-      "status": "healthy",
-      "ageDays": 2,
-      "reasons": []
-    },
-    {
-      "repo": "BasedHardware/omi",
-      "score": 91.0,
+      "repo": "multimodal-art-projection/YuE",
+      "score": 90.8,
       "status": "healthy",
       "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "Lakr233/vphone-cli",
-      "score": 91.0,
-      "status": "healthy",
-      "ageDays": 2,
       "reasons": []
     },
     {
       "repo": "unit8co/darts",
       "score": 90.8,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "ast-grep/ast-grep",
       "score": 90.7,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "dequelabs/axe-core",
       "score": 90.7,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 4,
       "reasons": []
     },
     {
       "repo": "microsoft/magentic-ui",
       "score": 90.6,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 4,
       "reasons": []
     },
     {
-      "repo": "multimodal-art-projection/YuE",
+      "repo": "ranaroussi/quantstats",
       "score": 90.6,
       "status": "healthy",
       "ageDays": 0,
@@ -1754,7 +1775,7 @@
       "repo": "nashsu/llm_wiki",
       "score": 90.5,
       "status": "healthy",
-      "ageDays": 27,
+      "ageDays": 0,
       "reasons": []
     },
     {
@@ -1768,7 +1789,7 @@
       "repo": "jo-inc/camoufox-browser",
       "score": 90.4,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 5,
       "reasons": []
     },
     {
@@ -1782,28 +1803,35 @@
       "repo": "GreyDGL/PentestGPT",
       "score": 90.1,
       "status": "healthy",
-      "ageDays": 68,
+      "ageDays": 75,
       "reasons": []
     },
     {
       "repo": "HypothesisWorks/hypothesis",
       "score": 90.1,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "jo-inc/camofox-browser",
       "score": 90.0,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 5,
       "reasons": []
     },
     {
-      "repo": "plantuml-stdlib/C4-PlantUML",
-      "score": 90.0,
+      "repo": "cactus-compute/needle",
+      "score": 89.9,
       "status": "healthy",
-      "ageDays": 25,
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "cursor/plugins",
+      "score": 89.6,
+      "status": "healthy",
+      "ageDays": 2,
       "reasons": []
     },
     {
@@ -1817,46 +1845,46 @@
       "repo": "infoslack/awesome-web-hacking",
       "score": 89.6,
       "status": "healthy",
-      "ageDays": 3,
+      "ageDays": 10,
       "reasons": []
     },
     {
-      "repo": "cactus-compute/needle",
+      "repo": "ever-co/ever-gauzy",
       "score": 89.5,
       "status": "healthy",
       "ageDays": 0,
       "reasons": []
     },
     {
-      "repo": "enaqx/awesome-pentest",
-      "score": 89.4,
+      "repo": "Calinou/awesome-godot",
+      "score": 89.3,
       "status": "healthy",
-      "ageDays": 57,
+      "ageDays": 15,
       "reasons": []
     },
     {
       "repo": "conventional-changelog/conventional-changelog",
       "score": 89.3,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 2,
       "reasons": []
     },
     {
-      "repo": "ever-co/ever-gauzy",
+      "repo": "latent-spaces/brag",
       "score": 89.3,
       "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "Calinou/awesome-godot",
-      "score": 89.2,
-      "status": "healthy",
-      "ageDays": 8,
+      "ageDays": 3,
       "reasons": []
     },
     {
       "repo": "online-ml/river",
+      "score": 89.2,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "trailhq/Graft",
       "score": 89.2,
       "status": "healthy",
       "ageDays": 0,
@@ -1873,110 +1901,117 @@
       "repo": "motion-canvas/motion-canvas",
       "score": 89.1,
       "status": "healthy",
-      "ageDays": 80,
+      "ageDays": 87,
       "reasons": []
     },
     {
       "repo": "orhun/git-cliff",
       "score": 89.1,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 9,
       "reasons": []
     },
     {
       "repo": "PurpleAILAB/Decepticon",
-      "score": 89.0,
+      "score": 89.1,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 2,
       "reasons": []
     },
     {
       "repo": "ReVanced/revanced-manager",
       "score": 89.0,
       "status": "healthy",
-      "ageDays": 53,
+      "ageDays": 60,
       "reasons": []
     },
     {
-      "repo": "trailhq/Graft",
-      "score": 89.0,
+      "repo": "SnailSploit/Claude-Red",
+      "score": 88.9,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 8,
+      "reasons": []
+    },
+    {
+      "repo": "CarterPerez-dev/Cybersecurity-Projects",
+      "score": 88.7,
+      "status": "healthy",
+      "ageDays": 4,
+      "reasons": []
+    },
+    {
+      "repo": "dcajasn/Riskfolio-Lib",
+      "score": 88.7,
+      "status": "healthy",
+      "ageDays": 4,
       "reasons": []
     },
     {
       "repo": "0x4m4/hexstrike-ai",
       "score": 88.6,
       "status": "healthy",
-      "ageDays": 48,
+      "ageDays": 55,
       "reasons": []
     },
     {
       "repo": "release-it/release-it",
       "score": 88.6,
       "status": "healthy",
-      "ageDays": 4,
+      "ageDays": 11,
       "reasons": []
     },
     {
-      "repo": "SnailSploit/Claude-Red",
-      "score": 88.6,
-      "status": "healthy",
-      "ageDays": 1,
-      "reasons": []
-    },
-    {
-      "repo": "Tencent-Hunyuan/HunyuanVideo",
-      "score": 88.6,
-      "status": "healthy",
-      "ageDays": 84,
-      "reasons": []
-    },
-    {
-      "repo": "CarterPerez-dev/Cybersecurity-Projects",
+      "repo": "higgsfield-ai/higgsfield",
       "score": 88.5,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 14,
       "reasons": []
     },
     {
       "repo": "ory/kratos",
       "score": 88.4,
       "status": "healthy",
-      "ageDays": 54,
+      "ageDays": 61,
       "reasons": []
     },
     {
       "repo": "facebookresearch/Kats",
       "score": 88.3,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 7,
       "reasons": []
     },
     {
-      "repo": "higgsfield-ai/higgsfield",
-      "score": 88.3,
+      "repo": "Tencent/BrowserSkill",
+      "score": 88.2,
       "status": "healthy",
-      "ageDays": 7,
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "kernc/backtesting.py",
       "score": 88.1,
       "status": "healthy",
-      "ageDays": 46,
+      "ageDays": 53,
       "reasons": []
     },
     {
       "repo": "svgdotjs/svg.js",
       "score": 88.1,
       "status": "healthy",
-      "ageDays": 48,
+      "ageDays": 55,
       "reasons": []
     },
     {
       "repo": "tech-leads-club/agent-skills",
-      "score": 87.8,
+      "score": 88.0,
+      "status": "healthy",
+      "ageDays": 7,
+      "reasons": []
+    },
+    {
+      "repo": "akitaonrails/ai-memory",
+      "score": 87.7,
       "status": "healthy",
       "ageDays": 0,
       "reasons": []
@@ -1985,14 +2020,21 @@
       "repo": "blue-yonder/tsfresh",
       "score": 87.7,
       "status": "healthy",
-      "ageDays": 77,
+      "ageDays": 84,
       "reasons": []
     },
     {
       "repo": "microsoft/autogen",
       "score": 87.7,
       "status": "healthy",
-      "ageDays": 158,
+      "ageDays": 165,
+      "reasons": []
+    },
+    {
+      "repo": "tradesdontlie/tradingview-mcp",
+      "score": 87.7,
+      "status": "healthy",
+      "ageDays": 61,
       "reasons": []
     },
     {
@@ -2006,47 +2048,19 @@
       "repo": "Nixtla/neuralforecast",
       "score": 87.6,
       "status": "healthy",
-      "ageDays": 2,
-      "reasons": []
-    },
-    {
-      "repo": "ranaroussi/quantstats",
-      "score": 87.6,
-      "status": "healthy",
-      "ageDays": 62,
-      "reasons": []
-    },
-    {
-      "repo": "tradesdontlie/tradingview-mcp",
-      "score": 87.6,
-      "status": "healthy",
-      "ageDays": 54,
+      "ageDays": 3,
       "reasons": []
     },
     {
       "repo": "Aider-AI/aider",
-      "score": 87.4,
+      "score": 87.5,
       "status": "healthy",
-      "ageDays": 121,
-      "reasons": []
-    },
-    {
-      "repo": "Tencent/BrowserSkill",
-      "score": 87.4,
-      "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 128,
       "reasons": []
     },
     {
       "repo": "autoscrape-labs/pydoll",
       "score": 87.3,
-      "status": "healthy",
-      "ageDays": 4,
-      "reasons": []
-    },
-    {
-      "repo": "akitaonrails/ai-memory",
-      "score": 87.2,
       "status": "healthy",
       "ageDays": 0,
       "reasons": []
@@ -2055,56 +2069,49 @@
       "repo": "PyPortfolio/PyPortfolioOpt",
       "score": 87.2,
       "status": "healthy",
-      "ageDays": 75,
+      "ageDays": 82,
       "reasons": []
     },
     {
-      "repo": "latent-spaces/brag",
+      "repo": "alphaXiv/OpenResearch",
       "score": 87.0,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "plantuml-stdlib/C4-PlantUML",
+      "score": 87.0,
+      "status": "healthy",
+      "ageDays": 32,
       "reasons": []
     },
     {
       "repo": "benfred/py-spy",
       "score": 86.9,
       "status": "healthy",
-      "ageDays": 38,
-      "reasons": []
-    },
-    {
-      "repo": "alphaXiv/OpenResearch",
-      "score": 86.6,
-      "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 45,
       "reasons": []
     },
     {
       "repo": "airbnb/lottie-android",
       "score": 86.5,
       "status": "healthy",
-      "ageDays": 217,
+      "ageDays": 224,
       "reasons": []
     },
     {
       "repo": "scikit-learn-contrib/imbalanced-learn",
       "score": 86.4,
       "status": "healthy",
-      "ageDays": 83,
-      "reasons": []
-    },
-    {
-      "repo": "cursor/plugins",
-      "score": 86.3,
-      "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 90,
       "reasons": []
     },
     {
       "repo": "tslearn-team/tslearn",
       "score": 86.1,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 5,
       "reasons": []
     },
     {
@@ -2122,64 +2129,57 @@
       "reasons": []
     },
     {
-      "repo": "dcajasn/Riskfolio-Lib",
-      "score": 85.7,
-      "status": "healthy",
-      "ageDays": 33,
-      "reasons": []
-    },
-    {
       "repo": "CorentinJ/Real-Time-Voice-Cloning",
       "score": 85.5,
       "status": "healthy",
-      "ageDays": 195,
+      "ageDays": 203,
+      "reasons": []
+    },
+    {
+      "repo": "milind-soni/OpenMausBot",
+      "score": 85.4,
+      "status": "healthy",
+      "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "testcontainers/testcontainers-python",
       "score": 85.2,
       "status": "healthy",
-      "ageDays": 6,
+      "ageDays": 13,
       "reasons": []
     },
     {
       "repo": "feature-engine/feature_engine",
       "score": 85.1,
       "status": "healthy",
-      "ageDays": 1,
+      "ageDays": 8,
       "reasons": []
     },
     {
       "repo": "bmrf/tron",
       "score": 85.0,
       "status": "healthy",
-      "ageDays": 11,
-      "reasons": []
-    },
-    {
-      "repo": "milind-soni/OpenMausBot",
-      "score": 84.9,
-      "status": "healthy",
-      "ageDays": 0,
-      "reasons": []
-    },
-    {
-      "repo": "Donchitos/Claude-Code-Game-Studios",
-      "score": 84.5,
-      "status": "healthy",
-      "ageDays": 122,
+      "ageDays": 18,
       "reasons": []
     },
     {
       "repo": "doobidoo/mcp-memory-service",
-      "score": 84.5,
+      "score": 84.6,
       "status": "healthy",
       "ageDays": 0,
       "reasons": []
     },
     {
       "repo": "CVEProject/cvelistV5",
-      "score": 84.4,
+      "score": 84.5,
+      "status": "healthy",
+      "ageDays": 0,
+      "reasons": []
+    },
+    {
+      "repo": "rlaope/oh-my-hermes",
+      "score": 84.5,
       "status": "healthy",
       "ageDays": 0,
       "reasons": []
@@ -2195,133 +2195,140 @@
       "repo": "bashtage/arch",
       "score": 84.3,
       "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 1,
+      "reasons": []
+    },
+    {
+      "repo": "jihe520/MathModelAgent",
+      "score": 84.2,
+      "status": "healthy",
+      "ageDays": 5,
+      "reasons": []
+    },
+    {
+      "repo": "mihail911/modern-software-dev-assignments",
+      "score": 84.2,
+      "status": "healthy",
+      "ageDays": 4,
       "reasons": []
     },
     {
       "repo": "mkdocs/mkdocs",
       "score": 84.2,
       "status": "healthy",
-      "ageDays": 335,
-      "reasons": []
-    },
-    {
-      "repo": "rlaope/oh-my-hermes",
-      "score": 84.2,
-      "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 342,
       "reasons": []
     },
     {
       "repo": "anyoptimization/pymoo",
       "score": 84.1,
       "status": "healthy",
-      "ageDays": 76,
-      "reasons": []
-    },
-    {
-      "repo": "jihe520/MathModelAgent",
-      "score": 84.0,
-      "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 83,
       "reasons": []
     },
     {
       "repo": "openai/evals",
       "score": 83.0,
       "status": "healthy",
-      "ageDays": 159,
+      "ageDays": 166,
       "reasons": []
     },
     {
       "repo": "duty1g/x64dbg-mcp-server",
+      "score": 82.8,
+      "status": "healthy",
+      "ageDays": 10,
+      "reasons": []
+    },
+    {
+      "repo": "kyegomez/awesome-multi-agent-papers",
       "score": 82.6,
       "status": "healthy",
-      "ageDays": 3,
+      "ageDays": 4,
       "reasons": []
     },
     {
       "repo": "boxed/mutmut",
       "score": 82.4,
       "status": "healthy",
-      "ageDays": 8,
+      "ageDays": 15,
+      "reasons": []
+    },
+    {
+      "repo": "vega-org/vega-app",
+      "score": 82.0,
+      "status": "healthy",
+      "ageDays": 5,
       "reasons": []
     },
     {
       "repo": "Open-LLM-VTuber/Open-LLM-VTuber",
       "score": 81.8,
       "status": "healthy",
-      "ageDays": 129,
+      "ageDays": 136,
       "reasons": []
     },
     {
       "repo": "infosecn1nja/Red-Teaming-Toolkit",
       "score": 81.7,
       "status": "healthy",
-      "ageDays": 136,
+      "ageDays": 143,
       "reasons": []
     },
     {
-      "repo": "vega-org/vega-app",
-      "score": 81.7,
+      "repo": "Tencent-Hunyuan/HunyuanVideo",
+      "score": 81.6,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 91,
       "reasons": []
     },
     {
       "repo": "alsk1992/CloddsBot",
-      "score": 81.0,
+      "score": 81.1,
       "status": "healthy",
-      "ageDays": 2,
+      "ageDays": 9,
       "reasons": []
     },
     {
       "repo": "plandex-ai/plandex",
       "score": 80.9,
       "status": "healthy",
-      "ageDays": 352,
+      "ageDays": 359,
+      "reasons": []
+    },
+    {
+      "repo": "ZeroPointRepo/youtube-skills",
+      "score": 79.9,
+      "status": "healthy",
+      "ageDays": 5,
       "reasons": []
     },
     {
       "repo": "DEAP/deap",
       "score": 79.7,
       "status": "healthy",
-      "ageDays": 156,
-      "reasons": []
-    },
-    {
-      "repo": "kyegomez/awesome-multi-agent-papers",
-      "score": 79.6,
-      "status": "healthy",
-      "ageDays": 31,
+      "ageDays": 163,
       "reasons": []
     },
     {
       "repo": "FujiwaraChoki/MoneyPrinter",
       "score": 79.4,
       "status": "healthy",
-      "ageDays": 178,
-      "reasons": []
-    },
-    {
-      "repo": "kaiiyer/awesome-vulnerable",
-      "score": 79.4,
-      "status": "healthy",
-      "ageDays": 90,
-      "reasons": []
-    },
-    {
-      "repo": "ZeroPointRepo/youtube-skills",
-      "score": 79.4,
-      "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 185,
       "reasons": []
     },
     {
       "repo": "earthly/earthly",
       "score": 79.3,
       "status": "healthy",
-      "ageDays": 332,
+      "ageDays": 339,
+      "reasons": []
+    },
+    {
+      "repo": "Mafifrizi/ARES",
+      "score": 78.8,
+      "status": "healthy",
+      "ageDays": 0,
       "reasons": []
     },
     {
@@ -2333,9 +2340,9 @@
     },
     {
       "repo": "The-Swarm-Corporation/AutoHedge",
-      "score": 78.5,
+      "score": 78.6,
       "status": "healthy",
-      "ageDays": 133,
+      "ageDays": 140,
       "reasons": []
     },
     {
@@ -2349,35 +2356,28 @@
       "repo": "bluscreenofjeff/Red-Team-Infrastructure-Wiki",
       "score": 77.7,
       "status": "healthy",
-      "ageDays": 354,
-      "reasons": []
-    },
-    {
-      "repo": "Mafifrizi/ARES",
-      "score": 77.5,
-      "status": "healthy",
-      "ageDays": 0,
+      "ageDays": 361,
       "reasons": []
     },
     {
       "repo": "A-poc/RedTeam-Tools",
       "score": 77.2,
       "status": "healthy",
-      "ageDays": 156,
+      "ageDays": 163,
       "reasons": []
     },
     {
       "repo": "cookiy-ai/user-research-skill",
       "score": 77.2,
       "status": "healthy",
-      "ageDays": 32,
+      "ageDays": 39,
       "reasons": []
     },
     {
       "repo": "trimstray/the-book-of-secret-knowledge",
       "score": 77.0,
       "status": "healthy",
-      "ageDays": 670,
+      "ageDays": 677,
       "reasons": [
         "stale-over-1y"
       ]
@@ -2386,114 +2386,114 @@
       "repo": "friuns2/BlackFriday-GPTs-Prompts",
       "score": 76.9,
       "status": "healthy",
-      "ageDays": 187,
+      "ageDays": 194,
       "reasons": []
     },
     {
       "repo": "bleedline/aimoneyhunter",
       "score": 75.3,
       "status": "healthy",
-      "ageDays": 336,
+      "ageDays": 343,
       "reasons": []
     },
     {
       "repo": "stefan-jansen/zipline-reloaded",
       "score": 74.3,
       "status": "watch",
-      "ageDays": 257,
+      "ageDays": 264,
       "reasons": []
     },
     {
       "repo": "pykalman/pykalman",
       "score": 74.1,
       "status": "watch",
-      "ageDays": 153,
-      "reasons": []
-    },
-    {
-      "repo": "mihail911/modern-software-dev-assignments",
-      "score": 74.0,
-      "status": "watch",
-      "ageDays": 314,
+      "ageDays": 160,
       "reasons": []
     },
     {
       "repo": "airbnb/lottie-web",
       "score": 73.6,
       "status": "watch",
-      "ageDays": 385,
+      "ageDays": 392,
       "reasons": [
         "stale-over-1y"
       ]
     },
     {
       "repo": "Paramchoudhary/ResumeSkills",
-      "score": 73.1,
+      "score": 73.2,
       "status": "watch",
-      "ageDays": 94,
+      "ageDays": 101,
       "reasons": []
     },
     {
       "repo": "ShadowHackrs/Gmail-infinity",
       "score": 73.1,
       "status": "watch",
-      "ageDays": 4,
+      "ageDays": 11,
+      "reasons": []
+    },
+    {
+      "repo": "kaiiyer/awesome-vulnerable",
+      "score": 72.4,
+      "status": "watch",
+      "ageDays": 97,
       "reasons": []
     },
     {
       "repo": "comby-tools/comby",
-      "score": 72.0,
+      "score": 72.1,
       "status": "watch",
-      "ageDays": 105,
+      "ageDays": 112,
+      "reasons": []
+    },
+    {
+      "repo": "199-biotechnologies/claude-deep-research-skill",
+      "score": 70.9,
+      "status": "watch",
+      "ageDays": 169,
+      "reasons": []
+    },
+    {
+      "repo": "bevibing/tutor-skills",
+      "score": 70.8,
+      "status": "watch",
+      "ageDays": 211,
       "reasons": []
     },
     {
       "repo": "stefan-jansen/alphalens-reloaded",
-      "score": 70.5,
+      "score": 70.6,
       "status": "watch",
-      "ageDays": 280,
+      "ageDays": 287,
       "reasons": []
     },
     {
       "repo": "stefan-jansen/pyfolio-reloaded",
       "score": 70.5,
       "status": "watch",
-      "ageDays": 279,
-      "reasons": []
-    },
-    {
-      "repo": "bevibing/tutor-skills",
-      "score": 70.2,
-      "status": "watch",
-      "ageDays": 204,
+      "ageDays": 286,
       "reasons": []
     },
     {
       "repo": "simonfarah/tiktok-bot",
-      "score": 68.2,
+      "score": 68.3,
       "status": "watch",
-      "ageDays": 196,
+      "ageDays": 203,
       "reasons": []
     },
     {
       "repo": "vollib/py_vollib",
       "score": 68.1,
       "status": "watch",
-      "ageDays": 115,
-      "reasons": []
-    },
-    {
-      "repo": "199-biotechnologies/claude-deep-research-skill",
-      "score": 67.6,
-      "status": "watch",
-      "ageDays": 162,
+      "ageDays": 122,
       "reasons": []
     },
     {
       "repo": "animate-css/animate.css",
       "score": 67.4,
       "status": "watch",
-      "ageDays": 783,
+      "ageDays": 790,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2502,7 +2502,7 @@
       "repo": "LargeWorldModel/LWM",
       "score": 66.8,
       "status": "watch",
-      "ageDays": 702,
+      "ageDays": 709,
       "reasons": [
         "stale-over-1y"
       ]
@@ -2511,7 +2511,7 @@
       "repo": "RayVentura/ShortGPT",
       "score": 66.8,
       "status": "watch",
-      "ageDays": 587,
+      "ageDays": 594,
       "reasons": [
         "stale-over-1y"
       ]
@@ -2520,7 +2520,7 @@
       "repo": "hmmlearn/hmmlearn",
       "score": 66.2,
       "status": "watch",
-      "ageDays": 690,
+      "ageDays": 697,
       "reasons": [
         "stale-over-1y"
       ]
@@ -2529,7 +2529,7 @@
       "repo": "lllyasviel/Paints-UNDO",
       "score": 65.4,
       "status": "watch",
-      "ageDays": 403,
+      "ageDays": 410,
       "reasons": [
         "stale-over-1y"
       ]
@@ -2538,14 +2538,14 @@
       "repo": "Ha3MrX/InstaBrute",
       "score": 64.4,
       "status": "watch",
-      "ageDays": 102,
+      "ageDays": 109,
       "reasons": []
     },
     {
       "repo": "DanielMartinus/Konfetti",
       "score": 63.8,
       "status": "watch",
-      "ageDays": 395,
+      "ageDays": 403,
       "reasons": [
         "stale-over-1y"
       ]
@@ -2554,7 +2554,7 @@
       "repo": "mementum/backtrader",
       "score": 63.1,
       "status": "watch",
-      "ageDays": 762,
+      "ageDays": 769,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2563,7 +2563,7 @@
       "repo": "quantopian/zipline",
       "score": 61.9,
       "status": "watch",
-      "ageDays": 951,
+      "ageDays": 958,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2572,14 +2572,14 @@
       "repo": "harry2141985/Google-Collab-Notebooks",
       "score": 61.2,
       "status": "watch",
-      "ageDays": 167,
+      "ageDays": 175,
       "reasons": []
     },
     {
       "repo": "blaCCkHatHacEEkr/PENTESTING-BIBLE",
       "score": 60.9,
       "status": "watch",
-      "ageDays": 1267,
+      "ageDays": 1274,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2588,7 +2588,7 @@
       "repo": "thomvaill/log4brains",
       "score": 60.8,
       "status": "watch",
-      "ageDays": 642,
+      "ageDays": 649,
       "reasons": [
         "stale-over-1y"
       ]
@@ -2597,7 +2597,7 @@
       "repo": "SociallyIneptWeeb/AICoverGen",
       "score": 60.6,
       "status": "watch",
-      "ageDays": 583,
+      "ageDays": 590,
       "reasons": [
         "stale-over-1y"
       ]
@@ -2606,7 +2606,7 @@
       "repo": "paperjs/paper.js",
       "score": 60.1,
       "status": "watch",
-      "ageDays": 790,
+      "ageDays": 797,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2615,7 +2615,7 @@
       "repo": "megadose/holehe",
       "score": 60.0,
       "status": "watch",
-      "ageDays": 740,
+      "ageDays": 747,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2624,7 +2624,7 @@
       "repo": "yeyintminthuhtut/Awesome-Red-Teaming",
       "score": 59.1,
       "status": "watch",
-      "ageDays": 997,
+      "ageDays": 1004,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2633,7 +2633,7 @@
       "repo": "rough-stuff/rough",
       "score": 58.7,
       "status": "watch",
-      "ageDays": 784,
+      "ageDays": 791,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2642,25 +2642,25 @@
       "repo": "lettier/3d-game-shaders-for-beginners",
       "score": 58.6,
       "status": "watch",
-      "ageDays": 1183,
+      "ageDays": 1190,
       "reasons": [
         "stale-over-2y"
       ]
     },
     {
       "repo": "maxwellito/vivus",
-      "score": 58.3,
+      "score": 58.4,
       "status": "watch",
-      "ageDays": 1537,
+      "ageDays": 1544,
       "reasons": [
         "stale-over-2y"
       ]
     },
     {
       "repo": "quantopian/pyfolio",
-      "score": 57.9,
+      "score": 58.0,
       "status": "watch",
-      "ageDays": 1003,
+      "ageDays": 1010,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2669,7 +2669,7 @@
       "repo": "matplotlib/mplfinance",
       "score": 56.8,
       "status": "watch",
-      "ageDays": 773,
+      "ageDays": 780,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2678,7 +2678,7 @@
       "repo": "hudson-and-thames/mlfinlab",
       "score": 56.3,
       "status": "watch",
-      "ageDays": 1085,
+      "ageDays": 1092,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2687,7 +2687,7 @@
       "repo": "dream80/roop_colab",
       "score": 55.6,
       "status": "watch",
-      "ageDays": 398,
+      "ageDays": 405,
       "reasons": [
         "stale-over-1y"
       ]
@@ -2696,7 +2696,7 @@
       "repo": "ali-vilab/AnyDoor",
       "score": 54.4,
       "status": "weak",
-      "ageDays": 896,
+      "ageDays": 903,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2705,16 +2705,16 @@
       "repo": "plattysoft/Leonids",
       "score": 53.2,
       "status": "weak",
-      "ageDays": 2035,
+      "ageDays": 2042,
       "reasons": [
         "stale-over-2y"
       ]
     },
     {
       "repo": "inkscape/inkscape",
-      "score": 52.6,
+      "score": 52.7,
       "status": "weak",
-      "ageDays": 1662,
+      "ageDays": 1669,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2723,7 +2723,7 @@
       "repo": "Cyb0r9/SocialBox",
       "score": 48.9,
       "status": "weak",
-      "ageDays": 1047,
+      "ageDays": 1054,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2732,7 +2732,7 @@
       "repo": "Narasimha1997/fake-sms",
       "score": 48.9,
       "status": "weak",
-      "ageDays": 1146,
+      "ageDays": 1153,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2741,7 +2741,7 @@
       "repo": "GH05T-HUNTER5/GH05T-INSTA",
       "score": 43.5,
       "status": "weak",
-      "ageDays": 793,
+      "ageDays": 800,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2750,7 +2750,7 @@
       "repo": "GuallaGang508/SMSBotBypass",
       "score": 39.1,
       "status": "weak",
-      "ageDays": 815,
+      "ageDays": 822,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2759,7 +2759,7 @@
       "repo": "camenduru/SMPLer-X-colab",
       "score": 33.6,
       "status": "weak",
-      "ageDays": 931,
+      "ageDays": 938,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2768,7 +2768,7 @@
       "repo": "BloodOnTop/Stealerium",
       "score": 33.1,
       "status": "weak",
-      "ageDays": 1129,
+      "ageDays": 1136,
       "reasons": [
         "stale-over-2y"
       ]
@@ -2777,7 +2777,7 @@
       "repo": "camenduru/dust3r-jupyter",
       "score": 30.2,
       "status": "weak",
-      "ageDays": 931,
+      "ageDays": 938,
       "reasons": [
         "stale-over-2y"
       ]
