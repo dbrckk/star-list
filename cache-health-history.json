@@ -48,6 +48,18 @@
       "candidateSeverity": "healthy",
       "alertState": "healthy",
       "issueAction": "close"
+    },
+    {
+      "date": "2026-10-05",
+      "status": "degraded",
+      "logicalRequests": 180,
+      "apiCallAvoidanceRate": 0.0111,
+      "bodyReuseRate": 0.0111,
+      "networkFetchRate": 0.8889,
+      "staleFallbackRate": 0.0,
+      "candidateSeverity": "degraded",
+      "alertState": "watch",
+      "issueAction": "hold"
     }
   ]
 }
