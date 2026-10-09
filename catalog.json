@@ -23364,6 +23364,3760 @@
       ],
       "guidanceSource": "curated",
       "lifecycle": "active"
+    },
+    {
+      "repo": "0x6rss/chat-apps-osint",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "OSINT et investigations autorisées",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "osint",
+        "investigation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 246,
+        "forks": 44,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-26T22:17:22Z"
+      },
+      "bestFor": [
+        "Collecter des données publiques pour une investigation autorisée"
+      ],
+      "avoidWhen": [
+        "Surveiller des personnes ou des comptes sans base légale"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "abue-ammar/tinycast",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Outils natifs de productivité macOS",
+      "domain": "productivity",
+      "capabilities": [
+        "launcher",
+        "clipboard",
+        "macos"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "platforms": [
+        "macos"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "unknown",
+      "github": {
+        "stars": 8214,
+        "forks": 458,
+        "openIssues": 13,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T01:19:58Z"
+      },
+      "bestFor": [
+        "Gérer commandes rapides et historique de presse-papiers sur macOS"
+      ],
+      "avoidWhen": [
+        "Chercher une application compatible Android ou Windows"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "ahmadrosid/nakama",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Collaboration et partage de compétences",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agents",
+        "collaboration",
+        "skills"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 462,
+        "forks": 86,
+        "openIssues": 70,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:32:01Z"
+      },
+      "bestFor": [
+        "Partager des outils d'IA au sein d'une équipe"
+      ],
+      "avoidWhen": [
+        "Partager des données confidentielles sans permissions"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "anthropics/skills",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Ressources et compétences d'agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skills",
+        "tool-discovery"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 180014,
+        "forks": 21316,
+        "openIssues": 1395,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-08T18:06:26Z"
+      },
+      "bestFor": [
+        "Réutiliser et comparer des compétences pour assistants et agents"
+      ],
+      "avoidWhen": [
+        "Installer des extensions tierces sans inspecter leur code"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "AppFlowy-IO/AppFlowy",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Gestion collaborative de connaissances",
+      "domain": "productivity",
+      "capabilities": [
+        "workspace",
+        "notes",
+        "collaboration"
+      ],
+      "languages": [
+        "dart"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 77205,
+        "forks": 6054,
+        "openIssues": 1033,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-08T11:00:14Z"
+      },
+      "bestFor": [
+        "Organiser documents et tâches d'équipe dans un service hébergeable"
+      ],
+      "avoidWhen": [
+        "Exiger une solution sans maintenance ni sauvegardes"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "apurvsinghgautam/robin",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "OSINT et investigations autorisées",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "osint",
+        "investigation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 7452,
+        "forks": 1399,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-03T00:20:31Z"
+      },
+      "bestFor": [
+        "Collecter des données publiques pour une investigation autorisée"
+      ],
+      "avoidWhen": [
+        "Surveiller des personnes ou des comptes sans base légale"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "awesome-selfhosted/awesome-selfhosted",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Index de solutions gratuites et auto-hébergées",
+      "domain": "devops",
+      "capabilities": [
+        "free-tier",
+        "self-hosted",
+        "awesome-list"
+      ],
+      "languages": [],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 324734,
+        "forks": 15195,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-06T18:10:01Z"
+      },
+      "bestFor": [
+        "Comparer les logiciels gratuits et les services auto-hébergés"
+      ],
+      "avoidWhen": [
+        "Supposer des tarifs et quotas gratuits permanents"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "bentoml/BentoML",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Inférence et distribution de LLM",
+      "domain": "data_ml",
+      "capabilities": [
+        "llm-inference",
+        "model-serving",
+        "optimization"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 8886,
+        "forks": 1040,
+        "openIssues": 226,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-05T17:17:22Z"
+      },
+      "bestFor": [
+        "Déployer et optimiser des modèles IA sur du matériel adapté"
+      ],
+      "avoidWhen": [
+        "Serveurs sans ressources CPU/GPU ou limites de mémoire adaptées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "bradygaster/squad",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Gestion de développement multi-agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "multi-agent",
+        "coding-agents",
+        "workflow"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3258,
+        "forks": 506,
+        "openIssues": 105,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "dev",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T23:20:09Z"
+      },
+      "bestFor": [
+        "Coordonner le développement avec plusieurs agents et un suivi des changements"
+      ],
+      "avoidWhen": [
+        "Accepter des modifications automatisées sans tests et code review"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "browser-use/jev-ultrafast",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Automatisation d'interfaces pour agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "computer-use",
+        "automation",
+        "browser"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 22412,
+        "forks": 1638,
+        "openIssues": 189,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-30T01:24:38Z"
+      },
+      "bestFor": [
+        "Automatiser des interfaces réelles avec contrôle des permissions"
+      ],
+      "avoidWhen": [
+        "Confier des actions sensibles à un agent sans supervision"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "browser-use/video-use",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Outils de traitement et montage vidéo",
+      "domain": "ai_media",
+      "capabilities": [
+        "video-editing",
+        "automation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 28461,
+        "forks": 3344,
+        "openIssues": 146,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T22:17:01Z"
+      },
+      "bestFor": [
+        "Produire et éditer des vidéos via des workflows contrôlés"
+      ],
+      "avoidWhen": [
+        "Réutiliser des médias sans droits ou sans contrôle qualité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "caido/caido",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Bug bounty et tests de sécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "bug-bounty",
+        "security-testing"
+      ],
+      "languages": [
+        "shell"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2672,
+        "forks": 149,
+        "openIssues": 738,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-09-04T15:19:47Z"
+      },
+      "bestFor": [
+        "Analyser des rapports et vérifier des vulnérabilités sur des cibles autorisées"
+      ],
+      "avoidWhen": [
+        "Scanner des cibles hors scope ou utiliser des exploits sans permission"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "caido/skills",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Bug bounty et tests de sécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "bug-bounty",
+        "security-testing"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 279,
+        "forks": 28,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-08-13T17:37:45Z"
+      },
+      "bestFor": [
+        "Analyser des rapports et vérifier des vulnérabilités sur des cibles autorisées"
+      ],
+      "avoidWhen": [
+        "Scanner des cibles hors scope ou utiliser des exploits sans permission"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "calcom/cal.diy",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Planification et rendez-vous",
+      "domain": "productivity",
+      "capabilities": [
+        "scheduling",
+        "booking",
+        "calendar"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 48921,
+        "forks": 15301,
+        "openIssues": 1491,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-26T07:48:40Z"
+      },
+      "bestFor": [
+        "Créer une interface de gestion de rendez-vous"
+      ],
+      "avoidWhen": [
+        "Utiliser des calendriers sans protections ni gestion des accès"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "charlie947/social-media-skills",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Communication et marketing assistés par IA",
+      "domain": "productivity",
+      "capabilities": [
+        "marketing",
+        "agent-skills",
+        "content"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3833,
+        "forks": 880,
+        "openIssues": 15,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-15T02:57:08Z"
+      },
+      "bestFor": [
+        "Organiser des tâches marketing et éditoriales avec des agents"
+      ],
+      "avoidWhen": [
+        "Automatiser une prospection intrusive ou sans validation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "cloudflare/quiche",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Protocole QUIC et HTTP/3",
+      "domain": "devops",
+      "capabilities": [
+        "quic",
+        "http3",
+        "networking"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 12757,
+        "forks": 1170,
+        "openIssues": 376,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "BSD-2-Clause",
+        "pushedAt": "2026-10-08T17:39:25Z"
+      },
+      "bestFor": [
+        "Construire ou expérimenter des communications réseau HTTP/3"
+      ],
+      "avoidWhen": [
+        "Projet sans développement réseau de bas niveau"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Comfy-Org/ComfyUI",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Génération IA par flux de nœuds",
+      "domain": "ai_media",
+      "capabilities": [
+        "diffusion",
+        "image-generation",
+        "video-generation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 136487,
+        "forks": 16227,
+        "openIssues": 5095,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-09T03:30:55Z"
+      },
+      "bestFor": [
+        "Produire des visuels générés par des pipelines paramétrables"
+      ],
+      "avoidWhen": [
+        "Lancer une génération lourde sans GPU adapté"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "coollabsio/coolify",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Déploiement auto-hébergé de services",
+      "domain": "devops",
+      "capabilities": [
+        "deployment",
+        "self-hosted",
+        "paas"
+      ],
+      "languages": [
+        "php"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 62745,
+        "forks": 5616,
+        "openIssues": 737,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T16:25:23Z"
+      },
+      "bestFor": [
+        "Déployer des applications sur une infrastructure contrôlée"
+      ],
+      "avoidWhen": [
+        "Déployer sans sauvegardes, mises à jour ni surveillance"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "coreyhaines31/marketingskills",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Communication et marketing assistés par IA",
+      "domain": "productivity",
+      "capabilities": [
+        "marketing",
+        "agent-skills",
+        "content"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 53795,
+        "forks": 8002,
+        "openIssues": 29,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T21:51:51Z"
+      },
+      "bestFor": [
+        "Organiser des tâches marketing et éditoriales avec des agents"
+      ],
+      "avoidWhen": [
+        "Automatiser une prospection intrusive ou sans validation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Crosstalk-Solutions/project-nomad",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Apprentissage et base documentaire",
+      "domain": "productivity",
+      "capabilities": [
+        "education",
+        "retrieval",
+        "offline-knowledge"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 39322,
+        "forks": 3925,
+        "openIssues": 74,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T16:21:56Z"
+      },
+      "bestFor": [
+        "Organiser la recherche et l'apprentissage autonome en local"
+      ],
+      "avoidWhen": [
+        "Prendre des réponses d'IA non vérifiées pour des faits"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "davepoon/buildwithclaude",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Ressources et compétences d'agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skills",
+        "tool-discovery"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3605,
+        "forks": 570,
+        "openIssues": 23,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-06T12:39:52Z"
+      },
+      "bestFor": [
+        "Réutiliser et comparer des compétences pour assistants et agents"
+      ],
+      "avoidWhen": [
+        "Installer des extensions tierces sans inspecter leur code"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "davila7/claude-code-templates",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Ressources et compétences d'agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skills",
+        "tool-discovery"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 32483,
+        "forks": 3731,
+        "openIssues": 362,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:17:53Z"
+      },
+      "bestFor": [
+        "Réutiliser et comparer des compétences pour assistants et agents"
+      ],
+      "avoidWhen": [
+        "Installer des extensions tierces sans inspecter leur code"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "dgtlmoon/changedetection.io",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Surveillance de modifications web",
+      "domain": "devops",
+      "capabilities": [
+        "monitoring",
+        "alerts",
+        "web"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "github": {
+        "stars": 34848,
+        "forks": 2122,
+        "openIssues": 395,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T00:25:03Z"
+      },
+      "bestFor": [
+        "Détecter les mises à jour de pages publiques"
+      ],
+      "avoidWhen": [
+        "Surveillance abusive ou contraire aux conditions du site"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "dream-num/univer",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Bureautique intégrable",
+      "domain": "productivity",
+      "capabilities": [
+        "spreadsheets",
+        "documents",
+        "slides"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 22487,
+        "forks": 1879,
+        "openIssues": 154,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "dev",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:15:19Z"
+      },
+      "bestFor": [
+        "Intégrer des documents et feuilles de calcul riches dans une application"
+      ],
+      "avoidWhen": [
+        "Rechercher seulement une simple API de traitement de texte"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "elder-plinius/CL4R1T4S",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Recherche sur la robustesse LLM",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "llm-security",
+        "red-team"
+      ],
+      "languages": [],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 51041,
+        "forks": 10466,
+        "openIssues": 127,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-09-22T21:44:42Z"
+      },
+      "bestFor": [
+        "Évaluer les limites de modèles dans un laboratoire contrôlé"
+      ],
+      "avoidWhen": [
+        "Contourner des protections de systèmes tiers sans autorisation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "elder-plinius/OBLITERATUS",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Recherche sur la robustesse LLM",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "llm-security",
+        "red-team"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 8676,
+        "forks": 1535,
+        "openIssues": 26,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-09T00:26:13Z"
+      },
+      "bestFor": [
+        "Évaluer les limites de modèles dans un laboratoire contrôlé"
+      ],
+      "avoidWhen": [
+        "Contourner des protections de systèmes tiers sans autorisation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "elie222/rakazo",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Gestion de développement multi-agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "multi-agent",
+        "coding-agents",
+        "workflow"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3522,
+        "forks": 610,
+        "openIssues": 22,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T00:08:57Z"
+      },
+      "bestFor": [
+        "Coordonner le développement avec plusieurs agents et un suivi des changements"
+      ],
+      "avoidWhen": [
+        "Accepter des modifications automatisées sans tests et code review"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "enjoy-digital/litex",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Prototypage de SoC/FPGA",
+      "domain": "software_engineering",
+      "capabilities": [
+        "fpga",
+        "hardware",
+        "simulation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4150,
+        "forks": 762,
+        "openIssues": 121,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T11:05:39Z"
+      },
+      "bestFor": [
+        "Développer des systèmes embarqués et FPGA"
+      ],
+      "avoidWhen": [
+        "Projet sans besoins de matériel ou simulation bas niveau"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "FareedKhan-dev/kimi-k3-in-c",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Expérimentation de LLM sur CPU",
+      "domain": "data_ml",
+      "capabilities": [
+        "llm-inference",
+        "cpu",
+        "optimization"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 8946,
+        "forks": 1465,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-02T04:51:44Z"
+      },
+      "bestFor": [
+        "Étudier l'inférence sur processeur avec mémoire limitée"
+      ],
+      "avoidWhen": [
+        "Déployer un prototype expérimental comme serveur de production"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "federicodeponte/opendraft",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Rédaction académique et recherche",
+      "domain": "productivity",
+      "capabilities": [
+        "research",
+        "academic-writing",
+        "citations"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 507,
+        "forks": 87,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-01T23:26:28Z"
+      },
+      "bestFor": [
+        "Préparer des rapports scientifiques en vérifiant les sources"
+      ],
+      "avoidWhen": [
+        "Publier des citations produites par IA sans vérification"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "garrytan/gstack",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Gestion de développement multi-agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "multi-agent",
+        "coding-agents",
+        "workflow"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 135659,
+        "forks": 20151,
+        "openIssues": 171,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T20:05:30Z"
+      },
+      "bestFor": [
+        "Coordonner le développement avec plusieurs agents et un suivi des changements"
+      ],
+      "avoidWhen": [
+        "Accepter des modifications automatisées sans tests et code review"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "ggml-org/llama.cpp",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Inférence et distribution de LLM",
+      "domain": "data_ml",
+      "capabilities": [
+        "llm-inference",
+        "model-serving",
+        "optimization"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 130567,
+        "forks": 24206,
+        "openIssues": 2481,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T02:29:25Z"
+      },
+      "bestFor": [
+        "Déployer et optimiser des modèles IA sur du matériel adapté"
+      ],
+      "avoidWhen": [
+        "Serveurs sans ressources CPU/GPU ou limites de mémoire adaptées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "google/artemis",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Automatisation d'interfaces pour agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "computer-use",
+        "automation",
+        "browser"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 11168,
+        "forks": 1143,
+        "openIssues": 129,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-01T21:37:15Z"
+      },
+      "bestFor": [
+        "Automatiser des interfaces réelles avec contrôle des permissions"
+      ],
+      "avoidWhen": [
+        "Confier des actions sensibles à un agent sans supervision"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "google/ax",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Frameworks et évaluation d'agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-runtime",
+        "evaluation",
+        "orchestration"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 13335,
+        "forks": 674,
+        "openIssues": 71,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-27T23:54:26Z"
+      },
+      "bestFor": [
+        "Développer et évaluer les workflows d'agents avec tests reproductibles"
+      ],
+      "avoidWhen": [
+        "Ajouter des systèmes d'agents sans besoin ni métriques de qualité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "HarnessRouter/harnessrouter",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "SDK et routeurs d'agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-runtime",
+        "routing",
+        "orchestration"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 2935,
+        "forks": 300,
+        "openIssues": 20,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T02:23:05Z"
+      },
+      "bestFor": [
+        "Exécuter et router des agents, modèles et outils de façon structurée"
+      ],
+      "avoidWhen": [
+        "Autoriser toutes les opérations d'un agent sans garde-fous"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "harry7557558/spirula-studio",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Reconstruction et rendu 3D",
+      "domain": "graphics",
+      "capabilities": [
+        "3d",
+        "gaussian-splatting",
+        "rendering"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1529,
+        "forks": 135,
+        "openIssues": 52,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-09T00:56:43Z"
+      },
+      "bestFor": [
+        "Convertir des vidéos en représentations de scènes 3D"
+      ],
+      "avoidWhen": [
+        "Inférence sur matériel insuffisant ou sans validation du rendu"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "henrygd/beszel",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Monitoring serveur et ressources",
+      "domain": "devops",
+      "capabilities": [
+        "observability",
+        "monitoring"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 26043,
+        "forks": 1067,
+        "openIssues": 359,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T18:03:19Z"
+      },
+      "bestFor": [
+        "Suivre l'activité et la santé des serveurs et conteneurs"
+      ],
+      "avoidWhen": [
+        "Exposer des données de supervision sans authentification"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "hesreallyhim/awesome-claude-code",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Ressources et compétences d'agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skills",
+        "tool-discovery"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 55282,
+        "forks": 4795,
+        "openIssues": 1188,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:16:04Z"
+      },
+      "bestFor": [
+        "Réutiliser et comparer des compétences pour assistants et agents"
+      ],
+      "avoidWhen": [
+        "Installer des extensions tierces sans inspecter leur code"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "HKUDS/CLI-Anything",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Ressources et compétences d'agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skills",
+        "tool-discovery"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 51764,
+        "forks": 4713,
+        "openIssues": 145,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-22T02:01:29Z"
+      },
+      "bestFor": [
+        "Réutiliser et comparer des compétences pour assistants et agents"
+      ],
+      "avoidWhen": [
+        "Installer des extensions tierces sans inspecter leur code"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "HKUDS/DeepTutor",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Apprentissage et base documentaire",
+      "domain": "productivity",
+      "capabilities": [
+        "education",
+        "retrieval",
+        "offline-knowledge"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 40958,
+        "forks": 5171,
+        "openIssues": 137,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T03:35:15Z"
+      },
+      "bestFor": [
+        "Organiser la recherche et l'apprentissage autonome en local"
+      ],
+      "avoidWhen": [
+        "Prendre des réponses d'IA non vérifiées pour des faits"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "imputnet/cobalt",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Récupération de médias autorisés",
+      "domain": "ai_media",
+      "capabilities": [
+        "media",
+        "downloads"
+      ],
+      "languages": [
+        "svelte"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 44787,
+        "forks": 3944,
+        "openIssues": 274,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-04-06T11:59:56Z"
+      },
+      "bestFor": [
+        "Étudier le téléchargement de médias accessibles légalement"
+      ],
+      "avoidWhen": [
+        "Télécharger du contenu protégé sans autorisation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "isair/jarvis",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Interface locale et agents vocaux",
+      "domain": "ai_agents",
+      "capabilities": [
+        "llm-ui",
+        "local-models",
+        "voice-assistant"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1965,
+        "forks": 390,
+        "openIssues": 173,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T01:37:44Z"
+      },
+      "bestFor": [
+        "Fournir une interface de chat ou voix aux modèles locaux"
+      ],
+      "avoidWhen": [
+        "Exposer les sessions d'un assistant sans authentification"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Jakubantalik/transitions.dev",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Design UX et animations d'interface",
+      "domain": "graphics",
+      "capabilities": [
+        "design-system",
+        "ui-ux",
+        "animation"
+      ],
+      "languages": [
+        "html"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4603,
+        "forks": 191,
+        "openIssues": 8,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T20:07:34Z"
+      },
+      "bestFor": [
+        "Améliorer le rendu et l'expérience utilisateur des interfaces"
+      ],
+      "avoidWhen": [
+        "Considérer des règles visuelles comme preuve d'utilisabilité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "jarrodwatts/jev-trader",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Trading automatisé expérimental",
+      "domain": "trading",
+      "capabilities": [
+        "agent-trading",
+        "execution",
+        "market-data"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 2906,
+        "forks": 548,
+        "openIssues": 8,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-17T02:48:22Z"
+      },
+      "bestFor": [
+        "Étudier le trading par agents en simulation avec mesures de risque"
+      ],
+      "avoidWhen": [
+        "Engager des fonds réels sans backtest, suivi de risque ni conformité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "roles": [
+        "alpha",
+        "risk",
+        "backtest"
+      ]
+    },
+    {
+      "repo": "koala73/worldmonitor",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Veille mondiale et agrégation de nouvelles",
+      "domain": "productivity",
+      "capabilities": [
+        "monitoring",
+        "news-aggregation"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 88092,
+        "forks": 13442,
+        "openIssues": 340,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-09T03:31:35Z"
+      },
+      "bestFor": [
+        "Agréger des informations géopolitiques et du suivi de risques"
+      ],
+      "avoidWhen": [
+        "Confondre une agrégation automatique avec une information corroborée"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "lahfir/agent-desktop",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Automatisation d'interfaces pour agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "computer-use",
+        "automation",
+        "browser"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1779,
+        "forks": 126,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-06T19:54:33Z"
+      },
+      "bestFor": [
+        "Automatiser des interfaces réelles avec contrôle des permissions"
+      ],
+      "avoidWhen": [
+        "Confier des actions sensibles à un agent sans supervision"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "LasCC/HackTools",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Bug bounty et tests de sécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "bug-bounty",
+        "security-testing"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 7077,
+        "forks": 785,
+        "openIssues": 10,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2025-01-05T23:10:49Z"
+      },
+      "bestFor": [
+        "Analyser des rapports et vérifier des vulnérabilités sur des cibles autorisées"
+      ],
+      "avoidWhen": [
+        "Scanner des cibles hors scope ou utiliser des exploits sans permission"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "stable"
+    },
+    {
+      "repo": "lastmile-ai/mcp-agent",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Frameworks et évaluation d'agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-runtime",
+        "evaluation",
+        "orchestration"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 8570,
+        "forks": 892,
+        "openIssues": 143,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-01-25T16:35:16Z"
+      },
+      "bestFor": [
+        "Développer et évaluer les workflows d'agents avec tests reproductibles"
+      ],
+      "avoidWhen": [
+        "Ajouter des systèmes d'agents sans besoin ni métriques de qualité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Leonxlnx/taste-skill",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Design UX et animations d'interface",
+      "domain": "graphics",
+      "capabilities": [
+        "design-system",
+        "ui-ux",
+        "animation"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 93861,
+        "forks": 6376,
+        "openIssues": 78,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T20:35:00Z"
+      },
+      "bestFor": [
+        "Améliorer le rendu et l'expérience utilisateur des interfaces"
+      ],
+      "avoidWhen": [
+        "Considérer des règles visuelles comme preuve d'utilisabilité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "letta-ai/letta",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Mémoire persistante des agents",
+      "domain": "ai_memory",
+      "capabilities": [
+        "agent-memory",
+        "persistent-state"
+      ],
+      "languages": [],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 25079,
+        "forks": 2644,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-10T17:59:08Z"
+      },
+      "bestFor": [
+        "Donner aux agents une mémoire à long terme maîtrisée"
+      ],
+      "avoidWhen": [
+        "Conserver des données personnelles sans contrôle de rétention"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "LibreTranslate/LibreTranslate",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "API locale de traduction",
+      "domain": "data_ml",
+      "capabilities": [
+        "translation",
+        "nlp",
+        "api"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 17006,
+        "forks": 1769,
+        "openIssues": 127,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-09-28T00:52:25Z"
+      },
+      "bestFor": [
+        "Traduire des textes sur une infrastructure contrôlée"
+      ],
+      "avoidWhen": [
+        "Exiger une traduction certifiée ou juridiquement valide"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "maziyarpanahi/openmed",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Traitement clinique hors ligne",
+      "domain": "data_ml",
+      "capabilities": [
+        "health-data",
+        "nlp",
+        "on-device"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 5484,
+        "forks": 701,
+        "openIssues": 660,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:00:05Z"
+      },
+      "bestFor": [
+        "Évaluer l'extraction locale d'informations cliniques sous contraintes de confidentialité"
+      ],
+      "avoidWhen": [
+        "Exposer des dossiers médicaux sans consentement ni protections"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "medusajs/medusa",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Commerce électronique et API de vente",
+      "domain": "backend",
+      "capabilities": [
+        "ecommerce",
+        "backend",
+        "api"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 36661,
+        "forks": 5367,
+        "openIssues": 206,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "develop",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T22:57:04Z"
+      },
+      "bestFor": [
+        "Créer un backend e-commerce personnalisable"
+      ],
+      "avoidWhen": [
+        "Application sans vente de produits ni parcours marchand"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "MG1937/ASC",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Décompilation et analyse Android",
+      "domain": "software_engineering",
+      "capabilities": [
+        "android",
+        "reverse-engineering"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 2184,
+        "forks": 301,
+        "openIssues": 8,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-30T13:39:06Z"
+      },
+      "bestFor": [
+        "Inspecter et comprendre des applications Android autorisées"
+      ],
+      "avoidWhen": [
+        "Analyser ou republier des applications protégées sans droits"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "microsoft/agent-lightning",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Frameworks et évaluation d'agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-runtime",
+        "evaluation",
+        "orchestration"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 18602,
+        "forks": 1663,
+        "openIssues": 188,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-29T08:13:46Z"
+      },
+      "bestFor": [
+        "Développer et évaluer les workflows d'agents avec tests reproductibles"
+      ],
+      "avoidWhen": [
+        "Ajouter des systèmes d'agents sans besoin ni métriques de qualité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "moorcheh-ai/memanto",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Mémoire persistante des agents",
+      "domain": "ai_memory",
+      "capabilities": [
+        "agent-memory",
+        "persistent-state"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 2321,
+        "forks": 735,
+        "openIssues": 40,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-07T19:29:06Z"
+      },
+      "bestFor": [
+        "Donner aux agents une mémoire à long terme maîtrisée"
+      ],
+      "avoidWhen": [
+        "Conserver des données personnelles sans contrôle de rétention"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "muellerberndt/cadence",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Mémoire adaptative et coordination d'agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "multi-agent",
+        "memory",
+        "coordination"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 419,
+        "forks": 52,
+        "openIssues": 35,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-09T02:48:32Z"
+      },
+      "bestFor": [
+        "Expérimenter la persistance et la coordination d'agents"
+      ],
+      "avoidWhen": [
+        "Conserver des informations sensibles sans politique de rétention"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "mvt-project/mvt",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Forensique mobile",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "mobile-forensics",
+        "incident-response"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 15262,
+        "forks": 1451,
+        "openIssues": 60,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-07T18:17:39Z"
+      },
+      "bestFor": [
+        "Rechercher des signes de compromission sur un terminal autorisé"
+      ],
+      "avoidWhen": [
+        "Accéder aux données d'un appareil tiers sans permission"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Design UX et animations d'interface",
+      "domain": "graphics",
+      "capabilities": [
+        "design-system",
+        "ui-ux",
+        "animation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 133954,
+        "forks": 14231,
+        "openIssues": 90,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T05:06:09Z"
+      },
+      "bestFor": [
+        "Améliorer le rendu et l'expérience utilisateur des interfaces"
+      ],
+      "avoidWhen": [
+        "Considérer des règles visuelles comme preuve d'utilisabilité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "open-webui/open-webui",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Interface locale et agents vocaux",
+      "domain": "ai_agents",
+      "capabilities": [
+        "llm-ui",
+        "local-models",
+        "voice-assistant"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 154070,
+        "forks": 22546,
+        "openIssues": 279,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T20:48:33Z"
+      },
+      "bestFor": [
+        "Fournir une interface de chat ou voix aux modèles locaux"
+      ],
+      "avoidWhen": [
+        "Exposer les sessions d'un assistant sans authentification"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "opentoonz/opentoonz",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Animation 2D",
+      "domain": "graphics",
+      "capabilities": [
+        "2d-animation",
+        "visual-assets"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 7803,
+        "forks": 885,
+        "openIssues": 235,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-04T19:55:38Z"
+      },
+      "bestFor": [
+        "Créer des animations graphiques 2D"
+      ],
+      "avoidWhen": [
+        "Travailler sans interface graphique ni outils adaptés"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "pacifio/atlas",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Gestion de développement multi-agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "multi-agent",
+        "coding-agents",
+        "workflow"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 9490,
+        "forks": 368,
+        "openIssues": 33,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T23:25:09Z"
+      },
+      "bestFor": [
+        "Coordonner le développement avec plusieurs agents et un suivi des changements"
+      ],
+      "avoidWhen": [
+        "Accepter des modifications automatisées sans tests et code review"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "pbakaus/impeccable",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Design UX et animations d'interface",
+      "domain": "graphics",
+      "capabilities": [
+        "design-system",
+        "ui-ux",
+        "animation"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 78704,
+        "forks": 4676,
+        "openIssues": 63,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:02:39Z"
+      },
+      "bestFor": [
+        "Améliorer le rendu et l'expérience utilisateur des interfaces"
+      ],
+      "avoidWhen": [
+        "Considérer des règles visuelles comme preuve d'utilisabilité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "plausible/analytics",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Analyse d'audience web privée",
+      "domain": "devops",
+      "capabilities": [
+        "analytics",
+        "privacy",
+        "tracking"
+      ],
+      "languages": [
+        "elixir"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 29349,
+        "forks": 1885,
+        "openIssues": 63,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-08T20:38:42Z"
+      },
+      "bestFor": [
+        "Mesurer l'audience d'un site avec collecte minimale"
+      ],
+      "avoidWhen": [
+        "Besoin d'attribution marketing détaillée sans solution complémentaire"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "projectdiscovery/nuclei",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Bug bounty et tests de sécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "bug-bounty",
+        "security-testing"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 31836,
+        "forks": 3920,
+        "openIssues": 135,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "dev",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T14:32:27Z"
+      },
+      "bestFor": [
+        "Analyser des rapports et vérifier des vulnérabilités sur des cibles autorisées"
+      ],
+      "avoidWhen": [
+        "Scanner des cibles hors scope ou utiliser des exploits sans permission"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "projectdiscovery/nuclei-templates",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Bug bounty et tests de sécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "bug-bounty",
+        "security-testing"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 13072,
+        "forks": 3681,
+        "openIssues": 115,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:19:32Z"
+      },
+      "bestFor": [
+        "Analyser des rapports et vérifier des vulnérabilités sur des cibles autorisées"
+      ],
+      "avoidWhen": [
+        "Scanner des cibles hors scope ou utiliser des exploits sans permission"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "pydantic/pydantic-ai",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Framework d'agents Python typé",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agents",
+        "python",
+        "validation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 20495,
+        "forks": 2884,
+        "openIssues": 1428,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T02:19:34Z"
+      },
+      "bestFor": [
+        "Construire des workflows d'agents avec modèles et sorties structurés"
+      ],
+      "avoidWhen": [
+        "Créer un agent lorsque des fonctions déterministes suffisent"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Recurse-Labs/recurse",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Rétro-ingénierie logicielle",
+      "domain": "software_engineering",
+      "capabilities": [
+        "reverse-engineering",
+        "code-analysis"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 290,
+        "forks": 28,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-03T19:13:42Z"
+      },
+      "bestFor": [
+        "Étudier des binaires et du code dont l'analyse est autorisée"
+      ],
+      "avoidWhen": [
+        "Redistribuer des binaires ou du code sans permission"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "reddelexc/hackerone-reports",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Bug bounty et tests de sécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "bug-bounty",
+        "security-testing"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6595,
+        "forks": 1156,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-09-12T11:45:34Z"
+      },
+      "bestFor": [
+        "Analyser des rapports et vérifier des vulnérabilités sur des cibles autorisées"
+      ],
+      "avoidWhen": [
+        "Scanner des cibles hors scope ou utiliser des exploits sans permission"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "ripienaar/free-for-dev",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Index de solutions gratuites et auto-hébergées",
+      "domain": "devops",
+      "capabilities": [
+        "free-tier",
+        "self-hosted",
+        "awesome-list"
+      ],
+      "languages": [
+        "html"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 139224,
+        "forks": 14731,
+        "openIssues": 14,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-10-07T21:31:03Z"
+      },
+      "bestFor": [
+        "Comparer les logiciels gratuits et les services auto-hébergés"
+      ],
+      "avoidWhen": [
+        "Supposer des tarifs et quotas gratuits permanents"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Scottcjn/Rustchain",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Mémoire adaptative et coordination d'agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "multi-agent",
+        "memory",
+        "coordination"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 851,
+        "forks": 590,
+        "openIssues": 178,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T01:46:05Z"
+      },
+      "bestFor": [
+        "Expérimenter la persistance et la coordination d'agents"
+      ],
+      "avoidWhen": [
+        "Conserver des informations sensibles sans politique de rétention"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "searxng/searxng",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Méta-recherche respectueuse de la vie privée",
+      "domain": "productivity",
+      "capabilities": [
+        "search",
+        "privacy",
+        "self-hosted"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 38127,
+        "forks": 3477,
+        "openIssues": 191,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-07T09:21:06Z"
+      },
+      "bestFor": [
+        "Déployer un moteur de recherche web fédéré auto-hébergé"
+      ],
+      "avoidWhen": [
+        "Supposer une disponibilité identique de toutes les sources"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "sgl-project/sglang",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Inférence et distribution de LLM",
+      "domain": "data_ml",
+      "capabilities": [
+        "llm-inference",
+        "model-serving",
+        "optimization"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 36897,
+        "forks": 9387,
+        "openIssues": 5599,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:17:25Z"
+      },
+      "bestFor": [
+        "Déployer et optimiser des modèles IA sur du matériel adapté"
+      ],
+      "avoidWhen": [
+        "Serveurs sans ressources CPU/GPU ou limites de mémoire adaptées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "simular-ai/Agent-S",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Automatisation d'interfaces pour agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "computer-use",
+        "automation",
+        "browser"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 12566,
+        "forks": 1467,
+        "openIssues": 55,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T22:27:33Z"
+      },
+      "bestFor": [
+        "Automatiser des interfaces réelles avec contrôle des permissions"
+      ],
+      "avoidWhen": [
+        "Confier des actions sensibles à un agent sans supervision"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "strands-agents/harness-sdk",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "SDK et routeurs d'agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-runtime",
+        "routing",
+        "orchestration"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 8744,
+        "forks": 1344,
+        "openIssues": 994,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T23:17:16Z"
+      },
+      "bestFor": [
+        "Exécuter et router des agents, modèles et outils de façon structurée"
+      ],
+      "avoidWhen": [
+        "Autoriser toutes les opérations d'un agent sans garde-fous"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "superdesigndev/treg",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "SDK et routeurs d'agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-runtime",
+        "routing",
+        "orchestration"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4865,
+        "forks": 395,
+        "openIssues": 129,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:20:41Z"
+      },
+      "bestFor": [
+        "Exécuter et router des agents, modèles et outils de façon structurée"
+      ],
+      "avoidWhen": [
+        "Autoriser toutes les opérations d'un agent sans garde-fous"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "tamaratran/fast-jev-compaction",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Compression de contexte pour agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "context-management",
+        "agent-memory"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 7532,
+        "forks": 521,
+        "openIssues": 111,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-18T04:45:31Z"
+      },
+      "bestFor": [
+        "Préserver les décisions et outils importants d'une longue session"
+      ],
+      "avoidWhen": [
+        "Dépendre d'un historique incomplet sans vérification"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "TianyuCodings/NanoJev",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "SDK et routeurs d'agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-runtime",
+        "routing",
+        "orchestration"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 2511,
+        "forks": 260,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-21T09:58:28Z"
+      },
+      "bestFor": [
+        "Exécuter et router des agents, modèles et outils de façon structurée"
+      ],
+      "avoidWhen": [
+        "Autoriser toutes les opérations d'un agent sans garde-fous"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "triton-inference-server/server",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Inférence et distribution de LLM",
+      "domain": "data_ml",
+      "capabilities": [
+        "llm-inference",
+        "model-serving",
+        "optimization"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 11057,
+        "forks": 1850,
+        "openIssues": 897,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "BSD-3-Clause",
+        "pushedAt": "2026-10-08T23:52:20Z"
+      },
+      "bestFor": [
+        "Déployer et optimiser des modèles IA sur du matériel adapté"
+      ],
+      "avoidWhen": [
+        "Serveurs sans ressources CPU/GPU ou limites de mémoire adaptées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "TryGhost/Ghost",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Publication et abonnements",
+      "domain": "backend",
+      "capabilities": [
+        "cms",
+        "publishing",
+        "subscriptions"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 55501,
+        "forks": 11987,
+        "openIssues": 174,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:06:43Z"
+      },
+      "bestFor": [
+        "Déployer un site éditorial avec newsletters et adhésions"
+      ],
+      "avoidWhen": [
+        "Développer un marketplace complexe sans composants additionnels"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "upstash/context7",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Contexte documentaire à jour",
+      "domain": "software_engineering",
+      "capabilities": [
+        "documentation",
+        "mcp",
+        "context-retrieval"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 62816,
+        "forks": 3058,
+        "openIssues": 49,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T12:52:53Z"
+      },
+      "bestFor": [
+        "Fournir aux agents de la documentation pertinente à la version du projet"
+      ],
+      "avoidWhen": [
+        "Utiliser des documents anciens comme preuve de comportement actuel"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "VectifyAI/PageIndex",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Indexation documentaire pour RAG",
+      "domain": "ai_memory",
+      "capabilities": [
+        "rag",
+        "document-indexing"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 39005,
+        "forks": 3381,
+        "openIssues": 121,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T05:18:34Z"
+      },
+      "bestFor": [
+        "Récupérer du contexte pertinent depuis des documents volumineux"
+      ],
+      "avoidWhen": [
+        "Envoyer des documents sensibles vers un fournisseur non maîtrisé"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "vllm-project/vllm",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Inférence et distribution de LLM",
+      "domain": "data_ml",
+      "capabilities": [
+        "llm-inference",
+        "model-serving",
+        "optimization"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 93420,
+        "forks": 23151,
+        "openIssues": 8643,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:11:42Z"
+      },
+      "bestFor": [
+        "Déployer et optimiser des modèles IA sur du matériel adapté"
+      ],
+      "avoidWhen": [
+        "Serveurs sans ressources CPU/GPU ou limites de mémoire adaptées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "xiaolai/the-craft-of-selfteaching",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Apprentissage et base documentaire",
+      "domain": "productivity",
+      "capabilities": [
+        "education",
+        "retrieval",
+        "offline-knowledge"
+      ],
+      "languages": [
+        "jupyter notebook"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 17572,
+        "forks": 17735,
+        "openIssues": 200,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-05-20T23:38:19Z"
+      },
+      "bestFor": [
+        "Organiser la recherche et l'apprentissage autonome en local"
+      ],
+      "avoidWhen": [
+        "Prendre des réponses d'IA non vérifiées pour des faits"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "yynxxxxx/Codex-X",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Interface Codex et outils développeur",
+      "domain": "software_engineering",
+      "capabilities": [
+        "coding-agents",
+        "mcp",
+        "developer-tools"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 4111,
+        "forks": 503,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-06T16:13:23Z"
+      },
+      "bestFor": [
+        "Piloter plusieurs outils de programmation dans une interface unifiée"
+      ],
+      "avoidWhen": [
+        "Gérer des tokens ou secrets sans protections adaptées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "zeroc00I/AllVideoPocsFromHackerOne",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Bug bounty et tests de sécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "bug-bounty",
+        "security-testing"
+      ],
+      "languages": [
+        "shell"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 973,
+        "forks": 232,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2025-10-10T13:14:56Z"
+      },
+      "bestFor": [
+        "Analyser des rapports et vérifier des vulnérabilités sur des cibles autorisées"
+      ],
+      "avoidWhen": [
+        "Scanner des cibles hors scope ou utiliser des exploits sans permission"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "zhouxiaoka/autoclip",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Outils de traitement et montage vidéo",
+      "domain": "ai_media",
+      "capabilities": [
+        "video-editing",
+        "automation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 9270,
+        "forks": 1684,
+        "openIssues": 8,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:15:46Z"
+      },
+      "bestFor": [
+        "Produire et éditer des vidéos via des workflows contrôlés"
+      ],
+      "avoidWhen": [
+        "Réutiliser des médias sans droits ou sans contrôle qualité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "zts212653/clowder-ai",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Mémoire adaptative et coordination d'agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "multi-agent",
+        "memory",
+        "coordination"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3321,
+        "forks": 834,
+        "openIssues": 355,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-06T03:45:16Z"
+      },
+      "bestFor": [
+        "Expérimenter la persistance et la coordination d'agents"
+      ],
+      "avoidWhen": [
+        "Conserver des informations sensibles sans politique de rétention"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
     }
   ],
   "metadata": {
