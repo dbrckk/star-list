@@ -20,13 +20,13 @@ snapshots = (read("reports/github-stars-review-2026-10-09-metadata-1.json")["rep
              + read("reports/github-stars-review-2026-10-09-metadata-2.json")["repositories"])
 
 assert len(snapshots) == len(manifest["repositories"]) == 17
-assert len(catalog["repositories"]) == report["summary"]["catalogAfter"] == 722
+assert len(catalog["repositories"]) >= report["summary"]["catalogAfter"] == 722
 assert report["summary"]["admitted"] == 14
 assert report["summary"]["transfersResolved"] == 3
 assert report["summary"]["auditTier"] == 7
 
 cat = {entry["repo"].lower(): entry for entry in catalog["repositories"]}
-assert len(cat) == 722, "Case-insensitive GitHub identity duplicates"
+assert len(cat) == len(catalog["repositories"]), "Case-insensitive GitHub identity duplicates"
 snapshot_map = {entry["repo"].lower(): entry for entry in snapshots}
 assert len(snapshot_map) == 17
 
@@ -82,4 +82,24 @@ partition = pipeline.partition_candidates(import_records, catalog)
 assert len(partition["new"]) == 0
 assert len(partition["already_cataloged"]) == 17
 
-print("OK: all 17 automatic Stars accounted for; 14 admitted, 3 canonical transfers, 0 duplicates")
+
+# A second real sync surfaced three later stars. Keep both historic review batches sound.
+followup = read("reports/github-stars-followup-2026-10-09-reviewed.json")
+later = read("reports/github-stars-followup-2026-10-09-metadata.json")["repositories"]
+assert len(later) == len(followup["repositories"]) == 3
+for approved in followup["repositories"]:
+    entry = cat[approved["repo"].lower()]
+    assert approved["reviewed"] is True and approved["catalogEntry"] == entry
+    assert approved["githubRepositoryId"] == entry["githubRepositoryId"]
+    assert pipeline.classify_candidate(
+        {"repo": approved["repo"], "key": approved["repo"].lower(), "sources": ["automatic"]},
+        approved,
+    )["status"] == "accepted"
+assert cat["devxprite/infoooze"]["tier"] == "audit"
+assert cat["noahdunnagan/fsearch"]["platforms"] == ["macos"]
+assert cat["noahdunnagan/fsearch"]["tier"] == "audit"
+assert cat["symgraph/idassist"]["tier"] == "specialized"
+assert cat["symgraph/idassist"]["costModel"] == "mixed"
+assert len(catalog["repositories"]) == 725
+
+print("OK: 20 automatic Stars accounted for; 17 admitted, 3 canonical transfers, 0 duplicates")
