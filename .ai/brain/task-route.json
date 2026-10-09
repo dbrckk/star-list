@@ -6,15 +6,62 @@
     "requested_max_files": 12,
     "score_margin": 0,
     "tier": "bounded",
-    "top_score": 17
+    "top_score": 26
   },
   "cache": {
-    "fingerprint": "130540a127fe52bb8ef25ef2b0c28ee7e0891f787f11a80ddfb6625d53c4dfd6",
+    "fingerprint": "cd6b409179b9b099f1f115f5b4e84a7fe8eb702aabdb4788d2436a58ec2ec0d8",
     "hit": false
   },
   "candidate_count": 4,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
+    {
+      "learning_score": 0,
+      "matched_terms": [
+        "game"
+      ],
+      "path": "scripts/recommend.py",
+      "reasons": [
+        "impact",
+        "recently-changed",
+        "search-index"
+      ],
+      "score": 26,
+      "symbols": [
+        "activity_adjustment",
+        "choose_stack",
+        "delta",
+        "explain_repo",
+        "guidance_weight",
+        "infer_alternatives",
+        "infer_complements",
+        "infer_domains",
+        "load",
+        "main",
+        "norm",
+        "resolve_relations",
+        "score_repo",
+        "tokens",
+        "trend_adjustment",
+        "usable"
+      ]
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [
+        "engine"
+      ],
+      "path": "scripts/test_recommend.py",
+      "reasons": [
+        "impact",
+        "recently-changed",
+        "search-index"
+      ],
+      "score": 26,
+      "symbols": [
+        "run"
+      ]
+    },
     {
       "learning_score": 0,
       "matched_terms": [
@@ -34,50 +81,8 @@
     },
     {
       "learning_score": 0,
-      "matched_terms": [
-        "game"
-      ],
-      "path": "scripts/recommend.py",
-      "reasons": [
-        "search-index"
-      ],
-      "score": 17,
-      "symbols": [
-        "activity_adjustment",
-        "choose_stack",
-        "delta",
-        "explain_repo",
-        "guidance_weight",
-        "infer_alternatives",
-        "infer_complements",
-        "infer_domains",
-        "load",
-        "main",
-        "norm",
-        "resolve_relations",
-        "score_repo",
-        "tokens",
-        "trend_adjustment"
-      ]
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [
-        "engine"
-      ],
-      "path": "scripts/test_recommend.py",
-      "reasons": [
-        "search-index"
-      ],
-      "score": 17,
-      "symbols": [
-        "run"
-      ]
-    },
-    {
-      "learning_score": 0,
       "matched_terms": [],
-      "path": "reports/star-import-2026-10-09-last-11-screenshots-coverage.json",
+      "path": "RECOMMENDER.md",
       "reasons": [
         "recently-changed"
       ],

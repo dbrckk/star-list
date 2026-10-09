@@ -19794,18 +19794,20 @@ matched_caps = sorted(required_caps & caps)
 ⋮----
 matched_terms = sorted(qtokens & (tokens(r.get("repo", "")) | caps | best))
 ⋮----
-def choose_stack(stacks, qtokens, domains)
+def choose_stack(stacks, qtokens, domains, allowed_names=None)
+⋮----
+# Never propose an unusable predefined stack when candidates are filtered.
 ⋮----
 stoks = tokens(st.get("name", "") + " " + st.get("goal", "") + " " + " ".join(st.get("notes", [])))
 score = 2*len(qtokens & stoks) + (3 if st.get("domain") in domains else 0)
 ⋮----
-def infer_alternatives(source, repos, top=3)
+def infer_alternatives(source, repos, top=3, allowed_names=None)
 ⋮----
 candidates = []
 ⋮----
 result = replacement_score(source, candidate)
 ⋮----
-def infer_complements(source, stacks, repo_by_name, top=4)
+def infer_complements(source, stacks, repo_by_name, top=4, allowed_names=None)
 ⋮----
 seen = set()
 complements = []
@@ -19816,12 +19818,18 @@ candidate = repo_by_name.get(name)
 ⋮----
 health = health_score(candidate)
 ⋮----
-def resolve_relations(source, repos, stacks, repo_by_name)
+def resolve_relations(source, repos, stacks, repo_by_name, allowed_names=None)
 ⋮----
-explicit_alternatives = source.get("alternatives", [])
-explicit_complements = source.get("complements", [])
-alternatives = explicit_alternatives or infer_alternatives(source, repos)
-complements = explicit_complements or infer_complements(source, stacks, repo_by_name)
+# Curated links are suggestions, not exemptions from the user's constraints.
+def usable(names)
+⋮----
+seen = {source["repo"]}
+result = []
+⋮----
+explicit_alternatives = usable(source.get("alternatives", []))
+explicit_complements = usable(source.get("complements", []))
+alternatives = explicit_alternatives or infer_alternatives(source, repos, allowed_names=allowed_names)
+complements = explicit_complements or infer_complements(source, stacks, repo_by_name, allowed_names=allowed_names)
 ⋮----
 def main()
 ⋮----
@@ -19834,15 +19842,18 @@ qtokens = tokens(args.query)
 domains = set(args.domain) or infer_domains(qtokens)
 ⋮----
 ranked = []
+eligible_names = set()
 filtered = {"platform":0, "language":0, "selfHosted":0, "inactive":0, "audit":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
 ⋮----
 gh = r.get("github", {})
 ⋮----
 s = score_repo(r, qtokens, domains, required_caps, excluded_caps)
 ⋮----
+# Eligibility for related tools/stacks must obey the same hard constraints.
+⋮----
 top = []
 ⋮----
-relations = resolve_relations(r, repos, stacks, repo_by_name)
+relations = resolve_relations(r, repos, stacks, repo_by_name, eligible_names)
 ⋮----
 result = {
 ⋮----
@@ -20586,6 +20597,21 @@ stacks = [{"name":"Backend Stack","repos":["x/source","x/stack-tool"]}]
 ⋮----
 curated_rel = dict(source, alternatives=["x/manual"], complements=["x/manual-comp"])
 resolved = mod.resolve_relations(curated_rel, [curated_rel, candidate], stacks, repo_by_name)
+⋮----
+# Hard constraints must also apply to curated/inferred relations and suggested stacks.
+⋮----
+limited_rel = mod.resolve_relations(
+⋮----
+fallback = mod.resolve_relations(
+⋮----
+# Integration: returned relations must obey the same hard CLI filters as primary recommendations.
+⋮----
+catalog_index = {entry["repo"]: entry for entry in mod.load()[0]}
+constraints = results["constraints"]
+⋮----
+linked = catalog_index[name]
+⋮----
+linked = catalog_index[member]
 ````
 
 ## File: scripts/test_refresh_github_metadata.py

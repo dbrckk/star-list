@@ -1,13 +1,16 @@
 # Change impact
 
-Base: a6e71aa67222cb032fa7911b91b077decc24da8a
-Head: 97c3a7efebb2ef70090dc8193dbe0f273b66101c
+Base: 73116ab9a3638aa619d431623cc289ff1b97300f
+Head: 35fc74204b47923118f35bfbf7bf7cb740fbc55a
 
 ## Changed files
-- A reports/star-import-2026-10-09-last-11-screenshots-coverage.json
+- M RECOMMENDER.md
+- M scripts/recommend.py
+- M scripts/test_recommend.py
 
 ## Affected areas
-- reports
+- (root)
+- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.

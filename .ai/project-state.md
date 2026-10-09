@@ -22,16 +22,19 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-09T05:19:03Z
+Generated: 2026-10-09T06:23:23Z
 
 ### Git
 - Branch: `main`
-- Head: `97c3a7efebb2`
-- Commit date: 2026-10-09T07:18:52+02:00
-- Commit: Verify completeness of eleven GitHub Star screenshots (#49)
+- Head: `35fc74204b47`
+- Commit date: 2026-10-09T08:23:12+02:00
+- Commit: Respect hard constraints in recommendation relations and stacks (#50)
 - Tracked files: 247
 
 ### Recently changed files
+- `RECOMMENDER.md`
+- `scripts/recommend.py`
+- `scripts/test_recommend.py`
 - `reports/star-import-2026-10-09-last-11-screenshots-coverage.json`
 - `catalog.json`
 - `imports/github-stars-2026-10-09-batch-6.json`
@@ -49,9 +52,6 @@ Generated: 2026-10-09T05:19:03Z
 - `reports/star-import-2026-10-09-batch-5-reviewed.json`
 - `reports/star-import-2026-10-09-batch-5.json`
 - `imports/github-stars-2026-10-09-batch-4.json`
-- `reports/star-import-2026-10-09-batch-4-metadata-1.json`
-- `reports/star-import-2026-10-09-batch-4-metadata-2.json`
-- `reports/star-import-2026-10-09-batch-4-metadata-3.json`
 
 ### Project signals
 - No common build descriptor detected

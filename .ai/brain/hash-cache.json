@@ -1,5 +1,9 @@
 {
   "files": {
+    "RECOMMENDER.md": {
+      "sha256": "1885adacebfed695f095f0bea4547db30e75dbe1c85889ecb807d3286ab83d3e",
+      "size": 4769
+    },
     "catalog.json": {
       "sha256": "6b3e799d74962a870ccd6c0d33df7627ee03c3f0d886b8cbcb3a8850b8f57ebe",
       "size": 744197
@@ -27,10 +31,6 @@
     "reports/star-import-2026-10-09-batch-4-metadata-3.json": {
       "sha256": "8c9446f0a24c16c88b1e875d9a4feaf5d5ce699d9d01843d3c0793544238cf3f",
       "size": 6840
-    },
-    "reports/star-import-2026-10-09-batch-4-metadata-4.json": {
-      "sha256": "a4704d331fa005670d3dc6f9fac75b9ccfb4decc84fe1e4d3eb35ef45a96bff2",
-      "size": 7086
     },
     "reports/star-import-2026-10-09-batch-5-metadata-1.json": {
       "sha256": "cf414c78332e667fb104e57f550682e63246f5420aba367ee2baf76dae16af8a",
@@ -83,6 +83,22 @@
     "reports/star-import-2026-10-09-last-11-screenshots-coverage.json": {
       "sha256": "698dfcef759bd9dbe5e33cb2763584abb340c38a5e6da5de1e424307b8756569",
       "size": 8778
+    },
+    "scripts/find_replacements.py": {
+      "sha256": "fc4e3e288abcc1b48eaf238d09357ff7d11e5f1ce8b62aa92d4a4717c20006d9",
+      "size": 3404
+    },
+    "scripts/health_score.py": {
+      "sha256": "c16d8e8ed70025692961a42a6179051a4baaee2b1d721af26554816612f9000f",
+      "size": 2456
+    },
+    "scripts/recommend.py": {
+      "sha256": "7df823d9a03718fc062f172b66c9a5ebcfd267e8e50d46a82111b1fb65138d17",
+      "size": 16505
+    },
+    "scripts/test_recommend.py": {
+      "sha256": "5661efa93edabaea671d447d6fb0360694019fe4d3f9364cf72f0968ed50f7a3",
+      "size": 7531
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

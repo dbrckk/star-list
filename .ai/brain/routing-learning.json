@@ -305,6 +305,24 @@
         "scripts/star_import_pipeline.py",
         "scripts/test_star_import_pipeline.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "Respect hard constraints in recommendation relations and stacks (#50)",
+      "terms": [
+        "50",
+        "constraints",
+        "hard",
+        "recommendation",
+        "relations",
+        "respect",
+        "stacks"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/recommend.py",
+        "scripts/test_recommend.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -387,6 +405,10 @@
       "scripts/star_import_pipeline.py": 4,
       "scripts/test_star_import_pipeline.py": 4
     },
+    "50": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -432,6 +454,10 @@
     "classify": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
+    },
+    "constraints": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "core": {
       "scripts/validate_catalog.py": 4
@@ -517,6 +543,10 @@
       "scripts/test_recommend.py": 8,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 8
+    },
+    "hard": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "identity": {
       "scripts/audit_catalog_quality.py": 4,
@@ -607,8 +637,8 @@
       "scripts/test_catalog_quality.py": 4
     },
     "recommendation": {
-      "scripts/recommend.py": 4,
-      "scripts/test_recommend.py": 4
+      "scripts/recommend.py": 8,
+      "scripts/test_recommend.py": 8
     },
     "recommendations": {
       "scripts/recommend.py": 4,
@@ -620,8 +650,8 @@
       "scripts/validate_catalog.py": 4
     },
     "relations": {
-      "scripts/recommend.py": 4,
-      "scripts/test_recommend.py": 4
+      "scripts/recommend.py": 8,
+      "scripts/test_recommend.py": 8
     },
     "repositories": {
       "scripts/audit_catalog_quality.py": 4,
@@ -650,6 +680,10 @@
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/validate_json_contract.py": 4
     },
+    "respect": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "reviewed": {
       "scripts/star_import_pipeline.py": 4,
       "scripts/test_star_import_pipeline.py": 4
@@ -667,6 +701,10 @@
       "scripts/validate_catalog.py": 4
     },
     "specialized": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
+    },
+    "stacks": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
