@@ -91,4 +91,54 @@ assert resolved["alternativesSource"] == "curated"
 assert resolved["complements"] == ["x/manual-comp"]
 assert resolved["complementsSource"] == "curated"
 
+# Hard constraints must also apply to curated/inferred relations and suggested stacks.
+assert mod.infer_domains(mod.tokens("Roblox Studio Luau")) == {"game_dev"}
+assert mod.infer_domains(mod.tokens("Godot shaders")) == {"game_dev"}
+assert mod.choose_stack(stacks, mod.tokens("backend"), {"backend"}, {"x/source"}) is None
+assert mod.choose_stack(stacks, mod.tokens("backend"), {"backend"}, {"x/source", "x/stack-tool"})["name"] == "Backend Stack"
+
+limited_rel = mod.resolve_relations(
+    dict(source, alternatives=["x/audit", "x/candidate", "x/candidate", "x/source"],
+         complements=["x/stack-tool", "x/audit"]),
+    [source, candidate, audit_candidate],
+    stacks,
+    {**repo_by_name, "x/audit": audit_candidate, "x/candidate": candidate},
+    {"x/source", "x/candidate"},
+)
+assert limited_rel["alternatives"] == ["x/candidate"], limited_rel
+assert limited_rel["alternativesSource"] == "curated"
+assert limited_rel["complements"] == []
+assert limited_rel["complementsSource"] == "none"
+
+fallback = mod.resolve_relations(
+    dict(source, alternatives=["x/audit"], complements=["x/audit"]),
+    [source, candidate, audit_candidate], stacks,
+    {**repo_by_name, "x/audit": audit_candidate},
+    {"x/source", "x/candidate"},
+)
+assert fallback["alternatives"] == ["x/candidate"] and fallback["alternativesSource"] == "inferred"
+assert fallback["complements"] == [] and fallback["complementsSource"] == "none"
+
+# Integration: returned relations must obey the same hard CLI filters as primary recommendations.
+for results in (
+    run("android vector animation", "--platform", "android", "--max-resource", "medium", "--top", "15"),
+    run("python data", "--language", "python", "--max-complexity", "low", "--top", "15"),
+):
+    catalog_index = {entry["repo"]: entry for entry in mod.load()[0]}
+    constraints = results["constraints"]
+    for item in results["recommendations"]:
+        for name in item["alternatives"] + item["complements"]:
+            linked = catalog_index[name]
+            assert linked["tier"] != "audit" and not linked.get("github", {}).get("archived")
+            assert all(p in linked.get("platforms", []) for p in constraints["platforms"])
+            assert all(lang in linked.get("languages", []) for lang in constraints["languages"])
+            assert mod.LEVEL.get(linked.get("resourceLevel", "medium"), 1) <= mod.LEVEL[constraints["maxResource"]]
+            assert mod.LEVEL.get(linked.get("integrationComplexity", "medium"), 1) <= mod.LEVEL[constraints["maxComplexity"]]
+    if results["recommendedStack"]:
+        for member in results["recommendedStack"]["repos"]:
+            linked = catalog_index[member]
+            assert linked["tier"] != "audit"
+            assert all(p in linked.get("platforms", []) for p in constraints["platforms"])
+            assert all(lang in linked.get("languages", []) for lang in constraints["languages"])
+
 print("OK: recommendation engine smoke tests passed")

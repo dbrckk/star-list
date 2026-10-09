@@ -68,6 +68,24 @@ Supported options:
 
 Repeated platform/language filters are conjunctive: the repository must contain every requested value.
 
+### Constraint-safe relations and stacks
+
+The same hard filters used for the main recommendations also apply to linked alternatives,
+complementary tools and predefined stacks. A curated relationship cannot override a
+requested platform, language, capability exclusion, self-hosting requirement, resource
+limit, complexity limit or the default inactive/audit exclusions.
+
+- An ineligible curated link is removed. The engine can infer an eligible replacement when available.
+- A predefined stack is only displayed when **all** of its component repositories are eligible.
+  When no complete stack is compatible, `recommendedStack` is `null` in JSON output.
+- `--min-score` determines which repositories appear as primary recommendations; related
+  tools still honor the hard filters, but need not individually meet the query-specific
+  relevance threshold.
+- The `--include-audit` and `--include-archived` switches can widen eligibility, but
+  do not change the need to review an inactive or poorly licensed repository.
+
+Domain inference also recognizes `roblox`, `godot` and `luau` as game-development queries.
+
 ## Domain inference
 
 When `--domain` is not provided, common query terms are mapped to catalog domains. Examples include `ai`/`agent`, `memory`/`rag`, `android`/`mobile`, `trading`/`quant`/`xauusd`, `security`/`pentest`, `ml`/`data`, and `devops`/`infra`.
