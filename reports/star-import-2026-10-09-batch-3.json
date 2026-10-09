@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-09",
+  "source": "Two GitHub Stars screenshots",
+  "summary": {
+    "raw": 24,
+    "unique": 24,
+    "alreadyInCatalog": 5,
+    "newlyAdmitted": 19,
+    "catalogBefore": 521,
+    "catalogAfter": 540
+  },
+  "alreadyCataloged": [
+    "pytest-dev/pytest",
+    "github/github-mcp-server",
+    "oraios/serena",
+    "emilk/egui",
+    "liquidslr/system-design-notes"
+  ],
+  "newlyAdmitted": [
+    "airbytehq/airbyte",
+    "apache/datafusion",
+    "apache/superset",
+    "Dataherald/dataherald",
+    "defog-ai/sqlcoder",
+    "dlt-hub/dlt",
+    "duckdb/duckdb",
+    "eosphoros-ai/DB-GPT",
+    "evidence-dev/evidence",
+    "fivetran/great_expectations",
+    "Jakeschincariol/arena-skill",
+    "Kanaries/pygwalker",
+    "metabase/metabase",
+    "open-metadata/OpenMetadata",
+    "pola-rs/polars",
+    "quarto-dev/quarto-cli",
+    "sinaptik-ai/pandas-ai",
+    "sodadata/soda-core",
+    "yifanfeng97/Hyper-Extract"
+  ],
+  "auditRequired": [
+    {
+      "repo": "airbytehq/airbyte",
+      "reason": "GitHub does not resolve a standard SPDX license"
+    },
+    {
+      "repo": "Dataherald/dataherald",
+      "reason": "Repository has not been updated in over two years"
+    },
+    {
+      "repo": "defog-ai/sqlcoder",
+      "reason": "Repository has not been updated in over two years"
+    },
+    {
+      "repo": "metabase/metabase",
+      "reason": "GitHub does not resolve a standard SPDX license"
+    },
+    {
+      "repo": "quarto-dev/quarto-cli",
+      "reason": "GitHub does not resolve a standard SPDX license"
+    },
+    {
+      "repo": "sinaptik-ai/pandas-ai",
+      "reason": "GitHub does not resolve a standard SPDX license"
+    },
+    {
+      "repo": "sodadata/soda-core",
+      "reason": "GitHub does not resolve a standard SPDX license"
+    },
+    {
+      "repo": "yifanfeng97/Hyper-Extract",
+      "reason": "GitHub does not resolve a standard SPDX license"
+    }
+  ],
+  "provenance": {
+    "manifest": "imports/github-stars-2026-10-09-batch-3.json",
+    "metadata": [
+      "reports/star-import-2026-10-09-batch-3-metadata-1.json",
+      "reports/star-import-2026-10-09-batch-3-metadata-2.json"
+    ],
+    "reviewed": "reports/star-import-2026-10-09-batch-3-reviewed.json"
+  }
+}
