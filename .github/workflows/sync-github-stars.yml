@@ -9,6 +9,7 @@ on:
       - main
     paths:
       - ".github/workflows/sync-github-stars.yml"
+      - "catalog.json"
 
 permissions:
   contents: read
