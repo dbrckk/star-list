@@ -71,6 +71,7 @@ star-import-2026-10-09-batch-5.json
 star-import-2026-10-09-batch-6-metadata.json
 star-import-2026-10-09-batch-6-reviewed.json
 star-import-2026-10-09-batch-6.json
+star-import-2026-10-09-last-11-screenshots-coverage.json
 star-import-2026-10-09-metadata-1.json
 star-import-2026-10-09-metadata-2.json
 star-import-2026-10-09-metadata-3.json
@@ -16182,6 +16183,299 @@ star-import-2026-10-09.json
     "github": "reports/star-import-2026-10-09-batch-6-metadata.json",
     "reviewed": "reports/star-import-2026-10-09-batch-6-reviewed.json"
   }
+}
+```
+
+## File: star-import-2026-10-09-last-11-screenshots-coverage.json
+```json
+{
+  "date": "2026-10-09",
+  "title": "Reconciliation of last 11 screenshot pages with star-list",
+  "provenance": {
+    "manifest": "imports/github-stars-2026-10-09-batch-6.json",
+    "priorImportReport": "reports/star-import-2026-10-09-batch-6.json",
+    "catalog": "catalog.json",
+    "historicalPendingReview": "The source import's pendingReview field was recorded before the 9 follow-up admissions; it is not the current catalog status."
+  },
+  "summary": {
+    "screenshots": 11,
+    "visibleRepositoryMentions": 133,
+    "uniqueRepositories": 93,
+    "alreadyCataloged": 93,
+    "missingInCatalog": 0,
+    "missingInManifest": 0,
+    "missingFromScreenshots": 0,
+    "duplicateCatalogIdentifiers": 0,
+    "totalCatalogRepositories": 708,
+    "auditTier": 27,
+    "unresolvedGithubLicenseMetadata": 17,
+    "archived": 4,
+    "newCatalogEntriesNeeded": 0
+  },
+  "screenshots": [
+    {
+      "screenshot": 1,
+      "topic": "Données, ETL et outils de développement",
+      "repositories": [
+        "Kanaries/pygwalker",
+        "Dataherald/dataherald",
+        "open-metadata/OpenMetadata",
+        "sodadata/soda-core",
+        "fivetran/great_expectations",
+        "dlt-hub/dlt",
+        "airbytehq/airbyte",
+        "defog-ai/sqlcoder",
+        "pytest-dev/pytest",
+        "github/github-mcp-server",
+        "oraios/serena",
+        "emilk/egui",
+        "liquidslr/system-design-notes"
+      ]
+    },
+    {
+      "screenshot": 2,
+      "topic": "Analytics, SQL et visualisation",
+      "repositories": [
+        "metabase/metabase",
+        "evidence-dev/evidence",
+        "sinaptik-ai/pandas-ai",
+        "apache/datafusion",
+        "pola-rs/polars",
+        "duckdb/duckdb",
+        "eosphoros-ai/DB-GPT",
+        "yifanfeng97/Hyper-Extract",
+        "Jakeschincariol/arena-skill",
+        "quarto-dev/quarto-cli",
+        "apache/superset",
+        "Kanaries/pygwalker"
+      ]
+    },
+    {
+      "screenshot": 3,
+      "topic": "Roblox, agents, infrastructure et scraping",
+      "repositories": [
+        "Epix-Incorporated/Adonis",
+        "roblox-ts/roblox-ts",
+        "axstin/rbxfpsunlocker",
+        "confident-ai/deepeval",
+        "daytonaio/daytona",
+        "e2b-dev/E2B",
+        "getzep/graphiti",
+        "huggingface/smolagents",
+        "OffGridPete/Fieldwatch",
+        "D4Vinci/Scrapling",
+        "whaleyxbt/patchright-enhanced",
+        "Ignitetechnologies/Mindmap"
+      ]
+    },
+    {
+      "screenshot": 4,
+      "topic": "Agents, observabilité et services de développement",
+      "repositories": [
+        "Effect-TS/effect",
+        "colbymchenry/codegraph",
+        "getsentry/sentry",
+        "google/skills",
+        "NVIDIA/OpenShell",
+        "JuliusBrussee/caveman",
+        "Epix-Incorporated/Adonis",
+        "roblox-ts/roblox-ts",
+        "axstin/rbxfpsunlocker",
+        "confident-ai/deepeval",
+        "daytonaio/daytona",
+        "e2b-dev/E2B",
+        "getzep/graphiti"
+      ]
+    },
+    {
+      "screenshot": 5,
+      "topic": "Évaluations LLM et projets Antseed",
+      "repositories": [
+        "recogardtech/AutoPilotPM",
+        "evidentlyai/evidently",
+        "Giskard-AI/giskard-oss",
+        "openai/evals",
+        "truera/trulens",
+        "UKGovernmentBEIS/inspect_ai",
+        "Arize-ai/phoenix",
+        "comet-ml/opik",
+        "vibrantlabsai/ragas",
+        "Antseed/openclaw-channel-antseed",
+        "Antseed/AIPs",
+        "Antseed/antseed"
+      ]
+    },
+    {
+      "screenshot": 6,
+      "topic": "Agents, Polymarket et prédiction",
+      "repositories": [
+        "topoteretes/cognee",
+        "mastra-ai/mastra",
+        "rehan-remade/universal-modder",
+        "aarora4/Awesome-Prediction-Market-Tools",
+        "caiovicentino/polymarket-mcp-server",
+        "ent0n29/polybot",
+        "evan-kolberg/prediction-market-backtesting",
+        "SII-WANGZJ/Polymarket_data",
+        "yangyuan-zhen/PolyWeather",
+        "lihanyu81/polymarket_lp_tool",
+        "HarrierOnChain/Prediction-Markets-Trading-Bot-Toolkits"
+      ]
+    },
+    {
+      "screenshot": 7,
+      "topic": "Outils multimédias, Cloudflare et transfert de fichiers",
+      "repositories": [
+        "meituan-longcat/LongCat-Video",
+        "cloudflare/cloudflare-os",
+        "pingdotgg/t3code",
+        "localsend/localsend",
+        "Diolinux/PhotoGIMP",
+        "1N3/Sn1per",
+        "ComposioHQ/composio",
+        "topoteretes/cognee",
+        "mastra-ai/mastra",
+        "rehan-remade/universal-modder",
+        "aarora4/Awesome-Prediction-Market-Tools",
+        "caiovicentino/polymarket-mcp-server"
+      ]
+    },
+    {
+      "screenshot": 8,
+      "topic": "Tests, cybersécurité et outils pratiques",
+      "repositories": [
+        "DuarteSantos8/openGym",
+        "caddyserver/caddy",
+        "earthtojake/text-to-cad",
+        "michael-denyer/pstack-claude",
+        "tester-army/e2e",
+        "deepseek-ai/DeepGEMM",
+        "morluto/rea",
+        "elder-plinius/T3MP3ST",
+        "kargulstudio/sales-crm",
+        "rawfilejson/awesome-osint-arsenal",
+        "RickdeJager/stegseek",
+        "OpenCut-app/OpenCut"
+      ]
+    },
+    {
+      "screenshot": 9,
+      "topic": "Données, ETL et outils de développement (suite)",
+      "repositories": [
+        "apache/superset",
+        "Kanaries/pygwalker",
+        "Dataherald/dataherald",
+        "open-metadata/OpenMetadata",
+        "sodadata/soda-core",
+        "fivetran/great_expectations",
+        "dlt-hub/dlt",
+        "airbytehq/airbyte",
+        "defog-ai/sqlcoder",
+        "pytest-dev/pytest",
+        "github/github-mcp-server"
+      ]
+    },
+    {
+      "screenshot": 10,
+      "topic": "Bases de données, analyse et visualisation (suite)",
+      "repositories": [
+        "duckdb/duckdb",
+        "eosphoros-ai/DB-GPT",
+        "yifanfeng97/Hyper-Extract",
+        "Jakeschincariol/arena-skill",
+        "quarto-dev/quarto-cli",
+        "apache/superset",
+        "Kanaries/pygwalker",
+        "Dataherald/dataherald",
+        "open-metadata/OpenMetadata",
+        "sodadata/soda-core",
+        "fivetran/great_expectations",
+        "dlt-hub/dlt",
+        "airbytehq/airbyte"
+      ]
+    },
+    {
+      "screenshot": 11,
+      "topic": "Roblox Studio, modèles LongCat et BI",
+      "repositories": [
+        "TabooHarmony/roblox-brain",
+        "Chrrxs/robloxstudio-mcp",
+        "MaximumADHD/Roblox-Studio-Mod-Manager",
+        "vinegarhq/vinegar",
+        "Roblox/studio-rust-mcp-server",
+        "boshyxd/robloxstudio-mcp",
+        "S4US/Roqer",
+        "meituan-longcat/LongCat-Image",
+        "meituan-longcat/LongCat-Flash-Chat",
+        "metabase/metabase",
+        "evidence-dev/evidence",
+        "sinaptik-ai/pandas-ai"
+      ]
+    }
+  ],
+  "missingInCatalog": [],
+  "missingInManifest": [],
+  "missingFromScreenshots": [],
+  "auditTierRepositories": [
+    "Dataherald/dataherald",
+    "sodadata/soda-core",
+    "airbytehq/airbyte",
+    "defog-ai/sqlcoder",
+    "oraios/serena",
+    "liquidslr/system-design-notes",
+    "metabase/metabase",
+    "sinaptik-ai/pandas-ai",
+    "yifanfeng97/Hyper-Extract",
+    "quarto-dev/quarto-cli",
+    "axstin/rbxfpsunlocker",
+    "daytonaio/daytona",
+    "whaleyxbt/patchright-enhanced",
+    "recogardtech/AutoPilotPM",
+    "Antseed/openclaw-channel-antseed",
+    "Antseed/AIPs",
+    "Antseed/antseed",
+    "mastra-ai/mastra",
+    "aarora4/Awesome-Prediction-Market-Tools",
+    "evan-kolberg/prediction-market-backtesting",
+    "lihanyu81/polymarket_lp_tool",
+    "meituan-longcat/LongCat-Video",
+    "pingdotgg/t3code",
+    "1N3/Sn1per",
+    "kargulstudio/sales-crm",
+    "Roblox/studio-rust-mcp-server",
+    "boshyxd/robloxstudio-mcp"
+  ],
+  "unresolvedGithubLicenseRepositories": [
+    "sodadata/soda-core",
+    "airbytehq/airbyte",
+    "oraios/serena",
+    "liquidslr/system-design-notes",
+    "metabase/metabase",
+    "sinaptik-ai/pandas-ai",
+    "yifanfeng97/Hyper-Extract",
+    "quarto-dev/quarto-cli",
+    "daytonaio/daytona",
+    "whaleyxbt/patchright-enhanced",
+    "Ignitetechnologies/Mindmap",
+    "Antseed/openclaw-channel-antseed",
+    "mastra-ai/mastra",
+    "aarora4/Awesome-Prediction-Market-Tools",
+    "evan-kolberg/prediction-market-backtesting",
+    "lihanyu81/polymarket_lp_tool",
+    "1N3/Sn1per"
+  ],
+  "archivedRepositories": [
+    "axstin/rbxfpsunlocker",
+    "daytonaio/daytona",
+    "Roblox/studio-rust-mcp-server",
+    "boshyxd/robloxstudio-mcp"
+  ],
+  "notes": [
+    "All visible unique GitHub repositories from the eleven supplied screenshot pages have corresponding catalog entries.",
+    "Catalog inclusion is not a software safety, licensing, or model weight reuse approval.",
+    "Repository metadata represents a snapshot and may change after this verification.",
+    "The previous import metadata remains an immutable record of the pre-admission state."
+  ]
 }
 ```
 

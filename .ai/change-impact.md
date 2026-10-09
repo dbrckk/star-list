@@ -1,18 +1,12 @@
 # Change impact
 
-Base: 20e834bee59bfc7c7af12b3f0bbab16dd88e3143
-Head: 76e1fe3ef2db0ddc7e43ff038f498d24b01d3448
+Base: a6e71aa67222cb032fa7911b91b077decc24da8a
+Head: 97c3a7efebb2ef70090dc8193dbe0f273b66101c
 
 ## Changed files
-- M catalog.json
-- A imports/github-stars-2026-10-09-batch-6.json
-- A reports/star-import-2026-10-09-batch-6-metadata.json
-- A reports/star-import-2026-10-09-batch-6-reviewed.json
-- A reports/star-import-2026-10-09-batch-6.json
+- A reports/star-import-2026-10-09-last-11-screenshots-coverage.json
 
 ## Affected areas
-- (root)
-- imports
 - reports
 
 ## Related test candidates
