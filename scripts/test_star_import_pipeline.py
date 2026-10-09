@@ -10,6 +10,7 @@ from star_import_pipeline import (
     classify_candidate,
     integrate_catalog,
     load_imports,
+    load_reviewed_metadata,
     normalize_repo_identity,
     partition_candidates,
     write_catalog_if_valid,
@@ -58,9 +59,47 @@ with tempfile.TemporaryDirectory() as td:
         "duplicateImports": 1,
         "alreadyCataloged": 1,
         "newCandidates": 1,
+        "accepted": 0,
         "needsReview": 1,
         "malformed": 1,
+        "malformedMetadata": 0,
     }
+
+# A raw GitHub snapshot cannot approve itself. Approval is explicit and tied to GitHub evidence.
+verified_github = {
+    "stars": 10, "forks": 2, "openIssues": 0, "archived": False, "disabled": False,
+    "defaultBranch": "main", "license": "MIT", "pushedAt": "2026-10-09T00:00:00Z",
+}
+new_entry = {
+    "repo": "Anthropic/Claude-Code", "score": 8.0, "tier": "specialized",
+    "category": "Coding agents", "domain": "software_engineering",
+    "resourceLevel": "low", "integrationComplexity": "medium",
+    "selfHosted": True, "github": verified_github,
+}
+reviewed = {"repo": "Anthropic/Claude-Code", "github": verified_github,
+            "reviewed": True, "catalogEntry": new_entry}
+assert classify_candidate(candidate, reviewed)["status"] == "accepted"
+assert classify_candidate(candidate, {**reviewed, "reviewed": False})["status"] == "needs_review"
+assert classify_candidate(candidate, {**reviewed, "github": {**verified_github, "stars": 999}})["status"] == "needs_review"
+assert classify_candidate(candidate, {**reviewed, "repo": "other/repo"})["status"] == "needs_review"
+assert classify_candidate(candidate, {**reviewed, "catalogEntry": {**new_entry, "repo": "other/repo"}})["status"] == "needs_review"
+review_report = build_report(partition, malformed, ["batch"], {candidate["key"]: reviewed}, ["metadata"])
+assert review_report["summary"]["accepted"] == 1
+assert review_report["summary"]["needsReview"] == 0
+assert review_report["newCandidates"][0]["catalogEntry"] == new_entry
+
+with tempfile.TemporaryDirectory() as td:
+    root = Path(td)
+    a, b = root / "reviewed.json", root / "conflict.json"
+    a.write_text(json.dumps({"repositories": [reviewed]}))
+    b.write_text(json.dumps({"repositories": [{**reviewed, "reviewed": False}]}))
+    md, errors = load_reviewed_metadata([a])
+    assert not errors and md["anthropic/claude-code"] == reviewed
+    _, errors = load_reviewed_metadata([a, b])
+    assert len(errors) == 1 and "conflicting" in errors[0]["error"]
+    a.write_text('{"repositories": [null, "bad"]}')
+    _, errors = load_reviewed_metadata([a])
+    assert len(errors) == 2
 
 # Integration preserves existing records, sorts only additions deterministically, and is idempotent.
 base = {"schemaVersion": 1, "repositories": [{"repo": "z/existing", "score": 8.0}]}
@@ -106,5 +145,43 @@ with tempfile.TemporaryDirectory() as td:
     assert cli_report["summary"]["alreadyCataloged"] == 1
     assert cli_report["summary"]["newCandidates"] == 1
     assert "`New/Repo` — needs_review" in report_md.read_text()
+
+# End-to-end CLI: importing needs human approval, accepts reviewed data, and stays idempotent.
+with tempfile.TemporaryDirectory() as td:
+    root = Path(td)
+    scripts = root / "scripts"
+    scripts.mkdir()
+    for file_name in ("validate_catalog.py", "test_catalog_quality.py", "audit_catalog_quality.py"):
+        import shutil
+        shutil.copy2(Path(__file__).with_name(file_name), scripts / file_name)
+    baseline = {**new_entry, "repo": "Existing/Project"}
+    proposed = {**new_entry, "repo": "New/Project"}
+    import_path, metadata_path, catalog_path = (
+        root / "stars.json", root / "metadata.json", root / "catalog.json"
+    )
+    import_path.write_text(json.dumps({"repositories": ["New/Project"]}))
+    catalog_path.write_text(json.dumps({"schemaVersion": 1, "repositories": [baseline]}))
+    metadata_path.write_text(json.dumps({"repositories": [
+        {"repo": "New/Project", "github": verified_github, "catalogEntry": proposed}
+    ]}))
+    args = [sys.executable, str(SCRIPT), str(import_path), "--catalog", str(catalog_path),
+            "--metadata", str(metadata_path)]
+    before = catalog_path.read_text()
+    raw = subprocess.run(args + ["--write"], text=True, capture_output=True)
+    assert raw.returncode == 2 and "no reviewed entries" in raw.stdout
+    assert catalog_path.read_text() == before
+    metadata_path.write_text(json.dumps({"repositories": [
+        {"repo": "New/Project", "github": verified_github, "catalogEntry": proposed, "reviewed": True}
+    ]}))
+    success = subprocess.run(args + ["--write"], text=True, capture_output=True)
+    assert success.returncode == 0, success.stdout + success.stderr
+    merged = json.loads(catalog_path.read_text())
+    assert [x["repo"] for x in merged["repositories"]] == ["Existing/Project", "New/Project"]
+    new_before_repeat = catalog_path.read_text()
+    repeat = subprocess.run(args + ["--write"], text=True, capture_output=True)
+    assert repeat.returncode == 0 and catalog_path.read_text() == new_before_repeat
+    metadata_path.write_text('{"repositories": [null]}')
+    bad = subprocess.run(args + ["--write"], text=True, capture_output=True)
+    assert bad.returncode == 2 and catalog_path.read_text() == new_before_repeat
 
 print("OK: star import pipeline tests passed")
