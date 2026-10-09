@@ -261,6 +261,10 @@
               "partial",
               "external-terms"
             ]
+          },
+          "githubRepositoryId": {
+            "type": "integer",
+            "minimum": 1
           }
         },
         "additionalProperties": false
