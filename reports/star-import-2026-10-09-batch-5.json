@@ -5,9 +5,9 @@
     "raw": 90,
     "unique": 90,
     "alreadyInCatalog": 19,
-    "reviewedNew": 71,
     "catalogBefore": 628,
-    "expectedCatalogAfter": 699
+    "newlyAdmitted": 71,
+    "catalogAfter": 699
   },
   "alreadyCataloged": [
     "JoasASantos/Offensive-Security-AI-Models",
@@ -140,5 +140,10 @@
       "reports/star-import-2026-10-09-batch-5-metadata-5.json",
       "reports/star-import-2026-10-09-batch-5-metadata-6.json"
     ]
+  },
+  "integration": {
+    "status": "applied-and-validated",
+    "method": "existing reviewed star import pipeline in GitHub Actions",
+    "validationRun": "https://github.com/dbrckk/star-list/actions/runs/37880954201"
   }
 }
