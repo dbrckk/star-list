@@ -140,12 +140,52 @@ for code in (403, 429):
     except RuntimeError as exc:
         assert str(code) in str(exc)
 
+# GitHub repository ID is stable even when the owner/name changes.
+transfer_api = [star("New-Owner/Project", id=338719962)]
+transfer_items, transfer_pages, _ = mod.api_stars(
+    "dbrckk",
+    opener=lambda _req, timeout=20: Response(transfer_api)
+)
+assert transfer_items[0]["githubRepositoryId"] == 338719962
+by_name_only = mod.build_report("dbrckk", transfer_items, {"old-owner/project"}, transfer_pages)
+assert by_name_only["summary"]["new"] == 1
+by_stable_id = mod.build_report(
+    "dbrckk", transfer_items, {"old-owner/project"}, transfer_pages,
+    catalog_ids={338719962}
+)
+assert by_stable_id["summary"]["new"] == 0
+
+for bad_id in (-1, 0, True, "12"):
+    try:
+        mod.api_stars("dbrckk", opener=lambda _req, timeout=20: Response(
+            [star("Test/Repo", id=bad_id)]
+        ))
+        raise AssertionError("invalid GitHub ID accepted")
+    except RuntimeError as exc:
+        assert "repository ID" in str(exc)
+
 # Corrupt/missing catalogs must not produce misleading lists.
 with tempfile.TemporaryDirectory() as tmp:
     root = Path(tmp)
     catalog = root / "catalog.json"
     catalog.write_text('{"repositories":[{"repo":"KNOWN/Repo"}]}', encoding="utf-8")
     assert mod.catalog_identities(catalog) == {"known/repo"}
+    catalog.write_text('{"repositories":[{"repo":"OLD/Repo","githubRepositoryId":338719962}]}')
+    assert mod.catalog_identities(catalog, include_ids=True) == (
+        {"old/repo"}, {338719962}
+    )
+    catalog.write_text('{"repositories":[{"repo":"X/Y","githubRepositoryId":42},{"repo":"Z/W","githubRepositoryId":42}]}')
+    try:
+        mod.catalog_identities(catalog, include_ids=True)
+        raise AssertionError("duplicate permanent repository IDs accepted")
+    except RuntimeError:
+        pass
+    catalog.write_text('{"repositories":[{"repo":"X/Y","githubRepositoryId":0}]}')
+    try:
+        mod.catalog_identities(catalog, include_ids=True)
+        raise AssertionError("invalid permanent repository ID accepted")
+    except RuntimeError:
+        pass
     catalog.write_text('{"repositories":[{"repo":"X/Y"},{"repo":"x/y"}]}')
     try:
         mod.catalog_identities(catalog)

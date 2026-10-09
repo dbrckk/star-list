@@ -1,0 +1,124 @@
+{
+  "checkedAt": "2026-10-09",
+  "sourceIssue": 52,
+  "sourceRun": "https://github.com/dbrckk/star-list/actions/runs/37899710165",
+  "summary": {
+    "totalInIssue": 17,
+    "transfersResolved": 3,
+    "actuallyNew": 14,
+    "admitted": 14,
+    "auditTier": 7,
+    "standardTier": 7,
+    "catalogBefore": 708,
+    "catalogAfter": 722
+  },
+  "verifiedTransfers": [
+    {
+      "former": "danny-avila/LibreChat",
+      "current": "LibreChat-AI/LibreChat",
+      "id": 600596928
+    },
+    {
+      "former": "OpenBB-finance/OpenBB",
+      "current": "openbq-org/OpenBB",
+      "id": 323048702
+    },
+    {
+      "former": "KRTirtho/spotube",
+      "current": "team-spotube/spotube",
+      "id": 338719962
+    }
+  ],
+  "reviewedEntries": [
+    {
+      "repo": "alookai/alook",
+      "tier": "specialized",
+      "license": "Apache-2.0",
+      "reason": "Transmettre des données sensibles à des salles ou relais sans vérifier leur contrôle d'accès"
+    },
+    {
+      "repo": "arch3rPro/PentestTools",
+      "tier": "audit",
+      "license": null,
+      "reason": "Supposer que chaque outil répertorié est sûr ou bénéficie d'une licence de réutilisation"
+    },
+    {
+      "repo": "BitterSecurity/Decepticon",
+      "tier": "specialized",
+      "license": "Apache-2.0",
+      "reason": "Lancer des opérations autonomes sur des cibles réelles sans scope, limitations et approbation"
+    },
+    {
+      "repo": "flutter-team-archive/plugins",
+      "tier": "audit",
+      "license": "BSD-3-Clause",
+      "reason": "Démarrer un nouveau projet avec cette collection archivée au lieu des packages maintenus"
+    },
+    {
+      "repo": "freefq/free",
+      "tier": "audit",
+      "license": null,
+      "reason": "Utiliser des relais inconnus pour des identifiants, des données personnelles ou du trafic sensible"
+    },
+    {
+      "repo": "h100envy/gem-search",
+      "tier": "audit",
+      "license": "MIT",
+      "reason": "Trader à partir de signaux non validés, de promesses marketing ou de jetons promus par le projet"
+    },
+    {
+      "repo": "juliocesarfort/public-pentesting-reports",
+      "tier": "audit",
+      "license": null,
+      "reason": "Copier sans autorisation des rapports ou réutiliser des preuves hors de leur contexte"
+    },
+    {
+      "repo": "lidge-jun/opencodex",
+      "tier": "specialized",
+      "license": "MIT",
+      "reason": "Exposer des jetons, contourner les conditions des fournisseurs ou s'appuyer sur une API non stable"
+    },
+    {
+      "repo": "m14r41/PentestingEverything",
+      "tier": "specialized",
+      "license": "MIT",
+      "reason": "Transformer des exemples offensifs en scans de systèmes non autorisés"
+    },
+    {
+      "repo": "SegFault42/HeliosGen",
+      "tier": "audit",
+      "license": null,
+      "reason": "Supposer que la génération fonctionne hors ligne, sans clé kie.ai ni frais de fournisseur"
+    },
+    {
+      "repo": "simplifaisoul/osiris",
+      "tier": "specialized",
+      "license": "MIT",
+      "reason": "Présenter des flux tiers non vérifiés comme des renseignements fiables ou suivre des personnes abusivement"
+    },
+    {
+      "repo": "toly1994328/FlutterUnit",
+      "tier": "specialized",
+      "license": "GPL-3.0",
+      "reason": "Réutiliser des composants GPL-3.0 dans un produit sans vérifier les obligations de distribution"
+    },
+    {
+      "repo": "typesense/typesense",
+      "tier": "specialized",
+      "license": "GPL-3.0",
+      "reason": "Utiliser un moteur externe sans contrôler l'indexation des données et les obligations GPL"
+    },
+    {
+      "repo": "xtekky/gpt4free",
+      "tier": "audit",
+      "license": "GPL-3.0",
+      "reason": "Compter sur des accès non contractuels ou non autorisés à des modèles pour une production fiable"
+    }
+  ],
+  "licensingNotes": [
+    "OpenBB root LICENSE explicitly grants Apache-2.0 to repository files, while GitHub API SPDX reports NOASSERTION; third-party data sources may have separate restrictions.",
+    "Spotube root LICENSE currently states BSD-4-Clause, while GitHub API SPDX reports NOASSERTION; music content and plugins may carry separate rights.",
+    "HeliosGen local desktop workflow currently uses remote kie.ai and requires an API key; it is not free offline inference.",
+    "Archived Flutter plugin monorepo, unlicensed collections, untrusted proxy lists and provider-aggregation access remain audit-only."
+  ]
+}

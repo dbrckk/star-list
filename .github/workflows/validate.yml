@@ -27,6 +27,8 @@ jobs:
         run: python scripts/test_star_import_pipeline.py
       - name: Test public GitHub Stars synchronization
         run: python scripts/test_sync_github_stars.py
+      - name: Test reviewed Stars admission and repository transfers
+        run: python scripts/test_auto_stars_admission.py
       - name: Validate catalog
         run: |
           python scripts/validate_catalog.py

@@ -318,7 +318,7 @@
       ],
       "complements": [
         "BerriAI/litellm",
-        "danny-avila/LibreChat"
+        "LibreChat-AI/LibreChat"
       ],
       "bestFor": [
         "local model serving",
@@ -1578,13 +1578,16 @@
       "guidanceSource": "inferred"
     },
     {
-      "repo": "danny-avila/LibreChat",
+      "repo": "LibreChat-AI/LibreChat",
       "score": 9.4,
       "tier": "recommended",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
       "capabilities": [
-        "agent"
+        "agent",
+        "llm-ui",
+        "mcp",
+        "multi-user-auth"
       ],
       "languages": [
         "typescript"
@@ -1601,22 +1604,23 @@
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 45293,
-        "forks": 9283,
-        "openIssues": 837,
+        "stars": 45439,
+        "forks": 9327,
+        "openIssues": 866,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:15:07Z"
+        "pushedAt": "2026-10-09T08:29:47Z"
       },
       "bestFor": [
-        "agentic workflows"
+        "Héberger une interface de chat multi-utilisateurs avec agents, intégrations MCP et modèles interchangeables"
       ],
       "avoidWhen": [
-        "simple deterministic scripts without agent orchestration"
+        "Installer une infrastructure avec utilisateurs et authentification lorsque seul un script local est nécessaire"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 600596928
     },
     {
       "repo": "f/prompts.chat",
@@ -7389,10 +7393,10 @@
       }
     },
     {
-      "repo": "KRTirtho/spotube",
+      "repo": "team-spotube/spotube",
       "score": 8.6,
       "tier": "specialized",
-      "category": "Média / voix / vidéo",
+      "category": "Client musical multiplateforme extensible",
       "domain": "ai_media",
       "capabilities": [
         "music",
@@ -7413,22 +7417,24 @@
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 49619,
-        "forks": 2323,
-        "openIssues": 867,
+        "stars": 49723,
+        "forks": 2331,
+        "openIssues": 868,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": "BSD-3-Clause",
-        "pushedAt": "2026-10-02T14:57:54Z"
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T08:51:44Z"
       },
       "bestFor": [
-        "music workflows"
+        "Étudier un lecteur musical Flutter avec plugins et sources audio configurables"
       ],
       "avoidWhen": [
-        "non-generative media workflows"
+        "Réutiliser des fichiers audio sans droits, ou ignorer les clauses BSD-4-Clause du fichier LICENSE"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "curated",
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 338719962
     },
     {
       "repo": "ali-vilab/AnyDoor",
@@ -8605,7 +8611,7 @@
         "polakowo/vectorbt"
       ],
       "complements": [
-        "OpenBB-finance/OpenBB",
+        "openbq-org/OpenBB",
         "ranaroussi/quantstats",
         "dcajasn/Riskfolio-Lib"
       ],
@@ -8666,7 +8672,7 @@
         "freqtrade/freqtrade"
       ],
       "complements": [
-        "OpenBB-finance/OpenBB",
+        "openbq-org/OpenBB",
         "ranaroussi/quantstats"
       ],
       "bestFor": [
@@ -10372,7 +10378,7 @@
       "guidanceSource": "inferred"
     },
     {
-      "repo": "OpenBB-finance/OpenBB",
+      "repo": "openbq-org/OpenBB",
       "score": 9.7,
       "tier": "recommended",
       "category": "Trading / Gold XAUUSD / macro / diagnostic",
@@ -10398,11 +10404,10 @@
         "QuantConnect/Lean"
       ],
       "bestFor": [
-        "financial data research",
-        "macro workflows"
+        "Intégrer et interroger des sources de données financières et macroéconomiques avec Python, API ou agents IA"
       ],
       "avoidWhen": [
-        "single-source minimal data ingestion"
+        "Supposer que toutes les sources de données de marché tierces sont gratuites ou librement redistribuables"
       ],
       "languages": [
         "go"
@@ -10417,17 +10422,20 @@
       ],
       "resourceLevel": "medium",
       "integrationComplexity": "medium",
-      "costModel": "open-source",
+      "costModel": "mixed",
       "github": {
-        "stars": 73854,
-        "forks": 7636,
-        "openIssues": 86,
+        "stars": 74002,
+        "forks": 7641,
+        "openIssues": 88,
         "archived": false,
         "disabled": false,
         "defaultBranch": "develop",
-        "license": "Apache-2.0",
+        "license": "NOASSERTION",
         "pushedAt": "2026-10-02T04:55:27Z"
-      }
+      },
+      "licenseEvidence": "verified-file",
+      "guidanceSource": "curated",
+      "githubRepositoryId": 323048702
     },
     {
       "repo": "plotly/plotly.py",
@@ -30567,6 +30575,634 @@
       "guidanceSource": "curated",
       "lifecycle": "active",
       "licenseEvidence": "verified-file"
+    },
+    {
+      "repo": "alookai/alook",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Espaces collaboratifs pour agents IA",
+      "domain": "ai_agents",
+      "capabilities": [
+        "multi-agent",
+        "collaboration",
+        "agent-workflows",
+        "agent-identity"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": "partial",
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "mixed",
+      "github": {
+        "stars": 1267,
+        "forks": 198,
+        "openIssues": 85,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T09:22:53Z"
+      },
+      "bestFor": [
+        "Faire collaborer des agents locaux et des personnes dans des salles de travail"
+      ],
+      "avoidWhen": [
+        "Transmettre des données sensibles à des salles ou relais sans vérifier leur contrôle d'accès"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "githubRepositoryId": 1200600054
+    },
+    {
+      "repo": "arch3rPro/PentestTools",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Répertoire de ressources pour pentests autorisés",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "pentesting",
+        "security-tools",
+        "awesome-list"
+      ],
+      "languages": [],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": false,
+      "runtime": [
+        "reference"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1797,
+        "forks": 363,
+        "openIssues": 11,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-04-13T02:52:07Z"
+      },
+      "bestFor": [
+        "Découvrir des outils d'évaluation de sécurité pour laboratoires et scopes autorisés"
+      ],
+      "avoidWhen": [
+        "Supposer que chaque outil répertorié est sûr ou bénéficie d'une licence de réutilisation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "githubRepositoryId": 147923653
+    },
+    {
+      "repo": "BitterSecurity/Decepticon",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Agent autonome de red team autorisée",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "red-team",
+        "security-testing",
+        "agents"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "mixed",
+      "github": {
+        "stars": 5705,
+        "forks": 1077,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T13:10:59Z"
+      },
+      "bestFor": [
+        "Évaluer des systèmes explicitement autorisés en journalisant tests, résultats et limites"
+      ],
+      "avoidWhen": [
+        "Lancer des opérations autonomes sur des cibles réelles sans scope, limitations et approbation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "githubRepositoryId": 997390194
+    },
+    {
+      "repo": "flutter-team-archive/plugins",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Plugins Flutter historiques archivés",
+      "domain": "mobile",
+      "capabilities": [
+        "flutter",
+        "plugins",
+        "reference-implementation"
+      ],
+      "languages": [
+        "dart"
+      ],
+      "platforms": [
+        "android",
+        "ios"
+      ],
+      "selfHosted": false,
+      "runtime": [
+        "reference"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 17708,
+        "forks": 9596,
+        "openIssues": 1,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "BSD-3-Clause",
+        "pushedAt": "2023-02-22T19:12:53Z"
+      },
+      "bestFor": [
+        "Étudier l'historique des plugins Flutter et migrations compatibles"
+      ],
+      "avoidWhen": [
+        "Démarrer un nouveau projet avec cette collection archivée au lieu des packages maintenus"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference",
+      "githubRepositoryId": 88650014
+    },
+    {
+      "repo": "freefq/free",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Liste historique de relais proxy tiers non vérifiés",
+      "domain": "devops",
+      "capabilities": [
+        "proxy",
+        "networking",
+        "reference-list"
+      ],
+      "languages": [],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": false,
+      "runtime": [
+        "external-services"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "unknown",
+      "github": {
+        "stars": 42617,
+        "forks": 5637,
+        "openIssues": 687,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2024-08-20T09:43:55Z"
+      },
+      "bestFor": [
+        "Analyser à titre documentaire des configurations de relais et anciennes listes publiques"
+      ],
+      "avoidWhen": [
+        "Utiliser des relais inconnus pour des identifiants, des données personnelles ou du trafic sensible"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference",
+      "licenseEvidence": "no-root-license-file",
+      "githubRepositoryId": 270171567
+    },
+    {
+      "repo": "h100envy/gem-search",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Exploration de memecoins et transactions Solana",
+      "domain": "trading",
+      "capabilities": [
+        "solana",
+        "memecoin",
+        "onchain-analysis",
+        "risk"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": "partial",
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "mixed",
+      "github": {
+        "stars": 189,
+        "forks": 46,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T15:10:23Z"
+      },
+      "bestFor": [
+        "Étudier les liens entre portefeuilles et la concentration d'achats sur Solana"
+      ],
+      "avoidWhen": [
+        "Trader à partir de signaux non validés, de promesses marketing ou de jetons promus par le projet"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "roles": [
+        "data",
+        "diagnostic",
+        "risk"
+      ],
+      "githubRepositoryId": 1405785578
+    },
+    {
+      "repo": "juliocesarfort/public-pentesting-reports",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Collection de rapports publics de tests d'intrusion",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "security-reports",
+        "pentest",
+        "documentation"
+      ],
+      "languages": [
+        "html"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": false,
+      "runtime": [
+        "reference"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "unknown",
+      "github": {
+        "stars": 9755,
+        "forks": 2188,
+        "openIssues": 16,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-06-07T18:38:18Z"
+      },
+      "bestFor": [
+        "Consulter des rapports déjà publiés pour améliorer la rédaction et la validation de constats"
+      ],
+      "avoidWhen": [
+        "Copier sans autorisation des rapports ou réutiliser des preuves hors de leur contexte"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "githubRepositoryId": 65019435
+    },
+    {
+      "repo": "lidge-jun/opencodex",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Passerelle multi-modèles pour Codex et Claude Code",
+      "domain": "software_engineering",
+      "capabilities": [
+        "llm-routing",
+        "coding-agents",
+        "proxy",
+        "local-models"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 17159,
+        "forks": 1300,
+        "openIssues": 127,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T09:23:28Z"
+      },
+      "bestFor": [
+        "Router des clients de codage IA vers des fournisseurs ou modèles locaux compatibles"
+      ],
+      "avoidWhen": [
+        "Exposer des jetons, contourner les conditions des fournisseurs ou s'appuyer sur une API non stable"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "githubRepositoryId": 1273824907
+    },
+    {
+      "repo": "m14r41/PentestingEverything",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Guide d'audit de sécurité applicative et réseau",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "pentesting",
+        "appsec",
+        "web-security",
+        "reference"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": false,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "github": {
+        "stars": 2135,
+        "forks": 460,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-05T18:06:31Z"
+      },
+      "bestFor": [
+        "Préparer des méthodologies de tests reproductibles en contexte autorisé"
+      ],
+      "avoidWhen": [
+        "Transformer des exemples offensifs en scans de systèmes non autorisés"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "githubRepositoryId": 584091413
+    },
+    {
+      "repo": "SegFault42/HeliosGen",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Éditeur local de workflows IA image et vidéo",
+      "domain": "ai_media",
+      "capabilities": [
+        "image-generation",
+        "video-generation",
+        "workflow-editor",
+        "desktop"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "macos"
+      ],
+      "selfHosted": "partial",
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "mixed",
+      "github": {
+        "stars": 2330,
+        "forks": 287,
+        "openIssues": 15,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-09-17T07:05:07Z"
+      },
+      "bestFor": [
+        "Concevoir des workflows d'images et vidéos depuis une application de bureau"
+      ],
+      "avoidWhen": [
+        "Supposer que la génération fonctionne hors ligne, sans clé kie.ai ni frais de fournisseur"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "licenseEvidence": "no-root-license-file",
+      "githubRepositoryId": 1208490131
+    },
+    {
+      "repo": "simplifaisoul/osiris",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Tableau de bord OSINT et veille mondiale",
+      "domain": "productivity",
+      "capabilities": [
+        "osint",
+        "monitoring",
+        "news",
+        "geospatial"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 10597,
+        "forks": 2189,
+        "openIssues": 37,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:52:37Z"
+      },
+      "bestFor": [
+        "Agréger des sources publiques de veille mondiale, trafic et événements"
+      ],
+      "avoidWhen": [
+        "Présenter des flux tiers non vérifiés comme des renseignements fiables ou suivre des personnes abusivement"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "githubRepositoryId": 1237031497
+    },
+    {
+      "repo": "toly1994328/FlutterUnit",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Catalogue et démonstrations de widgets Flutter",
+      "domain": "mobile",
+      "capabilities": [
+        "flutter",
+        "widgets",
+        "mobile-ui",
+        "education"
+      ],
+      "languages": [
+        "dart"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "github": {
+        "stars": 8845,
+        "forks": 1410,
+        "openIssues": 72,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-05T05:06:12Z"
+      },
+      "bestFor": [
+        "Explorer des widgets Flutter et des exemples de rendu multiplateforme"
+      ],
+      "avoidWhen": [
+        "Réutiliser des composants GPL-3.0 dans un produit sans vérifier les obligations de distribution"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "githubRepositoryId": 248628088
+    },
+    {
+      "repo": "typesense/typesense",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Moteur de recherche textuelle rapide et tolérant aux fautes",
+      "domain": "backend",
+      "capabilities": [
+        "full-text-search",
+        "search-engine",
+        "indexing",
+        "api"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "mixed",
+      "github": {
+        "stars": 26798,
+        "forks": 1004,
+        "openIssues": 904,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "v31",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-08T14:03:15Z"
+      },
+      "bestFor": [
+        "Déployer de la recherche full-text et une API de recherche dans une application"
+      ],
+      "avoidWhen": [
+        "Utiliser un moteur externe sans contrôler l'indexation des données et les obligations GPL"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "githubRepositoryId": 79317191
+    },
+    {
+      "repo": "xtekky/gpt4free",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Agrégateur expérimental de fournisseurs IA",
+      "domain": "ai_agents",
+      "capabilities": [
+        "llm-providers",
+        "api-compatibility",
+        "model-routing"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": "partial",
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 66777,
+        "forks": 13476,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-08T07:15:32Z"
+      },
+      "bestFor": [
+        "Étudier des adaptateurs d'API de modèles dans des environnements de test"
+      ],
+      "avoidWhen": [
+        "Compter sur des accès non contractuels ou non autorisés à des modèles pour une production fiable"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "githubRepositoryId": 620936652
     }
   ],
   "metadata": {
