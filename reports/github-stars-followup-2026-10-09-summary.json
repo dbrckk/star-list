@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-10-09",
+  "sourceIssue": "https://github.com/dbrckk/star-list/issues/52",
+  "sourceRun": "https://github.com/dbrckk/star-list/actions/runs/37913445306",
+  "summary": {
+    "previousCatalog": 722,
+    "publicStarsAtRun": 589,
+    "previouslyCatalogedStars": 586,
+    "newlyDiscovered": 3,
+    "newlyAdmitted": 3,
+    "catalogAfter": 725,
+    "auditTier": 2,
+    "specializedTier": 1
+  },
+  "reviewed": [
+    {
+      "repo": "devxprite/infoooze",
+      "status": "audit",
+      "reason": "No pushes since 2023; authorized OSINT and legacy Termux use only"
+    },
+    {
+      "repo": "noahdunnagan/fsearch",
+      "status": "audit",
+      "reason": "New macOS whole-disk indexer; full-disk privacy permission requires evaluation"
+    },
+    {
+      "repo": "symgraph/IDAssist",
+      "status": "specialized",
+      "reason": "MIT reverse-engineering plugin; requires IDA Pro 9+ and may rely on external model APIs"
+    }
+  ]
+}
