@@ -22,21 +22,21 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-09T01:34:34Z
+Generated: 2026-10-09T01:36:40Z
 
 ### Git
 - Branch: `main`
-- Head: `85cd7647dd03`
-- Commit date: 2026-10-09T03:34:22+02:00
-- Commit: Correct CRM repository owner from GitHub verification
-- Tracked files: 215
+- Head: `753243542ce5`
+- Commit date: 2026-10-09T03:36:29+02:00
+- Commit: Document admission of 86 GitHub Star repositories
+- Tracked files: 216
 
 ### Recently changed files
+- `reports/star-import-2026-10-09-batch-2.json`
+- `catalog.json`
 - `imports/github-stars-2026-10-09-batch-2.json`
 - `reports/star-import-2026-10-09-batch-2-metadata-7.json`
 - `reports/star-import-2026-10-09-batch-2-metadata-6.json`
-- `reports/star-import-2026-10-09-batch-2-metadata-5.json`
-- `reports/star-import-2026-10-09-batch-2-metadata-4.json`
 
 ### Project signals
 - No common build descriptor detected

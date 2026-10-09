@@ -1,13 +1,13 @@
 # Change impact
 
-Base: 611607e296b8e800426c175fe332f08dc8137612
-Head: 85cd7647dd039957d4067a5f07c05009bb2cfff9
+Base: 2b3f53590d9f14f31398fd988d4261c29d8f147f
+Head: 753243542ce580c9926e67f0a568a2121c22a2ee
 
 ## Changed files
-- M imports/github-stars-2026-10-09-batch-2.json
+- A reports/star-import-2026-10-09-batch-2.json
 
 ## Affected areas
-- imports
+- reports
 
 ## Related test candidates
 - No direct filename-based test match detected.

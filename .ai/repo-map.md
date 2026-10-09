@@ -62,6 +62,7 @@ reports/
   star-import-2026-10-09-batch-2-metadata-5.json
   star-import-2026-10-09-batch-2-metadata-6.json
   star-import-2026-10-09-batch-2-metadata-7.json
+  star-import-2026-10-09-batch-2.json
   star-import-2026-10-09-metadata-1.json
   star-import-2026-10-09-metadata-2.json
   star-import-2026-10-09-metadata-3.json
@@ -2475,6 +2476,125 @@ initial_prompt: |
         "license": "MIT",
         "pushedAt": "2026-10-06T06:42:03Z"
       }
+    }
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-2.json
+````json
+{
+  "date": "2026-10-09",
+  "source": "GitHub Stars screenshots (9), batch 2",
+  "summary": {
+    "raw": 95,
+    "unique": 95,
+    "alreadyInCatalog": 9,
+    "newlyAdmitted": 86,
+    "catalogBefore": 435,
+    "catalogAfter": 521
+  },
+  "admitted": [
+    "1N3/Sn1per",
+    "aarora4/Awesome-Prediction-Market-Tools",
+    "AILab-CVC/VideoCrafter",
+    "apache/tika",
+    "boykopovar/AnyPS5",
+    "caddyserver/caddy",
+    "caiovicentino/polymarket-mcp-server",
+    "cantolab/open-source-fractal",
+    "cloudflare/cloudflare-os",
+    "ComposioHQ/composio",
+    "datalab-to/marker",
+    "deepseek-ai/DeepGEMM",
+    "Diolinux/PhotoGIMP",
+    "DuarteSantos8/openGym",
+    "earthtojake/text-to-cad",
+    "elder-plinius/T3MP3ST",
+    "emilk/egui",
+    "ent0n29/polybot",
+    "EpicGames/raddebugger",
+    "evan-kolberg/prediction-market-backtesting",
+    "fxraptor-alpha/pinescript-indicators",
+    "genmoai/mochi",
+    "gh1mau/masta-cve-2026-48907",
+    "github/github-mcp-server",
+    "go-gitea/gitea",
+    "google-deepmind/mujoco",
+    "guoyww/AnimateDiff",
+    "huggingface/diffusers",
+    "huggingface/lerobot",
+    "iamlukethedev/Herald-OS",
+    "ict2023trader/Indicators",
+    "isaac-sim/IsaacLab",
+    "jina-ai/reader",
+    "justcallmekoko/ESP32Marauder",
+    "JustExecution/HTF_indicator",
+    "kargulstudio/sales-crm",
+    "LaurieWired/GhidraMCP",
+    "lfnovo/esperanto",
+    "lfnovo/open-notebook",
+    "Lightricks/LTX-Video",
+    "liquidslr/system-design-notes",
+    "localsend/localsend",
+    "LuxAlgo/PineTS",
+    "mastra-ai/mastra",
+    "meituan-longcat/LongCat-Video",
+    "michael-denyer/pstack-claude",
+    "MISP/MISP",
+    "mitmproxy/mitmproxy",
+    "mitre-attack/attack-stix-data",
+    "modal-labs/modal-examples",
+    "morluto/rea",
+    "OISF/suricata",
+    "open-rmf/rmf",
+    "openai/math",
+    "OpenByteInc/QuantDinger",
+    "OpenCut-app/OpenCut",
+    "openvla/openvla",
+    "oraios/serena",
+    "osquery/osquery",
+    "pingdotgg/t3code",
+    "Quincunx33/Ai-jailbreak",
+    "rawfilejson/awesome-osint-arsenal",
+    "ray-project/ray",
+    "rbrus/laya-as-judge",
+    "rehan-remade/universal-modder",
+    "reviewdog/reviewdog",
+    "RickdeJager/stegseek",
+    "ros2/ros2",
+    "SigmaHQ/sigma",
+    "SII-WANGZJ/Polymarket_data",
+    "smicallef/spiderfoot",
+    "storytold/artcraft",
+    "Stremio/stremio-web",
+    "taskflow/taskflow",
+    "tester-army/e2e",
+    "topoteretes/cognee",
+    "trufflesecurity/trufflehog",
+    "undefined-ui/second-brain-os",
+    "Unstructured-IO/unstructured",
+    "Velocidex/velociraptor",
+    "VirusTotal/yara",
+    "Wan-Video/Wan2.1",
+    "XHToken/Spark-X2.5",
+    "yangyuan-zhen/PolyWeather",
+    "zai-org/CogVideo",
+    "zeek/zeek"
+  ],
+  "metadataFiles": [
+    "reports/star-import-2026-10-09-batch-2-metadata-1.json",
+    "reports/star-import-2026-10-09-batch-2-metadata-2.json",
+    "reports/star-import-2026-10-09-batch-2-metadata-3.json",
+    "reports/star-import-2026-10-09-batch-2-metadata-4.json",
+    "reports/star-import-2026-10-09-batch-2-metadata-5.json",
+    "reports/star-import-2026-10-09-batch-2-metadata-6.json",
+    "reports/star-import-2026-10-09-batch-2-metadata-7.json"
+  ],
+  "manualCorrections": [
+    {
+      "from": "karqulstudio/sales-crm",
+      "to": "kargulstudio/sales-crm"
     }
   ]
 }
@@ -24755,6 +24875,3492 @@ Repository-specific rules:
         "purely non-visual automation"
       ],
       "guidanceSource": "curated"
+    },
+    {
+      "repo": "1N3/Sn1per",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "OSINT et reconnaissance autorisée",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "osint",
+        "recon"
+      ],
+      "languages": [
+        "shell"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 11393,
+        "forks": 2210,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-07-04T21:10:21Z"
+      },
+      "bestFor": [
+        "Collecter et corréler des données publiques sur un périmètre autorisé"
+      ],
+      "avoidWhen": [
+        "Reconnaissance non autorisée ou non cadrée"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "aarora4/Awesome-Prediction-Market-Tools",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Marchés prédictifs et Polymarket",
+      "domain": "trading",
+      "capabilities": [
+        "prediction-markets",
+        "backtesting"
+      ],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 767,
+        "forks": 268,
+        "openIssues": 147,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-07T03:03:02Z"
+      },
+      "bestFor": [
+        "Étudier et tester des stratégies pour les marchés prédictifs"
+      ],
+      "avoidWhen": [
+        "Exécution réelle sans validation des risques"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "roles": [
+        "alpha",
+        "backtest",
+        "risk",
+        "execution"
+      ]
+    },
+    {
+      "repo": "AILab-CVC/VideoCrafter",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Génération vidéo par IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "video-generation",
+        "diffusion"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5098,
+        "forks": 411,
+        "openIssues": 74,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-01-09T15:01:22Z"
+      },
+      "bestFor": [
+        "Expérimenter la génération et l'animation vidéo par IA"
+      ],
+      "avoidWhen": [
+        "Exécution sur matériel à ressources limitées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "apache/tika",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Extraction et structuration de documents",
+      "domain": "data_ml",
+      "capabilities": [
+        "document-processing",
+        "extraction"
+      ],
+      "languages": [
+        "java"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 4090,
+        "forks": 1005,
+        "openIssues": 58,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T20:08:29Z"
+      },
+      "bestFor": [
+        "Extraire le contenu de documents pour la recherche et l'IA"
+      ],
+      "avoidWhen": [
+        "Documents sensibles sans contrôles de confidentialité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "boykopovar/AnyPS5",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Outils de compatibilité PS5",
+      "domain": "game_dev",
+      "capabilities": [
+        "playstation",
+        "porting"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 15910,
+        "forks": 1256,
+        "openIssues": 554,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-2.0",
+        "pushedAt": "2026-10-08T22:46:53Z"
+      },
+      "bestFor": [
+        "Étudier les outils de portage pour exécutables PS5 détenus légalement"
+      ],
+      "avoidWhen": [
+        "Distribution non autorisée de logiciels et contenus protégés"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "caddyserver/caddy",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Serveur HTTP et reverse proxy",
+      "domain": "backend",
+      "capabilities": [
+        "web-server",
+        "https"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 77554,
+        "forks": 5102,
+        "openIssues": 287,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T04:02:21Z"
+      },
+      "bestFor": [
+        "Déployer un reverse proxy HTTPS et servir des applications web"
+      ],
+      "avoidWhen": [
+        "Environnements sans accès aux ports ou configuration réseau"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "caiovicentino/polymarket-mcp-server",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Marchés prédictifs et Polymarket",
+      "domain": "trading",
+      "capabilities": [
+        "prediction-markets",
+        "backtesting"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 689,
+        "forks": 143,
+        "openIssues": 11,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-20T16:04:03Z"
+      },
+      "bestFor": [
+        "Étudier et tester des stratégies pour les marchés prédictifs"
+      ],
+      "avoidWhen": [
+        "Exécution réelle sans validation des risques"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "roles": [
+        "alpha",
+        "backtest",
+        "risk",
+        "execution"
+      ]
+    },
+    {
+      "repo": "cantolab/open-source-fractal",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Indicateurs et scripts TradingView",
+      "domain": "trading",
+      "capabilities": [
+        "technical-analysis",
+        "indicators"
+      ],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 173,
+        "forks": 58,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-08-25T21:23:05Z"
+      },
+      "bestFor": [
+        "Analyser les marchés avec des indicateurs techniques"
+      ],
+      "avoidWhen": [
+        "Décisions d'investissement prises sur un indicateur isolé"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "roles": [
+        "alpha",
+        "regime"
+      ]
+    },
+    {
+      "repo": "cloudflare/cloudflare-os",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Espace de travail d'agents IA",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agents",
+        "workspace"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "partial",
+      "runtime": [
+        "cloud"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 11285,
+        "forks": 1346,
+        "openIssues": 132,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T22:40:55Z"
+      },
+      "bestFor": [
+        "Construire des espaces de travail et des flux pour agents IA"
+      ],
+      "avoidWhen": [
+        "Fonctionnement totalement hors ligne sans adaptation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "ComposioHQ/composio",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Espace de travail d'agents IA",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agents",
+        "workspace"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "partial",
+      "runtime": [
+        "cloud"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 30474,
+        "forks": 4848,
+        "openIssues": 110,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "next",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T01:09:09Z"
+      },
+      "bestFor": [
+        "Construire des espaces de travail et des flux pour agents IA"
+      ],
+      "avoidWhen": [
+        "Fonctionnement totalement hors ligne sans adaptation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "datalab-to/marker",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Extraction et structuration de documents",
+      "domain": "data_ml",
+      "capabilities": [
+        "document-processing",
+        "extraction"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 40292,
+        "forks": 2913,
+        "openIssues": 477,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-02T09:53:02Z"
+      },
+      "bestFor": [
+        "Extraire le contenu de documents pour la recherche et l'IA"
+      ],
+      "avoidWhen": [
+        "Documents sensibles sans contrôles de confidentialité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "deepseek-ai/DeepGEMM",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Optimisation GPU pour ML",
+      "domain": "data_ml",
+      "capabilities": [
+        "gpu",
+        "performance"
+      ],
+      "languages": [
+        "cuda"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 8880,
+        "forks": 1396,
+        "openIssues": 151,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-30T01:48:05Z"
+      },
+      "bestFor": [
+        "Optimiser des calculs de réseaux neuronaux sur GPU"
+      ],
+      "avoidWhen": [
+        "Machines sans accélérateur compatible"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Diolinux/PhotoGIMP",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Retouche et création graphique",
+      "domain": "graphics",
+      "capabilities": [
+        "image-editing",
+        "graphics"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 18328,
+        "forks": 745,
+        "openIssues": 43,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-09-27T05:10:17Z"
+      },
+      "bestFor": [
+        "Retoucher et produire des visuels avec des outils graphiques"
+      ],
+      "avoidWhen": [
+        "Flux exigeant des logiciels propriétaires non compatibles"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "DuarteSantos8/openGym",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Suivi sportif autonome",
+      "domain": "productivity",
+      "capabilities": [
+        "self-hosted",
+        "tracking"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 8039,
+        "forks": 1024,
+        "openIssues": 152,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-08T13:32:09Z"
+      },
+      "bestFor": [
+        "Suivre les entraînements sur un service auto-hébergé"
+      ],
+      "avoidWhen": [
+        "Besoin d'une application sans maintenance serveur"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "earthtojake/text-to-cad",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Conception CAD par langage naturel",
+      "domain": "graphics",
+      "capabilities": [
+        "cad",
+        "agent-tools"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 18479,
+        "forks": 1834,
+        "openIssues": 22,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T01:16:19Z"
+      },
+      "bestFor": [
+        "Produire et itérer des modèles de conception assistée par ordinateur"
+      ],
+      "avoidWhen": [
+        "Production industrielle sans validation géométrique"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "elder-plinius/T3MP3ST",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Plateforme de red team en laboratoire",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "red-team",
+        "automation"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 6452,
+        "forks": 1331,
+        "openIssues": 8,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-09-08T16:37:44Z"
+      },
+      "bestFor": [
+        "Conduire des tests de sécurité en laboratoire ou sur périmètre autorisé"
+      ],
+      "avoidWhen": [
+        "Opérations offensives sans consentement explicite"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "emilk/egui",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Interfaces graphiques Rust",
+      "domain": "web_frontend",
+      "capabilities": [
+        "gui",
+        "rust"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 31045,
+        "forks": 2173,
+        "openIssues": 1033,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T15:38:15Z"
+      },
+      "bestFor": [
+        "Construire des interfaces natives ou web en Rust"
+      ],
+      "avoidWhen": [
+        "Interfaces conçues exclusivement pour l'écosystème JavaScript"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "ent0n29/polybot",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Marchés prédictifs et Polymarket",
+      "domain": "trading",
+      "capabilities": [
+        "prediction-markets",
+        "backtesting"
+      ],
+      "languages": [
+        "java"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1019,
+        "forks": 176,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-02-20T23:34:32Z"
+      },
+      "bestFor": [
+        "Étudier et tester des stratégies pour les marchés prédictifs"
+      ],
+      "avoidWhen": [
+        "Exécution réelle sans validation des risques"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "roles": [
+        "alpha",
+        "backtest",
+        "risk",
+        "execution"
+      ]
+    },
+    {
+      "repo": "EpicGames/raddebugger",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Débogage graphique et natif",
+      "domain": "game_dev",
+      "capabilities": [
+        "debugging",
+        "profiling"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 8121,
+        "forks": 391,
+        "openIssues": 316,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-07T20:56:17Z"
+      },
+      "bestFor": [
+        "Diagnostiquer des applications et moteurs natifs"
+      ],
+      "avoidWhen": [
+        "Débogage de binaires sans accès autorisé"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "evan-kolberg/prediction-market-backtesting",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Marchés prédictifs et Polymarket",
+      "domain": "trading",
+      "capabilities": [
+        "prediction-markets",
+        "backtesting"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1211,
+        "forks": 196,
+        "openIssues": 4,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "v4.1-alpha",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-05-16T21:24:47Z"
+      },
+      "bestFor": [
+        "Étudier et tester des stratégies pour les marchés prédictifs"
+      ],
+      "avoidWhen": [
+        "Exécution réelle sans validation des risques"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "roles": [
+        "alpha",
+        "backtest",
+        "risk",
+        "execution"
+      ]
+    },
+    {
+      "repo": "fxraptor-alpha/pinescript-indicators",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Indicateurs et scripts TradingView",
+      "domain": "trading",
+      "capabilities": [
+        "technical-analysis",
+        "indicators"
+      ],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 111,
+        "forks": 42,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-06T11:42:04Z"
+      },
+      "bestFor": [
+        "Analyser les marchés avec des indicateurs techniques"
+      ],
+      "avoidWhen": [
+        "Décisions d'investissement prises sur un indicateur isolé"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "roles": [
+        "alpha",
+        "regime"
+      ]
+    },
+    {
+      "repo": "genmoai/mochi",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Génération vidéo par IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "video-generation",
+        "diffusion"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3746,
+        "forks": 494,
+        "openIssues": 60,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-06T17:19:13Z"
+      },
+      "bestFor": [
+        "Expérimenter la génération et l'animation vidéo par IA"
+      ],
+      "avoidWhen": [
+        "Exécution sur matériel à ressources limitées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "gh1mau/masta-cve-2026-48907",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Recherche sur CVE",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "cve",
+        "vulnerability-research"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 64,
+        "forks": 12,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-06-27T05:25:46Z"
+      },
+      "bestFor": [
+        "Examiner de manière reproductible un bulletin de vulnérabilité"
+      ],
+      "avoidWhen": [
+        "Utilisation en production sans validation du code et du périmètre"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "github/github-mcp-server",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Intégration GitHub pour agents",
+      "domain": "software_engineering",
+      "capabilities": [
+        "mcp",
+        "github"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 33454,
+        "forks": 5111,
+        "openIssues": 346,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T16:25:41Z"
+      },
+      "bestFor": [
+        "Piloter des opérations de développement GitHub depuis des agents"
+      ],
+      "avoidWhen": [
+        "Tokens sur-privilégiés ou actions non relues"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "go-gitea/gitea",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Hébergement Git auto-administré",
+      "domain": "devops",
+      "capabilities": [
+        "git-hosting",
+        "ci"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 58373,
+        "forks": 7234,
+        "openIssues": 2347,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T01:15:36Z"
+      },
+      "bestFor": [
+        "Héberger des dépôts et workflows Git sur une instance personnelle"
+      ],
+      "avoidWhen": [
+        "Exploitation d'un service public sans plan de sécurité et sauvegarde"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "google-deepmind/mujoco",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Robotique et apprentissage robotique",
+      "domain": "data_ml",
+      "capabilities": [
+        "robotics",
+        "simulation"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 15528,
+        "forks": 1815,
+        "openIssues": 292,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T20:33:34Z"
+      },
+      "bestFor": [
+        "Simuler et entraîner des systèmes robotiques"
+      ],
+      "avoidWhen": [
+        "Projet sans besoins robotiques ni matériel adapté"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "guoyww/AnimateDiff",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Génération vidéo par IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "video-generation",
+        "diffusion"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 12274,
+        "forks": 1101,
+        "openIssues": 319,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2024-07-31T01:14:15Z"
+      },
+      "bestFor": [
+        "Expérimenter la génération et l'animation vidéo par IA"
+      ],
+      "avoidWhen": [
+        "Exécution sur matériel à ressources limitées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "huggingface/diffusers",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Modèles de diffusion multimodaux",
+      "domain": "ai_media",
+      "capabilities": [
+        "diffusion",
+        "image-generation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 34695,
+        "forks": 7380,
+        "openIssues": 1476,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T14:42:43Z"
+      },
+      "bestFor": [
+        "Développer une chaîne de génération d'images et de vidéos"
+      ],
+      "avoidWhen": [
+        "Applications sans inférence multimodale"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Robotique et apprentissage robotique",
+      "domain": "data_ml",
+      "capabilities": [
+        "robotics",
+        "simulation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 28017,
+        "forks": 5839,
+        "openIssues": 966,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T21:24:14Z"
+      },
+      "bestFor": [
+        "Simuler et entraîner des systèmes robotiques"
+      ],
+      "avoidWhen": [
+        "Projet sans besoins robotiques ni matériel adapté"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "iamlukethedev/Herald-OS",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Système de travail piloté par agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agents",
+        "workflow"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 266,
+        "forks": 37,
+        "openIssues": 59,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T00:11:58Z"
+      },
+      "bestFor": [
+        "Organiser un environnement de travail orienté agents"
+      ],
+      "avoidWhen": [
+        "Confiance implicite dans les actions d'agents non supervisés"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "ict2023trader/Indicators",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Indicateurs et scripts TradingView",
+      "domain": "trading",
+      "capabilities": [
+        "technical-analysis",
+        "indicators"
+      ],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 60,
+        "forks": 28,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-07T18:52:49Z"
+      },
+      "bestFor": [
+        "Analyser les marchés avec des indicateurs techniques"
+      ],
+      "avoidWhen": [
+        "Décisions d'investissement prises sur un indicateur isolé"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "roles": [
+        "alpha",
+        "regime"
+      ]
+    },
+    {
+      "repo": "isaac-sim/IsaacLab",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Robotique et apprentissage robotique",
+      "domain": "data_ml",
+      "capabilities": [
+        "robotics",
+        "simulation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 8299,
+        "forks": 3940,
+        "openIssues": 364,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "develop",
+        "license": "BSD-3-Clause",
+        "pushedAt": "2026-10-09T00:55:55Z"
+      },
+      "bestFor": [
+        "Simuler et entraîner des systèmes robotiques"
+      ],
+      "avoidWhen": [
+        "Projet sans besoins robotiques ni matériel adapté"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "jina-ai/reader",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Extraction et structuration de documents",
+      "domain": "data_ml",
+      "capabilities": [
+        "document-processing",
+        "extraction"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 12127,
+        "forks": 892,
+        "openIssues": 34,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-05-22T02:56:46Z"
+      },
+      "bestFor": [
+        "Extraire le contenu de documents pour la recherche et l'IA"
+      ],
+      "avoidWhen": [
+        "Documents sensibles sans contrôles de confidentialité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "justcallmekoko/ESP32Marauder",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Audit des objets connectés autorisés",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "iot",
+        "wifi"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 12650,
+        "forks": 1523,
+        "openIssues": 332,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-10-08T22:09:49Z"
+      },
+      "bestFor": [
+        "Effectuer des audits sans fil en laboratoire autorisé"
+      ],
+      "avoidWhen": [
+        "Accès à des réseaux non autorisés"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "JustExecution/HTF_indicator",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Indicateurs et scripts TradingView",
+      "domain": "trading",
+      "capabilities": [
+        "technical-analysis",
+        "indicators"
+      ],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 122,
+        "forks": 46,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-09-17T06:36:15Z"
+      },
+      "bestFor": [
+        "Analyser les marchés avec des indicateurs techniques"
+      ],
+      "avoidWhen": [
+        "Décisions d'investissement prises sur un indicateur isolé"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "roles": [
+        "alpha",
+        "regime"
+      ]
+    },
+    {
+      "repo": "kargulstudio/sales-crm",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "CRM commercial",
+      "domain": "productivity",
+      "capabilities": [
+        "crm",
+        "web-app"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1658,
+        "forks": 360,
+        "openIssues": 12,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-06T06:42:03Z"
+      },
+      "bestFor": [
+        "Gérer les contacts et opportunités commerciales"
+      ],
+      "avoidWhen": [
+        "Déploiement sans contrôle des données clients"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "LaurieWired/GhidraMCP",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Rétro-ingénierie assistée par IA",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "reverse-engineering",
+        "analysis"
+      ],
+      "languages": [
+        "java"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 10728,
+        "forks": 1108,
+        "openIssues": 83,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2025-06-23T04:18:18Z"
+      },
+      "bestFor": [
+        "Analyser des logiciels autorisés avec des outils de rétro-ingénierie"
+      ],
+      "avoidWhen": [
+        "Analyse de logiciels tiers hors cadre légal ou contractuel"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "stable"
+    },
+    {
+      "repo": "lfnovo/esperanto",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Interface unifiée de modèles IA",
+      "domain": "ai_agents",
+      "capabilities": [
+        "model-routing",
+        "api"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 220,
+        "forks": 53,
+        "openIssues": 29,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-03T21:12:50Z"
+      },
+      "bestFor": [
+        "Intégrer plusieurs fournisseurs de modèles derrière une interface"
+      ],
+      "avoidWhen": [
+        "Usage exigeant un modèle exclusivement local"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "lfnovo/open-notebook",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Carnet de recherche IA",
+      "domain": "productivity",
+      "capabilities": [
+        "notebook",
+        "document-analysis"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 39969,
+        "forks": 4628,
+        "openIssues": 153,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-05T02:29:31Z"
+      },
+      "bestFor": [
+        "Organiser des sources et interroger un carnet de recherche IA"
+      ],
+      "avoidWhen": [
+        "Données sensibles sur fournisseur non maîtrisé"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Lightricks/LTX-Video",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Génération vidéo par IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "video-generation",
+        "diffusion"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 11056,
+        "forks": 1164,
+        "openIssues": 101,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-01-05T22:37:07Z"
+      },
+      "bestFor": [
+        "Expérimenter la génération et l'animation vidéo par IA"
+      ],
+      "avoidWhen": [
+        "Exécution sur matériel à ressources limitées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "liquidslr/system-design-notes",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Documentation d'architecture logicielle",
+      "domain": "software_engineering",
+      "capabilities": [
+        "system-design",
+        "documentation"
+      ],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 24645,
+        "forks": 4603,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-08-12T22:22:21Z"
+      },
+      "bestFor": [
+        "Préparer des choix d'architecture et entretiens système"
+      ],
+      "avoidWhen": [
+        "Utiliser une référence théorique comme preuve de performance"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "localsend/localsend",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Transfert de fichiers local",
+      "domain": "mobile",
+      "capabilities": [
+        "file-transfer",
+        "networking"
+      ],
+      "languages": [
+        "dart"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 93704,
+        "forks": 5231,
+        "openIssues": 1008,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-07T23:01:53Z"
+      },
+      "bestFor": [
+        "Partager des fichiers entre appareils sur le réseau local"
+      ],
+      "avoidWhen": [
+        "Réseaux non fiables sans contrôle de sécurité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "LuxAlgo/PineTS",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Indicateurs et scripts TradingView",
+      "domain": "trading",
+      "capabilities": [
+        "technical-analysis",
+        "indicators"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 848,
+        "forks": 193,
+        "openIssues": 68,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-08T22:50:47Z"
+      },
+      "bestFor": [
+        "Analyser les marchés avec des indicateurs techniques"
+      ],
+      "avoidWhen": [
+        "Décisions d'investissement prises sur un indicateur isolé"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "roles": [
+        "alpha",
+        "regime"
+      ]
+    },
+    {
+      "repo": "mastra-ai/mastra",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Espace de travail d'agents IA",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agents",
+        "workspace"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 28649,
+        "forks": 2943,
+        "openIssues": 566,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T01:27:59Z"
+      },
+      "bestFor": [
+        "Construire des espaces de travail et des flux pour agents IA"
+      ],
+      "avoidWhen": [
+        "Fonctionnement totalement hors ligne sans adaptation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "meituan-longcat/LongCat-Video",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Génération vidéo par IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "video-generation",
+        "diffusion"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 9110,
+        "forks": 1585,
+        "openIssues": 82,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-05-27T02:51:41Z"
+      },
+      "bestFor": [
+        "Expérimenter la génération et l'animation vidéo par IA"
+      ],
+      "avoidWhen": [
+        "Exécution sur matériel à ressources limitées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "michael-denyer/pstack-claude",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Agents de programmation et workflows",
+      "domain": "software_engineering",
+      "capabilities": [
+        "coding-agents",
+        "automation"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1652,
+        "forks": 176,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T21:45:55Z"
+      },
+      "bestFor": [
+        "Orchestrer des tâches de développement assistées par IA"
+      ],
+      "avoidWhen": [
+        "Intégration sans revue des changements générés"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "MISP/MISP",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Threat intelligence et détection",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "threat-intelligence",
+        "detection"
+      ],
+      "languages": [
+        "php"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 6583,
+        "forks": 1646,
+        "openIssues": 2947,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "2.5",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-07T19:03:27Z"
+      },
+      "bestFor": [
+        "Corréler des indicateurs de compromission et détecter des menaces"
+      ],
+      "avoidWhen": [
+        "Déploiement de règles non validées en production"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "mitmproxy/mitmproxy",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Inspection du trafic HTTP",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "proxy",
+        "http"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 45349,
+        "forks": 4774,
+        "openIssues": 490,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-05T22:18:35Z"
+      },
+      "bestFor": [
+        "Diagnostiquer les échanges HTTP(S) dans un périmètre de test"
+      ],
+      "avoidWhen": [
+        "Interception non consentie du trafic"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "mitre-attack/attack-stix-data",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Threat intelligence et détection",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "threat-intelligence",
+        "detection"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 690,
+        "forks": 147,
+        "openIssues": 19,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-08-05T22:57:21Z"
+      },
+      "bestFor": [
+        "Corréler des indicateurs de compromission et détecter des menaces"
+      ],
+      "avoidWhen": [
+        "Déploiement de règles non validées en production"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "modal-labs/modal-examples",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Exécution isolée et cloud",
+      "domain": "devops",
+      "capabilities": [
+        "sandbox",
+        "serverless"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "partial",
+      "runtime": [
+        "cloud"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1276,
+        "forks": 322,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T00:06:11Z"
+      },
+      "bestFor": [
+        "Exécuter des charges de calcul isolées ou hébergées"
+      ],
+      "avoidWhen": [
+        "Déploiement sans suivi des coûts ni isolation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "morluto/rea",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Rétro-ingénierie assistée par IA",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "reverse-engineering",
+        "analysis"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 27007,
+        "forks": 3066,
+        "openIssues": 63,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T01:29:24Z"
+      },
+      "bestFor": [
+        "Analyser des logiciels autorisés avec des outils de rétro-ingénierie"
+      ],
+      "avoidWhen": [
+        "Analyse de logiciels tiers hors cadre légal ou contractuel"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "OISF/suricata",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Threat intelligence et détection",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "threat-intelligence",
+        "detection"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 6714,
+        "forks": 1780,
+        "openIssues": 91,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-2.0",
+        "pushedAt": "2026-10-08T15:31:08Z"
+      },
+      "bestFor": [
+        "Corréler des indicateurs de compromission et détecter des menaces"
+      ],
+      "avoidWhen": [
+        "Déploiement de règles non validées en production"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "open-rmf/rmf",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Robotique et apprentissage robotique",
+      "domain": "data_ml",
+      "capabilities": [
+        "robotics",
+        "simulation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 445,
+        "forks": 90,
+        "openIssues": 63,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-08-25T01:22:32Z"
+      },
+      "bestFor": [
+        "Simuler et entraîner des systèmes robotiques"
+      ],
+      "avoidWhen": [
+        "Projet sans besoins robotiques ni matériel adapté"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "openai/math",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Bibliothèque formelle mathématique",
+      "domain": "software_engineering",
+      "capabilities": [
+        "formal-verification",
+        "mathematics"
+      ],
+      "languages": [
+        "lean"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 12136,
+        "forks": 1263,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T05:20:00Z"
+      },
+      "bestFor": [
+        "Utiliser des preuves formelles et des mathématiques en Lean"
+      ],
+      "avoidWhen": [
+        "Développement sans besoin de vérification formelle"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "OpenByteInc/QuantDinger",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Trading algorithmique multi-actifs",
+      "domain": "trading",
+      "capabilities": [
+        "backtesting",
+        "execution"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 12566,
+        "forks": 2547,
+        "openIssues": 44,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-06T21:14:39Z"
+      },
+      "bestFor": [
+        "Étudier et tester des stratégies de trading automatisées"
+      ],
+      "avoidWhen": [
+        "Exécution réelle sans backtesting et limites de risque"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "roles": [
+        "alpha",
+        "backtest",
+        "risk",
+        "execution"
+      ]
+    },
+    {
+      "repo": "OpenCut-app/OpenCut",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Montage vidéo et création multimédia",
+      "domain": "ai_media",
+      "capabilities": [
+        "video-editing",
+        "rendering"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 93251,
+        "forks": 9153,
+        "openIssues": 375,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-24T09:24:44Z"
+      },
+      "bestFor": [
+        "Créer et monter des vidéos dans une interface open source"
+      ],
+      "avoidWhen": [
+        "Traitement multimédia sans vérification du rendu final"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "openvla/openvla",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Robotique et apprentissage robotique",
+      "domain": "data_ml",
+      "capabilities": [
+        "robotics",
+        "simulation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 7124,
+        "forks": 854,
+        "openIssues": 118,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2025-03-23T23:41:01Z"
+      },
+      "bestFor": [
+        "Simuler et entraîner des systèmes robotiques"
+      ],
+      "avoidWhen": [
+        "Projet sans besoins robotiques ni matériel adapté"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "stable"
+    },
+    {
+      "repo": "oraios/serena",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Navigation sémantique du code",
+      "domain": "software_engineering",
+      "capabilities": [
+        "code-search",
+        "refactoring"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 30109,
+        "forks": 2049,
+        "openIssues": 107,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T22:37:55Z"
+      },
+      "bestFor": [
+        "Naviguer et éditer des projets via des outils sémantiques"
+      ],
+      "avoidWhen": [
+        "Éditions sans tests ou revues de diff"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "osquery/osquery",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Visibilité endpoint et threat hunting",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "threat-hunting",
+        "forensics"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 23629,
+        "forks": 2610,
+        "openIssues": 591,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T01:06:29Z"
+      },
+      "bestFor": [
+        "Analyser les hôtes et les événements de sécurité"
+      ],
+      "avoidWhen": [
+        "Collecte de télémétrie sans autorisation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "pingdotgg/t3code",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Agents de programmation et workflows",
+      "domain": "software_engineering",
+      "capabilities": [
+        "coding-agents",
+        "automation"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 26414,
+        "forks": 6870,
+        "openIssues": 2831,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T01:31:05Z"
+      },
+      "bestFor": [
+        "Orchestrer des tâches de développement assistées par IA"
+      ],
+      "avoidWhen": [
+        "Intégration sans revue des changements générés"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Quincunx33/Ai-jailbreak",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Évaluation de prompts adversariaux",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "red-team",
+        "prompt-testing"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 383,
+        "forks": 68,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-07T14:59:44Z"
+      },
+      "bestFor": [
+        "Auditer la robustesse des modèles dans un environnement autorisé"
+      ],
+      "avoidWhen": [
+        "Utilisation non encadrée de techniques de contournement"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "rawfilejson/awesome-osint-arsenal",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "OSINT et reconnaissance autorisée",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "osint",
+        "recon"
+      ],
+      "languages": [
+        "shell"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3204,
+        "forks": 477,
+        "openIssues": 12,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-08-29T03:14:19Z"
+      },
+      "bestFor": [
+        "Collecter et corréler des données publiques sur un périmètre autorisé"
+      ],
+      "avoidWhen": [
+        "Reconnaissance non autorisée ou non cadrée"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "ray-project/ray",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Orchestration des tâches parallèles",
+      "domain": "software_engineering",
+      "capabilities": [
+        "task-scheduling",
+        "concurrency"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 43993,
+        "forks": 8121,
+        "openIssues": 3556,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T01:23:55Z"
+      },
+      "bestFor": [
+        "Orchestrer des tâches et dépendances de calcul"
+      ],
+      "avoidWhen": [
+        "Applications sans parallélisme à gérer"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "rbrus/laya-as-judge",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Évaluation des réponses LLM",
+      "domain": "ai_agents",
+      "capabilities": [
+        "llm-evaluation",
+        "testing"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 17,
+        "forks": 1,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-26T08:15:03Z"
+      },
+      "bestFor": [
+        "Construire et comparer des pipelines de jugement par LLM"
+      ],
+      "avoidWhen": [
+        "Substitution des évaluations humaines critiques"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "rehan-remade/universal-modder",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Modding de jeux par agents IA",
+      "domain": "game_dev",
+      "capabilities": [
+        "game-modding",
+        "automation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 5656,
+        "forks": 530,
+        "openIssues": 41,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T23:19:15Z"
+      },
+      "bestFor": [
+        "Modifier et tester des contenus de jeu assistés par agent"
+      ],
+      "avoidWhen": [
+        "Jeux sans autorisation de modification"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "reviewdog/reviewdog",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Revue automatisée du code",
+      "domain": "software_engineering",
+      "capabilities": [
+        "code-review",
+        "lint"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 9649,
+        "forks": 503,
+        "openIssues": 131,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T00:26:07Z"
+      },
+      "bestFor": [
+        "Intégrer des vérifications statiques dans les pull requests"
+      ],
+      "avoidWhen": [
+        "Remplacer entièrement les tests fonctionnels par un linter"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "RickdeJager/stegseek",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Stéganographie et analyse forensique",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "forensics",
+        "steganography"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1332,
+        "forks": 136,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-2.0",
+        "pushedAt": "2023-10-10T12:20:59Z"
+      },
+      "bestFor": [
+        "Investiguer des supports et artefacts dans un laboratoire autorisé"
+      ],
+      "avoidWhen": [
+        "Tentatives de récupération non autorisées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ros2/ros2",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Robotique et apprentissage robotique",
+      "domain": "data_ml",
+      "capabilities": [
+        "robotics",
+        "simulation"
+      ],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6136,
+        "forks": 963,
+        "openIssues": 151,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "rolling",
+        "license": null,
+        "pushedAt": "2026-10-07T13:51:04Z"
+      },
+      "bestFor": [
+        "Simuler et entraîner des systèmes robotiques"
+      ],
+      "avoidWhen": [
+        "Projet sans besoins robotiques ni matériel adapté"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "SigmaHQ/sigma",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Threat intelligence et détection",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "threat-intelligence",
+        "detection"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 11192,
+        "forks": 2839,
+        "openIssues": 254,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-06T11:26:20Z"
+      },
+      "bestFor": [
+        "Corréler des indicateurs de compromission et détecter des menaces"
+      ],
+      "avoidWhen": [
+        "Déploiement de règles non validées en production"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "SII-WANGZJ/Polymarket_data",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Marchés prédictifs et Polymarket",
+      "domain": "trading",
+      "capabilities": [
+        "prediction-markets",
+        "backtesting"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 858,
+        "forks": 121,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-01-01T13:17:37Z"
+      },
+      "bestFor": [
+        "Étudier et tester des stratégies pour les marchés prédictifs"
+      ],
+      "avoidWhen": [
+        "Exécution réelle sans validation des risques"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "roles": [
+        "alpha",
+        "backtest",
+        "risk",
+        "execution"
+      ]
+    },
+    {
+      "repo": "smicallef/spiderfoot",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "OSINT et reconnaissance autorisée",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "osint",
+        "recon"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 23193,
+        "forks": 3715,
+        "openIssues": 329,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-04-13T19:43:06Z"
+      },
+      "bestFor": [
+        "Collecter et corréler des données publiques sur un périmètre autorisé"
+      ],
+      "avoidWhen": [
+        "Reconnaissance non autorisée ou non cadrée"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "storytold/artcraft",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Création visuelle artistique",
+      "domain": "graphics",
+      "capabilities": [
+        "creative-tools",
+        "rendering"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 8048,
+        "forks": 1135,
+        "openIssues": 75,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-07T00:56:15Z"
+      },
+      "bestFor": [
+        "Produire des visuels et récits assistés par logiciel"
+      ],
+      "avoidWhen": [
+        "Utilisation sans vérification des droits sur les médias"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Stremio/stremio-web",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Interface de lecture multimédia",
+      "domain": "ai_media",
+      "capabilities": [
+        "streaming",
+        "web-ui"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 14447,
+        "forks": 1643,
+        "openIssues": 67,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "development",
+        "license": "GPL-2.0",
+        "pushedAt": "2026-10-08T14:16:34Z"
+      },
+      "bestFor": [
+        "Développer une interface web de lecture multimédia"
+      ],
+      "avoidWhen": [
+        "Usage sans respect des droits sur les contenus"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "taskflow/taskflow",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Orchestration des tâches parallèles",
+      "domain": "software_engineering",
+      "capabilities": [
+        "task-scheduling",
+        "concurrency"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 12198,
+        "forks": 1413,
+        "openIssues": 41,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-09-28T18:41:31Z"
+      },
+      "bestFor": [
+        "Orchestrer des tâches et dépendances de calcul"
+      ],
+      "avoidWhen": [
+        "Applications sans parallélisme à gérer"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "tester-army/e2e",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Tests end-to-end",
+      "domain": "software_engineering",
+      "capabilities": [
+        "testing",
+        "e2e"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 8182,
+        "forks": 383,
+        "openIssues": 63,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T22:06:20Z"
+      },
+      "bestFor": [
+        "Automatiser les tests fonctionnels des applications web et mobiles"
+      ],
+      "avoidWhen": [
+        "Utilisation comme substitut à des tests d'intégration ciblés"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "topoteretes/cognee",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Mémoire pour agents IA",
+      "domain": "ai_memory",
+      "capabilities": [
+        "agent-memory",
+        "knowledge-graph"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 31763,
+        "forks": 3275,
+        "openIssues": 569,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T01:22:39Z"
+      },
+      "bestFor": [
+        "Maintenir un contexte et une mémoire exploitable pour agents IA"
+      ],
+      "avoidWhen": [
+        "Traitement de données confidentielles sans contrôle d'accès"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "trufflesecurity/trufflehog",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Détection des secrets",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "secret-scanning",
+        "security"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 28369,
+        "forks": 2623,
+        "openIssues": 560,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-08T17:28:48Z"
+      },
+      "bestFor": [
+        "Détecter des identifiants exposés dans des dépôts et journaux"
+      ],
+      "avoidWhen": [
+        "Scan de ressources dont l'accès n'est pas autorisé"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "undefined-ui/second-brain-os",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Système de travail piloté par agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agents",
+        "workflow"
+      ],
+      "languages": [
+        "html"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1017,
+        "forks": 163,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-07T19:16:09Z"
+      },
+      "bestFor": [
+        "Organiser un environnement de travail orienté agents"
+      ],
+      "avoidWhen": [
+        "Confiance implicite dans les actions d'agents non supervisés"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Unstructured-IO/unstructured",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Extraction et structuration de documents",
+      "domain": "data_ml",
+      "capabilities": [
+        "document-processing",
+        "extraction"
+      ],
+      "languages": [
+        "html"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 15549,
+        "forks": 1351,
+        "openIssues": 336,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T00:03:37Z"
+      },
+      "bestFor": [
+        "Extraire le contenu de documents pour la recherche et l'IA"
+      ],
+      "avoidWhen": [
+        "Documents sensibles sans contrôles de confidentialité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Velocidex/velociraptor",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Visibilité endpoint et threat hunting",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "threat-hunting",
+        "forensics"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4312,
+        "forks": 661,
+        "openIssues": 77,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-07T11:34:46Z"
+      },
+      "bestFor": [
+        "Analyser les hôtes et les événements de sécurité"
+      ],
+      "avoidWhen": [
+        "Collecte de télémétrie sans autorisation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "VirusTotal/yara",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Threat intelligence et détection",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "threat-intelligence",
+        "detection"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 9931,
+        "forks": 1586,
+        "openIssues": 169,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "BSD-3-Clause",
+        "pushedAt": "2026-09-23T09:48:49Z"
+      },
+      "bestFor": [
+        "Corréler des indicateurs de compromission et détecter des menaces"
+      ],
+      "avoidWhen": [
+        "Déploiement de règles non validées en production"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Wan-Video/Wan2.1",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Génération vidéo par IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "video-generation",
+        "diffusion"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 17122,
+        "forks": 3727,
+        "openIssues": 386,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-03-05T09:38:07Z"
+      },
+      "bestFor": [
+        "Expérimenter la génération et l'animation vidéo par IA"
+      ],
+      "avoidWhen": [
+        "Exécution sur matériel à ressources limitées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "XHToken/Spark-X2.5",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Modèle d'IA local",
+      "domain": "data_ml",
+      "capabilities": [
+        "on-device",
+        "model-inference"
+      ],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 682,
+        "forks": 87,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-20T08:13:26Z"
+      },
+      "bestFor": [
+        "Évaluer les capacités de modèles exécutés sur l'appareil"
+      ],
+      "avoidWhen": [
+        "Appareils sans mémoire ou puissance suffisante"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "yangyuan-zhen/PolyWeather",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Marchés prédictifs et Polymarket",
+      "domain": "trading",
+      "capabilities": [
+        "prediction-markets",
+        "backtesting"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 316,
+        "forks": 73,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-09-20T17:25:12Z"
+      },
+      "bestFor": [
+        "Étudier et tester des stratégies pour les marchés prédictifs"
+      ],
+      "avoidWhen": [
+        "Exécution réelle sans validation des risques"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "roles": [
+        "alpha",
+        "backtest",
+        "risk",
+        "execution"
+      ]
+    },
+    {
+      "repo": "zai-org/CogVideo",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Génération vidéo par IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "video-generation",
+        "diffusion"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 13067,
+        "forks": 1365,
+        "openIssues": 115,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2025-11-04T11:19:04Z"
+      },
+      "bestFor": [
+        "Expérimenter la génération et l'animation vidéo par IA"
+      ],
+      "avoidWhen": [
+        "Exécution sur matériel à ressources limitées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "zeek/zeek",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Threat intelligence et détection",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "threat-intelligence",
+        "detection"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 8084,
+        "forks": 1433,
+        "openIssues": 260,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T21:42:41Z"
+      },
+      "bestFor": [
+        "Corréler des indicateurs de compromission et détecter des menaces"
+      ],
+      "avoidWhen": [
+        "Déploiement de règles non validées en production"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
     }
   ],
   "metadata": {
