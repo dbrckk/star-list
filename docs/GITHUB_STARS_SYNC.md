@@ -7,7 +7,7 @@ sending screenshots or configuring any external service.
 
 [Sync GitHub Stars](../.github/workflows/sync-github-stars.yml) runs daily at
 05:41 UTC, can be started manually in **GitHub → Actions → Sync GitHub Stars →
-Run workflow**, and runs once after its workflow file is first merged to main.
+Run workflow**, and runs automatically whenever `catalog.json` changes on `main` (so the review issue is reconciled immediately after admissions).
 
 It uses the built-in GITHUB_TOKEN (read access to the GitHub API; issues:write
 only for its review issue). It requires **no personal access token and no paid
