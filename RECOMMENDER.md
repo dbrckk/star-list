@@ -13,6 +13,28 @@ python scripts/recommend.py "trading ml alpha" --cap machine-learning --cap alph
 
 The recommender also inspects `stacks.json` and returns the closest predefined stack when one matches the task.
 
+### Dedicated game-production stacks
+
+The catalog now contains two additional curated combinations alongside the
+general-purpose **Game Production** stack:
+
+- **Roblox Studio Agent Production** uses a Roblox/Luau knowledge base, an
+  instrumented Studio playtest connector and an agent-assisted building
+  workflow. Authoring requires Roblox Studio on a supported desktop; review
+  third-party agent edits and AGPL-3.0 obligations before deployment.
+- **Godot Gameplay and VFX** combines the Godot engine, official game
+  demonstration projects and agent-assisted Godot tooling. Verify each
+  shader, animation and gameplay feature in the real engine.
+
+```bash
+python scripts/recommend.py "roblox studio luau playtesting agent" --json
+python scripts/recommend.py "godot gameplay shaders vfx" --json
+```
+
+These are **tool recommendations**, not runnable game templates or guarantees
+of AAA-level output. As with all predefined stacks, the engine only shows a
+stack when every member passes the requested hard constraints.
+
 ## Selection score
 
 The selection score is task-specific. It is different from:

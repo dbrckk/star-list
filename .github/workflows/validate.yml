@@ -47,6 +47,12 @@ jobs:
         run: python scripts/test_selection_guidance.py
       - name: Test recommendation engine
         run: python scripts/test_recommend.py
+      - name: Functional game-production recommendations
+        run: |
+          python scripts/recommend.py "roblox studio luau playtesting agent" --json > /tmp/star-list-roblox.json
+          python scripts/recommend.py "godot gameplay shaders vfx" --json > /tmp/star-list-godot.json
+          python -c 'import json; r=json.load(open("/tmp/star-list-roblox.json")); assert r["recommendations"] and r["recommendedStack"]["name"] == "Roblox Studio Agent Production", r.get("recommendedStack")'
+          python -c 'import json; r=json.load(open("/tmp/star-list-godot.json")); assert r["recommendations"] and r["recommendedStack"]["name"] == "Godot Gameplay and VFX", r.get("recommendedStack")'
       - name: Test repository health scoring
         run: python scripts/test_health_score.py
       - name: Test replacement detection
