@@ -19,7 +19,8 @@ DOMAIN_ALIASES = {
     "backend": "backend", "api": "backend",
     "android": "mobile", "mobile": "mobile", "flutter": "mobile",
     "graphics": "graphics", "vector": "graphics", "animation": "graphics", "3d": "graphics",
-    "game": "game_dev", "gaming": "game_dev",
+    "game": "game_dev", "gaming": "game_dev", "roblox": "game_dev",
+    "godot": "game_dev", "luau": "game_dev",
     "trading": "trading", "quant": "trading", "xauusd": "trading", "gold": "trading",
     "security": "cybersecurity", "cyber": "cybersecurity", "pentest": "cybersecurity", "osint": "cybersecurity",
     "ml": "data_ml", "data": "data_ml",
@@ -150,9 +151,12 @@ def explain_repo(r, qtokens, domains, required_caps):
     if trend_reason and trend_reason != "stable": reasons.append("trend:" + trend_reason)
     return reasons[:4]
 
-def choose_stack(stacks, qtokens, domains):
+def choose_stack(stacks, qtokens, domains, allowed_names=None):
     best, best_score = None, -1
     for st in stacks:
+        # Never propose an unusable predefined stack when candidates are filtered.
+        if allowed_names is not None and not all(name in allowed_names for name in st.get("repos", [])):
+            continue
         stoks = tokens(st.get("name", "") + " " + st.get("goal", "") + " " + " ".join(st.get("notes", [])))
         score = 2*len(qtokens & stoks) + (3 if st.get("domain") in domains else 0)
         if score > best_score:
@@ -160,9 +164,11 @@ def choose_stack(stacks, qtokens, domains):
     return best if best_score > 0 else None
 
 
-def infer_alternatives(source, repos, top=3):
+def infer_alternatives(source, repos, top=3, allowed_names=None):
     candidates = []
     for candidate in repos:
+        if allowed_names is not None and candidate["repo"] not in allowed_names:
+            continue
         if candidate.get("tier") == "audit":
             continue
         result = replacement_score(source, candidate)
@@ -179,7 +185,7 @@ def infer_alternatives(source, repos, top=3):
     return [repo for _, _, _, repo in candidates[:top]]
 
 
-def infer_complements(source, stacks, repo_by_name, top=4):
+def infer_complements(source, stacks, repo_by_name, top=4, allowed_names=None):
     seen = set()
     complements = []
     for stack in stacks:
@@ -188,6 +194,8 @@ def infer_complements(source, stacks, repo_by_name, top=4):
             continue
         for name in members:
             if name == source["repo"] or name in seen:
+                continue
+            if allowed_names is not None and name not in allowed_names:
                 continue
             candidate = repo_by_name.get(name)
             if not candidate or candidate.get("tier") == "audit":
@@ -202,11 +210,22 @@ def infer_complements(source, stacks, repo_by_name, top=4):
     return complements
 
 
-def resolve_relations(source, repos, stacks, repo_by_name):
-    explicit_alternatives = source.get("alternatives", [])
-    explicit_complements = source.get("complements", [])
-    alternatives = explicit_alternatives or infer_alternatives(source, repos)
-    complements = explicit_complements or infer_complements(source, stacks, repo_by_name)
+def resolve_relations(source, repos, stacks, repo_by_name, allowed_names=None):
+    # Curated links are suggestions, not exemptions from the user's constraints.
+    def usable(names):
+        seen = {source["repo"]}
+        result = []
+        for name in names:
+            if name in seen or (allowed_names is not None and name not in allowed_names):
+                continue
+            seen.add(name)
+            result.append(name)
+        return result
+
+    explicit_alternatives = usable(source.get("alternatives", []))
+    explicit_complements = usable(source.get("complements", []))
+    alternatives = explicit_alternatives or infer_alternatives(source, repos, allowed_names=allowed_names)
+    complements = explicit_complements or infer_complements(source, stacks, repo_by_name, allowed_names=allowed_names)
     return {
         "alternatives": alternatives,
         "alternativesSource": "curated" if explicit_alternatives else ("inferred" if alternatives else "none"),
@@ -243,6 +262,7 @@ def main():
     domains = set(args.domain) or infer_domains(qtokens)
     required_caps, excluded_caps = set(args.cap), set(args.exclude_cap)
     ranked = []
+    eligible_names = set()
     filtered = {"platform":0, "language":0, "selfHosted":0, "inactive":0, "audit":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
 
     for r in repos:
@@ -268,6 +288,8 @@ def main():
         s = score_repo(r, qtokens, domains, required_caps, excluded_caps)
         if s is None:
             filtered["excluded"] += 1; continue
+        # Eligibility for related tools/stacks must obey the same hard constraints.
+        eligible_names.add(r["repo"])
         if s < args.min_score or s <= 0:
             filtered["minScore"] += 1; continue
         ranked.append((s, r))
@@ -275,7 +297,7 @@ def main():
     ranked.sort(key=lambda x: (-x[0], -x[1].get("score", 0), x[1]["repo"].lower()))
     top = []
     for s, r in ranked[:args.top]:
-        relations = resolve_relations(r, repos, stacks, repo_by_name)
+        relations = resolve_relations(r, repos, stacks, repo_by_name, eligible_names)
         top.append({
             "repo": r["repo"], "selectionScore": s, "qualityScore": r.get("score"),
             "tier": r.get("tier"), "domain": r.get("domain"),
@@ -299,7 +321,7 @@ def main():
                         "requireAllCapabilities":args.require_all_caps, "minScore":args.min_score,
                         "includeArchived":args.include_archived, "includeAudit":args.include_audit},
         "diagnostics": {"catalogSize":len(repos), "eligible":len(ranked), "returned":len(top), "filtered":filtered},
-        "recommendedStack": choose_stack(stacks, qtokens, domains),
+        "recommendedStack": choose_stack(stacks, qtokens, domains, eligible_names),
     }
     if args.as_json:
         print(json.dumps(result, indent=2, ensure_ascii=False))
