@@ -1,0 +1,6 @@
+# Large historical snapshots are evidence, not executable project architecture.
+# Keep all files in Git and available through direct file reads; only exclude
+# their contents from the compressed monolithic Repomix AI map.
+# The reusable repository-standards workflow enforces a 1,500,000-byte cap.
+reports/**
+imports/**
