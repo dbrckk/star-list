@@ -746,50 +746,57 @@
       "file": "scripts/star_import_pipeline.py",
       "language": "python",
       "kind": "function",
-      "name": "classify_candidate",
+      "name": "load_reviewed_metadata",
       "line": 90
     },
     {
       "file": "scripts/star_import_pipeline.py",
       "language": "python",
       "kind": "function",
+      "name": "classify_candidate",
+      "line": 120
+    },
+    {
+      "file": "scripts/star_import_pipeline.py",
+      "language": "python",
+      "kind": "function",
       "name": "build_report",
-      "line": 99
+      "line": 141
     },
     {
       "file": "scripts/star_import_pipeline.py",
       "language": "python",
       "kind": "function",
       "name": "render_markdown",
-      "line": 106
+      "line": 172
     },
     {
       "file": "scripts/star_import_pipeline.py",
       "language": "python",
       "kind": "function",
       "name": "integrate_catalog",
-      "line": 113
+      "line": 179
     },
     {
       "file": "scripts/star_import_pipeline.py",
       "language": "python",
       "kind": "function",
       "name": "validate_candidate_catalog",
-      "line": 127
+      "line": 193
     },
     {
       "file": "scripts/star_import_pipeline.py",
       "language": "python",
       "kind": "function",
       "name": "write_catalog_if_valid",
-      "line": 142
+      "line": 208
     },
     {
       "file": "scripts/star_import_pipeline.py",
       "language": "python",
       "kind": "function",
       "name": "main",
-      "line": 161
+      "line": 227
     },
     {
       "file": "scripts/test_backfill_licenses.py",

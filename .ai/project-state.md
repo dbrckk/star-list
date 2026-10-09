@@ -22,21 +22,23 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-09T01:36:40Z
+Generated: 2026-10-09T02:35:27Z
 
 ### Git
 - Branch: `main`
-- Head: `753243542ce5`
-- Commit date: 2026-10-09T03:36:29+02:00
-- Commit: Document admission of 86 GitHub Star repositories
+- Head: `e811cc31abf0`
+- Commit date: 2026-10-09T04:35:16+02:00
+- Commit: Fix reviewed GitHub star import workflow (#44)
 - Tracked files: 216
 
 ### Recently changed files
+- `README.md`
+- `scripts/star_import_pipeline.py`
+- `scripts/test_star_import_pipeline.py`
 - `reports/star-import-2026-10-09-batch-2.json`
 - `catalog.json`
 - `imports/github-stars-2026-10-09-batch-2.json`
 - `reports/star-import-2026-10-09-batch-2-metadata-7.json`
-- `reports/star-import-2026-10-09-batch-2-metadata-6.json`
 
 ### Project signals
 - No common build descriptor detected

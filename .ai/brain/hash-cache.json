@@ -1,5 +1,9 @@
 {
   "files": {
+    "README.md": {
+      "sha256": "195585c6825572486e3436ba627a97520fc21b7d3f32f5b5c419e7e28d099a53",
+      "size": 9370
+    },
     "catalog.json": {
       "sha256": "490f6b1ddc6a9df76084e40dde64e8c4bce901cf29edfa523600b419e1f2d293",
       "size": 539298
@@ -7,14 +11,6 @@
     "imports/github-stars-2026-10-09-batch-2.json": {
       "sha256": "caf4da5a204276649f44e66ed3ae218c3a7445c382837b58ddd5eaf01158683c",
       "size": 2846
-    },
-    "reports/star-import-2026-10-09-batch-2-metadata-4.json": {
-      "sha256": "3cdccc8e5a6221ef55c436ddb6d19b1a6fece73af5b90facc0b3cd1009eeb485",
-      "size": 5709
-    },
-    "reports/star-import-2026-10-09-batch-2-metadata-5.json": {
-      "sha256": "5f20fd5cd6c52fb80e7e74c39e4cd6099ba0e199e5fc76d4d491148c50702cb5",
-      "size": 6067
     },
     "reports/star-import-2026-10-09-batch-2-metadata-6.json": {
       "sha256": "2786bf1738aba40cae4e817f208ba97f993a521deecb253aeb0f5cefd7455231",
@@ -27,6 +23,14 @@
     "reports/star-import-2026-10-09-batch-2.json": {
       "sha256": "c46ba4bc606c59c9e6096b13c5146f7594af71910f451254f32a61045a0511dd",
       "size": 3259
+    },
+    "scripts/star_import_pipeline.py": {
+      "sha256": "0ef31e842ff42e674498f10836f984c2813a70642d2430f46b55f6a58626eb5f",
+      "size": 12719
+    },
+    "scripts/test_star_import_pipeline.py": {
+      "sha256": "ac4c1f5d477d1128dcfa3110bf5b7d7901f8d3dfb96880261d9147231d61f4ba",
+      "size": 8922
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

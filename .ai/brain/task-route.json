@@ -9,10 +9,10 @@
     "top_score": 17
   },
   "cache": {
-    "fingerprint": "9c04a76b06c5f0d70972c2ef3004c7063270bcda01e0cffdbc13a335a77bcc38",
+    "fingerprint": "a4bd866cbaf5062a9418a5d92500d51aa87376a09311306d63241063b3a7a4f5",
     "hit": false
   },
-  "candidate_count": 5,
+  "candidate_count": 6,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -77,17 +77,41 @@
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": "catalog.json",
+      "path": "scripts/star_import_pipeline.py",
       "reasons": [
+        "impact",
         "recently-changed"
       ],
-      "score": 3,
+      "score": 9,
+      "symbols": [
+        "build_report",
+        "classify_candidate",
+        "integrate_catalog",
+        "load_imports",
+        "load_reviewed_metadata",
+        "main",
+        "normalize_repo_identity",
+        "partition_candidates",
+        "render_markdown",
+        "validate_candidate_catalog",
+        "write_catalog_if_valid"
+      ]
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [],
+      "path": "scripts/test_star_import_pipeline.py",
+      "reasons": [
+        "impact",
+        "recently-changed"
+      ],
+      "score": 9,
       "symbols": []
     },
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": "reports/star-import-2026-10-09-batch-2.json",
+      "path": "README.md",
       "reasons": [
         "recently-changed"
       ],

@@ -1,21 +1,100 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "85cd7647dd039957d4067a5f07c05009bb2cfff9",
-  "head": "753243542ce580c9926e67f0a568a2121c22a2ee",
+  "base": "753243542ce580c9926e67f0a568a2121c22a2ee",
+  "head": "e811cc31abf0a1a0464ab515bdef073634fa3a19",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": "catalog.json",
+      "path": "README.md",
       "status": "M"
     },
     {
-      "path": "reports/star-import-2026-10-09-batch-2.json",
-      "status": "A"
+      "path": "scripts/star_import_pipeline.py",
+      "status": "M"
+    },
+    {
+      "path": "scripts/test_star_import_pipeline.py",
+      "status": "M"
     }
   ],
-  "changed_source_files": [],
-  "impacted_files": [],
-  "impacted_symbols": [],
-  "selected_tests": []
+  "changed_source_files": [
+    "scripts/star_import_pipeline.py",
+    "scripts/test_star_import_pipeline.py"
+  ],
+  "impacted_files": [
+    "scripts/star_import_pipeline.py",
+    "scripts/test_star_import_pipeline.py"
+  ],
+  "impacted_symbols": [
+    {
+      "name": "normalize_repo_identity",
+      "kind": "function",
+      "file": "scripts/star_import_pipeline.py",
+      "line": 18
+    },
+    {
+      "name": "load_imports",
+      "kind": "function",
+      "file": "scripts/star_import_pipeline.py",
+      "line": 42
+    },
+    {
+      "name": "partition_candidates",
+      "kind": "function",
+      "file": "scripts/star_import_pipeline.py",
+      "line": 64
+    },
+    {
+      "name": "load_reviewed_metadata",
+      "kind": "function",
+      "file": "scripts/star_import_pipeline.py",
+      "line": 90
+    },
+    {
+      "name": "classify_candidate",
+      "kind": "function",
+      "file": "scripts/star_import_pipeline.py",
+      "line": 120
+    },
+    {
+      "name": "build_report",
+      "kind": "function",
+      "file": "scripts/star_import_pipeline.py",
+      "line": 141
+    },
+    {
+      "name": "render_markdown",
+      "kind": "function",
+      "file": "scripts/star_import_pipeline.py",
+      "line": 172
+    },
+    {
+      "name": "integrate_catalog",
+      "kind": "function",
+      "file": "scripts/star_import_pipeline.py",
+      "line": 179
+    },
+    {
+      "name": "validate_candidate_catalog",
+      "kind": "function",
+      "file": "scripts/star_import_pipeline.py",
+      "line": 193
+    },
+    {
+      "name": "write_catalog_if_valid",
+      "kind": "function",
+      "file": "scripts/star_import_pipeline.py",
+      "line": 208
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/star_import_pipeline.py",
+      "line": 227
+    }
+  ],
+  "selected_tests": [
+    "scripts/test_star_import_pipeline.py"
+  ]
 }

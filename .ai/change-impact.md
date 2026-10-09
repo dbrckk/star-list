@@ -1,13 +1,16 @@
 # Change impact
 
-Base: 2b3f53590d9f14f31398fd988d4261c29d8f147f
-Head: 753243542ce580c9926e67f0a568a2121c22a2ee
+Base: 948bbe7ed85f482d4b0f740589d9a041e5c37212
+Head: e811cc31abf0a1a0464ab515bdef073634fa3a19
 
 ## Changed files
-- A reports/star-import-2026-10-09-batch-2.json
+- M README.md
+- M scripts/star_import_pipeline.py
+- M scripts/test_star_import_pipeline.py
 
 ## Affected areas
-- reports
+- (root)
+- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.

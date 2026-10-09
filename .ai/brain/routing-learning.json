@@ -288,6 +288,23 @@
         "scripts/star_import_pipeline.py",
         "scripts/test_star_import_pipeline.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "Fix reviewed GitHub star import workflow (#44)",
+      "terms": [
+        "44",
+        "github",
+        "import",
+        "reviewed",
+        "star",
+        "workflow"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/star_import_pipeline.py",
+        "scripts/test_star_import_pipeline.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -363,6 +380,10 @@
       "scripts/validate_catalog.py": 4
     },
     "42": {
+      "scripts/star_import_pipeline.py": 4,
+      "scripts/test_star_import_pipeline.py": 4
+    },
+    "44": {
       "scripts/star_import_pipeline.py": 4,
       "scripts/test_star_import_pipeline.py": 4
     },
@@ -486,9 +507,9 @@
     },
     "github": {
       "scripts/refresh_github_metadata.py": 4,
-      "scripts/star_import_pipeline.py": 4,
+      "scripts/star_import_pipeline.py": 8,
       "scripts/test_refresh_github_metadata.py": 4,
-      "scripts/test_star_import_pipeline.py": 4
+      "scripts/test_star_import_pipeline.py": 8
     },
     "guidance": {
       "scripts/infer_selection_guidance.py": 4,
@@ -503,8 +524,8 @@
       "scripts/validate_catalog.py": 4
     },
     "import": {
-      "scripts/star_import_pipeline.py": 4,
-      "scripts/test_star_import_pipeline.py": 4
+      "scripts/star_import_pipeline.py": 8,
+      "scripts/test_star_import_pipeline.py": 8
     },
     "improve": {
       "scripts/refresh_github_metadata.py": 4,
@@ -629,6 +650,10 @@
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/validate_json_contract.py": 4
     },
+    "reviewed": {
+      "scripts/star_import_pipeline.py": 4,
+      "scripts/test_star_import_pipeline.py": 4
+    },
     "selection": {
       "scripts/infer_selection_guidance.py": 4,
       "scripts/recommend.py": 4,
@@ -651,8 +676,8 @@
       "scripts/validate_catalog.py": 4
     },
     "star": {
-      "scripts/star_import_pipeline.py": 4,
-      "scripts/test_star_import_pipeline.py": 4
+      "scripts/star_import_pipeline.py": 8,
+      "scripts/test_star_import_pipeline.py": 8
     },
     "status": {
       "scripts/validate_catalog.py": 4
@@ -688,6 +713,10 @@
     "when": {
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
+    },
+    "workflow": {
+      "scripts/star_import_pipeline.py": 4,
+      "scripts/test_star_import_pipeline.py": 4
     }
   },
   "term_test_scores": {}

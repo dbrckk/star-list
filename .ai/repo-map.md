@@ -4665,24 +4665,37 @@ item = {"key": key, "repo": record["repo"], "sources": sources[key]}
 ⋮----
 duplicates = [{"key": key, "repo": first[key]["repo"], "sources": sources[key]} for key in duplicate_keys]
 ⋮----
+def load_reviewed_metadata(paths: list[Path]) -> tuple[dict[str, dict], list[dict]]
+⋮----
+"""Load offline metadata snapshots. Only explicitly reviewed entries are eligible."""
+⋮----
+rows = payload.get("repositories") if isinstance(payload, dict) else None
+⋮----
 def classify_candidate(candidate: dict, metadata: dict | None = None) -> dict
 ⋮----
 result = {"repo": candidate["repo"], "sources": list(candidate.get("sources", [])), "status": "needs_review"}
 ⋮----
 entry = copy.deepcopy(metadata["catalogEntry"])
+raw_github = metadata.get("github")
 ⋮----
-result = {"repo": candidate["repo"], "sources": list(candidate.get("sources", [])), "status": "accepted", "catalogEntry": entry}
+verified_identity = (normalize_repo_identity(metadata.get("repo"))[0] == candidate["key"]
 ⋮----
-def build_report(partition: dict, malformed: list[dict], import_files: list[str]) -> dict
+verified_identity = False
+required_fields = ("score", "tier", "category", "domain", "resourceLevel", "integrationComplexity")
 ⋮----
-classified = [classify_candidate(c) for c in partition["new"]]
+result = {"repo": candidate["repo"], "sources": list(candidate.get("sources", [])),
+⋮----
+metadata = metadata or {}
+metadata_errors = metadata_errors or []
+classified = [classify_candidate(c, metadata.get(c["key"])) for c in partition["new"]]
 needs_review = [x for x in classified if x["status"] == "needs_review"]
+accepted = [x for x in classified if x["status"] == "accepted"]
 unique = len(partition["new"]) + len(partition["already_cataloged"])
 ⋮----
 def render_markdown(report: dict) -> str
 ⋮----
 s = report["summary"]
-lines = ["# GitHub Star Import Report", "", f"- Raw records: {s['rawRecords']}", f"- Unique normalized repositories: {s['uniqueNormalized']}", f"- Duplicate imports: {s['duplicateImports']}", f"- Already cataloged: {s['alreadyCataloged']}", f"- New candidates: {s['newCandidates']}", f"- Needs review: {s['needsReview']}", f"- Malformed: {s['malformed']}", "", "## New candidates", ""]
+lines = ["# GitHub Star Import Report", "", f"- Raw records: {s['rawRecords']}", f"- Unique normalized repositories: {s['uniqueNormalized']}", f"- Duplicate imports: {s['duplicateImports']}", f"- Already cataloged: {s['alreadyCataloged']}", f"- New candidates: {s['newCandidates']}", f"- Accepted: {s['accepted']}", f"- Needs review: {s['needsReview']}", f"- Malformed: {s['malformed']}", f"- Metadata errors: {s['malformedMetadata']}", "", "## New candidates", ""]
 ⋮----
 def integrate_catalog(catalog: dict, accepted: list[dict]) -> dict
 ⋮----
@@ -4717,10 +4730,12 @@ paths = args.imports or sorted((ROOT / "imports").glob("github-stars-*.json"))
 catalog = json.loads(args.catalog.read_text(encoding="utf-8"))
 ⋮----
 partition = partition_candidates(records, catalog)
-report = build_report(partition, malformed, [str(p) for p in paths])
+⋮----
+report = build_report(partition, malformed, [str(p) for p in paths],
 payload = json.dumps(report, indent=2, ensure_ascii=False) + "\n"
 ⋮----
 accepted = [x["catalogEntry"] for x in report["newCandidates"] if x["status"] == "accepted"]
+⋮----
 candidate = integrate_catalog(catalog, accepted)
 ````
 
@@ -5292,6 +5307,13 @@ classified = classify_candidate(candidate)
 ⋮----
 report = build_report(partition, malformed, [str(p1), str(p2)])
 ⋮----
+# A raw GitHub snapshot cannot approve itself. Approval is explicit and tied to GitHub evidence.
+verified_github = {
+new_entry = {
+reviewed = {"repo": "Anthropic/Claude-Code", "github": verified_github,
+⋮----
+review_report = build_report(partition, malformed, ["batch"], {candidate["key"]: reviewed}, ["metadata"])
+⋮----
 # Integration preserves existing records, sorts only additions deterministically, and is idempotent.
 base = {"schemaVersion": 1, "repositories": [{"repo": "z/existing", "score": 8.0}]}
 accepted = [
@@ -5316,6 +5338,26 @@ original = json.dumps(catalog_payload) + "\n"
 proc = subprocess.run([
 ⋮----
 cli_report = json.loads(report_json.read_text())
+⋮----
+# End-to-end CLI: importing needs human approval, accepts reviewed data, and stays idempotent.
+⋮----
+scripts = root / "scripts"
+⋮----
+baseline = {**new_entry, "repo": "Existing/Project"}
+proposed = {**new_entry, "repo": "New/Project"}
+⋮----
+args = [sys.executable, str(SCRIPT), str(import_path), "--catalog", str(catalog_path),
+before = catalog_path.read_text()
+raw = subprocess.run(args + ["--write"], text=True, capture_output=True)
+⋮----
+success = subprocess.run(args + ["--write"], text=True, capture_output=True)
+⋮----
+merged = json.loads(catalog_path.read_text())
+⋮----
+new_before_repeat = catalog_path.read_text()
+repeat = subprocess.run(args + ["--write"], text=True, capture_output=True)
+⋮----
+bad = subprocess.run(args + ["--write"], text=True, capture_output=True)
 ````
 
 ## File: scripts/update_cache_health_history.py
@@ -29756,6 +29798,53 @@ python scripts/test_pipeline_integration.py
 ```
 
 For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
+
+## Import GitHub Star screenshots
+
+Screenshot-derived repository names are stored as immutable import manifests. The importer is
+**read-only by default**: it reports known repositories, duplicates, and entries requiring
+review without changing the curated catalog.
+
+```bash
+python scripts/star_import_pipeline.py imports/github-stars-2026-10-09-batch-2.json \
+  --report-json star-import-report.json
+```
+
+Raw metadata snapshots alone are **not sufficient** for admission. To approve a new entry,
+create a separate reviewed metadata file with this structure:
+
+```json
+{
+  "repositories": [
+    {
+      "repo": "owner/repository",
+      "reviewed": true,
+      "github": { "...": "verified GitHub metadata fields" },
+      "catalogEntry": {
+        "repo": "owner/repository",
+        "...": "all required catalog fields",
+        "github": { "...": "same verified GitHub metadata fields" }
+      }
+    }
+  ]
+}
+```
+
+The `github` objects must match exactly. In actual files, replace the illustrative
+`...` fields with complete objects conforming to `catalog.schema.json`.
+Only set `reviewed: true` after verifying repository identity, licensing, and classification.
+The script does not independently authenticate the reviewer.
+
+```bash
+python scripts/star_import_pipeline.py imports/github-stars-2026-10-09-batch-2.json \
+  --metadata path/to/reviewed-metadata.json \
+  --report-json star-import-report.json --write
+```
+
+The write path reuses the existing catalog validators and is atomic. Bad metadata or
+an unapproved batch cannot silently create catalog entries. Candidates still requiring
+review remain outside the catalog; rerunning an already admitted batch is idempotent.
+The metadata files from prior imports are historical evidence, not automatic approval.
 
 ## Repository layout
 
