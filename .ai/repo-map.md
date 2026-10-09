@@ -510,6 +510,12 @@ jobs:
         run: python scripts/test_selection_guidance.py
       - name: Test recommendation engine
         run: python scripts/test_recommend.py
+      - name: Functional game-production recommendations
+        run: |
+          python scripts/recommend.py "roblox studio luau playtesting agent" --json > /tmp/star-list-roblox.json
+          python scripts/recommend.py "godot gameplay shaders vfx" --json > /tmp/star-list-godot.json
+          python -c 'import json; r=json.load(open("/tmp/star-list-roblox.json")); assert r["recommendations"] and r["recommendedStack"]["name"] == "Roblox Studio Agent Production", r.get("recommendedStack")'
+          python -c 'import json; r=json.load(open("/tmp/star-list-godot.json")); assert r["recommendations"] and r["recommendedStack"]["name"] == "Godot Gameplay and VFX", r.get("recommendedStack")'
       - name: Test repository health scoring
         run: python scripts/test_health_score.py
       - name: Test replacement detection
@@ -36495,6 +36501,37 @@ Automated discovery is advisory. It can find, score, remember, and surface candi
       ],
       "notes": [
         "For Java ecosystems, libgdx/libgdx is the main alternative."
+      ]
+    },
+    {
+      "name": "Roblox Studio Agent Production",
+      "domain": "game_dev",
+      "goal": "Build and polish Roblox Studio gameplay with Luau coding agents, iterative playtesting, animation and performance diagnostics.",
+      "repos": [
+        "TabooHarmony/roblox-brain",
+        "Chrrxs/robloxstudio-mcp",
+        "S4US/Roqer"
+      ],
+      "notes": [
+        "Roblox Studio authoring and instrumented playtests require a supported desktop environment; an Android phone alone cannot run Studio.",
+        "Treat third-party agent actions as untrusted until scripts, assets, permissions and game behavior are reviewed.",
+        "Roqer is AGPL-3.0; assess deployment and redistribution obligations before integration.",
+        "Prefer built-in Roblox Studio MCP when available; this stack documents an alternative tested-tooling option, not an official dependency."
+      ]
+    },
+    {
+      "name": "Godot Gameplay and VFX",
+      "domain": "game_dev",
+      "goal": "Create Godot games with engine-supported gameplay, shaders, visual effects and agent-assisted GDScript iteration.",
+      "repos": [
+        "godotengine/godot",
+        "godotengine/godot-demo-projects",
+        "Coding-Solo/godot-mcp"
+      ],
+      "notes": [
+        "Use demo project shader examples as references, not as finished studio-quality scenes; verify each game's rendering in engine.",
+        "Review source, compatibility and privileges of external Godot MCP extensions before connecting them to a production project.",
+        "Engine-level development requires desktop tooling; running a finished Android export is a different workflow."
       ]
     },
     {

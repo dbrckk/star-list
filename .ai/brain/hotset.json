@@ -1,21 +1,35 @@
 {
   "files": [
     {
-      "path": ".repomixignore",
+      "path": ".github/workflows/validate.yml",
       "reasons": [
         "changed"
       ],
       "score": 100
     },
     {
-      "path": "README.md",
+      "path": "RECOMMENDER.md",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "stacks.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": ".repomixignore",
       "reasons": [
         "recent-project-state"
       ],
       "score": 60
     },
     {
-      "path": "RECOMMENDER.md",
+      "path": "AGENTS.md",
       "reasons": [
         "recent-project-state"
       ],
@@ -29,63 +43,84 @@
       "score": 60
     },
     {
-      "path": "imports/github-stars-2026-10-09-batch-5.json",
+      "path": "catalog.schema.json",
       "reasons": [
         "recent-project-state"
       ],
       "score": 60
     },
     {
-      "path": "imports/github-stars-2026-10-09-batch-6.json",
+      "path": "health-snapshot.json",
       "reasons": [
         "recent-project-state"
       ],
       "score": 60
     },
     {
-      "path": "reports/star-import-2026-10-09-batch-5-metadata-1.json",
+      "path": "history.json",
       "reasons": [
         "recent-project-state"
       ],
       "score": 60
     },
     {
-      "path": "reports/star-import-2026-10-09-batch-5-metadata-2.json",
+      "path": "imports/github-stars-2026-10-09-auto-1.json",
       "reasons": [
         "recent-project-state"
       ],
       "score": 60
     },
     {
-      "path": "reports/star-import-2026-10-09-batch-5-metadata-3.json",
+      "path": "imports/github-stars-2026-10-09-auto-2.json",
       "reasons": [
         "recent-project-state"
       ],
       "score": 60
     },
     {
-      "path": "reports/star-import-2026-10-09-batch-6-metadata.json",
+      "path": "reports/github-stars-followup-2026-10-09-metadata.json",
       "reasons": [
         "recent-project-state"
       ],
       "score": 60
     },
     {
-      "path": "reports/star-import-2026-10-09-batch-6-reviewed.json",
+      "path": "reports/github-stars-followup-2026-10-09-reviewed.json",
       "reasons": [
         "recent-project-state"
       ],
       "score": 60
     },
     {
-      "path": "reports/star-import-2026-10-09-batch-6.json",
+      "path": "reports/github-stars-followup-2026-10-09-summary.json",
       "reasons": [
         "recent-project-state"
       ],
       "score": 60
     },
     {
-      "path": "reports/star-import-2026-10-09-last-11-screenshots-coverage.json",
+      "path": "reports/github-stars-review-2026-10-09-metadata-1.json",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "reports/github-stars-review-2026-10-09-metadata-2.json",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "reports/github-stars-review-2026-10-09-reviewed.json",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "reports/github-stars-review-2026-10-09-summary.json",
       "reasons": [
         "recent-project-state"
       ],
@@ -99,28 +134,7 @@
       "score": 60
     },
     {
-      "path": "scripts/recommend.py",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "scripts/sync_github_stars.py",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "scripts/test_recommend.py",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "scripts/test_sync_github_stars.py",
+      "path": "scripts/test_auto_stars_admission.py",
       "reasons": [
         "recent-project-state"
       ],

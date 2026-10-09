@@ -1,13 +1,21 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "HEAD~1",
-  "head": "3cf5e5684b4dca9078dc98d0ba2db96501fee616",
-  "index_mode": "full",
+  "base": "3cf5e5684b4dca9078dc98d0ba2db96501fee616",
+  "head": "86b62be6695d50f4199e0484a152b15ada6f8ea1",
+  "index_mode": "incremental",
   "changed_files": [
     {
-      "path": ".repomixignore",
-      "status": "A"
+      "path": ".github/workflows/validate.yml",
+      "status": "M"
+    },
+    {
+      "path": "RECOMMENDER.md",
+      "status": "M"
+    },
+    {
+      "path": "stacks.json",
+      "status": "M"
     }
   ],
   "changed_source_files": [],

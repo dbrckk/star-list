@@ -27,16 +27,19 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-09T21:27:17Z
+Generated: 2026-10-09T21:30:56Z
 
 ### Git
 - Branch: `main`
-- Head: `3cf5e5684b4d`
-- Commit date: 2026-10-09T23:27:06+02:00
-- Commit: Fix oversized AI context map by excluding archived import snapshots (#55)
-- Tracked files: 264
+- Head: `86b62be6695d`
+- Commit date: 2026-10-09T23:30:45+02:00
+- Commit: Recommend Roblox Studio and Godot production stacks (#56)
+- Tracked files: 265
 
 ### Recently changed files
+- `.github/workflows/validate.yml`
+- `RECOMMENDER.md`
+- `stacks.json`
 - `.repomixignore`
 - `AGENTS.md`
 - `catalog.json`
@@ -46,7 +49,6 @@ Generated: 2026-10-09T21:27:17Z
 - `reports/github-stars-followup-2026-10-09-summary.json`
 - `scripts/test_auto_stars_admission.py`
 - `.github/workflows/sync-github-stars.yml`
-- `.github/workflows/validate.yml`
 - `catalog.schema.json`
 - `docs/GITHUB_STARS_SYNC.md`
 - `health-snapshot.json`
@@ -55,8 +57,6 @@ Generated: 2026-10-09T21:27:17Z
 - `reports/github-stars-review-2026-10-09-metadata-1.json`
 - `reports/github-stars-review-2026-10-09-metadata-2.json`
 - `reports/github-stars-review-2026-10-09-reviewed.json`
-- `reports/github-stars-review-2026-10-09-summary.json`
-- `schemas/star-sync-report.schema.json`
 
 ### Project signals
 - No common build descriptor detected

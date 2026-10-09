@@ -9,10 +9,10 @@
     "top_score": 17
   },
   "cache": {
-    "fingerprint": "b0156c04ed20e9d1744aceb6f2724d7cb285039f7d56892f6f42ff9ef4208f10",
+    "fingerprint": "dc42438544adfe3b1e518903c4d4b97d7216e1154f4dc1b0b1f163d97ec7c70b",
     "hit": false
   },
-  "candidate_count": 4,
+  "candidate_count": 6,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -78,7 +78,27 @@
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": ".repomixignore",
+      "path": ".github/workflows/validate.yml",
+      "reasons": [
+        "recently-changed"
+      ],
+      "score": 3,
+      "symbols": []
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [],
+      "path": "RECOMMENDER.md",
+      "reasons": [
+        "recently-changed"
+      ],
+      "score": 3,
+      "symbols": []
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [],
+      "path": "stacks.json",
       "reasons": [
         "recently-changed"
       ],
