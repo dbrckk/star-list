@@ -25,6 +25,8 @@ jobs:
         run: python -m compileall -q scripts
       - name: Test star import pipeline
         run: python scripts/test_star_import_pipeline.py
+      - name: Test public GitHub Stars synchronization
+        run: python scripts/test_sync_github_stars.py
       - name: Validate catalog
         run: |
           python scripts/validate_catalog.py

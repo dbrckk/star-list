@@ -1,0 +1,68 @@
+name: Sync GitHub Stars
+
+on:
+  schedule:
+    - cron: "41 5 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/sync-github-stars.yml"
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: star-list-stars-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Test offline star synchronization
+        run: python scripts/test_sync_github_stars.py
+      - name: Read and compare public GitHub Stars
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/sync_github_stars.py --user dbrckk \
+            --report-json star-sync-report.json \
+            --report-md star-sync-review.md \
+            --manifest star-sync-manifest.json
+          python scripts/validate_json_contract.py \
+            schemas/star-sync-report.schema.json star-sync-report.json
+      - name: Preserve results without changing the catalog
+        uses: actions/upload-artifact@v4
+        with:
+          name: star-list-public-stars-review
+          path: |
+            star-sync-report.json
+            star-sync-review.md
+            star-sync-manifest.json
+          retention-days: 14
+      - name: Open, update or close GitHub Stars review issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          COUNT=$(python -c 'import json; print(json.load(open("star-sync-report.json"))["summary"]["new"])')
+          EXISTING=$(gh issue list --state open --limit 200 --json number,body \
+            --jq '[.[] | select(.body != null and (.body | contains("<!-- star-list-star-sync -->")))] | .[0].number // empty')
+          if [ "$COUNT" = "0" ]; then
+            if [ -n "$EXISTING" ]; then
+              gh issue close "$EXISTING" --comment "All public GitHub Stars currently match the catalog."
+            fi
+          elif [ -n "$EXISTING" ]; then
+            gh issue edit "$EXISTING" --title "GitHub Stars: $COUNT repositories awaiting review" \
+              --body-file star-sync-review.md
+          else
+            gh issue create --title "GitHub Stars: $COUNT repositories awaiting review" \
+              --body-file star-sync-review.md
+          fi

@@ -7,17 +7,19 @@ Status: active
 - Compact AI context is generated through dbrckk/repo-standards.
 
 ## Broken / blockers
-- None documented here yet.
+- Live GitHub Stars visibility is limited to repositories accessible to the workflow token; private stars need a separately authorized integration.
 
 ## Current priority
-- Restore task-specific state here when substantial work resumes.
+- Complete review-only daily GitHub Stars sync for dbrckk; after CI, verify first real scheduled/push run and GitHub review issue.
+- Next: triage newly starred repositories through existing reviewed-metadata admission, then benchmark recommender on real tasks.
 
 ## Validation
 - Standards workflow: configured.
-- Tests/build: use this repository's existing validation commands.
+- Tests/build: python scripts/test_sync_github_stars.py; python scripts/test_star_import_pipeline.py; python scripts/validate_catalog.py; full Validate catalog CI.
+- GitHub Stars reports and manifests are generated as ephemeral Actions artifacts; catalog.json remains review-only.
 
 ## Last verified
-- 2026-09-18
+- 2026-10-09 (source reviewed; live workflow pending first execution)
 
 <!-- AUTO:START -->
 ## Automatic repository state

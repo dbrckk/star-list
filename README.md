@@ -47,6 +47,24 @@ python scripts/test_pipeline_integration.py
 
 For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
+## Automatic GitHub Stars synchronization
+
+A free, daily GitHub Actions workflow checks **dbrckk**'s publicly accessible starred
+repositories, compares them with the catalog, and updates a GitHub issue containing
+only repositories awaiting review. It preserves the complete API manifest and
+machine-readable report as short-lived workflow artifacts.
+
+**No catalog records are added automatically.** The existing reviewed-metadata
+import pipeline below remains the only admission path.
+
+Run manually from **Actions → Sync GitHub Stars → Run workflow**, or locally:
+
+```bash
+python scripts/sync_github_stars.py --user dbrckk --report-json star-sync-report.json --report-md star-sync-review.md --manifest star-sync-manifest.json
+```
+
+See [synchronization operations and limitations](docs/GITHUB_STARS_SYNC.md).
+
 ## Import GitHub Star screenshots
 
 Screenshot-derived repository names are stored as immutable import manifests. The importer is
