@@ -58,6 +58,7 @@ render_health_issue.py
 star_import_pipeline.py
 sync_github_stars.py
 test_analyze_coverage.py
+test_auto_stars_admission.py
 test_backfill_licenses.py
 test_cache_health_history.py
 test_cache_health.py
@@ -1281,23 +1282,26 @@ key = normalize_repo(repo)
 ⋮----
 license_obj = entry.get("license")
 license_name = license_obj.get("spdx_id") if isinstance(license_obj, dict) else None
+repo_id = entry.get("id")
 ⋮----
 # We generate the next URL locally; never follow an untrusted Link URL.
 has_next = bool(re.search(r'rel\s*=\s*["\x27]?next(?:["\x27]|[,;\s]|$)', link, re.IGNORECASE))
 ⋮----
-def catalog_identities(path)
+def catalog_identities(path, include_ids=False)
 ⋮----
 data = json.loads(Path(path).read_text(encoding="utf-8"))
 ⋮----
 rows = data.get("repositories") if isinstance(data, dict) else None
 ⋮----
-known = set()
-⋮----
 identity = normalize_repo(row.get("repo"))
 ⋮----
-def build_report(username, stars, catalog, pages, duplicates=0, now=None)
+repo_id = row.get("githubRepositoryId")
 ⋮----
-new = [entry for entry in stars if normalize_repo(entry["repo"]) not in catalog]
+def build_report(username, stars, catalog, pages, duplicates=0, now=None, catalog_ids=None)
+⋮----
+catalog_ids = catalog_ids or set()
+# A verified permanent ID remains the same across owner/name transfers.
+new = [
 ⋮----
 def render_issue(report, limit=50)
 ⋮----
@@ -1321,9 +1325,7 @@ parser = argparse.ArgumentParser(description="Check GitHub Stars against star-li
 ⋮----
 args = parser.parse_args(argv)
 ⋮----
-catalog = catalog_identities(args.catalog)
-⋮----
-report = build_report(args.user, stars, catalog, pages, duplicates)
+report = build_report(args.user, stars, catalog, pages, duplicates, catalog_ids=catalog_ids)
 ```
 
 ## File: test_analyze_coverage.py
@@ -1336,6 +1338,51 @@ spec=importlib.util.spec_from_file_location("coverage",SCRIPT)
 mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 repos=[
 r=mod.analyze(repos,min_domain=2,min_capability=2)
+```
+
+## File: test_auto_stars_admission.py
+```python
+#!/usr/bin/env python3
+"""Regression checks for the first automated Stars review and canonical transfers."""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+def read(path)
+⋮----
+spec = importlib.util.spec_from_file_location("star_import_pipeline", ROOT / "scripts/star_import_pipeline.py")
+pipeline = importlib.util.module_from_spec(spec)
+⋮----
+catalog = read("catalog.json")
+manifest = read("imports/github-stars-2026-10-09-auto-1.json")
+review = read("reports/github-stars-review-2026-10-09-reviewed.json")
+report = read("reports/github-stars-review-2026-10-09-summary.json")
+snapshots = (read("reports/github-stars-review-2026-10-09-metadata-1.json")["repositories"]
+⋮----
+cat = {entry["repo"].lower(): entry for entry in catalog["repositories"]}
+⋮----
+snapshot_map = {entry["repo"].lower(): entry for entry in snapshots}
+⋮----
+stable_ids = [entry["githubRepositoryId"] for entry in catalog["repositories"]
+⋮----
+entry = cat[source["repo"].lower()]
+⋮----
+transfers = {
+⋮----
+historic = read("history.json")["repositories"]
+health_names = {entry["repo"] for entry in read("health-snapshot.json")["repositories"]}
+stack_names = {name for stack in read("stacks.json")["stacks"] for name in stack["repos"]}
+⋮----
+source = snapshot_map[record["repo"].lower()]
+entry = cat[record["repo"].lower()]
+⋮----
+candidate = {"repo": record["repo"], "key": record["repo"].lower(), "sources": ["automatic"]}
+⋮----
+partition = pipeline.partition_candidates(import_records, catalog)
+⋮----
+# A second real sync surfaced three later stars. Keep both historic review batches sound.
+followup = read("reports/github-stars-followup-2026-10-09-reviewed.json")
+later = read("reports/github-stars-followup-2026-10-09-metadata.json")["repositories"]
+⋮----
+entry = cat[approved["repo"].lower()]
 ```
 
 ## File: test_backfill_licenses.py
@@ -2001,6 +2048,13 @@ rendered = mod.render_issue(report, limit=1)
 ⋮----
 attempts = []
 def rate_limited(request, timeout=20)
+⋮----
+# GitHub repository ID is stable even when the owner/name changes.
+transfer_api = [star("New-Owner/Project", id=338719962)]
+⋮----
+by_name_only = mod.build_report("dbrckk", transfer_items, {"old-owner/project"}, transfer_pages)
+⋮----
+by_stable_id = mod.build_report(
 ⋮----
 # Corrupt/missing catalogs must not produce misleading lists.
 ⋮----

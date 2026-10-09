@@ -27,36 +27,36 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-09T07:33:41Z
+Generated: 2026-10-09T21:27:17Z
 
 ### Git
 - Branch: `main`
-- Head: `dfd81d1d3806`
-- Commit date: 2026-10-09T09:33:29+02:00
-- Commit: Synchronize GitHub Stars daily for human review (#51)
-- Tracked files: 253
+- Head: `3cf5e5684b4d`
+- Commit date: 2026-10-09T23:27:06+02:00
+- Commit: Fix oversized AI context map by excluding archived import snapshots (#55)
+- Tracked files: 264
 
 ### Recently changed files
+- `.repomixignore`
+- `AGENTS.md`
+- `catalog.json`
+- `imports/github-stars-2026-10-09-auto-2.json`
+- `reports/github-stars-followup-2026-10-09-metadata.json`
+- `reports/github-stars-followup-2026-10-09-reviewed.json`
+- `reports/github-stars-followup-2026-10-09-summary.json`
+- `scripts/test_auto_stars_admission.py`
 - `.github/workflows/sync-github-stars.yml`
 - `.github/workflows/validate.yml`
-- `README.md`
+- `catalog.schema.json`
 - `docs/GITHUB_STARS_SYNC.md`
+- `health-snapshot.json`
+- `history.json`
+- `imports/github-stars-2026-10-09-auto-1.json`
+- `reports/github-stars-review-2026-10-09-metadata-1.json`
+- `reports/github-stars-review-2026-10-09-metadata-2.json`
+- `reports/github-stars-review-2026-10-09-reviewed.json`
+- `reports/github-stars-review-2026-10-09-summary.json`
 - `schemas/star-sync-report.schema.json`
-- `scripts/sync_github_stars.py`
-- `scripts/test_sync_github_stars.py`
-- `RECOMMENDER.md`
-- `scripts/recommend.py`
-- `scripts/test_recommend.py`
-- `reports/star-import-2026-10-09-last-11-screenshots-coverage.json`
-- `catalog.json`
-- `imports/github-stars-2026-10-09-batch-6.json`
-- `reports/star-import-2026-10-09-batch-6-metadata.json`
-- `reports/star-import-2026-10-09-batch-6-reviewed.json`
-- `reports/star-import-2026-10-09-batch-6.json`
-- `imports/github-stars-2026-10-09-batch-5.json`
-- `reports/star-import-2026-10-09-batch-5-metadata-1.json`
-- `reports/star-import-2026-10-09-batch-5-metadata-2.json`
-- `reports/star-import-2026-10-09-batch-5-metadata-3.json`
 
 ### Project signals
 - No common build descriptor detected

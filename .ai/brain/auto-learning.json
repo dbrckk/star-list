@@ -1,28 +1,8 @@
 {
-  "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": true,
-  "learning_result": {
-    "example_count": 19,
-    "rejected_count": 0,
-    "terms": [
-      "51",
-      "daily",
-      "github",
-      "human",
-      "review",
-      "stars",
-      "synchronize"
-    ],
-    "test_count": 0,
-    "useful_count": 2
-  },
-  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
-  "rejected": [],
   "schema_version": 1,
-  "task": "Synchronize GitHub Stars daily for human review (#51)",
-  "tests_selected": [],
-  "useful": [
-    "scripts/sync_github_stars.py",
-    "scripts/test_sync_github_stars.py"
-  ]
+  "generated_by": "dbrckk/repo-brain-auto-learning-v1",
+  "learned": false,
+  "reason": "missing-task-or-source-change",
+  "task": "Fix oversized AI context map by excluding archived import snapshots (#55)",
+  "useful": []
 }

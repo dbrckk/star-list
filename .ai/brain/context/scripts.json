@@ -2,27 +2,6 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/test_sync_github_stars.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 410
-    },
-    {
-      "path": "scripts/sync_github_stars.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 340
-    },
-    {
       "path": "scripts/recommend.py",
       "reasons": [
         "recent-project-state"
@@ -30,7 +9,21 @@
       "score": 60
     },
     {
+      "path": "scripts/sync_github_stars.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
       "path": "scripts/test_recommend.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/test_sync_github_stars.py",
       "reasons": [
         "recent-project-state"
       ],

@@ -1,23 +1,13 @@
 # Change impact
 
-Base: c05347aef512796bede9fa3736c4dd5aaab96707
-Head: dfd81d1d380691eef31a1dff864ecd066468b150
+Base: 37fa44b310ace0ff549610eeb62e3abf6ef6aeed
+Head: 3cf5e5684b4dca9078dc98d0ba2db96501fee616
 
 ## Changed files
-- A .github/workflows/sync-github-stars.yml
-- M .github/workflows/validate.yml
-- M README.md
-- A docs/GITHUB_STARS_SYNC.md
-- A schemas/star-sync-report.schema.json
-- A scripts/sync_github_stars.py
-- A scripts/test_sync_github_stars.py
+- A .repomixignore
 
 ## Affected areas
-- .github
 - (root)
-- docs
-- schemas
-- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.

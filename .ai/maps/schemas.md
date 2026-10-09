@@ -426,6 +426,13 @@ star-sync-report.schema.json
               "string",
               "null"
             ]
+          },
+          "githubRepositoryId": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
           }
         },
         "additionalProperties": false

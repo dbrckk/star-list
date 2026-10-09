@@ -1,14 +1,14 @@
 {
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
-  "files_indexed": 49,
-  "symbol_count": 188,
+  "files_indexed": 50,
+  "symbol_count": 189,
   "edge_count": 7,
   "languages": {
-    "python": 49
+    "python": 50
   },
-  "index_mode": "incremental",
-  "reparsed_files": 2,
+  "index_mode": "full",
+  "reparsed_files": 50,
   "top_symbol_files": [
     {
       "file": "scripts/discover_candidates.py",
@@ -116,6 +116,10 @@
     },
     {
       "file": "scripts/catalog_stats.py",
+      "symbols": 1
+    },
+    {
+      "file": "scripts/test_auto_stars_admission.py",
       "symbols": 1
     },
     {
