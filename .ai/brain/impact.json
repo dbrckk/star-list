@@ -1,100 +1,37 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "753243542ce580c9926e67f0a568a2121c22a2ee",
-  "head": "e811cc31abf0a1a0464ab515bdef073634fa3a19",
+  "base": "e811cc31abf0a1a0464ab515bdef073634fa3a19",
+  "head": "f02b6721d25d159c37921b3f1e35b71db905de1b",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": "README.md",
+      "path": "catalog.json",
       "status": "M"
     },
     {
-      "path": "scripts/star_import_pipeline.py",
-      "status": "M"
+      "path": "imports/github-stars-2026-10-09-batch-3.json",
+      "status": "A"
     },
     {
-      "path": "scripts/test_star_import_pipeline.py",
-      "status": "M"
+      "path": "reports/star-import-2026-10-09-batch-3-metadata-1.json",
+      "status": "A"
+    },
+    {
+      "path": "reports/star-import-2026-10-09-batch-3-metadata-2.json",
+      "status": "A"
+    },
+    {
+      "path": "reports/star-import-2026-10-09-batch-3-reviewed.json",
+      "status": "A"
+    },
+    {
+      "path": "reports/star-import-2026-10-09-batch-3.json",
+      "status": "A"
     }
   ],
-  "changed_source_files": [
-    "scripts/star_import_pipeline.py",
-    "scripts/test_star_import_pipeline.py"
-  ],
-  "impacted_files": [
-    "scripts/star_import_pipeline.py",
-    "scripts/test_star_import_pipeline.py"
-  ],
-  "impacted_symbols": [
-    {
-      "name": "normalize_repo_identity",
-      "kind": "function",
-      "file": "scripts/star_import_pipeline.py",
-      "line": 18
-    },
-    {
-      "name": "load_imports",
-      "kind": "function",
-      "file": "scripts/star_import_pipeline.py",
-      "line": 42
-    },
-    {
-      "name": "partition_candidates",
-      "kind": "function",
-      "file": "scripts/star_import_pipeline.py",
-      "line": 64
-    },
-    {
-      "name": "load_reviewed_metadata",
-      "kind": "function",
-      "file": "scripts/star_import_pipeline.py",
-      "line": 90
-    },
-    {
-      "name": "classify_candidate",
-      "kind": "function",
-      "file": "scripts/star_import_pipeline.py",
-      "line": 120
-    },
-    {
-      "name": "build_report",
-      "kind": "function",
-      "file": "scripts/star_import_pipeline.py",
-      "line": 141
-    },
-    {
-      "name": "render_markdown",
-      "kind": "function",
-      "file": "scripts/star_import_pipeline.py",
-      "line": 172
-    },
-    {
-      "name": "integrate_catalog",
-      "kind": "function",
-      "file": "scripts/star_import_pipeline.py",
-      "line": 179
-    },
-    {
-      "name": "validate_candidate_catalog",
-      "kind": "function",
-      "file": "scripts/star_import_pipeline.py",
-      "line": 193
-    },
-    {
-      "name": "write_catalog_if_valid",
-      "kind": "function",
-      "file": "scripts/star_import_pipeline.py",
-      "line": 208
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/star_import_pipeline.py",
-      "line": 227
-    }
-  ],
-  "selected_tests": [
-    "scripts/test_star_import_pipeline.py"
-  ]
+  "changed_source_files": [],
+  "impacted_files": [],
+  "impacted_symbols": [],
+  "selected_tests": []
 }

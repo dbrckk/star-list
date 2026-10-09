@@ -1,18 +1,14 @@
 # CI status
 
-Summary: 4 success / 1 failure / 1 active
+Summary: 3 success / 0 failure / 1 active
 
-- Validate catalog: in_progress / pending (e811cc31)
-- Validate catalog: completed / success (1b0a94a6)
-- Validate catalog: completed / success (1b0a94a6)
-- Validate catalog: completed / cancelled (1daadf34)
-- Validate catalog: completed / failure (1cedd897)
-- Validate catalog: completed / success (948bbe7e)
-- Validate catalog: completed / success (75324354)
-- Validate catalog: completed / cancelled (2b3f5359)
-
-## Latest failed run structure
-- Job: validate
-  - Failed step: Test star import pipeline
+- Validate catalog: in_progress / pending (f02b6721)
+- Validate catalog: completed / success (cf7c8ab9)
+- Validate catalog: completed / success (cf7c8ab9)
+- Validate catalog: completed / cancelled (8125f9d5)
+- Validate catalog: completed / cancelled (2114832a)
+- Validate catalog: completed / success (7a5b1ee9)
+- Validate catalog: completed / cancelled (3962157d)
+- Validate catalog: completed / cancelled (4e478e87)
 
 > Generated summary only; inspect GitHub Actions for full logs when needed.

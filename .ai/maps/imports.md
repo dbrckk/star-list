@@ -43,6 +43,7 @@ github-stars-2026-09-27-batch-3.json
 github-stars-2026-09-27-batch-4.json
 github-stars-2026-09-27.json
 github-stars-2026-10-09-batch-2.json
+github-stars-2026-10-09-batch-3.json
 github-stars-2026-10-09.json
 ```
 
@@ -527,6 +528,40 @@ github-stars-2026-10-09.json
     "go-gitea/gitea",
     "reviewdog/reviewdog",
     "dagger/dagger"
+  ]
+}
+```
+
+## File: github-stars-2026-10-09-batch-3.json
+```json
+{
+  "capturedAt": "2026-10-09",
+  "source": "user-provided GitHub Stars screenshots (2), batch 3",
+  "repositories": [
+    "metabase/metabase",
+    "evidence-dev/evidence",
+    "sinaptik-ai/pandas-ai",
+    "apache/datafusion",
+    "pola-rs/polars",
+    "duckdb/duckdb",
+    "eosphoros-ai/DB-GPT",
+    "yifanfeng97/Hyper-Extract",
+    "Jakeschincariol/arena-skill",
+    "quarto-dev/quarto-cli",
+    "apache/superset",
+    "Kanaries/pygwalker",
+    "Dataherald/dataherald",
+    "open-metadata/OpenMetadata",
+    "sodadata/soda-core",
+    "fivetran/great_expectations",
+    "dlt-hub/dlt",
+    "airbytehq/airbyte",
+    "defog-ai/sqlcoder",
+    "pytest-dev/pytest",
+    "github/github-mcp-server",
+    "oraios/serena",
+    "emilk/egui",
+    "liquidslr/system-design-notes"
   ]
 }
 ```

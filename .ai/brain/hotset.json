@@ -1,36 +1,50 @@
 {
   "files": [
     {
-      "path": "scripts/test_star_import_pipeline.py",
+      "path": "catalog.json",
       "reasons": [
         "changed",
-        "changed-source",
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test"
+        "recent-project-state"
       ],
-      "score": 400
+      "score": 160
     },
     {
-      "path": "scripts/star_import_pipeline.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 380
-    },
-    {
-      "path": "README.md",
+      "path": "imports/github-stars-2026-10-09-batch-3.json",
       "reasons": [
         "changed"
       ],
       "score": 100
     },
     {
-      "path": "catalog.json",
+      "path": "reports/star-import-2026-10-09-batch-3-metadata-1.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "reports/star-import-2026-10-09-batch-3-metadata-2.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "reports/star-import-2026-10-09-batch-3-reviewed.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "reports/star-import-2026-10-09-batch-3.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "README.md",
       "reasons": [
         "recent-project-state"
       ],
@@ -38,13 +52,6 @@
     },
     {
       "path": "imports/github-stars-2026-10-09-batch-2.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "reports/star-import-2026-10-09-batch-2-metadata-6.json",
       "reasons": [
         "recent-project-state"
       ],
@@ -59,6 +66,20 @@
     },
     {
       "path": "reports/star-import-2026-10-09-batch-2.json",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/star_import_pipeline.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/test_star_import_pipeline.py",
       "reasons": [
         "recent-project-state"
       ],

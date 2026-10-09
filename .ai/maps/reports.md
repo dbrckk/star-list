@@ -46,6 +46,10 @@ star-import-2026-10-09-batch-2-metadata-5.json
 star-import-2026-10-09-batch-2-metadata-6.json
 star-import-2026-10-09-batch-2-metadata-7.json
 star-import-2026-10-09-batch-2.json
+star-import-2026-10-09-batch-3-metadata-1.json
+star-import-2026-10-09-batch-3-metadata-2.json
+star-import-2026-10-09-batch-3-reviewed.json
+star-import-2026-10-09-batch-3.json
 star-import-2026-10-09-metadata-1.json
 star-import-2026-10-09-metadata-2.json
 star-import-2026-10-09-metadata-3.json
@@ -1534,6 +1538,1511 @@ star-import-2026-10-09.json
       "to": "kargulstudio/sales-crm"
     }
   ]
+}
+```
+
+## File: star-import-2026-10-09-batch-3-metadata-1.json
+```json
+{
+  "source": "GitHub REST repository metadata for user screenshot batch 3",
+  "retrievedAt": "2026-10-09",
+  "repositories": [
+    {
+      "repo": "metabase/metabase",
+      "description": "The easy-to-use open source Business Intelligence and Embedded Analytics tool that lets everyone work with data :bar_chart:",
+      "language": "Clojure",
+      "github": {
+        "stars": 49584,
+        "forks": 6889,
+        "openIssues": 4560,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T02:34:57Z"
+      }
+    },
+    {
+      "repo": "evidence-dev/evidence",
+      "description": "Business intelligence as code: build fast, interactive data visualizations in SQL and markdown",
+      "language": "TypeScript",
+      "github": {
+        "stars": 6989,
+        "forks": 428,
+        "openIssues": 15,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T19:49:20Z"
+      }
+    },
+    {
+      "repo": "sinaptik-ai/pandas-ai",
+      "description": "Chat with your database or your datalake (SQL, CSV, parquet). PandasAI makes data analysis conversational using LLMs and RAG.",
+      "language": "Python",
+      "github": {
+        "stars": 23860,
+        "forks": 2342,
+        "openIssues": 23,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2025-10-28T10:02:13Z"
+      }
+    },
+    {
+      "repo": "apache/datafusion",
+      "description": "Apache DataFusion SQL Query Engine",
+      "language": "Rust",
+      "github": {
+        "stars": 9417,
+        "forks": 2482,
+        "openIssues": 2374,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T02:59:07Z"
+      }
+    },
+    {
+      "repo": "pola-rs/polars",
+      "description": "Extremely fast Query Engine for DataFrames, written in Rust",
+      "language": "Rust",
+      "github": {
+        "stars": 40021,
+        "forks": 3158,
+        "openIssues": 2956,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T14:41:35Z"
+      }
+    },
+    {
+      "repo": "duckdb/duckdb",
+      "description": "DuckDB is an analytical in-process SQL database management system",
+      "language": "C++",
+      "github": {
+        "stars": 41995,
+        "forks": 3887,
+        "openIssues": 1066,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "v2.0-cyanoptera",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T00:00:14Z"
+      }
+    },
+    {
+      "repo": "eosphoros-ai/DB-GPT",
+      "description": "open-source agentic AI data assistant for the next generation of AI + Data products.",
+      "language": "Python",
+      "github": {
+        "stars": 20093,
+        "forks": 2958,
+        "openIssues": 450,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-04T13:43:25Z"
+      }
+    },
+    {
+      "repo": "yifanfeng97/Hyper-Extract",
+      "description": "Hypergraph is more powerful. Transform unstructured text into structured knowledge with LLMs. Graphs, hypergraphs, and spatio-temporal extractions — with one command.",
+      "language": "Python",
+      "github": {
+        "stars": 4142,
+        "forks": 473,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-09-29T13:33:32Z"
+      }
+    },
+    {
+      "repo": "Jakeschincariol/arena-skill",
+      "description": "When Claude keeps giving you bad answers, make 100 versions of it fight to the death. Same task, 100 different strategies, a bracket, one answer left. Free Claude Code skill.",
+      "language": "Python",
+      "github": {
+        "stars": 374,
+        "forks": 52,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-27T13:20:07Z"
+      }
+    },
+    {
+      "repo": "quarto-dev/quarto-cli",
+      "description": "Open-source scientific and technical publishing system built on Pandoc.",
+      "language": "JavaScript",
+      "github": {
+        "stars": 6065,
+        "forks": 464,
+        "openIssues": 1896,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T16:35:35Z"
+      }
+    }
+  ]
+}
+```
+
+## File: star-import-2026-10-09-batch-3-metadata-2.json
+```json
+{
+  "source": "GitHub REST repository metadata for user screenshot batch 3",
+  "retrievedAt": "2026-10-09",
+  "repositories": [
+    {
+      "repo": "apache/superset",
+      "description": "Apache Superset is a Data Visualization and Data Exploration Platform",
+      "language": "Python",
+      "github": {
+        "stars": 75082,
+        "forks": 18439,
+        "openIssues": 568,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:19:45Z"
+      }
+    },
+    {
+      "repo": "Kanaries/pygwalker",
+      "description": "PyGWalker: Turn your dataframe into an interactive UI for visual analysis",
+      "language": "Python",
+      "github": {
+        "stars": 15979,
+        "forks": 890,
+        "openIssues": 69,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-05T19:19:19Z"
+      }
+    },
+    {
+      "repo": "Dataherald/dataherald",
+      "description": "Interact with your SQL database, Natural Language to SQL using LLMs",
+      "language": "Python",
+      "github": {
+        "stars": 3649,
+        "forks": 263,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2024-07-24T17:37:41Z"
+      }
+    },
+    {
+      "repo": "open-metadata/OpenMetadata",
+      "description": "The Open Context Layer for Data and AI ,  OpenMetadata is the open platform for building trusted data context and business semantics for humans, AI assistants, and agents.",
+      "language": "TypeScript",
+      "github": {
+        "stars": 15420,
+        "forks": 2436,
+        "openIssues": 957,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:07:08Z"
+      }
+    },
+    {
+      "repo": "sodadata/soda-core",
+      "description": "Data Contracts engine for the modern data stack. https://www.soda.io",
+      "language": "Python",
+      "github": {
+        "stars": 2435,
+        "forks": 288,
+        "openIssues": 211,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T20:50:19Z"
+      }
+    },
+    {
+      "repo": "fivetran/great_expectations",
+      "description": "Always know what to expect from your data.",
+      "language": "Python",
+      "github": {
+        "stars": 11867,
+        "forks": 1871,
+        "openIssues": 47,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "develop",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T09:28:46Z"
+      }
+    },
+    {
+      "repo": "dlt-hub/dlt",
+      "description": "data load tool (dlt) is an open source Python library that makes data loading easy 🛠️ ",
+      "language": "Python",
+      "github": {
+        "stars": 5945,
+        "forks": 618,
+        "openIssues": 454,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "devel",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T16:24:37Z"
+      }
+    },
+    {
+      "repo": "airbytehq/airbyte",
+      "description": "Open-source data movement for ELT pipelines and AI agents — from APIs, databases & files to warehouses, lakes, and AI applications. Both self-hosted and Cloud.",
+      "language": "Python",
+      "github": {
+        "stars": 22194,
+        "forks": 5393,
+        "openIssues": 2583,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T02:29:22Z"
+      }
+    },
+    {
+      "repo": "defog-ai/sqlcoder",
+      "description": "SoTA LLM for converting natural language questions to SQL queries",
+      "language": "Jupyter Notebook",
+      "github": {
+        "stars": 4049,
+        "forks": 272,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2024-05-23T03:06:26Z"
+      }
+    }
+  ]
+}
+```
+
+## File: star-import-2026-10-09-batch-3-reviewed.json
+```json
+{
+  "date": "2026-10-09",
+  "source": "GitHub API snapshots + selected screenshot import; review applies to catalog admission, not a grant of reuse rights",
+  "repositories": [
+    {
+      "repo": "airbytehq/airbyte",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 22194,
+        "forks": 5393,
+        "openIssues": 2583,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T02:29:22Z"
+      },
+      "catalogEntry": {
+        "repo": "airbytehq/airbyte",
+        "score": 7.8,
+        "tier": "audit",
+        "category": "Synchronisation de sources de données",
+        "domain": "data_ml",
+        "capabilities": [
+          "elt",
+          "connectors",
+          "data-ingestion"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "server"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "mixed",
+        "github": {
+          "stars": 22194,
+          "forks": 5393,
+          "openIssues": 2583,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-10-09T02:29:22Z"
+        },
+        "bestFor": [
+          "Synchroniser des bases, fichiers et API vers des entrepôts et outils IA"
+        ],
+        "avoidWhen": [
+          "Supposer que toutes les fonctionnalités et licences Cloud sont ouvertes"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "apache/datafusion",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 9417,
+        "forks": 2482,
+        "openIssues": 2374,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T02:59:07Z"
+      },
+      "catalogEntry": {
+        "repo": "apache/datafusion",
+        "score": 8.6,
+        "tier": "specialized",
+        "category": "Moteur SQL analytique embarquable",
+        "domain": "data_ml",
+        "capabilities": [
+          "sql",
+          "query-engine",
+          "rust"
+        ],
+        "languages": [
+          "rust"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 9417,
+          "forks": 2482,
+          "openIssues": 2374,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-09T02:59:07Z"
+        },
+        "bestFor": [
+          "Intégrer un moteur de requêtes analytiques rapide en Rust"
+        ],
+        "avoidWhen": [
+          "Rechercher une interface graphique de BI prête à utiliser"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "apache/superset",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 75082,
+        "forks": 18439,
+        "openIssues": 568,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:19:45Z"
+      },
+      "catalogEntry": {
+        "repo": "apache/superset",
+        "score": 8.6,
+        "tier": "specialized",
+        "category": "Exploration et visualisation SQL",
+        "domain": "data_ml",
+        "capabilities": [
+          "dashboards",
+          "sql",
+          "data-visualization"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "server"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 75082,
+          "forks": 18439,
+          "openIssues": 568,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-09T03:19:45Z"
+        },
+        "bestFor": [
+          "Créer des graphiques, rapports et tableaux de bord sur des sources SQL"
+        ],
+        "avoidWhen": [
+          "Besoin d'une bibliothèque embarquée légère côté navigateur uniquement"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "Dataherald/dataherald",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 3649,
+        "forks": 263,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2024-07-24T17:37:41Z"
+      },
+      "catalogEntry": {
+        "repo": "Dataherald/dataherald",
+        "score": 7.5,
+        "tier": "audit",
+        "category": "Génération de requêtes SQL par IA",
+        "domain": "data_ml",
+        "capabilities": [
+          "nl-to-sql",
+          "llm",
+          "sql"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 3649,
+          "forks": 263,
+          "openIssues": 21,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2024-07-24T17:37:41Z"
+        },
+        "bestFor": [
+          "Expérimenter l'interrogation de bases SQL par langage naturel"
+        ],
+        "avoidWhen": [
+          "Production sans audit de sécurité SQL ni contrôle de maintenance"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "reference"
+      }
+    },
+    {
+      "repo": "defog-ai/sqlcoder",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 4049,
+        "forks": 272,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2024-05-23T03:06:26Z"
+      },
+      "catalogEntry": {
+        "repo": "defog-ai/sqlcoder",
+        "score": 7.4,
+        "tier": "audit",
+        "category": "Modèle de génération SQL",
+        "domain": "data_ml",
+        "capabilities": [
+          "nl-to-sql",
+          "llm",
+          "text-to-sql"
+        ],
+        "languages": [
+          "jupyter notebook"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 4049,
+          "forks": 272,
+          "openIssues": 0,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2024-05-23T03:06:26Z"
+        },
+        "bestFor": [
+          "Évaluer des modèles de génération de SQL depuis le langage naturel"
+        ],
+        "avoidWhen": [
+          "Déployer des requêtes générées sur une base réelle sans revue ni garde-fous"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "reference"
+      }
+    },
+    {
+      "repo": "dlt-hub/dlt",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 5945,
+        "forks": 618,
+        "openIssues": 454,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "devel",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T16:24:37Z"
+      },
+      "catalogEntry": {
+        "repo": "dlt-hub/dlt",
+        "score": 8.5,
+        "tier": "specialized",
+        "category": "Ingestion de données Python",
+        "domain": "data_ml",
+        "capabilities": [
+          "elt",
+          "data-ingestion",
+          "pipelines"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "low",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 5945,
+          "forks": 618,
+          "openIssues": 454,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "devel",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-08T16:24:37Z"
+        },
+        "bestFor": [
+          "Charger et normaliser des données API ou fichiers dans un entrepôt"
+        ],
+        "avoidWhen": [
+          "Orchestration complexe non couverte sans outil complémentaire"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "duckdb/duckdb",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 41995,
+        "forks": 3887,
+        "openIssues": 1066,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "v2.0-cyanoptera",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T00:00:14Z"
+      },
+      "catalogEntry": {
+        "repo": "duckdb/duckdb",
+        "score": 8.8,
+        "tier": "specialized",
+        "category": "Base SQL analytique embarquée",
+        "domain": "data_ml",
+        "capabilities": [
+          "database",
+          "sql",
+          "analytics"
+        ],
+        "languages": [
+          "c++"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "low",
+        "integrationComplexity": "low",
+        "costModel": "open-source",
+        "github": {
+          "stars": 41995,
+          "forks": 3887,
+          "openIssues": 1066,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "v2.0-cyanoptera",
+          "license": "MIT",
+          "pushedAt": "2026-10-09T00:00:14Z"
+        },
+        "bestFor": [
+          "Exécuter des analyses SQL locales et sur des fichiers Parquet ou CSV"
+        ],
+        "avoidWhen": [
+          "Héberger une base OLTP multi-utilisateurs avec beaucoup d'écritures concurrentes"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "eosphoros-ai/DB-GPT",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 20093,
+        "forks": 2958,
+        "openIssues": 450,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-04T13:43:25Z"
+      },
+      "catalogEntry": {
+        "repo": "eosphoros-ai/DB-GPT",
+        "score": 8.3,
+        "tier": "specialized",
+        "category": "Assistant IA pour bases de données",
+        "domain": "data_ml",
+        "capabilities": [
+          "database",
+          "llm",
+          "nl-to-sql",
+          "agents"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 20093,
+          "forks": 2958,
+          "openIssues": 450,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-04T13:43:25Z"
+        },
+        "bestFor": [
+          "Construire un assistant de données capable de raisonner et interroger des bases SQL"
+        ],
+        "avoidWhen": [
+          "Permettre à un LLM d'exécuter des requêtes non contrôlées sur une base de production"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "evidence-dev/evidence",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 6989,
+        "forks": 428,
+        "openIssues": 15,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T19:49:20Z"
+      },
+      "catalogEntry": {
+        "repo": "evidence-dev/evidence",
+        "score": 8.4,
+        "tier": "specialized",
+        "category": "BI as code",
+        "domain": "data_ml",
+        "capabilities": [
+          "business-intelligence",
+          "dashboards",
+          "sql",
+          "markdown"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "low",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 6989,
+          "forks": 428,
+          "openIssues": 15,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-08T19:49:20Z"
+        },
+        "bestFor": [
+          "Construire des tableaux de bord versionnés à partir de SQL et Markdown"
+        ],
+        "avoidWhen": [
+          "Exiger une interface BI entièrement sans code"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "fivetran/great_expectations",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 11867,
+        "forks": 1871,
+        "openIssues": 47,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "develop",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T09:28:46Z"
+      },
+      "catalogEntry": {
+        "repo": "fivetran/great_expectations",
+        "score": 8.5,
+        "tier": "specialized",
+        "category": "Tests de qualité des données",
+        "domain": "data_ml",
+        "capabilities": [
+          "data-quality",
+          "validation",
+          "testing"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 11867,
+          "forks": 1871,
+          "openIssues": 47,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "develop",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-08T09:28:46Z"
+        },
+        "bestFor": [
+          "Définir et exécuter des assertions sur les jeux de données et les pipelines"
+        ],
+        "avoidWhen": [
+          "Substituer des assertions aux validations métier ou statistiques"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "Jakeschincariol/arena-skill",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 374,
+        "forks": 52,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-27T13:20:07Z"
+      },
+      "catalogEntry": {
+        "repo": "Jakeschincariol/arena-skill",
+        "score": 8,
+        "tier": "specialized",
+        "category": "Évaluation comparative d'agents IA",
+        "domain": "ai_agents",
+        "capabilities": [
+          "agent-evaluation",
+          "planning",
+          "benchmarking"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": "partial",
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 374,
+          "forks": 52,
+          "openIssues": 3,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-09-27T13:20:07Z"
+        },
+        "bestFor": [
+          "Comparer plusieurs stratégies de résolution par agents sur une même tâche"
+        ],
+        "avoidWhen": [
+          "Consommer des appels LLM coûteux sans budget et critères de jugement"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "Kanaries/pygwalker",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 15979,
+        "forks": 890,
+        "openIssues": 69,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-05T19:19:19Z"
+      },
+      "catalogEntry": {
+        "repo": "Kanaries/pygwalker",
+        "score": 8.4,
+        "tier": "specialized",
+        "category": "Visualisation interactive de DataFrames",
+        "domain": "data_ml",
+        "capabilities": [
+          "data-visualization",
+          "dataframes",
+          "exploration"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "low",
+        "costModel": "open-source",
+        "github": {
+          "stars": 15979,
+          "forks": 890,
+          "openIssues": 69,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-09-05T19:19:19Z"
+        },
+        "bestFor": [
+          "Explorer visuellement des tableaux Python dans une interface interactive"
+        ],
+        "avoidWhen": [
+          "Recherche exclusive de visualisations statiques pour un pipeline headless"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "metabase/metabase",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 49584,
+        "forks": 6889,
+        "openIssues": 4560,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T02:34:57Z"
+      },
+      "catalogEntry": {
+        "repo": "metabase/metabase",
+        "score": 7.7,
+        "tier": "audit",
+        "category": "BI et tableaux de bord",
+        "domain": "data_ml",
+        "capabilities": [
+          "business-intelligence",
+          "dashboards",
+          "sql"
+        ],
+        "languages": [
+          "clojure"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "server"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "mixed",
+        "github": {
+          "stars": 49584,
+          "forks": 6889,
+          "openIssues": 4560,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-10-09T02:34:57Z"
+        },
+        "bestFor": [
+          "Mettre à disposition des tableaux de bord métier et des analyses SQL"
+        ],
+        "avoidWhen": [
+          "Réutiliser le code sans examiner les licences communautaires et commerciales"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "open-metadata/OpenMetadata",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 15420,
+        "forks": 2436,
+        "openIssues": 957,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:07:08Z"
+      },
+      "catalogEntry": {
+        "repo": "open-metadata/OpenMetadata",
+        "score": 8.6,
+        "tier": "specialized",
+        "category": "Catalogue et gouvernance de données",
+        "domain": "data_ml",
+        "capabilities": [
+          "data-catalog",
+          "governance",
+          "metadata"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "server"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 15420,
+          "forks": 2436,
+          "openIssues": 957,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-09T03:07:08Z"
+        },
+        "bestFor": [
+          "Inventorier les actifs de données, lignages et règles de gouvernance"
+        ],
+        "avoidWhen": [
+          "Déploiement d'une plateforme lourde pour quelques fichiers locaux"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "pola-rs/polars",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 40021,
+        "forks": 3158,
+        "openIssues": 2956,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T14:41:35Z"
+      },
+      "catalogEntry": {
+        "repo": "pola-rs/polars",
+        "score": 8.8,
+        "tier": "specialized",
+        "category": "Analyse de DataFrames hautes performances",
+        "domain": "data_ml",
+        "capabilities": [
+          "dataframes",
+          "sql",
+          "performance"
+        ],
+        "languages": [
+          "rust"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 40021,
+          "forks": 3158,
+          "openIssues": 2956,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-08T14:41:35Z"
+        },
+        "bestFor": [
+          "Transformer et analyser des tables volumineuses avec un moteur DataFrame rapide"
+        ],
+        "avoidWhen": [
+          "Avoir besoin uniquement de requêtes SQL simples sans traitement tabulaire"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "quarto-dev/quarto-cli",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 6065,
+        "forks": 464,
+        "openIssues": 1896,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T16:35:35Z"
+      },
+      "catalogEntry": {
+        "repo": "quarto-dev/quarto-cli",
+        "score": 7.8,
+        "tier": "audit",
+        "category": "Publication scientifique reproductible",
+        "domain": "productivity",
+        "capabilities": [
+          "documentation",
+          "publishing",
+          "markdown"
+        ],
+        "languages": [
+          "javascript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "low",
+        "integrationComplexity": "medium",
+        "costModel": "unknown",
+        "github": {
+          "stars": 6065,
+          "forks": 464,
+          "openIssues": 1896,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-10-08T16:35:35Z"
+        },
+        "bestFor": [
+          "Publier des rapports techniques, notebooks et documents reproductibles"
+        ],
+        "avoidWhen": [
+          "Réutiliser des composants sans vérification de leur licence exacte"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "sinaptik-ai/pandas-ai",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 23860,
+        "forks": 2342,
+        "openIssues": 23,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2025-10-28T10:02:13Z"
+      },
+      "catalogEntry": {
+        "repo": "sinaptik-ai/pandas-ai",
+        "score": 7.5,
+        "tier": "audit",
+        "category": "Analyse de données en langage naturel",
+        "domain": "data_ml",
+        "capabilities": [
+          "nl-to-sql",
+          "llm",
+          "dataframes"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": "partial",
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "unknown",
+        "github": {
+          "stars": 23860,
+          "forks": 2342,
+          "openIssues": 23,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "NOASSERTION",
+          "pushedAt": "2025-10-28T10:02:13Z"
+        },
+        "bestFor": [
+          "Explorer des données SQL, CSV ou Parquet avec des requêtes conversationnelles"
+        ],
+        "avoidWhen": [
+          "Fournir un accès non contrôlé à des données personnelles ou confidentielles"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "sodadata/soda-core",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 2435,
+        "forks": 288,
+        "openIssues": 211,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T20:50:19Z"
+      },
+      "catalogEntry": {
+        "repo": "sodadata/soda-core",
+        "score": 7.6,
+        "tier": "audit",
+        "category": "Contrats et qualité des données",
+        "domain": "data_ml",
+        "capabilities": [
+          "data-quality",
+          "validation",
+          "data-contracts"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "low",
+        "integrationComplexity": "medium",
+        "costModel": "unknown",
+        "github": {
+          "stars": 2435,
+          "forks": 288,
+          "openIssues": 211,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-10-08T20:50:19Z"
+        },
+        "bestFor": [
+          "Contrôler la qualité des données et les contrats des pipelines"
+        ],
+        "avoidWhen": [
+          "Réutiliser des composants sous licence incertaine sans vérification"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "yifanfeng97/Hyper-Extract",
+      "reviewed": true,
+      "reviewScope": "identity, metadata and conservative catalog admission; unresolved license retained as audit",
+      "github": {
+        "stars": 4142,
+        "forks": 473,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-09-29T13:33:32Z"
+      },
+      "catalogEntry": {
+        "repo": "yifanfeng97/Hyper-Extract",
+        "score": 7.4,
+        "tier": "audit",
+        "category": "Extraction de connaissances structurées",
+        "domain": "data_ml",
+        "capabilities": [
+          "knowledge-extraction",
+          "llm",
+          "knowledge-graph"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "unknown",
+        "github": {
+          "stars": 4142,
+          "forks": 473,
+          "openIssues": 5,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-09-29T13:33:32Z"
+        },
+        "bestFor": [
+          "Transformer des documents non structurés en graphes et hypergraphes de connaissances"
+        ],
+        "avoidWhen": [
+          "Traitement de documents sensibles sans isoler les services d'inférence"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    }
+  ]
+}
+```
+
+## File: star-import-2026-10-09-batch-3.json
+```json
+{
+  "date": "2026-10-09",
+  "source": "Two GitHub Stars screenshots",
+  "summary": {
+    "raw": 24,
+    "unique": 24,
+    "alreadyInCatalog": 5,
+    "newlyAdmitted": 19,
+    "catalogBefore": 521,
+    "catalogAfter": 540
+  },
+  "alreadyCataloged": [
+    "pytest-dev/pytest",
+    "github/github-mcp-server",
+    "oraios/serena",
+    "emilk/egui",
+    "liquidslr/system-design-notes"
+  ],
+  "newlyAdmitted": [
+    "airbytehq/airbyte",
+    "apache/datafusion",
+    "apache/superset",
+    "Dataherald/dataherald",
+    "defog-ai/sqlcoder",
+    "dlt-hub/dlt",
+    "duckdb/duckdb",
+    "eosphoros-ai/DB-GPT",
+    "evidence-dev/evidence",
+    "fivetran/great_expectations",
+    "Jakeschincariol/arena-skill",
+    "Kanaries/pygwalker",
+    "metabase/metabase",
+    "open-metadata/OpenMetadata",
+    "pola-rs/polars",
+    "quarto-dev/quarto-cli",
+    "sinaptik-ai/pandas-ai",
+    "sodadata/soda-core",
+    "yifanfeng97/Hyper-Extract"
+  ],
+  "auditRequired": [
+    {
+      "repo": "airbytehq/airbyte",
+      "reason": "GitHub does not resolve a standard SPDX license"
+    },
+    {
+      "repo": "Dataherald/dataherald",
+      "reason": "Repository has not been updated in over two years"
+    },
+    {
+      "repo": "defog-ai/sqlcoder",
+      "reason": "Repository has not been updated in over two years"
+    },
+    {
+      "repo": "metabase/metabase",
+      "reason": "GitHub does not resolve a standard SPDX license"
+    },
+    {
+      "repo": "quarto-dev/quarto-cli",
+      "reason": "GitHub does not resolve a standard SPDX license"
+    },
+    {
+      "repo": "sinaptik-ai/pandas-ai",
+      "reason": "GitHub does not resolve a standard SPDX license"
+    },
+    {
+      "repo": "sodadata/soda-core",
+      "reason": "GitHub does not resolve a standard SPDX license"
+    },
+    {
+      "repo": "yifanfeng97/Hyper-Extract",
+      "reason": "GitHub does not resolve a standard SPDX license"
+    }
+  ],
+  "provenance": {
+    "manifest": "imports/github-stars-2026-10-09-batch-3.json",
+    "metadata": [
+      "reports/star-import-2026-10-09-batch-3-metadata-1.json",
+      "reports/star-import-2026-10-09-batch-3-metadata-2.json"
+    ],
+    "reviewed": "reports/star-import-2026-10-09-batch-3-reviewed.json"
+  }
 }
 ```
 

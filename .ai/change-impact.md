@@ -1,16 +1,20 @@
 # Change impact
 
-Base: 948bbe7ed85f482d4b0f740589d9a041e5c37212
-Head: e811cc31abf0a1a0464ab515bdef073634fa3a19
+Base: 2d97b87b9af3374c8fd5ff4bd46b4618c05c4e9a
+Head: f02b6721d25d159c37921b3f1e35b71db905de1b
 
 ## Changed files
-- M README.md
-- M scripts/star_import_pipeline.py
-- M scripts/test_star_import_pipeline.py
+- M catalog.json
+- A imports/github-stars-2026-10-09-batch-3.json
+- A reports/star-import-2026-10-09-batch-3-metadata-1.json
+- A reports/star-import-2026-10-09-batch-3-metadata-2.json
+- A reports/star-import-2026-10-09-batch-3-reviewed.json
+- A reports/star-import-2026-10-09-batch-3.json
 
 ## Affected areas
 - (root)
-- scripts
+- imports
+- reports
 
 ## Related test candidates
 - No direct filename-based test match detected.
