@@ -47,6 +47,53 @@ python scripts/test_pipeline_integration.py
 
 For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
+## Import GitHub Star screenshots
+
+Screenshot-derived repository names are stored as immutable import manifests. The importer is
+**read-only by default**: it reports known repositories, duplicates, and entries requiring
+review without changing the curated catalog.
+
+```bash
+python scripts/star_import_pipeline.py imports/github-stars-2026-10-09-batch-2.json \
+  --report-json star-import-report.json
+```
+
+Raw metadata snapshots alone are **not sufficient** for admission. To approve a new entry,
+create a separate reviewed metadata file with this structure:
+
+```json
+{
+  "repositories": [
+    {
+      "repo": "owner/repository",
+      "reviewed": true,
+      "github": { "...": "verified GitHub metadata fields" },
+      "catalogEntry": {
+        "repo": "owner/repository",
+        "...": "all required catalog fields",
+        "github": { "...": "same verified GitHub metadata fields" }
+      }
+    }
+  ]
+}
+```
+
+The `github` objects must match exactly. In actual files, replace the illustrative
+`...` fields with complete objects conforming to `catalog.schema.json`.
+Only set `reviewed: true` after verifying repository identity, licensing, and classification.
+The script does not independently authenticate the reviewer.
+
+```bash
+python scripts/star_import_pipeline.py imports/github-stars-2026-10-09-batch-2.json \
+  --metadata path/to/reviewed-metadata.json \
+  --report-json star-import-report.json --write
+```
+
+The write path reuses the existing catalog validators and is atomic. Bad metadata or
+an unapproved batch cannot silently create catalog entries. Candidates still requiring
+review remain outside the catalog; rerunning an already admitted batch is idempotent.
+The metadata files from prior imports are historical evidence, not automatic approval.
+
 ## Repository layout
 
 | Path | Purpose |
