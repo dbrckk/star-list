@@ -17280,6 +17280,1785 @@
         "license": "Apache-2.0",
         "pushedAt": "2025-12-15T11:02:30Z"
       }
+    },
+    {
+      "repo": "2Retr0/GodotOceanWaves",
+      "score": 8.5,
+      "tier": "specialized",
+      "category": "Godot / effets d'eau",
+      "domain": "game_dev",
+      "capabilities": [
+        "rendering",
+        "game-development"
+      ],
+      "languages": [
+        "csharp"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3304,
+        "forks": 197,
+        "openIssues": 17,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2025-04-29T17:17:08Z"
+      },
+      "bestFor": [
+        "Godot ocean FFT shaders"
+      ],
+      "avoidWhen": [
+        "non-Godot projects"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "agentverse-os/AgentVerse-OS",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Espaces de travail IA / serveur",
+      "domain": "devops",
+      "capabilities": [
+        "self-hosted",
+        "sandbox",
+        "agent"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 977,
+        "forks": 26,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-04T11:34:49Z"
+      },
+      "bestFor": [
+        "single-server agent workspaces"
+      ],
+      "avoidWhen": [
+        "teams requiring a managed enterprise cloud"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "anmolkapil/plexo",
+      "score": 8,
+      "tier": "specialized",
+      "category": "Téléchargements / outils réseau",
+      "domain": "software_engineering",
+      "capabilities": [
+        "network-downloads",
+        "automation"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1497,
+        "forks": 130,
+        "openIssues": 19,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T18:44:57Z"
+      },
+      "bestFor": [
+        "parallel connection downloads"
+      ],
+      "avoidWhen": [
+        "applications not handling file transfers"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "Antseed/AIPs",
+      "score": 6.5,
+      "tier": "audit",
+      "category": "Spécifications protocole AntSeed",
+      "domain": "other",
+      "capabilities": [
+        "documentation"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": false,
+      "runtime": [],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "github": {
+        "stars": 5,
+        "forks": 3,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "CC0-1.0",
+        "pushedAt": "2026-10-04T05:38:14Z"
+      },
+      "bestFor": [
+        "AntSeed protocol design references"
+      ],
+      "avoidWhen": [
+        "general-purpose AI deployment"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Antseed/antseed",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Réseau P2P d'inférence IA",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "networking"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 109,
+        "forks": 37,
+        "openIssues": 111,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-09T01:04:09Z"
+      },
+      "bestFor": [
+        "experimental peer-to-peer inference architecture"
+      ],
+      "avoidWhen": [
+        "verified secure production inference"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Antseed/openclaw-channel-antseed",
+      "score": 6.5,
+      "tier": "audit",
+      "category": "Réseaux d'agents expérimentaux",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "networking"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4,
+        "forks": 0,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-02-28T20:09:24Z"
+      },
+      "bestFor": [
+        "experimental OpenClaw channel integration"
+      ],
+      "avoidWhen": [
+        "production-critical infrastructure"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "arnegiacomo/fugleramme",
+      "score": 8.1,
+      "tier": "specialized",
+      "category": "Vision et audio local",
+      "domain": "ai_media",
+      "capabilities": [
+        "voice-audio",
+        "rendering",
+        "local-models"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3594,
+        "forks": 113,
+        "openIssues": 15,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T17:24:02Z"
+      },
+      "bestFor": [
+        "local bird-audio recognition and e-ink displays"
+      ],
+      "avoidWhen": [
+        "general-purpose image generation"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "axstin/rbxfpsunlocker",
+      "score": 6,
+      "tier": "audit",
+      "category": "Roblox / utilitaire historique",
+      "domain": "game_dev",
+      "capabilities": [
+        "performance"
+      ],
+      "languages": [
+        "cpp"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 2226,
+        "forks": 878,
+        "openIssues": 78,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2024-06-21T18:43:29Z"
+      },
+      "bestFor": [
+        "historical Roblox FPS unlocker reference"
+      ],
+      "avoidWhen": [
+        "modern actively maintained Roblox tooling"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "legacy"
+    },
+    {
+      "repo": "chubbyguan/chubbyskills",
+      "score": 8.1,
+      "tier": "specialized",
+      "category": "Collecte et recherche personnelle",
+      "domain": "productivity",
+      "capabilities": [
+        "automation",
+        "mcp-server",
+        "knowledge-base"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1203,
+        "forks": 147,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T09:43:23Z"
+      },
+      "bestFor": [
+        "Chinese-language content ingestion and knowledge bases"
+      ],
+      "avoidWhen": [
+        "English-only content pipelines"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "colbymchenry/codegraph",
+      "score": 9.4,
+      "tier": "recommended",
+      "category": "Indexation de code / graphes",
+      "domain": "software_engineering",
+      "capabilities": [
+        "code-search",
+        "knowledge-graph",
+        "memory"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 73508,
+        "forks": 4731,
+        "openIssues": 527,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-07T16:34:38Z"
+      },
+      "bestFor": [
+        "local codebase graph indexing for coding agents"
+      ],
+      "avoidWhen": [
+        "tiny single-file repositories"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "comet-ml/opik",
+      "score": 9.1,
+      "tier": "recommended",
+      "category": "Observabilité et évaluation LLM",
+      "domain": "data_ml",
+      "capabilities": [
+        "observability",
+        "testing",
+        "rag"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 22464,
+        "forks": 1847,
+        "openIssues": 198,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T01:08:08Z"
+      },
+      "bestFor": [
+        "LLM traces and RAG evaluation"
+      ],
+      "avoidWhen": [
+        "simple applications without model tracing"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "D4Vinci/Scrapling",
+      "score": 9.1,
+      "tier": "recommended",
+      "category": "Extraction Web / automatisation",
+      "domain": "software_engineering",
+      "capabilities": [
+        "web-retrieval",
+        "automation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 86388,
+        "forks": 8858,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "BSD-3-Clause",
+        "pushedAt": "2026-10-08T20:28:21Z"
+      },
+      "bestFor": [
+        "adaptive web extraction and crawling"
+      ],
+      "avoidWhen": [
+        "sites where collection is unauthorized"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "daytonaio/daytona",
+      "score": 6.4,
+      "tier": "audit",
+      "category": "Sandboxing / exécution isolée",
+      "domain": "software_engineering",
+      "capabilities": [
+        "sandbox",
+        "code-execution"
+      ],
+      "languages": [],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 71596,
+        "forks": 5646,
+        "openIssues": 458,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-07-24T07:12:07Z"
+      },
+      "bestFor": [
+        "historical sandbox infrastructure reference"
+      ],
+      "avoidWhen": [
+        "new production deployments requiring active maintenance"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "legacy"
+    },
+    {
+      "repo": "Effect-TS/effect",
+      "score": 9.3,
+      "tier": "recommended",
+      "category": "TypeScript / programmation fiable",
+      "domain": "software_engineering",
+      "capabilities": [
+        "typescript",
+        "backend",
+        "testing"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 17176,
+        "forks": 843,
+        "openIssues": 243,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T23:59:51Z"
+      },
+      "bestFor": [
+        "typed effect systems for TypeScript"
+      ],
+      "avoidWhen": [
+        "small scripts without structured effect needs"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "elliothux/open-compute",
+      "score": 8.3,
+      "tier": "specialized",
+      "category": "Cloudflare-compatible self hosting",
+      "domain": "devops",
+      "capabilities": [
+        "infrastructure",
+        "self-hosted",
+        "runtime"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1776,
+        "forks": 65,
+        "openIssues": 8,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T18:58:00Z"
+      },
+      "bestFor": [
+        "self-hosted Workers-compatible infrastructure"
+      ],
+      "avoidWhen": [
+        "managed Cloudflare-only deployments"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "Epix-Incorporated/Adonis",
+      "score": 8.1,
+      "tier": "specialized",
+      "category": "Roblox / administration serveur",
+      "domain": "game_dev",
+      "capabilities": [
+        "game-development",
+        "server-administration"
+      ],
+      "languages": [
+        "luau"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 508,
+        "forks": 237,
+        "openIssues": 65,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-07T19:34:32Z"
+      },
+      "bestFor": [
+        "Roblox server administration workflows"
+      ],
+      "avoidWhen": [
+        "non-Roblox games"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "evidentlyai/evidently",
+      "score": 9.1,
+      "tier": "recommended",
+      "category": "Évaluation et surveillance ML/LLM",
+      "domain": "data_ml",
+      "capabilities": [
+        "machine-learning",
+        "observability",
+        "testing"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 7978,
+        "forks": 947,
+        "openIssues": 328,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-29T08:32:43Z"
+      },
+      "bestFor": [
+        "ML data and LLM monitoring"
+      ],
+      "avoidWhen": [
+        "applications without quality or drift metrics"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "getzep/graphiti",
+      "score": 9.3,
+      "tier": "recommended",
+      "category": "Graphes de connaissance / mémoire IA",
+      "domain": "ai_memory",
+      "capabilities": [
+        "memory",
+        "knowledge-graph",
+        "rag"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 31569,
+        "forks": 3242,
+        "openIssues": 462,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-07T19:12:47Z"
+      },
+      "bestFor": [
+        "real-time knowledge graphs for agents"
+      ],
+      "avoidWhen": [
+        "stateless agents with no long-term knowledge"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "Giskard-AI/giskard-oss",
+      "score": 9.1,
+      "tier": "recommended",
+      "category": "Tests et évaluation d'agents IA",
+      "domain": "data_ml",
+      "capabilities": [
+        "testing",
+        "agent",
+        "diagnostic"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 5879,
+        "forks": 547,
+        "openIssues": 70,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T07:10:15Z"
+      },
+      "bestFor": [
+        "evaluating LLM agents and application behavior"
+      ],
+      "avoidWhen": [
+        "projects without LLM evaluation requirements"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "google/skills",
+      "score": 9.1,
+      "tier": "recommended",
+      "category": "Bibliothèque de compétences IA",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "tool-use",
+        "documentation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 21061,
+        "forks": 1756,
+        "openIssues": 22,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T20:12:41Z"
+      },
+      "bestFor": [
+        "agent skills for Google products"
+      ],
+      "avoidWhen": [
+        "tools unrelated to Google ecosystems"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "HarrierOnChain/Prediction-Markets-Trading-Bot-Toolkits",
+      "score": 8,
+      "tier": "specialized",
+      "category": "Marchés prédictifs / outils de trading",
+      "domain": "trading",
+      "capabilities": [
+        "execution",
+        "automation",
+        "risk"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 472,
+        "forks": 127,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-07T11:44:40Z"
+      },
+      "bestFor": [
+        "researching prediction-market execution"
+      ],
+      "avoidWhen": [
+        "unreviewed or unauthorized live trading"
+      ],
+      "guidanceSource": "curated",
+      "roles": [
+        "execution"
+      ]
+    },
+    {
+      "repo": "huggingface/smolagents",
+      "score": 9.2,
+      "tier": "recommended",
+      "category": "Agents légers / outils",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "tool-use",
+        "coding"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 29742,
+        "forks": 3051,
+        "openIssues": 881,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-06T18:35:07Z"
+      },
+      "bestFor": [
+        "minimal code-oriented AI agents"
+      ],
+      "avoidWhen": [
+        "heavy enterprise orchestration with extensive controls"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "Ignitetechnologies/Mindmap",
+      "score": 8,
+      "tier": "specialized",
+      "category": "Ressources pédagogiques cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "documentation",
+        "security-testing"
+      ],
+      "languages": [],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": false,
+      "runtime": [],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "unknown",
+      "github": {
+        "stars": 9348,
+        "forks": 1826,
+        "openIssues": 15,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-07-21T15:47:21Z"
+      },
+      "bestFor": [
+        "cybersecurity learning mind maps"
+      ],
+      "avoidWhen": [
+        "runtime security scanning"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "InfinityLoop1308/PipePipe",
+      "score": 8.3,
+      "tier": "specialized",
+      "category": "Client Android multimédia",
+      "domain": "mobile",
+      "capabilities": [
+        "mobile",
+        "video"
+      ],
+      "languages": [
+        "shell"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 6918,
+        "forks": 246,
+        "openIssues": 170,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-09-26T08:12:59Z"
+      },
+      "bestFor": [
+        "reference for open-source Android video clients"
+      ],
+      "avoidWhen": [
+        "browser-only applications"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "jamwithai/production-agentic-rag-course",
+      "score": 8.4,
+      "tier": "specialized",
+      "category": "Formation RAG agentique",
+      "domain": "ai_agents",
+      "capabilities": [
+        "rag",
+        "agent",
+        "documentation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": false,
+      "runtime": [],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "github": {
+        "stars": 9679,
+        "forks": 2103,
+        "openIssues": 29,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-06-05T07:23:49Z"
+      },
+      "bestFor": [
+        "learning production agentic RAG workflows"
+      ],
+      "avoidWhen": [
+        "projects needing maintained turnkey production software"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "JoasASantos/Offensive-Security-AI-Models",
+      "score": 6.9,
+      "tier": "audit",
+      "category": "Références modèles de sécurité IA",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "documentation",
+        "security-testing"
+      ],
+      "languages": [],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": false,
+      "runtime": [],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "unknown",
+      "github": {
+        "stars": 646,
+        "forks": 75,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-09-28T14:34:47Z"
+      },
+      "bestFor": [
+        "researching security-focused model listings"
+      ],
+      "avoidWhen": [
+        "unreviewed model deployment or unauthorized use"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "JuliusBrussee/caveman",
+      "score": 8,
+      "tier": "specialized",
+      "category": "Optimisation contexte LLM",
+      "domain": "software_engineering",
+      "capabilities": [
+        "coding",
+        "optimization"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 110586,
+        "forks": 6404,
+        "openIssues": 47,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T13:28:29Z"
+      },
+      "bestFor": [
+        "testing concise coding-agent communication"
+      ],
+      "avoidWhen": [
+        "work requiring complete uncompressed context"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "letta-ai/letta-code",
+      "score": 8.8,
+      "tier": "specialized",
+      "category": "Agents à mémoire persistante",
+      "domain": "ai_memory",
+      "capabilities": [
+        "agent",
+        "memory",
+        "coding"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3550,
+        "forks": 430,
+        "openIssues": 501,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T01:15:10Z"
+      },
+      "bestFor": [
+        "stateful coding agents with persistent context"
+      ],
+      "avoidWhen": [
+        "one-shot stateless code edits"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "lihanyu81/polymarket_lp_tool",
+      "score": 6.8,
+      "tier": "audit",
+      "category": "Marchés prédictifs / liquidité",
+      "domain": "trading",
+      "capabilities": [
+        "market-data"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 559,
+        "forks": 98,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-05-06T05:41:52Z"
+      },
+      "bestFor": [
+        "reviewing prediction-market liquidity tools"
+      ],
+      "avoidWhen": [
+        "live money execution without code and legal review"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference",
+      "roles": [
+        "execution"
+      ]
+    },
+    {
+      "repo": "NVIDIA/OpenShell",
+      "score": 9.2,
+      "tier": "recommended",
+      "category": "Exécution privée / isolation agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "sandbox",
+        "agent",
+        "runtime"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 15480,
+        "forks": 1743,
+        "openIssues": 576,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T01:24:52Z"
+      },
+      "bestFor": [
+        "private agent runtimes with isolation"
+      ],
+      "avoidWhen": [
+        "tasks with no agent execution"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "OffGridPete/Fieldwatch",
+      "score": 8.1,
+      "tier": "specialized",
+      "category": "Android / observation radio passive",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "mobile",
+        "wireless-monitoring"
+      ],
+      "languages": [
+        "kotlin"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 2824,
+        "forks": 336,
+        "openIssues": 4,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-06T16:25:56Z"
+      },
+      "bestFor": [
+        "receive-only Wi-Fi and BLE observation on Android"
+      ],
+      "avoidWhen": [
+        "active penetration testing or packet injection"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "owncloud/android",
+      "score": 8.4,
+      "tier": "specialized",
+      "category": "Android / synchronisation",
+      "domain": "mobile",
+      "capabilities": [
+        "mobile",
+        "sync"
+      ],
+      "languages": [
+        "kotlin"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 4172,
+        "forks": 3083,
+        "openIssues": 206,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-2.0",
+        "pushedAt": "2026-10-08T03:11:03Z"
+      },
+      "bestFor": [
+        "ownCloud Android client architecture"
+      ],
+      "avoidWhen": [
+        "projects unrelated to ownCloud"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "pizza-bot-app/pizza-bot",
+      "score": 8.1,
+      "tier": "specialized",
+      "category": "Coordination d'agents longue durée",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "memory",
+        "workflow"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 460,
+        "forks": 45,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-05T21:50:33Z"
+      },
+      "bestFor": [
+        "local-first inboxes for long-running agents"
+      ],
+      "avoidWhen": [
+        "simple single-call LLM tasks"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "recogardtech/AutoPilotPM",
+      "score": 6.7,
+      "tier": "audit",
+      "category": "Trading automatisé expérimental",
+      "domain": "trading",
+      "capabilities": [
+        "execution",
+        "agent",
+        "automation"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 33,
+        "forks": 9,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-05T10:01:24Z"
+      },
+      "bestFor": [
+        "experimental multi-market automation reference"
+      ],
+      "avoidWhen": [
+        "production trading without extensive testing"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference",
+      "roles": [
+        "execution"
+      ]
+    },
+    {
+      "repo": "roblox-ts/roblox-ts",
+      "score": 8.8,
+      "tier": "specialized",
+      "category": "Roblox / TypeScript vers Luau",
+      "domain": "game_dev",
+      "capabilities": [
+        "game-development",
+        "typescript",
+        "build-system"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1311,
+        "forks": 178,
+        "openIssues": 135,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-05T06:03:05Z"
+      },
+      "bestFor": [
+        "TypeScript development targeting Roblox Luau"
+      ],
+      "avoidWhen": [
+        "Roblox scripts written only in Lua"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "shadcn-ui/lint",
+      "score": 9.1,
+      "tier": "recommended",
+      "category": "Design systems / lint",
+      "domain": "web_frontend",
+      "capabilities": [
+        "design-system",
+        "static-analysis",
+        "css"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3137,
+        "forks": 62,
+        "openIssues": 26,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-05T07:58:39Z"
+      },
+      "bestFor": [
+        "Tailwind design-system linting"
+      ],
+      "avoidWhen": [
+        "applications without Tailwind"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "togg53192-cmd/jailbreaks",
+      "score": 6.1,
+      "tier": "audit",
+      "category": "Sécurité / ressources de référence",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "documentation"
+      ],
+      "languages": [],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": false,
+      "runtime": [],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2619,
+        "forks": 431,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-08T19:55:45Z"
+      },
+      "bestFor": [
+        "reference collection for prompt-injection research"
+      ],
+      "avoidWhen": [
+        "production AI policy bypasses"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "truera/trulens",
+      "score": 8.8,
+      "tier": "specialized",
+      "category": "Évaluation / traçabilité LLM",
+      "domain": "data_ml",
+      "capabilities": [
+        "testing",
+        "observability",
+        "rag"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3594,
+        "forks": 360,
+        "openIssues": 96,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T01:17:07Z"
+      },
+      "bestFor": [
+        "LLM experiment evaluation and tracing"
+      ],
+      "avoidWhen": [
+        "non-LLM web analytics"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "UKGovernmentBEIS/inspect_ai",
+      "score": 9,
+      "tier": "recommended",
+      "category": "Évaluation de modèles LLM",
+      "domain": "data_ml",
+      "capabilities": [
+        "testing",
+        "machine-learning"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 2962,
+        "forks": 791,
+        "openIssues": 375,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T01:16:04Z"
+      },
+      "bestFor": [
+        "repeatable evaluations of large language models"
+      ],
+      "avoidWhen": [
+        "applications without model evaluation needs"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "vibrantlabsai/ragas",
+      "score": 8.7,
+      "tier": "specialized",
+      "category": "Évaluation des systèmes RAG",
+      "domain": "data_ml",
+      "capabilities": [
+        "rag",
+        "testing"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 15967,
+        "forks": 1750,
+        "openIssues": 626,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-02-24T07:47:19Z"
+      },
+      "bestFor": [
+        "RAG quality assessments and evaluation"
+      ],
+      "avoidWhen": [
+        "non-RAG or non-LLM systems"
+      ],
+      "guidanceSource": "curated"
+    },
+    {
+      "repo": "vinnylarouge/jevlike",
+      "score": 6,
+      "tier": "audit",
+      "category": "Projet non documenté",
+      "domain": "other",
+      "capabilities": [
+        "documentation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": false,
+      "runtime": [],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1352,
+        "forks": 118,
+        "openIssues": 7,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-16T18:12:53Z"
+      },
+      "bestFor": [
+        "manual source review before reuse"
+      ],
+      "avoidWhen": [
+        "selection based on absent README description"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "whaleyxbt/patchright-enhanced",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Automatisation navigateur / QA",
+      "domain": "software_engineering",
+      "capabilities": [
+        "automation",
+        "testing"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 486,
+        "forks": 89,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-06T14:52:34Z"
+      },
+      "bestFor": [
+        "researching browser QA and monitoring workflows"
+      ],
+      "avoidWhen": [
+        "production use before licensing and provenance checks"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "yejy53/Editable-Design",
+      "score": 8.1,
+      "tier": "specialized",
+      "category": "Graphisme génératif éditable",
+      "domain": "graphics",
+      "capabilities": [
+        "design-system",
+        "rendering"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1155,
+        "forks": 80,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-29T09:59:55Z"
+      },
+      "bestFor": [
+        "editable AI-generated design artifacts"
+      ],
+      "avoidWhen": [
+        "purely non-visual automation"
+      ],
+      "guidanceSource": "curated"
     }
   ],
   "metadata": {
