@@ -1,18 +1,20 @@
 # Change impact
 
-Base: d390c11c8e999683be743839d4a0b8eb99199418
-Head: d191b7290f720fdd9255347ca0eccd20a23fc9e4
+Base: 2b75db22a9b6e6624bf95183e0c5f18da13284cd
+Head: 14d346cb4af0f66f99293485dc6f3b5c17311175
 
 ## Changed files
-- M .github/workflows/validate.yml
-- A docs/superpowers/plans/2026-09-27-star-import-pipeline.md
-- A scripts/star_import_pipeline.py
-- A scripts/test_star_import_pipeline.py
+- M catalog.json
+- A imports/github-stars-2026-10-09.json
+- A reports/star-import-2026-10-09-metadata-1.json
+- A reports/star-import-2026-10-09-metadata-2.json
+- A reports/star-import-2026-10-09-metadata-3.json
+- A reports/star-import-2026-10-09.json
 
 ## Affected areas
-- .github
-- docs
-- scripts
+- (root)
+- imports
+- reports
 
 ## Related test candidates
 - No direct filename-based test match detected.

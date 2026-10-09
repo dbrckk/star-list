@@ -1,61 +1,81 @@
 {
   "files": [
     {
-      "path": "scripts/test_star_import_pipeline.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test"
-      ],
-      "score": 400
-    },
-    {
-      "path": "scripts/star_import_pipeline.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 375
-    },
-    {
-      "path": ".github/workflows/validate.yml",
+      "path": "cache-health-history.json",
       "reasons": [
         "changed"
       ],
       "score": 100
     },
     {
-      "path": "docs/superpowers/plans/2026-09-27-star-import-pipeline.md",
+      "path": "catalog.json",
       "reasons": [
         "changed"
       ],
       "score": 100
     },
     {
-      "path": "imports/github-stars-2026-09-27-batch-2.json",
+      "path": "discovery-cache.json",
       "reasons": [
-        "recent-project-state"
+        "changed"
       ],
-      "score": 60
+      "score": 100
     },
     {
-      "path": "imports/github-stars-2026-09-27-batch-3.json",
+      "path": "discovery-memory.json",
       "reasons": [
-        "recent-project-state"
+        "changed"
       ],
-      "score": 60
+      "score": 100
     },
     {
-      "path": "imports/github-stars-2026-09-27-batch-4.json",
+      "path": "health-snapshot.json",
       "reasons": [
-        "recent-project-state"
+        "changed"
       ],
-      "score": 60
+      "score": 100
+    },
+    {
+      "path": "history.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "imports/github-stars-2026-10-09.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "reports/star-import-2026-10-09-metadata-1.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "reports/star-import-2026-10-09-metadata-2.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "reports/star-import-2026-10-09-metadata-3.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "reports/star-import-2026-10-09.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

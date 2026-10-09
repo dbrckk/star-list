@@ -9,10 +9,10 @@
     "top_score": 17
   },
   "cache": {
-    "fingerprint": "c67aebe7d56a373fae7a1a5dbb886857ba599bc7276761c42a7b8aa26ffc38ec",
+    "fingerprint": "f517c0de036533036b8a1b5435ba172d40507c20b14b542aaad73f709a210306",
     "hit": false
   },
-  "candidate_count": 7,
+  "candidate_count": 14,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -77,40 +77,27 @@
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": "scripts/star_import_pipeline.py",
+      "path": "cache-health-history.json",
       "reasons": [
-        "impact",
         "recently-changed"
       ],
-      "score": 9,
-      "symbols": [
-        "build_report",
-        "classify_candidate",
-        "integrate_catalog",
-        "load_imports",
-        "main",
-        "normalize_repo_identity",
-        "partition_candidates",
-        "render_markdown",
-        "validate_candidate_catalog",
-        "write_catalog_if_valid"
-      ]
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [],
-      "path": "scripts/test_star_import_pipeline.py",
-      "reasons": [
-        "impact",
-        "recently-changed"
-      ],
-      "score": 9,
+      "score": 3,
       "symbols": []
     },
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": ".github/workflows/validate.yml",
+      "path": "catalog.json",
+      "reasons": [
+        "recently-changed"
+      ],
+      "score": 3,
+      "symbols": []
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [],
+      "path": "discovery-cache.json",
       "reasons": [
         "recently-changed"
       ],

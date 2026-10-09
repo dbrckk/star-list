@@ -22,23 +22,32 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-09-27T11:22:07Z
+Generated: 2026-10-09T01:29:30Z
 
 ### Git
 - Branch: `main`
-- Head: `d191b7290f72`
-- Commit date: 2026-09-27T13:21:57+02:00
-- Commit: Build deterministic GitHub star import pipeline (#42)
-- Tracked files: 200
+- Head: `14d346cb4af0`
+- Commit date: 2026-10-09T03:29:20+02:00
+- Commit: Curate October GitHub star imports (#43)
+- Tracked files: 205
 
 ### Recently changed files
+- `catalog.json`
+- `imports/github-stars-2026-10-09.json`
+- `reports/star-import-2026-10-09-metadata-1.json`
+- `reports/star-import-2026-10-09-metadata-2.json`
+- `reports/star-import-2026-10-09-metadata-3.json`
+- `reports/star-import-2026-10-09.json`
+- `cache-health-history.json`
+- `discovery-cache.json`
+- `discovery-memory.json`
+- `health-snapshot.json`
+- `history.json`
 - `.github/workflows/validate.yml`
 - `docs/superpowers/plans/2026-09-27-star-import-pipeline.md`
 - `scripts/star_import_pipeline.py`
 - `scripts/test_star_import_pipeline.py`
 - `docs/superpowers/specs/2026-09-27-star-import-pipeline-design.md`
-- `imports/github-stars-2026-09-27-batch-4.json`
-- `imports/github-stars-2026-09-27-batch-3.json`
 
 ### Project signals
 - No common build descriptor detected
