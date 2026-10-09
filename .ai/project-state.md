@@ -10,8 +10,9 @@ Status: active
 - Live GitHub Stars visibility is limited to repositories accessible to the workflow token; private stars need a separately authorized integration.
 
 ## Current priority
-- Complete review-only daily GitHub Stars sync for dbrckk; after CI, verify first real scheduled/push run and GitHub review issue.
-- Next: triage newly starred repositories through existing reviewed-metadata admission, then benchmark recommender on real tasks.
+- First live GitHub Stars sync passed and created issue #52 with 17 candidates; three were repository transfers and 14 were new.
+- Canonicalize three transferred repositories and admit 14 reviewed additions; record permanent GitHub IDs to avoid future transfer false positives.
+- Next: verify PR validation and re-run Stars sync to close stale issue #52; benchmark recommender on real tasks.
 
 ## Validation
 - Standards workflow: configured.
@@ -19,7 +20,7 @@ Status: active
 - GitHub Stars reports and manifests are generated as ephemeral Actions artifacts; catalog.json remains review-only.
 
 ## Last verified
-- 2026-10-09 (source reviewed; live workflow pending first execution)
+- 2026-10-09 (first live Stars workflow run 37899710165 passed)
 
 <!-- AUTO:START -->
 ## Automatic repository state
