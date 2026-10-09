@@ -87,25 +87,91 @@ def partition_candidates(records: list[dict], catalog: dict) -> dict:
     return {"raw_records": len(records), "new": new, "already_cataloged": existing, "duplicate_import": duplicates}
 
 
+def load_reviewed_metadata(paths: list[Path]) -> tuple[dict[str, dict], list[dict]]:
+    """Load offline metadata snapshots. Only explicitly reviewed entries are eligible."""
+    records, errors = {}, []
+    for path in paths:
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            errors.append({"source": str(path), "error": str(exc)})
+            continue
+        rows = payload.get("repositories") if isinstance(payload, dict) else None
+        if not isinstance(rows, list):
+            errors.append({"source": str(path), "error": "repositories must be a list"})
+            continue
+        for index, item in enumerate(rows):
+            try:
+                if not isinstance(item, dict):
+                    raise ValueError("repository metadata must be an object")
+                key, _ = normalize_repo_identity(item.get("repo"))
+            except (ValueError, TypeError) as exc:
+                errors.append({"source": str(path), "index": index, "error": str(exc)})
+                continue
+            if key in records:
+                if records[key] != item:
+                    errors.append({"source": str(path), "index": index,
+                                   "repo": item["repo"], "error": "conflicting metadata for repository"})
+                continue
+            records[key] = item
+    return records, errors
+
+
 def classify_candidate(candidate: dict, metadata: dict | None = None) -> dict:
     result = {"repo": candidate["repo"], "sources": list(candidate.get("sources", [])), "status": "needs_review"}
-    if metadata and isinstance(metadata.get("catalogEntry"), dict):
+
+    if metadata and metadata.get("reviewed") is True and isinstance(metadata.get("catalogEntry"), dict):
         entry = copy.deepcopy(metadata["catalogEntry"])
-        if entry.get("repo", "").lower() == candidate["key"]:
-            result = {"repo": candidate["repo"], "sources": list(candidate.get("sources", [])), "status": "accepted", "catalogEntry": entry}
+        raw_github = metadata.get("github")
+        try:
+            verified_identity = (normalize_repo_identity(metadata.get("repo"))[0] == candidate["key"]
+                                 and normalize_repo_identity(entry.get("repo"))[0] == candidate["key"])
+        except (ValueError, TypeError):
+            verified_identity = False
+        required_fields = ("score", "tier", "category", "domain", "resourceLevel", "integrationComplexity")
+        if (verified_identity and isinstance(raw_github, dict)
+                and entry.get("github") == raw_github
+                and all(field in entry for field in required_fields)):
+            result = {"repo": candidate["repo"], "sources": list(candidate.get("sources", [])),
+                      "status": "accepted", "catalogEntry": entry}
     return result
 
 
-def build_report(partition: dict, malformed: list[dict], import_files: list[str]) -> dict:
-    classified = [classify_candidate(c) for c in partition["new"]]
+
+def build_report(partition: dict, malformed: list[dict], import_files: list[str],
+                 metadata: dict[str, dict] | None = None, metadata_files: list[str] | None = None,
+                 metadata_errors: list[dict] | None = None) -> dict:
+    metadata = metadata or {}
+    metadata_errors = metadata_errors or []
+    classified = [classify_candidate(c, metadata.get(c["key"])) for c in partition["new"]]
     needs_review = [x for x in classified if x["status"] == "needs_review"]
+    accepted = [x for x in classified if x["status"] == "accepted"]
     unique = len(partition["new"]) + len(partition["already_cataloged"])
-    return {"importFiles": list(import_files), "summary": {"rawRecords": partition.get("raw_records", unique), "uniqueNormalized": unique, "duplicateImports": len(partition["duplicate_import"]), "alreadyCataloged": len(partition["already_cataloged"]), "newCandidates": len(partition["new"]), "needsReview": len(needs_review), "malformed": len(malformed)}, "alreadyCataloged": partition["already_cataloged"], "duplicateImports": partition["duplicate_import"], "newCandidates": classified, "malformed": malformed}
+    return {
+        "importFiles": list(import_files),
+        "metadataFiles": list(metadata_files or []),
+        "summary": {
+            "rawRecords": partition.get("raw_records", unique),
+            "uniqueNormalized": unique,
+            "duplicateImports": len(partition["duplicate_import"]),
+            "alreadyCataloged": len(partition["already_cataloged"]),
+            "newCandidates": len(partition["new"]),
+            "accepted": len(accepted),
+            "needsReview": len(needs_review),
+            "malformed": len(malformed),
+            "malformedMetadata": len(metadata_errors),
+        },
+        "alreadyCataloged": partition["already_cataloged"],
+        "duplicateImports": partition["duplicate_import"],
+        "newCandidates": classified,
+        "malformed": malformed,
+        "metadataErrors": metadata_errors,
+    }
 
 
 def render_markdown(report: dict) -> str:
     s = report["summary"]
-    lines = ["# GitHub Star Import Report", "", f"- Raw records: {s['rawRecords']}", f"- Unique normalized repositories: {s['uniqueNormalized']}", f"- Duplicate imports: {s['duplicateImports']}", f"- Already cataloged: {s['alreadyCataloged']}", f"- New candidates: {s['newCandidates']}", f"- Needs review: {s['needsReview']}", f"- Malformed: {s['malformed']}", "", "## New candidates", ""]
+    lines = ["# GitHub Star Import Report", "", f"- Raw records: {s['rawRecords']}", f"- Unique normalized repositories: {s['uniqueNormalized']}", f"- Duplicate imports: {s['duplicateImports']}", f"- Already cataloged: {s['alreadyCataloged']}", f"- New candidates: {s['newCandidates']}", f"- Accepted: {s['accepted']}", f"- Needs review: {s['needsReview']}", f"- Malformed: {s['malformed']}", f"- Metadata errors: {s['malformedMetadata']}", "", "## New candidates", ""]
     lines.extend(f"- `{x['repo']}` — {x['status']}" for x in report["newCandidates"])
     return "\n".join(lines) + "\n"
 
@@ -162,6 +228,8 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("imports", nargs="*", type=Path)
     parser.add_argument("--catalog", type=Path, default=ROOT / "catalog.json")
+    parser.add_argument("--metadata", type=Path, action="append", default=[],
+                        help="Offline GitHub metadata snapshots with explicitly reviewed catalogEntry records")
     parser.add_argument("--report-json", type=Path)
     parser.add_argument("--report-md", type=Path)
     parser.add_argument("--write", action="store_true")
@@ -170,7 +238,9 @@ def main(argv=None) -> int:
     catalog = json.loads(args.catalog.read_text(encoding="utf-8"))
     records, malformed = load_imports(paths)
     partition = partition_candidates(records, catalog)
-    report = build_report(partition, malformed, [str(p) for p in paths])
+    metadata, metadata_errors = load_reviewed_metadata(args.metadata)
+    report = build_report(partition, malformed, [str(p) for p in paths],
+                          metadata, [str(p) for p in args.metadata], metadata_errors)
     payload = json.dumps(report, indent=2, ensure_ascii=False) + "\n"
     if args.report_json:
         args.report_json.parent.mkdir(parents=True, exist_ok=True)
@@ -179,12 +249,19 @@ def main(argv=None) -> int:
         args.report_md.parent.mkdir(parents=True, exist_ok=True)
         args.report_md.write_text(render_markdown(report), encoding="utf-8")
     if args.write:
+        if malformed or metadata_errors:
+            print("ERROR: invalid import or metadata input; catalog unchanged")
+            return 2
         accepted = [x["catalogEntry"] for x in report["newCandidates"] if x["status"] == "accepted"]
-        candidate = integrate_catalog(catalog, accepted)
-        ok, output = write_catalog_if_valid(candidate, args.catalog)
-        if not ok:
-            print(output)
-            return 1
+        if report["summary"]["newCandidates"] and not accepted:
+            print("ERROR: no reviewed entries to import; catalog unchanged")
+            return 2
+        if accepted:
+            candidate = integrate_catalog(catalog, accepted)
+            ok, output = write_catalog_if_valid(candidate, args.catalog)
+            if not ok:
+                print(output)
+                return 1
     print(payload, end="")
     return 0
 
