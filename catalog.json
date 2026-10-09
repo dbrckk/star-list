@@ -31203,6 +31203,144 @@
       "guidanceSource": "curated",
       "lifecycle": "active",
       "githubRepositoryId": 620936652
+    },
+    {
+      "repo": "devxprite/infoooze",
+      "githubRepositoryId": 463084097,
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Outil OSINT historique compatible Termux",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "osint",
+        "recon",
+        "termux",
+        "information-gathering"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [
+        "android",
+        "linux",
+        "windows"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1109,
+        "forks": 170,
+        "openIssues": 53,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2023-10-31T14:57:16Z"
+      },
+      "bestFor": [
+        "Examiner une ancienne interface Node.js de reconnaissance OSINT sur sites, domaines et identifiants publics dans un scope autorisé"
+      ],
+      "avoidWhen": [
+        "Pratiquer des scans de systèmes non autorisés ou utiliser sans audit des dépendances non entretenues depuis 2023"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "noahdunnagan/fsearch",
+      "githubRepositoryId": 1410750399,
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Recherche indexée de fichiers macOS",
+      "domain": "productivity",
+      "capabilities": [
+        "local-search",
+        "file-indexing",
+        "fuzzy-search",
+        "rust"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [
+        "macos"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 801,
+        "forks": 63,
+        "openIssues": 4,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T17:59:25Z"
+      },
+      "bestFor": [
+        "Tester une recherche locale de fichiers et de contenu indexé sur macOS avec des requêtes rapides"
+      ],
+      "avoidWhen": [
+        "Accorder Full Disk Access à un indexeur tout juste publié sans revue de confidentialité ni sauvegarde"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "symgraph/IDAssist",
+      "githubRepositoryId": 1167005651,
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Assistant de rétro-ingénierie pour IDA Pro",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "reverse-engineering",
+        "ida-pro",
+        "llm",
+        "mcp",
+        "knowledge-graph"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": "partial",
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "mixed",
+      "github": {
+        "stars": 763,
+        "forks": 82,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-09-20T19:31:57Z"
+      },
+      "bestFor": [
+        "Analyser de manière autorisée des binaires avec IDA Pro 9+, un modèle LLM et la recherche sémantique"
+      ],
+      "avoidWhen": [
+        "Supposer que l'extension rend IDA Pro gratuit, transmettre des binaires confidentiels à un fournisseur externe ou appliquer sans revue des renommages générés"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
     }
   ],
   "metadata": {
