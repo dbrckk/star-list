@@ -68,6 +68,9 @@ star-import-2026-10-09-batch-5-metadata-6.json
 star-import-2026-10-09-batch-5-profiles.json
 star-import-2026-10-09-batch-5-reviewed.json
 star-import-2026-10-09-batch-5.json
+star-import-2026-10-09-batch-6-metadata.json
+star-import-2026-10-09-batch-6-reviewed.json
+star-import-2026-10-09-batch-6.json
 star-import-2026-10-09-metadata-1.json
 star-import-2026-10-09-metadata-2.json
 star-import-2026-10-09-metadata-3.json
@@ -15337,6 +15340,847 @@ star-import-2026-10-09.json
     "status": "applied-and-validated",
     "method": "existing reviewed star import pipeline in GitHub Actions",
     "validationRun": "https://github.com/dbrckk/star-list/actions/runs/37880954201"
+  }
+}
+```
+
+## File: star-import-2026-10-09-batch-6-metadata.json
+```json
+{
+  "capturedAt": "2026-10-09",
+  "source": "GitHub REST API",
+  "repositories": [
+    {
+      "repo": "TabooHarmony/roblox-brain",
+      "description": "The Roblox Studio knowledge your coding agent is missing. Skill library for Roblox Studio game development.",
+      "language": "Python",
+      "github": {
+        "stars": 81,
+        "forks": 7,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-02T14:05:46Z"
+      }
+    },
+    {
+      "repo": "Chrrxs/robloxstudio-mcp",
+      "description": "MCP server for Roblox Studio runtime debugging, playtest control, screenshots/input, multiplayer testing, and per-peer server/client eval from AI agents.",
+      "language": "Lua",
+      "github": {
+        "stars": 286,
+        "forks": 45,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T00:22:27Z"
+      }
+    },
+    {
+      "repo": "MaximumADHD/Roblox-Studio-Mod-Manager",
+      "description": "An open-source custom bootstrapper for Roblox Studio that allows you to override files in Roblox Studio's directory, opt into development branches of Roblox, and experiment with Fast Flags.",
+      "language": "C#",
+      "github": {
+        "stars": 391,
+        "forks": 85,
+        "openIssues": 27,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-02T12:50:00Z"
+      }
+    },
+    {
+      "repo": "vinegarhq/vinegar",
+      "description": "Run Roblox Studio on Linux.",
+      "language": "Go",
+      "github": {
+        "stars": 782,
+        "forks": 68,
+        "openIssues": 35,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-09-27T18:09:58Z"
+      }
+    },
+    {
+      "repo": "Roblox/studio-rust-mcp-server",
+      "description": "Standalone Roblox Studio MCP Server",
+      "language": "Rust",
+      "github": {
+        "stars": 496,
+        "forks": 88,
+        "openIssues": 21,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-04-03T17:36:12Z"
+      }
+    },
+    {
+      "repo": "boshyxd/robloxstudio-mcp",
+      "description": "Create agentic AI workflows in ROBLOX Studio",
+      "language": "TypeScript",
+      "github": {
+        "stars": 493,
+        "forks": 94,
+        "openIssues": 24,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-06-06T15:01:26Z"
+      }
+    },
+    {
+      "repo": "S4US/Roqer",
+      "description": "An open-source AI agent for Roblox Studio. Builds, scripts, and playtests in your place using your ChatGPT/Claude subscription or custom API.",
+      "language": "TypeScript",
+      "github": {
+        "stars": 108,
+        "forks": 11,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-08T15:29:31Z"
+      }
+    },
+    {
+      "repo": "meituan-longcat/LongCat-Image",
+      "description": null,
+      "language": "Python",
+      "github": {
+        "stars": 731,
+        "forks": 68,
+        "openIssues": 13,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-05-09T10:22:47Z"
+      }
+    },
+    {
+      "repo": "meituan-longcat/LongCat-Flash-Chat",
+      "description": null,
+      "language": null,
+      "github": {
+        "stars": 1366,
+        "forks": 76,
+        "openIssues": 15,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-06-23T12:07:22Z"
+      }
+    }
+  ]
+}
+```
+
+## File: star-import-2026-10-09-batch-6-reviewed.json
+```json
+{
+  "date": "2026-10-09",
+  "source": "GitHub REST-verified screenshot batch 6; human-readable taxonomy review",
+  "repositories": [
+    {
+      "repo": "boshyxd/robloxstudio-mcp",
+      "reviewed": true,
+      "reviewScope": "GitHub identity, metadata and conservative catalog selection reviewed; model weights may use separate licenses",
+      "github": {
+        "stars": 493,
+        "forks": 94,
+        "openIssues": 24,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-06-06T15:01:26Z"
+      },
+      "catalogEntry": {
+        "repo": "boshyxd/robloxstudio-mcp",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Automatisation Roblox Studio archivée",
+        "domain": "game_dev",
+        "capabilities": [
+          "roblox",
+          "mcp",
+          "agent-tools",
+          "reference-implementation"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 493,
+          "forks": 94,
+          "openIssues": 24,
+          "archived": true,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-06-06T15:01:26Z"
+        },
+        "bestFor": [
+          "Examiner le code d'un ancien connecteur d'agents pour Roblox Studio à titre de référence"
+        ],
+        "avoidWhen": [
+          "Déployer comme solution principale un serveur archivé sans maintenance ni support de compatibilité"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "reference",
+        "licenseEvidence": "verified-file"
+      }
+    },
+    {
+      "repo": "Chrrxs/robloxstudio-mcp",
+      "reviewed": true,
+      "reviewScope": "GitHub identity, metadata and conservative catalog selection reviewed; model weights may use separate licenses",
+      "github": {
+        "stars": 286,
+        "forks": 45,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T00:22:27Z"
+      },
+      "catalogEntry": {
+        "repo": "Chrrxs/robloxstudio-mcp",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Tests et débogage Roblox Studio via MCP",
+        "domain": "game_dev",
+        "capabilities": [
+          "roblox",
+          "mcp",
+          "debugging",
+          "playtesting",
+          "profiling",
+          "multiplayer-testing"
+        ],
+        "languages": [
+          "lua"
+        ],
+        "platforms": [
+          "windows",
+          "macos"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local",
+          "studio"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 286,
+          "forks": 45,
+          "openIssues": 0,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-09T00:22:27Z"
+        },
+        "bestFor": [
+          "Tester de vraies sessions Roblox Studio, recueillir logs, captures d'écran et mesures de performances sur client et serveur"
+        ],
+        "avoidWhen": [
+          "Exécuter des outils MCP mutateurs sans sauvegarde de la place et sans contrôle de l'accès aux projets"
+        ],
+        "complements": [
+          "TabooHarmony/roblox-brain",
+          "S4US/Roqer"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active",
+        "licenseEvidence": "verified-file"
+      }
+    },
+    {
+      "repo": "MaximumADHD/Roblox-Studio-Mod-Manager",
+      "reviewed": true,
+      "reviewScope": "GitHub identity, metadata and conservative catalog selection reviewed; model weights may use separate licenses",
+      "github": {
+        "stars": 391,
+        "forks": 85,
+        "openIssues": 27,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-02T12:50:00Z"
+      },
+      "catalogEntry": {
+        "repo": "MaximumADHD/Roblox-Studio-Mod-Manager",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Bootstrap et configuration de Roblox Studio",
+        "domain": "game_dev",
+        "capabilities": [
+          "roblox",
+          "studio",
+          "bootstrapper",
+          "modding"
+        ],
+        "languages": [
+          "c#"
+        ],
+        "platforms": [
+          "windows"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "low",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 391,
+          "forks": 85,
+          "openIssues": 27,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-09-02T12:50:00Z"
+        },
+        "bestFor": [
+          "Personnaliser une installation locale de Roblox Studio sur Windows pour les tests de développement"
+        ],
+        "avoidWhen": [
+          "Modifier des fichiers ou Fast Flags sur une installation critique sans sauvegarde ni vérification de compatibilité"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active",
+        "licenseEvidence": "verified-file"
+      }
+    },
+    {
+      "repo": "meituan-longcat/LongCat-Flash-Chat",
+      "reviewed": true,
+      "reviewScope": "GitHub identity, metadata and conservative catalog selection reviewed; model weights may use separate licenses",
+      "github": {
+        "stars": 1366,
+        "forks": 76,
+        "openIssues": 15,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-06-23T12:07:22Z"
+      },
+      "catalogEntry": {
+        "repo": "meituan-longcat/LongCat-Flash-Chat",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Grand modèle de langage Mixture-of-Experts",
+        "domain": "data_ml",
+        "capabilities": [
+          "llm",
+          "moe",
+          "model-inference",
+          "agentic-tasks"
+        ],
+        "languages": [],
+        "platforms": [
+          "linux"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "gpu",
+          "server"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 1366,
+          "forks": 76,
+          "openIssues": 15,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-06-23T12:07:22Z"
+        },
+        "bestFor": [
+          "Évaluer un modèle de langage MoE de grande capacité dans une infrastructure d'inférence adaptée"
+        ],
+        "avoidWhen": [
+          "Supposer que le modèle de plusieurs centaines de milliards de paramètres peut être hébergé sur un smartphone ou que la licence MIT du code couvre tous les poids"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active",
+        "licenseEvidence": "verified-file"
+      }
+    },
+    {
+      "repo": "meituan-longcat/LongCat-Image",
+      "reviewed": true,
+      "reviewScope": "GitHub identity, metadata and conservative catalog selection reviewed; model weights may use separate licenses",
+      "github": {
+        "stars": 731,
+        "forks": 68,
+        "openIssues": 13,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-05-09T10:22:47Z"
+      },
+      "catalogEntry": {
+        "repo": "meituan-longcat/LongCat-Image",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Génération et édition d'images par IA",
+        "domain": "ai_media",
+        "capabilities": [
+          "image-generation",
+          "image-editing",
+          "multilingual-text-rendering",
+          "diffusion"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "linux"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "gpu",
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 731,
+          "forks": 68,
+          "openIssues": 13,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-05-09T10:22:47Z"
+        },
+        "bestFor": [
+          "Tester des modèles d'image générative et d'édition d'image avec du texte en plusieurs langues"
+        ],
+        "avoidWhen": [
+          "Tenter l'inférence locale du modèle sur smartphone sans GPU ou utiliser les poids sans vérifier leur licence distincte"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active",
+        "licenseEvidence": "verified-file"
+      }
+    },
+    {
+      "repo": "Roblox/studio-rust-mcp-server",
+      "reviewed": true,
+      "reviewScope": "GitHub identity, metadata and conservative catalog selection reviewed; model weights may use separate licenses",
+      "github": {
+        "stars": 496,
+        "forks": 88,
+        "openIssues": 21,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-04-03T17:36:12Z"
+      },
+      "catalogEntry": {
+        "repo": "Roblox/studio-rust-mcp-server",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Serveur MCP Roblox historique archivé",
+        "domain": "game_dev",
+        "capabilities": [
+          "roblox",
+          "mcp",
+          "agent-tools",
+          "reference-implementation"
+        ],
+        "languages": [
+          "rust"
+        ],
+        "platforms": [
+          "windows",
+          "macos"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 496,
+          "forks": 88,
+          "openIssues": 21,
+          "archived": true,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-04-03T17:36:12Z"
+        },
+        "bestFor": [
+          "Consulter l'ancienne implémentation de référence MCP pour Roblox Studio et comprendre les outils historiques"
+        ],
+        "avoidWhen": [
+          "Démarrer une nouvelle intégration sur ce serveur archivé plutôt que le MCP intégré désormais recommandé par Roblox"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "reference",
+        "licenseEvidence": "verified-file"
+      }
+    },
+    {
+      "repo": "S4US/Roqer",
+      "reviewed": true,
+      "reviewScope": "GitHub identity, metadata and conservative catalog selection reviewed; model weights may use separate licenses",
+      "github": {
+        "stars": 108,
+        "forks": 11,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-08T15:29:31Z"
+      },
+      "catalogEntry": {
+        "repo": "S4US/Roqer",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Agent de création et playtest Roblox",
+        "domain": "game_dev",
+        "capabilities": [
+          "roblox",
+          "agents",
+          "luau",
+          "playtesting",
+          "animation",
+          "visual-assets"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 108,
+          "forks": 11,
+          "openIssues": 9,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "AGPL-3.0",
+          "pushedAt": "2026-10-08T15:29:31Z"
+        },
+        "bestFor": [
+          "Générer des éléments de jeu Roblox, scripts Luau, animations et effets visuels puis les vérifier par playtests"
+        ],
+        "avoidWhen": [
+          "Donner à un agent des droits de publication ou de modification de projets sans revue, sauvegarde et analyse de la licence AGPL"
+        ],
+        "complements": [
+          "Chrrxs/robloxstudio-mcp",
+          "TabooHarmony/roblox-brain"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active",
+        "licenseEvidence": "verified-file"
+      }
+    },
+    {
+      "repo": "TabooHarmony/roblox-brain",
+      "reviewed": true,
+      "reviewScope": "GitHub identity, metadata and conservative catalog selection reviewed; model weights may use separate licenses",
+      "github": {
+        "stars": 81,
+        "forks": 7,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-02T14:05:46Z"
+      },
+      "catalogEntry": {
+        "repo": "TabooHarmony/roblox-brain",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Bibliothèque de compétences Roblox Studio",
+        "domain": "game_dev",
+        "capabilities": [
+          "roblox",
+          "luau",
+          "agent-skills",
+          "studio-knowledge"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "low",
+        "integrationComplexity": "low",
+        "costModel": "open-source",
+        "github": {
+          "stars": 81,
+          "forks": 7,
+          "openIssues": 2,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-02T14:05:46Z"
+        },
+        "bestFor": [
+          "Donner aux agents de développement le contexte et les pratiques nécessaires pour créer un jeu Roblox Studio"
+        ],
+        "avoidWhen": [
+          "Prendre des instructions communautaires pour des garanties d'exécution sans tester dans Studio"
+        ],
+        "complements": [
+          "Chrrxs/robloxstudio-mcp"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active",
+        "licenseEvidence": "verified-file"
+      }
+    },
+    {
+      "repo": "vinegarhq/vinegar",
+      "reviewed": true,
+      "reviewScope": "GitHub identity, metadata and conservative catalog selection reviewed; model weights may use separate licenses",
+      "github": {
+        "stars": 782,
+        "forks": 68,
+        "openIssues": 35,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-09-27T18:09:58Z"
+      },
+      "catalogEntry": {
+        "repo": "vinegarhq/vinegar",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Utilisation de Roblox Studio sur Linux",
+        "domain": "game_dev",
+        "capabilities": [
+          "roblox",
+          "studio",
+          "linux",
+          "compatibility"
+        ],
+        "languages": [
+          "go"
+        ],
+        "platforms": [
+          "linux"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 782,
+          "forks": 68,
+          "openIssues": 35,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "GPL-3.0",
+          "pushedAt": "2026-09-27T18:09:58Z"
+        },
+        "bestFor": [
+          "Étudier une solution communautaire permettant de lancer Roblox Studio sous Linux"
+        ],
+        "avoidWhen": [
+          "Attendre une compatibilité officiellement garantie avec toutes les mises à jour de Roblox Studio"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active",
+        "licenseEvidence": "verified-file"
+      }
+    }
+  ]
+}
+```
+
+## File: star-import-2026-10-09-batch-6.json
+```json
+{
+  "date": "2026-10-09",
+  "source": "Eleven user screenshots, 2026-10-09 (batch 6 plus two additional screenshots)",
+  "summary": {
+    "raw": 93,
+    "unique": 93,
+    "alreadyInCatalog": 84,
+    "newlyAdmitted": 9,
+    "catalogBefore": 699,
+    "catalogAfter": 708,
+    "archivedRetainedForReference": 2
+  },
+  "admitted": [
+    "boshyxd/robloxstudio-mcp",
+    "Chrrxs/robloxstudio-mcp",
+    "MaximumADHD/Roblox-Studio-Mod-Manager",
+    "meituan-longcat/LongCat-Flash-Chat",
+    "meituan-longcat/LongCat-Image",
+    "Roblox/studio-rust-mcp-server",
+    "S4US/Roqer",
+    "TabooHarmony/roblox-brain",
+    "vinegarhq/vinegar"
+  ],
+  "alreadyCataloged": [
+    "recogardtech/AutoPilotPM",
+    "evidentlyai/evidently",
+    "Giskard-AI/giskard-oss",
+    "openai/evals",
+    "truera/trulens",
+    "UKGovernmentBEIS/inspect_ai",
+    "Arize-ai/phoenix",
+    "comet-ml/opik",
+    "vibrantlabsai/ragas",
+    "Antseed/openclaw-channel-antseed",
+    "Antseed/AIPs",
+    "Antseed/antseed",
+    "Effect-TS/effect",
+    "colbymchenry/codegraph",
+    "getsentry/sentry",
+    "google/skills",
+    "NVIDIA/OpenShell",
+    "JuliusBrussee/caveman",
+    "Epix-Incorporated/Adonis",
+    "roblox-ts/roblox-ts",
+    "axstin/rbxfpsunlocker",
+    "confident-ai/deepeval",
+    "daytonaio/daytona",
+    "e2b-dev/E2B",
+    "getzep/graphiti",
+    "huggingface/smolagents",
+    "OffGridPete/Fieldwatch",
+    "D4Vinci/Scrapling",
+    "whaleyxbt/patchright-enhanced",
+    "Ignitetechnologies/Mindmap",
+    "DuarteSantos8/openGym",
+    "caddyserver/caddy",
+    "earthtojake/text-to-cad",
+    "michael-denyer/pstack-claude",
+    "tester-army/e2e",
+    "deepseek-ai/DeepGEMM",
+    "morluto/rea",
+    "elder-plinius/T3MP3ST",
+    "kargulstudio/sales-crm",
+    "rawfilejson/awesome-osint-arsenal",
+    "RickdeJager/stegseek",
+    "OpenCut-app/OpenCut",
+    "meituan-longcat/LongCat-Video",
+    "cloudflare/cloudflare-os",
+    "pingdotgg/t3code",
+    "localsend/localsend",
+    "Diolinux/PhotoGIMP",
+    "1N3/Sn1per",
+    "ComposioHQ/composio",
+    "topoteretes/cognee",
+    "mastra-ai/mastra",
+    "rehan-remade/universal-modder",
+    "aarora4/Awesome-Prediction-Market-Tools",
+    "caiovicentino/polymarket-mcp-server",
+    "ent0n29/polybot",
+    "evan-kolberg/prediction-market-backtesting",
+    "SII-WANGZJ/Polymarket_data",
+    "yangyuan-zhen/PolyWeather",
+    "lihanyu81/polymarket_lp_tool",
+    "HarrierOnChain/Prediction-Markets-Trading-Bot-Toolkits",
+    "duckdb/duckdb",
+    "eosphoros-ai/DB-GPT",
+    "yifanfeng97/Hyper-Extract",
+    "Jakeschincariol/arena-skill",
+    "quarto-dev/quarto-cli",
+    "apache/superset",
+    "Kanaries/pygwalker",
+    "Dataherald/dataherald",
+    "open-metadata/OpenMetadata",
+    "sodadata/soda-core",
+    "fivetran/great_expectations",
+    "dlt-hub/dlt",
+    "airbytehq/airbyte",
+    "defog-ai/sqlcoder",
+    "pytest-dev/pytest",
+    "github/github-mcp-server",
+    "metabase/metabase",
+    "evidence-dev/evidence",
+    "sinaptik-ai/pandas-ai",
+    "apache/datafusion",
+    "pola-rs/polars",
+    "oraios/serena",
+    "emilk/egui",
+    "liquidslr/system-design-notes"
+  ],
+  "archiveCaution": [
+    "Roblox/studio-rust-mcp-server",
+    "boshyxd/robloxstudio-mcp"
+  ],
+  "usageCaution": [
+    "Roblox/studio-rust-mcp-server is archived; prefer Roblox Studio built-in MCP for new setups",
+    "Review GPL-3.0 and AGPL-3.0 reuse requirements for Vinegar and Roqer",
+    "LongCat code licenses do not automatically establish model weight licenses"
+  ],
+  "provenance": {
+    "import": "imports/github-stars-2026-10-09-batch-6.json",
+    "github": "reports/star-import-2026-10-09-batch-6-metadata.json",
+    "reviewed": "reports/star-import-2026-10-09-batch-6-reviewed.json"
   }
 }
 ```

@@ -22,17 +22,21 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-09T03:50:11Z
+Generated: 2026-10-09T05:10:36Z
 
 ### Git
 - Branch: `main`
-- Head: `4047421dbd39`
-- Commit date: 2026-10-09T05:50:00+02:00
-- Commit: Catalog 71 verified GitHub favorites from nine screenshots (#47)
-- Tracked files: 242
+- Head: `76e1fe3ef2db`
+- Commit date: 2026-10-09T07:10:23+02:00
+- Commit: Catalog nine Roblox Studio and LongCat GitHub favorites (#48)
+- Tracked files: 246
 
 ### Recently changed files
 - `catalog.json`
+- `imports/github-stars-2026-10-09-batch-6.json`
+- `reports/star-import-2026-10-09-batch-6-metadata.json`
+- `reports/star-import-2026-10-09-batch-6-reviewed.json`
+- `reports/star-import-2026-10-09-batch-6.json`
 - `imports/github-stars-2026-10-09-batch-5.json`
 - `reports/star-import-2026-10-09-batch-5-metadata-1.json`
 - `reports/star-import-2026-10-09-batch-5-metadata-2.json`
@@ -48,10 +52,6 @@ Generated: 2026-10-09T03:50:11Z
 - `reports/star-import-2026-10-09-batch-4-metadata-2.json`
 - `reports/star-import-2026-10-09-batch-4-metadata-3.json`
 - `reports/star-import-2026-10-09-batch-4-metadata-4.json`
-- `reports/star-import-2026-10-09-batch-4-metadata-5.json`
-- `reports/star-import-2026-10-09-batch-4-metadata-6.json`
-- `reports/star-import-2026-10-09-batch-4-metadata-corrections.json`
-- `reports/star-import-2026-10-09-batch-4-reviewed.json`
 
 ### Project signals
 - No common build descriptor detected
