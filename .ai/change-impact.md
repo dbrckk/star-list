@@ -1,20 +1,20 @@
 # Change impact
 
-Base: 3a34cf31c61134c63c3bb7a3044670446ad01211
-Head: 0e6897b8b3caeae5e725aa140128b1ecac73b40b
+Base: 8d2bb064d62811906e4d0a04c8d3eaf04f5d4e9b
+Head: 4047421dbd39d1f2c2189b46d46c728a3badd038
 
 ## Changed files
 - M catalog.json
-- A imports/github-stars-2026-10-09-batch-4.json
-- A reports/star-import-2026-10-09-batch-4-metadata-1.json
-- A reports/star-import-2026-10-09-batch-4-metadata-2.json
-- A reports/star-import-2026-10-09-batch-4-metadata-3.json
-- A reports/star-import-2026-10-09-batch-4-metadata-4.json
-- A reports/star-import-2026-10-09-batch-4-metadata-5.json
-- A reports/star-import-2026-10-09-batch-4-metadata-6.json
-- A reports/star-import-2026-10-09-batch-4-metadata-corrections.json
-- A reports/star-import-2026-10-09-batch-4-reviewed.json
-- A reports/star-import-2026-10-09-batch-4.json
+- A imports/github-stars-2026-10-09-batch-5.json
+- A reports/star-import-2026-10-09-batch-5-metadata-1.json
+- A reports/star-import-2026-10-09-batch-5-metadata-2.json
+- A reports/star-import-2026-10-09-batch-5-metadata-3.json
+- A reports/star-import-2026-10-09-batch-5-metadata-4.json
+- A reports/star-import-2026-10-09-batch-5-metadata-5.json
+- A reports/star-import-2026-10-09-batch-5-metadata-6.json
+- A reports/star-import-2026-10-09-batch-5-profiles.json
+- A reports/star-import-2026-10-09-batch-5-reviewed.json
+- A reports/star-import-2026-10-09-batch-5.json
 
 ## Affected areas
 - (root)

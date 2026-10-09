@@ -55,6 +55,7 @@ imports/
   github-stars-2026-10-09-batch-2.json
   github-stars-2026-10-09-batch-3.json
   github-stars-2026-10-09-batch-4.json
+  github-stars-2026-10-09-batch-5.json
   github-stars-2026-10-09.json
 reports/
   star-import-2026-10-09-batch-2-metadata-1.json
@@ -78,6 +79,15 @@ reports/
   star-import-2026-10-09-batch-4-metadata-corrections.json
   star-import-2026-10-09-batch-4-reviewed.json
   star-import-2026-10-09-batch-4.json
+  star-import-2026-10-09-batch-5-metadata-1.json
+  star-import-2026-10-09-batch-5-metadata-2.json
+  star-import-2026-10-09-batch-5-metadata-3.json
+  star-import-2026-10-09-batch-5-metadata-4.json
+  star-import-2026-10-09-batch-5-metadata-5.json
+  star-import-2026-10-09-batch-5-metadata-6.json
+  star-import-2026-10-09-batch-5-profiles.json
+  star-import-2026-10-09-batch-5-reviewed.json
+  star-import-2026-10-09-batch-5.json
   star-import-2026-10-09-metadata-1.json
   star-import-2026-10-09-metadata-2.json
   star-import-2026-10-09-metadata-3.json
@@ -1155,6 +1165,106 @@ initial_prompt: |
     "squidfunk/mkdocs-material",
     "xiaolai/the-craft-of-selfteaching",
     "ahmadrosid/nakama"
+  ]
+}
+````
+
+## File: imports/github-stars-2026-10-09-batch-5.json
+````json
+{
+  "capturedAt": "2026-10-09",
+  "source": "9 user-provided GitHub Stars screenshots",
+  "repositories": [
+    "JoasASantos/Offensive-Security-AI-Models",
+    "letta-ai/letta-code",
+    "mvschwarz/openrig",
+    "InfinityLoop1308/PipePipe",
+    "agentverse-os/AgentVerse-OS",
+    "yejy53/Editable-Design",
+    "pizza-bot-app/pizza-bot",
+    "anmolkapil/plexo",
+    "vinnylarouge/jevlike",
+    "shadcn-ui/lint",
+    "arnegiacomo/fugleramme",
+    "elliothux/open-compute",
+    "chubbyguan/chubbyskills",
+    "togg53192-cmd/jailbreaks",
+    "nibzard/awesome-agentic-patterns",
+    "awarexone/Agentic-Bug-Hunter",
+    "jamwithai/production-agentic-rag-course",
+    "cloudflare/agentic-inbox",
+    "sickn33/agentic-awesome-skills",
+    "Fosowl/agenticSeek",
+    "transitive-bullshit/agentic",
+    "JetBrains/android",
+    "wgtunnel/android",
+    "bitwarden/android",
+    "LineageOS/android",
+    "nextcloud/android",
+    "owncloud/android",
+    "open-android/Android",
+    "greensock/GSAP",
+    "lgvalle/Material-Animations",
+    "juliangarnier/anime",
+    "MisterBooo/LeetCodeAnimation",
+    "google/liquidfun",
+    "deepinsight/insightface",
+    "timzhang642/3D-Machine-Learning",
+    "mrdoob/three.js",
+    "cgwire/awesome-cg-vfx-pipeline",
+    "GodotNuts/GodotFirebase",
+    "gdquest-demos/godot-open-rpg",
+    "GDRETools/gdsdecomp",
+    "gdquest-demos/godot-shaders",
+    "KenneyNL/Starter-Kit-3D-Platformer",
+    "Zylann/godot_voxel",
+    "liangxiegame/QFramework",
+    "Coding-Solo/godot-mcp",
+    "2Retr0/GodotOceanWaves",
+    "GodotSteam/GodotSteam",
+    "godotengine/godot-demo-projects",
+    "godotengine/godot-docs",
+    "NVIDIA/Model-Optimizer",
+    "slavakurilyak/awesome-ai-agents",
+    "jankeesvw/omarchy-meeting-recorder",
+    "MakazhanAlpamys/Soup",
+    "dalathegreat/Battery-Emulator",
+    "rynfar/meridian",
+    "microsoft/vscode",
+    "vercel/next.js",
+    "mobile-next/mobile-mcp",
+    "actions/runner-images",
+    "anthropics/claude-code-action",
+    "llvm/llvm-project",
+    "zhaoxuya520/reverse-skill",
+    "tensorflow/tensorflow",
+    "openbao/openbao",
+    "kelseyhightower/kubernetes-the-hard-way",
+    "androoAGI/starnet",
+    "anthropics/claude-plugins-official",
+    "paperclipai/paperclip",
+    "dubinc/dub",
+    "PostHog/posthog",
+    "novuhq/novu",
+    "openmeterio/openmeter",
+    "SigNoz/signoz",
+    "promptfoo/promptfoo",
+    "triggerdotdev/trigger.dev",
+    "PrefectHQ/fastmcp",
+    "drizzle-team/drizzle-orm",
+    "better-auth/better-auth",
+    "assistant-ui/assistant-ui",
+    "vercel/ai",
+    "joxeankoret/diaphora",
+    "NandhaKishorM/laya",
+    "JohnHeibel/PDoomVideo",
+    "raullenchai/Rapid-MLX",
+    "tihanyin/REx-skill",
+    "leejet/stable-diffusion.cpp",
+    "vectorize-io/hindsight",
+    "rohitg00/ai-engineering-from-scratch",
+    "superlinked/sie",
+    "kserve/kserve"
   ]
 }
 ````
@@ -10985,6 +11095,5548 @@ initial_prompt: |
       "reports/star-import-2026-10-09-batch-4-metadata-corrections.json"
     ],
     "reviewed": "reports/star-import-2026-10-09-batch-4-reviewed.json"
+  }
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-5-metadata-1.json
+````json
+{
+  "source": "GitHub REST API",
+  "repositories": [
+    {
+      "repo": "mvschwarz/openrig",
+      "description": "Build your own network of agents from Claude Code, Codex and Pi: persistent teams with roles, shared context and owned work.",
+      "language": "TypeScript",
+      "github": {
+        "stars": 6197,
+        "forks": 451,
+        "openIssues": 123,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:30:48Z"
+      }
+    },
+    {
+      "repo": "nibzard/awesome-agentic-patterns",
+      "description": "A curated catalogue of awesome agentic AI patterns",
+      "language": "HTML",
+      "github": {
+        "stars": 5031,
+        "forks": 473,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-28T13:21:09Z"
+      }
+    },
+    {
+      "repo": "awarexone/Agentic-Bug-Hunter",
+      "description": "AI-powered bug bounty hunting toolkit that works with or without subscription.",
+      "language": "Python",
+      "github": {
+        "stars": 5308,
+        "forks": 935,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T17:12:40Z"
+      }
+    },
+    {
+      "repo": "cloudflare/agentic-inbox",
+      "description": "A self-hosted email client with an AI agent, running entirely on Cloudflare Workers",
+      "language": "TypeScript",
+      "github": {
+        "stars": 8229,
+        "forks": 1060,
+        "openIssues": 50,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-04-23T21:04:17Z"
+      }
+    },
+    {
+      "repo": "sickn33/agentic-awesome-skills",
+      "description": "AAS Core is the local, agent-first control plane for complete catalog discovery, agent-owned selection, stack validation, and planning, backed by 2,400+ agentic skills. Includes CLI, local MCP, catalog, plugins, and Workbench.",
+      "language": "Python",
+      "github": {
+        "stars": 47371,
+        "forks": 6903,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T14:41:54Z"
+      }
+    },
+    {
+      "repo": "Fosowl/agenticSeek",
+      "description": "Fully Local Manus AI. No APIs, No $200 monthly bills. Enjoy an autonomous agent that thinks, browses the web, and code for the sole cost of electricity.",
+      "language": "Python",
+      "github": {
+        "stars": 27463,
+        "forks": 3077,
+        "openIssues": 29,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-02T20:03:48Z"
+      }
+    },
+    {
+      "repo": "transitive-bullshit/agentic",
+      "description": "Your API ⇒ Paid MCP. Instantly.",
+      "language": "TypeScript",
+      "github": {
+        "stars": 18100,
+        "forks": 2213,
+        "openIssues": 15,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-02-11T04:50:03Z"
+      }
+    },
+    {
+      "repo": "JetBrains/android",
+      "description": "Android Plugin for IntelliJ IDEA. This repository is a subset of git://git.jetbrains.org/idea/android.git cut according to GitHub file size limitations.",
+      "language": "Kotlin",
+      "github": {
+        "stars": 1134,
+        "forks": 247,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T16:59:02Z"
+      }
+    },
+    {
+      "repo": "wgtunnel/android",
+      "description": "An advanced, open-source client for WireGuard and AmneziaWG on Android.",
+      "language": "Kotlin",
+      "github": {
+        "stars": 3247,
+        "forks": 196,
+        "openIssues": 121,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:37:33Z"
+      }
+    },
+    {
+      "repo": "bitwarden/android",
+      "description": "Bitwarden mobile apps (Password Manager and Authenticator) for Android.",
+      "language": "Kotlin",
+      "github": {
+        "stars": 9456,
+        "forks": 1064,
+        "openIssues": 190,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-09T00:04:29Z"
+      }
+    },
+    {
+      "repo": "LineageOS/android",
+      "description": null,
+      "language": null,
+      "github": {
+        "stars": 4688,
+        "forks": 1963,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "lineage-23.2",
+        "license": null,
+        "pushedAt": "2026-10-08T17:47:36Z"
+      }
+    },
+    {
+      "repo": "nextcloud/android",
+      "description": "📱 Nextcloud Android app",
+      "language": "Kotlin",
+      "github": {
+        "stars": 5620,
+        "forks": 2031,
+        "openIssues": 1562,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-2.0",
+        "pushedAt": "2026-10-08T13:37:55Z"
+      }
+    }
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-5-metadata-2.json
+````json
+{
+  "source": "GitHub REST API",
+  "repositories": [
+    {
+      "repo": "open-android/Android",
+      "description": "GitHub上最火的Android开源项目,所有开源项目都有详细资料和配套视频",
+      "language": null,
+      "github": {
+        "stars": 15368,
+        "forks": 3617,
+        "openIssues": 88,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2024-04-28T13:31:56Z"
+      }
+    },
+    {
+      "repo": "greensock/GSAP",
+      "description": "GSAP (GreenSock Animation Platform), a JavaScript animation library for the modern web",
+      "language": "JavaScript",
+      "github": {
+        "stars": 28916,
+        "forks": 2233,
+        "openIssues": 7,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-04-13T13:08:58Z"
+      }
+    },
+    {
+      "repo": "lgvalle/Material-Animations",
+      "description": "Android Transition animations explanation with examples.",
+      "language": "Java",
+      "github": {
+        "stars": 13531,
+        "forks": 2439,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2019-04-02T15:42:38Z"
+      }
+    },
+    {
+      "repo": "juliangarnier/anime",
+      "description": "JavaScript animation engine",
+      "language": "JavaScript",
+      "github": {
+        "stars": 73433,
+        "forks": 4958,
+        "openIssues": 122,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-08-21T21:29:50Z"
+      }
+    },
+    {
+      "repo": "MisterBooo/LeetCodeAnimation",
+      "description": "Demonstrate all the questions on LeetCode in the form of animation.（用动画的形式呈现解LeetCode题目的思路,完整单步/回看/变速/语音讲解在 algomooc.com）",
+      "language": "Java",
+      "github": {
+        "stars": 76706,
+        "forks": 13858,
+        "openIssues": 22,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-06-12T13:49:06Z"
+      }
+    },
+    {
+      "repo": "google/liquidfun",
+      "description": "2D physics engine for games",
+      "language": "C++",
+      "github": {
+        "stars": 4897,
+        "forks": 651,
+        "openIssues": 69,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2023-04-26T20:07:43Z"
+      }
+    },
+    {
+      "repo": "deepinsight/insightface",
+      "description": "State-of-the-art 2D and 3D Face Analysis Project",
+      "language": "Python",
+      "github": {
+        "stars": 29914,
+        "forks": 6102,
+        "openIssues": 1270,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-10-04T12:46:41Z"
+      }
+    },
+    {
+      "repo": "timzhang642/3D-Machine-Learning",
+      "description": "A resource repository for 3D machine learning",
+      "language": null,
+      "github": {
+        "stars": 10202,
+        "forks": 1795,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2024-07-04T19:13:09Z"
+      }
+    },
+    {
+      "repo": "mrdoob/three.js",
+      "description": "JavaScript 3D Library.",
+      "language": "JavaScript",
+      "github": {
+        "stars": 116159,
+        "forks": 36618,
+        "openIssues": 402,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "dev",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:10:45Z"
+      }
+    },
+    {
+      "repo": "cgwire/awesome-cg-vfx-pipeline",
+      "description": "List of open-source technologies that help in the process of building a pipeline for CG and VFX productions",
+      "language": null,
+      "github": {
+        "stars": 1259,
+        "forks": 178,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-05T07:49:55Z"
+      }
+    },
+    {
+      "repo": "GodotNuts/GodotFirebase",
+      "description": "Implementations of Firebase for Godot using GDScript",
+      "language": "GDScript",
+      "github": {
+        "stars": 686,
+        "forks": 94,
+        "openIssues": 29,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-13T12:46:45Z"
+      }
+    },
+    {
+      "repo": "gdquest-demos/godot-open-rpg",
+      "description": "Learn to create turn-based combat with this Open Source RPG demo ⚔",
+      "language": "GDScript",
+      "github": {
+        "stars": 3008,
+        "forks": 364,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-05-01T20:26:21Z"
+      }
+    }
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-5-metadata-3.json
+````json
+{
+  "source": "GitHub REST API",
+  "repositories": [
+    {
+      "repo": "GDRETools/gdsdecomp",
+      "description": "Godot reverse engineering tools",
+      "language": "C++",
+      "github": {
+        "stars": 4292,
+        "forks": 317,
+        "openIssues": 41,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T20:11:58Z"
+      }
+    },
+    {
+      "repo": "gdquest-demos/godot-shaders",
+      "description": "A large library of free and open-source shaders for the Godot game engine. Here, you'll get 2D and 3D shaders with playable demos.",
+      "language": "GDShader",
+      "github": {
+        "stars": 4149,
+        "forks": 243,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-05-16T07:48:40Z"
+      }
+    },
+    {
+      "repo": "KenneyNL/Starter-Kit-3D-Platformer",
+      "description": "Godot",
+      "language": "GDScript",
+      "github": {
+        "stars": 1238,
+        "forks": 182,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-03-12T08:52:39Z"
+      }
+    },
+    {
+      "repo": "Zylann/godot_voxel",
+      "description": "Voxel module for Godot Engine",
+      "language": "C++",
+      "github": {
+        "stars": 3933,
+        "forks": 358,
+        "openIssues": 251,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-01T17:20:33Z"
+      }
+    },
+    {
+      "repo": "liangxiegame/QFramework",
+      "description": "Godot/Unity3D System Design Architecture",
+      "language": "C#",
+      "github": {
+        "stars": 5473,
+        "forks": 863,
+        "openIssues": 8,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T02:21:32Z"
+      }
+    },
+    {
+      "repo": "Coding-Solo/godot-mcp",
+      "description": "MCP server for interfacing with Godot game engine. Provides tools for launching the editor, running projects, and capturing debug output.",
+      "language": "JavaScript",
+      "github": {
+        "stars": 5984,
+        "forks": 480,
+        "openIssues": 73,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-04-16T23:37:00Z"
+      }
+    },
+    {
+      "repo": "GodotSteam/GodotSteam",
+      "description": "An ecosystem of tools for Godot Engine and Valve's Steam. For Linux, Mac, and Windows.",
+      "language": null,
+      "github": {
+        "stars": 3756,
+        "forks": 225,
+        "openIssues": 0,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-10-05T19:10:38Z"
+      }
+    },
+    {
+      "repo": "godotengine/godot-demo-projects",
+      "description": "Demonstration and Template Projects",
+      "language": "GDScript",
+      "github": {
+        "stars": 9633,
+        "forks": 2250,
+        "openIssues": 87,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T09:33:27Z"
+      }
+    },
+    {
+      "repo": "godotengine/godot-docs",
+      "description": "Godot Engine official documentation",
+      "language": "reStructuredText",
+      "github": {
+        "stars": 5799,
+        "forks": 3785,
+        "openIssues": 1118,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T15:43:56Z"
+      }
+    },
+    {
+      "repo": "NVIDIA/Model-Optimizer",
+      "description": "A unified library of SOTA model optimization techniques like quantization, distillation, pruning, neural architecture search, speculative decoding, etc. It compresses deep learning models for downstream deployment frameworks like TensorRT-LLM, TensorRT, vLLM, etc. to optimize inference speed.",
+      "language": "Python",
+      "github": {
+        "stars": 5249,
+        "forks": 736,
+        "openIssues": 472,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:41:07Z"
+      }
+    },
+    {
+      "repo": "slavakurilyak/awesome-ai-agents",
+      "description": "Awesome list of 300+ agentic AI resources",
+      "language": "Go",
+      "github": {
+        "stars": 2402,
+        "forks": 623,
+        "openIssues": 26,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-04T07:15:17Z"
+      }
+    },
+    {
+      "repo": "jankeesvw/omarchy-meeting-recorder",
+      "description": "Record meetings on Omarchy: mic and computer audio as two tracks, transcribed on your own machine, with speakers, chapters and a player.",
+      "language": "Rust",
+      "github": {
+        "stars": 343,
+        "forks": 36,
+        "openIssues": 18,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-05T16:07:19Z"
+      }
+    }
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-5-metadata-4.json
+````json
+{
+  "source": "GitHub REST API",
+  "repositories": [
+    {
+      "repo": "MakazhanAlpamys/Soup",
+      "description": "Fine-tune LLMs from one YAML. Layer streaming trains an 8B model on a 4 GB laptop GPU.",
+      "language": "Python",
+      "github": {
+        "stars": 8378,
+        "forks": 1348,
+        "openIssues": 145,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T18:50:43Z"
+      }
+    },
+    {
+      "repo": "dalathegreat/Battery-Emulator",
+      "description": "This revolutionary software enables EV battery packs to be easily reused for stationary storage in combination with solar inverters",
+      "language": "C++",
+      "github": {
+        "stars": 2955,
+        "forks": 416,
+        "openIssues": 145,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-08T20:06:38Z"
+      }
+    },
+    {
+      "repo": "rynfar/meridian",
+      "description": "Use Claude and Antigravity with Pi, OpenCode and other coding clients. Local API bridge, usage dashboard and Mac app. Antigravity preview available in 1.74.0.",
+      "language": "TypeScript",
+      "github": {
+        "stars": 2103,
+        "forks": 242,
+        "openIssues": 48,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-08T23:45:30Z"
+      }
+    },
+    {
+      "repo": "microsoft/vscode",
+      "description": "Visual Studio Code",
+      "language": "TypeScript",
+      "github": {
+        "stars": 193450,
+        "forks": 44661,
+        "openIssues": 21651,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:43:12Z"
+      }
+    },
+    {
+      "repo": "mobile-next/mobile-mcp",
+      "description": "Model Context Protocol Server for Mobile Automation and Scraping (iOS, Android, Emulators, Simulators and Real Devices)",
+      "language": "TypeScript",
+      "github": {
+        "stars": 8785,
+        "forks": 779,
+        "openIssues": 60,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-07T20:38:18Z"
+      }
+    },
+    {
+      "repo": "actions/runner-images",
+      "description": "GitHub Actions runner images",
+      "language": "PowerShell",
+      "github": {
+        "stars": 13443,
+        "forks": 3903,
+        "openIssues": 153,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-07T12:07:40Z"
+      }
+    },
+    {
+      "repo": "anthropics/claude-code-action",
+      "description": null,
+      "language": "TypeScript",
+      "github": {
+        "stars": 9451,
+        "forks": 2195,
+        "openIssues": 819,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T19:54:37Z"
+      }
+    },
+    {
+      "repo": "llvm/llvm-project",
+      "description": "The LLVM Project is a collection of modular and reusable compiler and toolchain technologies.",
+      "language": "LLVM",
+      "github": {
+        "stars": 40979,
+        "forks": 19029,
+        "openIssues": 40124,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:37:58Z"
+      }
+    },
+    {
+      "repo": "zhaoxuya520/reverse-skill",
+      "description": "Reverse Engineering / Authorized Penetration Testing / Security Research Skill Router Pack AI-powered routing + On-demand toolchain bootstrapping + Self-evolving knowledge base  Supports Claude Code, Kiro, Cursor, Cline, and other AI coding clients 逆向/渗透/安全技能路由包 - AI 自动路由 + 按需自举工具链 + 自动进化经验库 | 支持 Claude Code / Kiro / Cursor / Cline 等代码 AI 客户端",
+      "language": "PowerShell",
+      "github": {
+        "stars": 40293,
+        "forks": 5618,
+        "openIssues": 26,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-22T06:43:21Z"
+      }
+    },
+    {
+      "repo": "tensorflow/tensorflow",
+      "description": "An Open Source Machine Learning Framework for Everyone",
+      "language": "C++",
+      "github": {
+        "stars": 200556,
+        "forks": 78638,
+        "openIssues": 3251,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:31:39Z"
+      }
+    },
+    {
+      "repo": "openbao/openbao",
+      "description": "OpenBao is a software solution to manage, store, and distribute sensitive data including secrets, certificates, and keys.",
+      "language": "Go",
+      "github": {
+        "stars": 8356,
+        "forks": 618,
+        "openIssues": 336,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MPL-2.0",
+        "pushedAt": "2026-10-08T08:12:40Z"
+      }
+    },
+    {
+      "repo": "kelseyhightower/kubernetes-the-hard-way",
+      "description": "Bootstrap Kubernetes the hard way. No scripts.",
+      "language": null,
+      "github": {
+        "stars": 50318,
+        "forks": 15931,
+        "openIssues": 57,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2025-04-10T06:11:47Z"
+      }
+    }
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-5-metadata-5.json
+````json
+{
+  "source": "GitHub REST API",
+  "repositories": [
+    {
+      "repo": "androoAGI/starnet",
+      "description": "A living pixel-art station where real AI agents do real work. Local-first desktop agent harness - bring your own key, watch your crew actually run.",
+      "language": "JavaScript",
+      "github": {
+        "stars": 1253,
+        "forks": 237,
+        "openIssues": 52,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "feat/harness-backend",
+        "license": "MIT",
+        "pushedAt": "2026-10-04T18:37:08Z"
+      }
+    },
+    {
+      "repo": "anthropics/claude-plugins-official",
+      "description": "Official, Anthropic-managed directory of high quality Claude Code Plugins.",
+      "language": "Python",
+      "github": {
+        "stars": 37558,
+        "forks": 4229,
+        "openIssues": 1076,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T22:46:27Z"
+      }
+    },
+    {
+      "repo": "paperclipai/paperclip",
+      "description": "The open-source app everyone uses to manage agents at work",
+      "language": "TypeScript",
+      "github": {
+        "stars": 98908,
+        "forks": 16699,
+        "openIssues": 6239,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:33:37Z"
+      }
+    },
+    {
+      "repo": "dubinc/dub",
+      "description": "The modern link attribution platform. Loved by world-class marketing teams like Framer, Perplexity, Superhuman, Twilio, Buffer and more.",
+      "language": "TypeScript",
+      "github": {
+        "stars": 24870,
+        "forks": 3324,
+        "openIssues": 107,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:13:30Z"
+      }
+    },
+    {
+      "repo": "PostHog/posthog",
+      "description": ":hedgehog: PostHog is the leading platform for building self-driving products. Our developer tools – AI observability, analytics, session replay, flags, experiments, error tracking, logs, and more – capture all the context agents need to diagnose problems, uncover opportunities, and ship fixes. Steer it all from Slack, web, desktop, or the MCP.",
+      "language": "Python",
+      "github": {
+        "stars": 40197,
+        "forks": 3486,
+        "openIssues": 5521,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:37:50Z"
+      }
+    },
+    {
+      "repo": "novuhq/novu",
+      "description": "The open-source communication infrastructure for agents and products",
+      "language": "TypeScript",
+      "github": {
+        "stars": 40134,
+        "forks": 4508,
+        "openIssues": 127,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "next",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T01:09:43Z"
+      }
+    },
+    {
+      "repo": "openmeterio/openmeter",
+      "description": "Metering and Billing for AI, API and DevOps. Collect and aggregate millions of usage events in real-time and enable usage-based billing.",
+      "language": "Go",
+      "github": {
+        "stars": 2375,
+        "forks": 224,
+        "openIssues": 61,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T22:29:23Z"
+      }
+    },
+    {
+      "repo": "SigNoz/signoz",
+      "description": "SigNoz is an open-source, OpenTelemetry-native observability platform for your team and their AI agents. Get logs, metrics, and traces in one tool with features like APM, distributed tracing, log management, infra monitoring, etc. Combined with SigNoz MCP and a native AI teammate (in SigNoz Cloud) it helps you build more resilient apps.",
+      "language": "TypeScript",
+      "github": {
+        "stars": 32311,
+        "forks": 2531,
+        "openIssues": 1539,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T20:12:18Z"
+      }
+    },
+    {
+      "repo": "triggerdotdev/trigger.dev",
+      "description": "Trigger.dev – build and deploy durable AI agents and workflows",
+      "language": "TypeScript",
+      "github": {
+        "stars": 16503,
+        "forks": 1484,
+        "openIssues": 229,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T23:47:03Z"
+      }
+    },
+    {
+      "repo": "PrefectHQ/fastmcp",
+      "description": "🚀 The fast, Pythonic way to build MCP servers and clients.",
+      "language": "Python",
+      "github": {
+        "stars": 28018,
+        "forks": 2450,
+        "openIssues": 407,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T22:57:39Z"
+      }
+    },
+    {
+      "repo": "better-auth/better-auth",
+      "description": "The most comprehensive authentication framework",
+      "language": "TypeScript",
+      "github": {
+        "stars": 30220,
+        "forks": 2951,
+        "openIssues": 852,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T18:42:14Z"
+      }
+    },
+    {
+      "repo": "assistant-ui/assistant-ui",
+      "description": "Typescript/React Library for AI Chat 💬🚀",
+      "language": "TypeScript",
+      "github": {
+        "stars": 12455,
+        "forks": 1238,
+        "openIssues": 113,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:43:25Z"
+      }
+    }
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-5-metadata-6.json
+````json
+{
+  "source": "GitHub REST API",
+  "repositories": [
+    {
+      "repo": "vercel/ai",
+      "description": "The AI Toolkit for TypeScript. From the creators of Next.js, the AI SDK is a free open-source library for building AI-powered applications and agents ",
+      "language": "TypeScript",
+      "github": {
+        "stars": 27189,
+        "forks": 5291,
+        "openIssues": 1367,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:38:19Z"
+      }
+    },
+    {
+      "repo": "joxeankoret/diaphora",
+      "description": "Diaphora, the most advanced Free and Open Source program diffing tool.",
+      "language": "Python",
+      "github": {
+        "stars": 4421,
+        "forks": 419,
+        "openIssues": 35,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-09-04T07:54:27Z"
+      }
+    },
+    {
+      "repo": "NandhaKishorM/laya",
+      "description": "Non-autoregressive System 1 decision engine. Typed choice, score and yes/no decisions over any text in a single forward pass, in 100+ languages, with a router that picks the right checkpoint per request.",
+      "language": "Python",
+      "github": {
+        "stars": 31773,
+        "forks": 2825,
+        "openIssues": 93,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T17:22:58Z"
+      }
+    },
+    {
+      "repo": "JohnHeibel/PDoomVideo",
+      "description": "Source code for the Claude Opus 5.5 music video for I'm Upping My P(doom)",
+      "language": "JavaScript",
+      "github": {
+        "stars": 1931,
+        "forks": 204,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-09-25T15:11:03Z"
+      }
+    },
+    {
+      "repo": "raullenchai/Rapid-MLX",
+      "description": "Rapid-MLX is an open-source (Apache 2.0) OpenAI- and Anthropic-compatible LLM inference server for Apple Silicon, built on MLX, focused on reliable tool calling for coding agents. Up to 4× faster than Apple's MLX (mlx-lm) on the same weights.",
+      "language": "Python",
+      "github": {
+        "stars": 3943,
+        "forks": 429,
+        "openIssues": 30,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:35:28Z"
+      }
+    },
+    {
+      "repo": "tihanyin/REx-skill",
+      "description": "REx@Skill - Agentic Reverse Engineering eXecution Skill for binary vulnerability discovery",
+      "language": "Python",
+      "github": {
+        "stars": 107,
+        "forks": 17,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-23T13:40:24Z"
+      }
+    },
+    {
+      "repo": "leejet/stable-diffusion.cpp",
+      "description": "Diffusion model(SD,Flux,Wan,Qwen Image,Z-Image,...) inference in pure C/C++",
+      "language": "C++",
+      "github": {
+        "stars": 7571,
+        "forks": 857,
+        "openIssues": 268,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T23:50:58Z"
+      }
+    },
+    {
+      "repo": "vectorize-io/hindsight",
+      "description": "Hindsight: Agent Memory That Learns",
+      "language": "Python",
+      "github": {
+        "stars": 47363,
+        "forks": 5973,
+        "openIssues": 169,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T21:42:39Z"
+      }
+    },
+    {
+      "repo": "rohitg00/ai-engineering-from-scratch",
+      "description": "Learn it. Build it. Ship it for others.",
+      "language": "Python",
+      "github": {
+        "stars": 65919,
+        "forks": 11431,
+        "openIssues": 65,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T23:26:11Z"
+      }
+    },
+    {
+      "repo": "superlinked/sie",
+      "description": "Open-source inference server and production cluster for all the models your agent needs.",
+      "language": "Python",
+      "github": {
+        "stars": 3367,
+        "forks": 317,
+        "openIssues": 35,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:08:26Z"
+      }
+    },
+    {
+      "repo": "kserve/kserve",
+      "description": "Standardized Distributed Generative and Predictive AI Inference Platform for Scalable, Multi-Framework Deployment on Kubernetes",
+      "language": "Go",
+      "github": {
+        "stars": 6094,
+        "forks": 1723,
+        "openIssues": 220,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T17:08:59Z"
+      }
+    }
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-5-profiles.json
+````json
+{
+  "source": "Manual domain classification for verified batch-5 favorites",
+  "groups": [
+    {
+      "domain": "ai_agents",
+      "category": "Architecture d'agents IA",
+      "repositories": [
+        "mvschwarz/openrig",
+        "nibzard/awesome-agentic-patterns",
+        "sickn33/agentic-awesome-skills",
+        "Fosowl/agenticSeek",
+        "transitive-bullshit/agentic",
+        "slavakurilyak/awesome-ai-agents",
+        "androoAGI/starnet",
+        "anthropics/claude-plugins-official",
+        "paperclipai/paperclip",
+        "rynfar/meridian",
+        "NandhaKishorM/laya"
+      ]
+    },
+    {
+      "domain": "ai_agents",
+      "category": "Frameworks et outils d'agents",
+      "repositories": [
+        "PrefectHQ/fastmcp",
+        "vercel/ai"
+      ]
+    },
+    {
+      "domain": "ai_memory",
+      "category": "Mémoire et récupération pour agents",
+      "repositories": [
+        "vectorize-io/hindsight",
+        "superlinked/sie"
+      ]
+    },
+    {
+      "domain": "cybersecurity",
+      "category": "Analyse de sécurité autorisée",
+      "repositories": [
+        "awarexone/Agentic-Bug-Hunter",
+        "zhaoxuya520/reverse-skill",
+        "joxeankoret/diaphora",
+        "tihanyin/REx-skill",
+        "openbao/openbao"
+      ]
+    },
+    {
+      "domain": "mobile",
+      "category": "Développement et clients Android",
+      "repositories": [
+        "JetBrains/android",
+        "wgtunnel/android",
+        "bitwarden/android",
+        "LineageOS/android",
+        "nextcloud/android",
+        "open-android/Android",
+        "mobile-next/mobile-mcp",
+        "lgvalle/Material-Animations"
+      ]
+    },
+    {
+      "domain": "graphics",
+      "category": "Animations et rendu graphique",
+      "repositories": [
+        "greensock/GSAP",
+        "juliangarnier/anime",
+        "MisterBooo/LeetCodeAnimation",
+        "mrdoob/three.js",
+        "cgwire/awesome-cg-vfx-pipeline",
+        "JohnHeibel/PDoomVideo"
+      ]
+    },
+    {
+      "domain": "game_dev",
+      "category": "Ressources et intégrations de moteurs de jeux",
+      "repositories": [
+        "google/liquidfun",
+        "GodotNuts/GodotFirebase",
+        "gdquest-demos/godot-open-rpg",
+        "GDRETools/gdsdecomp",
+        "gdquest-demos/godot-shaders",
+        "KenneyNL/Starter-Kit-3D-Platformer",
+        "Zylann/godot_voxel",
+        "liangxiegame/QFramework",
+        "Coding-Solo/godot-mcp",
+        "GodotSteam/GodotSteam",
+        "godotengine/godot-demo-projects",
+        "godotengine/godot-docs"
+      ]
+    },
+    {
+      "domain": "data_ml",
+      "category": "Modèles IA et outils de calcul",
+      "repositories": [
+        "deepinsight/insightface",
+        "timzhang642/3D-Machine-Learning",
+        "NVIDIA/Model-Optimizer",
+        "MakazhanAlpamys/Soup",
+        "tensorflow/tensorflow",
+        "raullenchai/Rapid-MLX",
+        "kserve/kserve"
+      ]
+    },
+    {
+      "domain": "ai_media",
+      "category": "Génération multimédia",
+      "repositories": [
+        "leejet/stable-diffusion.cpp"
+      ]
+    },
+    {
+      "domain": "software_engineering",
+      "category": "Développement et compilation",
+      "repositories": [
+        "microsoft/vscode",
+        "anthropics/claude-code-action",
+        "llvm/llvm-project"
+      ]
+    },
+    {
+      "domain": "devops",
+      "category": "Infrastructure, CI et observabilité",
+      "repositories": [
+        "actions/runner-images",
+        "kelseyhightower/kubernetes-the-hard-way",
+        "PostHog/posthog",
+        "SigNoz/signoz"
+      ]
+    },
+    {
+      "domain": "backend",
+      "category": "Services, automatisation et authentification",
+      "repositories": [
+        "novuhq/novu",
+        "openmeterio/openmeter",
+        "triggerdotdev/trigger.dev",
+        "better-auth/better-auth"
+      ]
+    },
+    {
+      "domain": "web_frontend",
+      "category": "Composants d'interface",
+      "repositories": [
+        "assistant-ui/assistant-ui"
+      ]
+    },
+    {
+      "domain": "productivity",
+      "category": "Outils métier et supports d'apprentissage",
+      "repositories": [
+        "cloudflare/agentic-inbox",
+        "jankeesvw/omarchy-meeting-recorder",
+        "dubinc/dub",
+        "rohitg00/ai-engineering-from-scratch"
+      ]
+    },
+    {
+      "domain": "other",
+      "category": "Ingénierie de systèmes énergétiques",
+      "repositories": [
+        "dalathegreat/Battery-Emulator"
+      ]
+    }
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-5-reviewed.json
+````json
+{
+  "source": "GitHub REST metadata and reviewed catalog admission",
+  "repositories": [
+    {
+      "repo": "actions/runner-images",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 13443,
+        "forks": 3903,
+        "openIssues": 153,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-07T12:07:40Z"
+      },
+      "catalogEntry": {
+        "repo": "actions/runner-images",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Images de runners CI",
+        "domain": "devops",
+        "capabilities": [
+          "github-actions",
+          "ci",
+          "images"
+        ],
+        "languages": [
+          "powershell"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 13443,
+          "forks": 3903,
+          "openIssues": 153,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-07T12:07:40Z"
+        },
+        "bestFor": [
+          "Évaluer les environnements d'exécution de tests GitHub Actions"
+        ],
+        "avoidWhen": [
+          "Supposer que des paquets et versions ne changent jamais"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "androoAGI/starnet",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 1253,
+        "forks": 237,
+        "openIssues": 52,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "feat/harness-backend",
+        "license": "MIT",
+        "pushedAt": "2026-10-04T18:37:08Z"
+      },
+      "catalogEntry": {
+        "repo": "androoAGI/starnet",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Agents autonomes locaux",
+        "domain": "ai_agents",
+        "capabilities": [
+          "local-agents",
+          "automation"
+        ],
+        "languages": [
+          "javascript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 1253,
+          "forks": 237,
+          "openIssues": 52,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "feat/harness-backend",
+          "license": "MIT",
+          "pushedAt": "2026-10-04T18:37:08Z"
+        },
+        "bestFor": [
+          "Explorer une architecture agentique locale pour automatiser des tâches"
+        ],
+        "avoidWhen": [
+          "Supposer qu'un agent autonome peut agir sans garde-fous"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "anthropics/claude-code-action",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 9451,
+        "forks": 2195,
+        "openIssues": 819,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T19:54:37Z"
+      },
+      "catalogEntry": {
+        "repo": "anthropics/claude-code-action",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Agent de développement dans CI",
+        "domain": "software_engineering",
+        "capabilities": [
+          "ci",
+          "code-review",
+          "coding-agents"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 9451,
+          "forks": 2195,
+          "openIssues": 819,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-08T19:54:37Z"
+        },
+        "bestFor": [
+          "Intégrer des agents dans les workflows GitHub avec permissions limitées"
+        ],
+        "avoidWhen": [
+          "Accorder des permissions d'écriture excessives à un agent"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "anthropics/claude-plugins-official",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 37558,
+        "forks": 4229,
+        "openIssues": 1076,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T22:46:27Z"
+      },
+      "catalogEntry": {
+        "repo": "anthropics/claude-plugins-official",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Bibliothèques de bonnes pratiques pour agents",
+        "domain": "ai_agents",
+        "capabilities": [
+          "agent-skills",
+          "agent-patterns"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 37558,
+          "forks": 4229,
+          "openIssues": 1076,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-08T22:46:27Z"
+        },
+        "bestFor": [
+          "Trouver et comparer des méthodes éprouvées pour construire des agents IA"
+        ],
+        "avoidWhen": [
+          "Installer des workflows non vérifiés comme code de confiance"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "assistant-ui/assistant-ui",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 12455,
+        "forks": 1238,
+        "openIssues": 113,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:43:25Z"
+      },
+      "catalogEntry": {
+        "repo": "assistant-ui/assistant-ui",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Composants pour interfaces de chat IA",
+        "domain": "web_frontend",
+        "capabilities": [
+          "chat-ui",
+          "typescript",
+          "react"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 12455,
+          "forks": 1238,
+          "openIssues": 113,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-09T03:43:25Z"
+        },
+        "bestFor": [
+          "Créer une interface de chat pour assistants IA"
+        ],
+        "avoidWhen": [
+          "Déployer une interface sans contrôler l'accès aux modèles et aux conversations"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "awarexone/Agentic-Bug-Hunter",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 5308,
+        "forks": 935,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T17:12:40Z"
+      },
+      "catalogEntry": {
+        "repo": "awarexone/Agentic-Bug-Hunter",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Bug bounty assisté par IA",
+        "domain": "cybersecurity",
+        "capabilities": [
+          "bug-bounty",
+          "security-testing",
+          "agent-tools"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 5308,
+          "forks": 935,
+          "openIssues": 6,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-08T17:12:40Z"
+        },
+        "bestFor": [
+          "Étudier et reproduire des vulnérabilités sur des périmètres explicitement autorisés"
+        ],
+        "avoidWhen": [
+          "Effectuer des scans ou des exploits en dehors d'un programme autorisé"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "better-auth/better-auth",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 30220,
+        "forks": 2951,
+        "openIssues": 852,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T18:42:14Z"
+      },
+      "catalogEntry": {
+        "repo": "better-auth/better-auth",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Authentification d'applications",
+        "domain": "backend",
+        "capabilities": [
+          "authentication",
+          "identity",
+          "security"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 30220,
+          "forks": 2951,
+          "openIssues": 852,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-08T18:42:14Z"
+        },
+        "bestFor": [
+          "Implémenter une authentification avec des protections éprouvées"
+        ],
+        "avoidWhen": [
+          "Mettre en production sans test des flux d'identité et de session"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "bitwarden/android",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 9456,
+        "forks": 1064,
+        "openIssues": 190,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-09T00:04:29Z"
+      },
+      "catalogEntry": {
+        "repo": "bitwarden/android",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Gestion des secrets sur Android",
+        "domain": "mobile",
+        "capabilities": [
+          "android",
+          "password-manager",
+          "security"
+        ],
+        "languages": [
+          "kotlin"
+        ],
+        "platforms": [
+          "android"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 9456,
+          "forks": 1064,
+          "openIssues": 190,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "GPL-3.0",
+          "pushedAt": "2026-10-09T00:04:29Z"
+        },
+        "bestFor": [
+          "Étudier une application mobile de gestion de mots de passe"
+        ],
+        "avoidWhen": [
+          "Copier des données de coffres réels dans des environnements de test"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "cgwire/awesome-cg-vfx-pipeline",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 1259,
+        "forks": 178,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-05T07:49:55Z"
+      },
+      "catalogEntry": {
+        "repo": "cgwire/awesome-cg-vfx-pipeline",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Pipeline de production VFX",
+        "domain": "graphics",
+        "capabilities": [
+          "vfx",
+          "production",
+          "pipeline"
+        ],
+        "languages": [],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "unknown",
+        "github": {
+          "stars": 1259,
+          "forks": 178,
+          "openIssues": 3,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-10-05T07:49:55Z"
+        },
+        "bestFor": [
+          "Organiser des outils et standards de production visuelle"
+        ],
+        "avoidWhen": [
+          "Utiliser un catalogue de ressources comme solution intégrée"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "cloudflare/agentic-inbox",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 8229,
+        "forks": 1060,
+        "openIssues": 50,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-04-23T21:04:17Z"
+      },
+      "catalogEntry": {
+        "repo": "cloudflare/agentic-inbox",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Messagerie et clients mail avec IA",
+        "domain": "productivity",
+        "capabilities": [
+          "email",
+          "agents",
+          "automation"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "cloud"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 8229,
+          "forks": 1060,
+          "openIssues": 50,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-04-23T21:04:17Z"
+        },
+        "bestFor": [
+          "Concevoir des flux de traitement de courriels avec agents et supervision"
+        ],
+        "avoidWhen": [
+          "Accorder un accès non contrôlé aux boîtes et messages"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "Coding-Solo/godot-mcp",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 5984,
+        "forks": 480,
+        "openIssues": 73,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-04-16T23:37:00Z"
+      },
+      "catalogEntry": {
+        "repo": "Coding-Solo/godot-mcp",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Intégrations et outils Godot",
+        "domain": "game_dev",
+        "capabilities": [
+          "godot",
+          "game-development",
+          "tools"
+        ],
+        "languages": [
+          "javascript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 5984,
+          "forks": 480,
+          "openIssues": 73,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-04-16T23:37:00Z"
+        },
+        "bestFor": [
+          "Construire un jeu Godot avec connecteurs et outils de production"
+        ],
+        "avoidWhen": [
+          "Utiliser une version d'extension incompatible avec le moteur du projet"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "dalathegreat/Battery-Emulator",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 2955,
+        "forks": 416,
+        "openIssues": 145,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-08T20:06:38Z"
+      },
+      "catalogEntry": {
+        "repo": "dalathegreat/Battery-Emulator",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Simulation de batteries et stockage",
+        "domain": "other",
+        "capabilities": [
+          "energy",
+          "simulation",
+          "hardware"
+        ],
+        "languages": [
+          "c++"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 2955,
+          "forks": 416,
+          "openIssues": 145,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "GPL-3.0",
+          "pushedAt": "2026-10-08T20:06:38Z"
+        },
+        "bestFor": [
+          "Étudier les outils de simulation de stockage d'énergie"
+        ],
+        "avoidWhen": [
+          "Utiliser une simulation comme validation de sécurité de matériel électrique"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "deepinsight/insightface",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 29914,
+        "forks": 6102,
+        "openIssues": 1270,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-10-04T12:46:41Z"
+      },
+      "catalogEntry": {
+        "repo": "deepinsight/insightface",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Analyse de visages par vision artificielle",
+        "domain": "data_ml",
+        "capabilities": [
+          "computer-vision",
+          "face-analysis"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "unknown",
+        "github": {
+          "stars": 29914,
+          "forks": 6102,
+          "openIssues": 1270,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": null,
+          "pushedAt": "2026-10-04T12:46:41Z"
+        },
+        "bestFor": [
+          "Évaluer des modèles de vision sur des données dont l'utilisation est autorisée"
+        ],
+        "avoidWhen": [
+          "Utiliser la reconnaissance faciale sans base légale ni consentement"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "dubinc/dub",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 24870,
+        "forks": 3324,
+        "openIssues": 107,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:13:30Z"
+      },
+      "catalogEntry": {
+        "repo": "dubinc/dub",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Plateforme d'attribution marketing",
+        "domain": "productivity",
+        "capabilities": [
+          "attribution",
+          "analytics",
+          "marketing"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "unknown",
+        "github": {
+          "stars": 24870,
+          "forks": 3324,
+          "openIssues": 107,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-10-09T03:13:30Z"
+        },
+        "bestFor": [
+          "Analyser des parcours et canaux d'acquisition marketing"
+        ],
+        "avoidWhen": [
+          "Collecter des données sans consentement ou suivi des coûts"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "Fosowl/agenticSeek",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 27463,
+        "forks": 3077,
+        "openIssues": 29,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-02T20:03:48Z"
+      },
+      "catalogEntry": {
+        "repo": "Fosowl/agenticSeek",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Agents autonomes locaux",
+        "domain": "ai_agents",
+        "capabilities": [
+          "local-agents",
+          "automation"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 27463,
+          "forks": 3077,
+          "openIssues": 29,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "GPL-3.0",
+          "pushedAt": "2026-10-02T20:03:48Z"
+        },
+        "bestFor": [
+          "Explorer une architecture agentique locale pour automatiser des tâches"
+        ],
+        "avoidWhen": [
+          "Supposer qu'un agent autonome peut agir sans garde-fous"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "gdquest-demos/godot-open-rpg",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 3008,
+        "forks": 364,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-05-01T20:26:21Z"
+      },
+      "catalogEntry": {
+        "repo": "gdquest-demos/godot-open-rpg",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Exemples et ressources Godot",
+        "domain": "game_dev",
+        "capabilities": [
+          "godot",
+          "examples",
+          "shaders"
+        ],
+        "languages": [
+          "gdscript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 3008,
+          "forks": 364,
+          "openIssues": 6,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-05-01T20:26:21Z"
+        },
+        "bestFor": [
+          "Étudier des exemples reproductibles pour améliorer gameplay et visuels Godot"
+        ],
+        "avoidWhen": [
+          "Copier des exemples sans adapter licence, rendu et performances"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "gdquest-demos/godot-shaders",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 4149,
+        "forks": 243,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-05-16T07:48:40Z"
+      },
+      "catalogEntry": {
+        "repo": "gdquest-demos/godot-shaders",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Exemples et ressources Godot",
+        "domain": "game_dev",
+        "capabilities": [
+          "godot",
+          "examples",
+          "shaders"
+        ],
+        "languages": [
+          "gdshader"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "unknown",
+        "github": {
+          "stars": 4149,
+          "forks": 243,
+          "openIssues": 6,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-05-16T07:48:40Z"
+        },
+        "bestFor": [
+          "Étudier des exemples reproductibles pour améliorer gameplay et visuels Godot"
+        ],
+        "avoidWhen": [
+          "Copier des exemples sans adapter licence, rendu et performances"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "GDRETools/gdsdecomp",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 4292,
+        "forks": 317,
+        "openIssues": 41,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T20:11:58Z"
+      },
+      "catalogEntry": {
+        "repo": "GDRETools/gdsdecomp",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Intégrations et outils Godot",
+        "domain": "game_dev",
+        "capabilities": [
+          "godot",
+          "game-development",
+          "tools"
+        ],
+        "languages": [
+          "c++"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 4292,
+          "forks": 317,
+          "openIssues": 41,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "MIT",
+          "pushedAt": "2026-10-08T20:11:58Z"
+        },
+        "bestFor": [
+          "Construire un jeu Godot avec connecteurs et outils de production"
+        ],
+        "avoidWhen": [
+          "Utiliser une version d'extension incompatible avec le moteur du projet"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "godotengine/godot-demo-projects",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 9633,
+        "forks": 2250,
+        "openIssues": 87,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T09:33:27Z"
+      },
+      "catalogEntry": {
+        "repo": "godotengine/godot-demo-projects",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Exemples et ressources Godot",
+        "domain": "game_dev",
+        "capabilities": [
+          "godot",
+          "examples",
+          "shaders"
+        ],
+        "languages": [
+          "gdscript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 9633,
+          "forks": 2250,
+          "openIssues": 87,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "MIT",
+          "pushedAt": "2026-10-08T09:33:27Z"
+        },
+        "bestFor": [
+          "Étudier des exemples reproductibles pour améliorer gameplay et visuels Godot"
+        ],
+        "avoidWhen": [
+          "Copier des exemples sans adapter licence, rendu et performances"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "godotengine/godot-docs",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 5799,
+        "forks": 3785,
+        "openIssues": 1118,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T15:43:56Z"
+      },
+      "catalogEntry": {
+        "repo": "godotengine/godot-docs",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Exemples et ressources Godot",
+        "domain": "game_dev",
+        "capabilities": [
+          "godot",
+          "examples",
+          "shaders"
+        ],
+        "languages": [
+          "restructuredtext"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "unknown",
+        "github": {
+          "stars": 5799,
+          "forks": 3785,
+          "openIssues": 1118,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-10-08T15:43:56Z"
+        },
+        "bestFor": [
+          "Étudier des exemples reproductibles pour améliorer gameplay et visuels Godot"
+        ],
+        "avoidWhen": [
+          "Copier des exemples sans adapter licence, rendu et performances"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "GodotNuts/GodotFirebase",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 686,
+        "forks": 94,
+        "openIssues": 29,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-13T12:46:45Z"
+      },
+      "catalogEntry": {
+        "repo": "GodotNuts/GodotFirebase",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Intégrations et outils Godot",
+        "domain": "game_dev",
+        "capabilities": [
+          "godot",
+          "game-development",
+          "tools"
+        ],
+        "languages": [
+          "gdscript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 686,
+          "forks": 94,
+          "openIssues": 29,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-09-13T12:46:45Z"
+        },
+        "bestFor": [
+          "Construire un jeu Godot avec connecteurs et outils de production"
+        ],
+        "avoidWhen": [
+          "Utiliser une version d'extension incompatible avec le moteur du projet"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "GodotSteam/GodotSteam",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 3756,
+        "forks": 225,
+        "openIssues": 0,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-10-05T19:10:38Z"
+      },
+      "catalogEntry": {
+        "repo": "GodotSteam/GodotSteam",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Intégrations et outils Godot",
+        "domain": "game_dev",
+        "capabilities": [
+          "godot",
+          "game-development",
+          "tools"
+        ],
+        "languages": [],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "unknown",
+        "github": {
+          "stars": 3756,
+          "forks": 225,
+          "openIssues": 0,
+          "archived": true,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": null,
+          "pushedAt": "2026-10-05T19:10:38Z"
+        },
+        "bestFor": [
+          "Construire un jeu Godot avec connecteurs et outils de production"
+        ],
+        "avoidWhen": [
+          "Utiliser une version d'extension incompatible avec le moteur du projet"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "reference"
+      }
+    },
+    {
+      "repo": "google/liquidfun",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 4897,
+        "forks": 651,
+        "openIssues": 69,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2023-04-26T20:07:43Z"
+      },
+      "catalogEntry": {
+        "repo": "google/liquidfun",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Simulation physique 2D",
+        "domain": "game_dev",
+        "capabilities": [
+          "physics",
+          "2d",
+          "simulation"
+        ],
+        "languages": [
+          "c++"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "unknown",
+        "github": {
+          "stars": 4897,
+          "forks": 651,
+          "openIssues": 69,
+          "archived": true,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": null,
+          "pushedAt": "2023-04-26T20:07:43Z"
+        },
+        "bestFor": [
+          "Implémenter des simulations de mouvements et collisions dans un jeu"
+        ],
+        "avoidWhen": [
+          "Choisir un moteur abandonné pour un nouveau jeu sans maintenance"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "reference"
+      }
+    },
+    {
+      "repo": "greensock/GSAP",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 28916,
+        "forks": 2233,
+        "openIssues": 7,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-04-13T13:08:58Z"
+      },
+      "catalogEntry": {
+        "repo": "greensock/GSAP",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Animations fluides sur le web",
+        "domain": "web_frontend",
+        "capabilities": [
+          "web-animation",
+          "ux",
+          "motion"
+        ],
+        "languages": [
+          "javascript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "low",
+        "integrationComplexity": "low",
+        "costModel": "unknown",
+        "github": {
+          "stars": 28916,
+          "forks": 2233,
+          "openIssues": 7,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": null,
+          "pushedAt": "2026-04-13T13:08:58Z"
+        },
+        "bestFor": [
+          "Créer des animations d'interface avancées et contrôlables"
+        ],
+        "avoidWhen": [
+          "Multiplier les effets visuels au détriment des performances et de l'accessibilité"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "jankeesvw/omarchy-meeting-recorder",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 343,
+        "forks": 36,
+        "openIssues": 18,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-05T16:07:19Z"
+      },
+      "catalogEntry": {
+        "repo": "jankeesvw/omarchy-meeting-recorder",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Transcription et archivage de réunions",
+        "domain": "productivity",
+        "capabilities": [
+          "audio",
+          "transcription",
+          "productivity"
+        ],
+        "languages": [
+          "rust"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 343,
+          "forks": 36,
+          "openIssues": 18,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-05T16:07:19Z"
+        },
+        "bestFor": [
+          "Transcrire des réunions avec transparence et consentement"
+        ],
+        "avoidWhen": [
+          "Enregistrer des personnes sans les informer et sans autorisation"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "JetBrains/android",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 1134,
+        "forks": 247,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T16:59:02Z"
+      },
+      "catalogEntry": {
+        "repo": "JetBrains/android",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "SDK et IDE Android",
+        "domain": "mobile",
+        "capabilities": [
+          "android",
+          "kotlin",
+          "development"
+        ],
+        "languages": [
+          "kotlin"
+        ],
+        "platforms": [
+          "android"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 1134,
+          "forks": 247,
+          "openIssues": 5,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-08T16:59:02Z"
+        },
+        "bestFor": [
+          "Développer et maintenir des applications Android"
+        ],
+        "avoidWhen": [
+          "Installer des composants incompatibles avec la chaîne de compilation"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "JohnHeibel/PDoomVideo",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 1931,
+        "forks": 204,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-09-25T15:11:03Z"
+      },
+      "catalogEntry": {
+        "repo": "JohnHeibel/PDoomVideo",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Référence de réalisation vidéo",
+        "domain": "graphics",
+        "capabilities": [
+          "video",
+          "creative-reference"
+        ],
+        "languages": [
+          "javascript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "unknown",
+        "github": {
+          "stars": 1931,
+          "forks": 204,
+          "openIssues": 6,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": null,
+          "pushedAt": "2026-09-25T15:11:03Z"
+        },
+        "bestFor": [
+          "Étudier des techniques et exemples de vidéo générée par code"
+        ],
+        "avoidWhen": [
+          "Réutiliser des œuvres et pistes audio protégées sans permission"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "joxeankoret/diaphora",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 4421,
+        "forks": 419,
+        "openIssues": 35,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-09-04T07:54:27Z"
+      },
+      "catalogEntry": {
+        "repo": "joxeankoret/diaphora",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Comparaison de binaires pour analyse",
+        "domain": "cybersecurity",
+        "capabilities": [
+          "binary-diff",
+          "reverse-engineering"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 4421,
+          "forks": 419,
+          "openIssues": 35,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "AGPL-3.0",
+          "pushedAt": "2026-09-04T07:54:27Z"
+        },
+        "bestFor": [
+          "Comparer des versions de logiciels et repérer des modifications suspectes autorisées"
+        ],
+        "avoidWhen": [
+          "Analyser des binaires tiers en contradiction avec les autorisations"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "juliangarnier/anime",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 73433,
+        "forks": 4958,
+        "openIssues": 122,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-08-21T21:29:50Z"
+      },
+      "catalogEntry": {
+        "repo": "juliangarnier/anime",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Animations fluides sur le web",
+        "domain": "web_frontend",
+        "capabilities": [
+          "web-animation",
+          "ux",
+          "motion"
+        ],
+        "languages": [
+          "javascript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "low",
+        "integrationComplexity": "low",
+        "costModel": "open-source",
+        "github": {
+          "stars": 73433,
+          "forks": 4958,
+          "openIssues": 122,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "MIT",
+          "pushedAt": "2026-08-21T21:29:50Z"
+        },
+        "bestFor": [
+          "Créer des animations d'interface avancées et contrôlables"
+        ],
+        "avoidWhen": [
+          "Multiplier les effets visuels au détriment des performances et de l'accessibilité"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "kelseyhightower/kubernetes-the-hard-way",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 50318,
+        "forks": 15931,
+        "openIssues": 57,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2025-04-10T06:11:47Z"
+      },
+      "catalogEntry": {
+        "repo": "kelseyhightower/kubernetes-the-hard-way",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Architecture et exploitation Kubernetes",
+        "domain": "devops",
+        "capabilities": [
+          "kubernetes",
+          "cluster",
+          "education"
+        ],
+        "languages": [],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 50318,
+          "forks": 15931,
+          "openIssues": 57,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "Apache-2.0",
+          "pushedAt": "2025-04-10T06:11:47Z"
+        },
+        "bestFor": [
+          "Comprendre la mise en place et la sécurité d'un cluster Kubernetes"
+        ],
+        "avoidWhen": [
+          "Utiliser un tutoriel d'infrastructure comme recette de production non auditée"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "stable"
+      }
+    },
+    {
+      "repo": "KenneyNL/Starter-Kit-3D-Platformer",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 1238,
+        "forks": 182,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-03-12T08:52:39Z"
+      },
+      "catalogEntry": {
+        "repo": "KenneyNL/Starter-Kit-3D-Platformer",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Exemples et ressources Godot",
+        "domain": "game_dev",
+        "capabilities": [
+          "godot",
+          "examples",
+          "shaders"
+        ],
+        "languages": [
+          "gdscript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 1238,
+          "forks": 182,
+          "openIssues": 0,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-03-12T08:52:39Z"
+        },
+        "bestFor": [
+          "Étudier des exemples reproductibles pour améliorer gameplay et visuels Godot"
+        ],
+        "avoidWhen": [
+          "Copier des exemples sans adapter licence, rendu et performances"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "kserve/kserve",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 6094,
+        "forks": 1723,
+        "openIssues": 220,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T17:08:59Z"
+      },
+      "catalogEntry": {
+        "repo": "kserve/kserve",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Serving de modèles IA sur Kubernetes",
+        "domain": "data_ml",
+        "capabilities": [
+          "model-serving",
+          "kubernetes",
+          "inference"
+        ],
+        "languages": [
+          "go"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 6094,
+          "forks": 1723,
+          "openIssues": 220,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-08T17:08:59Z"
+        },
+        "bestFor": [
+          "Déployer des modèles sous Kubernetes avec mise à l'échelle"
+        ],
+        "avoidWhen": [
+          "Adopter Kubernetes pour une application dont l'inférence locale suffit"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "leejet/stable-diffusion.cpp",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 7571,
+        "forks": 857,
+        "openIssues": 268,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T23:50:58Z"
+      },
+      "catalogEntry": {
+        "repo": "leejet/stable-diffusion.cpp",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Diffusion multimodale en C++",
+        "domain": "ai_media",
+        "capabilities": [
+          "image-generation",
+          "diffusion",
+          "cpp"
+        ],
+        "languages": [
+          "c++"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 7571,
+          "forks": 857,
+          "openIssues": 268,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "MIT",
+          "pushedAt": "2026-10-08T23:50:58Z"
+        },
+        "bestFor": [
+          "Explorer l'inférence locale d'images avec une implémentation C++"
+        ],
+        "avoidWhen": [
+          "Faire tourner un modèle lourd sans RAM ou GPU compatibles"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "lgvalle/Material-Animations",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 13531,
+        "forks": 2439,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2019-04-02T15:42:38Z"
+      },
+      "catalogEntry": {
+        "repo": "lgvalle/Material-Animations",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Références d'animations Android",
+        "domain": "mobile",
+        "capabilities": [
+          "android",
+          "animation",
+          "ui"
+        ],
+        "languages": [
+          "java"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "low",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 13531,
+          "forks": 2439,
+          "openIssues": 21,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "MIT",
+          "pushedAt": "2019-04-02T15:42:38Z"
+        },
+        "bestFor": [
+          "Concevoir des transitions natives Android avec exemples visuels"
+        ],
+        "avoidWhen": [
+          "Réutiliser des animations sans tenir compte des performances mobiles"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "reference"
+      }
+    },
+    {
+      "repo": "liangxiegame/QFramework",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 5473,
+        "forks": 863,
+        "openIssues": 8,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T02:21:32Z"
+      },
+      "catalogEntry": {
+        "repo": "liangxiegame/QFramework",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Modules et architecture de jeu",
+        "domain": "game_dev",
+        "capabilities": [
+          "godot",
+          "voxel",
+          "architecture"
+        ],
+        "languages": [
+          "c#"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 5473,
+          "forks": 863,
+          "openIssues": 8,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "MIT",
+          "pushedAt": "2026-10-09T02:21:32Z"
+        },
+        "bestFor": [
+          "Étudier des architectures et extensions de moteurs pour nouveaux jeux"
+        ],
+        "avoidWhen": [
+          "Combiner des architectures de moteurs incompatibles"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "LineageOS/android",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 4688,
+        "forks": 1963,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "lineage-23.2",
+        "license": null,
+        "pushedAt": "2026-10-08T17:47:36Z"
+      },
+      "catalogEntry": {
+        "repo": "LineageOS/android",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Système et composants Android",
+        "domain": "mobile",
+        "capabilities": [
+          "android",
+          "open-source",
+          "platform"
+        ],
+        "languages": [],
+        "platforms": [
+          "android"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "unknown",
+        "github": {
+          "stars": 4688,
+          "forks": 1963,
+          "openIssues": 2,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "lineage-23.2",
+          "license": null,
+          "pushedAt": "2026-10-08T17:47:36Z"
+        },
+        "bestFor": [
+          "Étudier les interfaces et composants du système Android"
+        ],
+        "avoidWhen": [
+          "Utiliser des composants système hors contexte d'intégration adapté"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "llvm/llvm-project",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 40979,
+        "forks": 19029,
+        "openIssues": 40124,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:37:58Z"
+      },
+      "catalogEntry": {
+        "repo": "llvm/llvm-project",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Infrastructures de compilation",
+        "domain": "software_engineering",
+        "capabilities": [
+          "compilers",
+          "toolchain",
+          "llvm"
+        ],
+        "languages": [
+          "llvm"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "unknown",
+        "github": {
+          "stars": 40979,
+          "forks": 19029,
+          "openIssues": 40124,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-10-09T03:37:58Z"
+        },
+        "bestFor": [
+          "Développer et optimiser une chaîne de compilation"
+        ],
+        "avoidWhen": [
+          "Modifier un compilateur sans suite de tests de compatibilité"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "MakazhanAlpamys/Soup",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 8378,
+        "forks": 1348,
+        "openIssues": 145,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T18:50:43Z"
+      },
+      "catalogEntry": {
+        "repo": "MakazhanAlpamys/Soup",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Optimisation et entraînement de modèles IA",
+        "domain": "data_ml",
+        "capabilities": [
+          "model-optimization",
+          "ml",
+          "training"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 8378,
+          "forks": 1348,
+          "openIssues": 145,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-08T18:50:43Z"
+        },
+        "bestFor": [
+          "Réduire le coût ou la taille des modèles avec techniques d'optimisation"
+        ],
+        "avoidWhen": [
+          "Déployer un modèle optimisé sans tests de précision et compatibilité"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "microsoft/vscode",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 193450,
+        "forks": 44661,
+        "openIssues": 21651,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:43:12Z"
+      },
+      "catalogEntry": {
+        "repo": "microsoft/vscode",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Environnement de développement",
+        "domain": "software_engineering",
+        "capabilities": [
+          "ide",
+          "code-editor"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 193450,
+          "forks": 44661,
+          "openIssues": 21651,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-09T03:43:12Z"
+        },
+        "bestFor": [
+          "Développer et déboguer des applications sur ordinateur"
+        ],
+        "avoidWhen": [
+          "Supposer qu'une extension est sûre sans audit de permissions"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "MisterBooo/LeetCodeAnimation",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 76706,
+        "forks": 13858,
+        "openIssues": 22,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-06-12T13:49:06Z"
+      },
+      "catalogEntry": {
+        "repo": "MisterBooo/LeetCodeAnimation",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Explications animées des algorithmes",
+        "domain": "productivity",
+        "capabilities": [
+          "algorithm-learning",
+          "animation",
+          "education"
+        ],
+        "languages": [
+          "java"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "unknown",
+        "github": {
+          "stars": 76706,
+          "forks": 13858,
+          "openIssues": 22,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": null,
+          "pushedAt": "2026-06-12T13:49:06Z"
+        },
+        "bestFor": [
+          "Visualiser des solutions algorithmiques sous forme d'animations"
+        ],
+        "avoidWhen": [
+          "Considérer un exemple animé comme implémentation de production"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "mobile-next/mobile-mcp",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 8785,
+        "forks": 779,
+        "openIssues": 60,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-07T20:38:18Z"
+      },
+      "catalogEntry": {
+        "repo": "mobile-next/mobile-mcp",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Pilotage Android via MCP",
+        "domain": "mobile",
+        "capabilities": [
+          "android",
+          "mcp",
+          "automation"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "android"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 8785,
+          "forks": 779,
+          "openIssues": 60,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-07T20:38:18Z"
+        },
+        "bestFor": [
+          "Automatiser des tests Android sur émulateurs ou appareils autorisés"
+        ],
+        "avoidWhen": [
+          "Commander des appareils réels sans authentification ou consentement"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "mrdoob/three.js",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 116159,
+        "forks": 36618,
+        "openIssues": 402,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "dev",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:10:45Z"
+      },
+      "catalogEntry": {
+        "repo": "mrdoob/three.js",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Rendu 3D web",
+        "domain": "graphics",
+        "capabilities": [
+          "webgl",
+          "3d",
+          "graphics"
+        ],
+        "languages": [
+          "javascript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 116159,
+          "forks": 36618,
+          "openIssues": 402,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "dev",
+          "license": "MIT",
+          "pushedAt": "2026-10-09T03:10:45Z"
+        },
+        "bestFor": [
+          "Construire des scènes et des assets 3D interactifs dans un navigateur"
+        ],
+        "avoidWhen": [
+          "Surcharger le GPU d'appareils mobiles avec des scènes non optimisées"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "mvschwarz/openrig",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 6197,
+        "forks": 451,
+        "openIssues": 123,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:30:48Z"
+      },
+      "catalogEntry": {
+        "repo": "mvschwarz/openrig",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Développement coordonné par agents",
+        "domain": "software_engineering",
+        "capabilities": [
+          "coding-agents",
+          "orchestration"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 6197,
+          "forks": 451,
+          "openIssues": 123,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-09T03:30:48Z"
+        },
+        "bestFor": [
+          "Orchestrer des agents pour gérer les tâches de développement et leur suivi"
+        ],
+        "avoidWhen": [
+          "Laisser les agents modifier des dépôts sans tests ni revues"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "NandhaKishorM/laya",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 31773,
+        "forks": 2825,
+        "openIssues": 93,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T17:22:58Z"
+      },
+      "catalogEntry": {
+        "repo": "NandhaKishorM/laya",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Moteur de décision déterministe",
+        "domain": "ai_agents",
+        "capabilities": [
+          "decision-engine",
+          "agents"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 31773,
+          "forks": 2825,
+          "openIssues": 93,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-08T17:22:58Z"
+        },
+        "bestFor": [
+          "Évaluer un moteur de décision reproductible intégré dans des agents"
+        ],
+        "avoidWhen": [
+          "Remplacer des tests par des décisions opaques non auditées"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "nextcloud/android",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 5620,
+        "forks": 2031,
+        "openIssues": 1562,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-2.0",
+        "pushedAt": "2026-10-08T13:37:55Z"
+      },
+      "catalogEntry": {
+        "repo": "nextcloud/android",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Stockage cloud sur Android",
+        "domain": "mobile",
+        "capabilities": [
+          "android",
+          "cloud-storage",
+          "files"
+        ],
+        "languages": [
+          "kotlin"
+        ],
+        "platforms": [
+          "android"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 5620,
+          "forks": 2031,
+          "openIssues": 1562,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "GPL-2.0",
+          "pushedAt": "2026-10-08T13:37:55Z"
+        },
+        "bestFor": [
+          "Étudier un client Android de synchronisation de fichiers"
+        ],
+        "avoidWhen": [
+          "Synchroniser des fichiers sensibles sans politique de confidentialité"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "nibzard/awesome-agentic-patterns",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 5031,
+        "forks": 473,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-28T13:21:09Z"
+      },
+      "catalogEntry": {
+        "repo": "nibzard/awesome-agentic-patterns",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Bibliothèques de bonnes pratiques pour agents",
+        "domain": "ai_agents",
+        "capabilities": [
+          "agent-skills",
+          "agent-patterns"
+        ],
+        "languages": [
+          "html"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 5031,
+          "forks": 473,
+          "openIssues": 3,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-09-28T13:21:09Z"
+        },
+        "bestFor": [
+          "Trouver et comparer des méthodes éprouvées pour construire des agents IA"
+        ],
+        "avoidWhen": [
+          "Installer des workflows non vérifiés comme code de confiance"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "novuhq/novu",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 40134,
+        "forks": 4508,
+        "openIssues": 127,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "next",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T01:09:43Z"
+      },
+      "catalogEntry": {
+        "repo": "novuhq/novu",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Notifications multicanales",
+        "domain": "backend",
+        "capabilities": [
+          "notifications",
+          "api",
+          "messaging"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "unknown",
+        "github": {
+          "stars": 40134,
+          "forks": 4508,
+          "openIssues": 127,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "next",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-10-09T01:09:43Z"
+        },
+        "bestFor": [
+          "Orchestrer les notifications d'applications et services"
+        ],
+        "avoidWhen": [
+          "Déployer des notifications sans gestion des consentements"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "NVIDIA/Model-Optimizer",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 5249,
+        "forks": 736,
+        "openIssues": 472,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:41:07Z"
+      },
+      "catalogEntry": {
+        "repo": "NVIDIA/Model-Optimizer",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Optimisation et entraînement de modèles IA",
+        "domain": "data_ml",
+        "capabilities": [
+          "model-optimization",
+          "ml",
+          "training"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 5249,
+          "forks": 736,
+          "openIssues": 472,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-09T03:41:07Z"
+        },
+        "bestFor": [
+          "Réduire le coût ou la taille des modèles avec techniques d'optimisation"
+        ],
+        "avoidWhen": [
+          "Déployer un modèle optimisé sans tests de précision et compatibilité"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "open-android/Android",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 15368,
+        "forks": 3617,
+        "openIssues": 88,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2024-04-28T13:31:56Z"
+      },
+      "catalogEntry": {
+        "repo": "open-android/Android",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Système et composants Android",
+        "domain": "mobile",
+        "capabilities": [
+          "android",
+          "open-source",
+          "platform"
+        ],
+        "languages": [],
+        "platforms": [
+          "android"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "unknown",
+        "github": {
+          "stars": 15368,
+          "forks": 3617,
+          "openIssues": 88,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": null,
+          "pushedAt": "2024-04-28T13:31:56Z"
+        },
+        "bestFor": [
+          "Étudier les interfaces et composants du système Android"
+        ],
+        "avoidWhen": [
+          "Utiliser des composants système hors contexte d'intégration adapté"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "reference"
+      }
+    },
+    {
+      "repo": "openbao/openbao",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 8356,
+        "forks": 618,
+        "openIssues": 336,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MPL-2.0",
+        "pushedAt": "2026-10-08T08:12:40Z"
+      },
+      "catalogEntry": {
+        "repo": "openbao/openbao",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Gestion centralisée des secrets",
+        "domain": "cybersecurity",
+        "capabilities": [
+          "secrets",
+          "security",
+          "credentials"
+        ],
+        "languages": [
+          "go"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 8356,
+          "forks": 618,
+          "openIssues": 336,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MPL-2.0",
+          "pushedAt": "2026-10-08T08:12:40Z"
+        },
+        "bestFor": [
+          "Centraliser et contrôler l'accès aux certificats et secrets d'applications"
+        ],
+        "avoidWhen": [
+          "Stocker des secrets en clair ou déployer sans contrôle d'accès"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "openmeterio/openmeter",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 2375,
+        "forks": 224,
+        "openIssues": 61,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T22:29:23Z"
+      },
+      "catalogEntry": {
+        "repo": "openmeterio/openmeter",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Comptabilisation d'utilisation et facturation",
+        "domain": "backend",
+        "capabilities": [
+          "metering",
+          "billing",
+          "api"
+        ],
+        "languages": [
+          "go"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 2375,
+          "forks": 224,
+          "openIssues": 61,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-08T22:29:23Z"
+        },
+        "bestFor": [
+          "Mesurer les usages d'une application pour la facturation"
+        ],
+        "avoidWhen": [
+          "Facturer sans réconciliation et tests des événements"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "paperclipai/paperclip",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 98908,
+        "forks": 16699,
+        "openIssues": 6239,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:33:37Z"
+      },
+      "catalogEntry": {
+        "repo": "paperclipai/paperclip",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Développement coordonné par agents",
+        "domain": "software_engineering",
+        "capabilities": [
+          "coding-agents",
+          "orchestration"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 98908,
+          "forks": 16699,
+          "openIssues": 6239,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "MIT",
+          "pushedAt": "2026-10-09T03:33:37Z"
+        },
+        "bestFor": [
+          "Orchestrer des agents pour gérer les tâches de développement et leur suivi"
+        ],
+        "avoidWhen": [
+          "Laisser les agents modifier des dépôts sans tests ni revues"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "PostHog/posthog",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 40197,
+        "forks": 3486,
+        "openIssues": 5521,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:37:50Z"
+      },
+      "catalogEntry": {
+        "repo": "PostHog/posthog",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Analyse produit et observabilité",
+        "domain": "devops",
+        "capabilities": [
+          "analytics",
+          "observability",
+          "events"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "unknown",
+        "github": {
+          "stars": 40197,
+          "forks": 3486,
+          "openIssues": 5521,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-10-09T03:37:50Z"
+        },
+        "bestFor": [
+          "Instrumenter et comprendre l'usage des applications et leurs incidents"
+        ],
+        "avoidWhen": [
+          "Collecter des données personnelles sans garde-fous"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "PrefectHQ/fastmcp",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 28018,
+        "forks": 2450,
+        "openIssues": 407,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T22:57:39Z"
+      },
+      "catalogEntry": {
+        "repo": "PrefectHQ/fastmcp",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Intégrations d'agents et de services",
+        "domain": "ai_agents",
+        "capabilities": [
+          "mcp",
+          "agent-framework",
+          "api"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 28018,
+          "forks": 2450,
+          "openIssues": 407,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-08T22:57:39Z"
+        },
+        "bestFor": [
+          "Connecter des outils aux agents via un protocole ou des SDK"
+        ],
+        "avoidWhen": [
+          "Exposer des secrets et permissions sensibles sans contrôle"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "raullenchai/Rapid-MLX",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 3943,
+        "forks": 429,
+        "openIssues": 30,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:35:28Z"
+      },
+      "catalogEntry": {
+        "repo": "raullenchai/Rapid-MLX",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Inférence locale sur Apple Silicon",
+        "domain": "data_ml",
+        "capabilities": [
+          "mlx",
+          "model-serving",
+          "inference"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "unknown",
+        "github": {
+          "stars": 3943,
+          "forks": 429,
+          "openIssues": 30,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-10-09T03:35:28Z"
+        },
+        "bestFor": [
+          "Optimiser l'inférence locale de modèles avec MLX"
+        ],
+        "avoidWhen": [
+          "Exiger un moteur MLX sur Android ou Linux sans adaptation"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "rohitg00/ai-engineering-from-scratch",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 65919,
+        "forks": 11431,
+        "openIssues": 65,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T23:26:11Z"
+      },
+      "catalogEntry": {
+        "repo": "rohitg00/ai-engineering-from-scratch",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Formation en ingénierie IA",
+        "domain": "productivity",
+        "capabilities": [
+          "education",
+          "ai-engineering"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 65919,
+          "forks": 11431,
+          "openIssues": 65,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-08T23:26:11Z"
+        },
+        "bestFor": [
+          "Étudier et reproduire des implémentations éducatives en IA"
+        ],
+        "avoidWhen": [
+          "Considérer des tutoriels comme code sécurisé pour production"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "rynfar/meridian",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 2103,
+        "forks": 242,
+        "openIssues": 48,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-08T23:45:30Z"
+      },
+      "catalogEntry": {
+        "repo": "rynfar/meridian",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Développement coordonné par agents",
+        "domain": "software_engineering",
+        "capabilities": [
+          "coding-agents",
+          "orchestration"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "unknown",
+        "github": {
+          "stars": 2103,
+          "forks": 242,
+          "openIssues": 48,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": null,
+          "pushedAt": "2026-10-08T23:45:30Z"
+        },
+        "bestFor": [
+          "Orchestrer des agents pour gérer les tâches de développement et leur suivi"
+        ],
+        "avoidWhen": [
+          "Laisser les agents modifier des dépôts sans tests ni revues"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "sickn33/agentic-awesome-skills",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 47371,
+        "forks": 6903,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T14:41:54Z"
+      },
+      "catalogEntry": {
+        "repo": "sickn33/agentic-awesome-skills",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Bibliothèques de bonnes pratiques pour agents",
+        "domain": "ai_agents",
+        "capabilities": [
+          "agent-skills",
+          "agent-patterns"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 47371,
+          "forks": 6903,
+          "openIssues": 3,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-08T14:41:54Z"
+        },
+        "bestFor": [
+          "Trouver et comparer des méthodes éprouvées pour construire des agents IA"
+        ],
+        "avoidWhen": [
+          "Installer des workflows non vérifiés comme code de confiance"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "SigNoz/signoz",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 32311,
+        "forks": 2531,
+        "openIssues": 1539,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T20:12:18Z"
+      },
+      "catalogEntry": {
+        "repo": "SigNoz/signoz",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Analyse produit et observabilité",
+        "domain": "devops",
+        "capabilities": [
+          "analytics",
+          "observability",
+          "events"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "unknown",
+        "github": {
+          "stars": 32311,
+          "forks": 2531,
+          "openIssues": 1539,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-10-08T20:12:18Z"
+        },
+        "bestFor": [
+          "Instrumenter et comprendre l'usage des applications et leurs incidents"
+        ],
+        "avoidWhen": [
+          "Collecter des données personnelles sans garde-fous"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "slavakurilyak/awesome-ai-agents",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 2402,
+        "forks": 623,
+        "openIssues": 26,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-04T07:15:17Z"
+      },
+      "catalogEntry": {
+        "repo": "slavakurilyak/awesome-ai-agents",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Bibliothèques de bonnes pratiques pour agents",
+        "domain": "ai_agents",
+        "capabilities": [
+          "agent-skills",
+          "agent-patterns"
+        ],
+        "languages": [
+          "go"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 2402,
+          "forks": 623,
+          "openIssues": 26,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-04T07:15:17Z"
+        },
+        "bestFor": [
+          "Trouver et comparer des méthodes éprouvées pour construire des agents IA"
+        ],
+        "avoidWhen": [
+          "Installer des workflows non vérifiés comme code de confiance"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "superlinked/sie",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 3367,
+        "forks": 317,
+        "openIssues": 35,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:08:26Z"
+      },
+      "catalogEntry": {
+        "repo": "superlinked/sie",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Mémoire et récupération contextuelle",
+        "domain": "ai_memory",
+        "capabilities": [
+          "agent-memory",
+          "retrieval",
+          "knowledge"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 3367,
+          "forks": 317,
+          "openIssues": 35,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-09T03:08:26Z"
+        },
+        "bestFor": [
+          "Indexer et restituer des souvenirs pertinents à des agents IA"
+        ],
+        "avoidWhen": [
+          "Stocker des informations sensibles sans cloisonnement et suppression"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "tensorflow/tensorflow",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 200556,
+        "forks": 78638,
+        "openIssues": 3251,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:31:39Z"
+      },
+      "catalogEntry": {
+        "repo": "tensorflow/tensorflow",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Optimisation et entraînement de modèles IA",
+        "domain": "data_ml",
+        "capabilities": [
+          "model-optimization",
+          "ml",
+          "training"
+        ],
+        "languages": [
+          "c++"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 200556,
+          "forks": 78638,
+          "openIssues": 3251,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-09T03:31:39Z"
+        },
+        "bestFor": [
+          "Réduire le coût ou la taille des modèles avec techniques d'optimisation"
+        ],
+        "avoidWhen": [
+          "Déployer un modèle optimisé sans tests de précision et compatibilité"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "tihanyin/REx-skill",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 107,
+        "forks": 17,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-23T13:40:24Z"
+      },
+      "catalogEntry": {
+        "repo": "tihanyin/REx-skill",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Bug bounty assisté par IA",
+        "domain": "cybersecurity",
+        "capabilities": [
+          "bug-bounty",
+          "security-testing",
+          "agent-tools"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 107,
+          "forks": 17,
+          "openIssues": 0,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-09-23T13:40:24Z"
+        },
+        "bestFor": [
+          "Étudier et reproduire des vulnérabilités sur des périmètres explicitement autorisés"
+        ],
+        "avoidWhen": [
+          "Effectuer des scans ou des exploits en dehors d'un programme autorisé"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "timzhang642/3D-Machine-Learning",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 10202,
+        "forks": 1795,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2024-07-04T19:13:09Z"
+      },
+      "catalogEntry": {
+        "repo": "timzhang642/3D-Machine-Learning",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Apprentissage automatique 3D",
+        "domain": "data_ml",
+        "capabilities": [
+          "3d",
+          "machine-learning",
+          "research"
+        ],
+        "languages": [],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "high",
+        "integrationComplexity": "high",
+        "costModel": "unknown",
+        "github": {
+          "stars": 10202,
+          "forks": 1795,
+          "openIssues": 21,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": null,
+          "pushedAt": "2024-07-04T19:13:09Z"
+        },
+        "bestFor": [
+          "Explorer des approches de reconstruction et représentation 3D"
+        ],
+        "avoidWhen": [
+          "Attendre un moteur temps réel prêt à l'emploi"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "reference"
+      }
+    },
+    {
+      "repo": "transitive-bullshit/agentic",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 18100,
+        "forks": 2213,
+        "openIssues": 15,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-02-11T04:50:03Z"
+      },
+      "catalogEntry": {
+        "repo": "transitive-bullshit/agentic",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Intégrations d'agents et de services",
+        "domain": "ai_agents",
+        "capabilities": [
+          "mcp",
+          "agent-framework",
+          "api"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "unknown",
+        "github": {
+          "stars": 18100,
+          "forks": 2213,
+          "openIssues": 15,
+          "archived": true,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-02-11T04:50:03Z"
+        },
+        "bestFor": [
+          "Connecter des outils aux agents via un protocole ou des SDK"
+        ],
+        "avoidWhen": [
+          "Exposer des secrets et permissions sensibles sans contrôle"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "reference"
+      }
+    },
+    {
+      "repo": "triggerdotdev/trigger.dev",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 16503,
+        "forks": 1484,
+        "openIssues": 229,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T23:47:03Z"
+      },
+      "catalogEntry": {
+        "repo": "triggerdotdev/trigger.dev",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Workflows asynchrones durables",
+        "domain": "backend",
+        "capabilities": [
+          "job-scheduling",
+          "automation",
+          "workflows"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 16503,
+          "forks": 1484,
+          "openIssues": 229,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "Apache-2.0",
+          "pushedAt": "2026-10-08T23:47:03Z"
+        },
+        "bestFor": [
+          "Exécuter des tâches de fond et des agents de façon fiable"
+        ],
+        "avoidWhen": [
+          "Supposer une tâche réussie sans idempotence et supervision"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "vectorize-io/hindsight",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 47363,
+        "forks": 5973,
+        "openIssues": 169,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T21:42:39Z"
+      },
+      "catalogEntry": {
+        "repo": "vectorize-io/hindsight",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Mémoire et récupération contextuelle",
+        "domain": "ai_memory",
+        "capabilities": [
+          "agent-memory",
+          "retrieval",
+          "knowledge"
+        ],
+        "languages": [
+          "python"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 47363,
+          "forks": 5973,
+          "openIssues": 169,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-10-08T21:42:39Z"
+        },
+        "bestFor": [
+          "Indexer et restituer des souvenirs pertinents à des agents IA"
+        ],
+        "avoidWhen": [
+          "Stocker des informations sensibles sans cloisonnement et suppression"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "vercel/ai",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 27189,
+        "forks": 5291,
+        "openIssues": 1367,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:38:19Z"
+      },
+      "catalogEntry": {
+        "repo": "vercel/ai",
+        "score": 7.2,
+        "tier": "audit",
+        "category": "Intégrations d'agents et de services",
+        "domain": "ai_agents",
+        "capabilities": [
+          "mcp",
+          "agent-framework",
+          "api"
+        ],
+        "languages": [
+          "typescript"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "unknown",
+        "github": {
+          "stars": 27189,
+          "forks": 5291,
+          "openIssues": 1367,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "NOASSERTION",
+          "pushedAt": "2026-10-09T03:38:19Z"
+        },
+        "bestFor": [
+          "Connecter des outils aux agents via un protocole ou des SDK"
+        ],
+        "avoidWhen": [
+          "Exposer des secrets et permissions sensibles sans contrôle"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "wgtunnel/android",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 3247,
+        "forks": 196,
+        "openIssues": 121,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:37:33Z"
+      },
+      "catalogEntry": {
+        "repo": "wgtunnel/android",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Clients réseau privés Android",
+        "domain": "mobile",
+        "capabilities": [
+          "android",
+          "vpn",
+          "privacy"
+        ],
+        "languages": [
+          "kotlin"
+        ],
+        "platforms": [
+          "android"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 3247,
+          "forks": 196,
+          "openIssues": 121,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "MIT",
+          "pushedAt": "2026-10-09T03:37:33Z"
+        },
+        "bestFor": [
+          "Examiner des clients VPN Android pour connexions chiffrées"
+        ],
+        "avoidWhen": [
+          "Présumer qu'une application mobile protège tous les flux sans audit"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "zhaoxuya520/reverse-skill",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 40293,
+        "forks": 5618,
+        "openIssues": 26,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-22T06:43:21Z"
+      },
+      "catalogEntry": {
+        "repo": "zhaoxuya520/reverse-skill",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Bug bounty assisté par IA",
+        "domain": "cybersecurity",
+        "capabilities": [
+          "bug-bounty",
+          "security-testing",
+          "agent-tools"
+        ],
+        "languages": [
+          "powershell"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "high",
+        "costModel": "open-source",
+        "github": {
+          "stars": 40293,
+          "forks": 5618,
+          "openIssues": 26,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "main",
+          "license": "MIT",
+          "pushedAt": "2026-09-22T06:43:21Z"
+        },
+        "bestFor": [
+          "Étudier et reproduire des vulnérabilités sur des périmètres explicitement autorisés"
+        ],
+        "avoidWhen": [
+          "Effectuer des scans ou des exploits en dehors d'un programme autorisé"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    },
+    {
+      "repo": "Zylann/godot_voxel",
+      "reviewed": true,
+      "reviewScope": "Identity and GitHub REST snapshot checked; catalog classification conservative. License status is not a grant of reuse rights.",
+      "github": {
+        "stars": 3933,
+        "forks": 358,
+        "openIssues": 251,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-01T17:20:33Z"
+      },
+      "catalogEntry": {
+        "repo": "Zylann/godot_voxel",
+        "score": 8.2,
+        "tier": "specialized",
+        "category": "Modules et architecture de jeu",
+        "domain": "game_dev",
+        "capabilities": [
+          "godot",
+          "voxel",
+          "architecture"
+        ],
+        "languages": [
+          "c++"
+        ],
+        "platforms": [
+          "cross-platform"
+        ],
+        "selfHosted": true,
+        "runtime": [
+          "local"
+        ],
+        "resourceLevel": "medium",
+        "integrationComplexity": "medium",
+        "costModel": "open-source",
+        "github": {
+          "stars": 3933,
+          "forks": 358,
+          "openIssues": 251,
+          "archived": false,
+          "disabled": false,
+          "defaultBranch": "master",
+          "license": "MIT",
+          "pushedAt": "2026-10-01T17:20:33Z"
+        },
+        "bestFor": [
+          "Étudier des architectures et extensions de moteurs pour nouveaux jeux"
+        ],
+        "avoidWhen": [
+          "Combiner des architectures de moteurs incompatibles"
+        ],
+        "guidanceSource": "curated",
+        "lifecycle": "active"
+      }
+    }
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-5.json
+````json
+{
+  "date": "2026-10-09",
+  "source": "9 user screenshots",
+  "summary": {
+    "raw": 90,
+    "unique": 90,
+    "alreadyInCatalog": 19,
+    "catalogBefore": 628,
+    "newlyAdmitted": 71,
+    "catalogAfter": 699
+  },
+  "alreadyCataloged": [
+    "JoasASantos/Offensive-Security-AI-Models",
+    "letta-ai/letta-code",
+    "InfinityLoop1308/PipePipe",
+    "agentverse-os/AgentVerse-OS",
+    "yejy53/Editable-Design",
+    "pizza-bot-app/pizza-bot",
+    "anmolkapil/plexo",
+    "vinnylarouge/jevlike",
+    "shadcn-ui/lint",
+    "arnegiacomo/fugleramme",
+    "elliothux/open-compute",
+    "chubbyguan/chubbyskills",
+    "togg53192-cmd/jailbreaks",
+    "jamwithai/production-agentic-rag-course",
+    "owncloud/android",
+    "2Retr0/GodotOceanWaves",
+    "vercel/next.js",
+    "promptfoo/promptfoo",
+    "drizzle-team/drizzle-orm"
+  ],
+  "reviewedNew": [
+    "actions/runner-images",
+    "androoAGI/starnet",
+    "anthropics/claude-code-action",
+    "anthropics/claude-plugins-official",
+    "assistant-ui/assistant-ui",
+    "awarexone/Agentic-Bug-Hunter",
+    "better-auth/better-auth",
+    "bitwarden/android",
+    "cgwire/awesome-cg-vfx-pipeline",
+    "cloudflare/agentic-inbox",
+    "Coding-Solo/godot-mcp",
+    "dalathegreat/Battery-Emulator",
+    "deepinsight/insightface",
+    "dubinc/dub",
+    "Fosowl/agenticSeek",
+    "gdquest-demos/godot-open-rpg",
+    "gdquest-demos/godot-shaders",
+    "GDRETools/gdsdecomp",
+    "godotengine/godot-demo-projects",
+    "godotengine/godot-docs",
+    "GodotNuts/GodotFirebase",
+    "GodotSteam/GodotSteam",
+    "google/liquidfun",
+    "greensock/GSAP",
+    "jankeesvw/omarchy-meeting-recorder",
+    "JetBrains/android",
+    "JohnHeibel/PDoomVideo",
+    "joxeankoret/diaphora",
+    "juliangarnier/anime",
+    "kelseyhightower/kubernetes-the-hard-way",
+    "KenneyNL/Starter-Kit-3D-Platformer",
+    "kserve/kserve",
+    "leejet/stable-diffusion.cpp",
+    "lgvalle/Material-Animations",
+    "liangxiegame/QFramework",
+    "LineageOS/android",
+    "llvm/llvm-project",
+    "MakazhanAlpamys/Soup",
+    "microsoft/vscode",
+    "MisterBooo/LeetCodeAnimation",
+    "mobile-next/mobile-mcp",
+    "mrdoob/three.js",
+    "mvschwarz/openrig",
+    "NandhaKishorM/laya",
+    "nextcloud/android",
+    "nibzard/awesome-agentic-patterns",
+    "novuhq/novu",
+    "NVIDIA/Model-Optimizer",
+    "open-android/Android",
+    "openbao/openbao",
+    "openmeterio/openmeter",
+    "paperclipai/paperclip",
+    "PostHog/posthog",
+    "PrefectHQ/fastmcp",
+    "raullenchai/Rapid-MLX",
+    "rohitg00/ai-engineering-from-scratch",
+    "rynfar/meridian",
+    "sickn33/agentic-awesome-skills",
+    "SigNoz/signoz",
+    "slavakurilyak/awesome-ai-agents",
+    "superlinked/sie",
+    "tensorflow/tensorflow",
+    "tihanyin/REx-skill",
+    "timzhang642/3D-Machine-Learning",
+    "transitive-bullshit/agentic",
+    "triggerdotdev/trigger.dev",
+    "vectorize-io/hindsight",
+    "vercel/ai",
+    "wgtunnel/android",
+    "zhaoxuya520/reverse-skill",
+    "Zylann/godot_voxel"
+  ],
+  "requiresReview": [
+    "anthropics/claude-code-action",
+    "cgwire/awesome-cg-vfx-pipeline",
+    "deepinsight/insightface",
+    "dubinc/dub",
+    "gdquest-demos/godot-shaders",
+    "godotengine/godot-docs",
+    "GodotSteam/GodotSteam",
+    "google/liquidfun",
+    "greensock/GSAP",
+    "JohnHeibel/PDoomVideo",
+    "lgvalle/Material-Animations",
+    "LineageOS/android",
+    "llvm/llvm-project",
+    "MisterBooo/LeetCodeAnimation",
+    "novuhq/novu",
+    "open-android/Android",
+    "PostHog/posthog",
+    "raullenchai/Rapid-MLX",
+    "rynfar/meridian",
+    "SigNoz/signoz",
+    "timzhang642/3D-Machine-Learning",
+    "transitive-bullshit/agentic",
+    "vercel/ai"
+  ],
+  "provenance": {
+    "manifest": "imports/github-stars-2026-10-09-batch-5.json",
+    "profiles": "reports/star-import-2026-10-09-batch-5-profiles.json",
+    "reviewed": "reports/star-import-2026-10-09-batch-5-reviewed.json",
+    "metadata": [
+      "reports/star-import-2026-10-09-batch-5-metadata-1.json",
+      "reports/star-import-2026-10-09-batch-5-metadata-2.json",
+      "reports/star-import-2026-10-09-batch-5-metadata-3.json",
+      "reports/star-import-2026-10-09-batch-5-metadata-4.json",
+      "reports/star-import-2026-10-09-batch-5-metadata-5.json",
+      "reports/star-import-2026-10-09-batch-5-metadata-6.json"
+    ]
+  },
+  "integration": {
+    "status": "applied-and-validated",
+    "method": "existing reviewed star import pipeline in GitHub Actions",
+    "validationRun": "https://github.com/dbrckk/star-list/actions/runs/37880954201"
   }
 }
 ````
@@ -41362,6 +47014,3032 @@ Repository-specific rules:
       ],
       "avoidWhen": [
         "Conserver des informations sensibles sans politique de rétention"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "actions/runner-images",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Images de runners CI",
+      "domain": "devops",
+      "capabilities": [
+        "github-actions",
+        "ci",
+        "images"
+      ],
+      "languages": [
+        "powershell"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 13443,
+        "forks": 3903,
+        "openIssues": 153,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-07T12:07:40Z"
+      },
+      "bestFor": [
+        "Évaluer les environnements d'exécution de tests GitHub Actions"
+      ],
+      "avoidWhen": [
+        "Supposer que des paquets et versions ne changent jamais"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "androoAGI/starnet",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Agents autonomes locaux",
+      "domain": "ai_agents",
+      "capabilities": [
+        "local-agents",
+        "automation"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1253,
+        "forks": 237,
+        "openIssues": 52,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "feat/harness-backend",
+        "license": "MIT",
+        "pushedAt": "2026-10-04T18:37:08Z"
+      },
+      "bestFor": [
+        "Explorer une architecture agentique locale pour automatiser des tâches"
+      ],
+      "avoidWhen": [
+        "Supposer qu'un agent autonome peut agir sans garde-fous"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "anthropics/claude-code-action",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Agent de développement dans CI",
+      "domain": "software_engineering",
+      "capabilities": [
+        "ci",
+        "code-review",
+        "coding-agents"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 9451,
+        "forks": 2195,
+        "openIssues": 819,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T19:54:37Z"
+      },
+      "bestFor": [
+        "Intégrer des agents dans les workflows GitHub avec permissions limitées"
+      ],
+      "avoidWhen": [
+        "Accorder des permissions d'écriture excessives à un agent"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "anthropics/claude-plugins-official",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Bibliothèques de bonnes pratiques pour agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skills",
+        "agent-patterns"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 37558,
+        "forks": 4229,
+        "openIssues": 1076,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T22:46:27Z"
+      },
+      "bestFor": [
+        "Trouver et comparer des méthodes éprouvées pour construire des agents IA"
+      ],
+      "avoidWhen": [
+        "Installer des workflows non vérifiés comme code de confiance"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "assistant-ui/assistant-ui",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Composants pour interfaces de chat IA",
+      "domain": "web_frontend",
+      "capabilities": [
+        "chat-ui",
+        "typescript",
+        "react"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 12455,
+        "forks": 1238,
+        "openIssues": 113,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:43:25Z"
+      },
+      "bestFor": [
+        "Créer une interface de chat pour assistants IA"
+      ],
+      "avoidWhen": [
+        "Déployer une interface sans contrôler l'accès aux modèles et aux conversations"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "awarexone/Agentic-Bug-Hunter",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Bug bounty assisté par IA",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "bug-bounty",
+        "security-testing",
+        "agent-tools"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 5308,
+        "forks": 935,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T17:12:40Z"
+      },
+      "bestFor": [
+        "Étudier et reproduire des vulnérabilités sur des périmètres explicitement autorisés"
+      ],
+      "avoidWhen": [
+        "Effectuer des scans ou des exploits en dehors d'un programme autorisé"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "better-auth/better-auth",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Authentification d'applications",
+      "domain": "backend",
+      "capabilities": [
+        "authentication",
+        "identity",
+        "security"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 30220,
+        "forks": 2951,
+        "openIssues": 852,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T18:42:14Z"
+      },
+      "bestFor": [
+        "Implémenter une authentification avec des protections éprouvées"
+      ],
+      "avoidWhen": [
+        "Mettre en production sans test des flux d'identité et de session"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "bitwarden/android",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Gestion des secrets sur Android",
+      "domain": "mobile",
+      "capabilities": [
+        "android",
+        "password-manager",
+        "security"
+      ],
+      "languages": [
+        "kotlin"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 9456,
+        "forks": 1064,
+        "openIssues": 190,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-09T00:04:29Z"
+      },
+      "bestFor": [
+        "Étudier une application mobile de gestion de mots de passe"
+      ],
+      "avoidWhen": [
+        "Copier des données de coffres réels dans des environnements de test"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "cgwire/awesome-cg-vfx-pipeline",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Pipeline de production VFX",
+      "domain": "graphics",
+      "capabilities": [
+        "vfx",
+        "production",
+        "pipeline"
+      ],
+      "languages": [],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1259,
+        "forks": 178,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-05T07:49:55Z"
+      },
+      "bestFor": [
+        "Organiser des outils et standards de production visuelle"
+      ],
+      "avoidWhen": [
+        "Utiliser un catalogue de ressources comme solution intégrée"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "cloudflare/agentic-inbox",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Messagerie et clients mail avec IA",
+      "domain": "productivity",
+      "capabilities": [
+        "email",
+        "agents",
+        "automation"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "cloud"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 8229,
+        "forks": 1060,
+        "openIssues": 50,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-04-23T21:04:17Z"
+      },
+      "bestFor": [
+        "Concevoir des flux de traitement de courriels avec agents et supervision"
+      ],
+      "avoidWhen": [
+        "Accorder un accès non contrôlé aux boîtes et messages"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Coding-Solo/godot-mcp",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Intégrations et outils Godot",
+      "domain": "game_dev",
+      "capabilities": [
+        "godot",
+        "game-development",
+        "tools"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 5984,
+        "forks": 480,
+        "openIssues": 73,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-04-16T23:37:00Z"
+      },
+      "bestFor": [
+        "Construire un jeu Godot avec connecteurs et outils de production"
+      ],
+      "avoidWhen": [
+        "Utiliser une version d'extension incompatible avec le moteur du projet"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "dalathegreat/Battery-Emulator",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Simulation de batteries et stockage",
+      "domain": "other",
+      "capabilities": [
+        "energy",
+        "simulation",
+        "hardware"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 2955,
+        "forks": 416,
+        "openIssues": 145,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-08T20:06:38Z"
+      },
+      "bestFor": [
+        "Étudier les outils de simulation de stockage d'énergie"
+      ],
+      "avoidWhen": [
+        "Utiliser une simulation comme validation de sécurité de matériel électrique"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "deepinsight/insightface",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Analyse de visages par vision artificielle",
+      "domain": "data_ml",
+      "capabilities": [
+        "computer-vision",
+        "face-analysis"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 29914,
+        "forks": 6102,
+        "openIssues": 1270,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-10-04T12:46:41Z"
+      },
+      "bestFor": [
+        "Évaluer des modèles de vision sur des données dont l'utilisation est autorisée"
+      ],
+      "avoidWhen": [
+        "Utiliser la reconnaissance faciale sans base légale ni consentement"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "dubinc/dub",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Plateforme d'attribution marketing",
+      "domain": "productivity",
+      "capabilities": [
+        "attribution",
+        "analytics",
+        "marketing"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 24870,
+        "forks": 3324,
+        "openIssues": 107,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:13:30Z"
+      },
+      "bestFor": [
+        "Analyser des parcours et canaux d'acquisition marketing"
+      ],
+      "avoidWhen": [
+        "Collecter des données sans consentement ou suivi des coûts"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Fosowl/agenticSeek",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Agents autonomes locaux",
+      "domain": "ai_agents",
+      "capabilities": [
+        "local-agents",
+        "automation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 27463,
+        "forks": 3077,
+        "openIssues": 29,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-02T20:03:48Z"
+      },
+      "bestFor": [
+        "Explorer une architecture agentique locale pour automatiser des tâches"
+      ],
+      "avoidWhen": [
+        "Supposer qu'un agent autonome peut agir sans garde-fous"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "gdquest-demos/godot-open-rpg",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Exemples et ressources Godot",
+      "domain": "game_dev",
+      "capabilities": [
+        "godot",
+        "examples",
+        "shaders"
+      ],
+      "languages": [
+        "gdscript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3008,
+        "forks": 364,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-05-01T20:26:21Z"
+      },
+      "bestFor": [
+        "Étudier des exemples reproductibles pour améliorer gameplay et visuels Godot"
+      ],
+      "avoidWhen": [
+        "Copier des exemples sans adapter licence, rendu et performances"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "gdquest-demos/godot-shaders",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Exemples et ressources Godot",
+      "domain": "game_dev",
+      "capabilities": [
+        "godot",
+        "examples",
+        "shaders"
+      ],
+      "languages": [
+        "gdshader"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4149,
+        "forks": 243,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-05-16T07:48:40Z"
+      },
+      "bestFor": [
+        "Étudier des exemples reproductibles pour améliorer gameplay et visuels Godot"
+      ],
+      "avoidWhen": [
+        "Copier des exemples sans adapter licence, rendu et performances"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "GDRETools/gdsdecomp",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Intégrations et outils Godot",
+      "domain": "game_dev",
+      "capabilities": [
+        "godot",
+        "game-development",
+        "tools"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 4292,
+        "forks": 317,
+        "openIssues": 41,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T20:11:58Z"
+      },
+      "bestFor": [
+        "Construire un jeu Godot avec connecteurs et outils de production"
+      ],
+      "avoidWhen": [
+        "Utiliser une version d'extension incompatible avec le moteur du projet"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "godotengine/godot-demo-projects",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Exemples et ressources Godot",
+      "domain": "game_dev",
+      "capabilities": [
+        "godot",
+        "examples",
+        "shaders"
+      ],
+      "languages": [
+        "gdscript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 9633,
+        "forks": 2250,
+        "openIssues": 87,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T09:33:27Z"
+      },
+      "bestFor": [
+        "Étudier des exemples reproductibles pour améliorer gameplay et visuels Godot"
+      ],
+      "avoidWhen": [
+        "Copier des exemples sans adapter licence, rendu et performances"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "godotengine/godot-docs",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Exemples et ressources Godot",
+      "domain": "game_dev",
+      "capabilities": [
+        "godot",
+        "examples",
+        "shaders"
+      ],
+      "languages": [
+        "restructuredtext"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5799,
+        "forks": 3785,
+        "openIssues": 1118,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T15:43:56Z"
+      },
+      "bestFor": [
+        "Étudier des exemples reproductibles pour améliorer gameplay et visuels Godot"
+      ],
+      "avoidWhen": [
+        "Copier des exemples sans adapter licence, rendu et performances"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "GodotNuts/GodotFirebase",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Intégrations et outils Godot",
+      "domain": "game_dev",
+      "capabilities": [
+        "godot",
+        "game-development",
+        "tools"
+      ],
+      "languages": [
+        "gdscript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 686,
+        "forks": 94,
+        "openIssues": 29,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-13T12:46:45Z"
+      },
+      "bestFor": [
+        "Construire un jeu Godot avec connecteurs et outils de production"
+      ],
+      "avoidWhen": [
+        "Utiliser une version d'extension incompatible avec le moteur du projet"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "GodotSteam/GodotSteam",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Intégrations et outils Godot",
+      "domain": "game_dev",
+      "capabilities": [
+        "godot",
+        "game-development",
+        "tools"
+      ],
+      "languages": [],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3756,
+        "forks": 225,
+        "openIssues": 0,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-10-05T19:10:38Z"
+      },
+      "bestFor": [
+        "Construire un jeu Godot avec connecteurs et outils de production"
+      ],
+      "avoidWhen": [
+        "Utiliser une version d'extension incompatible avec le moteur du projet"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "google/liquidfun",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Simulation physique 2D",
+      "domain": "game_dev",
+      "capabilities": [
+        "physics",
+        "2d",
+        "simulation"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4897,
+        "forks": 651,
+        "openIssues": 69,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2023-04-26T20:07:43Z"
+      },
+      "bestFor": [
+        "Implémenter des simulations de mouvements et collisions dans un jeu"
+      ],
+      "avoidWhen": [
+        "Choisir un moteur abandonné pour un nouveau jeu sans maintenance"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "greensock/GSAP",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Animations fluides sur le web",
+      "domain": "web_frontend",
+      "capabilities": [
+        "web-animation",
+        "ux",
+        "motion"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "unknown",
+      "github": {
+        "stars": 28916,
+        "forks": 2233,
+        "openIssues": 7,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-04-13T13:08:58Z"
+      },
+      "bestFor": [
+        "Créer des animations d'interface avancées et contrôlables"
+      ],
+      "avoidWhen": [
+        "Multiplier les effets visuels au détriment des performances et de l'accessibilité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "jankeesvw/omarchy-meeting-recorder",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Transcription et archivage de réunions",
+      "domain": "productivity",
+      "capabilities": [
+        "audio",
+        "transcription",
+        "productivity"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 343,
+        "forks": 36,
+        "openIssues": 18,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-05T16:07:19Z"
+      },
+      "bestFor": [
+        "Transcrire des réunions avec transparence et consentement"
+      ],
+      "avoidWhen": [
+        "Enregistrer des personnes sans les informer et sans autorisation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "JetBrains/android",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "SDK et IDE Android",
+      "domain": "mobile",
+      "capabilities": [
+        "android",
+        "kotlin",
+        "development"
+      ],
+      "languages": [
+        "kotlin"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1134,
+        "forks": 247,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T16:59:02Z"
+      },
+      "bestFor": [
+        "Développer et maintenir des applications Android"
+      ],
+      "avoidWhen": [
+        "Installer des composants incompatibles avec la chaîne de compilation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "JohnHeibel/PDoomVideo",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Référence de réalisation vidéo",
+      "domain": "graphics",
+      "capabilities": [
+        "video",
+        "creative-reference"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1931,
+        "forks": 204,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-09-25T15:11:03Z"
+      },
+      "bestFor": [
+        "Étudier des techniques et exemples de vidéo générée par code"
+      ],
+      "avoidWhen": [
+        "Réutiliser des œuvres et pistes audio protégées sans permission"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "joxeankoret/diaphora",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Comparaison de binaires pour analyse",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "binary-diff",
+        "reverse-engineering"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 4421,
+        "forks": 419,
+        "openIssues": 35,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-09-04T07:54:27Z"
+      },
+      "bestFor": [
+        "Comparer des versions de logiciels et repérer des modifications suspectes autorisées"
+      ],
+      "avoidWhen": [
+        "Analyser des binaires tiers en contradiction avec les autorisations"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "juliangarnier/anime",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Animations fluides sur le web",
+      "domain": "web_frontend",
+      "capabilities": [
+        "web-animation",
+        "ux",
+        "motion"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "low",
+      "costModel": "open-source",
+      "github": {
+        "stars": 73433,
+        "forks": 4958,
+        "openIssues": 122,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-08-21T21:29:50Z"
+      },
+      "bestFor": [
+        "Créer des animations d'interface avancées et contrôlables"
+      ],
+      "avoidWhen": [
+        "Multiplier les effets visuels au détriment des performances et de l'accessibilité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "kelseyhightower/kubernetes-the-hard-way",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Architecture et exploitation Kubernetes",
+      "domain": "devops",
+      "capabilities": [
+        "kubernetes",
+        "cluster",
+        "education"
+      ],
+      "languages": [],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 50318,
+        "forks": 15931,
+        "openIssues": 57,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2025-04-10T06:11:47Z"
+      },
+      "bestFor": [
+        "Comprendre la mise en place et la sécurité d'un cluster Kubernetes"
+      ],
+      "avoidWhen": [
+        "Utiliser un tutoriel d'infrastructure comme recette de production non auditée"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "stable"
+    },
+    {
+      "repo": "KenneyNL/Starter-Kit-3D-Platformer",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Exemples et ressources Godot",
+      "domain": "game_dev",
+      "capabilities": [
+        "godot",
+        "examples",
+        "shaders"
+      ],
+      "languages": [
+        "gdscript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 1238,
+        "forks": 182,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-03-12T08:52:39Z"
+      },
+      "bestFor": [
+        "Étudier des exemples reproductibles pour améliorer gameplay et visuels Godot"
+      ],
+      "avoidWhen": [
+        "Copier des exemples sans adapter licence, rendu et performances"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "kserve/kserve",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Serving de modèles IA sur Kubernetes",
+      "domain": "data_ml",
+      "capabilities": [
+        "model-serving",
+        "kubernetes",
+        "inference"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 6094,
+        "forks": 1723,
+        "openIssues": 220,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T17:08:59Z"
+      },
+      "bestFor": [
+        "Déployer des modèles sous Kubernetes avec mise à l'échelle"
+      ],
+      "avoidWhen": [
+        "Adopter Kubernetes pour une application dont l'inférence locale suffit"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "leejet/stable-diffusion.cpp",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Diffusion multimodale en C++",
+      "domain": "ai_media",
+      "capabilities": [
+        "image-generation",
+        "diffusion",
+        "cpp"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 7571,
+        "forks": 857,
+        "openIssues": 268,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T23:50:58Z"
+      },
+      "bestFor": [
+        "Explorer l'inférence locale d'images avec une implémentation C++"
+      ],
+      "avoidWhen": [
+        "Faire tourner un modèle lourd sans RAM ou GPU compatibles"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "lgvalle/Material-Animations",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Références d'animations Android",
+      "domain": "mobile",
+      "capabilities": [
+        "android",
+        "animation",
+        "ui"
+      ],
+      "languages": [
+        "java"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 13531,
+        "forks": 2439,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2019-04-02T15:42:38Z"
+      },
+      "bestFor": [
+        "Concevoir des transitions natives Android avec exemples visuels"
+      ],
+      "avoidWhen": [
+        "Réutiliser des animations sans tenir compte des performances mobiles"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "liangxiegame/QFramework",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Modules et architecture de jeu",
+      "domain": "game_dev",
+      "capabilities": [
+        "godot",
+        "voxel",
+        "architecture"
+      ],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 5473,
+        "forks": 863,
+        "openIssues": 8,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T02:21:32Z"
+      },
+      "bestFor": [
+        "Étudier des architectures et extensions de moteurs pour nouveaux jeux"
+      ],
+      "avoidWhen": [
+        "Combiner des architectures de moteurs incompatibles"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "LineageOS/android",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Système et composants Android",
+      "domain": "mobile",
+      "capabilities": [
+        "android",
+        "open-source",
+        "platform"
+      ],
+      "languages": [],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4688,
+        "forks": 1963,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "lineage-23.2",
+        "license": null,
+        "pushedAt": "2026-10-08T17:47:36Z"
+      },
+      "bestFor": [
+        "Étudier les interfaces et composants du système Android"
+      ],
+      "avoidWhen": [
+        "Utiliser des composants système hors contexte d'intégration adapté"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "llvm/llvm-project",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Infrastructures de compilation",
+      "domain": "software_engineering",
+      "capabilities": [
+        "compilers",
+        "toolchain",
+        "llvm"
+      ],
+      "languages": [
+        "llvm"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 40979,
+        "forks": 19029,
+        "openIssues": 40124,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:37:58Z"
+      },
+      "bestFor": [
+        "Développer et optimiser une chaîne de compilation"
+      ],
+      "avoidWhen": [
+        "Modifier un compilateur sans suite de tests de compatibilité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "MakazhanAlpamys/Soup",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Optimisation et entraînement de modèles IA",
+      "domain": "data_ml",
+      "capabilities": [
+        "model-optimization",
+        "ml",
+        "training"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 8378,
+        "forks": 1348,
+        "openIssues": 145,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T18:50:43Z"
+      },
+      "bestFor": [
+        "Réduire le coût ou la taille des modèles avec techniques d'optimisation"
+      ],
+      "avoidWhen": [
+        "Déployer un modèle optimisé sans tests de précision et compatibilité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "microsoft/vscode",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Environnement de développement",
+      "domain": "software_engineering",
+      "capabilities": [
+        "ide",
+        "code-editor"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 193450,
+        "forks": 44661,
+        "openIssues": 21651,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:43:12Z"
+      },
+      "bestFor": [
+        "Développer et déboguer des applications sur ordinateur"
+      ],
+      "avoidWhen": [
+        "Supposer qu'une extension est sûre sans audit de permissions"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "MisterBooo/LeetCodeAnimation",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Explications animées des algorithmes",
+      "domain": "productivity",
+      "capabilities": [
+        "algorithm-learning",
+        "animation",
+        "education"
+      ],
+      "languages": [
+        "java"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 76706,
+        "forks": 13858,
+        "openIssues": 22,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-06-12T13:49:06Z"
+      },
+      "bestFor": [
+        "Visualiser des solutions algorithmiques sous forme d'animations"
+      ],
+      "avoidWhen": [
+        "Considérer un exemple animé comme implémentation de production"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "mobile-next/mobile-mcp",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Pilotage Android via MCP",
+      "domain": "mobile",
+      "capabilities": [
+        "android",
+        "mcp",
+        "automation"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 8785,
+        "forks": 779,
+        "openIssues": 60,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-07T20:38:18Z"
+      },
+      "bestFor": [
+        "Automatiser des tests Android sur émulateurs ou appareils autorisés"
+      ],
+      "avoidWhen": [
+        "Commander des appareils réels sans authentification ou consentement"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "mrdoob/three.js",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Rendu 3D web",
+      "domain": "graphics",
+      "capabilities": [
+        "webgl",
+        "3d",
+        "graphics"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 116159,
+        "forks": 36618,
+        "openIssues": 402,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "dev",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:10:45Z"
+      },
+      "bestFor": [
+        "Construire des scènes et des assets 3D interactifs dans un navigateur"
+      ],
+      "avoidWhen": [
+        "Surcharger le GPU d'appareils mobiles avec des scènes non optimisées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "mvschwarz/openrig",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Développement coordonné par agents",
+      "domain": "software_engineering",
+      "capabilities": [
+        "coding-agents",
+        "orchestration"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 6197,
+        "forks": 451,
+        "openIssues": 123,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:30:48Z"
+      },
+      "bestFor": [
+        "Orchestrer des agents pour gérer les tâches de développement et leur suivi"
+      ],
+      "avoidWhen": [
+        "Laisser les agents modifier des dépôts sans tests ni revues"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "NandhaKishorM/laya",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Moteur de décision déterministe",
+      "domain": "ai_agents",
+      "capabilities": [
+        "decision-engine",
+        "agents"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 31773,
+        "forks": 2825,
+        "openIssues": 93,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T17:22:58Z"
+      },
+      "bestFor": [
+        "Évaluer un moteur de décision reproductible intégré dans des agents"
+      ],
+      "avoidWhen": [
+        "Remplacer des tests par des décisions opaques non auditées"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "nextcloud/android",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Stockage cloud sur Android",
+      "domain": "mobile",
+      "capabilities": [
+        "android",
+        "cloud-storage",
+        "files"
+      ],
+      "languages": [
+        "kotlin"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 5620,
+        "forks": 2031,
+        "openIssues": 1562,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-2.0",
+        "pushedAt": "2026-10-08T13:37:55Z"
+      },
+      "bestFor": [
+        "Étudier un client Android de synchronisation de fichiers"
+      ],
+      "avoidWhen": [
+        "Synchroniser des fichiers sensibles sans politique de confidentialité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "nibzard/awesome-agentic-patterns",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Bibliothèques de bonnes pratiques pour agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skills",
+        "agent-patterns"
+      ],
+      "languages": [
+        "html"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 5031,
+        "forks": 473,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-28T13:21:09Z"
+      },
+      "bestFor": [
+        "Trouver et comparer des méthodes éprouvées pour construire des agents IA"
+      ],
+      "avoidWhen": [
+        "Installer des workflows non vérifiés comme code de confiance"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "novuhq/novu",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Notifications multicanales",
+      "domain": "backend",
+      "capabilities": [
+        "notifications",
+        "api",
+        "messaging"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 40134,
+        "forks": 4508,
+        "openIssues": 127,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "next",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T01:09:43Z"
+      },
+      "bestFor": [
+        "Orchestrer les notifications d'applications et services"
+      ],
+      "avoidWhen": [
+        "Déployer des notifications sans gestion des consentements"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "NVIDIA/Model-Optimizer",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Optimisation et entraînement de modèles IA",
+      "domain": "data_ml",
+      "capabilities": [
+        "model-optimization",
+        "ml",
+        "training"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 5249,
+        "forks": 736,
+        "openIssues": 472,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:41:07Z"
+      },
+      "bestFor": [
+        "Réduire le coût ou la taille des modèles avec techniques d'optimisation"
+      ],
+      "avoidWhen": [
+        "Déployer un modèle optimisé sans tests de précision et compatibilité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "open-android/Android",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Système et composants Android",
+      "domain": "mobile",
+      "capabilities": [
+        "android",
+        "open-source",
+        "platform"
+      ],
+      "languages": [],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 15368,
+        "forks": 3617,
+        "openIssues": 88,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2024-04-28T13:31:56Z"
+      },
+      "bestFor": [
+        "Étudier les interfaces et composants du système Android"
+      ],
+      "avoidWhen": [
+        "Utiliser des composants système hors contexte d'intégration adapté"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "openbao/openbao",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Gestion centralisée des secrets",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "secrets",
+        "security",
+        "credentials"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 8356,
+        "forks": 618,
+        "openIssues": 336,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MPL-2.0",
+        "pushedAt": "2026-10-08T08:12:40Z"
+      },
+      "bestFor": [
+        "Centraliser et contrôler l'accès aux certificats et secrets d'applications"
+      ],
+      "avoidWhen": [
+        "Stocker des secrets en clair ou déployer sans contrôle d'accès"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "openmeterio/openmeter",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Comptabilisation d'utilisation et facturation",
+      "domain": "backend",
+      "capabilities": [
+        "metering",
+        "billing",
+        "api"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 2375,
+        "forks": 224,
+        "openIssues": 61,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T22:29:23Z"
+      },
+      "bestFor": [
+        "Mesurer les usages d'une application pour la facturation"
+      ],
+      "avoidWhen": [
+        "Facturer sans réconciliation et tests des événements"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "paperclipai/paperclip",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Développement coordonné par agents",
+      "domain": "software_engineering",
+      "capabilities": [
+        "coding-agents",
+        "orchestration"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 98908,
+        "forks": 16699,
+        "openIssues": 6239,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:33:37Z"
+      },
+      "bestFor": [
+        "Orchestrer des agents pour gérer les tâches de développement et leur suivi"
+      ],
+      "avoidWhen": [
+        "Laisser les agents modifier des dépôts sans tests ni revues"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "PostHog/posthog",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Analyse produit et observabilité",
+      "domain": "devops",
+      "capabilities": [
+        "analytics",
+        "observability",
+        "events"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 40197,
+        "forks": 3486,
+        "openIssues": 5521,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:37:50Z"
+      },
+      "bestFor": [
+        "Instrumenter et comprendre l'usage des applications et leurs incidents"
+      ],
+      "avoidWhen": [
+        "Collecter des données personnelles sans garde-fous"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "PrefectHQ/fastmcp",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Intégrations d'agents et de services",
+      "domain": "ai_agents",
+      "capabilities": [
+        "mcp",
+        "agent-framework",
+        "api"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 28018,
+        "forks": 2450,
+        "openIssues": 407,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T22:57:39Z"
+      },
+      "bestFor": [
+        "Connecter des outils aux agents via un protocole ou des SDK"
+      ],
+      "avoidWhen": [
+        "Exposer des secrets et permissions sensibles sans contrôle"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "raullenchai/Rapid-MLX",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Inférence locale sur Apple Silicon",
+      "domain": "data_ml",
+      "capabilities": [
+        "mlx",
+        "model-serving",
+        "inference"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3943,
+        "forks": 429,
+        "openIssues": 30,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:35:28Z"
+      },
+      "bestFor": [
+        "Optimiser l'inférence locale de modèles avec MLX"
+      ],
+      "avoidWhen": [
+        "Exiger un moteur MLX sur Android ou Linux sans adaptation"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "rohitg00/ai-engineering-from-scratch",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Formation en ingénierie IA",
+      "domain": "productivity",
+      "capabilities": [
+        "education",
+        "ai-engineering"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 65919,
+        "forks": 11431,
+        "openIssues": 65,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T23:26:11Z"
+      },
+      "bestFor": [
+        "Étudier et reproduire des implémentations éducatives en IA"
+      ],
+      "avoidWhen": [
+        "Considérer des tutoriels comme code sécurisé pour production"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "rynfar/meridian",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Développement coordonné par agents",
+      "domain": "software_engineering",
+      "capabilities": [
+        "coding-agents",
+        "orchestration"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2103,
+        "forks": 242,
+        "openIssues": 48,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-08T23:45:30Z"
+      },
+      "bestFor": [
+        "Orchestrer des agents pour gérer les tâches de développement et leur suivi"
+      ],
+      "avoidWhen": [
+        "Laisser les agents modifier des dépôts sans tests ni revues"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "sickn33/agentic-awesome-skills",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Bibliothèques de bonnes pratiques pour agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skills",
+        "agent-patterns"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 47371,
+        "forks": 6903,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T14:41:54Z"
+      },
+      "bestFor": [
+        "Trouver et comparer des méthodes éprouvées pour construire des agents IA"
+      ],
+      "avoidWhen": [
+        "Installer des workflows non vérifiés comme code de confiance"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "SigNoz/signoz",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Analyse produit et observabilité",
+      "domain": "devops",
+      "capabilities": [
+        "analytics",
+        "observability",
+        "events"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 32311,
+        "forks": 2531,
+        "openIssues": 1539,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T20:12:18Z"
+      },
+      "bestFor": [
+        "Instrumenter et comprendre l'usage des applications et leurs incidents"
+      ],
+      "avoidWhen": [
+        "Collecter des données personnelles sans garde-fous"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "slavakurilyak/awesome-ai-agents",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Bibliothèques de bonnes pratiques pour agents",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skills",
+        "agent-patterns"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 2402,
+        "forks": 623,
+        "openIssues": 26,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-04T07:15:17Z"
+      },
+      "bestFor": [
+        "Trouver et comparer des méthodes éprouvées pour construire des agents IA"
+      ],
+      "avoidWhen": [
+        "Installer des workflows non vérifiés comme code de confiance"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "superlinked/sie",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Mémoire et récupération contextuelle",
+      "domain": "ai_memory",
+      "capabilities": [
+        "agent-memory",
+        "retrieval",
+        "knowledge"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3367,
+        "forks": 317,
+        "openIssues": 35,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:08:26Z"
+      },
+      "bestFor": [
+        "Indexer et restituer des souvenirs pertinents à des agents IA"
+      ],
+      "avoidWhen": [
+        "Stocker des informations sensibles sans cloisonnement et suppression"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "tensorflow/tensorflow",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Optimisation et entraînement de modèles IA",
+      "domain": "data_ml",
+      "capabilities": [
+        "model-optimization",
+        "ml",
+        "training"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 200556,
+        "forks": 78638,
+        "openIssues": 3251,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T03:31:39Z"
+      },
+      "bestFor": [
+        "Réduire le coût ou la taille des modèles avec techniques d'optimisation"
+      ],
+      "avoidWhen": [
+        "Déployer un modèle optimisé sans tests de précision et compatibilité"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "tihanyin/REx-skill",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Bug bounty assisté par IA",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "bug-bounty",
+        "security-testing",
+        "agent-tools"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 107,
+        "forks": 17,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-23T13:40:24Z"
+      },
+      "bestFor": [
+        "Étudier et reproduire des vulnérabilités sur des périmètres explicitement autorisés"
+      ],
+      "avoidWhen": [
+        "Effectuer des scans ou des exploits en dehors d'un programme autorisé"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "timzhang642/3D-Machine-Learning",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Apprentissage automatique 3D",
+      "domain": "data_ml",
+      "capabilities": [
+        "3d",
+        "machine-learning",
+        "research"
+      ],
+      "languages": [],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "unknown",
+      "github": {
+        "stars": 10202,
+        "forks": 1795,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2024-07-04T19:13:09Z"
+      },
+      "bestFor": [
+        "Explorer des approches de reconstruction et représentation 3D"
+      ],
+      "avoidWhen": [
+        "Attendre un moteur temps réel prêt à l'emploi"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "transitive-bullshit/agentic",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Intégrations d'agents et de services",
+      "domain": "ai_agents",
+      "capabilities": [
+        "mcp",
+        "agent-framework",
+        "api"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 18100,
+        "forks": 2213,
+        "openIssues": 15,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-02-11T04:50:03Z"
+      },
+      "bestFor": [
+        "Connecter des outils aux agents via un protocole ou des SDK"
+      ],
+      "avoidWhen": [
+        "Exposer des secrets et permissions sensibles sans contrôle"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "triggerdotdev/trigger.dev",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Workflows asynchrones durables",
+      "domain": "backend",
+      "capabilities": [
+        "job-scheduling",
+        "automation",
+        "workflows"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 16503,
+        "forks": 1484,
+        "openIssues": 229,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T23:47:03Z"
+      },
+      "bestFor": [
+        "Exécuter des tâches de fond et des agents de façon fiable"
+      ],
+      "avoidWhen": [
+        "Supposer une tâche réussie sans idempotence et supervision"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "vectorize-io/hindsight",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Mémoire et récupération contextuelle",
+      "domain": "ai_memory",
+      "capabilities": [
+        "agent-memory",
+        "retrieval",
+        "knowledge"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 47363,
+        "forks": 5973,
+        "openIssues": 169,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T21:42:39Z"
+      },
+      "bestFor": [
+        "Indexer et restituer des souvenirs pertinents à des agents IA"
+      ],
+      "avoidWhen": [
+        "Stocker des informations sensibles sans cloisonnement et suppression"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "vercel/ai",
+      "score": 7.2,
+      "tier": "audit",
+      "category": "Intégrations d'agents et de services",
+      "domain": "ai_agents",
+      "capabilities": [
+        "mcp",
+        "agent-framework",
+        "api"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 27189,
+        "forks": 5291,
+        "openIssues": 1367,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T03:38:19Z"
+      },
+      "bestFor": [
+        "Connecter des outils aux agents via un protocole ou des SDK"
+      ],
+      "avoidWhen": [
+        "Exposer des secrets et permissions sensibles sans contrôle"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "wgtunnel/android",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Clients réseau privés Android",
+      "domain": "mobile",
+      "capabilities": [
+        "android",
+        "vpn",
+        "privacy"
+      ],
+      "languages": [
+        "kotlin"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3247,
+        "forks": 196,
+        "openIssues": 121,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T03:37:33Z"
+      },
+      "bestFor": [
+        "Examiner des clients VPN Android pour connexions chiffrées"
+      ],
+      "avoidWhen": [
+        "Présumer qu'une application mobile protège tous les flux sans audit"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "zhaoxuya520/reverse-skill",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Bug bounty assisté par IA",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "bug-bounty",
+        "security-testing",
+        "agent-tools"
+      ],
+      "languages": [
+        "powershell"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "github": {
+        "stars": 40293,
+        "forks": 5618,
+        "openIssues": 26,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-22T06:43:21Z"
+      },
+      "bestFor": [
+        "Étudier et reproduire des vulnérabilités sur des périmètres explicitement autorisés"
+      ],
+      "avoidWhen": [
+        "Effectuer des scans ou des exploits en dehors d'un programme autorisé"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active"
+    },
+    {
+      "repo": "Zylann/godot_voxel",
+      "score": 8.2,
+      "tier": "specialized",
+      "category": "Modules et architecture de jeu",
+      "domain": "game_dev",
+      "capabilities": [
+        "godot",
+        "voxel",
+        "architecture"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "github": {
+        "stars": 3933,
+        "forks": 358,
+        "openIssues": 251,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-01T17:20:33Z"
+      },
+      "bestFor": [
+        "Étudier des architectures et extensions de moteurs pour nouveaux jeux"
+      ],
+      "avoidWhen": [
+        "Combiner des architectures de moteurs incompatibles"
       ],
       "guidanceSource": "curated",
       "lifecycle": "active"

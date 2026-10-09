@@ -22,17 +22,27 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-09T03:37:41Z
+Generated: 2026-10-09T03:50:11Z
 
 ### Git
 - Branch: `main`
-- Head: `0e6897b8b3ca`
-- Commit date: 2026-10-09T05:37:30+02:00
-- Commit: Catalog 88 verified GitHub favorites from nine screenshots (#46)
-- Tracked files: 232
+- Head: `4047421dbd39`
+- Commit date: 2026-10-09T05:50:00+02:00
+- Commit: Catalog 71 verified GitHub favorites from nine screenshots (#47)
+- Tracked files: 242
 
 ### Recently changed files
 - `catalog.json`
+- `imports/github-stars-2026-10-09-batch-5.json`
+- `reports/star-import-2026-10-09-batch-5-metadata-1.json`
+- `reports/star-import-2026-10-09-batch-5-metadata-2.json`
+- `reports/star-import-2026-10-09-batch-5-metadata-3.json`
+- `reports/star-import-2026-10-09-batch-5-metadata-4.json`
+- `reports/star-import-2026-10-09-batch-5-metadata-5.json`
+- `reports/star-import-2026-10-09-batch-5-metadata-6.json`
+- `reports/star-import-2026-10-09-batch-5-profiles.json`
+- `reports/star-import-2026-10-09-batch-5-reviewed.json`
+- `reports/star-import-2026-10-09-batch-5.json`
 - `imports/github-stars-2026-10-09-batch-4.json`
 - `reports/star-import-2026-10-09-batch-4-metadata-1.json`
 - `reports/star-import-2026-10-09-batch-4-metadata-2.json`
@@ -42,16 +52,6 @@ Generated: 2026-10-09T03:37:41Z
 - `reports/star-import-2026-10-09-batch-4-metadata-6.json`
 - `reports/star-import-2026-10-09-batch-4-metadata-corrections.json`
 - `reports/star-import-2026-10-09-batch-4-reviewed.json`
-- `reports/star-import-2026-10-09-batch-4.json`
-- `imports/github-stars-2026-10-09-batch-3.json`
-- `reports/star-import-2026-10-09-batch-3-metadata-1.json`
-- `reports/star-import-2026-10-09-batch-3-metadata-2.json`
-- `reports/star-import-2026-10-09-batch-3-reviewed.json`
-- `reports/star-import-2026-10-09-batch-3.json`
-- `README.md`
-- `scripts/star_import_pipeline.py`
-- `scripts/test_star_import_pipeline.py`
-- `reports/star-import-2026-10-09-batch-2.json`
 
 ### Project signals
 - No common build descriptor detected
