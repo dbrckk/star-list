@@ -52,8 +52,16 @@ imports/
   github-stars-2026-09-27-batch-3.json
   github-stars-2026-09-27-batch-4.json
   github-stars-2026-09-27.json
+  github-stars-2026-10-09-batch-2.json
   github-stars-2026-10-09.json
 reports/
+  star-import-2026-10-09-batch-2-metadata-1.json
+  star-import-2026-10-09-batch-2-metadata-2.json
+  star-import-2026-10-09-batch-2-metadata-3.json
+  star-import-2026-10-09-batch-2-metadata-4.json
+  star-import-2026-10-09-batch-2-metadata-5.json
+  star-import-2026-10-09-batch-2-metadata-6.json
+  star-import-2026-10-09-batch-2-metadata-7.json
   star-import-2026-10-09-metadata-1.json
   star-import-2026-10-09-metadata-2.json
   star-import-2026-10-09-metadata-3.json
@@ -896,6 +904,111 @@ initial_prompt: |
 }
 ````
 
+## File: imports/github-stars-2026-10-09-batch-2.json
+````json
+{
+  "capturedAt": "2026-10-09",
+  "source": "user-provided GitHub Stars screenshots (9), batch 2",
+  "repositories": [
+    "rehan-remade/universal-modder",
+    "aarora4/Awesome-Prediction-Market-Tools",
+    "caiovicentino/polymarket-mcp-server",
+    "ent0n29/polybot",
+    "evan-kolberg/prediction-market-backtesting",
+    "SII-WANGZJ/Polymarket_data",
+    "yangyuan-zhen/PolyWeather",
+    "lihanyu81/polymarket_lp_tool",
+    "HarrierOnChain/Prediction-Markets-Trading-Bot-Toolkits",
+    "recogardtech/AutoPilotPM",
+    "evidentlyai/evidently",
+    "Giskard-AI/giskard-oss",
+    "rawfilejson/awesome-osint-arsenal",
+    "RickdeJager/stegseek",
+    "OpenCut-app/OpenCut",
+    "meituan-longcat/LongCat-Video",
+    "cloudflare/cloudflare-os",
+    "pingdotgg/t3code",
+    "localsend/localsend",
+    "Diolinux/PhotoGIMP",
+    "1N3/Sn1per",
+    "ComposioHQ/composio",
+    "topoteretes/cognee",
+    "mastra-ai/mastra",
+    "lfnovo/open-notebook",
+    "Stremio/stremio-web",
+    "DuarteSantos8/openGym",
+    "caddyserver/caddy",
+    "earthtojake/text-to-cad",
+    "michael-denyer/pstack-claude",
+    "tester-army/e2e",
+    "deepseek-ai/DeepGEMM",
+    "morluto/rea",
+    "elder-plinius/T3MP3ST",
+    "kargulstudio/sales-crm",
+    "open-rmf/rmf",
+    "ros2/ros2",
+    "google-deepmind/mujoco",
+    "isaac-sim/IsaacLab",
+    "openvla/openvla",
+    "huggingface/lerobot",
+    "lfnovo/esperanto",
+    "osquery/osquery",
+    "Velocidex/velociraptor",
+    "guoyww/AnimateDiff",
+    "AILab-CVC/VideoCrafter",
+    "genmoai/mochi",
+    "Lightricks/LTX-Video",
+    "zai-org/CogVideo",
+    "Wan-Video/Wan2.1",
+    "huggingface/diffusers",
+    "LaurieWired/GhidraMCP",
+    "undefined-ui/second-brain-os",
+    "gh1mau/masta-cve-2026-48907",
+    "JustExecution/HTF_indicator",
+    "boykopovar/AnyPS5",
+    "LuxAlgo/PineTS",
+    "XHToken/Spark-X2.5",
+    "smicallef/spiderfoot",
+    "MISP/MISP",
+    "mitre-attack/attack-stix-data",
+    "OISF/suricata",
+    "zeek/zeek",
+    "VirusTotal/yara",
+    "SigmaHQ/sigma",
+    "iamlukethedev/Herald-OS",
+    "openai/math",
+    "Quincunx33/Ai-jailbreak",
+    "fxraptor-alpha/pinescript-indicators",
+    "cantolab/open-source-fractal",
+    "ict2023trader/Indicators",
+    "firecracker-microvm/firecracker",
+    "modal-labs/modal-examples",
+    "taskflow/taskflow",
+    "ray-project/ray",
+    "camel-ai/camel",
+    "justcallmekoko/ESP32Marauder",
+    "trufflesecurity/trufflehog",
+    "mitmproxy/mitmproxy",
+    "apache/tika",
+    "jina-ai/reader",
+    "datalab-to/marker",
+    "Unstructured-IO/unstructured",
+    "rbrus/laya-as-judge",
+    "pytest-dev/pytest",
+    "github/github-mcp-server",
+    "oraios/serena",
+    "emilk/egui",
+    "liquidslr/system-design-notes",
+    "storytold/artcraft",
+    "EpicGames/raddebugger",
+    "OpenByteInc/QuantDinger",
+    "go-gitea/gitea",
+    "reviewdog/reviewdog",
+    "dagger/dagger"
+  ]
+}
+````
+
 ## File: imports/github-stars-2026-10-09.json
 ````json
 {
@@ -999,6 +1112,1370 @@ initial_prompt: |
     "Arize-ai/phoenix",
     "comet-ml/opik",
     "vibrantlabsai/ragas"
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-2-metadata-1.json
+````json
+{
+  "capturedAt": "2026-10-09",
+  "source": "GitHub REST API",
+  "repositories": [
+    {
+      "repo": "rehan-remade/universal-modder",
+      "description": "Point Claude at any game. Skills, tools and the fal MCP that let Claude Code mod almost any PC game you own: recon, reverse engineering, fal-generated art/3D/audio, in-game testing, showcase videos.",
+      "language": "Python",
+      "github": {
+        "stars": 5656,
+        "forks": 530,
+        "openIssues": 41,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T23:19:15Z"
+      }
+    },
+    {
+      "repo": "aarora4/Awesome-Prediction-Market-Tools",
+      "description": "A curated list of Prediction Market Tools - AI Agents, Analytics, APIs, Dashboards, Copy Trading, Alerting, Tracking and More!!",
+      "language": null,
+      "github": {
+        "stars": 767,
+        "forks": 268,
+        "openIssues": 147,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-07T03:03:02Z"
+      }
+    },
+    {
+      "repo": "caiovicentino/polymarket-mcp-server",
+      "description": "🤖 AI-Powered MCP Server for Polymarket - Enable Claude to trade prediction markets with 45 tools, real-time monitoring, and enterprise-grade safety features",
+      "language": "Python",
+      "github": {
+        "stars": 689,
+        "forks": 143,
+        "openIssues": 11,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-20T16:04:03Z"
+      }
+    },
+    {
+      "repo": "ent0n29/polybot",
+      "description": "Reverse-engineering of  every polymarket strategy and high-frequency trading infrastructure for Polymarket",
+      "language": "Java",
+      "github": {
+        "stars": 1019,
+        "forks": 176,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-02-20T23:34:32Z"
+      }
+    },
+    {
+      "repo": "evan-kolberg/prediction-market-backtesting",
+      "description": "An extension for Nautilus Trader",
+      "language": "Python",
+      "github": {
+        "stars": 1211,
+        "forks": 196,
+        "openIssues": 4,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "v4.1-alpha",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-05-16T21:24:47Z"
+      }
+    },
+    {
+      "repo": "SII-WANGZJ/Polymarket_data",
+      "description": "A comprehensive dataset of 1.1 billion trading records from Polymarket, processed into multiple analysis-ready formats. Features cleaned data, unified token perspectives, and user-level transformations — ready for market research, behavioral studies, and quantitative analysis.",
+      "language": "Python",
+      "github": {
+        "stars": 858,
+        "forks": 121,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-01-01T13:17:37Z"
+      }
+    },
+    {
+      "repo": "yangyuan-zhen/PolyWeather",
+      "description": "polymarket Intelligent Weather Quant Analysis Bot",
+      "language": "Python",
+      "github": {
+        "stars": 316,
+        "forks": 73,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-09-20T17:25:12Z"
+      }
+    },
+    {
+      "repo": "rawfilejson/awesome-osint-arsenal",
+      "description": "OSINT & recon toolkit // 100+ tools, one-command installer, SOCMINT, GEOINT, network recon, dark web, forensics & more.",
+      "language": "Shell",
+      "github": {
+        "stars": 3204,
+        "forks": 477,
+        "openIssues": 12,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-08-29T03:14:19Z"
+      }
+    },
+    {
+      "repo": "RickdeJager/stegseek",
+      "description": ":zap: Worlds fastest steghide cracker, chewing through millions of passwords per second :zap:",
+      "language": "C++",
+      "github": {
+        "stars": 1332,
+        "forks": 136,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-2.0",
+        "pushedAt": "2023-10-10T12:20:59Z"
+      }
+    },
+    {
+      "repo": "OpenCut-app/OpenCut",
+      "description": "The open-source CapCut alternative",
+      "language": "TypeScript",
+      "github": {
+        "stars": 93251,
+        "forks": 9153,
+        "openIssues": 375,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-24T09:24:44Z"
+      }
+    },
+    {
+      "repo": "meituan-longcat/LongCat-Video",
+      "description": null,
+      "language": "Python",
+      "github": {
+        "stars": 9110,
+        "forks": 1585,
+        "openIssues": 82,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-05-27T02:51:41Z"
+      }
+    },
+    {
+      "repo": "cloudflare/cloudflare-os",
+      "description": "Agent workspace built on Cloudflare Workers for creating documents, building apps, and running agents with your company’s context and systems.",
+      "language": "TypeScript",
+      "github": {
+        "stars": 11285,
+        "forks": 1346,
+        "openIssues": 132,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T22:40:55Z"
+      }
+    }
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-2-metadata-2.json
+````json
+{
+  "capturedAt": "2026-10-09",
+  "source": "GitHub REST API",
+  "repositories": [
+    {
+      "repo": "pingdotgg/t3code",
+      "description": null,
+      "language": "TypeScript",
+      "github": {
+        "stars": 26414,
+        "forks": 6870,
+        "openIssues": 2831,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T01:31:05Z"
+      }
+    },
+    {
+      "repo": "localsend/localsend",
+      "description": "An open-source cross-platform alternative to AirDrop",
+      "language": "Dart",
+      "github": {
+        "stars": 93704,
+        "forks": 5231,
+        "openIssues": 1008,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-07T23:01:53Z"
+      }
+    },
+    {
+      "repo": "Diolinux/PhotoGIMP",
+      "description": "A Patch for GIMP 3+ for Photoshop Users",
+      "language": "Python",
+      "github": {
+        "stars": 18328,
+        "forks": 745,
+        "openIssues": 43,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-09-27T05:10:17Z"
+      }
+    },
+    {
+      "repo": "1N3/Sn1per",
+      "description": "Automated penetration testing & attack surface management platform. Recon, scan, exploit, report — 600+ exploits, 90+ integrations, 10K+ detections.",
+      "language": "Shell",
+      "github": {
+        "stars": 11393,
+        "forks": 2210,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-07-04T21:10:21Z"
+      }
+    },
+    {
+      "repo": "ComposioHQ/composio",
+      "description": "Composio powers 1000+ toolkits, tool search, context management, authentication, and a sandboxed workbench to help you build AI agents that turn intent into action.",
+      "language": "TypeScript",
+      "github": {
+        "stars": 30474,
+        "forks": 4848,
+        "openIssues": 110,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "next",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T01:09:09Z"
+      }
+    },
+    {
+      "repo": "topoteretes/cognee",
+      "description": "Cognee is the open-source AI memory platform for agents. Give your AI agents persistent long-term memory with small models for free",
+      "language": "Python",
+      "github": {
+        "stars": 31763,
+        "forks": 3275,
+        "openIssues": 569,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T01:22:39Z"
+      }
+    },
+    {
+      "repo": "mastra-ai/mastra",
+      "description": "Mastra is the modern TypeScript framework for AI-powered applications and agents.",
+      "language": "TypeScript",
+      "github": {
+        "stars": 28649,
+        "forks": 2943,
+        "openIssues": 566,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T01:27:59Z"
+      }
+    },
+    {
+      "repo": "lfnovo/open-notebook",
+      "description": "An Open Source implementation of Notebook LM with more flexibility and features",
+      "language": "TypeScript",
+      "github": {
+        "stars": 39969,
+        "forks": 4628,
+        "openIssues": 153,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-05T02:29:31Z"
+      }
+    },
+    {
+      "repo": "Stremio/stremio-web",
+      "description": "Stremio - Freedom to Stream",
+      "language": "JavaScript",
+      "github": {
+        "stars": 14447,
+        "forks": 1643,
+        "openIssues": 67,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "development",
+        "license": "GPL-2.0",
+        "pushedAt": "2026-10-08T14:16:34Z"
+      }
+    },
+    {
+      "repo": "DuarteSantos8/openGym",
+      "description": "Self-hosted gym & body-weight tracker — plan routines, log workouts (supersets, warm-ups, cardio), see which muscles are trained, fatigued or detrained, import from FitNotes/Strong/Hevy, passkey login. Your data, your server.",
+      "language": "JavaScript",
+      "github": {
+        "stars": 8039,
+        "forks": 1024,
+        "openIssues": 152,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-08T13:32:09Z"
+      }
+    },
+    {
+      "repo": "caddyserver/caddy",
+      "description": "Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS",
+      "language": "Go",
+      "github": {
+        "stars": 77554,
+        "forks": 5102,
+        "openIssues": 287,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T04:02:21Z"
+      }
+    },
+    {
+      "repo": "earthtojake/text-to-cad",
+      "description": "Give your agent CAD superpowers.",
+      "language": "Python",
+      "github": {
+        "stars": 18479,
+        "forks": 1834,
+        "openIssues": 22,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T01:16:19Z"
+      }
+    },
+    {
+      "repo": "michael-denyer/pstack-claude",
+      "description": "Claude Code, Codex, Copilot, Pi, OpenCode, Gemini, and Prime Agent versions of Poteto's pstack. Rigorous agent workflows with Cursor primitives translated for other harnesses.",
+      "language": "JavaScript",
+      "github": {
+        "stars": 1652,
+        "forks": 176,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T21:45:55Z"
+      }
+    }
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-2-metadata-3.json
+````json
+{
+  "capturedAt": "2026-10-09",
+  "source": "GitHub REST API",
+  "repositories": [
+    {
+      "repo": "tester-army/e2e",
+      "description": "Next generation e2e testing framework for web and mobile apps.",
+      "language": "TypeScript",
+      "github": {
+        "stars": 8182,
+        "forks": 383,
+        "openIssues": 63,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T22:06:20Z"
+      }
+    },
+    {
+      "repo": "deepseek-ai/DeepGEMM",
+      "description": "DeepGEMM: clean and efficient BLAS kernel library on GPU",
+      "language": "Cuda",
+      "github": {
+        "stars": 8880,
+        "forks": 1396,
+        "openIssues": 151,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-30T01:48:05Z"
+      }
+    },
+    {
+      "repo": "morluto/rea",
+      "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
+      "language": "TypeScript",
+      "github": {
+        "stars": 27007,
+        "forks": 3066,
+        "openIssues": 63,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T01:29:24Z"
+      }
+    },
+    {
+      "repo": "elder-plinius/T3MP3ST",
+      "description": "autonomous red teaming platform; multi-agent offensive-security meta-harness",
+      "language": "TypeScript",
+      "github": {
+        "stars": 6452,
+        "forks": 1331,
+        "openIssues": 8,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-09-08T16:37:44Z"
+      }
+    },
+    {
+      "repo": "karqulstudio/sales-crm",
+      "error": "NOT_FOUND: Error code: NOT_FOUND; Error: GitHub API error 404: {\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/repos#get-a-repository\",\"status\":\"404\"}"
+    },
+    {
+      "repo": "open-rmf/rmf",
+      "description": "Root repository for the RMF software",
+      "language": "Python",
+      "github": {
+        "stars": 445,
+        "forks": 90,
+        "openIssues": 63,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-08-25T01:22:32Z"
+      }
+    },
+    {
+      "repo": "ros2/ros2",
+      "description": "The Robot Operating System, is a meta operating system for robots.",
+      "language": null,
+      "github": {
+        "stars": 6136,
+        "forks": 963,
+        "openIssues": 151,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "rolling",
+        "license": null,
+        "pushedAt": "2026-10-07T13:51:04Z"
+      }
+    },
+    {
+      "repo": "google-deepmind/mujoco",
+      "description": "Multi-Joint dynamics with Contact. A general purpose physics simulator.",
+      "language": "C++",
+      "github": {
+        "stars": 15528,
+        "forks": 1815,
+        "openIssues": 292,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T20:33:34Z"
+      }
+    },
+    {
+      "repo": "isaac-sim/IsaacLab",
+      "description": "Unified framework for robot learning with multi-physics/renderer support",
+      "language": "Python",
+      "github": {
+        "stars": 8299,
+        "forks": 3940,
+        "openIssues": 364,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "develop",
+        "license": "BSD-3-Clause",
+        "pushedAt": "2026-10-09T00:55:55Z"
+      }
+    },
+    {
+      "repo": "openvla/openvla",
+      "description": "OpenVLA: An open-source vision-language-action model for robotic manipulation.",
+      "language": "Python",
+      "github": {
+        "stars": 7124,
+        "forks": 854,
+        "openIssues": 118,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2025-03-23T23:41:01Z"
+      }
+    },
+    {
+      "repo": "huggingface/lerobot",
+      "description": "🤗 LeRobot: Making AI for Robotics more accessible with end-to-end learning",
+      "language": "Python",
+      "github": {
+        "stars": 28017,
+        "forks": 5839,
+        "openIssues": 966,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T21:24:14Z"
+      }
+    },
+    {
+      "repo": "lfnovo/esperanto",
+      "description": "A unified interface for various AI model providers",
+      "language": "Python",
+      "github": {
+        "stars": 220,
+        "forks": 53,
+        "openIssues": 29,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-03T21:12:50Z"
+      }
+    },
+    {
+      "repo": "osquery/osquery",
+      "description": "SQL powered operating system instrumentation, monitoring, and analytics.",
+      "language": "C++",
+      "github": {
+        "stars": 23629,
+        "forks": 2610,
+        "openIssues": 591,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-09T01:06:29Z"
+      }
+    }
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-2-metadata-4.json
+````json
+{
+  "capturedAt": "2026-10-09",
+  "source": "GitHub REST API",
+  "repositories": [
+    {
+      "repo": "Velocidex/velociraptor",
+      "description": "Digging Deeper....",
+      "language": "Go",
+      "github": {
+        "stars": 4312,
+        "forks": 661,
+        "openIssues": 77,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-07T11:34:46Z"
+      }
+    },
+    {
+      "repo": "guoyww/AnimateDiff",
+      "description": "Official implementation of AnimateDiff.",
+      "language": "Python",
+      "github": {
+        "stars": 12274,
+        "forks": 1101,
+        "openIssues": 319,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2024-07-31T01:14:15Z"
+      }
+    },
+    {
+      "repo": "AILab-CVC/VideoCrafter",
+      "description": "VideoCrafter2: Overcoming Data Limitations for High-Quality Video Diffusion Models",
+      "language": "Python",
+      "github": {
+        "stars": 5098,
+        "forks": 411,
+        "openIssues": 74,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-01-09T15:01:22Z"
+      }
+    },
+    {
+      "repo": "genmoai/mochi",
+      "description": "The best OSS video generation models, created by Genmo",
+      "language": "Python",
+      "github": {
+        "stars": 3746,
+        "forks": 494,
+        "openIssues": 60,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-06T17:19:13Z"
+      }
+    },
+    {
+      "repo": "Lightricks/LTX-Video",
+      "description": "Official repository for LTX-Video",
+      "language": "Python",
+      "github": {
+        "stars": 11056,
+        "forks": 1164,
+        "openIssues": 101,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-01-05T22:37:07Z"
+      }
+    },
+    {
+      "repo": "zai-org/CogVideo",
+      "description": "text and image to video generation: CogVideoX (2024) and CogVideo (ICLR 2023)",
+      "language": "Python",
+      "github": {
+        "stars": 13067,
+        "forks": 1365,
+        "openIssues": 115,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2025-11-04T11:19:04Z"
+      }
+    },
+    {
+      "repo": "Wan-Video/Wan2.1",
+      "description": "Wan: Open and Advanced Large-Scale Video Generative Models",
+      "language": "Python",
+      "github": {
+        "stars": 17122,
+        "forks": 3727,
+        "openIssues": 386,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-03-05T09:38:07Z"
+      }
+    },
+    {
+      "repo": "huggingface/diffusers",
+      "description": "🤗 Diffusers: State-of-the-art diffusion models for image, video, and audio generation in PyTorch.",
+      "language": "Python",
+      "github": {
+        "stars": 34695,
+        "forks": 7380,
+        "openIssues": 1476,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T14:42:43Z"
+      }
+    },
+    {
+      "repo": "LaurieWired/GhidraMCP",
+      "description": "MCP Server for Ghidra",
+      "language": "Java",
+      "github": {
+        "stars": 10728,
+        "forks": 1108,
+        "openIssues": 83,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2025-06-23T04:18:18Z"
+      }
+    },
+    {
+      "repo": "undefined-ui/second-brain-os",
+      "description": "An AI second brain that maintains itself. Full guide, starter vault, agent skills and scripts for a self-organizing knowledge base in Claude Code and Obsidian.",
+      "language": "HTML",
+      "github": {
+        "stars": 1017,
+        "forks": 163,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-07T19:16:09Z"
+      }
+    },
+    {
+      "repo": "gh1mau/masta-cve-2026-48907",
+      "description": "cve-2026-48907 scanner",
+      "language": "Python",
+      "github": {
+        "stars": 64,
+        "forks": 12,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-06-27T05:25:46Z"
+      }
+    },
+    {
+      "repo": "JustExecution/HTF_indicator",
+      "description": "Designed for traders who rely on multi-timeframe analysis and ICT/Smart Money concepts, HTF SUITE provides institutional market context without requiring multiple indicators.",
+      "language": null,
+      "github": {
+        "stars": 122,
+        "forks": 46,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-09-17T06:36:15Z"
+      }
+    },
+    {
+      "repo": "boykopovar/AnyPS5",
+      "description": "Tool for automatic PS5 executables porting to Linux and Windows",
+      "language": "C++",
+      "github": {
+        "stars": 15910,
+        "forks": 1256,
+        "openIssues": 554,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-2.0",
+        "pushedAt": "2026-10-08T22:46:53Z"
+      }
+    }
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-2-metadata-5.json
+````json
+{
+  "capturedAt": "2026-10-09",
+  "source": "GitHub REST API",
+  "repositories": [
+    {
+      "repo": "LuxAlgo/PineTS",
+      "description": "Run Pine Script® anywhere. PineTS is an open-source transpiler and runtime that brings Pine Script® logic to Node.js and the browser with 1:1 syntax compatibility. Reliably write, port, and run indicators or strategies on your own infrastructure.",
+      "language": "TypeScript",
+      "github": {
+        "stars": 848,
+        "forks": 193,
+        "openIssues": 68,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-08T22:50:47Z"
+      }
+    },
+    {
+      "repo": "XHToken/Spark-X2.5",
+      "description": "Spark-x2.5 open model series. Pushing the Limits of Agentic Capabilities in On-Device Models",
+      "language": null,
+      "github": {
+        "stars": 682,
+        "forks": 87,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-20T08:13:26Z"
+      }
+    },
+    {
+      "repo": "smicallef/spiderfoot",
+      "description": "SpiderFoot automates OSINT for threat intelligence and mapping your attack surface.",
+      "language": "Python",
+      "github": {
+        "stars": 23193,
+        "forks": 3715,
+        "openIssues": 329,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-04-13T19:43:06Z"
+      }
+    },
+    {
+      "repo": "MISP/MISP",
+      "description": "MISP (core software) - Open Source Threat Intelligence and Sharing Platform",
+      "language": "PHP",
+      "github": {
+        "stars": 6583,
+        "forks": 1646,
+        "openIssues": 2947,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "2.5",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-07T19:03:27Z"
+      }
+    },
+    {
+      "repo": "mitre-attack/attack-stix-data",
+      "description": "STIX data representing MITRE ATT&CK",
+      "language": "Python",
+      "github": {
+        "stars": 690,
+        "forks": 147,
+        "openIssues": 19,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-08-05T22:57:21Z"
+      }
+    },
+    {
+      "repo": "OISF/suricata",
+      "description": "Suricata is a network Intrusion Detection System, Intrusion Prevention System and Network Security Monitoring engine developed by the OISF and the Suricata community.",
+      "language": "C",
+      "github": {
+        "stars": 6714,
+        "forks": 1780,
+        "openIssues": 91,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-2.0",
+        "pushedAt": "2026-10-08T15:31:08Z"
+      }
+    },
+    {
+      "repo": "zeek/zeek",
+      "description": "Zeek is a powerful network analysis framework that is much different from the typical IDS you may know.",
+      "language": "C++",
+      "github": {
+        "stars": 8084,
+        "forks": 1433,
+        "openIssues": 260,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T21:42:41Z"
+      }
+    },
+    {
+      "repo": "VirusTotal/yara",
+      "description": "The pattern matching swiss knife",
+      "language": "C",
+      "github": {
+        "stars": 9931,
+        "forks": 1586,
+        "openIssues": 169,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "BSD-3-Clause",
+        "pushedAt": "2026-09-23T09:48:49Z"
+      }
+    },
+    {
+      "repo": "SigmaHQ/sigma",
+      "description": "Main Sigma Rule Repository",
+      "language": "Python",
+      "github": {
+        "stars": 11192,
+        "forks": 2839,
+        "openIssues": 254,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-06T11:26:20Z"
+      }
+    },
+    {
+      "repo": "iamlukethedev/Herald-OS",
+      "description": "An agent-native operating system, with Hermes Agent as the interface. Independent project, not affiliated with Nous Research.",
+      "language": "TypeScript",
+      "github": {
+        "stars": 266,
+        "forks": 37,
+        "openIssues": 59,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T00:11:58Z"
+      }
+    },
+    {
+      "repo": "openai/math",
+      "description": null,
+      "language": "Lean",
+      "github": {
+        "stars": 12136,
+        "forks": 1263,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T05:20:00Z"
+      }
+    },
+    {
+      "repo": "Quincunx33/Ai-jailbreak",
+      "description": "A collection of jailbreak prompts and exploit techniques for local and frontier AI models, with modern methods for Qwen3.5, Gemma 4, Llama 4, Kimi K3, GPT-OSS, GPT-5.x, Gemini 3.x and Grok 4.x. For red-teaming and AI safety research only.",
+      "language": "JavaScript",
+      "github": {
+        "stars": 383,
+        "forks": 68,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-07T14:59:44Z"
+      }
+    },
+    {
+      "repo": "fxraptor-alpha/pinescript-indicators",
+      "description": "This repository consists of different trading model pine script indicators.",
+      "language": null,
+      "github": {
+        "stars": 111,
+        "forks": 42,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-06T11:42:04Z"
+      }
+    }
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-2-metadata-6.json
+````json
+{
+  "capturedAt": "2026-10-09",
+  "source": "GitHub REST API",
+  "repositories": [
+    {
+      "repo": "cantolab/open-source-fractal",
+      "description": "Open Source Fractal Indicator by CantoLab",
+      "language": null,
+      "github": {
+        "stars": 173,
+        "forks": 58,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-08-25T21:23:05Z"
+      }
+    },
+    {
+      "repo": "ict2023trader/Indicators",
+      "description": null,
+      "language": null,
+      "github": {
+        "stars": 60,
+        "forks": 28,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-07T18:52:49Z"
+      }
+    },
+    {
+      "repo": "modal-labs/modal-examples",
+      "description": "Examples of programs built using Modal",
+      "language": "Python",
+      "github": {
+        "stars": 1276,
+        "forks": 322,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T00:06:11Z"
+      }
+    },
+    {
+      "repo": "taskflow/taskflow",
+      "description": "A General-purpose Task-parallel Programming System in C++",
+      "language": "C++",
+      "github": {
+        "stars": 12198,
+        "forks": 1413,
+        "openIssues": 41,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-09-28T18:41:31Z"
+      }
+    },
+    {
+      "repo": "ray-project/ray",
+      "description": "Ray is an AI compute engine. Ray consists of a core distributed runtime and a set of AI Libraries for accelerating ML workloads.",
+      "language": "Python",
+      "github": {
+        "stars": 43993,
+        "forks": 8121,
+        "openIssues": 3556,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T01:23:55Z"
+      }
+    },
+    {
+      "repo": "justcallmekoko/ESP32Marauder",
+      "description": "A suite of WiFi/Bluetooth offensive and defensive tools for the ESP32",
+      "language": "C++",
+      "github": {
+        "stars": 12650,
+        "forks": 1523,
+        "openIssues": 332,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-10-08T22:09:49Z"
+      }
+    },
+    {
+      "repo": "trufflesecurity/trufflehog",
+      "description": "Find, verify, and analyze leaked credentials",
+      "language": "Go",
+      "github": {
+        "stars": 28369,
+        "forks": 2623,
+        "openIssues": 560,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-08T17:28:48Z"
+      }
+    },
+    {
+      "repo": "mitmproxy/mitmproxy",
+      "description": "An interactive TLS-capable intercepting HTTP proxy for penetration testers and software developers.",
+      "language": "Python",
+      "github": {
+        "stars": 45349,
+        "forks": 4774,
+        "openIssues": 490,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-05T22:18:35Z"
+      }
+    },
+    {
+      "repo": "apache/tika",
+      "description": "The Apache Tika toolkit detects and extracts metadata and text from over a thousand different file types (such as PPT, XLS, and PDF).",
+      "language": "Java",
+      "github": {
+        "stars": 4090,
+        "forks": 1005,
+        "openIssues": 58,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T20:08:29Z"
+      }
+    },
+    {
+      "repo": "jina-ai/reader",
+      "description": "Convert any URL to an LLM-friendly input with a simple prefix https://r.jina.ai/",
+      "language": "TypeScript",
+      "github": {
+        "stars": 12127,
+        "forks": 892,
+        "openIssues": 34,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-05-22T02:56:46Z"
+      }
+    },
+    {
+      "repo": "datalab-to/marker",
+      "description": "Convert PDF to markdown + JSON quickly with high accuracy",
+      "language": "Python",
+      "github": {
+        "stars": 40292,
+        "forks": 2913,
+        "openIssues": 477,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-02T09:53:02Z"
+      }
+    },
+    {
+      "repo": "Unstructured-IO/unstructured",
+      "description": "Convert documents to structured data effortlessly. Unstructured is open-source ETL solution for transforming complex documents into clean, structured formats for language models.  Visit our website to learn more about our enterprise grade Platform product for production grade workflows, partitioning, enrichments, chunking and embedding.",
+      "language": "HTML",
+      "github": {
+        "stars": 15549,
+        "forks": 1351,
+        "openIssues": 336,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T00:03:37Z"
+      }
+    }
+  ]
+}
+````
+
+## File: reports/star-import-2026-10-09-batch-2-metadata-7.json
+````json
+{
+  "capturedAt": "2026-10-09",
+  "source": "GitHub REST API",
+  "repositories": [
+    {
+      "repo": "rbrus/laya-as-judge",
+      "description": "JEV's alike open-source alternative Laya-MLX used as a \"LLM-as-a-judge\"",
+      "language": "Python",
+      "github": {
+        "stars": 17,
+        "forks": 1,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-26T08:15:03Z"
+      }
+    },
+    {
+      "repo": "github/github-mcp-server",
+      "description": "GitHub's official MCP Server",
+      "language": "Go",
+      "github": {
+        "stars": 33454,
+        "forks": 5111,
+        "openIssues": 346,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T16:25:41Z"
+      }
+    },
+    {
+      "repo": "oraios/serena",
+      "description": "A powerful MCP toolkit for coding, providing semantic retrieval and editing capabilities  - the IDE for your agent",
+      "language": "Python",
+      "github": {
+        "stars": 30109,
+        "forks": 2049,
+        "openIssues": 107,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-08T22:37:55Z"
+      }
+    },
+    {
+      "repo": "emilk/egui",
+      "description": "egui: an easy-to-use immediate mode GUI in Rust that runs on both web and native",
+      "language": "Rust",
+      "github": {
+        "stars": 31045,
+        "forks": 2173,
+        "openIssues": 1033,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-08T15:38:15Z"
+      }
+    },
+    {
+      "repo": "liquidslr/system-design-notes",
+      "description": "Notes of the book System Desgin Interview - An Insider's Guide",
+      "language": null,
+      "github": {
+        "stars": 24645,
+        "forks": 4603,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-08-12T22:22:21Z"
+      }
+    },
+    {
+      "repo": "storytold/artcraft",
+      "description": "ArtCraft is an intentional crafting engine for artists, designers, and filmmakers",
+      "language": "Rust",
+      "github": {
+        "stars": 8048,
+        "forks": 1135,
+        "openIssues": 75,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-07T00:56:15Z"
+      }
+    },
+    {
+      "repo": "EpicGames/raddebugger",
+      "description": "A native, user-mode, multi-process, graphical debugger.",
+      "language": "C",
+      "github": {
+        "stars": 8121,
+        "forks": 391,
+        "openIssues": 316,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-07T20:56:17Z"
+      }
+    },
+    {
+      "repo": "OpenByteInc/QuantDinger",
+      "description": "Open-source AI Trading OS, agent trading, and vibe trading, with Jev System One integration. Research, build Python strategies, backtest, and paper/live trade across crypto, stocks, and forex. Launch your own multi-tenant trading SaaS with built-in user management, billing, payments, and settlement.",
+      "language": "Python",
+      "github": {
+        "stars": 12566,
+        "forks": 2547,
+        "openIssues": 44,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-06T21:14:39Z"
+      }
+    },
+    {
+      "repo": "go-gitea/gitea",
+      "description": "Git with a cup of tea! Painless self-hosted all-in-one software development service, including Git hosting, code review, team collaboration, package registry and CI/CD",
+      "language": "Go",
+      "github": {
+        "stars": 58373,
+        "forks": 7234,
+        "openIssues": 2347,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T01:15:36Z"
+      }
+    },
+    {
+      "repo": "reviewdog/reviewdog",
+      "description": "🐶 Automated code review tool integrated with any code analysis tools regardless of programming language",
+      "language": "Go",
+      "github": {
+        "stars": 9649,
+        "forks": 503,
+        "openIssues": 131,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-09T00:26:07Z"
+      }
+    },
+    {
+      "repo": "kargulstudio/sales-crm",
+      "description": null,
+      "language": "TypeScript",
+      "github": {
+        "stars": 1658,
+        "forks": 360,
+        "openIssues": 12,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-06T06:42:03Z"
+      }
+    }
   ]
 }
 ````

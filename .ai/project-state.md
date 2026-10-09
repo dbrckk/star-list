@@ -22,32 +22,21 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-09T01:29:30Z
+Generated: 2026-10-09T01:34:34Z
 
 ### Git
 - Branch: `main`
-- Head: `14d346cb4af0`
-- Commit date: 2026-10-09T03:29:20+02:00
-- Commit: Curate October GitHub star imports (#43)
-- Tracked files: 205
+- Head: `85cd7647dd03`
+- Commit date: 2026-10-09T03:34:22+02:00
+- Commit: Correct CRM repository owner from GitHub verification
+- Tracked files: 215
 
 ### Recently changed files
-- `catalog.json`
-- `imports/github-stars-2026-10-09.json`
-- `reports/star-import-2026-10-09-metadata-1.json`
-- `reports/star-import-2026-10-09-metadata-2.json`
-- `reports/star-import-2026-10-09-metadata-3.json`
-- `reports/star-import-2026-10-09.json`
-- `cache-health-history.json`
-- `discovery-cache.json`
-- `discovery-memory.json`
-- `health-snapshot.json`
-- `history.json`
-- `.github/workflows/validate.yml`
-- `docs/superpowers/plans/2026-09-27-star-import-pipeline.md`
-- `scripts/star_import_pipeline.py`
-- `scripts/test_star_import_pipeline.py`
-- `docs/superpowers/specs/2026-09-27-star-import-pipeline-design.md`
+- `imports/github-stars-2026-10-09-batch-2.json`
+- `reports/star-import-2026-10-09-batch-2-metadata-7.json`
+- `reports/star-import-2026-10-09-batch-2-metadata-6.json`
+- `reports/star-import-2026-10-09-batch-2-metadata-5.json`
+- `reports/star-import-2026-10-09-batch-2-metadata-4.json`
 
 ### Project signals
 - No common build descriptor detected
