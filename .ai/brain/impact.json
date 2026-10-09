@@ -1,136 +1,146 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "97c3a7efebb2ef70090dc8193dbe0f273b66101c",
-  "head": "35fc74204b47923118f35bfbf7bf7cb740fbc55a",
+  "base": "35fc74204b47923118f35bfbf7bf7cb740fbc55a",
+  "head": "dfd81d1d380691eef31a1dff864ecd066468b150",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": "RECOMMENDER.md",
+      "path": ".github/workflows/sync-github-stars.yml",
+      "status": "A"
+    },
+    {
+      "path": ".github/workflows/validate.yml",
       "status": "M"
     },
     {
-      "path": "scripts/recommend.py",
+      "path": "README.md",
       "status": "M"
     },
     {
-      "path": "scripts/test_recommend.py",
-      "status": "M"
+      "path": "docs/GITHUB_STARS_SYNC.md",
+      "status": "A"
+    },
+    {
+      "path": "schemas/star-sync-report.schema.json",
+      "status": "A"
+    },
+    {
+      "path": "scripts/sync_github_stars.py",
+      "status": "A"
+    },
+    {
+      "path": "scripts/test_sync_github_stars.py",
+      "status": "A"
     }
   ],
   "changed_source_files": [
-    "scripts/recommend.py",
-    "scripts/test_recommend.py"
+    "scripts/sync_github_stars.py",
+    "scripts/test_sync_github_stars.py"
   ],
   "impacted_files": [
-    "scripts/recommend.py",
-    "scripts/test_recommend.py"
+    "scripts/sync_github_stars.py",
+    "scripts/test_sync_github_stars.py"
   ],
   "impacted_symbols": [
     {
-      "name": "norm",
+      "name": "validate_user",
       "kind": "function",
-      "file": "scripts/recommend.py",
+      "file": "scripts/sync_github_stars.py",
+      "line": 23
+    },
+    {
+      "name": "normalize_repo",
+      "kind": "function",
+      "file": "scripts/sync_github_stars.py",
+      "line": 29
+    },
+    {
+      "name": "api_stars",
+      "kind": "function",
+      "file": "scripts/sync_github_stars.py",
       "line": 35
     },
     {
-      "name": "tokens",
+      "name": "catalog_identities",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 38
+      "file": "scripts/sync_github_stars.py",
+      "line": 120
     },
     {
-      "name": "load",
+      "name": "build_report",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 41
+      "file": "scripts/sync_github_stars.py",
+      "line": 142
     },
     {
-      "name": "infer_domains",
+      "name": "render_issue",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 46
+      "file": "scripts/sync_github_stars.py",
+      "line": 161
     },
     {
-      "name": "activity_adjustment",
+      "name": "write_json",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 49
-    },
-    {
-      "name": "trend_adjustment",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 68
-    },
-    {
-      "name": "delta",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 80
-    },
-    {
-      "name": "guidance_weight",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 93
-    },
-    {
-      "name": "score_repo",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 100
-    },
-    {
-      "name": "explain_repo",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 131
-    },
-    {
-      "name": "choose_stack",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 154
-    },
-    {
-      "name": "infer_alternatives",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 167
-    },
-    {
-      "name": "infer_complements",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 188
-    },
-    {
-      "name": "resolve_relations",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 213
-    },
-    {
-      "name": "usable",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 215
+      "file": "scripts/sync_github_stars.py",
+      "line": 211
     },
     {
       "name": "main",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 236
+      "file": "scripts/sync_github_stars.py",
+      "line": 217
     },
     {
-      "name": "run",
+      "name": "star",
       "kind": "function",
-      "file": "scripts/test_recommend.py",
-      "line": 9
+      "file": "scripts/test_sync_github_stars.py",
+      "line": 20
+    },
+    {
+      "name": "Response",
+      "kind": "class",
+      "file": "scripts/test_sync_github_stars.py",
+      "line": 34
+    },
+    {
+      "name": "__init__",
+      "kind": "function",
+      "file": "scripts/test_sync_github_stars.py",
+      "line": 35
+    },
+    {
+      "name": "__enter__",
+      "kind": "function",
+      "file": "scripts/test_sync_github_stars.py",
+      "line": 39
+    },
+    {
+      "name": "__exit__",
+      "kind": "function",
+      "file": "scripts/test_sync_github_stars.py",
+      "line": 42
+    },
+    {
+      "name": "read",
+      "kind": "function",
+      "file": "scripts/test_sync_github_stars.py",
+      "line": 45
+    },
+    {
+      "name": "two_page_opener",
+      "kind": "function",
+      "file": "scripts/test_sync_github_stars.py",
+      "line": 50
+    },
+    {
+      "name": "rate_limited",
+      "kind": "function",
+      "file": "scripts/test_sync_github_stars.py",
+      "line": 126
     }
   ],
   "selected_tests": [
-    "scripts/test_recommend.py"
+    "scripts/test_sync_github_stars.py"
   ]
 }

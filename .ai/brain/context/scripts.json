@@ -2,17 +2,7 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/recommend.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 380
-    },
-    {
-      "path": "scripts/test_recommend.py",
+      "path": "scripts/test_sync_github_stars.py",
       "reasons": [
         "changed",
         "changed-source",
@@ -20,21 +10,31 @@
         "selected-test",
         "symbol-indexed"
       ],
-      "score": 375
+      "score": 410
     },
     {
-      "path": "scripts/find_replacements.py",
+      "path": "scripts/sync_github_stars.py",
       "reasons": [
-        "dependency-neighbor"
+        "changed",
+        "changed-source",
+        "impact",
+        "symbol-indexed"
       ],
-      "score": 25
+      "score": 340
     },
     {
-      "path": "scripts/health_score.py",
+      "path": "scripts/recommend.py",
       "reasons": [
-        "dependency-neighbor"
+        "recent-project-state"
       ],
-      "score": 25
+      "score": 60
+    },
+    {
+      "path": "scripts/test_recommend.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

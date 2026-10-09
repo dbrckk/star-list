@@ -2,16 +2,16 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 18,
+    "example_count": 19,
     "rejected_count": 0,
     "terms": [
-      "50",
-      "constraints",
-      "hard",
-      "recommendation",
-      "relations",
-      "respect",
-      "stacks"
+      "51",
+      "daily",
+      "github",
+      "human",
+      "review",
+      "stars",
+      "synchronize"
     ],
     "test_count": 0,
     "useful_count": 2
@@ -19,10 +19,10 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "Respect hard constraints in recommendation relations and stacks (#50)",
+  "task": "Synchronize GitHub Stars daily for human review (#51)",
   "tests_selected": [],
   "useful": [
-    "scripts/recommend.py",
-    "scripts/test_recommend.py"
+    "scripts/sync_github_stars.py",
+    "scripts/test_sync_github_stars.py"
   ]
 }

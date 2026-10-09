@@ -6,13 +6,13 @@
     "requested_max_files": 12,
     "score_margin": 0,
     "tier": "bounded",
-    "top_score": 26
+    "top_score": 17
   },
   "cache": {
-    "fingerprint": "cd6b409179b9b099f1f115f5b4e84a7fe8eb702aabdb4788d2436a58ec2ec0d8",
+    "fingerprint": "ba094fde5ebcae3f9d3de89e6fcfa209b8de284edfeadb45ed0b6d28d84ad1c6",
     "hit": false
   },
-  "candidate_count": 4,
+  "candidate_count": 10,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -20,13 +20,28 @@
       "matched_terms": [
         "game"
       ],
-      "path": "scripts/recommend.py",
+      "path": "scripts/infer_selection_guidance.py",
       "reasons": [
-        "impact",
-        "recently-changed",
         "search-index"
       ],
-      "score": 26,
+      "score": 17,
+      "symbols": [
+        "_humanize",
+        "enrich",
+        "infer_guidance",
+        "main"
+      ]
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [
+        "game"
+      ],
+      "path": "scripts/recommend.py",
+      "reasons": [
+        "search-index"
+      ],
+      "score": 17,
       "symbols": [
         "activity_adjustment",
         "choose_stack",
@@ -53,36 +68,57 @@
       ],
       "path": "scripts/test_recommend.py",
       "reasons": [
-        "impact",
-        "recently-changed",
         "search-index"
       ],
-      "score": 26,
+      "score": 17,
       "symbols": [
         "run"
       ]
     },
     {
       "learning_score": 0,
-      "matched_terms": [
-        "game"
-      ],
-      "path": "scripts/infer_selection_guidance.py",
+      "matched_terms": [],
+      "path": "scripts/sync_github_stars.py",
       "reasons": [
-        "search-index"
+        "impact",
+        "recently-changed"
       ],
-      "score": 17,
+      "score": 9,
       "symbols": [
-        "_humanize",
-        "enrich",
-        "infer_guidance",
-        "main"
+        "api_stars",
+        "build_report",
+        "catalog_identities",
+        "main",
+        "normalize_repo",
+        "render_issue",
+        "validate_user",
+        "write_json"
       ]
     },
     {
       "learning_score": 0,
       "matched_terms": [],
-      "path": "RECOMMENDER.md",
+      "path": "scripts/test_sync_github_stars.py",
+      "reasons": [
+        "impact",
+        "recently-changed"
+      ],
+      "score": 9,
+      "symbols": [
+        "Response",
+        "__enter__",
+        "__exit__",
+        "__init__",
+        "rate_limited",
+        "read",
+        "star",
+        "two_page_opener"
+      ]
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [],
+      "path": ".github/workflows/sync-github-stars.yml",
       "reasons": [
         "recently-changed"
       ],

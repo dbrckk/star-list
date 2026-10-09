@@ -24,16 +24,23 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-09T06:23:23Z
+Generated: 2026-10-09T07:33:41Z
 
 ### Git
 - Branch: `main`
-- Head: `35fc74204b47`
-- Commit date: 2026-10-09T08:23:12+02:00
-- Commit: Respect hard constraints in recommendation relations and stacks (#50)
-- Tracked files: 247
+- Head: `dfd81d1d3806`
+- Commit date: 2026-10-09T09:33:29+02:00
+- Commit: Synchronize GitHub Stars daily for human review (#51)
+- Tracked files: 253
 
 ### Recently changed files
+- `.github/workflows/sync-github-stars.yml`
+- `.github/workflows/validate.yml`
+- `README.md`
+- `docs/GITHUB_STARS_SYNC.md`
+- `schemas/star-sync-report.schema.json`
+- `scripts/sync_github_stars.py`
+- `scripts/test_sync_github_stars.py`
 - `RECOMMENDER.md`
 - `scripts/recommend.py`
 - `scripts/test_recommend.py`
@@ -47,13 +54,6 @@ Generated: 2026-10-09T06:23:23Z
 - `reports/star-import-2026-10-09-batch-5-metadata-1.json`
 - `reports/star-import-2026-10-09-batch-5-metadata-2.json`
 - `reports/star-import-2026-10-09-batch-5-metadata-3.json`
-- `reports/star-import-2026-10-09-batch-5-metadata-4.json`
-- `reports/star-import-2026-10-09-batch-5-metadata-5.json`
-- `reports/star-import-2026-10-09-batch-5-metadata-6.json`
-- `reports/star-import-2026-10-09-batch-5-profiles.json`
-- `reports/star-import-2026-10-09-batch-5-reviewed.json`
-- `reports/star-import-2026-10-09-batch-5.json`
-- `imports/github-stars-2026-10-09-batch-4.json`
 
 ### Project signals
 - No common build descriptor detected

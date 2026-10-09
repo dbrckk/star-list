@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
-  "files_indexed": 47,
-  "symbol_count": 172,
+  "files_indexed": 49,
+  "symbol_count": 188,
   "edge_count": 7,
   "languages": {
-    "python": 47
+    "python": 49
   },
   "index_mode": "incremental",
   "reparsed_files": 2,
@@ -37,6 +37,14 @@
     {
       "file": "scripts/refresh_github_metadata.py",
       "symbols": 10
+    },
+    {
+      "file": "scripts/sync_github_stars.py",
+      "symbols": 8
+    },
+    {
+      "file": "scripts/test_sync_github_stars.py",
+      "symbols": 8
     },
     {
       "file": "scripts/filter_discovery_memory.py",

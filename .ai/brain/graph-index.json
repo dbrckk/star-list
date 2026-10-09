@@ -55,15 +55,6 @@
       "path": "scripts/star_import_pipeline.py"
     },
     {
-      "dependencies": [],
-      "dependents": [
-        "scripts/test_discovery_cache.py"
-      ],
-      "in_degree": 1,
-      "out_degree": 0,
-      "path": "scripts/test_discovery_cache_stats.py"
-    },
-    {
       "dependencies": [
         "scripts/health_score.py"
       ],
@@ -80,15 +71,6 @@
       "in_degree": 0,
       "out_degree": 1,
       "path": "scripts/backfill_licenses.py"
-    },
-    {
-      "dependencies": [
-        "scripts/test_discovery_cache_stats.py"
-      ],
-      "dependents": [],
-      "in_degree": 0,
-      "out_degree": 1,
-      "path": "scripts/test_discovery_cache.py"
     },
     {
       "dependencies": [
@@ -109,8 +91,8 @@
       "path": "scripts/test_star_import_pipeline.py"
     }
   ],
-  "edge_count": 8,
+  "edge_count": 7,
   "generated_by": "dbrckk/repo-brain-v7-graph",
-  "node_count": 11,
+  "node_count": 9,
   "schema_version": 1
 }

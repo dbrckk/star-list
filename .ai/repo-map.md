@@ -44,6 +44,7 @@ The content is organized as follows:
     license-backfill.yml
     refresh-metadata.yml
     semantic-refresh.yml
+    sync-github-stars.yml
     validate.yml
 .serena/
   project.yml
@@ -114,6 +115,7 @@ schemas/
   health-trends.schema.json
   history.schema.json
   replacement-report.schema.json
+  star-sync-report.schema.json
 scripts/
   analyze_cache_health.py
   analyze_coverage.py
@@ -133,6 +135,7 @@ scripts/
   render_discovery_issue.py
   render_health_issue.py
   star_import_pipeline.py
+  sync_github_stars.py
   test_analyze_coverage.py
   test_backfill_licenses.py
   test_cache_health_history.py
@@ -158,6 +161,7 @@ scripts/
   test_render_health_issue.py
   test_selection_guidance.py
   test_star_import_pipeline.py
+  test_sync_github_stars.py
   update_cache_health_history.py
   update_history.py
   validate_catalog.py
@@ -431,6 +435,78 @@ jobs:
       commit_changes: true
 ````
 
+## File: .github/workflows/sync-github-stars.yml
+````yaml
+name: Sync GitHub Stars
+
+on:
+  schedule:
+    - cron: "41 5 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/sync-github-stars.yml"
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: star-list-stars-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Test offline star synchronization
+        run: python scripts/test_sync_github_stars.py
+      - name: Read and compare public GitHub Stars
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/sync_github_stars.py --user dbrckk \
+            --report-json star-sync-report.json \
+            --report-md star-sync-review.md \
+            --manifest star-sync-manifest.json
+          python scripts/validate_json_contract.py \
+            schemas/star-sync-report.schema.json star-sync-report.json
+      - name: Preserve results without changing the catalog
+        uses: actions/upload-artifact@v4
+        with:
+          name: star-list-public-stars-review
+          path: |
+            star-sync-report.json
+            star-sync-review.md
+            star-sync-manifest.json
+          retention-days: 14
+      - name: Open, update or close GitHub Stars review issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          COUNT=$(python -c 'import json; print(json.load(open("star-sync-report.json"))["summary"]["new"])')
+          EXISTING=$(gh issue list --state open --limit 200 --json number,body \
+            --jq '[.[] | select(.body != null and (.body | contains("<!-- star-list-star-sync -->")))] | .[0].number // empty')
+          if [ "$COUNT" = "0" ]; then
+            if [ -n "$EXISTING" ]; then
+              gh issue close "$EXISTING" --comment "All public GitHub Stars currently match the catalog."
+            fi
+          elif [ -n "$EXISTING" ]; then
+            gh issue edit "$EXISTING" --title "GitHub Stars: $COUNT repositories awaiting review" \
+              --body-file star-sync-review.md
+          else
+            gh issue create --title "GitHub Stars: $COUNT repositories awaiting review" \
+              --body-file star-sync-review.md
+          fi
+````
+
 ## File: .github/workflows/validate.yml
 ````yaml
 name: Validate catalog
@@ -460,6 +536,8 @@ jobs:
         run: python -m compileall -q scripts
       - name: Test star import pipeline
         run: python scripts/test_star_import_pipeline.py
+      - name: Test public GitHub Stars synchronization
+        run: python scripts/test_sync_github_stars.py
       - name: Validate catalog
         run: |
           python scripts/validate_catalog.py
@@ -18985,6 +19063,133 @@ initial_prompt: |
 {"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Replacement Report","type":"object","required":["threshold","findings","repositories"],"properties":{"threshold":{"type":"number","minimum":0,"maximum":100},"findings":{"type":"integer","minimum":0},"repositories":{"type":"array","items":{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Replacement Finding","type":"object","required":["repo","health","qualityScore","domain","suggestedReplacements"],"properties":{"repo":{"type":"string","pattern":"^[^/\\s]+/[^/\\s]+$"},"health":{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Embedded Health","type":"object","required":["score","status","reasons"],"properties":{"score":{"type":["number","null"],"minimum":0,"maximum":100},"status":{"type":"string","minLength":1},"ageDays":{"type":["integer","null"],"minimum":0},"reasons":{"type":"array","items":{"type":"string"}}},"additionalProperties":false},"qualityScore":{"type":["number","null"]},"domain":{"type":["string","null"]},"suggestedReplacements":{"type":"array","items":{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Replacement Candidate","type":"object","required":["repo","replacementScore","health","qualityScore","domain"],"properties":{"repo":{"type":"string","pattern":"^[^/\\s]+/[^/\\s]+$"},"replacementScore":{"type":"number","minimum":0},"health":{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Embedded Health","type":"object","required":["score","status","reasons"],"properties":{"score":{"type":["number","null"],"minimum":0,"maximum":100},"status":{"type":"string","minLength":1},"ageDays":{"type":["integer","null"],"minimum":0},"reasons":{"type":"array","items":{"type":"string"}}},"additionalProperties":false},"qualityScore":{"type":["number","null"]},"domain":{"type":["string","null"]}},"additionalProperties":false}}},"additionalProperties":false}}},"additionalProperties":false}
 ````
 
+## File: schemas/star-sync-report.schema.json
+````json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Public GitHub Stars review report",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "username",
+    "checkedAt",
+    "source",
+    "summary",
+    "newRepositories"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "username": {
+      "type": "string",
+      "minLength": 1
+    },
+    "checkedAt": {
+      "type": "string",
+      "minLength": 10
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "starred",
+        "alreadyCataloged",
+        "new",
+        "pages",
+        "duplicateApiItems"
+      ],
+      "properties": {
+        "starred": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "alreadyCataloged": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "new": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pages": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duplicateApiItems": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "newRepositories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "repo",
+          "url",
+          "stars",
+          "language",
+          "license",
+          "archived",
+          "disabled",
+          "pushedAt"
+        ],
+        "properties": {
+          "repo": {
+            "type": "string",
+            "pattern": "^[^/]+/[^/]+$"
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://github[.]com/"
+          },
+          "stars": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "language": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "license": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "archived": {
+            "type": "boolean"
+          },
+          "disabled": {
+            "type": "boolean"
+          },
+          "pushedAt": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
+````
+
 ## File: scripts/analyze_cache_health.py
 ````python
 #!/usr/bin/env python3
@@ -20129,6 +20334,97 @@ accepted = [x["catalogEntry"] for x in report["newCandidates"] if x["status"] ==
 candidate = integrate_catalog(catalog, accepted)
 ````
 
+## File: scripts/sync_github_stars.py
+````python
+#!/usr/bin/env python3
+"""Read public GitHub Stars and prepare a review report; never edit catalog.json."""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+USER_PATTERN = re.compile(r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?\Z")
+REPO_PATTERN = re.compile(r"([A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?)/([A-Za-z0-9_.-]{1,100})\Z")
+ISSUE_MARKER = "<!-- star-list-star-sync -->"
+⋮----
+def validate_user(user)
+⋮----
+def normalize_repo(repo)
+⋮----
+def api_stars(user, token=None, max_pages=100, opener=urlopen, sleeper=time.sleep)
+⋮----
+"""Fetch all public stars. A failed/truncated page aborts the entire synchronization."""
+⋮----
+headers = {
+⋮----
+found = {}
+duplicate_items = 0
+pages = 0
+⋮----
+url = "https://api.github.com/users/" + user + "/starred?" + urlencode(
+request = Request(url, headers=headers)
+⋮----
+raw = response.read()
+link = response.headers.get("Link", "")
+⋮----
+retryable = exc.code in (429, 500, 502, 503, 504)
+⋮----
+delay = min(8.0, max(0.0, float(exc.headers.get("Retry-After", 2 ** attempt))))
+⋮----
+delay = float(2 ** attempt)
+⋮----
+hint = " (check token permissions or API rate limits)" if exc.code in (401, 403, 429) else ""
+⋮----
+payload = json.loads(raw)
+⋮----
+repo = entry.get("full_name")
+⋮----
+key = normalize_repo(repo)
+⋮----
+license_obj = entry.get("license")
+license_name = license_obj.get("spdx_id") if isinstance(license_obj, dict) else None
+⋮----
+# We generate the next URL locally; never follow an untrusted Link URL.
+has_next = bool(re.search(r'rel\s*=\s*["\x27]?next(?:["\x27]|[,;\s]|$)', link, re.IGNORECASE))
+⋮----
+def catalog_identities(path)
+⋮----
+data = json.loads(Path(path).read_text(encoding="utf-8"))
+⋮----
+rows = data.get("repositories") if isinstance(data, dict) else None
+⋮----
+known = set()
+⋮----
+identity = normalize_repo(row.get("repo"))
+⋮----
+def build_report(username, stars, catalog, pages, duplicates=0, now=None)
+⋮----
+new = [entry for entry in stars if normalize_repo(entry["repo"]) not in catalog]
+⋮----
+def render_issue(report, limit=50)
+⋮----
+user = report["username"]
+counts = report["summary"]
+entries = report["newRepositories"]
+lines = [
+⋮----
+status = "archived" if row["archived"] else ("disabled" if row["disabled"] else "review")
+stars = str(row["stars"]) if row["stars"] is not None else "?"
+language = (row["language"] or "unknown").replace("|", "/").replace("\n", " ")
+license_name = (row["license"] or "unresolved").replace("|", "/").replace("\n", " ")
+⋮----
+def write_json(path, payload)
+⋮----
+output = Path(path)
+⋮----
+def main(argv=None)
+⋮----
+parser = argparse.ArgumentParser(description="Check GitHub Stars against star-list (read-only).")
+⋮----
+args = parser.parse_args(argv)
+⋮----
+catalog = catalog_identities(args.catalog)
+⋮----
+report = build_report(args.user, stars, catalog, pages, duplicates)
+````
+
 ## File: scripts/test_analyze_coverage.py
 ````python
 #!/usr/bin/env python3
@@ -20763,6 +21059,60 @@ new_before_repeat = catalog_path.read_text()
 repeat = subprocess.run(args + ["--write"], text=True, capture_output=True)
 ⋮----
 bad = subprocess.run(args + ["--write"], text=True, capture_output=True)
+````
+
+## File: scripts/test_sync_github_stars.py
+````python
+#!/usr/bin/env python3
+"""Offline regression tests for public GitHub Stars synchronization."""
+⋮----
+SCRIPT = Path(__file__).with_name("sync_github_stars.py")
+spec = importlib.util.spec_from_file_location("sync_github_stars", SCRIPT)
+mod = importlib.util.module_from_spec(spec)
+⋮----
+def star(name, **overrides)
+⋮----
+item = {
+⋮----
+class Response
+⋮----
+def __init__(self, payload, link="")
+⋮----
+def __enter__(self)
+⋮----
+def __exit__(self, *_)
+⋮----
+def read(self)
+⋮----
+calls = []
+def two_page_opener(request, timeout=20)
+⋮----
+query = parse_qs(urlsplit(request.full_url).query)
+⋮----
+stamp = datetime(2026, 10, 9, tzinfo=timezone.utc)
+report = mod.build_report("dbrckk", items, {"known/repo"}, pages, duplicates, now=stamp)
+⋮----
+rendered = mod.render_issue(report, limit=1)
+⋮----
+# Never report the first N pages as complete when the API signals more pages.
+⋮----
+# Invalid API shapes and identities fail closed.
+⋮----
+attempts = []
+def rate_limited(request, timeout=20)
+⋮----
+# Corrupt/missing catalogs must not produce misleading lists.
+⋮----
+root = Path(tmp)
+catalog = root / "catalog.json"
+⋮----
+# CLI creates a parseable manifest usable by existing star_import_pipeline.py,
+# emits review files, and must never change the authoritative catalog.
+⋮----
+original = catalog.read_bytes()
+original_api = mod.api_stars
+⋮----
+status = mod.main([
 ````
 
 ## File: scripts/update_cache_health_history.py
@@ -53225,6 +53575,24 @@ python scripts/test_pipeline_integration.py
 ```
 
 For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
+
+## Automatic GitHub Stars synchronization
+
+A free, daily GitHub Actions workflow checks **dbrckk**'s publicly accessible starred
+repositories, compares them with the catalog, and updates a GitHub issue containing
+only repositories awaiting review. It preserves the complete API manifest and
+machine-readable report as short-lived workflow artifacts.
+
+**No catalog records are added automatically.** The existing reviewed-metadata
+import pipeline below remains the only admission path.
+
+Run manually from **Actions → Sync GitHub Stars → Run workflow**, or locally:
+
+```bash
+python scripts/sync_github_stars.py --user dbrckk --report-json star-sync-report.json --report-md star-sync-review.md --manifest star-sync-manifest.json
+```
+
+See [synchronization operations and limitations](docs/GITHUB_STARS_SYNC.md).
 
 ## Import GitHub Star screenshots
 

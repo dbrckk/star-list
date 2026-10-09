@@ -1,14 +1,14 @@
 # CI status
 
-Summary: 6 success / 0 failure / 1 active
+Summary: 4 success / 0 failure / 2 active
 
-- Validate catalog: in_progress / pending (35fc7420)
-- Validate catalog: completed / success (31932594)
-- Validate catalog: completed / success (31932594)
-- Validate catalog: completed / cancelled (170239c9)
-- Validate catalog: completed / success (fcb9aea8)
-- Validate catalog: completed / success (73116ab9)
-- Validate catalog: completed / success (97c3a7ef)
-- Validate catalog: completed / success (eeeda6b1)
+- Validate catalog: in_progress / pending (dfd81d1d)
+- Sync GitHub Stars: in_progress / pending (dfd81d1d)
+- Validate catalog: completed / success (bfe7d00e)
+- Validate catalog: completed / success (bfe7d00e)
+- Validate catalog: completed / cancelled (87e965ba)
+- Validate catalog: completed / cancelled (e75fabc2)
+- Validate catalog: completed / success (70b4a258)
+- Validate catalog: completed / success (93f929b2)
 
 > Generated summary only; inspect GitHub Actions for full logs when needed.

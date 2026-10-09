@@ -1,17 +1,7 @@
 {
   "files": [
     {
-      "path": "scripts/recommend.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 380
-    },
-    {
-      "path": "scripts/test_recommend.py",
+      "path": "scripts/test_sync_github_stars.py",
       "reasons": [
         "changed",
         "changed-source",
@@ -19,14 +9,59 @@
         "selected-test",
         "symbol-indexed"
       ],
-      "score": 375
+      "score": 410
     },
     {
-      "path": "RECOMMENDER.md",
+      "path": "scripts/sync_github_stars.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 340
+    },
+    {
+      "path": ".github/workflows/sync-github-stars.yml",
       "reasons": [
         "changed"
       ],
       "score": 100
+    },
+    {
+      "path": ".github/workflows/validate.yml",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "README.md",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "docs/GITHUB_STARS_SYNC.md",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "schemas/star-sync-report.schema.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "RECOMMENDER.md",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     },
     {
       "path": "catalog.json",
@@ -51,27 +86,6 @@
     },
     {
       "path": "imports/github-stars-2026-10-09-batch-6.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "reports/star-import-2026-10-09-batch-4-metadata-1.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "reports/star-import-2026-10-09-batch-4-metadata-2.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "reports/star-import-2026-10-09-batch-4-metadata-3.json",
       "reasons": [
         "recent-project-state"
       ],
@@ -169,18 +183,18 @@
       "score": 60
     },
     {
-      "path": "scripts/find_replacements.py",
+      "path": "scripts/recommend.py",
       "reasons": [
-        "dependency-neighbor"
+        "recent-project-state"
       ],
-      "score": 25
+      "score": 60
     },
     {
-      "path": "scripts/health_score.py",
+      "path": "scripts/test_recommend.py",
       "reasons": [
-        "dependency-neighbor"
+        "recent-project-state"
       ],
-      "score": 25
+      "score": 60
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

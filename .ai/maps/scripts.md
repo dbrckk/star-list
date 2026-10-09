@@ -56,6 +56,7 @@ refresh_github_metadata.py
 render_discovery_issue.py
 render_health_issue.py
 star_import_pipeline.py
+sync_github_stars.py
 test_analyze_coverage.py
 test_backfill_licenses.py
 test_cache_health_history.py
@@ -81,6 +82,7 @@ test_render_discovery_issue.py
 test_render_health_issue.py
 test_selection_guidance.py
 test_star_import_pipeline.py
+test_sync_github_stars.py
 update_cache_health_history.py
 update_history.py
 validate_catalog.py
@@ -1233,6 +1235,97 @@ accepted = [x["catalogEntry"] for x in report["newCandidates"] if x["status"] ==
 candidate = integrate_catalog(catalog, accepted)
 ```
 
+## File: sync_github_stars.py
+```python
+#!/usr/bin/env python3
+"""Read public GitHub Stars and prepare a review report; never edit catalog.json."""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+USER_PATTERN = re.compile(r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?\Z")
+REPO_PATTERN = re.compile(r"([A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?)/([A-Za-z0-9_.-]{1,100})\Z")
+ISSUE_MARKER = "<!-- star-list-star-sync -->"
+⋮----
+def validate_user(user)
+⋮----
+def normalize_repo(repo)
+⋮----
+def api_stars(user, token=None, max_pages=100, opener=urlopen, sleeper=time.sleep)
+⋮----
+"""Fetch all public stars. A failed/truncated page aborts the entire synchronization."""
+⋮----
+headers = {
+⋮----
+found = {}
+duplicate_items = 0
+pages = 0
+⋮----
+url = "https://api.github.com/users/" + user + "/starred?" + urlencode(
+request = Request(url, headers=headers)
+⋮----
+raw = response.read()
+link = response.headers.get("Link", "")
+⋮----
+retryable = exc.code in (429, 500, 502, 503, 504)
+⋮----
+delay = min(8.0, max(0.0, float(exc.headers.get("Retry-After", 2 ** attempt))))
+⋮----
+delay = float(2 ** attempt)
+⋮----
+hint = " (check token permissions or API rate limits)" if exc.code in (401, 403, 429) else ""
+⋮----
+payload = json.loads(raw)
+⋮----
+repo = entry.get("full_name")
+⋮----
+key = normalize_repo(repo)
+⋮----
+license_obj = entry.get("license")
+license_name = license_obj.get("spdx_id") if isinstance(license_obj, dict) else None
+⋮----
+# We generate the next URL locally; never follow an untrusted Link URL.
+has_next = bool(re.search(r'rel\s*=\s*["\x27]?next(?:["\x27]|[,;\s]|$)', link, re.IGNORECASE))
+⋮----
+def catalog_identities(path)
+⋮----
+data = json.loads(Path(path).read_text(encoding="utf-8"))
+⋮----
+rows = data.get("repositories") if isinstance(data, dict) else None
+⋮----
+known = set()
+⋮----
+identity = normalize_repo(row.get("repo"))
+⋮----
+def build_report(username, stars, catalog, pages, duplicates=0, now=None)
+⋮----
+new = [entry for entry in stars if normalize_repo(entry["repo"]) not in catalog]
+⋮----
+def render_issue(report, limit=50)
+⋮----
+user = report["username"]
+counts = report["summary"]
+entries = report["newRepositories"]
+lines = [
+⋮----
+status = "archived" if row["archived"] else ("disabled" if row["disabled"] else "review")
+stars = str(row["stars"]) if row["stars"] is not None else "?"
+language = (row["language"] or "unknown").replace("|", "/").replace("\n", " ")
+license_name = (row["license"] or "unresolved").replace("|", "/").replace("\n", " ")
+⋮----
+def write_json(path, payload)
+⋮----
+output = Path(path)
+⋮----
+def main(argv=None)
+⋮----
+parser = argparse.ArgumentParser(description="Check GitHub Stars against star-list (read-only).")
+⋮----
+args = parser.parse_args(argv)
+⋮----
+catalog = catalog_identities(args.catalog)
+⋮----
+report = build_report(args.user, stars, catalog, pages, duplicates)
+```
+
 ## File: test_analyze_coverage.py
 ```python
 #!/usr/bin/env python3
@@ -1867,6 +1960,60 @@ new_before_repeat = catalog_path.read_text()
 repeat = subprocess.run(args + ["--write"], text=True, capture_output=True)
 ⋮----
 bad = subprocess.run(args + ["--write"], text=True, capture_output=True)
+```
+
+## File: test_sync_github_stars.py
+```python
+#!/usr/bin/env python3
+"""Offline regression tests for public GitHub Stars synchronization."""
+⋮----
+SCRIPT = Path(__file__).with_name("sync_github_stars.py")
+spec = importlib.util.spec_from_file_location("sync_github_stars", SCRIPT)
+mod = importlib.util.module_from_spec(spec)
+⋮----
+def star(name, **overrides)
+⋮----
+item = {
+⋮----
+class Response
+⋮----
+def __init__(self, payload, link="")
+⋮----
+def __enter__(self)
+⋮----
+def __exit__(self, *_)
+⋮----
+def read(self)
+⋮----
+calls = []
+def two_page_opener(request, timeout=20)
+⋮----
+query = parse_qs(urlsplit(request.full_url).query)
+⋮----
+stamp = datetime(2026, 10, 9, tzinfo=timezone.utc)
+report = mod.build_report("dbrckk", items, {"known/repo"}, pages, duplicates, now=stamp)
+⋮----
+rendered = mod.render_issue(report, limit=1)
+⋮----
+# Never report the first N pages as complete when the API signals more pages.
+⋮----
+# Invalid API shapes and identities fail closed.
+⋮----
+attempts = []
+def rate_limited(request, timeout=20)
+⋮----
+# Corrupt/missing catalogs must not produce misleading lists.
+⋮----
+root = Path(tmp)
+catalog = root / "catalog.json"
+⋮----
+# CLI creates a parseable manifest usable by existing star_import_pipeline.py,
+# emits review files, and must never change the authoritative catalog.
+⋮----
+original = catalog.read_bytes()
+original_api = mod.api_stars
+⋮----
+status = mod.main([
 ```
 
 ## File: update_cache_health_history.py

@@ -5,99 +5,157 @@
   "semantic": false,
   "note": "Dependencies are known symbol names lexically present inside the symbol's AST/source range.",
   "symbols": {
-    "norm": {
+    "validate_user": {
       "source": {
-        "file": "scripts/recommend.py",
-        "start": 35,
-        "end": 36
+        "file": "scripts/sync_github_stars.py",
+        "start": 23,
+        "end": 26
       },
       "symbol_dependencies": [],
       "dependency_count": 0
     },
-    "tokens": {
+    "normalize_repo": {
       "source": {
-        "file": "scripts/recommend.py",
-        "start": 38,
-        "end": 39
+        "file": "scripts/sync_github_stars.py",
+        "start": 29,
+        "end": 32
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "api_stars": {
+      "source": {
+        "file": "scripts/sync_github_stars.py",
+        "start": 35,
+        "end": 117
       },
       "symbol_dependencies": [
         {
-          "symbol": "norm",
+          "symbol": "normalize_repo",
           "definitions": [
             {
-              "file": "scripts/recommend.py",
+              "file": "scripts/sync_github_stars.py",
+              "line": 29,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "validate_user",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 23,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "catalog_identities": {
+      "source": {
+        "file": "scripts/sync_github_stars.py",
+        "start": 120,
+        "end": 139
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "normalize_repo",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 29,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "build_report": {
+      "source": {
+        "file": "scripts/sync_github_stars.py",
+        "start": 142,
+        "end": 158
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "normalize_repo",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 29,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "validate_user",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 23,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "render_issue": {
+      "source": {
+        "file": "scripts/sync_github_stars.py",
+        "start": 161,
+        "end": 208
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "write_json": {
+      "source": {
+        "file": "scripts/sync_github_stars.py",
+        "start": 211,
+        "end": 214
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "main": {
+      "source": {
+        "file": "scripts/sync_github_stars.py",
+        "start": 217,
+        "end": 255
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "api_stars",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
               "line": 35,
               "kind": "function",
               "language": "python"
             }
           ],
           "relation": "same_file"
-        }
-      ],
-      "dependency_count": 1
-    },
-    "load": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 41,
-        "end": 44
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "infer_domains": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 46,
-        "end": 47
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "activity_adjustment": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 49,
-        "end": 66
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "trend_adjustment": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 68,
-        "end": 91
-      },
-      "symbol_dependencies": [
+        },
         {
-          "symbol": "delta",
+          "symbol": "build_report",
           "definitions": [
             {
-              "file": "scripts/recommend.py",
-              "line": 80,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 1
-    },
-    "delta": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 80,
-        "end": 200
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "activity_adjustment",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 49,
+              "file": "scripts/sync_github_stars.py",
+              "line": 142,
               "kind": "function",
               "language": "python"
             }
@@ -105,11 +163,11 @@
           "relation": "same_file"
         },
         {
-          "symbol": "choose_stack",
+          "symbol": "catalog_identities",
           "definitions": [
             {
-              "file": "scripts/recommend.py",
-              "line": 154,
+              "file": "scripts/sync_github_stars.py",
+              "line": 120,
               "kind": "function",
               "language": "python"
             }
@@ -117,11 +175,11 @@
           "relation": "same_file"
         },
         {
-          "symbol": "explain_repo",
+          "symbol": "render_issue",
           "definitions": [
             {
-              "file": "scripts/recommend.py",
-              "line": 131,
+              "file": "scripts/sync_github_stars.py",
+              "line": 161,
               "kind": "function",
               "language": "python"
             }
@@ -129,174 +187,11 @@
           "relation": "same_file"
         },
         {
-          "symbol": "guidance_weight",
+          "symbol": "write_json",
           "definitions": [
             {
-              "file": "scripts/recommend.py",
-              "line": 93,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "health_score",
-          "definitions": [
-            {
-              "file": "scripts/health_score.py",
-              "line": 27,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "infer_alternatives",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 167,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "infer_complements",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 188,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "replacement_score",
-          "definitions": [
-            {
-              "file": "scripts/find_replacements.py",
-              "line": 14,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "score_repo",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 100,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "tokens",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 38,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "trend_adjustment",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 68,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 11
-    },
-    "guidance_weight": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 93,
-        "end": 97
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "score_repo": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 100,
-        "end": 129
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "activity_adjustment",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 49,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "guidance_weight",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 93,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "health_score",
-          "definitions": [
-            {
-              "file": "scripts/health_score.py",
-              "line": 27,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "tokens",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 38,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "trend_adjustment",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 68,
+              "file": "scripts/sync_github_stars.py",
+              "line": 211,
               "kind": "function",
               "language": "python"
             }
@@ -306,420 +201,176 @@
       ],
       "dependency_count": 5
     },
-    "explain_repo": {
+    "star": {
       "source": {
-        "file": "scripts/recommend.py",
-        "start": 131,
-        "end": 152
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "activity_adjustment",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 49,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "tokens",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 38,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "trend_adjustment",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 68,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 3
-    },
-    "choose_stack": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 154,
-        "end": 164
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "tokens",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 38,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 1
-    },
-    "infer_alternatives": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 167,
-        "end": 185
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "replacement_score",
-          "definitions": [
-            {
-              "file": "scripts/find_replacements.py",
-              "line": 14,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        }
-      ],
-      "dependency_count": 1
-    },
-    "infer_complements": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 188,
-        "end": 210
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "health_score",
-          "definitions": [
-            {
-              "file": "scripts/health_score.py",
-              "line": 27,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        }
-      ],
-      "dependency_count": 1
-    },
-    "resolve_relations": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 213,
-        "end": 234
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "infer_alternatives",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 167,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "infer_complements",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 188,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "usable",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 215,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 3
-    },
-    "usable": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 215,
-        "end": 335
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "choose_stack",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 154,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "explain_repo",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 131,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "health_score",
-          "definitions": [
-            {
-              "file": "scripts/health_score.py",
-              "line": 27,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "infer_alternatives",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 167,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "infer_complements",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 188,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "infer_domains",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 46,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "load",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 41,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "main",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 236,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "resolve_relations",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 213,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "score_repo",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 100,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "tokens",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 38,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 11
-    },
-    "main": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 236,
-        "end": 340
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "choose_stack",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 154,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "explain_repo",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 131,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "health_score",
-          "definitions": [
-            {
-              "file": "scripts/health_score.py",
-              "line": 27,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "infer_domains",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 46,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "load",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 41,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "resolve_relations",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 213,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "score_repo",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 100,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "tokens",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 38,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 8
-    },
-    "run": {
-      "source": {
-        "file": "scripts/test_recommend.py",
-        "start": 9,
-        "end": 11
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 20,
+        "end": 31
       },
       "symbol_dependencies": [],
       "dependency_count": 0
+    },
+    "Response": {
+      "source": {
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 34,
+        "end": 46
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "__enter__",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 39,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "__exit__",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 42,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "__init__",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 35,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "read",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 45,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 4
+    },
+    "__init__": {
+      "source": {
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 35,
+        "end": 37
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "__enter__": {
+      "source": {
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 39,
+        "end": 40
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "__exit__": {
+      "source": {
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 42,
+        "end": 43
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "read": {
+      "source": {
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 45,
+        "end": 46
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "two_page_opener": {
+      "source": {
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 50,
+        "end": 63
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "Response",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 34,
+              "kind": "class",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "star",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 20,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "rate_limited": {
+      "source": {
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 126,
+        "end": 130
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "Response",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 34,
+              "kind": "class",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "star",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 20,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
     }
   }
 }

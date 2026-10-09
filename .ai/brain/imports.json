@@ -130,6 +130,20 @@
       "tempfile",
       "urllib.parse"
     ],
+    "scripts/sync_github_stars.py": [
+      "__future__",
+      "argparse",
+      "datetime",
+      "json",
+      "os",
+      "pathlib",
+      "re",
+      "sys",
+      "time",
+      "urllib.error",
+      "urllib.parse",
+      "urllib.request"
+    ],
     "scripts/test_analyze_coverage.py": [
       "importlib.util",
       "pathlib"
@@ -254,6 +268,18 @@
       "subprocess",
       "sys",
       "tempfile"
+    ],
+    "scripts/test_sync_github_stars.py": [
+      "contextlib",
+      "datetime",
+      "importlib.util",
+      "io",
+      "json",
+      "pathlib",
+      "sys",
+      "tempfile",
+      "urllib.error",
+      "urllib.parse"
     ],
     "scripts/update_cache_health_history.py": [
       "argparse",

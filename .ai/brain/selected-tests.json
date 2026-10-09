@@ -2,15 +2,15 @@
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
   "selected_test_files": [
-    "scripts/test_recommend.py"
+    "scripts/test_sync_github_stars.py"
   ],
   "commands": [
     {
-      "command": "python -m pytest scripts/test_recommend.py",
+      "command": "python -m pytest scripts/test_sync_github_stars.py",
       "purpose": "targeted tests",
       "confidence": "high",
       "files": [
-        "scripts/test_recommend.py"
+        "scripts/test_sync_github_stars.py"
       ]
     }
   ],

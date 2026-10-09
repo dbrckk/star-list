@@ -323,6 +323,24 @@
         "scripts/recommend.py",
         "scripts/test_recommend.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "Synchronize GitHub Stars daily for human review (#51)",
+      "terms": [
+        "51",
+        "daily",
+        "github",
+        "human",
+        "review",
+        "stars",
+        "synchronize"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/sync_github_stars.py",
+        "scripts/test_sync_github_stars.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -409,6 +427,10 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "51": {
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -465,6 +487,10 @@
     "curated": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "daily": {
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
     },
     "dbrckk/improve/v1.1-hardening": {
       "scripts/discover_candidates.py": 4,
@@ -534,8 +560,10 @@
     "github": {
       "scripts/refresh_github_metadata.py": 4,
       "scripts/star_import_pipeline.py": 8,
+      "scripts/sync_github_stars.py": 4,
       "scripts/test_refresh_github_metadata.py": 4,
-      "scripts/test_star_import_pipeline.py": 8
+      "scripts/test_star_import_pipeline.py": 8,
+      "scripts/test_sync_github_stars.py": 4
     },
     "guidance": {
       "scripts/infer_selection_guidance.py": 4,
@@ -547,6 +575,10 @@
     "hard": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "human": {
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
     },
     "identity": {
       "scripts/audit_catalog_quality.py": 4,
@@ -684,6 +716,10 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "review": {
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
+    },
     "reviewed": {
       "scripts/star_import_pipeline.py": 4,
       "scripts/test_star_import_pipeline.py": 4
@@ -717,8 +753,16 @@
       "scripts/star_import_pipeline.py": 8,
       "scripts/test_star_import_pipeline.py": 8
     },
+    "stars": {
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
+    },
     "status": {
       "scripts/validate_catalog.py": 4
+    },
+    "synchronize": {
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
     },
     "track": {
       "scripts/audit_catalog_quality.py": 4,

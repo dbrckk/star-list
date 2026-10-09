@@ -5,757 +5,339 @@
   "semantic": false,
   "note": "Occurrences are lexical word matches; verify source/LSP/compiler data before relying on them.",
   "symbols": {
-    "norm": {
+    "validate_user": {
       "definition": {
-        "file": "scripts/recommend.py",
+        "file": "scripts/sync_github_stars.py",
+        "line": 23,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 23,
+          "preview": "def validate_user(user):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 37,
+          "preview": "validate_user(user)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 147,
+          "preview": "\"username\": validate_user(username),",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 3
+    },
+    "normalize_repo": {
+      "definition": {
+        "file": "scripts/sync_github_stars.py",
+        "line": 29,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 29,
+          "preview": "def normalize_repo(repo):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 91,
+          "preview": "key = normalize_repo(repo)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 133,
+          "preview": "identity = normalize_repo(row.get(\"repo\"))",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 143,
+          "preview": "new = [entry for entry in stars if normalize_repo(entry[\"repo\"]) not in catalog]",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 95,
+          "preview": "mod.normalize_repo(\"not-a-name\")",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 5
+    },
+    "api_stars": {
+      "definition": {
+        "file": "scripts/sync_github_stars.py",
         "line": 35,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/recommend.py",
+          "file": "scripts/sync_github_stars.py",
           "line": 35,
-          "preview": "def norm(s):",
+          "preview": "def api_stars(user, token=None, max_pages=100, opener=urlopen, sleeper=time.sleep):",
           "definition_candidate": true
         },
         {
-          "file": "scripts/recommend.py",
-          "line": 39,
-          "preview": "return {t for t in norm(s).split() if len(t) > 1}",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "tokens": {
-      "definition": {
-        "file": "scripts/recommend.py",
-        "line": 38,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/recommend.py",
-          "line": 38,
-          "preview": "def tokens(s):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 104,
-          "preview": "rtoks = tokens(\" \".join([",
+          "file": "scripts/sync_github_stars.py",
+          "line": 231,
+          "preview": "stars, pages, duplicates = api_stars(",
           "definition_candidate": false
         },
         {
-          "file": "scripts/recommend.py",
-          "line": 113,
-          "preview": "best_for = tokens(\" \".join(r.get(\"bestFor\", [])))",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 66,
+          "preview": "items, pages, duplicates = mod.api_stars(",
           "definition_candidate": false
         },
         {
-          "file": "scripts/recommend.py",
-          "line": 119,
-          "preview": "avoid = tokens(\" \".join(r.get(\"avoidWhen\", [])))",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 90,
+          "preview": "mod.api_stars(\"bad/user\", opener=two_page_opener)",
           "definition_candidate": false
         },
         {
-          "file": "scripts/recommend.py",
-          "line": 133,
-          "preview": "best = tokens(\" \".join(r.get(\"bestFor\", [])))",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 102,
+          "preview": "mod.api_stars(\"dbrckk\", opener=lambda _req, timeout=20: Response(",
           "definition_candidate": false
         },
         {
-          "file": "scripts/recommend.py",
-          "line": 140,
-          "preview": "matched_terms = sorted(qtokens & (tokens(r.get(\"repo\", \"\")) | caps | best))",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 112,
+          "preview": "mod.api_stars(\"dbrckk\", opener=lambda _req, timeout=20: Response(payload))",
           "definition_candidate": false
         },
         {
-          "file": "scripts/recommend.py",
-          "line": 160,
-          "preview": "stoks = tokens(st.get(\"name\", \"\") + \" \" + st.get(\"goal\", \"\") + \" \" + \" \".join(st.get(\"notes\", [])))",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 118,
+          "preview": "mod.api_stars(\"dbrckk\", opener=lambda _req, timeout=20: Response(",
           "definition_candidate": false
         },
         {
-          "file": "scripts/recommend.py",
-          "line": 261,
-          "preview": "qtokens = tokens(args.query)",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 131,
+          "preview": "assert len(mod.api_stars(\"dbrckk\", opener=rate_limited, sleeper=lambda _: None)[0]) == 1",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 62,
-          "preview": "qtokens = mod.tokens(\"specialized phrase\")",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 136,
+          "preview": "mod.api_stars(\"dbrckk\", opener=lambda request, timeout=20: (",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 95,
-          "preview": "assert mod.infer_domains(mod.tokens(\"Roblox Studio Luau\")) == {\"game_dev\"}",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 172,
+          "preview": "original_api = mod.api_stars",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 96,
-          "preview": "assert mod.infer_domains(mod.tokens(\"Godot shaders\")) == {\"game_dev\"}",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 174,
+          "preview": "mod.api_stars = lambda *_args, **_kwargs: (items, 2, 1)",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 97,
-          "preview": "assert mod.choose_stack(stacks, mod.tokens(\"backend\"), {\"backend\"}, {\"x/source\"}) is None",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 186,
+          "preview": "mod.api_stars = lambda *_args, **_kwargs: (_ for _ in ()).throw(RuntimeError(\"offline\"))",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 98,
-          "preview": "assert mod.choose_stack(stacks, mod.tokens(\"backend\"), {\"backend\"}, {\"x/source\", \"x/stack-tool\"})[\"name\"] == \"Backend Stack\"",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 195,
+          "preview": "mod.api_stars = original_api",
           "definition_candidate": false
         }
       ],
       "occurrence_count": 13
     },
-    "load": {
+    "catalog_identities": {
       "definition": {
-        "file": "scripts/recommend.py",
-        "line": 41,
+        "file": "scripts/sync_github_stars.py",
+        "line": 120,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/discover_candidates.py",
-          "line": 149,
-          "preview": "data=json.load(res)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/evaluate_candidates.py",
-          "line": 159,
-          "preview": "if issue_ratio>0.20: score-=5; reasons.append(\"high-open-issue-load\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/evaluate_candidates.py",
-          "line": 160,
-          "preview": "elif issue_ratio<0.02: score+=2; reasons.append(\"controlled-issue-load\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 41,
-          "preview": "def load():",
+          "file": "scripts/sync_github_stars.py",
+          "line": 120,
+          "preview": "def catalog_identities(path):",
           "definition_candidate": true
         },
         {
-          "file": "scripts/recommend.py",
-          "line": 259,
-          "preview": "repos, stacks = load()",
+          "file": "scripts/sync_github_stars.py",
+          "line": 230,
+          "preview": "catalog = catalog_identities(args.catalog)",
           "definition_candidate": false
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 39,
-          "preview": "return json.load(res)",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 148,
+          "preview": "assert mod.catalog_identities(catalog) == {\"known/repo\"}",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_degraded_inputs.py",
-          "line": 12,
-          "preview": "def load(name):",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 151,
+          "preview": "mod.catalog_identities(catalog)",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_degraded_inputs.py",
-          "line": 20,
-          "preview": "evaluation=load(\"evaluate_candidates\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_degraded_inputs.py",
-          "line": 21,
-          "preview": "health=load(\"health_score\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_degraded_inputs.py",
-          "line": 22,
-          "preview": "memory=load(\"filter_discovery_memory\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_degraded_inputs.py",
-          "line": 23,
-          "preview": "history=load(\"update_history\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_degraded_inputs.py",
-          "line": 24,
-          "preview": "cache_history=load(\"update_cache_health_history\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_evaluate_candidates.py",
-          "line": 20,
-          "preview": "assert \"controlled-issue-load\" in a[\"reasons\"] and \"community-discussions\" in a[\"reasons\"]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_pipeline_integration.py",
-          "line": 13,
-          "preview": "def load(name):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_pipeline_integration.py",
-          "line": 21,
-          "preview": "coverage=load(\"analyze_coverage\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_pipeline_integration.py",
-          "line": 22,
-          "preview": "watchlists=load(\"build_discovery_watchlist\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_pipeline_integration.py",
-          "line": 23,
-          "preview": "discovery=load(\"discover_candidates\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_pipeline_integration.py",
-          "line": 24,
-          "preview": "evaluation=load(\"evaluate_candidates\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_pipeline_integration.py",
-          "line": 25,
-          "preview": "memory=load(\"filter_discovery_memory\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_pipeline_integration.py",
-          "line": 26,
-          "preview": "renderer=load(\"render_discovery_issue\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 127,
-          "preview": "catalog_index = {entry[\"repo\"]: entry for entry in mod.load()[0]}",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 21
-    },
-    "infer_domains": {
-      "definition": {
-        "file": "scripts/recommend.py",
-        "line": 46,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/recommend.py",
-          "line": 46,
-          "preview": "def infer_domains(qtokens):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 262,
-          "preview": "domains = set(args.domain) or infer_domains(qtokens)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 95,
-          "preview": "assert mod.infer_domains(mod.tokens(\"Roblox Studio Luau\")) == {\"game_dev\"}",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 96,
-          "preview": "assert mod.infer_domains(mod.tokens(\"Godot shaders\")) == {\"game_dev\"}",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 4
-    },
-    "activity_adjustment": {
-      "definition": {
-        "file": "scripts/recommend.py",
-        "line": 49,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/recommend.py",
-          "line": 49,
-          "preview": "def activity_adjustment(r):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 122,
-          "preview": "activity, _ = activity_adjustment(r)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 147,
-          "preview": "_, activity_reason = activity_adjustment(r)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 47,
-          "preview": "assert mod.activity_adjustment({\"github\":{\"archived\":True}})[0] == -30.0",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 48,
-          "preview": "assert mod.activity_adjustment({\"github\":{\"disabled\":True}})[0] == -30.0",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 49,
-          "preview": "assert mod.activity_adjustment({}) == (0.0, None)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 6
-    },
-    "trend_adjustment": {
-      "definition": {
-        "file": "scripts/recommend.py",
-        "line": 68,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/recommend.py",
-          "line": 68,
-          "preview": "def trend_adjustment(repo_name):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 127,
-          "preview": "trend, _ = trend_adjustment(r[\"repo\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 150,
-          "preview": "_, trend_reason = trend_adjustment(r[\"repo\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 50,
-          "preview": "assert mod.trend_adjustment(\"definitely/not-in-history\")[0] == 0.0",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 51,
-          "preview": "assert -6.0 <= mod.trend_adjustment(\"definitely/not-in-history\")[0] <= 6.0",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 157,
+          "preview": "mod.catalog_identities(catalog)",
           "definition_candidate": false
         }
       ],
       "occurrence_count": 5
     },
-    "delta": {
+    "build_report": {
       "definition": {
-        "file": "scripts/recommend.py",
-        "line": 80,
+        "file": "scripts/sync_github_stars.py",
+        "line": 142,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/detect_health_drift.py",
-          "line": 18,
-          "preview": "delta = round(b-a, 1)",
+          "file": "scripts/star_import_pipeline.py",
+          "line": 141,
+          "preview": "def build_report(partition: dict, malformed: list[dict], import_files: list[str],",
           "definition_candidate": false
         },
         {
-          "file": "scripts/detect_health_drift.py",
-          "line": 20,
-          "preview": "if delta <= -abs(drop) or (status_changed and now.get(\"status\") in {\"weak\",\"inactive\"}):",
+          "file": "scripts/star_import_pipeline.py",
+          "line": 242,
+          "preview": "report = build_report(partition, malformed, [str(p) for p in paths],",
           "definition_candidate": false
         },
         {
-          "file": "scripts/detect_health_drift.py",
-          "line": 21,
-          "preview": "findings.append({\"repo\":repo,\"previousScore\":a,\"currentScore\":b,\"delta\":delta,",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/detect_health_drift.py",
-          "line": 23,
-          "preview": "findings.sort(key=lambda x:(x[\"delta\"], x[\"repo\"].lower()))",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/filter_discovery_memory.py",
-          "line": 73,
-          "preview": "ap.add_argument(\"--output\",type=Path); ap.add_argument(\"--write-memory\",action=\"store_true\"); ap.add_argument(\"--score-delta\",type=float,default=5.0)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 80,
-          "preview": "def delta(k):",
+          "file": "scripts/sync_github_stars.py",
+          "line": 142,
+          "preview": "def build_report(username, stars, catalog, pages, duplicates=0, now=None):",
           "definition_candidate": true
         },
         {
-          "file": "scripts/recommend.py",
-          "line": 83,
-          "preview": "hd,sd,fd=delta(\"health\"),delta(\"stars\"),delta(\"forks\")",
+          "file": "scripts/sync_github_stars.py",
+          "line": 234,
+          "preview": "report = build_report(args.user, stars, catalog, pages, duplicates)",
           "definition_candidate": false
         },
         {
-          "file": "scripts/render_health_issue.py",
-          "line": 21,
-          "preview": "lines.append(f\"| {x['repo']} | {x['previousScore']} | {x['currentScore']} | {x['delta']} | {x.get('previousStatus')} -> {x.get('currentStatus')} |\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_health_drift.py",
-          "line": 12,
-          "preview": "assert rows[0][\"delta\"]==-12",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_render_health_issue.py",
+          "file": "scripts/test_star_import_pipeline.py",
           "line": 9,
-          "preview": "drift={\"findings\":1,\"repositories\":[{\"repo\":\"a/x\",\"previousScore\":90,\"currentScore\":78,\"delta\":-12,\"previousStatus\":\"healthy\",\"currentStatus\":\"healthy\"}]}",
+          "preview": "build_report,",
           "definition_candidate": false
         },
         {
-          "file": "scripts/update_cache_health_history.py",
-          "line": 238,
-          "preview": "f\"- API call avoidance delta: {trend['apiCallAvoidanceDelta']:+.1%}\",",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/update_cache_health_history.py",
-          "line": 239,
-          "preview": "f\"- Network fetch delta: {trend['networkFetchDelta']:+.1%}\",",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/update_cache_health_history.py",
-          "line": 240,
-          "preview": "f\"- Body reuse delta: {trend.get('bodyReuseDelta',0):+.1%}\",",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/update_history.py",
-          "line": 62,
-          "preview": "def delta(k):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/update_history.py",
-          "line": 65,
-          "preview": "hd,sd,fd=delta(\"health\"),delta(\"stars\"),delta(\"forks\")",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 15
-    },
-    "guidance_weight": {
-      "definition": {
-        "file": "scripts/recommend.py",
-        "line": 93,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/recommend.py",
-          "line": 93,
-          "preview": "def guidance_weight(r):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 115,
-          "preview": "guidance = guidance_weight(r)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 52,
-          "preview": "assert mod.guidance_weight({\"guidanceSource\":\"curated\"}) == 1.0",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 53,
-          "preview": "assert mod.guidance_weight({\"guidanceSource\":\"inferred\"}) == 0.55",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 54,
-          "preview": "assert mod.guidance_weight({\"guidanceSource\":\"inferred\", \"tier\":\"specialized\"}) == 0.35",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
+          "file": "scripts/test_star_import_pipeline.py",
           "line": 55,
-          "preview": "assert mod.guidance_weight({}) == 1.0",
+          "preview": "report = build_report(partition, malformed, [str(p1), str(p2)])",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_star_import_pipeline.py",
+          "line": 86,
+          "preview": "review_report = build_report(partition, malformed, [\"batch\"], {candidate[\"key\"]: reviewed}, [\"metadata\"])",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 74,
+          "preview": "report = mod.build_report(\"dbrckk\", items, {\"known/repo\"}, pages, duplicates, now=stamp)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 85,
+          "preview": "mod.build_report(\"dbrckk\", items, {x[\"repo\"].lower() for x in items}, pages)",
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 6
+      "occurrence_count": 9
     },
-    "score_repo": {
+    "render_issue": {
       "definition": {
-        "file": "scripts/recommend.py",
-        "line": 100,
+        "file": "scripts/sync_github_stars.py",
+        "line": 161,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/recommend.py",
-          "line": 100,
-          "preview": "def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps):",
+          "file": "scripts/sync_github_stars.py",
+          "line": 161,
+          "preview": "def render_issue(report, limit=50):",
           "definition_candidate": true
         },
         {
-          "file": "scripts/recommend.py",
-          "line": 288,
-          "preview": "s = score_repo(r, qtokens, domains, required_caps, excluded_caps)",
+          "file": "scripts/sync_github_stars.py",
+          "line": 242,
+          "preview": "args.report_md.write_text(render_issue(report, args.issue_limit) + \"\\n\", encoding=\"utf-8\")",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 65,
-          "preview": "assert mod.score_repo(curated, qtokens, set(), set(), set()) > mod.score_repo(inferred, qtokens, set(), set(), set())",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "explain_repo": {
-      "definition": {
-        "file": "scripts/recommend.py",
-        "line": 131,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/recommend.py",
-          "line": 131,
-          "preview": "def explain_repo(r, qtokens, domains, required_caps):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 312,
-          "preview": "\"why\": explain_repo(r, qtokens, domains, required_caps),",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "choose_stack": {
-      "definition": {
-        "file": "scripts/recommend.py",
-        "line": 154,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/recommend.py",
-          "line": 154,
-          "preview": "def choose_stack(stacks, qtokens, domains, allowed_names=None):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 324,
-          "preview": "\"recommendedStack\": choose_stack(stacks, qtokens, domains, eligible_names),",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 80,
+          "preview": "rendered = mod.render_issue(report, limit=1)",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 97,
-          "preview": "assert mod.choose_stack(stacks, mod.tokens(\"backend\"), {\"backend\"}, {\"x/source\"}) is None",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 98,
-          "preview": "assert mod.choose_stack(stacks, mod.tokens(\"backend\"), {\"backend\"}, {\"x/source\", \"x/stack-tool\"})[\"name\"] == \"Backend Stack\"",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 84,
+          "preview": "assert \"All accessible starred\" in mod.render_issue(",
           "definition_candidate": false
         }
       ],
       "occurrence_count": 4
     },
-    "infer_alternatives": {
+    "write_json": {
       "definition": {
-        "file": "scripts/recommend.py",
-        "line": 167,
+        "file": "scripts/sync_github_stars.py",
+        "line": 211,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/recommend.py",
-          "line": 167,
-          "preview": "def infer_alternatives(source, repos, top=3, allowed_names=None):",
+          "file": "scripts/sync_github_stars.py",
+          "line": 211,
+          "preview": "def write_json(path, payload):",
           "definition_candidate": true
         },
         {
-          "file": "scripts/recommend.py",
-          "line": 227,
-          "preview": "alternatives = explicit_alternatives or infer_alternatives(source, repos, allowed_names=allowed_names)",
+          "file": "scripts/sync_github_stars.py",
+          "line": 239,
+          "preview": "write_json(args.report_json, report)",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 80,
-          "preview": "assert mod.infer_alternatives(source, [source, candidate, audit_candidate]) == [\"x/candidate\"]",
+          "file": "scripts/sync_github_stars.py",
+          "line": 244,
+          "preview": "write_json(args.manifest, {",
           "definition_candidate": false
         }
       ],
       "occurrence_count": 3
-    },
-    "infer_complements": {
-      "definition": {
-        "file": "scripts/recommend.py",
-        "line": 188,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/recommend.py",
-          "line": 188,
-          "preview": "def infer_complements(source, stacks, repo_by_name, top=4, allowed_names=None):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 228,
-          "preview": "complements = explicit_complements or infer_complements(source, stacks, repo_by_name, allowed_names=allowed_names)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 85,
-          "preview": "assert mod.infer_complements(source, stacks, repo_by_name) == [\"x/stack-tool\"]",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "resolve_relations": {
-      "definition": {
-        "file": "scripts/recommend.py",
-        "line": 213,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/recommend.py",
-          "line": 213,
-          "preview": "def resolve_relations(source, repos, stacks, repo_by_name, allowed_names=None):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 300,
-          "preview": "relations = resolve_relations(r, repos, stacks, repo_by_name, eligible_names)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 88,
-          "preview": "resolved = mod.resolve_relations(curated_rel, [curated_rel, candidate], stacks, repo_by_name)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 100,
-          "preview": "limited_rel = mod.resolve_relations(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 113,
-          "preview": "fallback = mod.resolve_relations(",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 5
-    },
-    "usable": {
-      "definition": {
-        "file": "scripts/recommend.py",
-        "line": 215,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/analyze_coverage.py",
-          "line": 19,
-          "preview": "usable=h[\"status\"] not in {\"inactive\",\"weak\"} if h[\"score\"] is not None else True",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/analyze_coverage.py",
-          "line": 20,
-          "preview": "if usable:",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 215,
-          "preview": "def usable(names):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 225,
-          "preview": "explicit_alternatives = usable(source.get(\"alternatives\", []))",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 226,
-          "preview": "explicit_complements = usable(source.get(\"complements\", []))",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 5
     },
     "main": {
       "definition": {
-        "file": "scripts/recommend.py",
-        "line": 236,
+        "file": "scripts/sync_github_stars.py",
+        "line": 217,
         "kind": "function",
         "language": "python"
       },
@@ -920,7 +502,7 @@
           "file": "scripts/recommend.py",
           "line": 236,
           "preview": "def main():",
-          "definition_candidate": true
+          "definition_candidate": false
         },
         {
           "file": "scripts/recommend.py",
@@ -974,6 +556,18 @@
           "file": "scripts/star_import_pipeline.py",
           "line": 270,
           "preview": "raise SystemExit(main())",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 217,
+          "preview": "def main(argv=None):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 259,
+          "preview": "sys.exit(main())",
           "definition_candidate": false
         },
         {
@@ -1043,6 +637,18 @@
           "definition_candidate": false
         },
         {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 176,
+          "preview": "status = mod.main([",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 189,
+          "preview": "mod.main([\"--catalog\", str(catalog), \"--report-json\", str(report_json)])",
+          "definition_candidate": false
+        },
+        {
           "file": "scripts/update_cache_health_history.py",
           "line": 261,
           "preview": "def main():",
@@ -1079,108 +685,395 @@
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 53
+      "occurrence_count": 57
     },
-    "run": {
+    "star": {
       "definition": {
-        "file": "scripts/test_recommend.py",
-        "line": 9,
+        "file": "scripts/test_sync_github_stars.py",
+        "line": 20,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 201,
-          "preview": "proc = subprocess.run(command, cwd=sandbox, text=True, capture_output=True)",
+          "file": "scripts/analyze_cache_health.py",
+          "line": 55,
+          "preview": "\"<!-- star-list-cache-health -->\",",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 9,
-          "preview": "def run(*args):",
+          "file": "scripts/audit_catalog_quality.py",
+          "line": 141,
+          "preview": "\"<!-- star-list-catalog-quality -->\",",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 193,
+          "preview": "headers={\"Accept\":\"application/vnd.github+json\",\"User-Agent\":\"star-list-discovery\",\"X-GitHub-Api-Version\":\"2022-11-28\"}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 202,
+          "preview": "headers={\"Accept\":\"application/vnd.github+json\",\"User-Agent\":\"star-list-discovery\",\"X-GitHub-Api-Version\":\"2022-11-28\"}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/recommend.py",
+          "line": 237,
+          "preview": "ap = argparse.ArgumentParser(description=\"Recommend repositories from star-list catalog.\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/refresh_github_metadata.py",
+          "line": 33,
+          "preview": "headers = {\"Accept\":\"application/vnd.github+json\",\"User-Agent\":\"star-list-metadata-refresh\",\"X-GitHub-Api-Version\":\"2022-11-28\"}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/render_discovery_issue.py",
+          "line": 30,
+          "preview": "lines += [\"\",\"Candidates are never added to the catalog automatically.\",\"\",\"<!-- star-list-discovery-candidates -->\"]",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/render_health_issue.py",
+          "line": 40,
+          "preview": "lines += [\"This report is advisory. No repository is automatically removed or replaced.\", \"\", \"<!-- star-list-health-review -->\"]",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/star_import_pipeline.py",
+          "line": 2,
+          "preview": "\"\"\"Deterministic ingestion for screenshot-derived GitHub star manifests.\"\"\"",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/star_import_pipeline.py",
+          "line": 195,
+          "preview": "with tempfile.TemporaryDirectory(prefix=\"star-list-validate-\") as td:",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 20,
+          "preview": "ISSUE_MARKER = \"<!-- star-list-star-sync -->\"",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 42,
+          "preview": "\"User-Agent\": \"star-list-star-sync\",",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 218,
+          "preview": "parser = argparse.ArgumentParser(description=\"Check GitHub Stars against star-list (read-only).\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_catalog_quality.py",
+          "line": 114,
+          "preview": "assert \"<!-- star-list-catalog-quality -->\" in markdown",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_pipeline_integration.py",
+          "line": 114,
+          "preview": "assert \"<!-- star-list-discovery-candidates -->\" in body",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_render_discovery_issue.py",
+          "line": 11,
+          "preview": "assert \"<!-- star-list-discovery-candidates -->\" in body",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_render_health_issue.py",
+          "line": 13,
+          "preview": "assert \"<!-- star-list-health-review -->\" in body",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_star_import_pipeline.py",
+          "line": 187,
+          "preview": "print(\"OK: star import pipeline tests passed\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 20,
+          "preview": "def star(name, **overrides):",
           "definition_candidate": true
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 19,
-          "preview": "data = run(query, \"--top\", \"5\")",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 58,
+          "preview": "[star(\"Known/Repo\"), star(\"New/Beta\", archived=True, license=None)],",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 26,
-          "preview": "strict = run(\"android mobile\", \"--platform\", \"android\", \"--require-all-caps\", \"--cap\", \"mobile\")",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 62,
+          "preview": "return Response([star(\"new/beta\"), star(\"New/Alpha\")])",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 31,
-          "preview": "high_threshold = run(\"ai agent\", \"--min-score\", \"1000\")",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 103,
+          "preview": "[star(\"X/Y\")], '<https://api.github.com/users/dbrckk/starred?page=2>; rel=\"next\"'",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 35,
-          "preview": "default_audit = run(\"ponytail agent\", \"--top\", \"20\")",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 110,
+          "preview": "for payload in ({\"message\": \"rate limited\"}, [None], [star(\"../../../evil\")]):",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 40,
-          "preview": "with_audit = run(\"ponytail agent\", \"--top\", \"20\", \"--include-audit\")",
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 130,
+          "preview": "return Response([star(\"X/Y\")])",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 124,
-          "preview": "run(\"android vector animation\", \"--platform\", \"android\", \"--max-resource\", \"medium\", \"--top\", \"15\"),",
+          "file": "scripts/validate_json_contract.py",
+          "line": 2,
+          "preview": "\"\"\"Validate JSON documents against the contract-focused JSON Schema subset used by star-list.\"\"\"",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 125,
-          "preview": "run(\"python data\", \"--language\", \"python\", \"--max-complexity\", \"low\", \"--top\", \"15\"),",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 127,
-          "preview": "# CLI is dry-run by default, emits requested reports, and leaves catalog unchanged.",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 138,
-          "preview": "proc = subprocess.run([",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 170,
-          "preview": "raw = subprocess.run(args + [\"--write\"], text=True, capture_output=True)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 176,
-          "preview": "success = subprocess.run(args + [\"--write\"], text=True, capture_output=True)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 181,
-          "preview": "repeat = subprocess.run(args + [\"--write\"], text=True, capture_output=True)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 184,
-          "preview": "bad = subprocess.run(args + [\"--write\"], text=True, capture_output=True)",
+          "file": "scripts/validate_json_contract.py",
+          "line": 116,
+          "preview": "ap=argparse.ArgumentParser(description=\"Validate a JSON document against a star-list JSON contract.\")",
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 15
+      "occurrence_count": 26
+    },
+    "Response": {
+      "definition": {
+        "file": "scripts/test_sync_github_stars.py",
+        "line": 34,
+        "kind": "class",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 47,
+          "preview": "class Response:",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 54,
+          "preview": "mod.urlopen = lambda *args, **kwargs: Response()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 34,
+          "preview": "class Response:",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 57,
+          "preview": "return Response(",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 62,
+          "preview": "return Response([star(\"new/beta\"), star(\"New/Alpha\")])",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 102,
+          "preview": "mod.api_stars(\"dbrckk\", opener=lambda _req, timeout=20: Response(",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 112,
+          "preview": "mod.api_stars(\"dbrckk\", opener=lambda _req, timeout=20: Response(payload))",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 118,
+          "preview": "mod.api_stars(\"dbrckk\", opener=lambda _req, timeout=20: Response(",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 130,
+          "preview": "return Response([star(\"X/Y\")])",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 9
+    },
+    "__init__": {
+      "definition": {
+        "file": "scripts/test_sync_github_stars.py",
+        "line": 35,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 48,
+          "preview": "def __init__(self): self.headers = {\"ETag\": '\"network\"'}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 35,
+          "preview": "def __init__(self, payload, link=\"\"):",
+          "definition_candidate": true
+        }
+      ],
+      "occurrence_count": 2
+    },
+    "__enter__": {
+      "definition": {
+        "file": "scripts/test_sync_github_stars.py",
+        "line": 39,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 49,
+          "preview": "def __enter__(self): return self",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 39,
+          "preview": "def __enter__(self):",
+          "definition_candidate": true
+        }
+      ],
+      "occurrence_count": 2
+    },
+    "__exit__": {
+      "definition": {
+        "file": "scripts/test_sync_github_stars.py",
+        "line": 42,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 50,
+          "preview": "def __exit__(self, *args): return False",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 42,
+          "preview": "def __exit__(self, *_):",
+          "definition_candidate": true
+        }
+      ],
+      "occurrence_count": 2
+    },
+    "read": {
+      "definition": {
+        "file": "scripts/test_sync_github_stars.py",
+        "line": 45,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 59,
+          "preview": "raw = response.read()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 218,
+          "preview": "parser = argparse.ArgumentParser(description=\"Check GitHub Stars against star-list (read-only).\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 51,
+          "preview": "def read(self): return b'{\"ok\":\"network\"}'",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 45,
+          "preview": "def read(self):",
+          "definition_candidate": true
+        }
+      ],
+      "occurrence_count": 4
+    },
+    "two_page_opener": {
+      "definition": {
+        "file": "scripts/test_sync_github_stars.py",
+        "line": 50,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 50,
+          "preview": "def two_page_opener(request, timeout=20):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 67,
+          "preview": "\"dbrckk\", token=\"testing-token\", opener=two_page_opener",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 90,
+          "preview": "mod.api_stars(\"bad/user\", opener=two_page_opener)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 3
+    },
+    "rate_limited": {
+      "definition": {
+        "file": "scripts/test_sync_github_stars.py",
+        "line": 126,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 126,
+          "preview": "def rate_limited(request, timeout=20):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 131,
+          "preview": "assert len(mod.api_stars(\"dbrckk\", opener=rate_limited, sleeper=lambda _: None)[0]) == 1",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 2
     }
   }
 }
