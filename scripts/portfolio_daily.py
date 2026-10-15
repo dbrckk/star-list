@@ -161,6 +161,17 @@ def eligible(item: dict) -> bool:
     return license_key in ALLOWED_LICENSES
 
 
+def is_reference_candidate(tool: dict) -> bool:
+    """Keep example applications and architecture guides out of auto-implementation."""
+    guidance = " ".join(str(v).lower() for v in (tool.get("bestFor") or []))
+    reference_clues = (
+        "architecture reference", "reference app", "reference application",
+        "reference project", "example application", "sample application",
+        "tutorial project", "reference app structure",
+    )
+    return any(clue in guidance for clue in reference_clues)
+
+
 def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) -> list[dict]:
     name = repo["full_name"].lower()
     domains = set(profile["domains"])
@@ -204,14 +215,39 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
         matches.append({"repository": slug, "score": round(score, 2),
                         "quality": tool["score"], "domain": tool["domain"],
                         "shared_terms": shared[:5],
-                        "mode": "native" if languages_match else "adapter-review",
+                        "mode": ("reference-review" if is_reference_candidate(tool)
+                                 else "native" if languages_match else "adapter-review"),
                         "license": tool.get("github", {}).get("license"),
                         "url": "https://github.com/" + slug})
-    matches.sort(key=lambda r: (-r["score"], -r["quality"], r["repository"].lower()))
+    # A native library gets precedence over example applications and adapters.
+    # Otherwise a reference app can fill the three slots before a usable SDK.
+    priority = {"native": 0, "adapter-review": 1, "reference-review": 2}
+    matches.sort(key=lambda r: (priority.get(r["mode"], 3),
+                                -r["score"], -r["quality"], r["repository"].lower()))
     return matches[:count]
 
 
 INTEGRATION_TOKEN_BUDGET = 90000
+
+
+def count_active_integrations(projects: list[dict]) -> int:
+    """Only in-flight portfolio jobs occupy coding-worker capacity slots."""
+    return sum(
+        1 for row in projects
+        if "starlist-integration-v" in str(row.get("final_goal") or "")
+        and str(row.get("status") or "").upper().replace("-", "_")
+            in {"ACTIVE", "QUEUED", "RUNNING"}
+    )
+
+
+def count_failed_v2_integrations(projects: list[dict]) -> int:
+    """Protect the free worker quota until failed high-budget jobs are reviewed."""
+    return sum(
+        1 for row in projects
+        if "starlist-integration-v2-" in str(row.get("final_goal") or "")
+        and str(row.get("status") or "").upper().replace("-", "_")
+            == "NEEDS_ATTENTION"
+    )
 
 
 def integration_marker(target: str, candidate: dict, version: int = 2) -> str:
@@ -255,6 +291,12 @@ def render_markdown(report: dict) -> str:
              "Projects with qualified suggestions: **" + str(summary["with_suggestions"]) + "**.",
              "New Production-OS integration requests: **" + str(summary["dispatched"]) + "**.",
              "Dispatch: **" + report["dispatch_status"] + "**.", ""]
+    if isinstance(summary.get("active_integrations"), int):
+        lines.extend(["Active star-list integrations at scan: **"
+                      + str(summary["active_integrations"]) + "/3**.", ""])
+    if isinstance(summary.get("failed_v2_integrations"), int):
+        lines.extend(["Unresolved v2 integration failures (reserved slots): **"
+                      + str(summary["failed_v2_integrations"]) + "**.", ""])
     for row in report["projects"]:
         lines.append("## " + row["repository"])
         lines.append("Status: " + row["status"])
@@ -326,6 +368,8 @@ def main() -> int:
             report["errors"].append(target + ": " + str(exc))
         report["projects"].append(row)
     dispatched = 0
+    active_integrations = None
+    failed_v2_integrations = None
     if operator_token:
         # Validate the origin before even the read-only authenticated request.
         parsed_service = urlparse(service)
@@ -347,6 +391,17 @@ def main() -> int:
             existing = None
             report["errors"].append("Cannot inspect existing managed projects: " + str(exc))
         if existing is not None:
+            # Limit active portfolio work across multiple scheduled/manual runs,
+            # not merely the number of launches in this one workflow run.
+            active_integrations = count_active_integrations(already)
+            failed_v2_integrations = count_failed_v2_integrations(already)
+            # A v2 failure still occupies one admission slot. Continue
+            # scanning daily, but do not spend unlimited tokens on new
+            # projects while the free coding worker has unresolved failures.
+            available_slots = min(
+                args.max_dispatch,
+                max(0, 3 - active_integrations - failed_v2_integrations),
+            )
             for _, row, item in queue:
                 marker = integration_marker(row["repository"], item)
                 previous = integration_marker(row["repository"], item, version=1)
@@ -366,7 +421,7 @@ def main() -> int:
                         row["dispatches"].append("existing-v1: " + item["repository"])
                         continue
                     is_recovery = True
-                if dispatched >= args.max_dispatch:
+                if dispatched >= available_slots:
                     break
                 try:
                     result = launch_integration(service, operator_token, row["repository"], item)
@@ -382,7 +437,9 @@ def main() -> int:
     report["summary"] = {
         "discovered": len(source), "inspected": sum(p["status"] != "scan-failed" for p in report["projects"]),
         "with_suggestions": sum(bool(p["suggestions"]) for p in report["projects"]),
-        "dispatched": dispatched, "failures": len(report["errors"]),
+        "dispatched": dispatched, "active_integrations": active_integrations,
+        "failed_v2_integrations": failed_v2_integrations,
+        "failures": len(report["errors"]),
     }
     args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     args.markdown.write_text(render_markdown(report), encoding="utf-8")
