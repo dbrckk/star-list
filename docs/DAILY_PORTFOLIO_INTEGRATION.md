@@ -35,13 +35,7 @@ For **public** GitHub repositories, no extra GitHub secret is needed;
 `GITHUB_TOKEN` supports reading the public portfolio and writing the
 star-list review issue.
 
-Optional repository secret `PORTFOLIO_GITHUB_TOKEN`:
-fine-grained GitHub PAT with read access to **all relevant private**
-repositories, to include private projects. It is never required for purely
-public coverage. A token with access to only some private repositories cannot
-guarantee complete private coverage.
-
-For **actual autonomous integrations**, configure a star-list Actions
+Private repositories are **never** written to the public star-list review issue.\nThe two known private projects (`Finders`, `tube`) use repository-scoped\ndaily workflows and retain their reports as private Actions artifacts.\nEach private workflow scans only its own repository using its local\n`GITHUB_TOKEN` and the public star-list catalog; no shared portfolio PAT\nis necessary.\n\nFor **actual autonomous integrations**, configure a star-list Actions
 repository secret:
 
 - `PRODUCTION_OS_OPERATOR_TOKEN`: valid Production-OS **operator** API
