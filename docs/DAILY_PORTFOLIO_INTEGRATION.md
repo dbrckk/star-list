@@ -67,6 +67,11 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   implementation time; metadata alone is insufficient.
 - Max 3 managed-project launches per daily run and up to three qualified candidates per
   target. All accessible repositories are still inspected on each run.
+- **Fleet-level queue protection:** at most three portfolio integrations may be
+  `ACTIVE`, `RUNNING` or `QUEUED` across all scans. Each daily or manual run
+  only fills genuinely free slots after reading managed-project statuses.
+  An unavailable Production-OS inventory fails closed rather than risking
+  duplicate/unbounded submissions.
 - A qualified v2 integration requests a bounded **90,000-token** envelope
   through Production-OS's operator-only dashboard API using the explicit
   `launch_profile: portfolio-integration` option. Ordinary dashboard
