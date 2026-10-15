@@ -195,7 +195,8 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
         if slug_name in profile["dependencies"] or slug_name in profile["overview"].lower():
             continue
         candidate_languages = set(str(x).lower() for x in (tool.get("languages") or []))
-        languages_match = not candidate_languages or profile["language"] in candidate_languages
+        # Missing language metadata is unknown compatibility, not native support.
+        languages_match = bool(profile["language"]) and profile["language"] in candidate_languages
         score = score_repo(tool, profile["terms"], domains, set(), set())
         if score is None or score < 35:
             continue
@@ -312,6 +313,15 @@ def main() -> int:
             report["errors"].append(target + ": " + str(exc))
         report["projects"].append(row)
     dispatched = 0
+    if operator_token:
+        # Validate the origin before even the read-only authenticated request.
+        parsed_service = urlparse(service)
+        if (parsed_service.scheme != "https"
+                or parsed_service.hostname != "production-os1.onrender.com"
+                or parsed_service.username or parsed_service.password
+                or parsed_service.query or parsed_service.fragment):
+            report["errors"].append("Production-OS URL rejected: unapproved operator-token destination")
+            operator_token = ""
     if operator_token:
         # Always prioritize highest-confidence matches, irrespective of repository order.
         queue = sorted(((item["score"], row, item) for row in report["projects"]
