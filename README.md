@@ -50,12 +50,14 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 ## Automatic GitHub Stars synchronization
 
 A free, daily GitHub Actions workflow checks **dbrckk**'s publicly accessible starred
-repositories, compares them with the catalog, and updates a GitHub issue containing
-only repositories awaiting review. It preserves the complete API manifest and
-machine-readable report as short-lived workflow artifacts.
+repositories and **adds every missing public Star to `catalog.json`** after
+canonical identity and metadata checks. Entries are tagged `audit` until an
+independent quality, license and security review; this is inclusion, not
+endorsement. It produces a complete sync report, import manifest, and admission
+report as short-lived workflow artifacts. No external service or paid token is required.
 
-**No catalog records are added automatically.** The existing reviewed-metadata
-import pipeline below remains the only admission path.
+The reviewed-metadata importer below remains available to promote and enrich
+entries after their initial admission.
 
 Run manually from **Actions → Sync GitHub Stars → Run workflow**, or locally:
 
@@ -238,4 +240,4 @@ python scripts/validate_json_contract.py schemas/discovery-evaluated.schema.json
 
 ## Safety model for catalog changes
 
-Automated discovery is advisory. It can find, score, remember, and surface candidates, but it does **not** edit `catalog.json` to add a repository. Human review remains the admission boundary.
+General-purpose GitHub discovery remains advisory and never inserts external candidates. A distinct GitHub Stars workflow automatically admits repositories explicitly starred by `dbrckk`, conservatively at `audit` tier. Human review remains required before promotion to a recommended tier.
