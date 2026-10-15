@@ -2,9 +2,9 @@
   "generated_by": "dbrckk/repo-brain-v6",
   "packets": [
     {
-      "area": "agents.md",
+      "area": "cache-health-history.json",
       "file_count": 1,
-      "path": ".ai/brain/context/agents.md.json"
+      "path": ".ai/brain/context/cache-health-history.json.json"
     },
     {
       "area": "catalog.json",
@@ -12,9 +12,19 @@
       "path": ".ai/brain/context/catalog.json.json"
     },
     {
-      "area": "catalog.schema.json",
+      "area": "discovery-cache.json",
       "file_count": 1,
-      "path": ".ai/brain/context/catalog.schema.json.json"
+      "path": ".ai/brain/context/discovery-cache.json.json"
+    },
+    {
+      "area": "discovery-memory.json",
+      "file_count": 1,
+      "path": ".ai/brain/context/discovery-memory.json.json"
+    },
+    {
+      "area": "docs",
+      "file_count": 1,
+      "path": ".ai/brain/context/docs.json"
     },
     {
       "area": "github",
@@ -32,39 +42,14 @@
       "path": ".ai/brain/context/history.json.json"
     },
     {
-      "area": "imports",
-      "file_count": 2,
-      "path": ".ai/brain/context/imports.json"
-    },
-    {
-      "area": "recommender.md",
+      "area": "readme.md",
       "file_count": 1,
-      "path": ".ai/brain/context/recommender.md.json"
-    },
-    {
-      "area": "repomixignore",
-      "file_count": 1,
-      "path": ".ai/brain/context/repomixignore.json"
-    },
-    {
-      "area": "reports",
-      "file_count": 7,
-      "path": ".ai/brain/context/reports.json"
-    },
-    {
-      "area": "schemas",
-      "file_count": 1,
-      "path": ".ai/brain/context/schemas.json"
+      "path": ".ai/brain/context/readme.md.json"
     },
     {
       "area": "scripts",
-      "file_count": 1,
+      "file_count": 4,
       "path": ".ai/brain/context/scripts.json"
-    },
-    {
-      "area": "stacks.json",
-      "file_count": 1,
-      "path": ".ai/brain/context/stacks.json.json"
     }
   ],
   "schema_version": 1

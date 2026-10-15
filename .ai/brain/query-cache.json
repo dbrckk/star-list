@@ -199,6 +199,99 @@
       },
       "task": "offline progress"
     },
+    "06505a4b5e48a81873d596f55bd12377fe7056f2ef1ab5edc2479c5b6469c07e": {
+      "route": {
+        "budget": {
+          "confidence": "high",
+          "expand_to": 12,
+          "max_files": 3,
+          "requested_max_files": 12,
+          "score_margin": 21,
+          "tier": "narrow",
+          "top_score": 38
+        },
+        "candidate_count": 14,
+        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
+        "files": [
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "engine",
+              "game"
+            ],
+            "path": "scripts/admit_github_stars.py",
+            "reasons": [
+              "impact",
+              "recently-changed",
+              "search-index"
+            ],
+            "score": 38,
+            "symbols": [
+              "admit",
+              "catalog_entry",
+              "classify",
+              "count",
+              "get_repo",
+              "main"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "game"
+            ],
+            "path": "scripts/infer_selection_guidance.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 17,
+            "symbols": [
+              "_humanize",
+              "enrich",
+              "infer_guidance",
+              "main"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "game"
+            ],
+            "path": "scripts/recommend.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 17,
+            "symbols": [
+              "activity_adjustment",
+              "choose_stack",
+              "delta",
+              "explain_repo",
+              "guidance_weight",
+              "infer_alternatives",
+              "infer_complements",
+              "infer_domains",
+              "load",
+              "main",
+              "norm",
+              "resolve_relations",
+              "score_repo",
+              "tokens",
+              "trend_adjustment",
+              "usable"
+            ]
+          }
+        ],
+        "generated_by": "dbrckk/repo-brain-v8",
+        "schema_version": 1,
+        "task": "game engine",
+        "terms": [
+          "game",
+          "engine"
+        ]
+      },
+      "task": "game engine"
+    },
     "06b5dde0c2362d525c224c926b72110a0126dd52f848dd2a8d48e956df6bc104": {
       "route": {
         "budget": {
@@ -271,6 +364,102 @@
         ]
       },
       "task": "purchase billing"
+    },
+    "0bca1079cda544ba91c87357168b4d826d58dc7acb590887d23cd23a3d231ae4": {
+      "route": {
+        "budget": {
+          "confidence": "low",
+          "expand_to": 12,
+          "max_files": 6,
+          "requested_max_files": 12,
+          "score_margin": 0,
+          "tier": "broad",
+          "top_score": 9
+        },
+        "candidate_count": 11,
+        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
+        "files": [
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/admit_github_stars.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "admit",
+              "catalog_entry",
+              "classify",
+              "count",
+              "get_repo",
+              "main"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/test_auto_stars_admission.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "read"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": ".github/workflows/sync-github-stars.yml",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "README.md",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "cache-health-history.json",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "catalog.json",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          }
+        ],
+        "generated_by": "dbrckk/repo-brain-v8",
+        "schema_version": 1,
+        "task": "privacy consent",
+        "terms": [
+          "privacy",
+          "consent"
+        ]
+      },
+      "task": "privacy consent"
     },
     "0d998596d34b9e1da0c5c0d75a2847138f1100a89d835b12c50d94f6ea24e1c3": {
       "route": {
@@ -2815,6 +3004,145 @@
       },
       "task": "game engine"
     },
+    "4db8a84be4dfd5a2b6eee7bdb613c192d47a2e928edb3a153efef26db693c565": {
+      "route": {
+        "budget": {
+          "confidence": "medium",
+          "expand_to": 12,
+          "max_files": 6,
+          "requested_max_files": 12,
+          "score_margin": 0,
+          "tier": "bounded",
+          "top_score": 21
+        },
+        "candidate_count": 16,
+        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
+        "files": [
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "offline"
+            ],
+            "path": "scripts/test_discovery_cache.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 21,
+            "symbols": [
+              "not_modified",
+              "offline"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "offline"
+            ],
+            "path": "scripts/test_discovery_cache_stats.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 21,
+            "symbols": [
+              "Response",
+              "__enter__",
+              "__exit__",
+              "__init__",
+              "not_modified",
+              "offline",
+              "read"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "offline"
+            ],
+            "path": "scripts/star_import_pipeline.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 17,
+            "symbols": [
+              "build_report",
+              "classify_candidate",
+              "integrate_catalog",
+              "load_imports",
+              "load_reviewed_metadata",
+              "main",
+              "normalize_repo_identity",
+              "partition_candidates",
+              "render_markdown",
+              "validate_candidate_catalog",
+              "write_catalog_if_valid"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "offline"
+            ],
+            "path": "scripts/test_pipeline_integration.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 17,
+            "symbols": [
+              "fake_enrich",
+              "fake_fetch",
+              "load"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [
+              "offline"
+            ],
+            "path": "scripts/test_sync_github_stars.py",
+            "reasons": [
+              "search-index"
+            ],
+            "score": 17,
+            "symbols": [
+              "Response",
+              "__enter__",
+              "__exit__",
+              "__init__",
+              "rate_limited",
+              "read",
+              "star",
+              "two_page_opener"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/admit_github_stars.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "admit",
+              "catalog_entry",
+              "classify",
+              "count",
+              "get_repo",
+              "main"
+            ]
+          }
+        ],
+        "generated_by": "dbrckk/repo-brain-v8",
+        "schema_version": 1,
+        "task": "offline progress",
+        "terms": [
+          "offline",
+          "progress"
+        ]
+      },
+      "task": "offline progress"
+    },
     "4dfaaed601195db0aa46503a60b269f29a7e0d13ffc3c99a6de5946248f19057": {
       "route": {
         "budget": {
@@ -4177,6 +4505,102 @@
       },
       "task": "privacy consent"
     },
+    "6e51f1997746fb85f1558ada59fa87f8666e6ddd74ee17236620a46a53ae1216": {
+      "route": {
+        "budget": {
+          "confidence": "low",
+          "expand_to": 12,
+          "max_files": 6,
+          "requested_max_files": 12,
+          "score_margin": 0,
+          "tier": "broad",
+          "top_score": 9
+        },
+        "candidate_count": 11,
+        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
+        "files": [
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/admit_github_stars.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "admit",
+              "catalog_entry",
+              "classify",
+              "count",
+              "get_repo",
+              "main"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "scripts/test_auto_stars_admission.py",
+            "reasons": [
+              "impact",
+              "recently-changed"
+            ],
+            "score": 9,
+            "symbols": [
+              "read"
+            ]
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": ".github/workflows/sync-github-stars.yml",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "README.md",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "cache-health-history.json",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "catalog.json",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          }
+        ],
+        "generated_by": "dbrckk/repo-brain-v8",
+        "schema_version": 1,
+        "task": "income progression",
+        "terms": [
+          "income",
+          "progression"
+        ]
+      },
+      "task": "income progression"
+    },
     "6fb64b3881288af1d2ae0bb2b116ad041a00ce35b1b0baf931d6d1e19f93c188": {
       "route": {
         "budget": {
@@ -4466,41 +4890,6 @@
         ]
       },
       "task": "offline progress"
-    },
-    "748278be020bb5e334fe0b021d40b6af26dbfd471bcae148bb264ec966f22309": {
-      "route": {
-        "budget": {
-          "confidence": "low",
-          "expand_to": 12,
-          "max_files": 6,
-          "requested_max_files": 12,
-          "score_margin": 3,
-          "tier": "broad",
-          "top_score": 3
-        },
-        "candidate_count": 1,
-        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
-        "files": [
-          {
-            "learning_score": 0,
-            "matched_terms": [],
-            "path": ".github/workflows/license-backfill.yml",
-            "reasons": [
-              "recently-changed"
-            ],
-            "score": 3,
-            "symbols": []
-          }
-        ],
-        "generated_by": "dbrckk/repo-brain-v8",
-        "schema_version": 1,
-        "task": "income progression",
-        "terms": [
-          "income",
-          "progression"
-        ]
-      },
-      "task": "income progression"
     },
     "7512cc1a376729d898ac5cf8b0acac092ffd729e20f7878fe4856fdfb5c383e9": {
       "route": {
@@ -5510,124 +5899,6 @@
       },
       "task": "purchase billing"
     },
-    "8dc08656e2f4a14d2d250bb227a132b823c0a291c1a52db523544212714ac753": {
-      "route": {
-        "budget": {
-          "confidence": "medium",
-          "expand_to": 12,
-          "max_files": 6,
-          "requested_max_files": 12,
-          "score_margin": 0,
-          "tier": "bounded",
-          "top_score": 21
-        },
-        "candidate_count": 5,
-        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
-        "files": [
-          {
-            "learning_score": 0,
-            "matched_terms": [
-              "offline"
-            ],
-            "path": "scripts/test_discovery_cache.py",
-            "reasons": [
-              "search-index"
-            ],
-            "score": 21,
-            "symbols": [
-              "not_modified",
-              "offline"
-            ]
-          },
-          {
-            "learning_score": 0,
-            "matched_terms": [
-              "offline"
-            ],
-            "path": "scripts/test_discovery_cache_stats.py",
-            "reasons": [
-              "search-index"
-            ],
-            "score": 21,
-            "symbols": [
-              "Response",
-              "__enter__",
-              "__exit__",
-              "__init__",
-              "not_modified",
-              "offline",
-              "read"
-            ]
-          },
-          {
-            "learning_score": 0,
-            "matched_terms": [
-              "offline"
-            ],
-            "path": "scripts/test_pipeline_integration.py",
-            "reasons": [
-              "search-index"
-            ],
-            "score": 17,
-            "symbols": [
-              "fake_enrich",
-              "fake_fetch",
-              "load"
-            ]
-          },
-          {
-            "learning_score": 0,
-            "matched_terms": [],
-            "path": "scripts/refresh_github_metadata.py",
-            "reasons": [
-              "impact",
-              "recently-changed"
-            ],
-            "score": 9,
-            "symbols": [
-              "_request_json",
-              "detect_license_text",
-              "fallback_license",
-              "fetch",
-              "fetch_contents",
-              "is_missing_repository_error",
-              "main",
-              "metadata",
-              "refresh_primary_language"
-            ]
-          },
-          {
-            "learning_score": 0,
-            "matched_terms": [],
-            "path": "scripts/test_refresh_github_metadata.py",
-            "reasons": [
-              "impact",
-              "recently-changed"
-            ],
-            "score": 9,
-            "symbols": [
-              "fake_contents",
-              "fake_fetch",
-              "http_error",
-              "run_main",
-              "test_license_fallback_reads_root_license_file",
-              "test_license_signature_detection",
-              "test_metadata_refresh_uses_license_fallback",
-              "test_missing_repo_is_recorded_but_nonfatal",
-              "test_server_error_remains_fatal"
-            ]
-          }
-        ],
-        "generated_by": "dbrckk/repo-brain-v8",
-        "schema_version": 1,
-        "task": "offline progress",
-        "terms": [
-          "offline",
-          "progress"
-        ]
-      },
-      "task": "offline progress"
-    },
     "8fda75f217678779c767595c678ab6afd9638f74ed07531642ddbdfdf5164b08": {
       "route": {
         "budget": {
@@ -5963,41 +6234,6 @@
         ]
       },
       "task": "offline progress"
-    },
-    "937597ec822ba8378c6eace6c3834b23630547ca050cc50a23aff87e4fcddfc0": {
-      "route": {
-        "budget": {
-          "confidence": "low",
-          "expand_to": 12,
-          "max_files": 6,
-          "requested_max_files": 12,
-          "score_margin": 3,
-          "tier": "broad",
-          "top_score": 3
-        },
-        "candidate_count": 1,
-        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
-        "files": [
-          {
-            "learning_score": 0,
-            "matched_terms": [],
-            "path": ".github/workflows/license-backfill.yml",
-            "reasons": [
-              "recently-changed"
-            ],
-            "score": 3,
-            "symbols": []
-          }
-        ],
-        "generated_by": "dbrckk/repo-brain-v8",
-        "schema_version": 1,
-        "task": "purchase billing",
-        "terms": [
-          "purchase",
-          "billing"
-        ]
-      },
-      "task": "purchase billing"
     },
     "93c7f94e0ea76d055e9abcd85fadb9bd5deca37712e244bb1ee14e3e248d3f69": {
       "route": {
@@ -6923,131 +7159,101 @@
       },
       "task": "game engine"
     },
-    "a65cce1047e4bffe71ab87de8a9379c8cd52ee839e289f923d1d02eab6810a3a": {
+    "a645a432d40b45aeaa84de71e13461619fe50c4b2cb56ea5fdd2a06fc99336c2": {
       "route": {
         "budget": {
-          "confidence": "medium",
+          "confidence": "low",
           "expand_to": 12,
           "max_files": 6,
           "requested_max_files": 12,
           "score_margin": 0,
-          "tier": "bounded",
-          "top_score": 17
+          "tier": "broad",
+          "top_score": 9
         },
-        "candidate_count": 5,
+        "candidate_count": 11,
         "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
         "files": [
           {
             "learning_score": 0,
-            "matched_terms": [
-              "game"
-            ],
-            "path": "scripts/infer_selection_guidance.py",
+            "matched_terms": [],
+            "path": "scripts/admit_github_stars.py",
             "reasons": [
-              "search-index"
+              "impact",
+              "recently-changed"
             ],
-            "score": 17,
+            "score": 9,
             "symbols": [
-              "_humanize",
-              "enrich",
-              "infer_guidance",
+              "admit",
+              "catalog_entry",
+              "classify",
+              "count",
+              "get_repo",
               "main"
             ]
           },
           {
             "learning_score": 0,
-            "matched_terms": [
-              "game"
-            ],
-            "path": "scripts/recommend.py",
-            "reasons": [
-              "search-index"
-            ],
-            "score": 17,
-            "symbols": [
-              "activity_adjustment",
-              "choose_stack",
-              "delta",
-              "explain_repo",
-              "guidance_weight",
-              "infer_alternatives",
-              "infer_complements",
-              "infer_domains",
-              "load",
-              "main",
-              "norm",
-              "resolve_relations",
-              "score_repo",
-              "tokens",
-              "trend_adjustment"
-            ]
-          },
-          {
-            "learning_score": 0,
-            "matched_terms": [
-              "engine"
-            ],
-            "path": "scripts/test_recommend.py",
-            "reasons": [
-              "search-index"
-            ],
-            "score": 17,
-            "symbols": [
-              "run"
-            ]
-          },
-          {
-            "learning_score": 0,
             "matched_terms": [],
-            "path": "scripts/refresh_github_metadata.py",
+            "path": "scripts/test_auto_stars_admission.py",
             "reasons": [
               "impact",
               "recently-changed"
             ],
             "score": 9,
             "symbols": [
-              "_request_json",
-              "detect_license_text",
-              "fallback_license",
-              "fetch",
-              "fetch_contents",
-              "is_missing_repository_error",
-              "main",
-              "metadata",
-              "refresh_primary_language"
+              "read"
             ]
           },
           {
             "learning_score": 0,
             "matched_terms": [],
-            "path": "scripts/test_refresh_github_metadata.py",
+            "path": ".github/workflows/sync-github-stars.yml",
             "reasons": [
-              "impact",
               "recently-changed"
             ],
-            "score": 9,
-            "symbols": [
-              "fake_contents",
-              "fake_fetch",
-              "http_error",
-              "run_main",
-              "test_license_fallback_reads_root_license_file",
-              "test_license_signature_detection",
-              "test_metadata_refresh_uses_license_fallback",
-              "test_missing_repo_is_recorded_but_nonfatal",
-              "test_server_error_remains_fatal"
-            ]
+            "score": 3,
+            "symbols": []
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "README.md",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "cache-health-history.json",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
+          },
+          {
+            "learning_score": 0,
+            "matched_terms": [],
+            "path": "catalog.json",
+            "reasons": [
+              "recently-changed"
+            ],
+            "score": 3,
+            "symbols": []
           }
         ],
         "generated_by": "dbrckk/repo-brain-v8",
         "schema_version": 1,
-        "task": "game engine",
+        "task": "purchase billing",
         "terms": [
-          "game",
-          "engine"
+          "purchase",
+          "billing"
         ]
       },
-      "task": "game engine"
+      "task": "purchase billing"
     },
     "aa6fb9f725c2f5615aa44c3282a3054a8f413477f7f8f7abb880bb4a3730a0c6": {
       "route": {
@@ -8703,73 +8909,6 @@
             ],
             "score": 3,
             "symbols": []
-          }
-        ],
-        "generated_by": "dbrckk/repo-brain-v8",
-        "schema_version": 1,
-        "task": "privacy consent",
-        "terms": [
-          "privacy",
-          "consent"
-        ]
-      },
-      "task": "privacy consent"
-    },
-    "cb6d44e8d67e1ccab058edb1b82b68543db51ee11dfec4b480b2a657a5bd5631": {
-      "route": {
-        "budget": {
-          "confidence": "low",
-          "expand_to": 12,
-          "max_files": 6,
-          "requested_max_files": 12,
-          "score_margin": 0,
-          "tier": "broad",
-          "top_score": 9
-        },
-        "candidate_count": 2,
-        "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
-        "files": [
-          {
-            "learning_score": 0,
-            "matched_terms": [],
-            "path": "scripts/refresh_github_metadata.py",
-            "reasons": [
-              "impact",
-              "recently-changed"
-            ],
-            "score": 9,
-            "symbols": [
-              "_request_json",
-              "detect_license_text",
-              "fallback_license",
-              "fetch",
-              "fetch_contents",
-              "is_missing_repository_error",
-              "main",
-              "metadata",
-              "refresh_primary_language"
-            ]
-          },
-          {
-            "learning_score": 0,
-            "matched_terms": [],
-            "path": "scripts/test_refresh_github_metadata.py",
-            "reasons": [
-              "impact",
-              "recently-changed"
-            ],
-            "score": 9,
-            "symbols": [
-              "fake_contents",
-              "fake_fetch",
-              "http_error",
-              "run_main",
-              "test_license_fallback_reads_root_license_file",
-              "test_license_signature_detection",
-              "test_metadata_refresh_uses_license_fallback",
-              "test_missing_repo_is_recorded_but_nonfatal",
-              "test_server_error_remains_fatal"
-            ]
           }
         ],
         "generated_by": "dbrckk/repo-brain-v8",
@@ -10676,11 +10815,6 @@
   },
   "generated_by": "dbrckk/repo-brain-query-cache-v2",
   "order": [
-    "cb6d44e8d67e1ccab058edb1b82b68543db51ee11dfec4b480b2a657a5bd5631",
-    "8dc08656e2f4a14d2d250bb227a132b823c0a291c1a52db523544212714ac753",
-    "a65cce1047e4bffe71ab87de8a9379c8cd52ee839e289f923d1d02eab6810a3a",
-    "937597ec822ba8378c6eace6c3834b23630547ca050cc50a23aff87e4fcddfc0",
-    "748278be020bb5e334fe0b021d40b6af26dbfd471bcae148bb264ec966f22309",
     "6d191e3947d78a6f6c9897692d87a132b30d27d8926a54adada02b5197aed220",
     "81df6507e8cc9349a0651abc6894458c114d87603125a0231be6c620a8cdfe08",
     "47bf89ab135e68491dc26a398406fb75a53b4a148b209af6f498d8c2a8064281",
@@ -10803,7 +10937,12 @@
     "171483787cdc47ad89abc03b60c999224d4ab10d4171bf03a03d8ee90a9d8981",
     "cd7fc26fdeb77aff996c2abbe9d3051f4df09729038c0c04e68ccc40fe599e25",
     "144a0849e52d3aa2818a97286d800919d324693f6b1a5e129eded489c614d9af",
-    "dc42438544adfe3b1e518903c4d4b97d7216e1154f4dc1b0b1f163d97ec7c70b"
+    "dc42438544adfe3b1e518903c4d4b97d7216e1154f4dc1b0b1f163d97ec7c70b",
+    "a645a432d40b45aeaa84de71e13461619fe50c4b2cb56ea5fdd2a06fc99336c2",
+    "6e51f1997746fb85f1558ada59fa87f8666e6ddd74ee17236620a46a53ae1216",
+    "0bca1079cda544ba91c87357168b4d826d58dc7acb590887d23cd23a3d231ae4",
+    "4db8a84be4dfd5a2b6eee7bdb613c192d47a2e928edb3a153efef26db693c565",
+    "06505a4b5e48a81873d596f55bd12377fe7056f2ef1ab5edc2479c5b6469c07e"
   ],
   "schema_version": 1
 }

@@ -67,6 +67,7 @@ schemas/
   replacement-report.schema.json
   star-sync-report.schema.json
 scripts/
+  admit_github_stars.py
   analyze_cache_health.py
   analyze_coverage.py
   audit_catalog_quality.py
@@ -392,7 +393,7 @@ name: Sync GitHub Stars
 
 on:
   schedule:
-    - cron: "41 5 * * *"
+    - cron: "11 * * * *"
   workflow_dispatch:
   push:
     branches:
@@ -402,7 +403,7 @@ on:
       - "catalog.json"
 
 permissions:
-  contents: read
+  contents: write
   issues: write
 
 concurrency:
@@ -412,7 +413,7 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -430,31 +431,50 @@ jobs:
             --manifest star-sync-manifest.json
           python scripts/validate_json_contract.py \
             schemas/star-sync-report.schema.json star-sync-report.json
-      - name: Preserve results without changing the catalog
+      - name: Admit every newly starred public repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/admit_github_stars.py \
+            --sync-report star-sync-report.json \
+            --report-json star-admission-report.json
+          python scripts/validate_catalog.py
+          python scripts/test_catalog_quality.py
+      - name: Commit validated catalog changes
+        run: |
+          if ! git diff --quiet -- catalog.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add catalog.json
+            git commit -m "chore: sync all accessible GitHub Stars into catalog"
+            git push origin HEAD:main
+          fi
+      - name: Preserve synchronization and admission results
         uses: actions/upload-artifact@v4
         with:
-          name: star-list-public-stars-review
+          name: star-list-public-stars-admission
           path: |
             star-sync-report.json
             star-sync-review.md
             star-sync-manifest.json
+            star-admission-report.json
           retention-days: 14
       - name: Open, update or close GitHub Stars review issue
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          COUNT=$(python -c 'import json; print(json.load(open("star-sync-report.json"))["summary"]["new"])')
+          COUNT=$(python -c 'import json; s=json.load(open("star-sync-report.json"))["summary"]; a=json.load(open("star-admission-report.json")); print(s["new"] - a["admitted"])')
           EXISTING=$(gh issue list --state open --limit 200 --json number,body \
             --jq '[.[] | select(.body != null and (.body | contains("<!-- star-list-star-sync -->")))] | .[0].number // empty')
           if [ "$COUNT" = "0" ]; then
             if [ -n "$EXISTING" ]; then
-              gh issue close "$EXISTING" --comment "All public GitHub Stars currently match the catalog."
+              gh issue close "$EXISTING" --comment "All accessible public GitHub Stars have been accounted for and admitted to the catalog."
             fi
           elif [ -n "$EXISTING" ]; then
-            gh issue edit "$EXISTING" --title "GitHub Stars: $COUNT repositories awaiting review" \
+            gh issue edit "$EXISTING" --title "GitHub Stars: $COUNT repositories requiring intervention" \
               --body-file star-sync-review.md
           else
-            gh issue create --title "GitHub Stars: $COUNT repositories awaiting review" \
+            gh issue create --title "GitHub Stars: $COUNT repositories requiring intervention" \
               --body-file star-sync-review.md
           fi
 ````
@@ -977,6 +997,102 @@ initial_prompt: |
   },
   "additionalProperties": false
 }
+````
+
+## File: scripts/admit_github_stars.py
+````python
+#!/usr/bin/env python3
+"""Admit every accessible starred repository into the catalog, conservatively.
+
+New entries receive an audit tier until a human or richer analysis verifies
+license terms, suitability, and production readiness. Never silently skip a
+Star or save a partly built catalog.
+"""
+⋮----
+DOMAINS = (
+CATEGORIES = {
+⋮----
+def classify(meta)
+⋮----
+text = " ".join([
+⋮----
+def get_repo(repo, token=None, opener=urlopen, sleeper=time.sleep)
+⋮----
+"""Fetch full repository metadata, with bounded retry and canonical ID check."""
+⋮----
+url = "https://api.github.com/repos/" + repo
+headers = {
+⋮----
+result = json.load(response)
+⋮----
+raw_delay = exc.headers.get("Retry-After", str(2 ** attempt))
+⋮----
+delay = min(20, max(0, float(raw_delay)))
+⋮----
+delay = float(2 ** attempt)
+⋮----
+def catalog_entry(meta)
+⋮----
+repo = meta.get("full_name")
+⋮----
+repo_id = meta.get("id")
+⋮----
+license_data = meta.get("license")
+license_id = license_data.get("spdx_id") if isinstance(license_data, dict) else None
+⋮----
+license_id = None
+⋮----
+def count(key)
+⋮----
+value = meta.get(key)
+⋮----
+branch = meta.get("default_branch")
+⋮----
+branch = "unknown"  # Nonempty schema value; the audit tier marks the gap.
+domain = classify(meta)
+language = meta.get("language")
+languages = [language.lower()] if isinstance(language, str) and language.strip() else []
+description = meta.get("description")
+guidance = [re.sub(r"\s+", " ", description).strip()[:200]] if isinstance(description, str) and description.strip() else []
+topics = meta.get("topics")
+capabilities = [x[:80] for x in topics if isinstance(x, str) and x.strip()][:12] if isinstance(topics, list) else []
+⋮----
+def admit(catalog, stars, fetcher)
+⋮----
+"""Reconcile by both canonical name and permanent ID; fail on any ambiguity."""
+old = catalog.get("repositories")
+⋮----
+by_name = {normalize_repo(x["repo"]) for x in old}
+by_id = {x["githubRepositoryId"] for x in old if type(x.get("githubRepositoryId")) is int}
+⋮----
+fresh = []
+already = 0
+transfers = []
+⋮----
+key = normalize_repo(star["repo"])
+rid = star.get("githubRepositoryId")
+⋮----
+meta = fetcher(star["repo"])
+entry = catalog_entry(meta)
+⋮----
+canonical = normalize_repo(entry["repo"])
+⋮----
+result = dict(catalog)
+⋮----
+def main(argv=None)
+⋮----
+parser = argparse.ArgumentParser(description=__doc__)
+⋮----
+args = parser.parse_args(argv)
+⋮----
+report = json.loads(args.sync_report.read_text(encoding="utf-8"))
+catalog = json.loads(args.catalog.read_text(encoding="utf-8"))
+⋮----
+# A report lists only missing Stars. The manifest provides the complete
+# snapshot, and admission operates on a report produced in the same job.
+stars = report.get("newRepositories")
+⋮----
+token = os.environ.get("GITHUB_TOKEN")
 ````
 
 ## File: scripts/analyze_cache_health.py
@@ -3455,6 +3571,18 @@ Repository-specific rules:
       "candidateSeverity": "degraded",
       "alertState": "watch",
       "issueAction": "hold"
+    },
+    {
+      "date": "2026-10-12",
+      "status": "watch",
+      "logicalRequests": 180,
+      "apiCallAvoidanceRate": 0.2667,
+      "bodyReuseRate": 0.2667,
+      "networkFetchRate": 0.6444,
+      "staleFallbackRate": 0.0,
+      "candidateSeverity": "watch",
+      "alertState": "watch",
+      "issueAction": "hold"
     }
   ]
 }
@@ -3494,14 +3622,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 82982,
-        "forks": 15957,
-        "openIssues": 1032,
+        "stars": 83164,
+        "forks": 15969,
+        "openIssues": 1048,
         "archived": false,
         "disabled": false,
         "defaultBranch": "canary",
         "license": "LobeHub Community License",
-        "pushedAt": "2026-10-05T11:12:15Z"
+        "pushedAt": "2026-10-12T11:54:03Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -3536,14 +3664,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 128532,
-        "forks": 20102,
-        "openIssues": 47,
+        "stars": 130083,
+        "forks": 20384,
+        "openIssues": 92,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-04T06:48:17Z"
+        "pushedAt": "2026-10-12T03:10:07Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -3577,14 +3705,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 75315,
-        "forks": 9227,
-        "openIssues": 1171,
+        "stars": 75425,
+        "forks": 9242,
+        "openIssues": 1183,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-09-28T09:10:59Z"
+        "pushedAt": "2026-10-10T07:29:23Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -3619,14 +3747,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 23133,
-        "forks": 2185,
-        "openIssues": 274,
+        "stars": 23185,
+        "forks": 2192,
+        "openIssues": 277,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-05T09:09:27Z"
+        "pushedAt": "2026-10-12T00:57:51Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -3660,14 +3788,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 13632,
-        "forks": 2566,
-        "openIssues": 1614,
+        "stars": 13698,
+        "forks": 2601,
+        "openIssues": 1750,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:25:04Z"
+        "pushedAt": "2026-10-12T11:13:21Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -3717,14 +3845,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 90017,
-        "forks": 11900,
-        "openIssues": 954,
+        "stars": 90689,
+        "forks": 12007,
+        "openIssues": 961,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:18:59Z"
+        "pushedAt": "2026-10-12T10:42:38Z"
       }
     },
     {
@@ -3751,14 +3879,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 44157,
-        "forks": 4294,
-        "openIssues": 29,
+        "stars": 44231,
+        "forks": 4299,
+        "openIssues": 30,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T06:07:09Z"
+        "pushedAt": "2026-10-10T17:25:14Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -3806,14 +3934,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 182217,
-        "forks": 18103,
-        "openIssues": 4169,
+        "stars": 182840,
+        "forks": 18225,
+        "openIssues": 4253,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-04T23:16:41Z"
+        "pushedAt": "2026-10-12T06:25:26Z"
       }
     },
     {
@@ -3840,9 +3968,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 37559,
-        "forks": 2497,
-        "openIssues": 165,
+        "stars": 37653,
+        "forks": 2509,
+        "openIssues": 167,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -3893,14 +4021,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 91010,
-        "forks": 11754,
-        "openIssues": 490,
+        "stars": 91166,
+        "forks": 11780,
+        "openIssues": 489,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T05:59:16Z"
+        "pushedAt": "2026-10-12T05:33:37Z"
       }
     },
     {
@@ -3929,14 +4057,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 117166,
-        "forks": 12931,
-        "openIssues": 539,
+        "stars": 117712,
+        "forks": 13024,
+        "openIssues": 523,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-03T00:06:08Z"
+        "pushedAt": "2026-10-09T17:36:28Z"
       },
       "bestFor": [
         "agentic workflows",
@@ -3971,14 +4099,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 25438,
-        "forks": 1822,
-        "openIssues": 332,
+        "stars": 26799,
+        "forks": 1922,
+        "openIssues": 345,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T06:14:53Z"
+        "pushedAt": "2026-10-11T18:05:48Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4013,14 +4141,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 276592,
-        "forks": 23179,
-        "openIssues": 548,
+        "stars": 287185,
+        "forks": 24096,
+        "openIssues": 163,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:17:21Z"
+        "pushedAt": "2026-10-12T08:46:48Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4054,14 +4182,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 155490,
-        "forks": 8360,
-        "openIssues": 64,
+        "stars": 161509,
+        "forks": 8714,
+        "openIssues": 54,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:09:14Z"
+        "pushedAt": "2026-10-10T04:19:53Z"
       }
     },
     {
@@ -4088,14 +4216,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 273261,
-        "forks": 40784,
-        "openIssues": 347,
+        "stars": 277554,
+        "forks": 41385,
+        "openIssues": 156,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T04:55:16Z"
+        "pushedAt": "2026-10-12T06:22:31Z"
       }
     },
     {
@@ -4122,14 +4250,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 39969,
-        "forks": 6185,
-        "openIssues": 182,
+        "stars": 40471,
+        "forks": 6272,
+        "openIssues": 190,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T09:44:35Z"
+        "pushedAt": "2026-10-12T09:37:23Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4163,14 +4291,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 73152,
-        "forks": 10488,
-        "openIssues": 699,
+        "stars": 75513,
+        "forks": 10909,
+        "openIssues": 379,
         "archived": false,
         "disabled": false,
         "defaultBranch": "release/v3.8.52",
         "license": "MIT",
-        "pushedAt": "2026-10-02T18:26:57Z"
+        "pushedAt": "2026-10-11T04:53:56Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4204,14 +4332,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 295439,
-        "forks": 26393,
-        "openIssues": 308,
+        "stars": 297977,
+        "forks": 26619,
+        "openIssues": 331,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-27T02:37:47Z"
+        "pushedAt": "2026-10-10T03:03:30Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4245,14 +4373,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 53776,
-        "forks": 3086,
-        "openIssues": 81,
+        "stars": 56606,
+        "forks": 3241,
+        "openIssues": 65,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-19T16:44:46Z"
+        "pushedAt": "2026-10-11T16:03:54Z"
       }
     },
     {
@@ -4279,14 +4407,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 33272,
-        "forks": 3726,
-        "openIssues": 93,
+        "stars": 34707,
+        "forks": 3891,
+        "openIssues": 95,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-04T12:01:40Z"
+        "pushedAt": "2026-10-07T12:46:53Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4320,14 +4448,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 243710,
-        "forks": 29204,
+        "stars": 247978,
+        "forks": 29804,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-03T06:02:48Z"
+        "pushedAt": "2026-10-09T10:04:06Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4361,14 +4489,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 156920,
-        "forks": 25329,
-        "openIssues": 160,
+        "stars": 159282,
+        "forks": 25736,
+        "openIssues": 224,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-04T21:17:44Z"
+        "pushedAt": "2026-10-07T16:45:46Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4402,14 +4530,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 56690,
-        "forks": 9065,
-        "openIssues": 310,
+        "stars": 58282,
+        "forks": 9255,
+        "openIssues": 301,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-05T05:45:07Z"
+        "pushedAt": "2026-10-12T11:53:29Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4445,14 +4573,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 43529,
-        "forks": 2939,
-        "openIssues": 830,
+        "stars": 43845,
+        "forks": 2975,
+        "openIssues": 859,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-03T06:28:26Z"
+        "pushedAt": "2026-10-11T23:17:03Z"
       },
       "bestFor": [
         "agentic workflows",
@@ -4487,14 +4615,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 195214,
-        "forks": 108207,
-        "openIssues": 48,
+        "stars": 194966,
+        "forks": 108060,
+        "openIssues": 39,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-08-16T06:18:45Z"
+        "pushedAt": "2026-10-11T20:40:00Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4528,9 +4656,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 76216,
-        "forks": 11663,
-        "openIssues": 129,
+        "stars": 78272,
+        "forks": 11951,
+        "openIssues": 138,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -4569,14 +4697,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 95827,
-        "forks": 17110,
-        "openIssues": 2947,
+        "stars": 96185,
+        "forks": 17456,
+        "openIssues": 2701,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-27T02:12:17Z"
+        "pushedAt": "2026-10-09T19:23:13Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4610,9 +4738,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 140742,
-        "forks": 20685,
-        "openIssues": 24,
+        "stars": 141351,
+        "forks": 20788,
+        "openIssues": 30,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -4651,14 +4779,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 24628,
-        "forks": 3045,
-        "openIssues": 39,
+        "stars": 24811,
+        "forks": 3078,
+        "openIssues": 57,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-02T20:54:27Z"
+        "pushedAt": "2026-10-11T07:50:41Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4692,9 +4820,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 20213,
-        "forks": 2289,
-        "openIssues": 271,
+        "stars": 20528,
+        "forks": 2315,
+        "openIssues": 275,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -4726,14 +4854,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 4045,
-        "forks": 694,
-        "openIssues": 351,
+        "stars": 4571,
+        "forks": 776,
+        "openIssues": 370,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:20:49Z"
+        "pushedAt": "2026-10-12T11:45:04Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4768,14 +4896,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 8830,
-        "forks": 614,
-        "openIssues": 8,
+        "stars": 9156,
+        "forks": 647,
+        "openIssues": 11,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T07:20:06Z"
+        "pushedAt": "2026-10-12T11:31:56Z"
       },
       "bestFor": [
         "agentic workflows",
@@ -4810,14 +4938,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 39221,
-        "forks": 3088,
-        "openIssues": 761,
+        "stars": 39737,
+        "forks": 3143,
+        "openIssues": 925,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-05T11:15:50Z"
+        "pushedAt": "2026-10-12T11:49:48Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4867,14 +4995,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 211807,
-        "forks": 28177,
-        "openIssues": 6273,
+        "stars": 212841,
+        "forks": 28498,
+        "openIssues": 4044,
         "archived": false,
         "disabled": false,
         "defaultBranch": "dev",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:25:21Z"
+        "pushedAt": "2026-10-12T11:43:06Z"
       }
     },
     {
@@ -4901,14 +5029,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 73889,
-        "forks": 8781,
-        "openIssues": 1088,
+        "stars": 74399,
+        "forks": 8847,
+        "openIssues": 1049,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T10:32:17Z"
+        "pushedAt": "2026-10-12T08:44:57Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4942,14 +5070,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 251300,
-        "forks": 53960,
-        "openIssues": 48061,
+        "stars": 252976,
+        "forks": 54792,
+        "openIssues": 47999,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:19:51Z"
+        "pushedAt": "2026-10-12T11:45:48Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -4983,14 +5111,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 52974,
-        "forks": 5659,
-        "openIssues": 120,
+        "stars": 53326,
+        "forks": 6332,
+        "openIssues": 234,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T04:24:31Z"
+        "pushedAt": "2026-10-12T11:47:54Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -5024,14 +5152,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 56998,
-        "forks": 5109,
-        "openIssues": 165,
+        "stars": 61390,
+        "forks": 5496,
+        "openIssues": 269,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:21:55Z"
+        "pushedAt": "2026-10-12T11:49:45Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -5068,14 +5196,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 45439,
-        "forks": 9327,
-        "openIssues": 866,
+        "stars": 45569,
+        "forks": 9363,
+        "openIssues": 906,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T08:29:47Z"
+        "pushedAt": "2026-10-12T10:40:10Z"
       },
       "bestFor": [
         "Héberger une interface de chat multi-utilisateurs avec agents, intégrations MCP et modèles interchangeables"
@@ -5110,14 +5238,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 172058,
-        "forks": 22030,
-        "openIssues": 84,
+        "stars": 172683,
+        "forks": 22147,
+        "openIssues": 86,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-03T08:12:28Z"
+        "pushedAt": "2026-10-12T03:30:25Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -5151,9 +5279,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 49373,
-        "forks": 5032,
-        "openIssues": 1910,
+        "stars": 49489,
+        "forks": 5047,
+        "openIssues": 1912,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -5192,8 +5320,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 15689,
-        "forks": 1177,
+        "stars": 15712,
+        "forks": 1175,
         "openIssues": 66,
         "archived": false,
         "disabled": false,
@@ -5233,14 +5361,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 42731,
-        "forks": 7263,
-        "openIssues": 822,
+        "stars": 43125,
+        "forks": 7329,
+        "openIssues": 806,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T08:53:37Z"
+        "pushedAt": "2026-10-12T02:54:17Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -5274,9 +5402,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 61255,
-        "forks": 9278,
-        "openIssues": 1100,
+        "stars": 61375,
+        "forks": 9280,
+        "openIssues": 1103,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -5315,14 +5443,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 59354,
-        "forks": 8647,
-        "openIssues": 545,
+        "stars": 59597,
+        "forks": 8702,
+        "openIssues": 657,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T10:15:42Z"
+        "pushedAt": "2026-10-12T09:51:10Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -5357,14 +5485,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 21705,
-        "forks": 4101,
-        "openIssues": 449,
+        "stars": 21781,
+        "forks": 4132,
+        "openIssues": 432,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T09:07:51Z"
+        "pushedAt": "2026-10-12T06:23:06Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -5398,14 +5526,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 17809,
-        "forks": 2106,
-        "openIssues": 529,
+        "stars": 17871,
+        "forks": 2113,
+        "openIssues": 536,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-09-30T04:46:03Z"
+        "pushedAt": "2026-10-12T09:06:03Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -5440,14 +5568,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 486152,
-        "forks": 53743,
-        "openIssues": 2016,
+        "stars": 487787,
+        "forks": 54064,
+        "openIssues": 2118,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T04:32:07Z"
+        "pushedAt": "2026-10-11T20:42:26Z"
       },
       "bestFor": [
         "API discovery and reference",
@@ -5483,14 +5611,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 35009,
-        "forks": 2873,
-        "openIssues": 2,
+        "stars": 35088,
+        "forks": 2882,
+        "openIssues": 1,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T10:58:07Z"
+        "pushedAt": "2026-10-10T08:19:40Z"
       },
       "bestFor": [
         "open-source intelligence research"
@@ -5524,9 +5652,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 247990,
-        "forks": 14452,
-        "openIssues": 171,
+        "stars": 249426,
+        "forks": 14498,
+        "openIssues": 174,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -5565,7 +5693,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 6586,
+        "stars": 6589,
         "forks": 416,
         "openIssues": 1,
         "archived": false,
@@ -5601,9 +5729,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 29720,
-        "forks": 1159,
-        "openIssues": 204,
+        "stars": 29805,
+        "forks": 1163,
+        "openIssues": 206,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -5642,14 +5770,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 876,
-        "forks": 165,
+        "stars": 877,
+        "forks": 166,
         "openIssues": 72,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-09-28T22:58:31Z"
+        "pushedAt": "2026-10-06T00:40:19Z"
       }
     },
     {
@@ -5676,8 +5804,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 918,
-        "forks": 291,
+        "stars": 922,
+        "forks": 292,
         "openIssues": 3,
         "archived": false,
         "disabled": false,
@@ -5711,14 +5839,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 456770,
-        "forks": 48269,
-        "openIssues": 199,
+        "stars": 456920,
+        "forks": 49044,
+        "openIssues": 221,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "BSD-3-Clause",
-        "pushedAt": "2026-10-05T10:50:19Z"
+        "pushedAt": "2026-10-12T10:23:32Z"
       },
       "bestFor": [
         "structured web-development learning",
@@ -5754,14 +5882,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 7107,
-        "forks": 409,
-        "openIssues": 21,
+        "stars": 7111,
+        "forks": 411,
+        "openIssues": 22,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-29T14:44:04Z"
+        "pushedAt": "2026-10-09T03:26:44Z"
       },
       "bestFor": [
         "browser and web retrieval"
@@ -5796,14 +5924,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 33505,
-        "forks": 5434,
-        "openIssues": 118,
+        "stars": 33588,
+        "forks": 5439,
+        "openIssues": 124,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-03T03:26:57Z"
+        "pushedAt": "2026-10-09T05:42:58Z"
       },
       "bestFor": [
         "ranking workflows"
@@ -5838,14 +5966,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 43379,
-        "forks": 2799,
-        "openIssues": 24,
+        "stars": 51647,
+        "forks": 3257,
+        "openIssues": 87,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T04:11:15Z"
+        "pushedAt": "2026-10-10T21:10:14Z"
       },
       "bestFor": [
         "technical diagrams",
@@ -5881,8 +6009,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 76234,
-        "forks": 8589,
+        "stars": 76211,
+        "forks": 8588,
         "openIssues": 1002,
         "archived": true,
         "disabled": false,
@@ -5928,14 +6056,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 63636,
-        "forks": 3714,
-        "openIssues": 32,
+        "stars": 64053,
+        "forks": 3734,
+        "openIssues": 51,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-30T15:37:19Z"
+        "pushedAt": "2026-10-09T05:27:52Z"
       },
       "bestFor": [
         "Windows administration automation",
@@ -6005,14 +6133,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 25533,
-        "forks": 1753,
-        "openIssues": 378,
+        "stars": 25636,
+        "forks": 1754,
+        "openIssues": 393,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-04T16:24:31Z"
+        "pushedAt": "2026-10-10T17:38:53Z"
       },
       "bestFor": [
         "browser and web retrieval"
@@ -6062,14 +6190,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 34934,
-        "forks": 2725,
-        "openIssues": 747,
+        "stars": 35046,
+        "forks": 2734,
+        "openIssues": 769,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:14:23Z"
+        "pushedAt": "2026-10-12T11:53:59Z"
       }
     },
     {
@@ -6097,14 +6225,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 29440,
-        "forks": 2546,
-        "openIssues": 912,
+        "stars": 29484,
+        "forks": 2561,
+        "openIssues": 930,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-04T02:01:27Z"
+        "pushedAt": "2026-10-12T05:00:51Z"
       },
       "bestFor": [
         "retrieval and persistent-memory workflows",
@@ -6140,14 +6268,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 46315,
-        "forks": 4276,
-        "openIssues": 1387,
+        "stars": 46363,
+        "forks": 4289,
+        "openIssues": 1394,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T03:49:37Z"
+        "pushedAt": "2026-10-12T11:03:44Z"
       },
       "bestFor": [
         "retrieval and persistent-memory workflows",
@@ -6183,14 +6311,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 26654,
-        "forks": 3237,
-        "openIssues": 154,
+        "stars": 26725,
+        "forks": 3273,
+        "openIssues": 162,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:25:05Z"
+        "pushedAt": "2026-10-12T11:54:42Z"
       },
       "bestFor": [
         "retrieval and persistent-memory workflows",
@@ -6226,8 +6354,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 27540,
-        "forks": 4146,
+        "stars": 27564,
+        "forks": 4145,
         "openIssues": 1,
         "archived": false,
         "disabled": false,
@@ -6269,8 +6397,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 22493,
-        "forks": 2655,
+        "stars": 22497,
+        "forks": 2657,
         "openIssues": 192,
         "archived": false,
         "disabled": false,
@@ -6313,14 +6441,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 66399,
-        "forks": 10054,
-        "openIssues": 416,
+        "stars": 66472,
+        "forks": 10072,
+        "openIssues": 430,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-02T20:35:04Z"
+        "pushedAt": "2026-10-10T12:39:10Z"
       },
       "bestFor": [
         "technical documentation",
@@ -6356,14 +6484,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9361,
-        "forks": 1054,
-        "openIssues": 30,
+        "stars": 9398,
+        "forks": 1067,
+        "openIssues": 36,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-03T13:32:24Z"
+        "pushedAt": "2026-10-09T16:16:45Z"
       },
       "bestFor": [
         "technical documentation",
@@ -6399,14 +6527,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 29029,
-        "forks": 9253,
-        "openIssues": 1141,
+        "stars": 29024,
+        "forks": 9249,
+        "openIssues": 1139,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T09:22:12Z"
+        "pushedAt": "2026-10-12T11:12:58Z"
       },
       "bestFor": [
         "API documentation",
@@ -6442,14 +6570,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 25941,
-        "forks": 2401,
-        "openIssues": 448,
+        "stars": 25947,
+        "forks": 2402,
+        "openIssues": 456,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-02T08:25:32Z"
+        "pushedAt": "2026-10-12T11:01:15Z"
       },
       "bestFor": [
         "API documentation",
@@ -6486,14 +6614,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 90541,
-        "forks": 9324,
-        "openIssues": 1849,
+        "stars": 90627,
+        "forks": 9339,
+        "openIssues": 1869,
         "archived": false,
         "disabled": false,
         "defaultBranch": "develop",
         "license": "MIT",
-        "pushedAt": "2026-10-05T00:29:31Z"
+        "pushedAt": "2026-10-12T11:52:39Z"
       },
       "bestFor": [
         "text-to-diagram documentation",
@@ -6531,14 +6659,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 13354,
-        "forks": 1235,
-        "openIssues": 595,
+        "stars": 13360,
+        "forks": 1237,
+        "openIssues": 588,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "LGPL-3.0",
-        "pushedAt": "2026-10-05T01:03:19Z"
+        "pushedAt": "2026-10-12T06:53:49Z"
       },
       "bestFor": [
         "technical diagrams",
@@ -6576,7 +6704,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 7427,
+        "stars": 7431,
         "forks": 1170,
         "openIssues": 0,
         "archived": false,
@@ -6621,7 +6749,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1599,
+        "stars": 1602,
         "forks": 111,
         "openIssues": 57,
         "archived": false,
@@ -6664,9 +6792,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 12282,
-        "forks": 332,
-        "openIssues": 118,
+        "stars": 12296,
+        "forks": 336,
+        "openIssues": 116,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -6707,14 +6835,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 8514,
-        "forks": 739,
-        "openIssues": 30,
+        "stars": 8520,
+        "forks": 742,
+        "openIssues": 28,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "ISC",
-        "pushedAt": "2026-10-05T11:17:02Z"
+        "pushedAt": "2026-10-10T16:22:52Z"
       },
       "bestFor": [
         "changelog automation",
@@ -6764,14 +6892,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 22284,
-        "forks": 5930,
+        "stars": 22368,
+        "forks": 5945,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "PostgreSQL",
-        "pushedAt": "2026-10-05T11:25:06Z"
+        "pushedAt": "2026-10-12T10:06:10Z"
       },
       "licenseEvidence": "verified-file"
     },
@@ -6801,14 +6929,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 76597,
-        "forks": 24836,
-        "openIssues": 3002,
+        "stars": 76745,
+        "forks": 24847,
+        "openIssues": 3024,
         "archived": false,
         "disabled": false,
         "defaultBranch": "unstable",
         "license": "RSAL-2.0 / SSPL-1.0 / AGPL-3.0",
-        "pushedAt": "2026-09-30T12:02:11Z"
+        "pushedAt": "2026-10-11T17:43:26Z"
       },
       "bestFor": [
         "application caching",
@@ -6863,14 +6991,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 111104,
-        "forks": 15834,
+        "stars": 111399,
+        "forks": 16573,
         "openIssues": 1144,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:19:49Z"
+        "pushedAt": "2026-10-12T11:46:51Z"
       }
     },
     {
@@ -6900,14 +7028,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 57570,
-        "forks": 5762,
-        "openIssues": 718,
+        "stars": 57649,
+        "forks": 5780,
+        "openIssues": 754,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "BSD-3-Clause",
-        "pushedAt": "2026-10-05T11:20:34Z"
+        "pushedAt": "2026-10-12T11:51:28Z"
       },
       "bestFor": [
         "backend-as-a-service applications",
@@ -6945,14 +7073,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 61276,
-        "forks": 3724,
-        "openIssues": 19,
+        "stars": 61366,
+        "forks": 3729,
+        "openIssues": 20,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-02T08:39:50Z"
+        "pushedAt": "2026-10-08T16:38:14Z"
       },
       "bestFor": [
         "backend-as-a-service applications",
@@ -6991,14 +7119,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 47693,
+        "stars": 47696,
         "forks": 2546,
-        "openIssues": 2764,
+        "openIssues": 2757,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:09:45Z"
+        "pushedAt": "2026-10-12T11:52:32Z"
       },
       "bestFor": [
         "database ORM workflows",
@@ -7037,14 +7165,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 35955,
-        "forks": 1694,
-        "openIssues": 2103,
+        "stars": 36003,
+        "forks": 1707,
+        "openIssues": 2125,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-04T22:49:15Z"
+        "pushedAt": "2026-10-09T17:03:09Z"
       },
       "bestFor": [
         "database ORM workflows",
@@ -7097,14 +7225,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 102817,
-        "forks": 9990,
-        "openIssues": 84,
+        "stars": 103036,
+        "forks": 10023,
+        "openIssues": 88,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-02T11:36:38Z"
+        "pushedAt": "2026-10-08T12:29:28Z"
       }
     },
     {
@@ -7134,14 +7262,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 76788,
-        "forks": 8573,
-        "openIssues": 48,
+        "stars": 76811,
+        "forks": 8575,
+        "openIssues": 25,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T00:53:37Z"
+        "pushedAt": "2026-10-12T11:27:09Z"
       },
       "bestFor": [
         "TypeScript application development",
@@ -7179,14 +7307,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 40689,
-        "forks": 1700,
-        "openIssues": 223,
+        "stars": 40697,
+        "forks": 1707,
+        "openIssues": 227,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T02:10:04Z"
+        "pushedAt": "2026-10-11T22:16:15Z"
       },
       "bestFor": [
         "TypeScript application development"
@@ -7221,9 +7349,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 20345,
-        "forks": 2113,
-        "openIssues": 103,
+        "stars": 20338,
+        "forks": 2115,
+        "openIssues": 105,
         "archived": false,
         "disabled": false,
         "defaultBranch": "17.x.x",
@@ -7264,14 +7392,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 13950,
+        "stars": 13949,
         "forks": 2003,
-        "openIssues": 89,
+        "openIssues": 88,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-04T23:24:08Z"
+        "pushedAt": "2026-10-11T12:54:58Z"
       },
       "bestFor": [
         "GraphQL APIs",
@@ -7308,14 +7436,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 37140,
-        "forks": 9010,
-        "openIssues": 3230,
+        "stars": 37310,
+        "forks": 9038,
+        "openIssues": 3251,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:02:20Z"
+        "pushedAt": "2026-10-12T10:59:35Z"
       },
       "bestFor": [
         "authentication and identity"
@@ -7351,9 +7479,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 13907,
-        "forks": 1189,
-        "openIssues": 233,
+        "stars": 13917,
+        "forks": 1191,
+        "openIssues": 234,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -7393,14 +7521,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 35250,
-        "forks": 3038,
-        "openIssues": 769,
+        "stars": 35417,
+        "forks": 3054,
+        "openIssues": 785,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T10:45:46Z"
+        "pushedAt": "2026-10-12T11:38:49Z"
       },
       "bestFor": [
         "object storage",
@@ -7453,14 +7581,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 250901,
-        "forks": 51437,
-        "openIssues": 1414,
+        "stars": 250902,
+        "forks": 51479,
+        "openIssues": 1430,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-02T21:13:55Z"
+        "pushedAt": "2026-10-12T10:32:06Z"
       }
     },
     {
@@ -7505,14 +7633,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 143185,
-        "forks": 33970,
-        "openIssues": 3545,
+        "stars": 143147,
+        "forks": 34680,
+        "openIssues": 3620,
         "archived": false,
         "disabled": false,
         "defaultBranch": "canary",
         "license": "MIT",
-        "pushedAt": "2026-10-05T10:53:16Z"
+        "pushedAt": "2026-10-12T11:39:32Z"
       }
     },
     {
@@ -7541,14 +7669,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 83153,
-        "forks": 8824,
-        "openIssues": 773,
+        "stars": 83319,
+        "forks": 8848,
+        "openIssues": 767,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T00:59:06Z"
+        "pushedAt": "2026-10-12T09:42:16Z"
       },
       "bestFor": [
         "frontend build pipelines",
@@ -7585,14 +7713,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 97772,
-        "forks": 7533,
-        "openIssues": 94,
+        "stars": 97891,
+        "forks": 8264,
+        "openIssues": 102,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-25T19:32:43Z"
+        "pushedAt": "2026-10-09T21:24:23Z"
       },
       "bestFor": [
         "frontend styling systems",
@@ -7644,14 +7772,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 125131,
-        "forks": 12212,
-        "openIssues": 1802,
+        "stars": 125399,
+        "forks": 12975,
+        "openIssues": 1782,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T10:44:32Z"
+        "pushedAt": "2026-10-12T09:08:25Z"
       }
     },
     {
@@ -7679,14 +7807,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 99131,
-        "forks": 32507,
-        "openIssues": 1474,
+        "stars": 99193,
+        "forks": 32506,
+        "openIssues": 1515,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T09:11:20Z"
+        "pushedAt": "2026-10-12T11:55:14Z"
       },
       "bestFor": [
         "reusable UI component systems",
@@ -7723,14 +7851,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 40676,
+        "stars": 40679,
         "forks": 3648,
-        "openIssues": 18,
+        "openIssues": 15,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-24T06:11:42Z"
+        "pushedAt": "2026-10-12T06:31:45Z"
       },
       "bestFor": [
         "reusable UI component systems",
@@ -7767,14 +7895,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 20310,
-        "forks": 2941,
-        "openIssues": 813,
+        "stars": 20319,
+        "forks": 2942,
+        "openIssues": 807,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T10:17:51Z"
+        "pushedAt": "2026-10-12T10:02:19Z"
       },
       "bestFor": [
         "reusable UI component systems",
@@ -7812,14 +7940,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 91201,
-        "forks": 10474,
-        "openIssues": 1881,
+        "stars": 91249,
+        "forks": 10481,
+        "openIssues": 1888,
         "archived": false,
         "disabled": false,
         "defaultBranch": "next",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:07:52Z"
+        "pushedAt": "2026-10-12T11:45:37Z"
       },
       "bestFor": [
         "reusable UI component systems",
@@ -7856,14 +7984,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 33835,
-        "forks": 1387,
-        "openIssues": 106,
+        "stars": 34017,
+        "forks": 1420,
+        "openIssues": 49,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T10:52:36Z"
+        "pushedAt": "2026-10-09T19:32:10Z"
       },
       "bestFor": [
         "frontend application development"
@@ -7900,14 +8028,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 32732,
-        "forks": 2005,
-        "openIssues": 14,
+        "stars": 32904,
+        "forks": 2020,
+        "openIssues": 20,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T10:51:18Z"
+        "pushedAt": "2026-10-12T10:44:46Z"
       },
       "bestFor": [
         "3D application development",
@@ -7944,14 +8072,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 21880,
-        "forks": 4655,
+        "stars": 21907,
+        "forks": 4674,
         "openIssues": 281,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:17:39Z"
+        "pushedAt": "2026-10-12T10:43:22Z"
       },
       "bestFor": [
         "modern Android architecture reference",
@@ -7988,14 +8116,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 19404,
-        "forks": 1431,
-        "openIssues": 23,
+        "stars": 19417,
+        "forks": 1437,
+        "openIssues": 25,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-03T03:10:17Z"
+        "pushedAt": "2026-10-12T10:59:54Z"
       },
       "bestFor": [
         "mobile application development"
@@ -8031,14 +8159,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 179345,
-        "forks": 33083,
-        "openIssues": 13292,
+        "stars": 179876,
+        "forks": 33835,
+        "openIssues": 13343,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "BSD-3-Clause",
-        "pushedAt": "2026-10-05T10:57:47Z"
+        "pushedAt": "2026-10-12T09:06:45Z"
       },
       "bestFor": [
         "mobile application development"
@@ -8076,14 +8204,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 126795,
-        "forks": 25300,
-        "openIssues": 1122,
+        "stars": 126637,
+        "forks": 25310,
+        "openIssues": 1163,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T10:48:43Z"
+        "pushedAt": "2026-10-12T11:43:57Z"
       },
       "bestFor": [
         "cross-platform mobile applications",
@@ -8122,14 +8250,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 52570,
-        "forks": 14378,
-        "openIssues": 860,
+        "stars": 52660,
+        "forks": 14486,
+        "openIssues": 871,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:14:05Z"
+        "pushedAt": "2026-10-12T11:38:01Z"
       },
       "bestFor": [
         "React Native app delivery",
@@ -8166,14 +8294,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 22044,
-        "forks": 6290,
-        "openIssues": 50,
+        "stars": 22063,
+        "forks": 6291,
+        "openIssues": 57,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T10:14:41Z"
+        "pushedAt": "2026-10-12T06:26:39Z"
       },
       "bestFor": [
         "mobile application development"
@@ -8208,9 +8336,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 12033,
-        "forks": 1909,
-        "openIssues": 211,
+        "stars": 12035,
+        "forks": 1907,
+        "openIssues": 216,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -8251,14 +8379,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 30855,
-        "forks": 9758,
-        "openIssues": 469,
+        "stars": 30880,
+        "forks": 9765,
+        "openIssues": 462,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-04T12:06:06Z"
+        "pushedAt": "2026-10-11T12:07:10Z"
       },
       "bestFor": [
         "web performance audits",
@@ -8295,14 +8423,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 7596,
-        "forks": 953,
-        "openIssues": 434,
+        "stars": 7626,
+        "forks": 956,
+        "openIssues": 432,
         "archived": false,
         "disabled": false,
         "defaultBranch": "develop",
         "license": "MPL-2.0",
-        "pushedAt": "2026-10-02T16:02:31Z"
+        "pushedAt": "2026-10-09T12:32:28Z"
       },
       "bestFor": [
         "accessibility testing and remediation",
@@ -8339,14 +8467,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 16315,
-        "forks": 933,
-        "openIssues": 217,
+        "stars": 16335,
+        "forks": 935,
+        "openIssues": 208,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T07:08:57Z"
+        "pushedAt": "2026-10-10T22:20:44Z"
       },
       "bestFor": [
         "portable CI pipelines",
@@ -8383,9 +8511,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 72214,
-        "forks": 2055,
-        "openIssues": 385,
+        "stars": 72309,
+        "forks": 2059,
+        "openIssues": 393,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -8427,8 +8555,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 12052,
-        "forks": 461,
+        "stars": 12054,
+        "forks": 464,
         "openIssues": 744,
         "archived": false,
         "disabled": false,
@@ -8484,14 +8612,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 38285,
-        "forks": 5850,
-        "openIssues": 90,
+        "stars": 38366,
+        "forks": 5866,
+        "openIssues": 110,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-02T15:37:02Z"
+        "pushedAt": "2026-10-12T10:03:29Z"
       }
     },
     {
@@ -8519,14 +8647,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 32996,
-        "forks": 3398,
-        "openIssues": 1024,
+        "stars": 33028,
+        "forks": 3404,
+        "openIssues": 1014,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-02T19:24:12Z"
+        "pushedAt": "2026-10-12T11:04:01Z"
       },
       "bestFor": [
         "container workflows",
@@ -8575,14 +8703,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 128294,
-        "forks": 46084,
-        "openIssues": 3170,
+        "stars": 128289,
+        "forks": 46797,
+        "openIssues": 3267,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:06:37Z"
+        "pushedAt": "2026-10-12T11:45:43Z"
       }
     },
     {
@@ -8610,14 +8738,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 30304,
-        "forks": 7826,
-        "openIssues": 487,
+        "stars": 30312,
+        "forks": 7831,
+        "openIssues": 481,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-02T21:34:53Z"
+        "pushedAt": "2026-10-06T21:33:35Z"
       },
       "bestFor": [
         "Kubernetes operations"
@@ -8653,14 +8781,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 30387,
-        "forks": 1386,
-        "openIssues": 328,
+        "stars": 30462,
+        "forks": 1394,
+        "openIssues": 343,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MPL-2.0",
-        "pushedAt": "2026-10-02T19:40:24Z"
+        "pushedAt": "2026-10-09T19:26:19Z"
       },
       "bestFor": [
         "infrastructure as code",
@@ -8697,14 +8825,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 49829,
-        "forks": 10639,
-        "openIssues": 1938,
+        "stars": 49877,
+        "forks": 10641,
+        "openIssues": 1929,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "BUSL-1.1",
-        "pushedAt": "2026-10-05T11:15:56Z"
+        "pushedAt": "2026-10-12T11:53:11Z"
       },
       "bestFor": [
         "infrastructure as code",
@@ -8741,14 +8869,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 70860,
-        "forks": 24343,
-        "openIssues": 868,
+        "stars": 70960,
+        "forks": 24349,
+        "openIssues": 861,
         "archived": false,
         "disabled": false,
         "defaultBranch": "devel",
         "license": "GPL-3.0",
-        "pushedAt": "2026-10-02T21:01:26Z"
+        "pushedAt": "2026-10-09T17:15:59Z"
       },
       "bestFor": [
         "workflow automation"
@@ -8784,14 +8912,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 24327,
-        "forks": 7911,
-        "openIssues": 4416,
+        "stars": 24377,
+        "forks": 7939,
+        "openIssues": 4407,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T09:48:20Z"
+        "pushedAt": "2026-10-12T11:02:34Z"
       },
       "bestFor": [
         "application deployment",
@@ -8829,14 +8957,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 8435,
-        "forks": 792,
-        "openIssues": 257,
+        "stars": 8444,
+        "forks": 794,
+        "openIssues": 258,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-03T20:23:14Z"
+        "pushedAt": "2026-10-09T21:01:25Z"
       },
       "bestFor": [
         "application deployment",
@@ -8872,14 +9000,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 66366,
-        "forks": 10893,
-        "openIssues": 940,
+        "stars": 66499,
+        "forks": 10908,
+        "openIssues": 989,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T10:20:20Z"
+        "pushedAt": "2026-10-12T11:43:53Z"
       },
       "bestFor": [
         "metrics collection",
@@ -8927,14 +9055,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 77085,
-        "forks": 14819,
-        "openIssues": 3280,
+        "stars": 77265,
+        "forks": 14838,
+        "openIssues": 3288,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-05T11:21:52Z"
+        "pushedAt": "2026-10-12T11:54:50Z"
       }
     },
     {
@@ -8961,14 +9089,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 45471,
-        "forks": 4908,
-        "openIssues": 2293,
+        "stars": 45534,
+        "forks": 4916,
+        "openIssues": 2282,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "FSL-1.1-Apache-2.0",
-        "pushedAt": "2026-10-05T11:19:07Z"
+        "pushedAt": "2026-10-12T11:52:14Z"
       },
       "bestFor": [
         "monitoring and observability"
@@ -9003,14 +9131,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 24086,
-        "forks": 1809,
-        "openIssues": 404,
+        "stars": 24102,
+        "forks": 1808,
+        "openIssues": 408,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-04T06:35:24Z"
+        "pushedAt": "2026-10-12T11:00:15Z"
       },
       "bestFor": [
         "monitoring and observability"
@@ -9044,14 +9172,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9065,
-        "forks": 574,
-        "openIssues": 6,
+        "stars": 9070,
+        "forks": 572,
+        "openIssues": 4,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-17T06:47:25Z"
+        "pushedAt": "2026-10-07T14:52:59Z"
       },
       "bestFor": [
         "monitoring and observability"
@@ -9101,14 +9229,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 27124,
-        "forks": 2935,
-        "openIssues": 107,
+        "stars": 27167,
+        "forks": 2961,
+        "openIssues": 108,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T06:31:53Z"
+        "pushedAt": "2026-10-12T05:35:54Z"
       }
     },
     {
@@ -9150,14 +9278,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 16877,
-        "forks": 1089,
-        "openIssues": 943,
+        "stars": 16994,
+        "forks": 1099,
+        "openIssues": 950,
         "archived": false,
         "disabled": false,
         "defaultBranch": "develop",
         "license": "LGPL-2.1",
-        "pushedAt": "2026-10-05T00:02:23Z"
+        "pushedAt": "2026-10-12T00:04:11Z"
       }
     },
     {
@@ -9185,14 +9313,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 10165,
-        "forks": 2109,
-        "openIssues": 1479,
+        "stars": 10192,
+        "forks": 2117,
+        "openIssues": 1474,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T09:04:58Z"
+        "pushedAt": "2026-10-12T11:37:40Z"
       },
       "bestFor": [
         "static analysis",
@@ -9229,14 +9357,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 16121,
-        "forks": 468,
-        "openIssues": 63,
+        "stars": 16204,
+        "forks": 472,
+        "openIssues": 68,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T10:44:04Z"
+        "pushedAt": "2026-10-11T15:34:09Z"
       },
       "bestFor": [
         "AST-based code analysis",
@@ -9273,14 +9401,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1948,
-        "forks": 246,
-        "openIssues": 21,
+        "stars": 1956,
+        "forks": 248,
+        "openIssues": 23,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-09-23T06:40:47Z"
+        "pushedAt": "2026-10-09T11:50:01Z"
       },
       "bestFor": [
         "code search and indexing"
@@ -9359,14 +9487,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 90406,
-        "forks": 3627,
-        "openIssues": 2946,
+        "stars": 90640,
+        "forks": 3648,
+        "openIssues": 3012,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T10:44:19Z"
+        "pushedAt": "2026-10-12T11:50:16Z"
       },
       "bestFor": [
         "Python dependency management",
@@ -9403,14 +9531,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 15539,
-        "forks": 552,
-        "openIssues": 235,
+        "stars": 15560,
+        "forks": 553,
+        "openIssues": 231,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T01:35:59Z"
+        "pushedAt": "2026-10-11T01:35:48Z"
       },
       "bestFor": [
         "performance profiling",
@@ -9445,14 +9573,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9045,
-        "forks": 686,
-        "openIssues": 53,
+        "stars": 9076,
+        "forks": 687,
+        "openIssues": 52,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MPL-2.0",
-        "pushedAt": "2026-10-05T04:13:18Z"
+        "pushedAt": "2026-10-11T06:27:49Z"
       },
       "bestFor": [
         "code-quality automation"
@@ -9487,14 +9615,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 12694,
-        "forks": 2913,
-        "openIssues": 794,
+        "stars": 12730,
+        "forks": 2926,
+        "openIssues": 801,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T09:43:16Z"
+        "pushedAt": "2026-10-12T08:24:06Z"
       },
       "bestFor": [
         "code-quality automation"
@@ -9528,9 +9656,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1466,
-        "forks": 179,
-        "openIssues": 64,
+        "stars": 1474,
+        "forks": 181,
+        "openIssues": 68,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -9584,14 +9712,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 97108,
-        "forks": 6547,
-        "openIssues": 219,
+        "stars": 97530,
+        "forks": 6589,
+        "openIssues": 199,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T10:02:19Z"
+        "pushedAt": "2026-10-11T22:43:51Z"
       }
     },
     {
@@ -9618,14 +9746,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 14565,
-        "forks": 3442,
-        "openIssues": 858,
+        "stars": 14588,
+        "forks": 3466,
+        "openIssues": 844,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T09:33:22Z"
+        "pushedAt": "2026-10-12T08:24:32Z"
       },
       "bestFor": [
         "code-quality automation"
@@ -9659,14 +9787,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 49911,
-        "forks": 2474,
-        "openIssues": 2197,
+        "stars": 50011,
+        "forks": 2495,
+        "openIssues": 2226,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:00:37Z"
+        "pushedAt": "2026-10-12T11:45:04Z"
       },
       "bestFor": [
         "fast Python linting",
@@ -9703,14 +9831,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 35392,
-        "forks": 3920,
-        "openIssues": 1002,
+        "stars": 35688,
+        "forks": 3975,
+        "openIssues": 1029,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:25:02Z"
+        "pushedAt": "2026-10-12T11:46:36Z"
       },
       "bestFor": [
         "monitoring and observability",
@@ -9745,14 +9873,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 25714,
-        "forks": 2439,
-        "openIssues": 716,
+        "stars": 25928,
+        "forks": 2465,
+        "openIssues": 695,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:21:54Z"
+        "pushedAt": "2026-10-12T11:41:40Z"
       },
       "bestFor": [
         "code-quality automation"
@@ -9786,14 +9914,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 18637,
-        "forks": 2022,
-        "openIssues": 705,
+        "stars": 18762,
+        "forks": 2049,
+        "openIssues": 721,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T07:44:31Z"
+        "pushedAt": "2026-10-12T07:32:07Z"
       },
       "bestFor": [
         "code-quality automation"
@@ -9827,14 +9955,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 11710,
-        "forks": 1182,
-        "openIssues": 1109,
+        "stars": 11805,
+        "forks": 1200,
+        "openIssues": 1095,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Elastic-2.0",
-        "pushedAt": "2026-10-04T14:38:21Z"
+        "pushedAt": "2026-10-12T11:18:37Z"
       },
       "bestFor": [
         "code-quality automation"
@@ -9869,9 +9997,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 14130,
-        "forks": 3640,
-        "openIssues": 1119,
+        "stars": 14192,
+        "forks": 3667,
+        "openIssues": 1163,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -9910,9 +10038,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 19552,
-        "forks": 3104,
-        "openIssues": 344,
+        "stars": 19591,
+        "forks": 3112,
+        "openIssues": 347,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -9951,14 +10079,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 2310,
+        "stars": 2313,
         "forks": 389,
-        "openIssues": 190,
+        "openIssues": 188,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-09-14T23:33:51Z"
+        "pushedAt": "2026-10-09T08:54:38Z"
       },
       "bestFor": [
         "code-quality automation"
@@ -9993,14 +10121,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 14177,
-        "forks": 1089,
+        "stars": 14294,
+        "forks": 1102,
         "openIssues": 96,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T07:16:56Z"
+        "pushedAt": "2026-10-09T14:55:23Z"
       },
       "bestFor": [
         "isolated code execution"
@@ -10036,14 +10164,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 37164,
-        "forks": 2656,
-        "openIssues": 94,
+        "stars": 37314,
+        "forks": 2669,
+        "openIssues": 97,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-02T13:45:21Z"
+        "pushedAt": "2026-10-09T13:46:25Z"
       },
       "bestFor": [
         "isolated code execution"
@@ -10094,9 +10222,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 19233,
-        "forks": 830,
-        "openIssues": 174,
+        "stars": 19289,
+        "forks": 838,
+        "openIssues": 175,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -10129,8 +10257,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 11825,
-        "forks": 1078,
+        "stars": 11828,
+        "forks": 1079,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
@@ -10185,9 +10313,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 32143,
-        "forks": 2940,
-        "openIssues": 857,
+        "stars": 32210,
+        "forks": 2952,
+        "openIssues": 858,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -10220,9 +10348,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 15081,
-        "forks": 1256,
-        "openIssues": 430,
+        "stars": 15085,
+        "forks": 1255,
+        "openIssues": 429,
         "archived": false,
         "disabled": false,
         "defaultBranch": "develop",
@@ -10263,14 +10391,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 8664,
-        "forks": 463,
-        "openIssues": 42,
+        "stars": 8670,
+        "forks": 464,
+        "openIssues": 33,
         "archived": false,
         "disabled": false,
         "defaultBranch": "dev",
         "license": "MIT",
-        "pushedAt": "2026-09-29T00:27:18Z"
+        "pushedAt": "2026-10-12T05:56:57Z"
       },
       "bestFor": [
         "vector animation"
@@ -10305,8 +10433,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 21233,
-        "forks": 663,
+        "stars": 21255,
+        "forks": 664,
         "openIssues": 42,
         "archived": false,
         "disabled": false,
@@ -10349,7 +10477,7 @@ Repository-specific rules:
       "costModel": "open-source",
       "github": {
         "stars": 15484,
-        "forks": 1123,
+        "forks": 1122,
         "openIssues": 22,
         "archived": false,
         "disabled": false,
@@ -10390,8 +10518,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 60168,
-        "forks": 9381,
+        "stars": 60186,
+        "forks": 9374,
         "openIssues": 177,
         "archived": false,
         "disabled": false,
@@ -10432,14 +10560,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1495,
-        "forks": 206,
-        "openIssues": 7,
+        "stars": 1536,
+        "forks": 213,
+        "openIssues": 10,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T10:36:31Z"
+        "pushedAt": "2026-10-12T09:23:44Z"
       },
       "bestFor": [
         "visualization workflows"
@@ -10473,9 +10601,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 38598,
-        "forks": 5294,
-        "openIssues": 584,
+        "stars": 38700,
+        "forks": 5299,
+        "openIssues": 585,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -10552,9 +10680,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 57567,
-        "forks": 13457,
-        "openIssues": 16,
+        "stars": 57575,
+        "forks": 13451,
+        "openIssues": 19,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -10594,14 +10722,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 12588,
-        "forks": 1344,
+        "stars": 12614,
+        "forks": 1349,
         "openIssues": 186,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-06-29T09:33:50Z"
+        "pushedAt": "2026-10-08T08:57:37Z"
       },
       "bestFor": [
         "video-generation workflows"
@@ -10637,8 +10765,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 901,
-        "forks": 314,
+        "stars": 900,
+        "forks": 313,
         "openIssues": 5,
         "archived": false,
         "disabled": false,
@@ -10674,14 +10802,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 96913,
-        "forks": 14120,
-        "openIssues": 46,
+        "stars": 96989,
+        "forks": 14126,
+        "openIssues": 44,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-05T00:58:03Z"
+        "pushedAt": "2026-10-10T04:19:17Z"
       },
       "bestFor": [
         "face swap workflows"
@@ -10762,7 +10890,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 8002,
+        "stars": 8023,
         "forks": 1159,
         "openIssues": 86,
         "archived": false,
@@ -10804,8 +10932,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 32039,
-        "forks": 3443,
+        "stars": 32086,
+        "forks": 3445,
         "openIssues": 92,
         "archived": false,
         "disabled": false,
@@ -10846,8 +10974,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 14024,
-        "forks": 1823,
+        "stars": 14048,
+        "forks": 1827,
         "openIssues": 19,
         "archived": false,
         "disabled": false,
@@ -10881,14 +11009,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 49723,
+        "stars": 49812,
         "forks": 2331,
         "openIssues": 868,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-09T08:51:44Z"
+        "license": "BSD-3-Clause",
+        "pushedAt": "2026-10-11T15:08:29Z"
       },
       "bestFor": [
         "Étudier un lecteur musical Flutter avec plugins et sources audio configurables"
@@ -10925,7 +11053,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 4241,
+        "stars": 4236,
         "forks": 371,
         "openIssues": 64,
         "archived": false,
@@ -10968,14 +11096,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 30137,
-        "forks": 4922,
+        "stars": 30238,
+        "forks": 4935,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "OpenRAIL-AS",
-        "pushedAt": "2026-10-05T09:30:07Z"
+        "pushedAt": "2026-10-09T07:25:32Z"
       },
       "bestFor": [
         "video-generation workflows"
@@ -11011,8 +11139,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1445,
-        "forks": 362,
+        "stars": 1446,
+        "forks": 363,
         "openIssues": 96,
         "archived": false,
         "disabled": false,
@@ -11045,14 +11173,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 53414,
-        "forks": 5954,
-        "openIssues": 60,
+        "stars": 59611,
+        "forks": 6683,
+        "openIssues": 115,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-05T09:47:38Z"
+        "pushedAt": "2026-10-12T07:51:59Z"
       },
       "bestFor": [
         "speech and audio processing"
@@ -11088,14 +11216,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 136138,
-        "forks": 16143,
-        "openIssues": 5059,
+        "stars": 137058,
+        "forks": 16314,
+        "openIssues": 5139,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "GPL-3.0",
-        "pushedAt": "2026-10-05T04:16:59Z"
+        "pushedAt": "2026-10-12T08:20:31Z"
       },
       "bestFor": [
         "node-based diffusion workflows",
@@ -11132,14 +11260,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 28345,
-        "forks": 2986,
-        "openIssues": 408,
+        "stars": 28575,
+        "forks": 3028,
+        "openIssues": 416,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:22:29Z"
+        "pushedAt": "2026-10-12T09:23:32Z"
       },
       "bestFor": [
         "image-generation workflows",
@@ -11175,14 +11303,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 49392,
-        "forks": 4483,
-        "openIssues": 189,
+        "stars": 49486,
+        "forks": 4494,
+        "openIssues": 205,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T09:25:29Z"
+        "pushedAt": "2026-10-12T08:05:46Z"
       },
       "bestFor": [
         "local inference workflows"
@@ -11217,8 +11345,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 81481,
-        "forks": 17435,
+        "stars": 81690,
+        "forks": 17464,
         "openIssues": 36,
         "archived": false,
         "disabled": false,
@@ -11258,9 +11386,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 15088,
-        "forks": 1943,
-        "openIssues": 117,
+        "stars": 15175,
+        "forks": 1958,
+        "openIssues": 116,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -11300,14 +11428,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 66564,
-        "forks": 7306,
-        "openIssues": 436,
+        "stars": 68074,
+        "forks": 7537,
+        "openIssues": 466,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T02:37:22Z"
+        "pushedAt": "2026-10-11T00:31:50Z"
       },
       "bestFor": [
         "open-source intelligence research"
@@ -11341,9 +11469,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 12392,
-        "forks": 2524,
-        "openIssues": 114,
+        "stars": 12679,
+        "forks": 2574,
+        "openIssues": 115,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -11382,14 +11510,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3030,
-        "forks": 651,
-        "openIssues": 51,
+        "stars": 3044,
+        "forks": 656,
+        "openIssues": 52,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": null,
-        "pushedAt": "2026-10-05T11:24:53Z"
+        "pushedAt": "2026-10-12T11:49:24Z"
       },
       "bestFor": [
         "open-source intelligence research"
@@ -11425,14 +11553,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 47697,
-        "forks": 9727,
-        "openIssues": 294,
+        "stars": 52632,
+        "forks": 10492,
+        "openIssues": 381,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T00:17:10Z"
+        "pushedAt": "2026-10-10T03:59:46Z"
       }
     },
     {
@@ -11459,14 +11587,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 2192,
-        "forks": 223,
+        "stars": 2466,
+        "forks": 266,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-30T07:13:53Z"
+        "pushedAt": "2026-10-12T08:49:17Z"
       },
       "bestFor": [
         "open-source intelligence research"
@@ -11501,7 +11629,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 2793,
+        "stars": 2794,
         "forks": 186,
         "openIssues": 9,
         "archived": false,
@@ -11536,9 +11664,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 193402,
-        "forks": 18350,
-        "openIssues": 2,
+        "stars": 194079,
+        "forks": 18439,
+        "openIssues": 4,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -11577,8 +11705,8 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 9792,
-        "forks": 1386,
+        "stars": 9825,
+        "forks": 1393,
         "openIssues": 222,
         "archived": false,
         "disabled": false,
@@ -11611,9 +11739,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1137,
+        "stars": 1136,
         "forks": 311,
-        "openIssues": 104,
+        "openIssues": 103,
         "archived": true,
         "disabled": false,
         "defaultBranch": "master",
@@ -11654,7 +11782,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 4062,
+        "stars": 4063,
         "forks": 395,
         "openIssues": 70,
         "archived": false,
@@ -11695,8 +11823,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 18224,
-        "forks": 1766,
+        "stars": 18268,
+        "forks": 1767,
         "openIssues": 32,
         "archived": false,
         "disabled": false,
@@ -11816,8 +11944,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 511,
-        "forks": 134,
+        "stars": 512,
+        "forks": 135,
         "openIssues": 24,
         "archived": false,
         "disabled": false,
@@ -11853,7 +11981,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 2060,
+        "stars": 2066,
         "forks": 543,
         "openIssues": 87,
         "archived": false,
@@ -11888,8 +12016,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1559,
-        "forks": 292,
+        "stars": 1567,
+        "forks": 294,
         "openIssues": 62,
         "archived": false,
         "disabled": false,
@@ -11925,7 +12053,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 851,
+        "stars": 853,
         "forks": 158,
         "openIssues": 32,
         "archived": false,
@@ -11961,8 +12089,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1033,
-        "forks": 232,
+        "stars": 1058,
+        "forks": 235,
         "openIssues": 12,
         "archived": false,
         "disabled": false,
@@ -11998,9 +12126,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 2892,
-        "forks": 338,
-        "openIssues": 33,
+        "stars": 2960,
+        "forks": 355,
+        "openIssues": 31,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -12102,14 +12230,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 21861,
-        "forks": 5282,
-        "openIssues": 260,
+        "stars": 21968,
+        "forks": 5294,
+        "openIssues": 268,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-02T20:57:46Z"
+        "pushedAt": "2026-10-09T21:00:25Z"
       }
     },
     {
@@ -12161,14 +12289,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 29626,
-        "forks": 3925,
-        "openIssues": 153,
+        "stars": 29864,
+        "forks": 3982,
+        "openIssues": 117,
         "archived": false,
         "disabled": false,
         "defaultBranch": "develop",
         "license": "LGPL-3.0",
-        "pushedAt": "2026-10-05T08:06:02Z"
+        "pushedAt": "2026-10-12T11:12:30Z"
       }
     },
     {
@@ -12224,14 +12352,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9274,
-        "forks": 1184,
-        "openIssues": 139,
+        "stars": 9340,
+        "forks": 1196,
+        "openIssues": 137,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-09-26T11:27:49Z"
+        "pushedAt": "2026-10-09T20:04:03Z"
       }
     },
     {
@@ -12284,14 +12412,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 49146,
-        "forks": 7763,
-        "openIssues": 487,
+        "stars": 49305,
+        "forks": 7784,
+        "openIssues": 492,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-22T05:57:23Z"
+        "pushedAt": "2026-10-08T10:58:43Z"
       }
     },
     {
@@ -12327,14 +12455,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 44251,
-        "forks": 8872,
-        "openIssues": 714,
+        "stars": 44334,
+        "forks": 8874,
+        "openIssues": 716,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T10:27:02Z"
+        "pushedAt": "2026-10-12T09:52:31Z"
       },
       "bestFor": [
         "multi-exchange crypto market data",
@@ -12382,14 +12510,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 55035,
-        "forks": 11380,
-        "openIssues": 31,
+        "stars": 55294,
+        "forks": 11428,
+        "openIssues": 34,
         "archived": false,
         "disabled": false,
         "defaultBranch": "develop",
         "license": "GPL-3.0",
-        "pushedAt": "2026-10-05T05:03:12Z"
+        "pushedAt": "2026-10-12T04:56:11Z"
       },
       "bestFor": [
         "strategy backtesting",
@@ -12433,14 +12561,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 20303,
-        "forks": 4977,
-        "openIssues": 180,
+        "stars": 20409,
+        "forks": 4981,
+        "openIssues": 174,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-09-28T10:50:41Z"
+        "pushedAt": "2026-10-06T01:12:38Z"
       },
       "bestFor": [
         "strategy backtesting",
@@ -12488,14 +12616,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 16554,
-        "forks": 3538,
+        "stars": 16627,
+        "forks": 3540,
         "openIssues": 308,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-09-28T23:32:46Z"
+        "pushedAt": "2026-10-09T09:03:13Z"
       },
       "bestFor": [
         "strategy backtesting",
@@ -12537,9 +12665,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9010,
+        "stars": 9037,
         "forks": 1543,
-        "openIssues": 93,
+        "openIssues": 95,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -12587,14 +12715,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 45699,
-        "forks": 12499,
-        "openIssues": 6,
+        "stars": 45826,
+        "forks": 12512,
+        "openIssues": 7,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T01:06:17Z"
+        "pushedAt": "2026-10-06T09:57:47Z"
       },
       "bestFor": [
         "strategy backtesting",
@@ -12636,14 +12764,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 12266,
-        "forks": 2003,
-        "openIssues": 134,
+        "stars": 12280,
+        "forks": 2002,
+        "openIssues": 91,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "BSD-2-Clause",
-        "pushedAt": "2026-09-21T16:37:09Z"
+        "pushedAt": "2026-10-09T21:33:46Z"
       },
       "bestFor": [
         "strategy backtesting",
@@ -12688,14 +12816,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 25431,
-        "forks": 3434,
-        "openIssues": 107,
+        "stars": 25495,
+        "forks": 3439,
+        "openIssues": 108,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-04T12:26:33Z"
+        "pushedAt": "2026-10-05T19:12:16Z"
       },
       "bestFor": [
         "strategy backtesting",
@@ -12742,14 +12870,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 21225,
-        "forks": 5677,
-        "openIssues": 3,
+        "stars": 21306,
+        "forks": 5692,
+        "openIssues": 1,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-04T13:24:46Z"
+        "pushedAt": "2026-10-11T14:07:51Z"
       },
       "bestFor": [
         "strategy backtesting",
@@ -12794,14 +12922,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 2993,
-        "forks": 500,
+        "stars": 2997,
+        "forks": 499,
         "openIssues": 15,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-03T22:55:37Z"
+        "pushedAt": "2026-10-10T23:48:16Z"
       },
       "bestFor": [
         "strategy backtesting",
@@ -12843,9 +12971,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 23394,
-        "forks": 5297,
-        "openIssues": 63,
+        "stars": 23453,
+        "forks": 5292,
+        "openIssues": 64,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -12897,8 +13025,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 20136,
-        "forks": 5046,
+        "stars": 20147,
+        "forks": 5040,
         "openIssues": 367,
         "archived": false,
         "disabled": false,
@@ -12956,8 +13084,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 4935,
-        "forks": 1291,
+        "stars": 4938,
+        "forks": 1292,
         "openIssues": 49,
         "archived": false,
         "disabled": false,
@@ -13014,14 +13142,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 2460,
-        "forks": 266,
-        "openIssues": 35,
+        "stars": 2484,
+        "forks": 271,
+        "openIssues": 39,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "BSD-3-Clause",
-        "pushedAt": "2026-10-03T14:31:59Z"
+        "pushedAt": "2026-10-12T10:09:25Z"
       },
       "bestFor": [
         "strategy backtesting",
@@ -13063,8 +13191,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 6073,
-        "forks": 1176,
+        "stars": 6093,
+        "forks": 1178,
         "openIssues": 117,
         "archived": false,
         "disabled": false,
@@ -13125,8 +13253,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 4533,
-        "forks": 718,
+        "stars": 4539,
+        "forks": 720,
         "openIssues": 11,
         "archived": false,
         "disabled": false,
@@ -13165,9 +13293,9 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 7677,
-        "forks": 1246,
-        "openIssues": 15,
+        "stars": 7699,
+        "forks": 1253,
+        "openIssues": 22,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -13214,14 +13342,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 11671,
-        "forks": 3616,
-        "openIssues": 2798,
+        "stars": 11680,
+        "forks": 3622,
+        "openIssues": 2809,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "BSD-3-Clause",
-        "pushedAt": "2026-10-05T11:12:05Z"
+        "pushedAt": "2026-10-11T13:27:32Z"
       },
       "bestFor": [
         "quantitative alpha research",
@@ -13265,14 +13393,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1586,
-        "forks": 297,
-        "openIssues": 59,
+        "stars": 1593,
+        "forks": 302,
+        "openIssues": 43,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-27T08:00:31Z"
+        "pushedAt": "2026-10-12T10:05:40Z"
       },
       "bestFor": [
         "risk analysis",
@@ -13316,14 +13444,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 14886,
-        "forks": 1408,
-        "openIssues": 21,
+        "stars": 14909,
+        "forks": 1414,
+        "openIssues": 19,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-09-30T07:26:24Z"
+        "pushedAt": "2026-10-10T02:01:01Z"
       },
       "bestFor": [
         "machine-learning workflows",
@@ -13368,14 +13496,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 7595,
-        "forks": 1074,
-        "openIssues": 10,
+        "stars": 7596,
+        "forks": 1076,
+        "openIssues": 12,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "BSD-3-Clause",
-        "pushedAt": "2026-09-28T22:18:00Z"
+        "pushedAt": "2026-10-05T23:48:53Z"
       },
       "bestFor": [
         "machine-learning workflows",
@@ -13417,14 +13545,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 662,
-        "forks": 150,
-        "openIssues": 15,
+        "stars": 668,
+        "forks": 151,
+        "openIssues": 23,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2025-12-15T04:03:16Z"
+        "pushedAt": "2026-10-10T09:24:35Z"
       },
       "bestFor": [
         "quantitative alpha research"
@@ -13464,8 +13592,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 6423,
-        "forks": 1896,
+        "stars": 6426,
+        "forks": 1894,
         "openIssues": 166,
         "archived": false,
         "disabled": false,
@@ -13521,14 +13649,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9533,
-        "forks": 1048,
-        "openIssues": 232,
+        "stars": 9542,
+        "forks": 1053,
+        "openIssues": 225,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-09-30T14:57:15Z"
+        "pushedAt": "2026-10-12T11:01:18Z"
       },
       "bestFor": [
         "machine-learning workflows",
@@ -13573,14 +13701,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 10055,
-        "forks": 2415,
-        "openIssues": 2583,
+        "stars": 10063,
+        "forks": 2432,
+        "openIssues": 2604,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "BSD-3-Clause",
-        "pushedAt": "2026-10-04T18:17:21Z"
+        "pushedAt": "2026-10-12T07:03:59Z"
       },
       "bestFor": [
         "machine-learning workflows",
@@ -13625,14 +13753,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 4276,
-        "forks": 510,
-        "openIssues": 13,
+        "stars": 4283,
+        "forks": 512,
+        "openIssues": 12,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T05:25:33Z"
+        "pushedAt": "2026-10-07T14:52:43Z"
       },
       "bestFor": [
         "machine-learning workflows",
@@ -13674,8 +13802,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 6474,
-        "forks": 633,
+        "stars": 6496,
+        "forks": 632,
         "openIssues": 66,
         "archived": false,
         "disabled": false,
@@ -13725,9 +13853,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9462,
-        "forks": 1290,
-        "openIssues": 75,
+        "stars": 9471,
+        "forks": 1293,
+        "openIssues": 77,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -13775,14 +13903,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 22827,
-        "forks": 3530,
-        "openIssues": 0,
+        "stars": 22897,
+        "forks": 3533,
+        "openIssues": 3,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-30T07:23:31Z"
+        "pushedAt": "2026-10-07T04:17:29Z"
       },
       "bestFor": [
         "market-data ingestion",
@@ -13824,7 +13952,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 437,
+        "stars": 439,
         "forks": 95,
         "openIssues": 1,
         "archived": false,
@@ -13888,14 +14016,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "mixed",
       "github": {
-        "stars": 74002,
-        "forks": 7641,
-        "openIssues": 88,
+        "stars": 74143,
+        "forks": 7663,
+        "openIssues": 101,
         "archived": false,
         "disabled": false,
         "defaultBranch": "develop",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-02T04:55:27Z"
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-11T20:16:55Z"
       },
       "licenseEvidence": "verified-file",
       "guidanceSource": "curated",
@@ -13931,14 +14059,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 18823,
-        "forks": 2858,
-        "openIssues": 728,
+        "stars": 18837,
+        "forks": 2869,
+        "openIssues": 730,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T05:26:46Z"
+        "pushedAt": "2026-10-09T16:12:55Z"
       },
       "bestFor": [
         "diagnostics and analysis",
@@ -13979,8 +14107,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 4439,
-        "forks": 678,
+        "stars": 4445,
+        "forks": 676,
         "openIssues": 177,
         "archived": false,
         "disabled": false,
@@ -14032,14 +14160,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 67470,
-        "forks": 27477,
-        "openIssues": 2154,
+        "stars": 67558,
+        "forks": 27507,
+        "openIssues": 2166,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "BSD-3-Clause",
-        "pushedAt": "2026-10-05T09:13:53Z"
+        "pushedAt": "2026-10-12T08:30:10Z"
       },
       "bestFor": [
         "classical machine-learning pipelines",
@@ -14096,14 +14224,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 28827,
-        "forks": 8925,
-        "openIssues": 449,
+        "stars": 28854,
+        "forks": 8938,
+        "openIssues": 454,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-04T13:56:26Z"
+        "pushedAt": "2026-10-12T10:12:36Z"
       }
     },
     {
@@ -14137,14 +14265,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9134,
-        "forks": 1344,
-        "openIssues": 734,
+        "stars": 9139,
+        "forks": 1347,
+        "openIssues": 737,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T10:45:28Z"
+        "pushedAt": "2026-10-10T19:45:32Z"
       },
       "bestFor": [
         "machine-learning workflows",
@@ -14189,14 +14317,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 25793,
-        "forks": 3760,
-        "openIssues": 987,
+        "stars": 25806,
+        "forks": 3771,
+        "openIssues": 1004,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-04T18:10:00Z"
+        "pushedAt": "2026-10-12T03:51:31Z"
       },
       "bestFor": [
         "machine-learning workflows",
@@ -14241,7 +14369,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 2968,
+        "stars": 2974,
         "forks": 482,
         "openIssues": 14,
         "archived": false,
@@ -14291,9 +14419,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 6445,
-        "forks": 1164,
-        "openIssues": 286,
+        "stars": 6450,
+        "forks": 1163,
+        "openIssues": 287,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -14341,14 +14469,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3183,
-        "forks": 391,
-        "openIssues": 83,
+        "stars": 3186,
+        "forks": 396,
+        "openIssues": 95,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "BSD-2-Clause",
-        "pushedAt": "2026-10-05T09:33:19Z"
+        "pushedAt": "2026-10-12T11:52:31Z"
       },
       "bestFor": [
         "machine-learning workflows",
@@ -14391,9 +14519,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3434,
-        "forks": 756,
-        "openIssues": 80,
+        "stars": 3437,
+        "forks": 755,
+        "openIssues": 81,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -14441,9 +14569,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 2287,
-        "forks": 379,
-        "openIssues": 112,
+        "stars": 2289,
+        "forks": 383,
+        "openIssues": 116,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -14490,9 +14618,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 7126,
+        "stars": 7128,
         "forks": 1374,
-        "openIssues": 103,
+        "openIssues": 104,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -14541,9 +14669,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1337,
-        "forks": 402,
-        "openIssues": 85,
+        "stars": 1338,
+        "forks": 403,
+        "openIssues": 87,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -14583,9 +14711,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 54067,
-        "forks": 4296,
-        "openIssues": 4,
+        "stars": 56007,
+        "forks": 4427,
+        "openIssues": 3,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -14625,14 +14753,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 33949,
-        "forks": 3243,
-        "openIssues": 34,
+        "stars": 34338,
+        "forks": 3270,
+        "openIssues": 28,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-03T09:56:12Z"
+        "pushedAt": "2026-10-09T14:23:36Z"
       },
       "bestFor": [
         "image-generation workflows"
@@ -14666,14 +14794,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9867,
-        "forks": 929,
-        "openIssues": 189,
+        "stars": 10989,
+        "forks": 1059,
+        "openIssues": 220,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T06:36:15Z"
+        "pushedAt": "2026-10-12T08:10:54Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -14710,14 +14838,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 77805,
-        "forks": 5228,
-        "openIssues": 199,
+        "stars": 82351,
+        "forks": 5555,
+        "openIssues": 279,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:10:38Z"
+        "pushedAt": "2026-10-12T04:54:47Z"
       },
       "bestFor": [
         "architecture workflows"
@@ -14751,8 +14879,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 4539,
-        "forks": 907,
+        "stars": 4540,
+        "forks": 906,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
@@ -14792,14 +14920,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 5662,
-        "forks": 1067,
-        "openIssues": 11,
+        "stars": 5960,
+        "forks": 1135,
+        "openIssues": 26,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:16:17Z"
+        "pushedAt": "2026-10-11T16:07:01Z"
       },
       "bestFor": [
         "authorized security testing"
@@ -14833,9 +14961,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 8118,
-        "forks": 1754,
-        "openIssues": 19,
+        "stars": 8124,
+        "forks": 1756,
+        "openIssues": 20,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -14875,8 +15003,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9804,
-        "forks": 1313,
+        "stars": 9823,
+        "forks": 1316,
         "openIssues": 3,
         "archived": false,
         "disabled": false,
@@ -14918,9 +15046,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 10762,
-        "forks": 2376,
-        "openIssues": 8,
+        "stars": 10774,
+        "forks": 2374,
+        "openIssues": 9,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -14971,14 +15099,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 12608,
-        "forks": 3229,
-        "openIssues": 35,
+        "stars": 12654,
+        "forks": 3233,
+        "openIssues": 34,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:12:53Z"
+        "pushedAt": "2026-10-06T19:41:45Z"
       }
     },
     {
@@ -15006,9 +15134,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 27346,
-        "forks": 4972,
-        "openIssues": 134,
+        "stars": 27404,
+        "forks": 4979,
+        "openIssues": 140,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -15050,9 +15178,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 15737,
-        "forks": 2741,
-        "openIssues": 87,
+        "stars": 15906,
+        "forks": 2777,
+        "openIssues": 88,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -15093,14 +15221,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 25256,
-        "forks": 3244,
-        "openIssues": 18,
+        "stars": 25683,
+        "forks": 3339,
+        "openIssues": 20,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T06:59:49Z"
+        "pushedAt": "2026-10-09T20:54:31Z"
       },
       "bestFor": [
         "code-quality automation",
@@ -15136,8 +15264,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 7270,
-        "forks": 950,
+        "stars": 7437,
+        "forks": 966,
         "openIssues": 15,
         "archived": false,
         "disabled": false,
@@ -15179,14 +15307,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 68928,
-        "forks": 11198,
+        "stars": 69452,
+        "forks": 11297,
         "openIssues": 56,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "CC0-1.0",
-        "pushedAt": "2026-10-05T11:21:51Z"
+        "pushedAt": "2026-10-12T02:20:04Z"
       },
       "bestFor": [
         "prompt research workflows"
@@ -15221,14 +15349,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 74439,
-        "forks": 5762,
-        "openIssues": 447,
+        "stars": 75109,
+        "forks": 5825,
+        "openIssues": 428,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T03:48:29Z"
+        "pushedAt": "2026-10-11T03:16:58Z"
       },
       "bestFor": [
         "machine-learning workflows",
@@ -15263,14 +15391,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 147460,
-        "forks": 24708,
-        "openIssues": 618,
+        "stars": 147676,
+        "forks": 24765,
+        "openIssues": 652,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T08:41:46Z"
+        "pushedAt": "2026-10-12T09:10:32Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -15305,9 +15433,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 188541,
-        "forks": 13959,
-        "openIssues": 666,
+        "stars": 189716,
+        "forks": 14118,
+        "openIssues": 718,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -15346,14 +15474,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 157865,
-        "forks": 24909,
-        "openIssues": 1024,
+        "stars": 158231,
+        "forks": 25010,
+        "openIssues": 1098,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Modified Apache-2.0",
-        "pushedAt": "2026-10-05T11:10:19Z"
+        "pushedAt": "2026-10-12T11:50:14Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -15388,14 +15516,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9260,
-        "forks": 4123,
-        "openIssues": 80,
+        "stars": 9259,
+        "forks": 4125,
+        "openIssues": 91,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "BSD-3-Clause",
-        "pushedAt": "2026-10-05T04:10:19Z"
+        "pushedAt": "2026-10-12T11:55:15Z"
       },
       "bestFor": [
         "mobile application development"
@@ -15429,8 +15557,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 61416,
-        "forks": 6924,
+        "stars": 61477,
+        "forks": 6926,
         "openIssues": 38,
         "archived": false,
         "disabled": false,
@@ -15471,9 +15599,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 15355,
-        "forks": 1531,
-        "openIssues": 23,
+        "stars": 15474,
+        "forks": 1539,
+        "openIssues": 28,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -15512,8 +15640,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 49157,
-        "forks": 3489,
+        "stars": 49430,
+        "forks": 3501,
         "openIssues": 75,
         "archived": false,
         "disabled": false,
@@ -15554,7 +15682,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 13976,
+        "stars": 13983,
         "forks": 2465,
         "openIssues": 28,
         "archived": false,
@@ -15611,14 +15739,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 66586,
-        "forks": 7851,
-        "openIssues": 786,
+        "stars": 67031,
+        "forks": 7882,
+        "openIssues": 818,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T04:18:38Z"
+        "pushedAt": "2026-10-09T06:17:43Z"
       }
     },
     {
@@ -15645,14 +15773,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 96351,
-        "forks": 8505,
-        "openIssues": 88,
+        "stars": 99931,
+        "forks": 8765,
+        "openIssues": 99,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:17:15Z"
+        "pushedAt": "2026-10-12T07:06:28Z"
       },
       "bestFor": [
         "persistent context for Claude coding workflows",
@@ -15688,14 +15816,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 30108,
-        "forks": 6661,
-        "openIssues": 13,
+        "stars": 30136,
+        "forks": 6660,
+        "openIssues": 14,
         "archived": false,
         "disabled": false,
         "defaultBranch": "live",
         "license": "MIT",
-        "pushedAt": "2026-10-02T20:20:58Z"
+        "pushedAt": "2026-10-09T16:18:23Z"
       },
       "bestFor": [
         "market-data ingestion"
@@ -15730,14 +15858,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 45799,
-        "forks": 3767,
-        "openIssues": 638,
+        "stars": 46410,
+        "forks": 3813,
+        "openIssues": 639,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T05:38:28Z"
+        "pushedAt": "2026-10-12T04:32:09Z"
       },
       "bestFor": [
         "retrieval and persistent-memory workflows"
@@ -15771,14 +15899,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 63536,
-        "forks": 4811,
-        "openIssues": 98,
+        "stars": 63724,
+        "forks": 4850,
+        "openIssues": 97,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-02T22:17:54Z"
+        "pushedAt": "2026-10-12T01:23:03Z"
       },
       "bestFor": [
         "retrieval and persistent-memory workflows"
@@ -15813,14 +15941,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 39202,
-        "forks": 3971,
-        "openIssues": 503,
+        "stars": 39248,
+        "forks": 3981,
+        "openIssues": 481,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-09-24T06:48:56Z"
+        "pushedAt": "2026-10-09T01:29:53Z"
       },
       "bestFor": [
         "computer use workflows"
@@ -15854,8 +15982,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 82850,
-        "forks": 15877,
+        "stars": 82863,
+        "forks": 15868,
         "openIssues": 80,
         "archived": false,
         "disabled": false,
@@ -15897,8 +16025,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 10087,
-        "forks": 1018,
+        "stars": 10093,
+        "forks": 1020,
         "openIssues": 20,
         "archived": false,
         "disabled": false,
@@ -15939,14 +16067,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 76471,
-        "forks": 25128,
-        "openIssues": 26,
+        "stars": 76974,
+        "forks": 25281,
+        "openIssues": 21,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-19T06:16:49Z"
+        "pushedAt": "2026-10-12T02:14:12Z"
       },
       "bestFor": [
         "agentic workflows",
@@ -15982,9 +16110,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 55483,
-        "forks": 25064,
-        "openIssues": 1040,
+        "stars": 55496,
+        "forks": 25057,
+        "openIssues": 1041,
         "archived": true,
         "disabled": false,
         "defaultBranch": "main",
@@ -16046,14 +16174,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 60144,
-        "forks": 12030,
-        "openIssues": 5195,
+        "stars": 61048,
+        "forks": 12245,
+        "openIssues": 5465,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:26:29Z"
+        "pushedAt": "2026-10-12T11:30:20Z"
       }
     },
     {
@@ -16080,14 +16208,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 83399,
-        "forks": 11583,
-        "openIssues": 904,
+        "stars": 83737,
+        "forks": 11652,
+        "openIssues": 937,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:06:17Z"
+        "pushedAt": "2026-10-12T11:00:55Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -16122,8 +16250,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 19939,
-        "forks": 1482,
+        "stars": 19948,
+        "forks": 1485,
         "openIssues": 18,
         "archived": false,
         "disabled": false,
@@ -16170,14 +16298,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 25754,
-        "forks": 3661,
-        "openIssues": 61,
+        "stars": 26216,
+        "forks": 3713,
+        "openIssues": 64,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-29T12:55:08Z"
+        "pushedAt": "2026-10-08T08:21:47Z"
       },
       "bestFor": [
         "agentic workflows",
@@ -16227,14 +16355,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 118136,
-        "forks": 26949,
-        "openIssues": 18924,
+        "stars": 118295,
+        "forks": 27024,
+        "openIssues": 18874,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T09:56:04Z"
+        "pushedAt": "2026-10-09T20:18:11Z"
       }
     },
     {
@@ -16261,14 +16389,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 25421,
-        "forks": 6521,
+        "stars": 25479,
+        "forks": 6517,
         "openIssues": 344,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-09-24T03:13:51Z"
+        "pushedAt": "2026-10-06T14:04:50Z"
       },
       "bestFor": [
         "game development"
@@ -16317,14 +16445,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 20563,
-        "forks": 2272,
-        "openIssues": 222,
+        "stars": 20588,
+        "forks": 2277,
+        "openIssues": 219,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T07:23:09Z"
+        "pushedAt": "2026-10-12T11:19:00Z"
       }
     },
     {
@@ -16351,14 +16479,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 38322,
-        "forks": 3016,
-        "openIssues": 60,
+        "stars": 38793,
+        "forks": 3057,
+        "openIssues": 34,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T07:58:30Z"
+        "pushedAt": "2026-10-10T20:51:12Z"
       },
       "bestFor": [
         "open-source intelligence research"
@@ -16402,14 +16530,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 93256,
-        "forks": 11010,
+        "stars": 93950,
+        "forks": 11104,
         "openIssues": 356,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T05:31:58Z"
+        "pushedAt": "2026-10-12T05:24:49Z"
       }
     },
     {
@@ -16440,14 +16568,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 45096,
-        "forks": 4256,
-        "openIssues": 1268,
+        "stars": 45209,
+        "forks": 4289,
+        "openIssues": 1291,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T10:54:32Z"
+        "pushedAt": "2026-10-10T00:19:01Z"
       },
       "bestFor": [
         "backend services",
@@ -16482,14 +16610,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 73939,
-        "forks": 25140,
+        "stars": 74136,
+        "forks": 25147,
         "openIssues": 10,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:17:11Z"
+        "pushedAt": "2026-10-12T11:18:27Z"
       },
       "bestFor": [
         "authorized security-testing wordlists",
@@ -16526,9 +16654,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 7286,
+        "stars": 7306,
         "forks": 1365,
-        "openIssues": 12,
+        "openIssues": 13,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -16568,14 +16696,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 39094,
-        "forks": 14983,
-        "openIssues": 616,
+        "stars": 39125,
+        "forks": 14996,
+        "openIssues": 612,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T01:27:54Z"
+        "pushedAt": "2026-10-12T01:34:16Z"
       },
       "bestFor": [
         "authorized exploit validation",
@@ -16611,14 +16739,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 166963,
-        "forks": 34752,
-        "openIssues": 2373,
+        "stars": 167562,
+        "forks": 34846,
+        "openIssues": 2339,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T10:40:35Z"
+        "pushedAt": "2026-10-12T11:37:30Z"
       },
       "bestFor": [
         "pretrained transformer model inference",
@@ -16654,9 +16782,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 6175,
-        "forks": 450,
-        "openIssues": 43,
+        "stars": 6200,
+        "forks": 447,
+        "openIssues": 41,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -16697,14 +16825,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 43796,
-        "forks": 3155,
-        "openIssues": 276,
+        "stars": 46398,
+        "forks": 3372,
+        "openIssues": 301,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T06:43:52Z"
+        "pushedAt": "2026-10-12T11:41:07Z"
       },
       "bestFor": [
         "code-quality automation"
@@ -16738,14 +16866,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 10835,
-        "forks": 1240,
-        "openIssues": 38,
+        "stars": 11746,
+        "forks": 1332,
+        "openIssues": 75,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T00:32:42Z"
+        "pushedAt": "2026-10-06T07:30:39Z"
       },
       "bestFor": [
         "speech and audio processing"
@@ -16779,9 +16907,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 63525,
-        "forks": 8085,
-        "openIssues": 354,
+        "stars": 67284,
+        "forks": 8577,
+        "openIssues": 398,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -16820,14 +16948,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 7029,
-        "forks": 558,
-        "openIssues": 34,
+        "stars": 7051,
+        "forks": 560,
+        "openIssues": 37,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "CC-BY-4.0",
-        "pushedAt": "2026-09-20T12:37:19Z"
+        "pushedAt": "2026-10-09T11:56:17Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -16863,14 +16991,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 5309,
-        "forks": 3140,
-        "openIssues": 82,
+        "stars": 5312,
+        "forks": 3141,
+        "openIssues": 86,
         "archived": false,
         "disabled": false,
         "defaultBranch": "4.3",
         "license": "Spine Runtimes License",
-        "pushedAt": "2026-09-30T22:11:28Z"
+        "pushedAt": "2026-10-09T08:14:42Z"
       },
       "bestFor": [
         "vector animation",
@@ -16907,14 +17035,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 6119,
-        "forks": 832,
-        "openIssues": 79,
+        "stars": 6122,
+        "forks": 829,
+        "openIssues": 86,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "BSD-3-Clause",
-        "pushedAt": "2026-10-02T13:59:50Z"
+        "pushedAt": "2026-10-11T02:16:41Z"
       },
       "bestFor": [
         "machine-learning workflows"
@@ -16952,14 +17080,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 26893,
-        "forks": 3839,
+        "stars": 26898,
+        "forks": 3837,
         "openIssues": 45,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-09-28T12:55:28Z"
+        "pushedAt": "2026-10-06T17:02:33Z"
       },
       "bestFor": [
         "vector animation",
@@ -16999,9 +17127,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 35736,
-        "forks": 5423,
-        "openIssues": 76,
+        "stars": 35744,
+        "forks": 5426,
+        "openIssues": 79,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -17043,14 +17171,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 10843,
-        "forks": 592,
-        "openIssues": 77,
+        "stars": 10870,
+        "forks": 595,
+        "openIssues": 78,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "CC-BY-4.0",
-        "pushedAt": "2026-09-12T21:34:34Z"
+        "pushedAt": "2026-10-05T19:01:15Z"
       },
       "bestFor": [
         "game development"
@@ -17085,14 +17213,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 13471,
-        "forks": 1501,
-        "openIssues": 120,
+        "stars": 13496,
+        "forks": 1499,
+        "openIssues": 121,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-09-28T11:20:40Z"
+        "pushedAt": "2026-10-08T15:24:53Z"
       },
       "bestFor": [
         "game development"
@@ -17140,14 +17268,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 84769,
-        "forks": 8777,
-        "openIssues": 231,
+        "stars": 85351,
+        "forks": 8862,
+        "openIssues": 232,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:26:42Z"
+        "pushedAt": "2026-10-12T11:55:30Z"
       }
     },
     {
@@ -17188,14 +17316,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 188745,
-        "forks": 10027,
-        "openIssues": 525,
+        "stars": 190683,
+        "forks": 10125,
+        "openIssues": 577,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-04T15:03:46Z"
+        "pushedAt": "2026-10-12T06:38:32Z"
       }
     },
     {
@@ -17222,14 +17350,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 11432,
-        "forks": 1145,
-        "openIssues": 154,
+        "stars": 11547,
+        "forks": 1154,
+        "openIssues": 186,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T02:38:56Z"
+        "pushedAt": "2026-10-07T03:38:45Z"
       },
       "bestFor": [
         "browser and web retrieval"
@@ -17263,14 +17391,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9719,
-        "forks": 1440,
-        "openIssues": 25,
+        "stars": 9909,
+        "forks": 1466,
+        "openIssues": 27,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-02T21:05:04Z"
+        "pushedAt": "2026-10-07T17:11:47Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -17304,9 +17432,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 13983,
-        "forks": 1674,
-        "openIssues": 158,
+        "stars": 14062,
+        "forks": 1686,
+        "openIssues": 159,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -17356,14 +17484,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 34747,
-        "forks": 5638,
-        "openIssues": 35,
+        "stars": 35289,
+        "forks": 5731,
+        "openIssues": 23,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T09:22:45Z"
+        "pushedAt": "2026-10-12T11:30:02Z"
       },
       "bestFor": [
         "agentic workflows",
@@ -17408,8 +17536,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 6234,
-        "forks": 897,
+        "stars": 6259,
+        "forks": 905,
         "openIssues": 22,
         "archived": false,
         "disabled": false,
@@ -17451,14 +17579,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 38321,
-        "forks": 4332,
-        "openIssues": 130,
+        "stars": 39099,
+        "forks": 4429,
+        "openIssues": 127,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-09-30T03:52:48Z"
+        "pushedAt": "2026-10-08T03:26:41Z"
       },
       "bestFor": [
         "speech and audio processing"
@@ -17501,9 +17629,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 32196,
-        "forks": 4550,
-        "openIssues": 4,
+        "stars": 32407,
+        "forks": 4584,
+        "openIssues": 5,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -17556,9 +17684,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 109816,
-        "forks": 21111,
-        "openIssues": 85,
+        "stars": 110744,
+        "forks": 21328,
+        "openIssues": 104,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -17601,14 +17729,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 8171,
-        "forks": 1202,
-        "openIssues": 462,
+        "stars": 8354,
+        "forks": 1236,
+        "openIssues": 448,
         "archived": false,
         "disabled": false,
         "defaultBranch": "develop",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-05T11:24:51Z"
+        "pushedAt": "2026-10-12T11:48:41Z"
       },
       "bestFor": [
         "erp workflows"
@@ -17643,14 +17771,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1696,
+        "stars": 1699,
         "forks": 164,
         "openIssues": 11,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-09-23T16:56:23Z"
+        "pushedAt": "2026-10-11T21:05:31Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -17685,14 +17813,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1984,
-        "forks": 340,
-        "openIssues": 25,
+        "stars": 2010,
+        "forks": 346,
+        "openIssues": 28,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T05:25:21Z"
+        "pushedAt": "2026-10-12T09:27:16Z"
       },
       "bestFor": [
         "retrieval and persistent-memory workflows",
@@ -17728,14 +17856,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 6582,
-        "forks": 418,
-        "openIssues": 68,
+        "stars": 6908,
+        "forks": 445,
+        "openIssues": 98,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T07:44:31Z"
+        "pushedAt": "2026-10-12T10:24:10Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -17770,8 +17898,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3987,
-        "forks": 294,
+        "stars": 4008,
+        "forks": 297,
         "openIssues": 1,
         "archived": false,
         "disabled": false,
@@ -17816,13 +17944,13 @@ Repository-specific rules:
       "costModel": "open-source",
       "github": {
         "stars": 542,
-        "forks": 66,
-        "openIssues": 101,
+        "forks": 67,
+        "openIssues": 103,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T04:43:40Z"
+        "pushedAt": "2026-10-12T10:32:49Z"
       },
       "bestFor": [
         "animation workflows"
@@ -17857,7 +17985,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 2279,
+        "stars": 2280,
         "forks": 395,
         "openIssues": 44,
         "archived": false,
@@ -17942,14 +18070,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 96461,
-        "forks": 12703,
-        "openIssues": 430,
+        "stars": 97486,
+        "forks": 12784,
+        "openIssues": 448,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T06:40:41Z"
+        "pushedAt": "2026-10-12T06:39:48Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -17984,14 +18112,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3156,
-        "forks": 243,
-        "openIssues": 14,
+        "stars": 3326,
+        "forks": 246,
+        "openIssues": 13,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T07:51:01Z"
+        "pushedAt": "2026-10-12T11:51:20Z"
       },
       "bestFor": [
         "agentic workflows",
@@ -18027,14 +18155,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 85380,
-        "forks": 5495,
-        "openIssues": 7622,
+        "stars": 90269,
+        "forks": 5773,
+        "openIssues": 8197,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:26:46Z"
+        "pushedAt": "2026-10-12T11:47:13Z"
       },
       "bestFor": [
         "agentic workflows",
@@ -18070,14 +18198,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 91381,
-        "forks": 8026,
-        "openIssues": 211,
+        "stars": 96395,
+        "forks": 8434,
+        "openIssues": 208,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-15T16:16:24Z"
+        "pushedAt": "2026-10-08T08:31:08Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -18112,14 +18240,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9581,
-        "forks": 882,
-        "openIssues": 211,
+        "stars": 9897,
+        "forks": 876,
+        "openIssues": 239,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-04T19:00:50Z"
+        "pushedAt": "2026-10-12T05:18:47Z"
       },
       "bestFor": [
         "agentic coding tasks"
@@ -18154,14 +18282,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 15672,
-        "forks": 1443,
-        "openIssues": 140,
+        "stars": 15798,
+        "forks": 1454,
+        "openIssues": 128,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-01T02:21:12Z"
+        "pushedAt": "2026-10-12T09:15:53Z"
       },
       "bestFor": [
         "isolated code execution",
@@ -18197,14 +18325,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 11432,
-        "forks": 1145,
-        "openIssues": 154,
+        "stars": 11547,
+        "forks": 1154,
+        "openIssues": 186,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T02:38:56Z"
+        "pushedAt": "2026-10-07T03:38:45Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -18239,14 +18367,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 51123,
-        "forks": 4867,
-        "openIssues": 83,
+        "stars": 51182,
+        "forks": 4873,
+        "openIssues": 75,
         "archived": false,
         "disabled": false,
         "defaultBranch": "develop",
         "license": "MIT",
-        "pushedAt": "2026-10-05T00:04:22Z"
+        "pushedAt": "2026-10-12T10:31:38Z"
       },
       "bestFor": [
         "data pipelines"
@@ -18281,14 +18409,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 149456,
-        "forks": 25546,
-        "openIssues": 14219,
+        "stars": 150327,
+        "forks": 26297,
+        "openIssues": 14657,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Anthropic Commercial Terms",
-        "pushedAt": "2026-10-05T01:04:13Z"
+        "pushedAt": "2026-10-11T19:07:17Z"
       },
       "bestFor": [
         "repository-level coding tasks",
@@ -18326,14 +18454,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 80691,
-        "forks": 8975,
-        "openIssues": 1985,
+        "stars": 84272,
+        "forks": 9362,
+        "openIssues": 2068,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T08:44:38Z"
+        "pushedAt": "2026-10-09T10:30:16Z"
       },
       "bestFor": [
         "reverse engineering workflows"
@@ -18368,14 +18496,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 31768,
-        "forks": 3300,
-        "openIssues": 573,
+        "stars": 31946,
+        "forks": 3327,
+        "openIssues": 588,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T10:49:00Z"
+        "pushedAt": "2026-10-12T11:49:53Z"
       },
       "bestFor": [
         "spaced repetition workflows"
@@ -18411,14 +18539,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 26118,
-        "forks": 3056,
-        "openIssues": 125,
+        "stars": 29208,
+        "forks": 3315,
+        "openIssues": 140,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T07:55:53Z"
+        "pushedAt": "2026-10-12T10:20:03Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -18453,14 +18581,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 56403,
-        "forks": 7028,
-        "openIssues": 673,
+        "stars": 56992,
+        "forks": 7096,
+        "openIssues": 500,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-04T23:26:30Z"
+        "pushedAt": "2026-10-07T01:17:58Z"
       },
       "bestFor": [
         "audio workflows"
@@ -18495,14 +18623,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 39658,
-        "forks": 4346,
-        "openIssues": 105,
+        "stars": 41382,
+        "forks": 4563,
+        "openIssues": 112,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:17:28Z"
+        "pushedAt": "2026-10-11T20:56:34Z"
       },
       "bestFor": [
         "inference workflows"
@@ -18537,9 +18665,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 24560,
-        "forks": 1453,
-        "openIssues": 54,
+        "stars": 28550,
+        "forks": 1709,
+        "openIssues": 59,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -18579,14 +18707,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 7857,
-        "forks": 1146,
-        "openIssues": 5,
+        "stars": 8174,
+        "forks": 1188,
+        "openIssues": 2,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-02T09:57:24Z"
+        "pushedAt": "2026-10-10T22:03:26Z"
       },
       "bestFor": [
         "security learning workflows"
@@ -18620,14 +18748,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 35555,
-        "forks": 4702,
-        "openIssues": 3619,
+        "stars": 35878,
+        "forks": 4745,
+        "openIssues": 3618,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-04T20:59:22Z"
+        "pushedAt": "2026-10-12T03:00:11Z"
       },
       "bestFor": [
         "communication workflows"
@@ -18662,14 +18790,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 14888,
-        "forks": 1762,
-        "openIssues": 5,
+        "stars": 15209,
+        "forks": 1790,
+        "openIssues": 7,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T10:14:27Z"
+        "pushedAt": "2026-10-12T07:50:03Z"
       },
       "bestFor": [
         "mobile automation workflows"
@@ -18704,14 +18832,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 32102,
-        "forks": 4278,
-        "openIssues": 659,
+        "stars": 33435,
+        "forks": 4451,
+        "openIssues": 570,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-01T11:57:46Z"
+        "pushedAt": "2026-10-12T11:36:08Z"
       },
       "bestFor": [
         "retrieval-augmented generation"
@@ -18746,14 +18874,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 8152,
-        "forks": 584,
-        "openIssues": 69,
+        "stars": 8700,
+        "forks": 619,
+        "openIssues": 72,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-30T04:52:55Z"
+        "pushedAt": "2026-10-12T07:35:30Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -18788,14 +18916,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 127896,
-        "forks": 20029,
-        "openIssues": 20690,
+        "stars": 128779,
+        "forks": 20223,
+        "openIssues": 22158,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T10:16:20Z"
+        "pushedAt": "2026-10-12T11:24:39Z"
       },
       "bestFor": [
         "agentic repository coding",
@@ -18832,14 +18960,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 69873,
-        "forks": 7604,
-        "openIssues": 1598,
+        "stars": 70206,
+        "forks": 7641,
+        "openIssues": 1649,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T09:13:45Z"
+        "pushedAt": "2026-10-12T11:56:19Z"
       },
       "bestFor": [
         "agentic workflows",
@@ -18875,14 +19003,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 101366,
-        "forks": 10628,
-        "openIssues": 121,
+        "stars": 105306,
+        "forks": 10992,
+        "openIssues": 131,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-03T18:21:11Z"
+        "pushedAt": "2026-10-10T08:28:49Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -18924,8 +19052,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 63850,
-        "forks": 11223,
+        "stars": 63950,
+        "forks": 11227,
         "openIssues": 177,
         "archived": false,
         "disabled": false,
@@ -18968,14 +19096,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 13245,
-        "forks": 894,
-        "openIssues": 33,
+        "stars": 13874,
+        "forks": 938,
+        "openIssues": 31,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-04T20:44:20Z"
+        "pushedAt": "2026-10-11T16:02:23Z"
       },
       "bestFor": [
         "inference workflows"
@@ -19009,14 +19137,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 105183,
-        "forks": 4476,
-        "openIssues": 9364,
+        "stars": 105938,
+        "forks": 4501,
+        "openIssues": 9485,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": null,
-        "pushedAt": "2026-09-19T11:38:43Z"
+        "pushedAt": "2026-10-10T13:37:34Z"
       },
       "bestFor": [
         "developer resources workflows"
@@ -19053,14 +19181,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 68398,
-        "forks": 5002,
-        "openIssues": 1000,
+        "stars": 68741,
+        "forks": 5054,
+        "openIssues": 1045,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T10:51:48Z"
+        "pushedAt": "2026-10-12T09:11:45Z"
       },
       "bestFor": [
         "retrieval-augmented generation"
@@ -19100,14 +19228,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 19671,
-        "forks": 2413,
+        "stars": 20080,
+        "forks": 2456,
         "openIssues": 37,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-01T15:54:43Z"
+        "pushedAt": "2026-10-10T08:52:43Z"
       },
       "bestFor": [
         "market-data ingestion",
@@ -19144,8 +19272,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1399,
-        "forks": 228,
+        "stars": 1406,
+        "forks": 231,
         "openIssues": 2,
         "archived": false,
         "disabled": false,
@@ -19186,14 +19314,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 13589,
-        "forks": 962,
-        "openIssues": 11,
+        "stars": 15359,
+        "forks": 1123,
+        "openIssues": 16,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-01T16:24:38Z"
+        "pushedAt": "2026-10-09T09:53:29Z"
       },
       "bestFor": [
         "agentic workflows",
@@ -19229,14 +19357,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 17854,
-        "forks": 1366,
+        "stars": 18123,
+        "forks": 1393,
         "openIssues": 45,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-03T19:29:31Z"
+        "pushedAt": "2026-10-09T23:44:45Z"
       },
       "bestFor": [
         "code analysis workflows"
@@ -19276,9 +19404,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 6715,
-        "forks": 2801,
-        "openIssues": 266,
+        "stars": 6789,
+        "forks": 2819,
+        "openIssues": 263,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -19320,14 +19448,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 31080,
-        "forks": 2734,
-        "openIssues": 97,
+        "stars": 31196,
+        "forks": 2746,
+        "openIssues": 84,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T00:28:29Z"
+        "pushedAt": "2026-10-12T10:47:50Z"
       },
       "bestFor": [
         "retrieval and persistent-memory workflows",
@@ -19363,14 +19491,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 71060,
-        "forks": 4871,
-        "openIssues": 189,
+        "stars": 71704,
+        "forks": 4892,
+        "openIssues": 192,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T01:47:11Z"
+        "pushedAt": "2026-10-12T04:43:24Z"
       },
       "bestFor": [
         "agentic coding tasks"
@@ -19405,14 +19533,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 112570,
-        "forks": 14280,
-        "openIssues": 261,
+        "stars": 114510,
+        "forks": 14580,
+        "openIssues": 317,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:12:11Z"
+        "pushedAt": "2026-10-12T11:00:20Z"
       },
       "bestFor": [
         "agentic workflows",
@@ -19448,14 +19576,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 206693,
-        "forks": 61006,
-        "openIssues": 1114,
+        "stars": 207073,
+        "forks": 61091,
+        "openIssues": 1156,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Sustainable Use License",
-        "pushedAt": "2026-10-05T11:24:23Z"
+        "pushedAt": "2026-10-12T11:56:05Z"
       },
       "bestFor": [
         "self-hosted workflow automation",
@@ -19494,8 +19622,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 39776,
-        "forks": 6243,
+        "stars": 39789,
+        "forks": 6239,
         "openIssues": 6,
         "archived": false,
         "disabled": false,
@@ -19538,14 +19666,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 39055,
-        "forks": 2133,
-        "openIssues": 122,
+        "stars": 39090,
+        "forks": 2134,
+        "openIssues": 123,
         "archived": false,
         "disabled": false,
         "defaultBranch": "dev",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-04T12:25:12Z"
+        "pushedAt": "2026-10-10T04:41:25Z"
       },
       "bestFor": [
         "rss workflows"
@@ -19580,14 +19708,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 59409,
-        "forks": 7560,
-        "openIssues": 777,
+        "stars": 59519,
+        "forks": 7561,
+        "openIssues": 787,
         "archived": false,
         "disabled": false,
         "defaultBranch": "develop",
         "license": "MIT",
-        "pushedAt": "2026-10-03T14:07:52Z"
+        "pushedAt": "2026-10-10T22:43:52Z"
       },
       "bestFor": [
         "retrieval and persistent-memory workflows",
@@ -19624,14 +19752,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 91685,
-        "forks": 10890,
-        "openIssues": 1615,
+        "stars": 92052,
+        "forks": 10959,
+        "openIssues": 1383,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-04T14:51:58Z"
+        "pushedAt": "2026-10-12T11:40:22Z"
       },
       "bestFor": [
         "retrieval-augmented generation",
@@ -19668,8 +19796,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 589,
-        "forks": 103,
+        "stars": 615,
+        "forks": 106,
         "openIssues": 9,
         "archived": false,
         "disabled": false,
@@ -19710,14 +19838,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 18495,
-        "forks": 984,
+        "stars": 18622,
+        "forks": 989,
         "openIssues": 135,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-02T06:51:42Z"
+        "pushedAt": "2026-10-10T23:07:19Z"
       },
       "bestFor": [
         "generative ui workflows"
@@ -19753,14 +19881,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 5866,
-        "forks": 1054,
-        "openIssues": 18,
+        "stars": 5961,
+        "forks": 1071,
+        "openIssues": 20,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-09-14T02:46:36Z"
+        "pushedAt": "2026-10-07T09:32:03Z"
       },
       "bestFor": [
         "machine-learning workflows"
@@ -19795,14 +19923,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 5073,
-        "forks": 1092,
+        "stars": 5125,
+        "forks": 1096,
         "openIssues": 1,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": null,
-        "pushedAt": "2026-09-28T18:09:31Z"
+        "pushedAt": "2026-10-05T18:17:59Z"
       },
       "bestFor": [
         "software engineering workflows"
@@ -19839,14 +19967,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 46289,
-        "forks": 3205,
-        "openIssues": 6,
+        "stars": 46542,
+        "forks": 3224,
+        "openIssues": 10,
         "archived": false,
         "disabled": false,
         "defaultBranch": "dev",
         "license": "GPL-3.0",
-        "pushedAt": "2026-10-05T03:53:43Z"
+        "pushedAt": "2026-10-12T11:56:33Z"
       },
       "bestFor": [
         "document management workflows"
@@ -19880,9 +20008,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 38745,
-        "forks": 5556,
-        "openIssues": 230,
+        "stars": 39468,
+        "forks": 5588,
+        "openIssues": 233,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -19923,14 +20051,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 28101,
-        "forks": 1993,
-        "openIssues": 1039,
+        "stars": 29456,
+        "forks": 2097,
+        "openIssues": 1172,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:21:13Z"
+        "pushedAt": "2026-10-12T11:47:00Z"
       },
       "bestFor": [
         "agentic workflows",
@@ -19967,14 +20095,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 123909,
-        "forks": 11955,
-        "openIssues": 1527,
+        "stars": 125718,
+        "forks": 12135,
+        "openIssues": 1546,
         "archived": false,
         "disabled": false,
         "defaultBranch": "v8",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-04T21:28:20Z"
+        "pushedAt": "2026-10-11T20:42:00Z"
       },
       "bestFor": [
         "code intelligence workflows"
@@ -20008,8 +20136,8 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 1563,
-        "forks": 65,
+        "stars": 1569,
+        "forks": 67,
         "openIssues": 5,
         "archived": false,
         "disabled": false,
@@ -20050,8 +20178,8 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 1167,
-        "forks": 124,
+        "stars": 1182,
+        "forks": 129,
         "openIssues": 9,
         "archived": false,
         "disabled": false,
@@ -20093,14 +20221,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 63541,
-        "forks": 5534,
-        "openIssues": 164,
+        "stars": 64032,
+        "forks": 5582,
+        "openIssues": 27,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-04T18:44:09Z"
+        "pushedAt": "2026-10-11T19:10:49Z"
       },
       "bestFor": [
         "agent skill workflows"
@@ -20135,14 +20263,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 1012,
-        "forks": 111,
-        "openIssues": 4,
+        "stars": 1055,
+        "forks": 120,
+        "openIssues": 5,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-29T23:05:52Z"
+        "pushedAt": "2026-10-06T23:04:27Z"
       },
       "bestFor": [
         "agent skill workflows"
@@ -20177,7 +20305,7 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 1320,
+        "stars": 1340,
         "forks": 124,
         "openIssues": 7,
         "archived": false,
@@ -20219,9 +20347,9 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 2551,
-        "forks": 215,
-        "openIssues": 5,
+        "stars": 2663,
+        "forks": 223,
+        "openIssues": 6,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -20262,14 +20390,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 73505,
-        "forks": 13809,
-        "openIssues": 402,
+        "stars": 74127,
+        "forks": 13904,
+        "openIssues": 339,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T05:11:11Z"
+        "pushedAt": "2026-10-12T10:32:05Z"
       },
       "bestFor": [
         "agentic workflows",
@@ -20305,14 +20433,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 37660,
-        "forks": 3045,
-        "openIssues": 756,
+        "stars": 37761,
+        "forks": 3068,
+        "openIssues": 792,
         "archived": false,
         "disabled": false,
         "defaultBranch": "canary",
         "license": "Apache-2.0 with proprietary components",
-        "pushedAt": "2026-10-01T14:35:33Z"
+        "pushedAt": "2026-10-08T14:08:12Z"
       },
       "bestFor": [
         "application deployment"
@@ -20350,14 +20478,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 37747,
-        "forks": 4698,
-        "openIssues": 297,
+        "stars": 37960,
+        "forks": 4720,
+        "openIssues": 312,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T11:19:55Z"
+        "pushedAt": "2026-10-12T11:44:53Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -20392,14 +20520,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 77207,
-        "forks": 7113,
-        "openIssues": 919,
+        "stars": 77850,
+        "forks": 7192,
+        "openIssues": 473,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:22:34Z"
+        "pushedAt": "2026-10-12T11:57:14Z"
       },
       "bestFor": [
         "efficient LLM fine-tuning",
@@ -20436,14 +20564,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 54949,
-        "forks": 6362,
-        "openIssues": 431,
+        "stars": 55193,
+        "forks": 6407,
+        "openIssues": 491,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T11:18:48Z"
+        "pushedAt": "2026-10-12T03:42:39Z"
       },
       "bestFor": [
         "agentic workflows",
@@ -20480,14 +20608,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 69805,
+        "stars": 69975,
         "forks": 5746,
-        "openIssues": 1134,
+        "openIssues": 1250,
         "archived": false,
         "disabled": false,
         "defaultBranch": "dev",
         "license": "Sustainable Use License",
-        "pushedAt": "2026-10-05T08:25:56Z"
+        "pushedAt": "2026-10-12T11:48:35Z"
       },
       "bestFor": [
         "agentic workflows",
@@ -20525,14 +20653,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 42557,
-        "forks": 6099,
-        "openIssues": 1812,
+        "stars": 42685,
+        "forks": 6121,
+        "openIssues": 1886,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-05T10:21:18Z"
+        "pushedAt": "2026-10-12T11:30:50Z"
       },
       "bestFor": [
         "agentic workflows"
@@ -20568,8 +20696,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 39776,
-        "forks": 6243,
+        "stars": 39789,
+        "forks": 6239,
         "openIssues": 6,
         "archived": false,
         "disabled": false,
@@ -20629,14 +20757,14 @@ Repository-specific rules:
         "modelcontextprotocol/servers"
       ],
       "github": {
-        "stars": 155501,
-        "forks": 10180,
-        "openIssues": 1205,
+        "stars": 155530,
+        "forks": 10237,
+        "openIssues": 1145,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T04:48:57Z"
+        "pushedAt": "2026-10-12T06:37:15Z"
       }
     },
     {
@@ -20686,14 +20814,14 @@ Repository-specific rules:
         "stefan-jansen/pyfolio-reloaded"
       ],
       "github": {
-        "stars": 1952,
-        "forks": 331,
-        "openIssues": 48,
+        "stars": 1959,
+        "forks": 332,
+        "openIssues": 53,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-01-06T13:01:54Z"
+        "pushedAt": "2026-10-10T09:25:00Z"
       }
     },
     {
@@ -20744,13 +20872,13 @@ Repository-specific rules:
       ],
       "github": {
         "stars": 616,
-        "forks": 175,
-        "openIssues": 19,
+        "forks": 176,
+        "openIssues": 22,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2025-12-15T11:02:30Z"
+        "pushedAt": "2026-10-10T09:41:42Z"
       }
     },
     {
@@ -20777,8 +20905,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3304,
-        "forks": 197,
+        "stars": 3311,
+        "forks": 199,
         "openIssues": 17,
         "archived": false,
         "disabled": false,
@@ -20820,7 +20948,7 @@ Repository-specific rules:
       "costModel": "open-source",
       "github": {
         "stars": 977,
-        "forks": 26,
+        "forks": 24,
         "openIssues": 1,
         "archived": false,
         "disabled": false,
@@ -20860,14 +20988,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1497,
-        "forks": 130,
-        "openIssues": 19,
+        "stars": 2387,
+        "forks": 162,
+        "openIssues": 15,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T18:44:57Z"
+        "pushedAt": "2026-10-12T10:45:37Z"
       },
       "bestFor": [
         "parallel connection downloads"
@@ -20905,7 +21033,7 @@ Repository-specific rules:
         "disabled": false,
         "defaultBranch": "main",
         "license": "CC0-1.0",
-        "pushedAt": "2026-10-04T05:38:14Z"
+        "pushedAt": "2026-10-12T03:59:03Z"
       },
       "bestFor": [
         "AntSeed protocol design references"
@@ -20940,14 +21068,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 109,
-        "forks": 37,
-        "openIssues": 111,
+        "stars": 113,
+        "forks": 39,
+        "openIssues": 110,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "GPL-3.0",
-        "pushedAt": "2026-10-09T01:04:09Z"
+        "pushedAt": "2026-10-12T11:43:31Z"
       },
       "bestFor": [
         "experimental peer-to-peer inference architecture"
@@ -20988,7 +21116,7 @@ Repository-specific rules:
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": null,
+        "license": "MIT",
         "pushedAt": "2026-02-28T20:09:24Z"
       },
       "bestFor": [
@@ -21025,14 +21153,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3594,
-        "forks": 113,
-        "openIssues": 15,
+        "stars": 3616,
+        "forks": 121,
+        "openIssues": 20,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T17:24:02Z"
+        "pushedAt": "2026-10-11T20:29:26Z"
       },
       "bestFor": [
         "local bird-audio recognition and e-ink displays"
@@ -21065,8 +21193,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 2226,
-        "forks": 878,
+        "stars": 2228,
+        "forks": 879,
         "openIssues": 78,
         "archived": true,
         "disabled": false,
@@ -21108,9 +21236,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1203,
-        "forks": 147,
-        "openIssues": 0,
+        "stars": 1228,
+        "forks": 149,
+        "openIssues": 1,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -21150,14 +21278,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 73508,
-        "forks": 4731,
-        "openIssues": 527,
+        "stars": 73803,
+        "forks": 4762,
+        "openIssues": 554,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-07T16:34:38Z"
+        "pushedAt": "2026-10-12T07:10:12Z"
       },
       "bestFor": [
         "local codebase graph indexing for coding agents"
@@ -21192,14 +21320,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 22464,
-        "forks": 1847,
-        "openIssues": 198,
+        "stars": 22526,
+        "forks": 1846,
+        "openIssues": 212,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T01:08:08Z"
+        "pushedAt": "2026-10-12T11:56:09Z"
       },
       "bestFor": [
         "LLM traces and RAG evaluation"
@@ -21233,14 +21361,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 86388,
-        "forks": 8858,
-        "openIssues": 9,
+        "stars": 86937,
+        "forks": 8906,
+        "openIssues": 17,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "BSD-3-Clause",
-        "pushedAt": "2026-10-08T20:28:21Z"
+        "pushedAt": "2026-10-11T12:12:09Z"
       },
       "bestFor": [
         "adaptive web extraction and crawling"
@@ -21272,7 +21400,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 71596,
+        "stars": 71562,
         "forks": 5646,
         "openIssues": 458,
         "archived": true,
@@ -21315,14 +21443,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 17176,
-        "forks": 843,
-        "openIssues": 243,
+        "stars": 17243,
+        "forks": 852,
+        "openIssues": 242,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T23:59:51Z"
+        "pushedAt": "2026-10-12T11:37:34Z"
       },
       "bestFor": [
         "typed effect systems for TypeScript"
@@ -21357,14 +21485,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 1776,
-        "forks": 65,
-        "openIssues": 8,
+        "stars": 1738,
+        "forks": 59,
+        "openIssues": 11,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T18:58:00Z"
+        "pushedAt": "2026-10-10T12:50:04Z"
       },
       "bestFor": [
         "self-hosted Workers-compatible infrastructure"
@@ -21398,14 +21526,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 508,
-        "forks": 237,
-        "openIssues": 65,
+        "stars": 507,
+        "forks": 238,
+        "openIssues": 61,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-07T19:34:32Z"
+        "pushedAt": "2026-10-09T17:47:27Z"
       },
       "bestFor": [
         "Roblox server administration workflows"
@@ -21440,9 +21568,9 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 7978,
-        "forks": 947,
-        "openIssues": 328,
+        "stars": 7982,
+        "forks": 949,
+        "openIssues": 330,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -21482,14 +21610,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 31569,
-        "forks": 3242,
-        "openIssues": 462,
+        "stars": 31666,
+        "forks": 3256,
+        "openIssues": 468,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-07T19:12:47Z"
+        "pushedAt": "2026-10-11T20:51:03Z"
       },
       "bestFor": [
         "real-time knowledge graphs for agents"
@@ -21524,14 +21652,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 5879,
-        "forks": 547,
-        "openIssues": 70,
+        "stars": 5888,
+        "forks": 550,
+        "openIssues": 72,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T07:10:15Z"
+        "pushedAt": "2026-10-12T04:26:11Z"
       },
       "bestFor": [
         "evaluating LLM agents and application behavior"
@@ -21566,14 +21694,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 21061,
-        "forks": 1756,
+        "stars": 21198,
+        "forks": 1771,
         "openIssues": 22,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T20:12:41Z"
+        "pushedAt": "2026-10-09T19:32:48Z"
       },
       "bestFor": [
         "agent skills for Google products"
@@ -21608,8 +21736,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 472,
-        "forks": 127,
+        "stars": 478,
+        "forks": 128,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
@@ -21653,9 +21781,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 29742,
-        "forks": 3051,
-        "openIssues": 881,
+        "stars": 29797,
+        "forks": 3070,
+        "openIssues": 921,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -21690,8 +21818,8 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "unknown",
       "github": {
-        "stars": 9348,
-        "forks": 1826,
+        "stars": 9354,
+        "forks": 1824,
         "openIssues": 15,
         "archived": false,
         "disabled": false,
@@ -21731,14 +21859,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 6918,
-        "forks": 246,
-        "openIssues": 170,
+        "stars": 6946,
+        "forks": 248,
+        "openIssues": 162,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "GPL-3.0",
-        "pushedAt": "2026-09-26T08:12:59Z"
+        "pushedAt": "2026-10-12T10:55:58Z"
       },
       "bestFor": [
         "reference for open-source Android video clients"
@@ -21771,8 +21899,8 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 9679,
-        "forks": 2103,
+        "stars": 9734,
+        "forks": 2113,
         "openIssues": 29,
         "archived": false,
         "disabled": false,
@@ -21808,13 +21936,13 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "unknown",
       "github": {
-        "stars": 646,
-        "forks": 75,
-        "openIssues": 1,
+        "stars": 673,
+        "forks": 76,
+        "openIssues": 0,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": null,
+        "license": "MIT",
         "pushedAt": "2026-09-28T14:34:47Z"
       },
       "bestFor": [
@@ -21850,14 +21978,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 110586,
-        "forks": 6404,
-        "openIssues": 47,
+        "stars": 111147,
+        "forks": 6436,
+        "openIssues": 60,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T13:28:29Z"
+        "pushedAt": "2026-10-12T08:33:16Z"
       },
       "bestFor": [
         "testing concise coding-agent communication"
@@ -21892,14 +22020,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3550,
-        "forks": 430,
-        "openIssues": 501,
+        "stars": 3584,
+        "forks": 434,
+        "openIssues": 521,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T01:15:10Z"
+        "pushedAt": "2026-10-12T06:15:30Z"
       },
       "bestFor": [
         "stateful coding agents with persistent context"
@@ -21932,8 +22060,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 559,
-        "forks": 98,
+        "stars": 568,
+        "forks": 102,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
@@ -21978,14 +22106,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 15480,
-        "forks": 1743,
-        "openIssues": 576,
+        "stars": 15921,
+        "forks": 1768,
+        "openIssues": 596,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T01:24:52Z"
+        "pushedAt": "2026-10-12T11:26:24Z"
       },
       "bestFor": [
         "private agent runtimes with isolation"
@@ -22019,14 +22147,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 2824,
-        "forks": 336,
-        "openIssues": 4,
+        "stars": 3254,
+        "forks": 395,
+        "openIssues": 5,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-06T16:25:56Z"
+        "pushedAt": "2026-10-12T01:10:55Z"
       },
       "bestFor": [
         "receive-only Wi-Fi and BLE observation on Android"
@@ -22060,14 +22188,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 4172,
+        "stars": 4171,
         "forks": 3083,
-        "openIssues": 206,
+        "openIssues": 209,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "GPL-2.0",
-        "pushedAt": "2026-10-08T03:11:03Z"
+        "pushedAt": "2026-10-11T22:03:58Z"
       },
       "bestFor": [
         "ownCloud Android client architecture"
@@ -22102,8 +22230,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 460,
-        "forks": 45,
+        "stars": 476,
+        "forks": 47,
         "openIssues": 21,
         "archived": false,
         "disabled": false,
@@ -22144,8 +22272,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 33,
-        "forks": 9,
+        "stars": 36,
+        "forks": 10,
         "openIssues": 1,
         "archived": false,
         "disabled": false,
@@ -22192,12 +22320,12 @@ Repository-specific rules:
       "github": {
         "stars": 1311,
         "forks": 178,
-        "openIssues": 135,
+        "openIssues": 137,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-05T06:03:05Z"
+        "pushedAt": "2026-10-12T11:07:13Z"
       },
       "bestFor": [
         "TypeScript development targeting Roblox Luau"
@@ -22232,14 +22360,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3137,
-        "forks": 62,
-        "openIssues": 26,
+        "stars": 3174,
+        "forks": 64,
+        "openIssues": 14,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T07:58:39Z"
+        "pushedAt": "2026-10-10T18:16:32Z"
       },
       "bestFor": [
         "Tailwind design-system linting"
@@ -22268,14 +22396,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "unknown",
       "github": {
-        "stars": 2619,
-        "forks": 431,
-        "openIssues": 9,
+        "stars": 2794,
+        "forks": 466,
+        "openIssues": 7,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": null,
-        "pushedAt": "2026-10-08T19:55:45Z"
+        "pushedAt": "2026-10-10T02:09:20Z"
       },
       "bestFor": [
         "reference collection for prompt-injection research"
@@ -22311,14 +22439,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 3594,
-        "forks": 360,
-        "openIssues": 96,
+        "stars": 3598,
+        "forks": 362,
+        "openIssues": 104,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T01:17:07Z"
+        "pushedAt": "2026-10-12T06:20:36Z"
       },
       "bestFor": [
         "LLM experiment evaluation and tracing"
@@ -22352,14 +22480,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 2962,
-        "forks": 791,
-        "openIssues": 375,
+        "stars": 2986,
+        "forks": 803,
+        "openIssues": 396,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T01:16:04Z"
+        "pushedAt": "2026-10-11T22:28:08Z"
       },
       "bestFor": [
         "repeatable evaluations of large language models"
@@ -22393,9 +22521,9 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 15967,
-        "forks": 1750,
-        "openIssues": 626,
+        "stars": 16001,
+        "forks": 1754,
+        "openIssues": 634,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -22431,8 +22559,8 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 1352,
-        "forks": 118,
+        "stars": 1350,
+        "forks": 119,
         "openIssues": 7,
         "archived": false,
         "disabled": false,
@@ -22473,14 +22601,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 486,
-        "forks": 89,
+        "stars": 495,
+        "forks": 93,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": null,
-        "pushedAt": "2026-10-06T14:52:34Z"
+        "pushedAt": "2026-10-10T08:30:58Z"
       },
       "bestFor": [
         "researching browser QA and monitoring workflows"
@@ -22515,8 +22643,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1155,
-        "forks": 80,
+        "stars": 1171,
+        "forks": 82,
         "openIssues": 1,
         "archived": false,
         "disabled": false,
@@ -22554,7 +22682,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 11393,
+        "stars": 11431,
         "forks": 2210,
         "openIssues": 9,
         "archived": false,
@@ -22592,13 +22720,13 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 767,
-        "forks": 268,
-        "openIssues": 147,
+        "stars": 771,
+        "forks": 275,
+        "openIssues": 151,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": null,
+        "license": "MIT",
         "pushedAt": "2026-10-07T03:03:02Z"
       },
       "bestFor": [
@@ -22638,13 +22766,13 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 5098,
-        "forks": 411,
+        "stars": 5099,
+        "forks": 412,
         "openIssues": 74,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
+        "license": "Apache-2.0",
         "pushedAt": "2026-01-09T15:01:22Z"
       },
       "bestFor": [
@@ -22678,14 +22806,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 4090,
-        "forks": 1005,
-        "openIssues": 58,
+        "stars": 4093,
+        "forks": 1020,
+        "openIssues": 59,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T20:08:29Z"
+        "pushedAt": "2026-10-09T20:10:47Z"
       },
       "bestFor": [
         "Extraire le contenu de documents pour la recherche et l'IA"
@@ -22718,14 +22846,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 15910,
-        "forks": 1256,
-        "openIssues": 554,
+        "stars": 31609,
+        "forks": 2707,
+        "openIssues": 568,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "GPL-2.0",
-        "pushedAt": "2026-10-08T22:46:53Z"
+        "pushedAt": "2026-10-12T11:44:49Z"
       },
       "bestFor": [
         "Étudier les outils de portage pour exécutables PS5 détenus légalement"
@@ -22758,14 +22886,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 77554,
-        "forks": 5102,
-        "openIssues": 287,
+        "stars": 77821,
+        "forks": 5123,
+        "openIssues": 281,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T04:02:21Z"
+        "pushedAt": "2026-10-12T10:52:22Z"
       },
       "bestFor": [
         "Déployer un reverse proxy HTTPS et servir des applications web"
@@ -22799,7 +22927,7 @@ Repository-specific rules:
       "costModel": "open-source",
       "github": {
         "stars": 689,
-        "forks": 143,
+        "forks": 144,
         "openIssues": 11,
         "archived": false,
         "disabled": false,
@@ -22842,7 +22970,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 173,
+        "stars": 177,
         "forks": 58,
         "openIssues": 1,
         "archived": false,
@@ -22886,14 +23014,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 11285,
-        "forks": 1346,
-        "openIssues": 132,
+        "stars": 11362,
+        "forks": 1361,
+        "openIssues": 138,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T22:40:55Z"
+        "pushedAt": "2026-10-12T11:52:09Z"
       },
       "bestFor": [
         "Construire des espaces de travail et des flux pour agents IA"
@@ -22926,14 +23054,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 30474,
-        "forks": 4848,
-        "openIssues": 110,
+        "stars": 30506,
+        "forks": 4850,
+        "openIssues": 125,
         "archived": false,
         "disabled": false,
         "defaultBranch": "next",
         "license": "MIT",
-        "pushedAt": "2026-10-09T01:09:09Z"
+        "pushedAt": "2026-10-12T11:43:01Z"
       },
       "bestFor": [
         "Construire des espaces de travail et des flux pour agents IA"
@@ -22966,8 +23094,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 40292,
-        "forks": 2913,
+        "stars": 40393,
+        "forks": 2920,
         "openIssues": 477,
         "archived": false,
         "disabled": false,
@@ -23006,8 +23134,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 8880,
-        "forks": 1396,
+        "stars": 8941,
+        "forks": 1406,
         "openIssues": 151,
         "archived": false,
         "disabled": false,
@@ -23046,7 +23174,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 18328,
+        "stars": 18370,
         "forks": 745,
         "openIssues": 43,
         "archived": false,
@@ -23086,14 +23214,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 8039,
-        "forks": 1024,
-        "openIssues": 152,
+        "stars": 10074,
+        "forks": 1245,
+        "openIssues": 117,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-08T13:32:09Z"
+        "pushedAt": "2026-10-12T11:44:55Z"
       },
       "bestFor": [
         "Suivre les entraînements sur un service auto-hébergé"
@@ -23126,14 +23254,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 18479,
-        "forks": 1834,
-        "openIssues": 22,
+        "stars": 19471,
+        "forks": 1917,
+        "openIssues": 31,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T01:16:19Z"
+        "pushedAt": "2026-10-12T02:51:45Z"
       },
       "bestFor": [
         "Produire et itérer des modèles de conception assistée par ordinateur"
@@ -23166,8 +23294,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 6452,
-        "forks": 1331,
+        "stars": 6487,
+        "forks": 1340,
         "openIssues": 8,
         "archived": false,
         "disabled": false,
@@ -23206,14 +23334,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 31045,
-        "forks": 2173,
-        "openIssues": 1033,
+        "stars": 31286,
+        "forks": 2195,
+        "openIssues": 1046,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T15:38:15Z"
+        "pushedAt": "2026-10-12T11:41:37Z"
       },
       "bestFor": [
         "Construire des interfaces natives ou web en Rust"
@@ -23246,7 +23374,7 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 1019,
+        "stars": 1023,
         "forks": 176,
         "openIssues": 2,
         "archived": false,
@@ -23292,9 +23420,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 8121,
-        "forks": 391,
-        "openIssues": 316,
+        "stars": 8427,
+        "forks": 407,
+        "openIssues": 321,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -23332,13 +23460,13 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 1211,
-        "forks": 196,
+        "stars": 1214,
+        "forks": 197,
         "openIssues": 4,
         "archived": false,
         "disabled": false,
         "defaultBranch": "v4.1-alpha",
-        "license": "NOASSERTION",
+        "license": "MIT",
         "pushedAt": "2026-05-16T21:24:47Z"
       },
       "bestFor": [
@@ -23376,13 +23504,13 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 111,
+        "stars": 112,
         "forks": 42,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
+        "license": "MPL-2.0",
         "pushedAt": "2026-10-06T11:42:04Z"
       },
       "bestFor": [
@@ -23420,7 +23548,7 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 3746,
+        "stars": 3749,
         "forks": 494,
         "openIssues": 60,
         "archived": false,
@@ -23500,9 +23628,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 33454,
-        "forks": 5111,
-        "openIssues": 346,
+        "stars": 33547,
+        "forks": 5132,
+        "openIssues": 354,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -23540,14 +23668,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 58373,
-        "forks": 7234,
-        "openIssues": 2347,
+        "stars": 58453,
+        "forks": 7249,
+        "openIssues": 2319,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T01:15:36Z"
+        "pushedAt": "2026-10-12T09:48:38Z"
       },
       "bestFor": [
         "Héberger des dépôts et workflows Git sur une instance personnelle"
@@ -23580,14 +23708,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 15528,
-        "forks": 1815,
-        "openIssues": 292,
+        "stars": 15627,
+        "forks": 1830,
+        "openIssues": 282,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T20:33:34Z"
+        "pushedAt": "2026-10-12T11:05:58Z"
       },
       "bestFor": [
         "Simuler et entraîner des systèmes robotiques"
@@ -23621,7 +23749,7 @@ Repository-specific rules:
       "costModel": "open-source",
       "github": {
         "stars": 12274,
-        "forks": 1101,
+        "forks": 1103,
         "openIssues": 319,
         "archived": false,
         "disabled": false,
@@ -23660,14 +23788,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 34695,
-        "forks": 7380,
-        "openIssues": 1476,
+        "stars": 34704,
+        "forks": 7387,
+        "openIssues": 1475,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T14:42:43Z"
+        "pushedAt": "2026-10-12T09:09:49Z"
       },
       "bestFor": [
         "Développer une chaîne de génération d'images et de vidéos"
@@ -23700,14 +23828,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 28017,
-        "forks": 5839,
-        "openIssues": 966,
+        "stars": 28103,
+        "forks": 5872,
+        "openIssues": 998,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T21:24:14Z"
+        "pushedAt": "2026-10-12T11:56:24Z"
       },
       "bestFor": [
         "Simuler et entraîner des systèmes robotiques"
@@ -23740,14 +23868,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 266,
-        "forks": 37,
-        "openIssues": 59,
+        "stars": 442,
+        "forks": 63,
+        "openIssues": 63,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T00:11:58Z"
+        "pushedAt": "2026-10-10T10:23:17Z"
       },
       "bestFor": [
         "Organiser un environnement de travail orienté agents"
@@ -23778,9 +23906,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 60,
+        "stars": 63,
         "forks": 28,
-        "openIssues": 1,
+        "openIssues": 0,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -23822,14 +23950,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 8299,
-        "forks": 3940,
-        "openIssues": 364,
+        "stars": 8322,
+        "forks": 3941,
+        "openIssues": 371,
         "archived": false,
         "disabled": false,
         "defaultBranch": "develop",
         "license": "BSD-3-Clause",
-        "pushedAt": "2026-10-09T00:55:55Z"
+        "pushedAt": "2026-10-12T06:21:58Z"
       },
       "bestFor": [
         "Simuler et entraîner des systèmes robotiques"
@@ -23862,9 +23990,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 12127,
-        "forks": 892,
-        "openIssues": 34,
+        "stars": 12136,
+        "forks": 891,
+        "openIssues": 36,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -23902,14 +24030,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 12650,
-        "forks": 1523,
-        "openIssues": 332,
+        "stars": 12719,
+        "forks": 1526,
+        "openIssues": 283,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": null,
-        "pushedAt": "2026-10-08T22:09:49Z"
+        "license": "MIT",
+        "pushedAt": "2026-10-10T06:59:41Z"
       },
       "bestFor": [
         "Effectuer des audits sans fil en laboratoire autorisé"
@@ -23940,7 +24068,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 122,
+        "stars": 124,
         "forks": 46,
         "openIssues": 1,
         "archived": false,
@@ -23984,8 +24112,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1658,
-        "forks": 360,
+        "stars": 1702,
+        "forks": 375,
         "openIssues": 12,
         "archived": false,
         "disabled": false,
@@ -24024,14 +24152,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 10728,
-        "forks": 1108,
-        "openIssues": 83,
+        "stars": 11092,
+        "forks": 1148,
+        "openIssues": 87,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2025-06-23T04:18:18Z"
+        "pushedAt": "2026-10-10T20:08:37Z"
       },
       "bestFor": [
         "Analyser des logiciels autorisés avec des outils de rétro-ingénierie"
@@ -24064,9 +24192,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 220,
-        "forks": 53,
-        "openIssues": 29,
+        "stars": 221,
+        "forks": 55,
+        "openIssues": 30,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -24104,14 +24232,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 39969,
-        "forks": 4628,
-        "openIssues": 153,
+        "stars": 40097,
+        "forks": 4637,
+        "openIssues": 160,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T02:29:31Z"
+        "pushedAt": "2026-10-11T21:45:32Z"
       },
       "bestFor": [
         "Organiser des sources et interroger un carnet de recherche IA"
@@ -24144,8 +24272,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 11056,
-        "forks": 1164,
+        "stars": 11076,
+        "forks": 1174,
         "openIssues": 101,
         "archived": false,
         "disabled": false,
@@ -24182,9 +24310,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 24645,
-        "forks": 4603,
-        "openIssues": 5,
+        "stars": 26064,
+        "forks": 4801,
+        "openIssues": 7,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -24222,14 +24350,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 93704,
-        "forks": 5231,
-        "openIssues": 1008,
+        "stars": 94073,
+        "forks": 5258,
+        "openIssues": 1012,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-07T23:01:53Z"
+        "pushedAt": "2026-10-10T01:13:49Z"
       },
       "bestFor": [
         "Partager des fichiers entre appareils sur le réseau local"
@@ -24262,14 +24390,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 848,
-        "forks": 193,
-        "openIssues": 68,
+        "stars": 862,
+        "forks": 199,
+        "openIssues": 77,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-08T22:50:47Z"
+        "pushedAt": "2026-10-09T14:26:54Z"
       },
       "bestFor": [
         "Analyser les marchés avec des indicateurs techniques"
@@ -24306,14 +24434,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 28649,
-        "forks": 2943,
-        "openIssues": 566,
+        "stars": 28735,
+        "forks": 2962,
+        "openIssues": 535,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "NOASSERTION",
-        "pushedAt": "2026-10-09T01:27:59Z"
+        "pushedAt": "2026-10-12T11:48:33Z"
       },
       "bestFor": [
         "Construire des espaces de travail et des flux pour agents IA"
@@ -24346,8 +24474,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 9110,
-        "forks": 1585,
+        "stars": 9164,
+        "forks": 1601,
         "openIssues": 82,
         "archived": false,
         "disabled": false,
@@ -24386,14 +24514,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1652,
-        "forks": 176,
+        "stars": 1846,
+        "forks": 196,
         "openIssues": 1,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T21:45:55Z"
+        "pushedAt": "2026-10-11T20:18:31Z"
       },
       "bestFor": [
         "Orchestrer des tâches de développement assistées par IA"
@@ -24426,14 +24554,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 6583,
-        "forks": 1646,
-        "openIssues": 2947,
+        "stars": 6592,
+        "forks": 1649,
+        "openIssues": 2948,
         "archived": false,
         "disabled": false,
         "defaultBranch": "2.5",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-07T19:03:27Z"
+        "pushedAt": "2026-10-12T09:12:14Z"
       },
       "bestFor": [
         "Corréler des indicateurs de compromission et détecter des menaces"
@@ -24466,9 +24594,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 45349,
-        "forks": 4774,
-        "openIssues": 490,
+        "stars": 45435,
+        "forks": 4778,
+        "openIssues": 492,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -24506,8 +24634,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 690,
-        "forks": 147,
+        "stars": 698,
+        "forks": 148,
         "openIssues": 19,
         "archived": false,
         "disabled": false,
@@ -24586,14 +24714,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 27007,
-        "forks": 3066,
-        "openIssues": 63,
+        "stars": 131725,
+        "forks": 29467,
+        "openIssues": 244,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T01:29:24Z"
+        "pushedAt": "2026-10-12T11:57:19Z"
       },
       "bestFor": [
         "Analyser des logiciels autorisés avec des outils de rétro-ingénierie"
@@ -24626,14 +24754,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 6714,
-        "forks": 1780,
-        "openIssues": 91,
+        "stars": 6726,
+        "forks": 1781,
+        "openIssues": 92,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "GPL-2.0",
-        "pushedAt": "2026-10-08T15:31:08Z"
+        "pushedAt": "2026-10-09T05:16:18Z"
       },
       "bestFor": [
         "Corréler des indicateurs de compromission et détecter des menaces"
@@ -24666,8 +24794,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 445,
-        "forks": 90,
+        "stars": 447,
+        "forks": 91,
         "openIssues": 63,
         "archived": false,
         "disabled": false,
@@ -24706,8 +24834,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 12136,
-        "forks": 1263,
+        "stars": 14282,
+        "forks": 1609,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
@@ -24746,14 +24874,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 12566,
-        "forks": 2547,
-        "openIssues": 44,
+        "stars": 12700,
+        "forks": 2580,
+        "openIssues": 48,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-06T21:14:39Z"
+        "pushedAt": "2026-10-09T15:40:41Z"
       },
       "bestFor": [
         "Étudier et tester des stratégies de trading automatisées"
@@ -24792,8 +24920,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 93251,
-        "forks": 9153,
+        "stars": 93723,
+        "forks": 9197,
         "openIssues": 375,
         "archived": false,
         "disabled": false,
@@ -24832,8 +24960,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 7124,
-        "forks": 854,
+        "stars": 7139,
+        "forks": 860,
         "openIssues": 118,
         "archived": false,
         "disabled": false,
@@ -24872,14 +25000,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 30109,
-        "forks": 2049,
+        "stars": 30197,
+        "forks": 2059,
         "openIssues": 107,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-08T22:37:55Z"
+        "license": "MIT",
+        "pushedAt": "2026-10-12T10:54:31Z"
       },
       "bestFor": [
         "Naviguer et éditer des projets via des outils sémantiques"
@@ -24912,14 +25040,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 23629,
-        "forks": 2610,
-        "openIssues": 591,
+        "stars": 23636,
+        "forks": 2613,
+        "openIssues": 580,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-09T01:06:29Z"
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-10T00:56:48Z"
       },
       "bestFor": [
         "Analyser les hôtes et les événements de sécurité"
@@ -24952,14 +25080,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 26414,
-        "forks": 6870,
-        "openIssues": 2831,
+        "stars": 27099,
+        "forks": 7126,
+        "openIssues": 2649,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T01:31:05Z"
+        "pushedAt": "2026-10-12T11:51:48Z"
       },
       "bestFor": [
         "Orchestrer des tâches de développement assistées par IA"
@@ -24992,14 +25120,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 383,
-        "forks": 68,
+        "stars": 448,
+        "forks": 75,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": null,
-        "pushedAt": "2026-10-07T14:59:44Z"
+        "pushedAt": "2026-10-11T15:20:28Z"
       },
       "bestFor": [
         "Auditer la robustesse des modèles dans un environnement autorisé"
@@ -25032,9 +25160,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3204,
-        "forks": 477,
-        "openIssues": 12,
+        "stars": 3229,
+        "forks": 478,
+        "openIssues": 13,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -25072,14 +25200,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 43993,
-        "forks": 8121,
-        "openIssues": 3556,
+        "stars": 44008,
+        "forks": 8129,
+        "openIssues": 3565,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T01:23:55Z"
+        "pushedAt": "2026-10-12T08:24:01Z"
       },
       "bestFor": [
         "Orchestrer des tâches et dépendances de calcul"
@@ -25112,7 +25240,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 17,
+        "stars": 18,
         "forks": 1,
         "openIssues": 0,
         "archived": false,
@@ -25152,14 +25280,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 5656,
-        "forks": 530,
-        "openIssues": 41,
+        "stars": 6866,
+        "forks": 703,
+        "openIssues": 38,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T23:19:15Z"
+        "pushedAt": "2026-10-12T05:52:23Z"
       },
       "bestFor": [
         "Modifier et tester des contenus de jeu assistés par agent"
@@ -25192,14 +25320,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9649,
+        "stars": 9652,
         "forks": 503,
         "openIssues": 131,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-09T00:26:07Z"
+        "pushedAt": "2026-10-11T08:25:08Z"
       },
       "bestFor": [
         "Intégrer des vérifications statiques dans les pull requests"
@@ -25232,7 +25360,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1332,
+        "stars": 1333,
         "forks": 136,
         "openIssues": 9,
         "archived": false,
@@ -25270,8 +25398,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 6136,
-        "forks": 963,
+        "stars": 6155,
+        "forks": 965,
         "openIssues": 151,
         "archived": false,
         "disabled": false,
@@ -25310,13 +25438,13 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 11192,
-        "forks": 2839,
-        "openIssues": 254,
+        "stars": 11220,
+        "forks": 2848,
+        "openIssues": 263,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": "NOASSERTION",
+        "license": "MIT",
         "pushedAt": "2026-10-06T11:26:20Z"
       },
       "bestFor": [
@@ -25350,8 +25478,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 858,
-        "forks": 121,
+        "stars": 863,
+        "forks": 122,
         "openIssues": 5,
         "archived": false,
         "disabled": false,
@@ -25396,9 +25524,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 23193,
-        "forks": 3715,
-        "openIssues": 329,
+        "stars": 23352,
+        "forks": 3740,
+        "openIssues": 339,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -25436,14 +25564,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 8048,
-        "forks": 1135,
-        "openIssues": 75,
+        "stars": 19914,
+        "forks": 3236,
+        "openIssues": 242,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-07T00:56:15Z"
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-11T13:47:59Z"
       },
       "bestFor": [
         "Produire des visuels et récits assistés par logiciel"
@@ -25476,14 +25604,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 14447,
-        "forks": 1643,
-        "openIssues": 67,
+        "stars": 14518,
+        "forks": 1645,
+        "openIssues": 69,
         "archived": false,
         "disabled": false,
         "defaultBranch": "development",
         "license": "GPL-2.0",
-        "pushedAt": "2026-10-08T14:16:34Z"
+        "pushedAt": "2026-10-12T11:43:01Z"
       },
       "bestFor": [
         "Développer une interface web de lecture multimédia"
@@ -25517,12 +25645,12 @@ Repository-specific rules:
       "costModel": "unknown",
       "github": {
         "stars": 12198,
-        "forks": 1413,
+        "forks": 1415,
         "openIssues": 41,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": "NOASSERTION",
+        "license": "MIT",
         "pushedAt": "2026-09-28T18:41:31Z"
       },
       "bestFor": [
@@ -25556,14 +25684,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 8182,
-        "forks": 383,
-        "openIssues": 63,
+        "stars": 9325,
+        "forks": 448,
+        "openIssues": 110,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T22:06:20Z"
+        "pushedAt": "2026-10-12T11:54:47Z"
       },
       "bestFor": [
         "Automatiser les tests fonctionnels des applications web et mobiles"
@@ -25596,14 +25724,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 31763,
-        "forks": 3275,
-        "openIssues": 569,
+        "stars": 32082,
+        "forks": 3328,
+        "openIssues": 665,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T01:22:39Z"
+        "pushedAt": "2026-10-12T11:57:51Z"
       },
       "bestFor": [
         "Maintenir un contexte et une mémoire exploitable pour agents IA"
@@ -25636,14 +25764,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 28369,
-        "forks": 2623,
-        "openIssues": 560,
+        "stars": 28451,
+        "forks": 2634,
+        "openIssues": 564,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-08T17:28:48Z"
+        "pushedAt": "2026-10-12T00:41:22Z"
       },
       "bestFor": [
         "Détecter des identifiants exposés dans des dépôts et journaux"
@@ -25676,14 +25804,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 1017,
-        "forks": 163,
-        "openIssues": 2,
+        "stars": 1040,
+        "forks": 167,
+        "openIssues": 1,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-07T19:16:09Z"
+        "pushedAt": "2026-10-09T22:08:03Z"
       },
       "bestFor": [
         "Organiser un environnement de travail orienté agents"
@@ -25716,14 +25844,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 15549,
-        "forks": 1351,
-        "openIssues": 336,
+        "stars": 15559,
+        "forks": 1350,
+        "openIssues": 342,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T00:03:37Z"
+        "pushedAt": "2026-10-10T01:17:59Z"
       },
       "bestFor": [
         "Extraire le contenu de documents pour la recherche et l'IA"
@@ -25756,14 +25884,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 4312,
-        "forks": 661,
-        "openIssues": 77,
+        "stars": 4335,
+        "forks": 666,
+        "openIssues": 79,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-07T11:34:46Z"
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-12T03:58:57Z"
       },
       "bestFor": [
         "Analyser les hôtes et les événements de sécurité"
@@ -25796,9 +25924,9 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 9931,
+        "stars": 9940,
         "forks": 1586,
-        "openIssues": 169,
+        "openIssues": 171,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -25836,9 +25964,9 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 17122,
-        "forks": 3727,
-        "openIssues": 386,
+        "stars": 17159,
+        "forks": 3760,
+        "openIssues": 385,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -25874,8 +26002,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 682,
-        "forks": 87,
+        "stars": 771,
+        "forks": 102,
         "openIssues": 5,
         "archived": false,
         "disabled": false,
@@ -25914,14 +26042,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 316,
+        "stars": 317,
         "forks": 73,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-09-20T17:25:12Z"
+        "pushedAt": "2026-10-11T17:48:00Z"
       },
       "bestFor": [
         "Étudier et tester des stratégies pour les marchés prédictifs"
@@ -25960,8 +26088,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 13067,
-        "forks": 1365,
+        "stars": 13070,
+        "forks": 1369,
         "openIssues": 115,
         "archived": false,
         "disabled": false,
@@ -26000,14 +26128,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 8084,
-        "forks": 1433,
-        "openIssues": 260,
+        "stars": 8095,
+        "forks": 1434,
+        "openIssues": 259,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-08T21:42:41Z"
+        "license": "BSD-3-Clause",
+        "pushedAt": "2026-10-12T11:38:31Z"
       },
       "bestFor": [
         "Corréler des indicateurs de compromission et détecter des menaces"
@@ -26043,14 +26171,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "mixed",
       "github": {
-        "stars": 22194,
-        "forks": 5393,
-        "openIssues": 2583,
+        "stars": 22212,
+        "forks": 5401,
+        "openIssues": 2584,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-09T02:29:22Z"
+        "license": "MIT",
+        "pushedAt": "2026-10-12T11:48:07Z"
       },
       "bestFor": [
         "Synchroniser des bases, fichiers et API vers des entrepôts et outils IA"
@@ -26086,14 +26214,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 9417,
-        "forks": 2482,
-        "openIssues": 2374,
+        "stars": 9437,
+        "forks": 2494,
+        "openIssues": 2391,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T02:59:07Z"
+        "pushedAt": "2026-10-12T08:47:44Z"
       },
       "bestFor": [
         "Intégrer un moteur de requêtes analytiques rapide en Rust"
@@ -26129,14 +26257,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 75082,
-        "forks": 18439,
-        "openIssues": 568,
+        "stars": 75111,
+        "forks": 18457,
+        "openIssues": 556,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T03:19:45Z"
+        "pushedAt": "2026-10-12T11:55:21Z"
       },
       "bestFor": [
         "Créer des graphiques, rapports et tableaux de bord sur des sources SQL"
@@ -26172,7 +26300,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3649,
+        "stars": 3648,
         "forks": 263,
         "openIssues": 21,
         "archived": false,
@@ -26215,8 +26343,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 4049,
-        "forks": 272,
+        "stars": 4048,
+        "forks": 273,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
@@ -26258,14 +26386,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 5945,
-        "forks": 618,
-        "openIssues": 454,
+        "stars": 5957,
+        "forks": 624,
+        "openIssues": 464,
         "archived": false,
         "disabled": false,
         "defaultBranch": "devel",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T16:24:37Z"
+        "pushedAt": "2026-10-12T10:45:37Z"
       },
       "bestFor": [
         "Charger et normaliser des données API ou fichiers dans un entrepôt"
@@ -26301,14 +26429,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 41995,
-        "forks": 3887,
-        "openIssues": 1066,
+        "stars": 42122,
+        "forks": 3908,
+        "openIssues": 1067,
         "archived": false,
         "disabled": false,
         "defaultBranch": "v2.0-cyanoptera",
         "license": "MIT",
-        "pushedAt": "2026-10-09T00:00:14Z"
+        "pushedAt": "2026-10-12T11:55:41Z"
       },
       "bestFor": [
         "Exécuter des analyses SQL locales et sur des fichiers Parquet ou CSV"
@@ -26345,14 +26473,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 20093,
-        "forks": 2958,
-        "openIssues": 450,
+        "stars": 20125,
+        "forks": 2963,
+        "openIssues": 448,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-04T13:43:25Z"
+        "pushedAt": "2026-10-11T08:19:47Z"
       },
       "bestFor": [
         "Construire un assistant de données capable de raisonner et interroger des bases SQL"
@@ -26389,14 +26517,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 6989,
+        "stars": 7002,
         "forks": 428,
         "openIssues": 15,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T19:49:20Z"
+        "pushedAt": "2026-10-09T23:14:26Z"
       },
       "bestFor": [
         "Construire des tableaux de bord versionnés à partir de SQL et Markdown"
@@ -26432,14 +26560,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 11867,
-        "forks": 1871,
-        "openIssues": 47,
+        "stars": 11868,
+        "forks": 1874,
+        "openIssues": 50,
         "archived": false,
         "disabled": false,
         "defaultBranch": "develop",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T09:28:46Z"
+        "pushedAt": "2026-10-12T09:53:37Z"
       },
       "bestFor": [
         "Définir et exécuter des assertions sur les jeux de données et les pipelines"
@@ -26475,8 +26603,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 374,
-        "forks": 52,
+        "stars": 482,
+        "forks": 78,
         "openIssues": 3,
         "archived": false,
         "disabled": false,
@@ -26518,7 +26646,7 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 15979,
+        "stars": 15984,
         "forks": 890,
         "openIssues": 69,
         "archived": false,
@@ -26561,14 +26689,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "mixed",
       "github": {
-        "stars": 49584,
-        "forks": 6889,
-        "openIssues": 4560,
+        "stars": 49626,
+        "forks": 6895,
+        "openIssues": 4565,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-09T02:34:57Z"
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-12T11:55:40Z"
       },
       "bestFor": [
         "Mettre à disposition des tableaux de bord métier et des analyses SQL"
@@ -26604,14 +26732,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 15420,
-        "forks": 2436,
-        "openIssues": 957,
+        "stars": 15446,
+        "forks": 2448,
+        "openIssues": 974,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T03:07:08Z"
+        "pushedAt": "2026-10-12T11:58:09Z"
       },
       "bestFor": [
         "Inventorier les actifs de données, lignages et règles de gouvernance"
@@ -26647,14 +26775,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 40021,
-        "forks": 3158,
-        "openIssues": 2956,
+        "stars": 40103,
+        "forks": 3167,
+        "openIssues": 2968,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T14:41:35Z"
+        "pushedAt": "2026-10-12T11:57:19Z"
       },
       "bestFor": [
         "Transformer et analyser des tables volumineuses avec un moteur DataFrame rapide"
@@ -26690,14 +26818,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 6065,
-        "forks": 464,
-        "openIssues": 1896,
+        "stars": 6073,
+        "forks": 466,
+        "openIssues": 1897,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-08T16:35:35Z"
+        "license": "MIT",
+        "pushedAt": "2026-10-12T09:33:24Z"
       },
       "bestFor": [
         "Publier des rapports techniques, notebooks et documents reproductibles"
@@ -26733,13 +26861,13 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 23860,
-        "forks": 2342,
+        "stars": 23868,
+        "forks": 2341,
         "openIssues": 23,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
+        "license": "MIT",
         "pushedAt": "2025-10-28T10:02:13Z"
       },
       "bestFor": [
@@ -26776,14 +26904,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 2435,
-        "forks": 288,
-        "openIssues": 211,
+        "stars": 2437,
+        "forks": 289,
+        "openIssues": 212,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "NOASSERTION",
-        "pushedAt": "2026-10-08T20:50:19Z"
+        "pushedAt": "2026-10-12T10:44:20Z"
       },
       "bestFor": [
         "Contrôler la qualité des données et les contrats des pipelines"
@@ -26819,13 +26947,13 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 4142,
-        "forks": 473,
-        "openIssues": 5,
+        "stars": 4157,
+        "forks": 475,
+        "openIssues": 6,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
+        "license": "Apache-2.0",
         "pushedAt": "2026-09-29T13:33:32Z"
       },
       "bestFor": [
@@ -26861,8 +26989,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 246,
-        "forks": 44,
+        "stars": 247,
+        "forks": 46,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
@@ -26904,14 +27032,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "unknown",
       "github": {
-        "stars": 8214,
-        "forks": 458,
-        "openIssues": 13,
+        "stars": 8372,
+        "forks": 479,
+        "openIssues": 24,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-09T01:19:58Z"
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-11T22:14:46Z"
       },
       "bestFor": [
         "Gérer commandes rapides et historique de presse-papiers sur macOS"
@@ -26947,14 +27075,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 462,
-        "forks": 86,
-        "openIssues": 70,
+        "stars": 468,
+        "forks": 85,
+        "openIssues": 64,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T03:32:01Z"
+        "pushedAt": "2026-10-12T11:46:49Z"
       },
       "bestFor": [
         "Partager des outils d'IA au sein d'une équipe"
@@ -26989,14 +27117,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 180014,
-        "forks": 21316,
-        "openIssues": 1395,
+        "stars": 180647,
+        "forks": 21409,
+        "openIssues": 1401,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": null,
-        "pushedAt": "2026-10-08T18:06:26Z"
+        "pushedAt": "2026-10-09T18:45:52Z"
       },
       "bestFor": [
         "Réutiliser et comparer des compétences pour assistants et agents"
@@ -27032,9 +27160,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 77205,
-        "forks": 6054,
-        "openIssues": 1033,
+        "stars": 77243,
+        "forks": 6059,
+        "openIssues": 1038,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -27074,8 +27202,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 7452,
-        "forks": 1399,
+        "stars": 7509,
+        "forks": 1407,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
@@ -27115,14 +27243,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 324734,
-        "forks": 15195,
+        "stars": 325746,
+        "forks": 15255,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-06T18:10:01Z"
+        "license": "MIT",
+        "pushedAt": "2026-10-12T10:22:57Z"
       },
       "bestFor": [
         "Comparer les logiciels gratuits et les services auto-hébergés"
@@ -27158,7 +27286,7 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 8886,
+        "stars": 8898,
         "forks": 1040,
         "openIssues": 226,
         "archived": false,
@@ -27201,14 +27329,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3258,
+        "stars": 3264,
         "forks": 506,
-        "openIssues": 105,
+        "openIssues": 112,
         "archived": false,
         "disabled": false,
         "defaultBranch": "dev",
         "license": "MIT",
-        "pushedAt": "2026-10-08T23:20:09Z"
+        "pushedAt": "2026-10-12T03:06:30Z"
       },
       "bestFor": [
         "Coordonner le développement avec plusieurs agents et un suivi des changements"
@@ -27244,9 +27372,9 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 22412,
-        "forks": 1638,
-        "openIssues": 189,
+        "stars": 22696,
+        "forks": 1674,
+        "openIssues": 193,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -27286,9 +27414,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 28461,
-        "forks": 3344,
-        "openIssues": 146,
+        "stars": 28727,
+        "forks": 3387,
+        "openIssues": 148,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -27328,9 +27456,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 2672,
+        "stars": 2687,
         "forks": 149,
-        "openIssues": 738,
+        "openIssues": 739,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -27413,9 +27541,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 48921,
-        "forks": 15301,
-        "openIssues": 1491,
+        "stars": 48966,
+        "forks": 15315,
+        "openIssues": 1501,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -27456,9 +27584,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3833,
-        "forks": 880,
-        "openIssues": 15,
+        "stars": 4014,
+        "forks": 913,
+        "openIssues": 16,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -27499,14 +27627,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 12757,
-        "forks": 1170,
-        "openIssues": 376,
+        "stars": 12773,
+        "forks": 1174,
+        "openIssues": 387,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "BSD-2-Clause",
-        "pushedAt": "2026-10-08T17:39:25Z"
+        "pushedAt": "2026-10-12T11:46:53Z"
       },
       "bestFor": [
         "Construire ou expérimenter des communications réseau HTTP/3"
@@ -27542,14 +27670,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 136487,
-        "forks": 16227,
-        "openIssues": 5095,
+        "stars": 137058,
+        "forks": 16314,
+        "openIssues": 5139,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "GPL-3.0",
-        "pushedAt": "2026-10-09T03:30:55Z"
+        "pushedAt": "2026-10-12T08:20:31Z"
       },
       "bestFor": [
         "Produire des visuels générés par des pipelines paramétrables"
@@ -27585,14 +27713,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 62745,
-        "forks": 5616,
-        "openIssues": 737,
+        "stars": 62887,
+        "forks": 5640,
+        "openIssues": 721,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T16:25:23Z"
+        "pushedAt": "2026-10-12T11:06:47Z"
       },
       "bestFor": [
         "Déployer des applications sur une infrastructure contrôlée"
@@ -27628,9 +27756,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 53795,
-        "forks": 8002,
-        "openIssues": 29,
+        "stars": 54292,
+        "forks": 8061,
+        "openIssues": 64,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -27671,9 +27799,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 39322,
-        "forks": 3925,
-        "openIssues": 74,
+        "stars": 39592,
+        "forks": 3965,
+        "openIssues": 80,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -27713,14 +27841,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3605,
-        "forks": 570,
-        "openIssues": 23,
+        "stars": 3620,
+        "forks": 586,
+        "openIssues": 16,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-06T12:39:52Z"
+        "pushedAt": "2026-10-12T11:54:35Z"
       },
       "bestFor": [
         "Réutiliser et comparer des compétences pour assistants et agents"
@@ -27755,14 +27883,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 32483,
-        "forks": 3731,
-        "openIssues": 362,
+        "stars": 32578,
+        "forks": 3747,
+        "openIssues": 377,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T03:17:53Z"
+        "pushedAt": "2026-10-12T04:35:14Z"
       },
       "bestFor": [
         "Réutiliser et comparer des compétences pour assistants et agents"
@@ -27798,14 +27926,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 34848,
-        "forks": 2122,
-        "openIssues": 395,
+        "stars": 34922,
+        "forks": 2135,
+        "openIssues": 404,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T00:25:03Z"
+        "pushedAt": "2026-10-12T11:28:07Z"
       },
       "bestFor": [
         "Détecter les mises à jour de pages publiques"
@@ -27841,14 +27969,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 22487,
-        "forks": 1879,
-        "openIssues": 154,
+        "stars": 22568,
+        "forks": 1884,
+        "openIssues": 151,
         "archived": false,
         "disabled": false,
         "defaultBranch": "dev",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T03:15:19Z"
+        "pushedAt": "2026-10-12T09:05:47Z"
       },
       "bestFor": [
         "Intégrer des documents et feuilles de calcul riches dans une application"
@@ -27881,8 +28009,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 51041,
-        "forks": 10466,
+        "stars": 51155,
+        "forks": 10489,
         "openIssues": 127,
         "archived": false,
         "disabled": false,
@@ -27923,9 +28051,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 8676,
-        "forks": 1535,
-        "openIssues": 26,
+        "stars": 8735,
+        "forks": 1546,
+        "openIssues": 34,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -27966,14 +28094,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3522,
-        "forks": 610,
-        "openIssues": 22,
+        "stars": 3761,
+        "forks": 648,
+        "openIssues": 32,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T00:08:57Z"
+        "pushedAt": "2026-10-12T11:03:46Z"
       },
       "bestFor": [
         "Coordonner le développement avec plusieurs agents et un suivi des changements"
@@ -28009,14 +28137,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 4150,
-        "forks": 762,
+        "stars": 4154,
+        "forks": 761,
         "openIssues": 121,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-08T11:05:39Z"
+        "license": "BSD-2-Clause",
+        "pushedAt": "2026-10-12T08:18:53Z"
       },
       "bestFor": [
         "Développer des systèmes embarqués et FPGA"
@@ -28052,9 +28180,9 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 8946,
-        "forks": 1465,
-        "openIssues": 3,
+        "stars": 9013,
+        "forks": 1476,
+        "openIssues": 4,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -28095,7 +28223,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 507,
+        "stars": 509,
         "forks": 87,
         "openIssues": 2,
         "archived": false,
@@ -28138,14 +28266,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 135659,
-        "forks": 20151,
-        "openIssues": 171,
+        "stars": 136088,
+        "forks": 20207,
+        "openIssues": 62,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T20:05:30Z"
+        "pushedAt": "2026-10-12T01:26:59Z"
       },
       "bestFor": [
         "Coordonner le développement avec plusieurs agents et un suivi des changements"
@@ -28181,14 +28309,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 130567,
-        "forks": 24206,
-        "openIssues": 2481,
+        "stars": 130916,
+        "forks": 24334,
+        "openIssues": 2527,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-09T02:29:25Z"
+        "pushedAt": "2026-10-12T11:44:47Z"
       },
       "bestFor": [
         "Déployer et optimiser des modèles IA sur du matériel adapté"
@@ -28224,9 +28352,9 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 11168,
-        "forks": 1143,
-        "openIssues": 129,
+        "stars": 11408,
+        "forks": 1173,
+        "openIssues": 135,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -28267,9 +28395,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 13335,
-        "forks": 674,
-        "openIssues": 71,
+        "stars": 13463,
+        "forks": 677,
+        "openIssues": 73,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -28310,14 +28438,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 2935,
-        "forks": 300,
-        "openIssues": 20,
+        "stars": 2967,
+        "forks": 305,
+        "openIssues": 24,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T02:23:05Z"
+        "pushedAt": "2026-10-12T11:27:02Z"
       },
       "bestFor": [
         "Exécuter et router des agents, modèles et outils de façon structurée"
@@ -28353,14 +28481,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 1529,
-        "forks": 135,
-        "openIssues": 52,
+        "stars": 1616,
+        "forks": 149,
+        "openIssues": 56,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "GPL-3.0",
-        "pushedAt": "2026-10-09T00:56:43Z"
+        "pushedAt": "2026-10-11T21:14:53Z"
       },
       "bestFor": [
         "Convertir des vidéos en représentations de scènes 3D"
@@ -28395,14 +28523,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 26043,
-        "forks": 1067,
-        "openIssues": 359,
+        "stars": 26130,
+        "forks": 1077,
+        "openIssues": 342,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T18:03:19Z"
+        "pushedAt": "2026-10-11T17:39:00Z"
       },
       "bestFor": [
         "Suivre l'activité et la santé des serveurs et conteneurs"
@@ -28437,14 +28565,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 55282,
-        "forks": 4795,
-        "openIssues": 1188,
+        "stars": 55487,
+        "forks": 4812,
+        "openIssues": 1097,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-09T03:16:04Z"
+        "license": "MIT",
+        "pushedAt": "2026-10-12T09:23:50Z"
       },
       "bestFor": [
         "Réutiliser et comparer des compétences pour assistants et agents"
@@ -28479,9 +28607,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 51764,
-        "forks": 4713,
-        "openIssues": 145,
+        "stars": 51961,
+        "forks": 4734,
+        "openIssues": 147,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -28522,14 +28650,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 40958,
-        "forks": 5171,
-        "openIssues": 137,
+        "stars": 41189,
+        "forks": 5198,
+        "openIssues": 171,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T03:35:15Z"
+        "pushedAt": "2026-10-12T11:29:51Z"
       },
       "bestFor": [
         "Organiser la recherche et l'apprentissage autonome en local"
@@ -28564,9 +28692,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 44787,
-        "forks": 3944,
-        "openIssues": 274,
+        "stars": 44885,
+        "forks": 3961,
+        "openIssues": 275,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -28607,14 +28735,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 1965,
-        "forks": 390,
-        "openIssues": 173,
+        "stars": 2004,
+        "forks": 393,
+        "openIssues": 167,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-09T01:37:44Z"
+        "license": "MIT",
+        "pushedAt": "2026-10-12T11:57:21Z"
       },
       "bestFor": [
         "Fournir une interface de chat ou voix aux modèles locaux"
@@ -28650,14 +28778,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 4603,
-        "forks": 191,
+        "stars": 4868,
+        "forks": 205,
         "openIssues": 8,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-08T20:07:34Z"
+        "license": "MIT",
+        "pushedAt": "2026-10-10T15:18:05Z"
       },
       "bestFor": [
         "Améliorer le rendu et l'expérience utilisateur des interfaces"
@@ -28693,14 +28821,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 2906,
-        "forks": 548,
-        "openIssues": 8,
+        "stars": 2954,
+        "forks": 561,
+        "openIssues": 0,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-17T02:48:22Z"
+        "pushedAt": "2026-10-12T10:57:09Z"
       },
       "bestFor": [
         "Étudier le trading par agents en simulation avec mesures de risque"
@@ -28740,14 +28868,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 88092,
-        "forks": 13442,
-        "openIssues": 340,
+        "stars": 88289,
+        "forks": 13498,
+        "openIssues": 364,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-09T03:31:35Z"
+        "pushedAt": "2026-10-12T05:55:43Z"
       },
       "bestFor": [
         "Agréger des informations géopolitiques et du suivi de risques"
@@ -28783,9 +28911,9 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 1779,
-        "forks": 126,
-        "openIssues": 2,
+        "stars": 1788,
+        "forks": 128,
+        "openIssues": 5,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -28825,8 +28953,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 7077,
-        "forks": 785,
+        "stars": 7080,
+        "forks": 784,
         "openIssues": 10,
         "archived": false,
         "disabled": false,
@@ -28868,9 +28996,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 8570,
-        "forks": 892,
-        "openIssues": 143,
+        "stars": 8571,
+        "forks": 893,
+        "openIssues": 144,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -28911,14 +29039,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 93861,
-        "forks": 6376,
-        "openIssues": 78,
+        "stars": 94948,
+        "forks": 6463,
+        "openIssues": 6,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T20:35:00Z"
+        "pushedAt": "2026-10-11T23:06:21Z"
       },
       "bestFor": [
         "Améliorer le rendu et l'expérience utilisateur des interfaces"
@@ -28951,8 +29079,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 25079,
-        "forks": 2644,
+        "stars": 25112,
+        "forks": 2641,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
@@ -28994,8 +29122,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 17006,
-        "forks": 1769,
+        "stars": 17054,
+        "forks": 1774,
         "openIssues": 127,
         "archived": false,
         "disabled": false,
@@ -29037,14 +29165,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 5484,
-        "forks": 701,
-        "openIssues": 660,
+        "stars": 5595,
+        "forks": 712,
+        "openIssues": 510,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T03:00:05Z"
+        "pushedAt": "2026-10-12T10:55:38Z"
       },
       "bestFor": [
         "Évaluer l'extraction locale d'informations cliniques sous contraintes de confidentialité"
@@ -29080,14 +29208,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 36661,
-        "forks": 5367,
-        "openIssues": 206,
+        "stars": 36706,
+        "forks": 5392,
+        "openIssues": 226,
         "archived": false,
         "disabled": false,
         "defaultBranch": "develop",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-08T22:57:04Z"
+        "license": "MIT",
+        "pushedAt": "2026-10-10T23:49:11Z"
       },
       "bestFor": [
         "Créer un backend e-commerce personnalisable"
@@ -29122,14 +29250,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 2184,
-        "forks": 301,
-        "openIssues": 8,
+        "stars": 2301,
+        "forks": 305,
+        "openIssues": 7,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-09-30T13:39:06Z"
+        "pushedAt": "2026-10-12T07:37:07Z"
       },
       "bestFor": [
         "Inspecter et comprendre des applications Android autorisées"
@@ -29165,14 +29293,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 18602,
-        "forks": 1663,
-        "openIssues": 188,
+        "stars": 18666,
+        "forks": 1670,
+        "openIssues": 164,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-09-29T08:13:46Z"
+        "pushedAt": "2026-10-09T07:47:53Z"
       },
       "bestFor": [
         "Développer et évaluer les workflows d'agents avec tests reproductibles"
@@ -29207,14 +29335,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 2321,
-        "forks": 735,
-        "openIssues": 40,
+        "stars": 2311,
+        "forks": 737,
+        "openIssues": 43,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-07T19:29:06Z"
+        "pushedAt": "2026-10-11T11:52:38Z"
       },
       "bestFor": [
         "Donner aux agents une mémoire à long terme maîtrisée"
@@ -29250,14 +29378,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 419,
-        "forks": 52,
-        "openIssues": 35,
+        "stars": 440,
+        "forks": 55,
+        "openIssues": 45,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "GPL-3.0",
-        "pushedAt": "2026-10-09T02:48:32Z"
+        "pushedAt": "2026-10-12T06:01:12Z"
       },
       "bestFor": [
         "Expérimenter la persistance et la coordination d'agents"
@@ -29292,14 +29420,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 15262,
-        "forks": 1451,
-        "openIssues": 60,
+        "stars": 15319,
+        "forks": 1461,
+        "openIssues": 63,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "NOASSERTION",
-        "pushedAt": "2026-10-07T18:17:39Z"
+        "pushedAt": "2026-10-12T09:13:54Z"
       },
       "bestFor": [
         "Rechercher des signes de compromission sur un terminal autorisé"
@@ -29335,14 +29463,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 133954,
-        "forks": 14231,
-        "openIssues": 90,
+        "stars": 135019,
+        "forks": 14353,
+        "openIssues": 91,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T05:06:09Z"
+        "pushedAt": "2026-10-12T11:08:03Z"
       },
       "bestFor": [
         "Améliorer le rendu et l'expérience utilisateur des interfaces"
@@ -29378,14 +29506,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 154070,
-        "forks": 22546,
-        "openIssues": 279,
+        "stars": 154419,
+        "forks": 22612,
+        "openIssues": 167,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-08T20:48:33Z"
+        "license": "BSD-3-Clause",
+        "pushedAt": "2026-10-12T11:34:48Z"
       },
       "bestFor": [
         "Fournir une interface de chat ou voix aux modèles locaux"
@@ -29420,14 +29548,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 7803,
-        "forks": 885,
-        "openIssues": 235,
+        "stars": 7810,
+        "forks": 887,
+        "openIssues": 234,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-04T19:55:38Z"
+        "license": "BSD-3-Clause",
+        "pushedAt": "2026-10-12T01:07:24Z"
       },
       "bestFor": [
         "Créer des animations graphiques 2D"
@@ -29463,14 +29591,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9490,
-        "forks": 368,
-        "openIssues": 33,
+        "stars": 9590,
+        "forks": 373,
+        "openIssues": 37,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T23:25:09Z"
+        "pushedAt": "2026-10-11T09:30:24Z"
       },
       "bestFor": [
         "Coordonner le développement avec plusieurs agents et un suivi des changements"
@@ -29506,14 +29634,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 78704,
-        "forks": 4676,
-        "openIssues": 63,
+        "stars": 80097,
+        "forks": 4767,
+        "openIssues": 72,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T03:02:39Z"
+        "pushedAt": "2026-10-12T11:07:53Z"
       },
       "bestFor": [
         "Améliorer le rendu et l'expérience utilisateur des interfaces"
@@ -29549,14 +29677,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 29349,
-        "forks": 1885,
-        "openIssues": 63,
+        "stars": 29376,
+        "forks": 1894,
+        "openIssues": 67,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-08T20:38:42Z"
+        "pushedAt": "2026-10-12T09:06:55Z"
       },
       "bestFor": [
         "Mesurer l'audience d'un site avec collecte minimale"
@@ -29591,14 +29719,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 31836,
-        "forks": 3920,
-        "openIssues": 135,
+        "stars": 31968,
+        "forks": 3938,
+        "openIssues": 136,
         "archived": false,
         "disabled": false,
         "defaultBranch": "dev",
         "license": "MIT",
-        "pushedAt": "2026-10-08T14:32:27Z"
+        "pushedAt": "2026-10-12T09:04:44Z"
       },
       "bestFor": [
         "Analyser des rapports et vérifier des vulnérabilités sur des cibles autorisées"
@@ -29633,14 +29761,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 13072,
-        "forks": 3681,
+        "stars": 13090,
+        "forks": 3686,
         "openIssues": 115,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T03:19:32Z"
+        "pushedAt": "2026-10-12T08:30:41Z"
       },
       "bestFor": [
         "Analyser des rapports et vérifier des vulnérabilités sur des cibles autorisées"
@@ -29676,14 +29804,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 20495,
-        "forks": 2884,
-        "openIssues": 1428,
+        "stars": 20571,
+        "forks": 2904,
+        "openIssues": 1397,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T02:19:34Z"
+        "pushedAt": "2026-10-12T09:29:32Z"
       },
       "bestFor": [
         "Construire des workflows d'agents avec modèles et sorties structurés"
@@ -29718,7 +29846,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 290,
+        "stars": 292,
         "forks": 28,
         "openIssues": 3,
         "archived": false,
@@ -29760,7 +29888,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 6595,
+        "stars": 6596,
         "forks": 1156,
         "openIssues": 1,
         "archived": false,
@@ -29803,14 +29931,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 139224,
-        "forks": 14731,
-        "openIssues": 14,
+        "stars": 139394,
+        "forks": 14752,
+        "openIssues": 11,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": null,
-        "pushedAt": "2026-10-07T21:31:03Z"
+        "license": "MIT",
+        "pushedAt": "2026-10-12T08:26:21Z"
       },
       "bestFor": [
         "Comparer les logiciels gratuits et les services auto-hébergés"
@@ -29889,14 +30017,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 38127,
-        "forks": 3477,
+        "stars": 38262,
+        "forks": 3498,
         "openIssues": 191,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-07T09:21:06Z"
+        "pushedAt": "2026-10-11T15:55:50Z"
       },
       "bestFor": [
         "Déployer un moteur de recherche web fédéré auto-hébergé"
@@ -29932,14 +30060,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 36897,
-        "forks": 9387,
-        "openIssues": 5599,
+        "stars": 37034,
+        "forks": 9481,
+        "openIssues": 5646,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T03:17:25Z"
+        "pushedAt": "2026-10-12T11:53:54Z"
       },
       "bestFor": [
         "Déployer et optimiser des modèles IA sur du matériel adapté"
@@ -29975,9 +30103,9 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 12566,
+        "stars": 12589,
         "forks": 1467,
-        "openIssues": 55,
+        "openIssues": 59,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -30018,14 +30146,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 8744,
-        "forks": 1344,
-        "openIssues": 994,
+        "stars": 8777,
+        "forks": 1355,
+        "openIssues": 1015,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T23:17:16Z"
+        "pushedAt": "2026-10-10T01:01:49Z"
       },
       "bestFor": [
         "Exécuter et router des agents, modèles et outils de façon structurée"
@@ -30061,14 +30189,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 4865,
-        "forks": 395,
-        "openIssues": 129,
+        "stars": 5005,
+        "forks": 408,
+        "openIssues": 139,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-09T03:20:41Z"
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-12T11:53:22Z"
       },
       "bestFor": [
         "Exécuter et router des agents, modèles et outils de façon structurée"
@@ -30103,8 +30231,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 7532,
-        "forks": 521,
+        "stars": 7596,
+        "forks": 538,
         "openIssues": 111,
         "archived": false,
         "disabled": false,
@@ -30146,8 +30274,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 2511,
-        "forks": 260,
+        "stars": 2533,
+        "forks": 261,
         "openIssues": 9,
         "archived": false,
         "disabled": false,
@@ -30189,14 +30317,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 11057,
-        "forks": 1850,
-        "openIssues": 897,
+        "stars": 11070,
+        "forks": 1853,
+        "openIssues": 896,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "BSD-3-Clause",
-        "pushedAt": "2026-10-08T23:52:20Z"
+        "pushedAt": "2026-10-10T09:33:43Z"
       },
       "bestFor": [
         "Déployer et optimiser des modèles IA sur du matériel adapté"
@@ -30232,14 +30360,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 55501,
-        "forks": 11987,
-        "openIssues": 174,
+        "stars": 55521,
+        "forks": 11989,
+        "openIssues": 192,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T03:06:43Z"
+        "pushedAt": "2026-10-12T11:41:33Z"
       },
       "bestFor": [
         "Déployer un site éditorial avec newsletters et adhésions"
@@ -30275,14 +30403,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 62816,
-        "forks": 3058,
-        "openIssues": 49,
+        "stars": 62924,
+        "forks": 3068,
+        "openIssues": 35,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-08T12:52:53Z"
+        "pushedAt": "2026-10-12T10:43:35Z"
       },
       "bestFor": [
         "Fournir aux agents de la documentation pertinente à la version du projet"
@@ -30317,14 +30445,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 39005,
-        "forks": 3381,
-        "openIssues": 121,
+        "stars": 39072,
+        "forks": 3389,
+        "openIssues": 128,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T05:18:34Z"
+        "pushedAt": "2026-10-12T06:59:04Z"
       },
       "bestFor": [
         "Récupérer du contexte pertinent depuis des documents volumineux"
@@ -30360,14 +30488,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 93420,
-        "forks": 23151,
-        "openIssues": 8643,
+        "stars": 93630,
+        "forks": 23277,
+        "openIssues": 8721,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T03:11:42Z"
+        "pushedAt": "2026-10-12T11:55:01Z"
       },
       "bestFor": [
         "Déployer et optimiser des modèles IA sur du matériel adapté"
@@ -30403,8 +30531,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 17572,
-        "forks": 17735,
+        "stars": 17673,
+        "forks": 17750,
         "openIssues": 200,
         "archived": false,
         "disabled": false,
@@ -30446,14 +30574,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 4111,
-        "forks": 503,
+        "stars": 4171,
+        "forks": 512,
         "openIssues": 9,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-06T16:13:23Z"
+        "pushedAt": "2026-10-09T12:46:53Z"
       },
       "bestFor": [
         "Piloter plusieurs outils de programmation dans une interface unifiée"
@@ -30488,7 +30616,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 973,
+        "stars": 975,
         "forks": 232,
         "openIssues": 0,
         "archived": false,
@@ -30530,14 +30658,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9270,
-        "forks": 1684,
-        "openIssues": 8,
+        "stars": 9348,
+        "forks": 1693,
+        "openIssues": 12,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T03:15:46Z"
+        "pushedAt": "2026-10-12T11:24:36Z"
       },
       "bestFor": [
         "Produire et éditer des vidéos via des workflows contrôlés"
@@ -30573,14 +30701,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 3321,
-        "forks": 834,
-        "openIssues": 355,
+        "stars": 3366,
+        "forks": 844,
+        "openIssues": 363,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-06T03:45:16Z"
+        "pushedAt": "2026-10-12T11:45:51Z"
       },
       "bestFor": [
         "Expérimenter la persistance et la coordination d'agents"
@@ -30616,14 +30744,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 13443,
-        "forks": 3903,
-        "openIssues": 153,
+        "stars": 13469,
+        "forks": 3913,
+        "openIssues": 157,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-07T12:07:40Z"
+        "pushedAt": "2026-10-12T10:37:15Z"
       },
       "bestFor": [
         "Évaluer les environnements d'exécution de tests GitHub Actions"
@@ -30658,14 +30786,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 1253,
-        "forks": 237,
-        "openIssues": 52,
+        "stars": 1360,
+        "forks": 259,
+        "openIssues": 61,
         "archived": false,
         "disabled": false,
         "defaultBranch": "feat/harness-backend",
         "license": "MIT",
-        "pushedAt": "2026-10-04T18:37:08Z"
+        "pushedAt": "2026-10-09T04:35:03Z"
       },
       "bestFor": [
         "Explorer une architecture agentique locale pour automatiser des tâches"
@@ -30701,14 +30829,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9451,
-        "forks": 2195,
-        "openIssues": 819,
+        "stars": 9479,
+        "forks": 2206,
+        "openIssues": 823,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T19:54:37Z"
+        "pushedAt": "2026-10-09T19:38:32Z"
       },
       "bestFor": [
         "Intégrer des agents dans les workflows GitHub avec permissions limitées"
@@ -30743,14 +30871,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 37558,
-        "forks": 4229,
-        "openIssues": 1076,
+        "stars": 37715,
+        "forks": 4245,
+        "openIssues": 1198,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T22:46:27Z"
+        "pushedAt": "2026-10-12T08:13:45Z"
       },
       "bestFor": [
         "Trouver et comparer des méthodes éprouvées pour construire des agents IA"
@@ -30786,14 +30914,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 12455,
-        "forks": 1238,
-        "openIssues": 113,
+        "stars": 12492,
+        "forks": 1247,
+        "openIssues": 107,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T03:43:25Z"
+        "pushedAt": "2026-10-12T11:58:42Z"
       },
       "bestFor": [
         "Créer une interface de chat pour assistants IA"
@@ -30829,14 +30957,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 5308,
-        "forks": 935,
-        "openIssues": 6,
+        "stars": 5328,
+        "forks": 943,
+        "openIssues": 9,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T17:12:40Z"
+        "pushedAt": "2026-10-09T16:46:34Z"
       },
       "bestFor": [
         "Étudier et reproduire des vulnérabilités sur des périmètres explicitement autorisés"
@@ -30872,14 +31000,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 30220,
-        "forks": 2951,
-        "openIssues": 852,
+        "stars": 30265,
+        "forks": 2962,
+        "openIssues": 865,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T18:42:14Z"
+        "pushedAt": "2026-10-12T11:27:55Z"
       },
       "bestFor": [
         "Implémenter une authentification avec des protections éprouvées"
@@ -30915,14 +31043,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9456,
-        "forks": 1064,
-        "openIssues": 190,
+        "stars": 9473,
+        "forks": 1077,
+        "openIssues": 199,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "GPL-3.0",
-        "pushedAt": "2026-10-09T00:04:29Z"
+        "pushedAt": "2026-10-12T08:57:17Z"
       },
       "bestFor": [
         "Étudier une application mobile de gestion de mots de passe"
@@ -30956,8 +31084,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 1259,
-        "forks": 178,
+        "stars": 1260,
+        "forks": 177,
         "openIssues": 3,
         "archived": false,
         "disabled": false,
@@ -30999,8 +31127,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 8229,
-        "forks": 1060,
+        "stars": 8257,
+        "forks": 1064,
         "openIssues": 50,
         "archived": false,
         "disabled": false,
@@ -31042,8 +31170,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 5984,
-        "forks": 480,
+        "stars": 6022,
+        "forks": 478,
         "openIssues": 73,
         "archived": false,
         "disabled": false,
@@ -31085,14 +31213,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 2955,
-        "forks": 416,
-        "openIssues": 145,
+        "stars": 2961,
+        "forks": 418,
+        "openIssues": 147,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "GPL-3.0",
-        "pushedAt": "2026-10-08T20:06:38Z"
+        "pushedAt": "2026-10-12T09:22:51Z"
       },
       "bestFor": [
         "Étudier les outils de simulation de stockage d'énergie"
@@ -31127,13 +31255,13 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 29914,
-        "forks": 6102,
-        "openIssues": 1270,
+        "stars": 29939,
+        "forks": 6107,
+        "openIssues": 1272,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": null,
+        "license": "MIT",
         "pushedAt": "2026-10-04T12:46:41Z"
       },
       "bestFor": [
@@ -31170,14 +31298,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 24870,
-        "forks": 3324,
-        "openIssues": 107,
+        "stars": 24877,
+        "forks": 3320,
+        "openIssues": 111,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-09T03:13:30Z"
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-12T11:52:55Z"
       },
       "bestFor": [
         "Analyser des parcours et canaux d'acquisition marketing"
@@ -31212,8 +31340,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 27463,
-        "forks": 3077,
+        "stars": 27478,
+        "forks": 3076,
         "openIssues": 29,
         "archived": false,
         "disabled": false,
@@ -31255,8 +31383,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3008,
-        "forks": 364,
+        "stars": 3009,
+        "forks": 366,
         "openIssues": 6,
         "archived": false,
         "disabled": false,
@@ -31298,13 +31426,13 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 4149,
+        "stars": 4152,
         "forks": 243,
         "openIssues": 6,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
+        "license": "MIT",
         "pushedAt": "2026-05-16T07:48:40Z"
       },
       "bestFor": [
@@ -31341,14 +31469,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 4292,
-        "forks": 317,
-        "openIssues": 41,
+        "stars": 4311,
+        "forks": 320,
+        "openIssues": 40,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-08T20:11:58Z"
+        "pushedAt": "2026-10-11T04:55:51Z"
       },
       "bestFor": [
         "Construire un jeu Godot avec connecteurs et outils de production"
@@ -31384,8 +31512,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 9633,
-        "forks": 2250,
+        "stars": 9638,
+        "forks": 2253,
         "openIssues": 87,
         "archived": false,
         "disabled": false,
@@ -31427,14 +31555,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 5799,
-        "forks": 3785,
-        "openIssues": 1118,
+        "stars": 5805,
+        "forks": 3786,
+        "openIssues": 1122,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-08T15:43:56Z"
+        "license": "MIT",
+        "pushedAt": "2026-10-10T17:33:31Z"
       },
       "bestFor": [
         "Étudier des exemples reproductibles pour améliorer gameplay et visuels Godot"
@@ -31555,7 +31683,7 @@ Repository-specific rules:
       "costModel": "unknown",
       "github": {
         "stars": 4897,
-        "forks": 651,
+        "forks": 652,
         "openIssues": 69,
         "archived": true,
         "disabled": false,
@@ -31597,8 +31725,8 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "unknown",
       "github": {
-        "stars": 28916,
-        "forks": 2233,
+        "stars": 29099,
+        "forks": 2250,
         "openIssues": 7,
         "archived": false,
         "disabled": false,
@@ -31640,14 +31768,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 343,
-        "forks": 36,
-        "openIssues": 18,
+        "stars": 352,
+        "forks": 40,
+        "openIssues": 19,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-05T16:07:19Z"
+        "pushedAt": "2026-10-09T18:55:57Z"
       },
       "bestFor": [
         "Transcrire des réunions avec transparence et consentement"
@@ -31683,14 +31811,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1134,
+        "stars": 1135,
         "forks": 247,
         "openIssues": 5,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T16:59:02Z"
+        "pushedAt": "2026-10-12T09:06:52Z"
       },
       "bestFor": [
         "Développer et maintenir des applications Android"
@@ -31725,8 +31853,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 1931,
-        "forks": 204,
+        "stars": 2045,
+        "forks": 216,
         "openIssues": 6,
         "archived": false,
         "disabled": false,
@@ -31767,14 +31895,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 4421,
-        "forks": 419,
-        "openIssues": 35,
+        "stars": 4423,
+        "forks": 421,
+        "openIssues": 28,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-09-04T07:54:27Z"
+        "pushedAt": "2026-10-11T11:01:24Z"
       },
       "bestFor": [
         "Comparer des versions de logiciels et repérer des modifications suspectes autorisées"
@@ -31810,9 +31938,9 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 73433,
-        "forks": 4958,
-        "openIssues": 122,
+        "stars": 73526,
+        "forks": 4968,
+        "openIssues": 124,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -31851,9 +31979,9 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 50318,
-        "forks": 15931,
-        "openIssues": 57,
+        "stars": 50352,
+        "forks": 15929,
+        "openIssues": 56,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -31894,8 +32022,8 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 1238,
-        "forks": 182,
+        "stars": 1243,
+        "forks": 183,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
@@ -31937,14 +32065,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 6094,
-        "forks": 1723,
-        "openIssues": 220,
+        "stars": 6104,
+        "forks": 1727,
+        "openIssues": 213,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T17:08:59Z"
+        "pushedAt": "2026-10-11T01:48:36Z"
       },
       "bestFor": [
         "Déployer des modèles sous Kubernetes avec mise à l'échelle"
@@ -31980,14 +32108,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 7571,
-        "forks": 857,
-        "openIssues": 268,
+        "stars": 7649,
+        "forks": 869,
+        "openIssues": 263,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-08T23:50:58Z"
+        "pushedAt": "2026-10-10T20:43:23Z"
       },
       "bestFor": [
         "Explorer l'inférence locale d'images avec une implémentation C++"
@@ -32023,7 +32151,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 13531,
+        "stars": 13530,
         "forks": 2439,
         "openIssues": 21,
         "archived": false,
@@ -32066,14 +32194,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 5473,
-        "forks": 863,
+        "stars": 5477,
+        "forks": 864,
         "openIssues": 8,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-09T02:21:32Z"
+        "pushedAt": "2026-10-09T05:59:01Z"
       },
       "bestFor": [
         "Étudier des architectures et extensions de moteurs pour nouveaux jeux"
@@ -32107,14 +32235,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 4688,
-        "forks": 1963,
+        "stars": 4691,
+        "forks": 1966,
         "openIssues": 2,
         "archived": false,
         "disabled": false,
-        "defaultBranch": "lineage-23.2",
+        "defaultBranch": "lineage-24.0",
         "license": null,
-        "pushedAt": "2026-10-08T17:47:36Z"
+        "pushedAt": "2026-10-11T12:57:50Z"
       },
       "bestFor": [
         "Étudier les interfaces et composants du système Android"
@@ -32150,14 +32278,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 40979,
-        "forks": 19029,
-        "openIssues": 40124,
+        "stars": 41017,
+        "forks": 19074,
+        "openIssues": 40245,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-09T03:37:58Z"
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-12T11:51:51Z"
       },
       "bestFor": [
         "Développer et optimiser une chaîne de compilation"
@@ -32193,14 +32321,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 8378,
-        "forks": 1348,
-        "openIssues": 145,
+        "stars": 8593,
+        "forks": 1382,
+        "openIssues": 151,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T18:50:43Z"
+        "pushedAt": "2026-10-09T19:53:10Z"
       },
       "bestFor": [
         "Réduire le coût ou la taille des modèles avec techniques d'optimisation"
@@ -32235,14 +32363,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 193450,
-        "forks": 44661,
-        "openIssues": 21651,
+        "stars": 193605,
+        "forks": 45239,
+        "openIssues": 21734,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T03:43:12Z"
+        "pushedAt": "2026-10-12T11:49:05Z"
       },
       "bestFor": [
         "Développer et déboguer des applications sur ordinateur"
@@ -32279,7 +32407,7 @@ Repository-specific rules:
       "costModel": "unknown",
       "github": {
         "stars": 76706,
-        "forks": 13858,
+        "forks": 13850,
         "openIssues": 22,
         "archived": false,
         "disabled": false,
@@ -32321,14 +32449,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 8785,
-        "forks": 779,
-        "openIssues": 60,
+        "stars": 9037,
+        "forks": 814,
+        "openIssues": 58,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-07T20:38:18Z"
+        "pushedAt": "2026-10-12T10:32:20Z"
       },
       "bestFor": [
         "Automatiser des tests Android sur émulateurs ou appareils autorisés"
@@ -32364,14 +32492,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 116159,
-        "forks": 36618,
-        "openIssues": 402,
+        "stars": 116287,
+        "forks": 36627,
+        "openIssues": 399,
         "archived": false,
         "disabled": false,
         "defaultBranch": "dev",
         "license": "MIT",
-        "pushedAt": "2026-10-09T03:10:45Z"
+        "pushedAt": "2026-10-12T11:05:20Z"
       },
       "bestFor": [
         "Construire des scènes et des assets 3D interactifs dans un navigateur"
@@ -32406,14 +32534,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 6197,
-        "forks": 451,
-        "openIssues": 123,
+        "stars": 7103,
+        "forks": 536,
+        "openIssues": 139,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T03:30:48Z"
+        "pushedAt": "2026-10-12T11:54:08Z"
       },
       "bestFor": [
         "Orchestrer des agents pour gérer les tâches de développement et leur suivi"
@@ -32448,14 +32576,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 31773,
-        "forks": 2825,
-        "openIssues": 93,
+        "stars": 32472,
+        "forks": 2897,
+        "openIssues": 96,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T17:22:58Z"
+        "pushedAt": "2026-10-12T09:30:04Z"
       },
       "bestFor": [
         "Évaluer un moteur de décision reproductible intégré dans des agents"
@@ -32491,14 +32619,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 5620,
-        "forks": 2031,
-        "openIssues": 1562,
+        "stars": 5628,
+        "forks": 2036,
+        "openIssues": 1557,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "GPL-2.0",
-        "pushedAt": "2026-10-08T13:37:55Z"
+        "pushedAt": "2026-10-12T11:51:22Z"
       },
       "bestFor": [
         "Étudier un client Android de synchronisation de fichiers"
@@ -32535,7 +32663,7 @@ Repository-specific rules:
       "github": {
         "stars": 5031,
         "forks": 473,
-        "openIssues": 3,
+        "openIssues": 4,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -32576,14 +32704,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 40134,
-        "forks": 4508,
-        "openIssues": 127,
+        "stars": 40143,
+        "forks": 4507,
+        "openIssues": 116,
         "archived": false,
         "disabled": false,
         "defaultBranch": "next",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-09T01:09:43Z"
+        "license": "MIT",
+        "pushedAt": "2026-10-12T11:37:56Z"
       },
       "bestFor": [
         "Orchestrer les notifications d'applications et services"
@@ -32619,14 +32747,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 5249,
-        "forks": 736,
-        "openIssues": 472,
+        "stars": 5278,
+        "forks": 738,
+        "openIssues": 492,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T03:41:07Z"
+        "pushedAt": "2026-10-12T11:54:05Z"
       },
       "bestFor": [
         "Réduire le coût ou la taille des modèles avec techniques d'optimisation"
@@ -32660,8 +32788,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 15368,
-        "forks": 3617,
+        "stars": 15369,
+        "forks": 3616,
         "openIssues": 88,
         "archived": false,
         "disabled": false,
@@ -32703,14 +32831,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 8356,
-        "forks": 618,
-        "openIssues": 336,
+        "stars": 8396,
+        "forks": 625,
+        "openIssues": 344,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MPL-2.0",
-        "pushedAt": "2026-10-08T08:12:40Z"
+        "pushedAt": "2026-10-12T10:24:36Z"
       },
       "bestFor": [
         "Centraliser et contrôler l'accès aux certificats et secrets d'applications"
@@ -32746,14 +32874,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 2375,
+        "stars": 2377,
         "forks": 224,
-        "openIssues": 61,
+        "openIssues": 60,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T22:29:23Z"
+        "pushedAt": "2026-10-12T11:50:40Z"
       },
       "bestFor": [
         "Mesurer les usages d'une application pour la facturation"
@@ -32788,14 +32916,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 98908,
-        "forks": 16699,
-        "openIssues": 6239,
+        "stars": 100655,
+        "forks": 16936,
+        "openIssues": 5950,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-09T03:33:37Z"
+        "pushedAt": "2026-10-12T11:55:42Z"
       },
       "bestFor": [
         "Orchestrer des agents pour gérer les tâches de développement et leur suivi"
@@ -32831,14 +32959,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 40197,
-        "forks": 3486,
-        "openIssues": 5521,
+        "stars": 40239,
+        "forks": 3503,
+        "openIssues": 5483,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-09T03:37:50Z"
+        "license": "MIT",
+        "pushedAt": "2026-10-12T11:58:47Z"
       },
       "bestFor": [
         "Instrumenter et comprendre l'usage des applications et leurs incidents"
@@ -32874,14 +33002,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 28018,
-        "forks": 2450,
-        "openIssues": 407,
+        "stars": 28046,
+        "forks": 2456,
+        "openIssues": 462,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T22:57:39Z"
+        "pushedAt": "2026-10-11T21:11:25Z"
       },
       "bestFor": [
         "Connecter des outils aux agents via un protocole ou des SDK"
@@ -32917,14 +33045,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 3943,
-        "forks": 429,
-        "openIssues": 30,
+        "stars": 3969,
+        "forks": 431,
+        "openIssues": 26,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-09T03:35:28Z"
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-12T11:41:02Z"
       },
       "bestFor": [
         "Optimiser l'inférence locale de modèles avec MLX"
@@ -32959,14 +33087,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 65919,
-        "forks": 11431,
-        "openIssues": 65,
+        "stars": 67808,
+        "forks": 11883,
+        "openIssues": 70,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T23:26:11Z"
+        "pushedAt": "2026-10-11T05:56:30Z"
       },
       "bestFor": [
         "Étudier et reproduire des implémentations éducatives en IA"
@@ -33001,14 +33129,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 2103,
-        "forks": 242,
-        "openIssues": 48,
+        "stars": 2110,
+        "forks": 244,
+        "openIssues": 53,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": null,
-        "pushedAt": "2026-10-08T23:45:30Z"
+        "license": "MIT",
+        "pushedAt": "2026-10-11T17:53:06Z"
       },
       "bestFor": [
         "Orchestrer des agents pour gérer les tâches de développement et leur suivi"
@@ -33043,14 +33171,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 47371,
-        "forks": 6903,
-        "openIssues": 3,
+        "stars": 47496,
+        "forks": 6925,
+        "openIssues": 7,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T14:41:54Z"
+        "pushedAt": "2026-10-12T05:15:46Z"
       },
       "bestFor": [
         "Trouver et comparer des méthodes éprouvées pour construire des agents IA"
@@ -33086,14 +33214,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 32311,
-        "forks": 2531,
-        "openIssues": 1539,
+        "stars": 32334,
+        "forks": 2532,
+        "openIssues": 1536,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
-        "pushedAt": "2026-10-08T20:12:18Z"
+        "license": "MIT",
+        "pushedAt": "2026-10-12T11:58:43Z"
       },
       "bestFor": [
         "Instrumenter et comprendre l'usage des applications et leurs incidents"
@@ -33128,9 +33256,9 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 2402,
-        "forks": 623,
-        "openIssues": 26,
+        "stars": 2433,
+        "forks": 628,
+        "openIssues": 46,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -33171,14 +33299,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 3367,
+        "stars": 3386,
         "forks": 317,
-        "openIssues": 35,
+        "openIssues": 39,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T03:08:26Z"
+        "pushedAt": "2026-10-12T11:25:21Z"
       },
       "bestFor": [
         "Indexer et restituer des souvenirs pertinents à des agents IA"
@@ -33214,14 +33342,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 200556,
-        "forks": 78638,
-        "openIssues": 3251,
+        "stars": 200884,
+        "forks": 79207,
+        "openIssues": 3403,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T03:31:39Z"
+        "pushedAt": "2026-10-12T11:51:52Z"
       },
       "bestFor": [
         "Réduire le coût ou la taille des modèles avec techniques d'optimisation"
@@ -33257,7 +33385,7 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 107,
+        "stars": 111,
         "forks": 17,
         "openIssues": 0,
         "archived": false,
@@ -33298,13 +33426,13 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 10202,
+        "stars": 10204,
         "forks": 1795,
         "openIssues": 21,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
-        "license": null,
+        "license": "MIT",
         "pushedAt": "2024-07-04T19:13:09Z"
       },
       "bestFor": [
@@ -33341,13 +33469,13 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 18100,
-        "forks": 2213,
+        "stars": 18090,
+        "forks": 2211,
         "openIssues": 15,
         "archived": true,
         "disabled": false,
         "defaultBranch": "main",
-        "license": "NOASSERTION",
+        "license": "AGPL-3.0",
         "pushedAt": "2026-02-11T04:50:03Z"
       },
       "bestFor": [
@@ -33384,14 +33512,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 16503,
-        "forks": 1484,
-        "openIssues": 229,
+        "stars": 16523,
+        "forks": 1492,
+        "openIssues": 232,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T23:47:03Z"
+        "pushedAt": "2026-10-12T10:51:54Z"
       },
       "bestFor": [
         "Exécuter des tâches de fond et des agents de façon fiable"
@@ -33427,14 +33555,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 47363,
-        "forks": 5973,
-        "openIssues": 169,
+        "stars": 48654,
+        "forks": 6011,
+        "openIssues": 163,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T21:42:39Z"
+        "pushedAt": "2026-10-12T11:56:28Z"
       },
       "bestFor": [
         "Indexer et restituer des souvenirs pertinents à des agents IA"
@@ -33470,14 +33598,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "unknown",
       "github": {
-        "stars": 27189,
-        "forks": 5291,
-        "openIssues": 1367,
+        "stars": 27268,
+        "forks": 5306,
+        "openIssues": 1907,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "NOASSERTION",
-        "pushedAt": "2026-10-09T03:38:19Z"
+        "pushedAt": "2026-10-12T06:50:32Z"
       },
       "bestFor": [
         "Connecter des outils aux agents via un protocole ou des SDK"
@@ -33513,14 +33641,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3247,
-        "forks": 196,
-        "openIssues": 121,
+        "stars": 3252,
+        "forks": 198,
+        "openIssues": 115,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-09T03:37:33Z"
+        "pushedAt": "2026-10-12T11:04:11Z"
       },
       "bestFor": [
         "Examiner des clients VPN Android pour connexions chiffrées"
@@ -33556,9 +33684,9 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 40293,
-        "forks": 5618,
-        "openIssues": 26,
+        "stars": 41206,
+        "forks": 5857,
+        "openIssues": 29,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
@@ -33599,7 +33727,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 3933,
+        "stars": 3942,
         "forks": 358,
         "openIssues": 251,
         "archived": false,
@@ -33644,7 +33772,7 @@ Repository-specific rules:
       "costModel": "open-source",
       "github": {
         "stars": 493,
-        "forks": 94,
+        "forks": 95,
         "openIssues": 24,
         "archived": true,
         "disabled": false,
@@ -33692,14 +33820,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 286,
-        "forks": 45,
+        "stars": 297,
+        "forks": 46,
         "openIssues": 0,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T00:22:27Z"
+        "pushedAt": "2026-10-11T16:14:42Z"
       },
       "bestFor": [
         "Tester de vraies sessions Roblox Studio, recueillir logs, captures d'écran et mesures de performances sur client et serveur"
@@ -33741,7 +33869,7 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 391,
+        "stars": 392,
         "forks": 85,
         "openIssues": 27,
         "archived": false,
@@ -33785,7 +33913,7 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 1366,
+        "stars": 1365,
         "forks": 76,
         "openIssues": 15,
         "archived": false,
@@ -33831,7 +33959,7 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 731,
+        "stars": 730,
         "forks": 68,
         "openIssues": 13,
         "archived": false,
@@ -33878,7 +34006,7 @@ Repository-specific rules:
       "costModel": "open-source",
       "github": {
         "stars": 496,
-        "forks": 88,
+        "forks": 89,
         "openIssues": 21,
         "archived": true,
         "disabled": false,
@@ -33924,14 +34052,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 108,
-        "forks": 11,
-        "openIssues": 9,
+        "stars": 130,
+        "forks": 15,
+        "openIssues": 7,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "AGPL-3.0",
-        "pushedAt": "2026-10-08T15:29:31Z"
+        "pushedAt": "2026-10-11T15:09:10Z"
       },
       "bestFor": [
         "Générer des éléments de jeu Roblox, scripts Luau, animations et effets visuels puis les vérifier par playtests"
@@ -33973,8 +34101,8 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 81,
-        "forks": 7,
+        "stars": 83,
+        "forks": 9,
         "openIssues": 2,
         "archived": false,
         "disabled": false,
@@ -34021,9 +34149,9 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "open-source",
       "github": {
-        "stars": 782,
+        "stars": 786,
         "forks": 68,
-        "openIssues": 35,
+        "openIssues": 36,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -34066,14 +34194,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "mixed",
       "github": {
-        "stars": 1267,
-        "forks": 198,
-        "openIssues": 85,
+        "stars": 1363,
+        "forks": 207,
+        "openIssues": 92,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-09T09:22:53Z"
+        "pushedAt": "2026-10-12T11:55:32Z"
       },
       "bestFor": [
         "Faire collaborer des agents locaux et des personnes dans des salles de travail"
@@ -34108,8 +34236,8 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "unknown",
       "github": {
-        "stars": 1797,
-        "forks": 363,
+        "stars": 1801,
+        "forks": 364,
         "openIssues": 11,
         "archived": false,
         "disabled": false,
@@ -34152,14 +34280,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "mixed",
       "github": {
-        "stars": 5705,
-        "forks": 1077,
-        "openIssues": 0,
+        "stars": 5960,
+        "forks": 1135,
+        "openIssues": 26,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "Apache-2.0",
-        "pushedAt": "2026-10-08T13:10:59Z"
+        "pushedAt": "2026-10-11T16:07:01Z"
       },
       "bestFor": [
         "Évaluer des systèmes explicitement autorisés en journalisant tests, résultats et limites"
@@ -34198,7 +34326,7 @@ Repository-specific rules:
       "costModel": "open-source",
       "github": {
         "stars": 17708,
-        "forks": 9596,
+        "forks": 9593,
         "openIssues": 1,
         "archived": true,
         "disabled": false,
@@ -34239,9 +34367,9 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "unknown",
       "github": {
-        "stars": 42617,
-        "forks": 5637,
-        "openIssues": 687,
+        "stars": 42658,
+        "forks": 5634,
+        "openIssues": 695,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
@@ -34285,14 +34413,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "mixed",
       "github": {
-        "stars": 189,
+        "stars": 204,
         "forks": 46,
-        "openIssues": 3,
+        "openIssues": 2,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T15:10:23Z"
+        "pushedAt": "2026-10-09T19:43:14Z"
       },
       "bestFor": [
         "Étudier les liens entre portefeuilles et la concentration d'achats sur Solana"
@@ -34334,8 +34462,8 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "unknown",
       "github": {
-        "stars": 9755,
-        "forks": 2188,
+        "stars": 9760,
+        "forks": 2189,
         "openIssues": 16,
         "archived": false,
         "disabled": false,
@@ -34379,14 +34507,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 17159,
-        "forks": 1300,
-        "openIssues": 127,
+        "stars": 17302,
+        "forks": 1314,
+        "openIssues": 118,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-09T09:23:28Z"
+        "pushedAt": "2026-10-12T11:53:16Z"
       },
       "bestFor": [
         "Router des clients de codage IA vers des fournisseurs ou modèles locaux compatibles"
@@ -34424,7 +34552,7 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 2135,
+        "stars": 2141,
         "forks": 460,
         "openIssues": 5,
         "archived": false,
@@ -34469,13 +34597,13 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "mixed",
       "github": {
-        "stars": 2330,
-        "forks": 287,
+        "stars": 2584,
+        "forks": 308,
         "openIssues": 15,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
-        "license": null,
+        "license": "MIT",
         "pushedAt": "2026-09-17T07:05:07Z"
       },
       "bestFor": [
@@ -34515,14 +34643,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 10597,
-        "forks": 2189,
-        "openIssues": 37,
+        "stars": 10781,
+        "forks": 2227,
+        "openIssues": 34,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "MIT",
-        "pushedAt": "2026-10-09T03:52:37Z"
+        "pushedAt": "2026-10-12T05:33:15Z"
       },
       "bestFor": [
         "Agréger des sources publiques de veille mondiale, trafic et événements"
@@ -34560,14 +34688,14 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 8845,
-        "forks": 1410,
+        "stars": 8847,
+        "forks": 1409,
         "openIssues": 72,
         "archived": false,
         "disabled": false,
         "defaultBranch": "master",
         "license": "GPL-3.0",
-        "pushedAt": "2026-10-05T05:06:12Z"
+        "pushedAt": "2026-10-12T04:55:16Z"
       },
       "bestFor": [
         "Explorer des widgets Flutter et des exemples de rendu multiplateforme"
@@ -34605,14 +34733,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "mixed",
       "github": {
-        "stars": 26798,
-        "forks": 1004,
-        "openIssues": 904,
+        "stars": 26866,
+        "forks": 1011,
+        "openIssues": 905,
         "archived": false,
         "disabled": false,
         "defaultBranch": "v31",
         "license": "GPL-3.0",
-        "pushedAt": "2026-10-08T14:03:15Z"
+        "pushedAt": "2026-10-09T10:06:40Z"
       },
       "bestFor": [
         "Déployer de la recherche full-text et une API de recherche dans une application"
@@ -34649,14 +34777,14 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "unknown",
       "github": {
-        "stars": 66777,
-        "forks": 13476,
+        "stars": 66803,
+        "forks": 13478,
         "openIssues": 5,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "GPL-3.0",
-        "pushedAt": "2026-10-08T07:15:32Z"
+        "pushedAt": "2026-10-12T09:24:27Z"
       },
       "bestFor": [
         "Étudier des adaptateurs d'API de modèles dans des environnements de test"
@@ -34697,8 +34825,8 @@ Repository-specific rules:
       "integrationComplexity": "low",
       "costModel": "open-source",
       "github": {
-        "stars": 1109,
-        "forks": 170,
+        "stars": 1138,
+        "forks": 173,
         "openIssues": 53,
         "archived": false,
         "disabled": false,
@@ -34742,14 +34870,14 @@ Repository-specific rules:
       "integrationComplexity": "medium",
       "costModel": "open-source",
       "github": {
-        "stars": 801,
-        "forks": 63,
-        "openIssues": 4,
+        "stars": 1929,
+        "forks": 126,
+        "openIssues": 15,
         "archived": false,
         "disabled": false,
         "defaultBranch": "main",
         "license": "MIT",
-        "pushedAt": "2026-10-08T17:59:25Z"
+        "pushedAt": "2026-10-11T03:00:37Z"
       },
       "bestFor": [
         "Tester une recherche locale de fichiers et de contenu indexé sur macOS avec des requêtes rapides"
@@ -34788,8 +34916,8 @@ Repository-specific rules:
       "integrationComplexity": "high",
       "costModel": "mixed",
       "github": {
-        "stars": 763,
-        "forks": 82,
+        "stars": 871,
+        "forks": 93,
         "openIssues": 1,
         "archived": false,
         "disabled": false,
@@ -34808,8 +34936,13 @@ Repository-specific rules:
     }
   ],
   "metadata": {
-    "githubRefreshedAt": "2026-10-05T11:27:17.097321Z",
-    "githubRefreshFailures": []
+    "githubRefreshedAt": "2026-10-12T11:59:29.184070Z",
+    "githubRefreshFailures": [
+      {
+        "repo": "Scottcjn/Rustchain",
+        "error": "HTTP Error 404: Not Found"
+      }
+    ]
   }
 }
 ````
@@ -35133,8 +35266,8 @@ Repository-specific rules:
       "fingerprint": {
         "decision": "accept",
         "score": 100,
-        "stars": 76988,
-        "pushedAt": "2026-10-04T01:39:14Z",
+        "stars": 77369,
+        "pushedAt": "2026-10-10T01:13:10Z",
         "targets": [
           [
             "capability",
@@ -35142,7 +35275,7 @@ Repository-specific rules:
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "bradtraversy/design-resources-for-developers": {
       "fingerprint": {
@@ -35223,8 +35356,8 @@ Repository-specific rules:
       "fingerprint": {
         "decision": "accept",
         "score": 100,
-        "stars": 17220,
-        "pushedAt": "2026-09-08T06:31:41Z",
+        "stars": 18017,
+        "pushedAt": "2026-10-10T13:11:29Z",
         "targets": [
           [
             "capability",
@@ -35232,7 +35365,7 @@ Repository-specific rules:
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "PavelDoGreat/WebGL-Fluid-Simulation": {
       "fingerprint": {
@@ -35268,8 +35401,8 @@ Repository-specific rules:
       "fingerprint": {
         "decision": "accept",
         "score": 100,
-        "stars": 15937,
-        "pushedAt": "2026-10-02T11:20:25Z",
+        "stars": 15966,
+        "pushedAt": "2026-10-12T08:19:45Z",
         "targets": [
           [
             "capability",
@@ -35277,7 +35410,7 @@ Repository-specific rules:
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "public-api-lists/public-api-lists": {
       "fingerprint": {
@@ -35298,22 +35431,22 @@ Repository-specific rules:
       "fingerprint": {
         "decision": "accept",
         "score": 100,
-        "stars": 14764,
-        "pushedAt": "2025-10-22T02:13:14Z",
+        "stars": 14771,
+        "pushedAt": "2026-10-09T21:51:41Z",
         "targets": [
           [
             "capability",
-            "simulation"
+            "physics"
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "ytisf/theZoo": {
       "fingerprint": {
         "decision": "accept",
         "score": 100,
-        "stars": 13440,
+        "stars": 13458,
         "pushedAt": "2026-09-14T06:47:21Z",
         "targets": [
           [
@@ -35322,14 +35455,14 @@ Repository-specific rules:
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "alicevision/Meshroom": {
       "fingerprint": {
         "decision": "accept",
         "score": 100,
-        "stars": 12992,
-        "pushedAt": "2026-10-05T10:10:20Z",
+        "stars": 13004,
+        "pushedAt": "2026-10-12T10:24:55Z",
         "targets": [
           [
             "capability",
@@ -35337,7 +35470,7 @@ Repository-specific rules:
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "jrouwe/JoltPhysics": {
       "fingerprint": {
@@ -35587,7 +35720,7 @@ Repository-specific rules:
       "fingerprint": {
         "decision": "accept",
         "score": 97.7,
-        "stars": 17568,
+        "stars": 17570,
         "pushedAt": "2026-02-02T12:32:34Z",
         "targets": [
           [
@@ -35596,7 +35729,7 @@ Repository-specific rules:
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "rednaga/APKiD": {
       "fingerprint": {
@@ -35681,7 +35814,7 @@ Repository-specific rules:
       "fingerprint": {
         "decision": "accept",
         "score": 87.7,
-        "stars": 14250,
+        "stars": 14275,
         "pushedAt": "2024-06-07T05:09:47Z",
         "targets": [
           [
@@ -35690,7 +35823,7 @@ Repository-specific rules:
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "yfeng95/PRNet": {
       "fingerprint": {
@@ -35726,7 +35859,7 @@ Repository-specific rules:
       "fingerprint": {
         "decision": "accept",
         "score": 85.6,
-        "stars": 12043,
+        "stars": 12061,
         "pushedAt": "2025-07-29T02:30:55Z",
         "targets": [
           [
@@ -35735,7 +35868,7 @@ Repository-specific rules:
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "mezod/awesome-indie": {
       "fingerprint": {
@@ -35891,7 +36024,7 @@ Repository-specific rules:
       "fingerprint": {
         "decision": "accept",
         "score": 100,
-        "stars": 373222,
+        "stars": 373875,
         "pushedAt": "2026-09-15T01:10:09Z",
         "targets": [
           [
@@ -35900,14 +36033,14 @@ Repository-specific rules:
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "clash-verge-rev/clash-verge-rev": {
       "fingerprint": {
         "decision": "accept",
         "score": 100,
-        "stars": 149304,
-        "pushedAt": "2026-10-05T06:19:33Z",
+        "stars": 150793,
+        "pushedAt": "2026-10-12T11:05:08Z",
         "targets": [
           [
             "capability",
@@ -35915,7 +36048,7 @@ Repository-specific rules:
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "nextlevelbuilder/ui-ux-pro-max-skill": {
       "fingerprint": {
@@ -35936,26 +36069,22 @@ Repository-specific rules:
       "fingerprint": {
         "decision": "accept",
         "score": 100,
-        "stars": 125161,
-        "pushedAt": "2026-10-05T10:54:20Z",
+        "stars": 125588,
+        "pushedAt": "2026-10-12T10:54:44Z",
         "targets": [
-          [
-            "capability",
-            "android"
-          ],
           [
             "capability",
             "design"
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "VoltAgent/awesome-design-md": {
       "fingerprint": {
         "decision": "accept",
         "score": 100,
-        "stars": 119612,
+        "stars": 120465,
         "pushedAt": "2026-10-05T07:34:34Z",
         "targets": [
           [
@@ -35964,14 +36093,14 @@ Repository-specific rules:
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "ant-design/ant-design": {
       "fingerprint": {
         "decision": "accept",
         "score": 100,
-        "stars": 99683,
-        "pushedAt": "2026-10-05T07:17:17Z",
+        "stars": 99743,
+        "pushedAt": "2026-10-12T11:50:17Z",
         "targets": [
           [
             "capability",
@@ -35979,33 +36108,33 @@ Repository-specific rules:
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "nexu-io/open-design": {
       "fingerprint": {
         "decision": "accept",
         "score": 100,
-        "stars": 99487,
-        "pushedAt": "2026-10-05T01:37:31Z",
+        "stars": 100678,
+        "pushedAt": "2026-10-12T11:51:37Z",
         "targets": [
           [
             "capability",
-            "cli"
+            "design"
           ],
           [
             "capability",
-            "design"
+            "plugins"
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "iluwatar/java-design-patterns": {
       "fingerprint": {
         "decision": "accept",
         "score": 100,
-        "stars": 94757,
-        "pushedAt": "2026-10-04T18:45:15Z",
+        "stars": 94784,
+        "pushedAt": "2026-10-08T12:44:21Z",
         "targets": [
           [
             "capability",
@@ -36013,7 +36142,7 @@ Repository-specific rules:
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "ByteByteGoHq/system-design-101": {
       "fingerprint": {
@@ -36034,23 +36163,27 @@ Repository-specific rules:
       "fingerprint": {
         "decision": "accept",
         "score": 100,
-        "stars": 27433,
-        "pushedAt": "2026-10-04T08:47:04Z",
+        "stars": 27542,
+        "pushedAt": "2026-10-12T09:30:18Z",
         "targets": [
+          [
+            "capability",
+            "2d"
+          ],
           [
             "capability",
             "vector-graphics"
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "rawgraphs/rawgraphs-app": {
       "fingerprint": {
         "decision": "accept",
         "score": 100,
-        "stars": 9033,
-        "pushedAt": "2026-08-24T11:02:18Z",
+        "stars": 9041,
+        "pushedAt": "2026-10-08T14:13:25Z",
         "targets": [
           [
             "capability",
@@ -36058,7 +36191,7 @@ Repository-specific rules:
           ]
         ]
       },
-      "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     },
     "visioncortex/vtracer": {
       "fingerprint": {
@@ -36149,6 +36282,502 @@ Repository-specific rules:
         ]
       },
       "lastSeenAt": "2026-10-05T11:28:25.552928Z"
+    },
+    "ohmyzsh/ohmyzsh": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 190101,
+        "pushedAt": "2026-10-12T10:55:11Z",
+        "targets": [
+          [
+            "capability",
+            "plugins"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "Z4nzu/hackingtool": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 80880,
+        "pushedAt": "2026-08-23T16:54:04Z",
+        "targets": [
+          [
+            "capability",
+            "steganography"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "webpack/webpack": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 66063,
+        "pushedAt": "2026-10-12T11:58:56Z",
+        "targets": [
+          [
+            "capability",
+            "plugins"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "termux/termux-app": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 62437,
+        "pushedAt": "2026-09-26T05:11:44Z",
+        "targets": [
+          [
+            "capability",
+            "termux"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "zylon-ai/private-gpt": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 57569,
+        "pushedAt": "2026-10-09T13:17:19Z",
+        "targets": [
+          [
+            "capability",
+            "text-to-sql"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "pixijs/pixijs": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 48348,
+        "pushedAt": "2026-10-10T15:14:52Z",
+        "targets": [
+          [
+            "capability",
+            "2d"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "AstrBotDevs/AstrBot": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 41769,
+        "pushedAt": "2026-10-12T09:04:53Z",
+        "targets": [
+          [
+            "capability",
+            "agent-platform"
+          ],
+          [
+            "capability",
+            "plugins"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "phaserjs/phaser": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 40458,
+        "pushedAt": "2026-08-21T06:56:13Z",
+        "targets": [
+          [
+            "capability",
+            "2d"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "wshobson/agents": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 40452,
+        "pushedAt": "2026-10-12T03:07:19Z",
+        "targets": [
+          [
+            "capability",
+            "plugins"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "The-Vibe-Company/quivr": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 39585,
+        "pushedAt": "2026-10-12T11:58:28Z",
+        "targets": [
+          [
+            "capability",
+            "alerts"
+          ],
+          [
+            "capability",
+            "plugins"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "TheAlgorithms/C-Plus-Plus": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 34762,
+        "pushedAt": "2026-10-03T10:34:43Z",
+        "targets": [
+          [
+            "capability",
+            "physics"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "anoma/anoma": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 33571,
+        "pushedAt": "2026-06-15T14:56:43Z",
+        "targets": [
+          [
+            "capability",
+            "reference-implementation"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "The-Art-of-Hacking/h4cker": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 29703,
+        "pushedAt": "2026-09-29T05:38:44Z",
+        "targets": [
+          [
+            "capability",
+            "ai-engineering"
+          ],
+          [
+            "capability",
+            "vulnerability-research"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "pmndrs/react-spring": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 29165,
+        "pushedAt": "2026-10-11T20:58:39Z",
+        "targets": [
+          [
+            "capability",
+            "physics"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "OtterMind/Chat2DB": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 28310,
+        "pushedAt": "2026-10-09T08:57:35Z",
+        "targets": [
+          [
+            "capability",
+            "text-to-sql"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "4ian/GDevelop": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 27422,
+        "pushedAt": "2026-10-12T10:37:10Z",
+        "targets": [
+          [
+            "capability",
+            "2d"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "graphdeco-inria/gaussian-splatting": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 24179,
+        "pushedAt": "2025-10-17T14:28:15Z",
+        "targets": [
+          [
+            "capability",
+            "reference-implementation"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "chaitin/SafeLine": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 22734,
+        "pushedAt": "2026-09-28T07:06:51Z",
+        "targets": [
+          [
+            "capability",
+            "cve"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "liabru/matter-js": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 18453,
+        "pushedAt": "2026-09-30T17:14:46Z",
+        "targets": [
+          [
+            "capability",
+            "2d"
+          ],
+          [
+            "capability",
+            "physics"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "sundowndev/phoneinfoga": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 18127,
+        "pushedAt": "2026-08-25T07:42:10Z",
+        "targets": [
+          [
+            "capability",
+            "information-gathering"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "laramies/theHarvester": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 17897,
+        "pushedAt": "2026-10-07T17:08:11Z",
+        "targets": [
+          [
+            "capability",
+            "information-gathering"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "Canner/WrenAI": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 17853,
+        "pushedAt": "2026-10-09T11:26:23Z",
+        "targets": [
+          [
+            "capability",
+            "text-to-sql"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "termux/termux-packages": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 17131,
+        "pushedAt": "2026-10-12T11:15:18Z",
+        "targets": [
+          [
+            "capability",
+            "termux"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "owasp-amass/amass": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 15342,
+        "pushedAt": "2026-07-19T05:16:40Z",
+        "targets": [
+          [
+            "capability",
+            "information-gathering"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "Datalux/Osintgram": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 14963,
+        "pushedAt": "2026-09-28T20:09:24Z",
+        "targets": [
+          [
+            "capability",
+            "information-gathering"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "dotnet/eShop": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 10950,
+        "pushedAt": "2026-10-12T04:28:35Z",
+        "targets": [
+          [
+            "capability",
+            "reference-implementation"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "erincatto/box2d": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 10410,
+        "pushedAt": "2026-10-12T06:30:42Z",
+        "targets": [
+          [
+            "capability",
+            "physics"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "storytold/vectorcraft": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 7485,
+        "pushedAt": "2026-10-12T11:52:56Z",
+        "targets": [
+          [
+            "capability",
+            "vector-graphics"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "Mbed-TLS/mbedtls": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 100,
+        "stars": 6989,
+        "pushedAt": "2026-10-08T08:44:56Z",
+        "targets": [
+          [
+            "capability",
+            "reference-implementation"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "qeeqbox/social-analyzer": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 99.7,
+        "stars": 24288,
+        "pushedAt": "2026-01-12T21:50:25Z",
+        "targets": [
+          [
+            "capability",
+            "information-gathering"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "TheAlgorithms/C": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 90.7,
+        "stars": 22524,
+        "pushedAt": "2024-08-07T21:56:16Z",
+        "targets": [
+          [
+            "capability",
+            "physics"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
+    },
+    "goabstract/Awesome-Design-Tools": {
+      "fingerprint": {
+        "decision": "accept",
+        "score": 89.8,
+        "stars": 41466,
+        "pushedAt": "2024-07-28T19:57:31Z",
+        "targets": [
+          [
+            "capability",
+            "plugins"
+          ]
+        ]
+      },
+      "lastSeenAt": "2026-10-12T12:00:49.298036Z"
     }
   }
 }
@@ -36207,13 +36836,15 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Automatic GitHub Stars synchronization
 
-A free, daily GitHub Actions workflow checks **dbrckk**'s publicly accessible starred
-repositories, compares them with the catalog, and updates a GitHub issue containing
-only repositories awaiting review. It preserves the complete API manifest and
-machine-readable report as short-lived workflow artifacts.
+A free, hourly GitHub Actions workflow checks **dbrckk**'s publicly accessible starred
+repositories and **adds every missing public Star to `catalog.json`** after
+canonical identity and metadata checks. Entries are tagged `audit` until an
+independent quality, license and security review; this is inclusion, not
+endorsement. It produces a complete sync report, import manifest, and admission
+report as short-lived workflow artifacts. No external service or paid token is required.
 
-**No catalog records are added automatically.** The existing reviewed-metadata
-import pipeline below remains the only admission path.
+The reviewed-metadata importer below remains available to promote and enrich
+entries after their initial admission.
 
 Run manually from **Actions → Sync GitHub Stars → Run workflow**, or locally:
 
@@ -36396,7 +37027,7 @@ python scripts/validate_json_contract.py schemas/discovery-evaluated.schema.json
 
 ## Safety model for catalog changes
 
-Automated discovery is advisory. It can find, score, remember, and surface candidates, but it does **not** edit `catalog.json` to add a repository. Human review remains the admission boundary.
+General-purpose GitHub discovery remains advisory and never inserts external candidates. A distinct GitHub Stars workflow automatically admits repositories explicitly starred by `dbrckk`, conservatively at `audit` tier. Human review remains required before promotion to a recommended tier.
 ````
 
 ## File: stacks.json

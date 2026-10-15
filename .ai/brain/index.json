@@ -1,14 +1,14 @@
 {
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
-  "files_indexed": 50,
-  "symbol_count": 189,
-  "edge_count": 7,
+  "files_indexed": 51,
+  "symbol_count": 195,
+  "edge_count": 9,
   "languages": {
-    "python": 50
+    "python": 51
   },
   "index_mode": "incremental",
-  "reparsed_files": 0,
+  "reparsed_files": 2,
   "top_symbol_files": [
     {
       "file": "scripts/discover_candidates.py",
@@ -57,6 +57,10 @@
     {
       "file": "scripts/update_history.py",
       "symbols": 7
+    },
+    {
+      "file": "scripts/admit_github_stars.py",
+      "symbols": 6
     },
     {
       "file": "scripts/audit_catalog_quality.py",

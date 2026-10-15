@@ -1,144 +1,102 @@
 {
   "files": [
     {
-      "path": ".github/workflows/validate.yml",
+      "path": "scripts/test_auto_stars_admission.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "selected-test",
+        "symbol-indexed"
+      ],
+      "score": 375
+    },
+    {
+      "path": "scripts/admit_github_stars.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 330
+    },
+    {
+      "path": ".github/workflows/sync-github-stars.yml",
       "reasons": [
         "changed"
       ],
       "score": 100
     },
     {
-      "path": "RECOMMENDER.md",
+      "path": "README.md",
       "reasons": [
         "changed"
       ],
       "score": 100
     },
     {
-      "path": "stacks.json",
+      "path": "cache-health-history.json",
       "reasons": [
         "changed"
       ],
       "score": 100
-    },
-    {
-      "path": ".repomixignore",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "AGENTS.md",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
     },
     {
       "path": "catalog.json",
       "reasons": [
-        "recent-project-state"
+        "changed"
       ],
-      "score": 60
+      "score": 100
     },
     {
-      "path": "catalog.schema.json",
+      "path": "discovery-cache.json",
       "reasons": [
-        "recent-project-state"
+        "changed"
       ],
-      "score": 60
+      "score": 100
+    },
+    {
+      "path": "discovery-memory.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "docs/GITHUB_STARS_SYNC.md",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
     },
     {
       "path": "health-snapshot.json",
       "reasons": [
-        "recent-project-state"
+        "changed"
       ],
-      "score": 60
+      "score": 100
     },
     {
       "path": "history.json",
       "reasons": [
-        "recent-project-state"
+        "changed"
       ],
-      "score": 60
+      "score": 100
     },
     {
-      "path": "imports/github-stars-2026-10-09-auto-1.json",
+      "path": "scripts/star_import_pipeline.py",
       "reasons": [
-        "recent-project-state"
+        "dependency-neighbor"
       ],
-      "score": 60
+      "score": 25
     },
     {
-      "path": "imports/github-stars-2026-10-09-auto-2.json",
+      "path": "scripts/sync_github_stars.py",
       "reasons": [
-        "recent-project-state"
+        "dependency-neighbor"
       ],
-      "score": 60
-    },
-    {
-      "path": "reports/github-stars-followup-2026-10-09-metadata.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "reports/github-stars-followup-2026-10-09-reviewed.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "reports/github-stars-followup-2026-10-09-summary.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "reports/github-stars-review-2026-10-09-metadata-1.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "reports/github-stars-review-2026-10-09-metadata-2.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "reports/github-stars-review-2026-10-09-reviewed.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "reports/github-stars-review-2026-10-09-summary.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "schemas/star-sync-report.schema.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "scripts/test_auto_stars_admission.py",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
+      "score": 25
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

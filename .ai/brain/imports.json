@@ -1,5 +1,20 @@
 {
   "imports": {
+    "scripts/admit_github_stars.py": [
+      "__future__",
+      "argparse",
+      "datetime",
+      "json",
+      "os",
+      "pathlib",
+      "re",
+      "star_import_pipeline",
+      "sync_github_stars",
+      "sys",
+      "time",
+      "urllib.error",
+      "urllib.request"
+    ],
     "scripts/analyze_cache_health.py": [
       "argparse",
       "json",

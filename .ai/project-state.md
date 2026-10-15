@@ -27,36 +27,32 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-09T21:30:56Z
+Generated: 2026-10-15T19:18:50Z
 
 ### Git
 - Branch: `main`
-- Head: `86b62be6695d`
-- Commit date: 2026-10-09T23:30:45+02:00
-- Commit: Recommend Roblox Studio and Godot production stacks (#56)
-- Tracked files: 265
+- Head: `b18de25d860d`
+- Commit date: 2026-10-15T21:18:39+02:00
+- Commit: feat: automatically admit all public GitHub Stars into star-list (#58)
+- Tracked files: 267
 
 ### Recently changed files
+- `.github/workflows/sync-github-stars.yml`
+- `README.md`
+- `docs/GITHUB_STARS_SYNC.md`
+- `scripts/admit_github_stars.py`
+- `scripts/test_auto_stars_admission.py`
+- `cache-health-history.json`
+- `catalog.json`
+- `discovery-cache.json`
+- `discovery-memory.json`
+- `health-snapshot.json`
+- `history.json`
 - `.github/workflows/validate.yml`
 - `RECOMMENDER.md`
 - `stacks.json`
 - `.repomixignore`
 - `AGENTS.md`
-- `catalog.json`
-- `imports/github-stars-2026-10-09-auto-2.json`
-- `reports/github-stars-followup-2026-10-09-metadata.json`
-- `reports/github-stars-followup-2026-10-09-reviewed.json`
-- `reports/github-stars-followup-2026-10-09-summary.json`
-- `scripts/test_auto_stars_admission.py`
-- `.github/workflows/sync-github-stars.yml`
-- `catalog.schema.json`
-- `docs/GITHUB_STARS_SYNC.md`
-- `health-snapshot.json`
-- `history.json`
-- `imports/github-stars-2026-10-09-auto-1.json`
-- `reports/github-stars-review-2026-10-09-metadata-1.json`
-- `reports/github-stars-review-2026-10-09-metadata-2.json`
-- `reports/github-stars-review-2026-10-09-reviewed.json`
 
 ### Project signals
 - No common build descriptor detected

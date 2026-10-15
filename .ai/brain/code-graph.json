@@ -1,6 +1,16 @@
 {
   "edges": [
     {
+      "source": "scripts/admit_github_stars.py",
+      "target": "scripts/star_import_pipeline.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/admit_github_stars.py",
+      "target": "scripts/sync_github_stars.py",
+      "type": "imports"
+    },
+    {
       "source": "scripts/analyze_coverage.py",
       "target": "scripts/health_score.py",
       "type": "imports"

@@ -1,20 +1,42 @@
 {
   "budget": {
-    "confidence": "medium",
+    "confidence": "high",
     "expand_to": 12,
-    "max_files": 6,
+    "max_files": 3,
     "requested_max_files": 12,
-    "score_margin": 0,
-    "tier": "bounded",
-    "top_score": 17
+    "score_margin": 21,
+    "tier": "narrow",
+    "top_score": 38
   },
   "cache": {
-    "fingerprint": "dc42438544adfe3b1e518903c4d4b97d7216e1154f4dc1b0b1f163d97ec7c70b",
+    "fingerprint": "06505a4b5e48a81873d596f55bd12377fe7056f2ef1ab5edc2479c5b6469c07e",
     "hit": false
   },
-  "candidate_count": 6,
+  "candidate_count": 14,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
+    {
+      "learning_score": 0,
+      "matched_terms": [
+        "engine",
+        "game"
+      ],
+      "path": "scripts/admit_github_stars.py",
+      "reasons": [
+        "impact",
+        "recently-changed",
+        "search-index"
+      ],
+      "score": 38,
+      "symbols": [
+        "admit",
+        "catalog_entry",
+        "classify",
+        "count",
+        "get_repo",
+        "main"
+      ]
+    },
     {
       "learning_score": 0,
       "matched_terms": [
@@ -60,50 +82,6 @@
         "trend_adjustment",
         "usable"
       ]
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [
-        "engine"
-      ],
-      "path": "scripts/test_recommend.py",
-      "reasons": [
-        "search-index"
-      ],
-      "score": 17,
-      "symbols": [
-        "run"
-      ]
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [],
-      "path": ".github/workflows/validate.yml",
-      "reasons": [
-        "recently-changed"
-      ],
-      "score": 3,
-      "symbols": []
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [],
-      "path": "RECOMMENDER.md",
-      "reasons": [
-        "recently-changed"
-      ],
-      "score": 3,
-      "symbols": []
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [],
-      "path": "stacks.json",
-      "reasons": [
-        "recently-changed"
-      ],
-      "score": 3,
-      "symbols": []
     }
   ],
   "generated_by": "dbrckk/repo-brain-v8",

@@ -4,5 +4,266 @@
   "scope": "symbols defined in changed source files",
   "semantic": false,
   "note": "Dependencies are known symbol names lexically present inside the symbol's AST/source range.",
-  "symbols": {}
+  "symbols": {
+    "classify": {
+      "source": {
+        "file": "scripts/admit_github_stars.py",
+        "start": 52,
+        "end": 61
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "get_repo": {
+      "source": {
+        "file": "scripts/admit_github_stars.py",
+        "start": 64,
+        "end": 97
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "normalize_repo",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 29,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "catalog_entry": {
+      "source": {
+        "file": "scripts/admit_github_stars.py",
+        "start": 100,
+        "end": 156
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "classify",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 52,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "count",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 111,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "normalize_repo",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 29,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 3
+    },
+    "count": {
+      "source": {
+        "file": "scripts/admit_github_stars.py",
+        "start": 111,
+        "end": 231
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "admit",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 159,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "catalog_entry",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 100,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "classify",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 52,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "get_repo",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 64,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "main",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 200,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "normalize_repo",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 29,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "write_catalog_if_valid",
+          "definitions": [
+            {
+              "file": "scripts/star_import_pipeline.py",
+              "line": 208,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 7
+    },
+    "admit": {
+      "source": {
+        "file": "scripts/admit_github_stars.py",
+        "start": 159,
+        "end": 197
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "catalog_entry",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 100,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "normalize_repo",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 29,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "main": {
+      "source": {
+        "file": "scripts/admit_github_stars.py",
+        "start": 200,
+        "end": 232
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "admit",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 159,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "get_repo",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 64,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "write_catalog_if_valid",
+          "definitions": [
+            {
+              "file": "scripts/star_import_pipeline.py",
+              "line": 208,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 3
+    },
+    "read": {
+      "source": {
+        "file": "scripts/test_auto_stars_admission.py",
+        "start": 8,
+        "end": 9
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    }
+  }
 }

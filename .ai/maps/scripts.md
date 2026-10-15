@@ -38,6 +38,7 @@ The content is organized as follows:
 
 # Directory Structure
 ```
+admit_github_stars.py
 analyze_cache_health.py
 analyze_coverage.py
 audit_catalog_quality.py
@@ -91,6 +92,102 @@ validate_json_contract.py
 ```
 
 # Files
+
+## File: admit_github_stars.py
+```python
+#!/usr/bin/env python3
+"""Admit every accessible starred repository into the catalog, conservatively.
+
+New entries receive an audit tier until a human or richer analysis verifies
+license terms, suitability, and production readiness. Never silently skip a
+Star or save a partly built catalog.
+"""
+⋮----
+DOMAINS = (
+CATEGORIES = {
+⋮----
+def classify(meta)
+⋮----
+text = " ".join([
+⋮----
+def get_repo(repo, token=None, opener=urlopen, sleeper=time.sleep)
+⋮----
+"""Fetch full repository metadata, with bounded retry and canonical ID check."""
+⋮----
+url = "https://api.github.com/repos/" + repo
+headers = {
+⋮----
+result = json.load(response)
+⋮----
+raw_delay = exc.headers.get("Retry-After", str(2 ** attempt))
+⋮----
+delay = min(20, max(0, float(raw_delay)))
+⋮----
+delay = float(2 ** attempt)
+⋮----
+def catalog_entry(meta)
+⋮----
+repo = meta.get("full_name")
+⋮----
+repo_id = meta.get("id")
+⋮----
+license_data = meta.get("license")
+license_id = license_data.get("spdx_id") if isinstance(license_data, dict) else None
+⋮----
+license_id = None
+⋮----
+def count(key)
+⋮----
+value = meta.get(key)
+⋮----
+branch = meta.get("default_branch")
+⋮----
+branch = "unknown"  # Nonempty schema value; the audit tier marks the gap.
+domain = classify(meta)
+language = meta.get("language")
+languages = [language.lower()] if isinstance(language, str) and language.strip() else []
+description = meta.get("description")
+guidance = [re.sub(r"\s+", " ", description).strip()[:200]] if isinstance(description, str) and description.strip() else []
+topics = meta.get("topics")
+capabilities = [x[:80] for x in topics if isinstance(x, str) and x.strip()][:12] if isinstance(topics, list) else []
+⋮----
+def admit(catalog, stars, fetcher)
+⋮----
+"""Reconcile by both canonical name and permanent ID; fail on any ambiguity."""
+old = catalog.get("repositories")
+⋮----
+by_name = {normalize_repo(x["repo"]) for x in old}
+by_id = {x["githubRepositoryId"] for x in old if type(x.get("githubRepositoryId")) is int}
+⋮----
+fresh = []
+already = 0
+transfers = []
+⋮----
+key = normalize_repo(star["repo"])
+rid = star.get("githubRepositoryId")
+⋮----
+meta = fetcher(star["repo"])
+entry = catalog_entry(meta)
+⋮----
+canonical = normalize_repo(entry["repo"])
+⋮----
+result = dict(catalog)
+⋮----
+def main(argv=None)
+⋮----
+parser = argparse.ArgumentParser(description=__doc__)
+⋮----
+args = parser.parse_args(argv)
+⋮----
+report = json.loads(args.sync_report.read_text(encoding="utf-8"))
+catalog = json.loads(args.catalog.read_text(encoding="utf-8"))
+⋮----
+# A report lists only missing Stars. The manifest provides the complete
+# snapshot, and admission operates on a report produced in the same job.
+stars = report.get("newRepositories")
+⋮----
+token = os.environ.get("GITHUB_TOKEN")
+```
 
 ## File: analyze_cache_health.py
 ```python

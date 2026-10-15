@@ -1,25 +1,108 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "3cf5e5684b4dca9078dc98d0ba2db96501fee616",
-  "head": "86b62be6695d50f4199e0484a152b15ada6f8ea1",
+  "base": "86b62be6695d50f4199e0484a152b15ada6f8ea1",
+  "head": "b18de25d860d3690809fd4684b3f8da3482479f5",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": ".github/workflows/validate.yml",
+      "path": ".github/workflows/sync-github-stars.yml",
       "status": "M"
     },
     {
-      "path": "RECOMMENDER.md",
+      "path": "README.md",
       "status": "M"
     },
     {
-      "path": "stacks.json",
+      "path": "cache-health-history.json",
+      "status": "M"
+    },
+    {
+      "path": "catalog.json",
+      "status": "M"
+    },
+    {
+      "path": "discovery-cache.json",
+      "status": "M"
+    },
+    {
+      "path": "discovery-memory.json",
+      "status": "M"
+    },
+    {
+      "path": "docs/GITHUB_STARS_SYNC.md",
+      "status": "M"
+    },
+    {
+      "path": "health-snapshot.json",
+      "status": "M"
+    },
+    {
+      "path": "history.json",
+      "status": "M"
+    },
+    {
+      "path": "scripts/admit_github_stars.py",
+      "status": "A"
+    },
+    {
+      "path": "scripts/test_auto_stars_admission.py",
       "status": "M"
     }
   ],
-  "changed_source_files": [],
-  "impacted_files": [],
-  "impacted_symbols": [],
-  "selected_tests": []
+  "changed_source_files": [
+    "scripts/admit_github_stars.py",
+    "scripts/test_auto_stars_admission.py"
+  ],
+  "impacted_files": [
+    "scripts/admit_github_stars.py",
+    "scripts/test_auto_stars_admission.py"
+  ],
+  "impacted_symbols": [
+    {
+      "name": "classify",
+      "kind": "function",
+      "file": "scripts/admit_github_stars.py",
+      "line": 52
+    },
+    {
+      "name": "get_repo",
+      "kind": "function",
+      "file": "scripts/admit_github_stars.py",
+      "line": 64
+    },
+    {
+      "name": "catalog_entry",
+      "kind": "function",
+      "file": "scripts/admit_github_stars.py",
+      "line": 100
+    },
+    {
+      "name": "count",
+      "kind": "function",
+      "file": "scripts/admit_github_stars.py",
+      "line": 111
+    },
+    {
+      "name": "admit",
+      "kind": "function",
+      "file": "scripts/admit_github_stars.py",
+      "line": 159
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/admit_github_stars.py",
+      "line": 200
+    },
+    {
+      "name": "read",
+      "kind": "function",
+      "file": "scripts/test_auto_stars_admission.py",
+      "line": 8
+    }
+  ],
+  "selected_tests": [
+    "scripts/test_auto_stars_admission.py"
+  ]
 }

@@ -341,6 +341,27 @@
         "scripts/sync_github_stars.py",
         "scripts/test_sync_github_stars.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat: automatically admit all public GitHub Stars into star-list (#58)",
+      "terms": [
+        "58",
+        "admit",
+        "all",
+        "automatically",
+        "feat",
+        "github",
+        "into",
+        "public",
+        "star-list",
+        "stars"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/admit_github_stars.py",
+        "scripts/test_auto_stars_admission.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -431,10 +452,22 @@
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
+    "58": {
+      "scripts/admit_github_stars.py": 4,
+      "scripts/test_auto_stars_admission.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
+    },
+    "admit": {
+      "scripts/admit_github_stars.py": 4,
+      "scripts/test_auto_stars_admission.py": 4
+    },
+    "all": {
+      "scripts/admit_github_stars.py": 4,
+      "scripts/test_auto_stars_admission.py": 4
     },
     "audit": {
       "scripts/audit_catalog_quality.py": 4,
@@ -447,6 +480,10 @@
     "automated": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
+    },
+    "automatically": {
+      "scripts/admit_github_stars.py": 4,
+      "scripts/test_auto_stars_admission.py": 4
     },
     "backfill": {
       "scripts/infer_selection_guidance.py": 4,
@@ -534,6 +571,10 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "feat": {
+      "scripts/admit_github_stars.py": 4,
+      "scripts/test_auto_stars_admission.py": 4
+    },
     "files": {
       "scripts/backfill_licenses.py": 4,
       "scripts/refresh_github_metadata.py": 8,
@@ -558,9 +599,11 @@
       "scripts/validate_json_contract.py": 4
     },
     "github": {
+      "scripts/admit_github_stars.py": 4,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/star_import_pipeline.py": 8,
       "scripts/sync_github_stars.py": 4,
+      "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/test_star_import_pipeline.py": 8,
       "scripts/test_sync_github_stars.py": 4
@@ -604,6 +647,10 @@
     "inferred": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "into": {
+      "scripts/admit_github_stars.py": 4,
+      "scripts/test_auto_stars_admission.py": 4
     },
     "is": {
       "scripts/refresh_github_metadata.py": 4,
@@ -653,6 +700,10 @@
     "pipeline": {
       "scripts/star_import_pipeline.py": 4,
       "scripts/test_star_import_pipeline.py": 4
+    },
+    "public": {
+      "scripts/admit_github_stars.py": 4,
+      "scripts/test_auto_stars_admission.py": 4
     },
     "pull": {
       "scripts/discover_candidates.py": 4,
@@ -753,8 +804,14 @@
       "scripts/star_import_pipeline.py": 8,
       "scripts/test_star_import_pipeline.py": 8
     },
+    "star-list": {
+      "scripts/admit_github_stars.py": 4,
+      "scripts/test_auto_stars_admission.py": 4
+    },
     "stars": {
+      "scripts/admit_github_stars.py": 4,
       "scripts/sync_github_stars.py": 4,
+      "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
     "status": {
