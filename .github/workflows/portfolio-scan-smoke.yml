@@ -42,7 +42,14 @@ jobs:
                       assert "godot" not in candidate["repository"].lower(), candidate
           import sys
           sys.path.insert(0, "scripts")
-          from portfolio_daily import is_reference_candidate
+          from portfolio_daily import is_reference_candidate, count_active_integrations
+          assert count_active_integrations([
+              {"final_goal": "starlist-integration-v2-project", "status": "ACTIVE"},
+              {"final_goal": "starlist-integration-v1-previous", "status": "NEEDS_ATTENTION"},
+              {"final_goal": "unrelated", "status": "ACTIVE"},
+              {"final_goal": "starlist-integration-v2-another", "status": "QUEUED"},
+          ]) == 2
+          assert result["summary"]["active_integrations"] is None
           catalog = json.loads(Path("catalog.json").read_text())["repositories"]
           reference = next(x for x in catalog if x["repo"].lower() == "android/nowinandroid")
           assert is_reference_candidate(reference), "Architecture example must be review-only"
