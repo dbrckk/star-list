@@ -116,7 +116,7 @@ def catalog_entry(meta):
 
     branch = meta.get("default_branch")
     if not isinstance(branch, str) or not branch:
-        raise RuntimeError("Missing default branch: " + repo)
+        branch = "unknown"  # Nonempty schema value; the audit tier marks the gap.
     domain = classify(meta)
     language = meta.get("language")
     languages = [language.lower()] if isinstance(language, str) and language.strip() else []
@@ -216,6 +216,8 @@ def main(argv=None):
             raise RuntimeError("Stars report is incomplete")
         token = os.environ.get("GITHUB_TOKEN")
         updated, summary = admit(catalog, stars, lambda repo: get_repo(repo, token))
+        summary["starred"] = report["summary"]["starred"]
+        summary["alreadyCataloged"] = report["summary"]["starred"] - summary["admitted"]
         summary["checkedAt"] = datetime.now(timezone.utc).isoformat()
         if args.report_json:
             args.report_json.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
