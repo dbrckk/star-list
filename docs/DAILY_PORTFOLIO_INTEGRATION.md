@@ -38,7 +38,14 @@ For **public** GitHub repositories, no extra GitHub secret is needed;
 `GITHUB_TOKEN` supports reading the public portfolio and writing the
 star-list review issue.
 
-Private repositories are **never** written to the public star-list review issue.\nThe two known private projects (`Finders`, `tube`) use repository-scoped\ndaily workflows and retain their reports as private Actions artifacts.\nEach private workflow scans only its own repository using its local\n`GITHUB_TOKEN` and the public star-list catalog; no shared portfolio PAT\nis necessary.\n\nFor **actual autonomous integrations**, configure a star-list Actions
+Private repositories are **never** written to the public star-list review issue.
+The two known private projects (`Finders`, `tube`) use repository-scoped
+daily workflows and retain their reports as private Actions artifacts.
+Each private workflow scans only its own repository using its local
+`GITHUB_TOKEN` and the public star-list catalog; no shared portfolio PAT
+is necessary.
+
+For **actual autonomous integrations**, configure a star-list Actions
 repository secret:
 
 - `PRODUCTION_OS_OPERATOR_TOKEN`: valid Production-OS **operator** API
@@ -61,17 +68,23 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
 - Max 3 managed-project launches per daily run and up to three qualified candidates per
   target. All accessible repositories are still inspected on each run.
 - A qualified v2 integration requests a bounded **90,000-token** envelope
-  through Production-OS's operator-only dashboard API. Ordinary dashboard
-  launches retain their original 30,000-token default. These are token caps,
+  through Production-OS's operator-only dashboard API using the explicit
+  `launch_profile: portfolio-integration` option. Ordinary dashboard
+  launches retain their original 30,000-token default and ignore caller
+  budget fields for backwards compatibility. These are token caps,
   not a guarantee of successful code delivery or of provider availability.
   No paid provider is added or selected by this scanner.
 - Exclude generic words and incompatible game engines from matching. Single-term
   suggestions must match a technical capability or use case. Cross-language
   adapter suggestions remain visible in the report, but are **never** sent to
   autonomous integration without a separate compatibility assessment.
+- Reference applications and architecture demos are marked `reference-review`
+  even when their language matches the target. They remain discoverable but
+  **never** enter the automated integration queue. Usable native libraries
+  rank ahead of adapters and reference projects.
 - Even native-language suggestions are only hypotheses: a managed worker must
-  reject reference projects, non-integrable toolchains and dependencies that
-  cannot be used and validated in the existing target.
+  reject non-integrable toolchains and dependencies that cannot be used and
+  validated in the existing target.
 - Do not interpret a high matching score as proof of compatibility. The worker
   must check dependency compatibility, licenses, security, test/build results,
   and actual use of the new tool in source/runtime.
