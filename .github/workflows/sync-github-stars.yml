@@ -12,7 +12,7 @@ on:
       - "catalog.json"
 
 permissions:
-  contents: read
+  contents: write
   issues: write
 
 concurrency:
@@ -40,30 +40,49 @@ jobs:
             --manifest star-sync-manifest.json
           python scripts/validate_json_contract.py \
             schemas/star-sync-report.schema.json star-sync-report.json
-      - name: Preserve results without changing the catalog
+      - name: Admit every newly starred public repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/admit_github_stars.py \
+            --sync-report star-sync-report.json \
+            --report-json star-admission-report.json
+          python scripts/validate_catalog.py
+          python scripts/test_catalog_quality.py
+      - name: Commit validated catalog changes
+        run: |
+          if ! git diff --quiet -- catalog.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add catalog.json
+            git commit -m "chore: sync all accessible GitHub Stars into catalog"
+            git push origin HEAD:main
+          fi
+      - name: Preserve synchronization and admission results
         uses: actions/upload-artifact@v4
         with:
-          name: star-list-public-stars-review
+          name: star-list-public-stars-admission
           path: |
             star-sync-report.json
             star-sync-review.md
             star-sync-manifest.json
+            star-admission-report.json
           retention-days: 14
       - name: Open, update or close GitHub Stars review issue
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          COUNT=$(python -c 'import json; print(json.load(open("star-sync-report.json"))["summary"]["new"])')
+          COUNT=$(python -c 'import json; s=json.load(open("star-sync-report.json"))["summary"]; a=json.load(open("star-admission-report.json")); print(s["new"] - a["admitted"])')
           EXISTING=$(gh issue list --state open --limit 200 --json number,body \
             --jq '[.[] | select(.body != null and (.body | contains("<!-- star-list-star-sync -->")))] | .[0].number // empty')
           if [ "$COUNT" = "0" ]; then
             if [ -n "$EXISTING" ]; then
-              gh issue close "$EXISTING" --comment "All public GitHub Stars currently match the catalog."
+              gh issue close "$EXISTING" --comment "All accessible public GitHub Stars have been accounted for and admitted to the catalog."
             fi
           elif [ -n "$EXISTING" ]; then
-            gh issue edit "$EXISTING" --title "GitHub Stars: $COUNT repositories awaiting review" \
+            gh issue edit "$EXISTING" --title "GitHub Stars: $COUNT repositories requiring intervention" \
               --body-file star-sync-review.md
           else
-            gh issue create --title "GitHub Stars: $COUNT repositories awaiting review" \
+            gh issue create --title "GitHub Stars: $COUNT repositories requiring intervention" \
               --body-file star-sync-review.md
           fi
