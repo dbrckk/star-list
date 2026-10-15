@@ -240,6 +240,16 @@ def count_active_integrations(projects: list[dict]) -> int:
     )
 
 
+def count_failed_v2_integrations(projects: list[dict]) -> int:
+    """Protect the free worker quota until failed high-budget jobs are reviewed."""
+    return sum(
+        1 for row in projects
+        if "starlist-integration-v2-" in str(row.get("final_goal") or "")
+        and str(row.get("status") or "").upper().replace("-", "_")
+            == "NEEDS_ATTENTION"
+    )
+
+
 def integration_marker(target: str, candidate: dict, version: int = 2) -> str:
     identity = hashlib.sha256(
         (target.lower() + "\0" + candidate["repository"].lower()).encode()
@@ -284,6 +294,9 @@ def render_markdown(report: dict) -> str:
     if isinstance(summary.get("active_integrations"), int):
         lines.extend(["Active star-list integrations at scan: **"
                       + str(summary["active_integrations"]) + "/3**.", ""])
+    if isinstance(summary.get("failed_v2_integrations"), int):
+        lines.extend(["Unresolved v2 integration failures (reserved slots): **"
+                      + str(summary["failed_v2_integrations"]) + "**.", ""])
     for row in report["projects"]:
         lines.append("## " + row["repository"])
         lines.append("Status: " + row["status"])
@@ -356,6 +369,7 @@ def main() -> int:
         report["projects"].append(row)
     dispatched = 0
     active_integrations = None
+    failed_v2_integrations = None
     if operator_token:
         # Validate the origin before even the read-only authenticated request.
         parsed_service = urlparse(service)
@@ -380,7 +394,14 @@ def main() -> int:
             # Limit active portfolio work across multiple scheduled/manual runs,
             # not merely the number of launches in this one workflow run.
             active_integrations = count_active_integrations(already)
-            available_slots = min(args.max_dispatch, max(0, 3 - active_integrations))
+            failed_v2_integrations = count_failed_v2_integrations(already)
+            # A v2 failure still occupies one admission slot. Continue
+            # scanning daily, but do not spend unlimited tokens on new
+            # projects while the free coding worker has unresolved failures.
+            available_slots = min(
+                args.max_dispatch,
+                max(0, 3 - active_integrations - failed_v2_integrations),
+            )
             for _, row, item in queue:
                 marker = integration_marker(row["repository"], item)
                 previous = integration_marker(row["repository"], item, version=1)
@@ -417,6 +438,7 @@ def main() -> int:
         "discovered": len(source), "inspected": sum(p["status"] != "scan-failed" for p in report["projects"]),
         "with_suggestions": sum(bool(p["suggestions"]) for p in report["projects"]),
         "dispatched": dispatched, "active_integrations": active_integrations,
+        "failed_v2_integrations": failed_v2_integrations,
         "failures": len(report["errors"]),
     }
     args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
