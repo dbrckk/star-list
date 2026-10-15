@@ -237,6 +237,7 @@ def render_markdown(report: dict) -> str:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--owner", default="dbrckk")
+    ap.add_argument("--repository", default="", help="Inspect one target, including a private repo with its own token")
     ap.add_argument("--catalog", type=Path, default=ROOT / "catalog.json")
     ap.add_argument("--output", type=Path, default=Path("portfolio-daily.json"))
     ap.add_argument("--markdown", type=Path, default=Path("portfolio-daily.md"))
@@ -253,7 +254,17 @@ def main() -> int:
               "projects": [], "errors": [], "summary": {}}
     try:
         catalog = json.loads(args.catalog.read_text(encoding="utf-8"))["repositories"]
-        source = github_repos(args.owner, gh_token, portfolio_token)
+        if args.repository:
+            if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", args.repository):
+                raise ValueError("Invalid target repository")
+            if args.repository.split("/")[0].lower() != args.owner.lower():
+                raise ValueError("Target is not owned by requested account")
+            target = request_json(API + "/repos/" + args.repository, portfolio_token or gh_token)
+            if not isinstance(target, dict) or target.get("full_name", "").lower() != args.repository.lower():
+                raise RuntimeError("Target repository is not accessible")
+            source = [target]
+        else:
+            source = github_repos(args.owner, gh_token, portfolio_token)
     except (OSError, ValueError, KeyError, RuntimeError, json.JSONDecodeError) as exc:
         report["errors"].append("Cannot initialize scan: " + str(exc))
         source, catalog = [], []
