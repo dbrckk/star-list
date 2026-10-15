@@ -2,15 +2,16 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 23,
+    "example_count": 24,
     "rejected_count": 0,
     "terms": [
-      "bounded",
-      "budgets",
-      "failed",
-      "integrations",
+      "cap",
+      "make",
       "portfolio",
-      "recover"
+      "queue",
+      "reference-only",
+      "reviewable",
+      "tools"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -18,7 +19,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix: recover failed portfolio integrations with bounded budgets",
+  "task": "fix: make reference-only tools reviewable and cap portfolio queue",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py"

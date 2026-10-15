@@ -412,6 +412,23 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix: make reference-only tools reviewable and cap portfolio queue",
+      "terms": [
+        "cap",
+        "make",
+        "portfolio",
+        "queue",
+        "reference-only",
+        "reviewable",
+        "tools"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -562,6 +579,9 @@
     "by": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "cap": {
+      "scripts/portfolio_daily.py": 4
     },
     "catalog": {
       "scripts/audit_catalog_quality.py": 4,
@@ -752,6 +772,9 @@
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
     },
+    "make": {
+      "scripts/portfolio_daily.py": 4
+    },
     "matches": {
       "scripts/portfolio_daily.py": 4
     },
@@ -781,7 +804,7 @@
       "scripts/test_star_import_pipeline.py": 4
     },
     "portfolio": {
-      "scripts/portfolio_daily.py": 12
+      "scripts/portfolio_daily.py": 16
     },
     "production-os": {
       "scripts/portfolio_daily.py": 4
@@ -811,7 +834,7 @@
       "scripts/test_catalog_quality.py": 4
     },
     "queue": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "recommendation": {
       "scripts/recommend.py": 8,
@@ -827,6 +850,9 @@
       "scripts/validate_catalog.py": 4
     },
     "recover": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "reference-only": {
       "scripts/portfolio_daily.py": 4
     },
     "relations": {
@@ -867,6 +893,9 @@
     "review": {
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
+    },
+    "reviewable": {
+      "scripts/portfolio_daily.py": 4
     },
     "reviewed": {
       "scripts/star_import_pipeline.py": 4,
@@ -918,6 +947,9 @@
     "synchronize": {
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
+    },
+    "tools": {
+      "scripts/portfolio_daily.py": 4
     },
     "track": {
       "scripts/audit_catalog_quality.py": 4,

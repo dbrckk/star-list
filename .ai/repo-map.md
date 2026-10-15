@@ -332,6 +332,33 @@ jobs:
                   assert not ({"and", "as", "the", "with"} & set(candidate["shared_terms"])), candidate
                   if "roblox" in project["repository"].lower():
                       assert "godot" not in candidate["repository"].lower(), candidate
+          import sys
+          sys.path.insert(0, "scripts")
+          from portfolio_daily import (
+              is_reference_candidate, count_active_integrations,
+              count_failed_v2_integrations,
+          )
+          assert count_active_integrations([
+              {"final_goal": "starlist-integration-v2-project", "status": "ACTIVE"},
+              {"final_goal": "starlist-integration-v1-previous", "status": "NEEDS_ATTENTION"},
+              {"final_goal": "unrelated", "status": "ACTIVE"},
+              {"final_goal": "starlist-integration-v2-another", "status": "QUEUED"},
+          ]) == 2
+          assert count_failed_v2_integrations([
+              {"final_goal": "starlist-integration-v1-old", "status": "NEEDS_ATTENTION"},
+              {"final_goal": "starlist-integration-v2-failed", "status": "NEEDS_ATTENTION"},
+              {"final_goal": "starlist-integration-v2-active", "status": "ACTIVE"},
+          ]) == 1
+          assert result["summary"]["active_integrations"] is None
+          assert result["summary"]["failed_v2_integrations"] is None
+          catalog = json.loads(Path("catalog.json").read_text())["repositories"]
+          reference = next(x for x in catalog if x["repo"].lower() == "android/nowinandroid")
+          assert is_reference_candidate(reference), "Architecture example must be review-only"
+          for project in result["projects"]:
+              for candidate in project["suggestions"]:
+                  if candidate["repository"].lower() == "android/nowinandroid":
+                      assert candidate["mode"] == "reference-review", candidate
+          print("Verified reference applications cannot enter the automated dispatch queue")
           print("Verified meaningful matching and Roblox engine compatibility")
           print("Read-only scan verified:", result["summary"])
           PY
@@ -2038,6 +2065,12 @@ gh = item.get("github") or {}
 ⋮----
 license_key = str(gh.get("license") or "").strip().lower()
 ⋮----
+def is_reference_candidate(tool: dict) -> bool
+⋮----
+"""Keep example applications and architecture guides out of auto-implementation."""
+guidance = " ".join(str(v).lower() for v in (tool.get("bestFor") or []))
+reference_clues = (
+⋮----
 def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) -> list[dict]
 ⋮----
 name = repo["full_name"].lower()
@@ -2065,7 +2098,19 @@ score = score_repo(tool, profile["terms"], domains, set(), set())
 ⋮----
 # A language mismatch is reviewable as a service/CLI integration, never a direct dependency.
 ⋮----
+# A native library gets precedence over example applications and adapters.
+# Otherwise a reference app can fill the three slots before a usable SDK.
+priority = {"native": 0, "adapter-review": 1, "reference-review": 2}
+⋮----
 INTEGRATION_TOKEN_BUDGET = 90000
+⋮----
+def count_active_integrations(projects: list[dict]) -> int
+⋮----
+"""Only in-flight portfolio jobs occupy coding-worker capacity slots."""
+⋮----
+def count_failed_v2_integrations(projects: list[dict]) -> int
+⋮----
+"""Protect the free worker quota until failed high-budget jobs are reviewed."""
 ⋮----
 def integration_marker(target: str, candidate: dict, version: int = 2) -> str
 ⋮----
@@ -2109,6 +2154,8 @@ row = {"repository": target, "status": "scanned", "suggestions": [], "dispatches
 profile = project_profile(repo, portfolio_token or gh_token)
 ⋮----
 dispatched = 0
+active_integrations = None
+failed_v2_integrations = None
 ⋮----
 # Validate the origin before even the read-only authenticated request.
 parsed_service = urlparse(service)
@@ -2122,6 +2169,15 @@ existing = request_json(service.rstrip("/") + "/v1/managed-projects", operator_t
 already = [p for p in (existing or {}).get("projects", []) if isinstance(p, dict)]
 ⋮----
 existing = None
+⋮----
+# Limit active portfolio work across multiple scheduled/manual runs,
+# not merely the number of launches in this one workflow run.
+active_integrations = count_active_integrations(already)
+failed_v2_integrations = count_failed_v2_integrations(already)
+# A v2 failure still occupies one admission slot. Continue
+# scanning daily, but do not spend unlimited tokens on new
+# projects while the free coding worker has unresolved failures.
+available_slots = min(
 ⋮----
 marker = integration_marker(row["repository"], item)
 previous = integration_marker(row["repository"], item, version=1)

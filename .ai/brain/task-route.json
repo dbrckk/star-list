@@ -9,10 +9,10 @@
     "top_score": 38
   },
   "cache": {
-    "fingerprint": "85d6f8f5ff3a3824b09139af4f8be6916666e199df2b49bb4f4896e8baffa831",
+    "fingerprint": "b21790311279129758f178756263431af56c69090a10f196559cc3c3c2b78036",
     "hit": false
   },
-  "candidate_count": 6,
+  "candidate_count": 7,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -29,10 +29,13 @@
       ],
       "score": 38,
       "symbols": [
+        "count_active_integrations",
+        "count_failed_v2_integrations",
         "eligible",
         "file_text",
         "github_repos",
         "integration_marker",
+        "is_reference_candidate",
         "launch_integration",
         "main",
         "project_profile",
