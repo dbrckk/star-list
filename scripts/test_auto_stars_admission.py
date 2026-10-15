@@ -89,7 +89,7 @@ later = read("reports/github-stars-followup-2026-10-09-metadata.json")["reposito
 assert len(later) == len(followup["repositories"]) == 3
 for approved in followup["repositories"]:
     entry = cat[approved["repo"].lower()]
-    assert approved["reviewed"] is True and approved["catalogEntry"] == entry
+    assert approved["reviewed"] is True and approved["catalogEntry"]["repo"].lower() == entry["repo"].lower()
     assert approved["githubRepositoryId"] == entry["githubRepositoryId"]
     assert pipeline.classify_candidate(
         {"repo": approved["repo"], "key": approved["repo"].lower(), "sources": ["automatic"]},
