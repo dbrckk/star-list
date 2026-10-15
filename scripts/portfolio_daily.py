@@ -265,6 +265,8 @@ def main() -> int:
             source = [target]
         else:
             source = github_repos(args.owner, gh_token, portfolio_token)
+            # The central issue is public: never publish private target metadata there.
+            source = [repo for repo in source if not repo.get("private")]
     except (OSError, ValueError, KeyError, RuntimeError, json.JSONDecodeError) as exc:
         report["errors"].append("Cannot initialize scan: " + str(exc))
         source, catalog = [], []
