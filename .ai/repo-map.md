@@ -447,7 +447,16 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add catalog.json
             git commit -m "chore: sync all accessible GitHub Stars into catalog"
-            git push origin HEAD:main
+            for attempt in 1 2 3 4; do
+              git fetch origin main
+              git rebase origin/main
+              if git push origin HEAD:main; then
+                exit 0
+              fi
+              sleep "$attempt"
+            done
+            echo "::error::Could not push the validated catalog after four non-destructive retries"
+            exit 1
           fi
       - name: Preserve synchronization and admission results
         uses: actions/upload-artifact@v4

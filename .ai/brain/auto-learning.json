@@ -1,31 +1,8 @@
 {
-  "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": true,
-  "learning_result": {
-    "example_count": 20,
-    "rejected_count": 0,
-    "terms": [
-      "58",
-      "admit",
-      "all",
-      "automatically",
-      "feat",
-      "github",
-      "into",
-      "public",
-      "star-list",
-      "stars"
-    ],
-    "test_count": 0,
-    "useful_count": 2
-  },
-  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
-  "rejected": [],
   "schema_version": 1,
-  "task": "feat: automatically admit all public GitHub Stars into star-list (#58)",
-  "tests_selected": [],
-  "useful": [
-    "scripts/admit_github_stars.py",
-    "scripts/test_auto_stars_admission.py"
-  ]
+  "generated_by": "dbrckk/repo-brain-auto-learning-v1",
+  "learned": false,
+  "reason": "missing-task-or-source-change",
+  "task": "fix: rebase and retry Stars catalog commits after concurrent workflow pushes",
+  "useful": []
 }

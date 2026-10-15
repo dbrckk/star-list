@@ -1,27 +1,6 @@
 {
   "files": [
     {
-      "path": "scripts/test_auto_stars_admission.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 375
-    },
-    {
-      "path": "scripts/admit_github_stars.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 330
-    },
-    {
       "path": ".github/workflows/sync-github-stars.yml",
       "reasons": [
         "changed"
@@ -29,74 +8,95 @@
       "score": 100
     },
     {
+      "path": ".repomixignore",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "AGENTS.md",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
       "path": "README.md",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
+    },
+    {
+      "path": "RECOMMENDER.md",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     },
     {
       "path": "cache-health-history.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
     },
     {
       "path": "catalog.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
     },
     {
       "path": "discovery-cache.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
     },
     {
       "path": "discovery-memory.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
-    },
-    {
-      "path": "docs/GITHUB_STARS_SYNC.md",
-      "reasons": [
-        "changed"
-      ],
-      "score": 100
+      "score": 60
     },
     {
       "path": "health-snapshot.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
     },
     {
       "path": "history.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
     },
     {
-      "path": "scripts/star_import_pipeline.py",
+      "path": "scripts/admit_github_stars.py",
       "reasons": [
-        "dependency-neighbor"
+        "recent-project-state"
       ],
-      "score": 25
+      "score": 60
     },
     {
-      "path": "scripts/sync_github_stars.py",
+      "path": "scripts/test_auto_stars_admission.py",
       "reasons": [
-        "dependency-neighbor"
+        "recent-project-state"
       ],
-      "score": 25
+      "score": 60
+    },
+    {
+      "path": "stacks.json",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

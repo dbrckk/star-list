@@ -1,18 +1,18 @@
 # CI status
 
-Summary: 2 success / 4 failure / 2 active
+Summary: 3 success / 3 failure / 2 active
 
-- Validate catalog: in_progress / pending (b18de25d)
-- Sync GitHub Stars: in_progress / pending (b18de25d)
+- Validate catalog: in_progress / pending (7de3e4e0)
+- Sync GitHub Stars: in_progress / pending (7de3e4e0)
+- Validate catalog: completed / success (b18de25d)
+- Sync GitHub Stars: completed / failure (b18de25d)
 - Validate catalog: completed / success (782b235f)
 - Validate catalog: completed / success (782b235f)
 - Validate catalog: completed / failure (f92881d0)
 - Validate catalog: completed / failure (f92881d0)
-- Validate catalog: completed / failure (7b0fca97)
-- Validate catalog: completed / failure (7b0fca97)
 
 ## Latest failed run structure
-- Job: validate
-  - Failed step: Test reviewed Stars admission and repository transfers
+- Job: sync
+  - Failed step: Commit validated catalog changes
 
 > Generated summary only; inspect GitHub Actions for full logs when needed.

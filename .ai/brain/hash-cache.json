@@ -1,12 +1,24 @@
 {
   "files": {
     ".github/workflows/sync-github-stars.yml": {
-      "sha256": "983a848366001336c655d37a55490715a5ce278784647d554e23372d20bffcf2",
-      "size": 3372
+      "sha256": "94ad646292d6fdeb111238d2c84d00ead8698e25c69b5e9bffbbb1d9b6eb495d",
+      "size": 3702
+    },
+    ".repomixignore": {
+      "sha256": "f411d74c84d370066eadcef1c760517798b9f49b6f500af8265d6b80217045a5",
+      "size": 320
+    },
+    "AGENTS.md": {
+      "sha256": "007e06bf4a1e8fe42368fc50922ec73df079831b0106725f9096346203088386",
+      "size": 3826
     },
     "README.md": {
       "sha256": "dea883100d88ab0764cf2abb178680dbcbb4fa5821451e1e8efe7e0e08ad9e63",
       "size": 10436
+    },
+    "RECOMMENDER.md": {
+      "sha256": "7c986fe126079c745846338ae6fcc9a8d81ac7e6af4c5c3e9d71998d079b01ec",
+      "size": 5791
     },
     "cache-health-history.json": {
       "sha256": "b19acae1949f702a886c4aec98099ed7435864ec9f4dec5c823cc67debb4b765",
@@ -24,10 +36,6 @@
       "sha256": "96d3b45041831ca3bee6c46fb16e8a5697225b8ec6947de43bbf0d017a55884b",
       "size": 35267
     },
-    "docs/GITHUB_STARS_SYNC.md": {
-      "sha256": "5446dc8dcbe0f6e44f1e530ef29a8b11dc216261fb219659aca26330f7e37ea7",
-      "size": 2853
-    },
     "health-snapshot.json": {
       "sha256": "ade28fe0d7c2f3e5d50889a61b8fede56d9747a58198a69751d89902406a1b3a",
       "size": 103316
@@ -40,17 +48,13 @@
       "sha256": "4d8b60262f9f5cfec03ed9d1c5d1c31200a6e0c654437bf007bb0de7b4d502df",
       "size": 11149
     },
-    "scripts/star_import_pipeline.py": {
-      "sha256": "0ef31e842ff42e674498f10836f984c2813a70642d2430f46b55f6a58626eb5f",
-      "size": 12719
-    },
-    "scripts/sync_github_stars.py": {
-      "sha256": "375b9517ea33444fc3caa318b74edceca6cb28a6878669d0d4a6f828fa329c00",
-      "size": 12063
-    },
     "scripts/test_auto_stars_admission.py": {
       "sha256": "2b0a02d7ac9830a948773b56dcdfe1629ba54220a6c146a6f51a184b83b7e46c",
       "size": 5356
+    },
+    "stacks.json": {
+      "sha256": "f5f4223cbdc4cdcfaf4a3187343f049b02136a4cb48a37d55ad8cdad7e67ebe0",
+      "size": 5220
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

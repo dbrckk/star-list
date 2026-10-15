@@ -2,6 +2,11 @@
   "generated_by": "dbrckk/repo-brain-v6",
   "packets": [
     {
+      "area": "agents.md",
+      "file_count": 1,
+      "path": ".ai/brain/context/agents.md.json"
+    },
+    {
       "area": "cache-health-history.json",
       "file_count": 1,
       "path": ".ai/brain/context/cache-health-history.json.json"
@@ -20,11 +25,6 @@
       "area": "discovery-memory.json",
       "file_count": 1,
       "path": ".ai/brain/context/discovery-memory.json.json"
-    },
-    {
-      "area": "docs",
-      "file_count": 1,
-      "path": ".ai/brain/context/docs.json"
     },
     {
       "area": "github",
@@ -47,9 +47,24 @@
       "path": ".ai/brain/context/readme.md.json"
     },
     {
+      "area": "recommender.md",
+      "file_count": 1,
+      "path": ".ai/brain/context/recommender.md.json"
+    },
+    {
+      "area": "repomixignore",
+      "file_count": 1,
+      "path": ".ai/brain/context/repomixignore.json"
+    },
+    {
       "area": "scripts",
-      "file_count": 4,
+      "file_count": 2,
       "path": ".ai/brain/context/scripts.json"
+    },
+    {
+      "area": "stacks.json",
+      "file_count": 1,
+      "path": ".ai/brain/context/stacks.json.json"
     }
   ],
   "schema_version": 1

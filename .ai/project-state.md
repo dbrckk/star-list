@@ -27,13 +27,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-15T19:18:50Z
+Generated: 2026-10-15T19:20:21Z
 
 ### Git
 - Branch: `main`
-- Head: `b18de25d860d`
-- Commit date: 2026-10-15T21:18:39+02:00
-- Commit: feat: automatically admit all public GitHub Stars into star-list (#58)
+- Head: `7de3e4e00521`
+- Commit date: 2026-10-15T21:20:12+02:00
+- Commit: fix: rebase and retry Stars catalog commits after concurrent workflow pushes
 - Tracked files: 267
 
 ### Recently changed files
@@ -52,7 +52,6 @@ Generated: 2026-10-15T19:18:50Z
 - `RECOMMENDER.md`
 - `stacks.json`
 - `.repomixignore`
-- `AGENTS.md`
 
 ### Project signals
 - No common build descriptor detected
