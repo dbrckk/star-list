@@ -57,6 +57,13 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   implementation time; metadata alone is insufficient.
 - Max 3 managed-project launches per daily run and up to three qualified candidates per
   target. All accessible repositories are still inspected on each run.
+- Exclude generic words and incompatible game engines from matching. Single-term
+  suggestions must match a technical capability or use case. Cross-language
+  adapter suggestions remain visible in the report, but are **never** sent to
+  autonomous integration without a separate compatibility assessment.
+- Even native-language suggestions are only hypotheses: a managed worker must
+  reject reference projects, non-integrable toolchains and dependencies that
+  cannot be used and validated in the existing target.
 - Do not interpret a high matching score as proof of compatibility. The worker
   must check dependency compatibility, licenses, security, test/build results,
   and actual use of the new tool in source/runtime.
