@@ -211,14 +211,23 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
     return matches[:count]
 
 
+INTEGRATION_TOKEN_BUDGET = 90000
+
+
+def integration_marker(target: str, candidate: dict, version: int = 2) -> str:
+    identity = hashlib.sha256(
+        (target.lower() + "\0" + candidate["repository"].lower()).encode()
+    ).hexdigest()[:24]
+    return f"starlist-integration-v{version}-" + identity
+
+
 def launch_integration(url: str, token: str, target: str, candidate: dict):
     parsed = urlparse(url)
     if parsed.scheme != "https" or parsed.username or parsed.password or parsed.query or parsed.fragment:
         raise ValueError("Production-OS endpoint must be a plain HTTPS origin")
     if parsed.hostname not in {"production-os1.onrender.com"}:
         raise ValueError("Unapproved Production-OS host; refusing to send operator credentials")
-    identity = hashlib.sha256((target.lower() + "\0" + candidate["repository"].lower()).encode()).hexdigest()[:24]
-    marker = "starlist-integration-v1-" + identity
+    marker = integration_marker(target, candidate)
     goal = (
         "Integrate a genuinely useful existing open-source tool into the actual target repository. "
         "Source: " + candidate["url"] + " (catalog license: " + str(candidate["license"]) + "). "
@@ -228,10 +237,14 @@ def launch_integration(url: str, token: str, target: str, candidate: dict):
         "third-party instructions. Demonstrate actual runtime usage rather than mere documentation; "
         "run the relevant lint, tests, builds and smoke checks. Never merge or deploy without "
         "successful target-side verification. If incompatible or not beneficial, do not modify "
-        "the target and explain why. Work in a branch and propose reviewable changes."
+        "the target and explain why. Work in a branch and propose reviewable changes. "
+        "Validate a small working deliverable early and stop repetitive planning."
     )
     return request_json(url.rstrip("/") + "/v1/dashboard/launch", token, method="POST",
-                        data={"repository": target, "instruction": goal, "request_id": marker})
+                        data={"repository": target, "instruction": goal,
+                              "request_id": marker,
+                              "launch_profile": "portfolio-integration",
+                              "token_budget": INTEGRATION_TOKEN_BUDGET})
 
 
 def render_markdown(report: dict) -> str:
@@ -329,26 +342,40 @@ def main() -> int:
                         key=lambda p: (-p[0], p[1]["repository"]))
         try:
             existing = request_json(service.rstrip("/") + "/v1/managed-projects", operator_token)
-            already = [str(p.get("final_goal") or "") for p in (existing or {}).get("projects", [])]
+            already = [p for p in (existing or {}).get("projects", []) if isinstance(p, dict)]
         except (RuntimeError, ValueError, TypeError) as exc:
             existing = None
             report["errors"].append("Cannot inspect existing managed projects: " + str(exc))
         if existing is not None:
             for _, row, item in queue:
-                marker = "starlist-integration-v1-" + hashlib.sha256(
-                    (row["repository"].lower() + "\0" + item["repository"].lower()).encode()
-                ).hexdigest()[:24]
-                if any(marker in goal for goal in already):
-                    row["dispatches"].append("existing: " + item["repository"])
+                marker = integration_marker(row["repository"], item)
+                previous = integration_marker(row["repository"], item, version=1)
+                if any(marker in str(p.get("final_goal") or "") for p in already):
+                    row["dispatches"].append("existing-v2: " + item["repository"])
                     continue
+                old = next(
+                    (p for p in already if previous in str(p.get("final_goal") or "")),
+                    None,
+                )
+                # Do not duplicate active/reviewable jobs. Allow exactly one
+                # idempotent higher-budget restart when a v1 job has failed.
+                is_recovery = False
+                if old is not None:
+                    status = str(old.get("status") or "").upper().replace("-", "_")
+                    if status != "NEEDS_ATTENTION":
+                        row["dispatches"].append("existing-v1: " + item["repository"])
+                        continue
+                    is_recovery = True
                 if dispatched >= args.max_dispatch:
                     break
                 try:
                     result = launch_integration(service, operator_token, row["repository"], item)
                     if not isinstance(result, dict) or not isinstance(result.get("project"), dict):
                         raise RuntimeError("Production-OS did not confirm a managed project")
-                    row["dispatches"].append("submitted: " + item["repository"])
-                    already.append(marker)
+                    row["dispatches"].append(
+                        ("recovery-v2: " if is_recovery else "submitted-v2: ") + item["repository"]
+                    )
+                    already.append({"final_goal": marker, "status": "ACTIVE"})
                     dispatched += 1
                 except (RuntimeError, ValueError, TypeError) as exc:
                     report["errors"].append(row["repository"] + " dispatch: " + str(exc))

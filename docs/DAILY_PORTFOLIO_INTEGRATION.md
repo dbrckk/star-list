@@ -22,8 +22,11 @@ or skipped by GitHub, so "daily" is a configured cadence, not a real-time SLA.
 6. If a qualified suggestion exists and a Production-OS **operator** secret is
    configured, submits at most **3** new tasks per day to the existing
    `Production-OS` managed-project API.
-7. Uses a stable request ID derived from target + upstream repo, so retries
-   of the same suggestion cannot produce duplicate managed projects.
+7. Uses a stable **v2** request ID derived from target + upstream repo, so
+   repeat scans cannot produce duplicate managed projects. An older v1 project
+   is not duplicated while active or awaiting review. If its 30,000-token
+   attempt ended in `NEEDS_ATTENTION`, the scanner permits **one** distinct,
+   idempotent v2 recovery attempt; it never loops on failed v2 attempts.
 8. Production-OS / ai-dev-server must actually inspect, implement and verify
    the integration in the target. A suggestion or queued task is NOT a
    completed integration. The managed project must produce a functional
@@ -57,6 +60,11 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   implementation time; metadata alone is insufficient.
 - Max 3 managed-project launches per daily run and up to three qualified candidates per
   target. All accessible repositories are still inspected on each run.
+- A qualified v2 integration requests a bounded **90,000-token** envelope
+  through Production-OS's operator-only dashboard API. Ordinary dashboard
+  launches retain their original 30,000-token default. These are token caps,
+  not a guarantee of successful code delivery or of provider availability.
+  No paid provider is added or selected by this scanner.
 - Exclude generic words and incompatible game engines from matching. Single-term
   suggestions must match a technical capability or use case. Cross-language
   adapter suggestions remain visible in the report, but are **never** sent to
