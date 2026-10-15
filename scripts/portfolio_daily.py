@@ -242,7 +242,9 @@ def launch_integration(url: str, token: str, target: str, candidate: dict):
     )
     return request_json(url.rstrip("/") + "/v1/dashboard/launch", token, method="POST",
                         data={"repository": target, "instruction": goal,
-                              "request_id": marker, "token_budget": INTEGRATION_TOKEN_BUDGET})
+                              "request_id": marker,
+                              "launch_profile": "portfolio-integration",
+                              "token_budget": INTEGRATION_TOKEN_BUDGET})
 
 
 def render_markdown(report: dict) -> str:
