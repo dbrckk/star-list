@@ -161,6 +161,17 @@ def eligible(item: dict) -> bool:
     return license_key in ALLOWED_LICENSES
 
 
+def is_reference_candidate(tool: dict) -> bool:
+    """Keep example applications and architecture guides out of auto-implementation."""
+    guidance = " ".join(str(v).lower() for v in (tool.get("bestFor") or []))
+    reference_clues = (
+        "architecture reference", "reference app", "reference application",
+        "reference project", "example application", "sample application",
+        "tutorial project", "reference app structure",
+    )
+    return any(clue in guidance for clue in reference_clues)
+
+
 def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) -> list[dict]:
     name = repo["full_name"].lower()
     domains = set(profile["domains"])
@@ -204,10 +215,15 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
         matches.append({"repository": slug, "score": round(score, 2),
                         "quality": tool["score"], "domain": tool["domain"],
                         "shared_terms": shared[:5],
-                        "mode": "native" if languages_match else "adapter-review",
+                        "mode": ("reference-review" if is_reference_candidate(tool)
+                                 else "native" if languages_match else "adapter-review"),
                         "license": tool.get("github", {}).get("license"),
                         "url": "https://github.com/" + slug})
-    matches.sort(key=lambda r: (-r["score"], -r["quality"], r["repository"].lower()))
+    # A native library gets precedence over example applications and adapters.
+    # Otherwise a reference app can fill the three slots before a usable SDK.
+    priority = {"native": 0, "adapter-review": 1, "reference-review": 2}
+    matches.sort(key=lambda r: (priority.get(r["mode"], 3),
+                                -r["score"], -r["quality"], r["repository"].lower()))
     return matches[:count]
 
 
