@@ -121,7 +121,7 @@ def catalog_entry(meta):
     language = meta.get("language")
     languages = [language.lower()] if isinstance(language, str) and language.strip() else []
     description = meta.get("description")
-    guidance = [re.sub(r"\\s+", " ", description).strip()[:200]] if isinstance(description, str) and description.strip() else []
+    guidance = [re.sub(r"\s+", " ", description).strip()[:200]] if isinstance(description, str) and description.strip() else []
     topics = meta.get("topics")
     capabilities = [x[:80] for x in topics if isinstance(x, str) and x.strip()][:12] if isinstance(topics, list) else []
     return {
