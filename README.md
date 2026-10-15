@@ -49,7 +49,7 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Automatic GitHub Stars synchronization
 
-A free, daily GitHub Actions workflow checks **dbrckk**'s publicly accessible starred
+A free, hourly GitHub Actions workflow checks **dbrckk**'s publicly accessible starred
 repositories and **adds every missing public Star to `catalog.json`** after
 canonical identity and metadata checks. Entries are tagged `audit` until an
 independent quality, license and security review; this is inclusion, not
