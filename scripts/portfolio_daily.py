@@ -230,6 +230,16 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
 INTEGRATION_TOKEN_BUDGET = 90000
 
 
+def count_active_integrations(projects: list[dict]) -> int:
+    """Only in-flight portfolio jobs occupy coding-worker capacity slots."""
+    return sum(
+        1 for row in projects
+        if "starlist-integration-v" in str(row.get("final_goal") or "")
+        and str(row.get("status") or "").upper().replace("-", "_")
+            in {"ACTIVE", "QUEUED", "RUNNING"}
+    )
+
+
 def integration_marker(target: str, candidate: dict, version: int = 2) -> str:
     identity = hashlib.sha256(
         (target.lower() + "\0" + candidate["repository"].lower()).encode()
@@ -369,12 +379,7 @@ def main() -> int:
         if existing is not None:
             # Limit active portfolio work across multiple scheduled/manual runs,
             # not merely the number of launches in this one workflow run.
-            active_integrations = sum(
-                1 for p in already
-                if "starlist-integration-v" in str(p.get("final_goal") or "")
-                and str(p.get("status") or "").upper().replace("-", "_")
-                    in {"ACTIVE", "QUEUED", "RUNNING"}
-            )
+            active_integrations = count_active_integrations(already)
             available_slots = min(args.max_dispatch, max(0, 3 - active_integrations))
             for _, row, item in queue:
                 marker = integration_marker(row["repository"], item)
