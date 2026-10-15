@@ -271,6 +271,9 @@ def render_markdown(report: dict) -> str:
              "Projects with qualified suggestions: **" + str(summary["with_suggestions"]) + "**.",
              "New Production-OS integration requests: **" + str(summary["dispatched"]) + "**.",
              "Dispatch: **" + report["dispatch_status"] + "**.", ""]
+    if isinstance(summary.get("active_integrations"), int):
+        lines.extend(["Active star-list integrations at scan: **"
+                      + str(summary["active_integrations"]) + "/3**.", ""])
     for row in report["projects"]:
         lines.append("## " + row["repository"])
         lines.append("Status: " + row["status"])
@@ -342,6 +345,7 @@ def main() -> int:
             report["errors"].append(target + ": " + str(exc))
         report["projects"].append(row)
     dispatched = 0
+    active_integrations = None
     if operator_token:
         # Validate the origin before even the read-only authenticated request.
         parsed_service = urlparse(service)
@@ -363,6 +367,15 @@ def main() -> int:
             existing = None
             report["errors"].append("Cannot inspect existing managed projects: " + str(exc))
         if existing is not None:
+            # Limit active portfolio work across multiple scheduled/manual runs,
+            # not merely the number of launches in this one workflow run.
+            active_integrations = sum(
+                1 for p in already
+                if "starlist-integration-v" in str(p.get("final_goal") or "")
+                and str(p.get("status") or "").upper().replace("-", "_")
+                    in {"ACTIVE", "QUEUED", "RUNNING"}
+            )
+            available_slots = min(args.max_dispatch, max(0, 3 - active_integrations))
             for _, row, item in queue:
                 marker = integration_marker(row["repository"], item)
                 previous = integration_marker(row["repository"], item, version=1)
@@ -382,7 +395,7 @@ def main() -> int:
                         row["dispatches"].append("existing-v1: " + item["repository"])
                         continue
                     is_recovery = True
-                if dispatched >= args.max_dispatch:
+                if dispatched >= available_slots:
                     break
                 try:
                     result = launch_integration(service, operator_token, row["repository"], item)
@@ -398,7 +411,8 @@ def main() -> int:
     report["summary"] = {
         "discovered": len(source), "inspected": sum(p["status"] != "scan-failed" for p in report["projects"]),
         "with_suggestions": sum(bool(p["suggestions"]) for p in report["projects"]),
-        "dispatched": dispatched, "failures": len(report["errors"]),
+        "dispatched": dispatched, "active_integrations": active_integrations,
+        "failures": len(report["errors"]),
     }
     args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     args.markdown.write_text(render_markdown(report), encoding="utf-8")
