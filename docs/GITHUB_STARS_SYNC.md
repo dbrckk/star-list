@@ -1,7 +1,7 @@
 # Automatic GitHub Stars synchronization
 
 The public GitHub Stars of **dbrckk** are synchronized into `catalog.json`
-daily at **05:41 UTC**, and the workflow can be launched using
+hourly at approximately **minute 11** (UTC), and the workflow can be launched using
 **Actions → Sync GitHub Stars → Run workflow**.
 
 ## Admission policy
