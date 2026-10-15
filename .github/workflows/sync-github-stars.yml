@@ -2,7 +2,7 @@ name: Sync GitHub Stars
 
 on:
   schedule:
-    - cron: "41 5 * * *"
+    - cron: "11 * * * *"
   workflow_dispatch:
   push:
     branches:
@@ -22,7 +22,7 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
