@@ -27,7 +27,6 @@ jobs:
       - name: Inspect every accessible owner repository and submit qualified work
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PORTFOLIO_GITHUB_TOKEN: ${{ secrets.PORTFOLIO_GITHUB_TOKEN }}
           PRODUCTION_OS_OPERATOR_TOKEN: ${{ secrets.PRODUCTION_OS_OPERATOR_TOKEN }}
           PRODUCTION_OS_URL: https://production-os1.onrender.com
         run: |
