@@ -266,6 +266,28 @@ def count_failed_v2_integrations(projects: list[dict]) -> int:
     )
 
 
+def public_integration_status(target: str, projects: list[dict]) -> list[dict]:
+    """Expose only validated status enums for an already-public repository.
+
+    Never echo the worker instruction, project identifiers, private repository
+    names, task diagnostics or model-provider traces into the public issue.
+    """
+    results = []
+    accepted = {"ACTIVE", "QUEUED", "RUNNING", "NEEDS_ATTENTION",
+                "REVIEW_REQUIRED", "DONE", "CANCELLED", "FAILED"}
+    for project in projects:
+        if str(project.get("repository") or "").lower() != target.lower():
+            continue
+        goal = str(project.get("final_goal") or "")
+        markers = re.findall(r"starlist-integration-v([12])-[0-9a-f]{24}(?![0-9a-f])", goal)
+        if not markers:
+            continue
+        status = str(project.get("status") or "").upper().replace("-", "_")
+        results.append({"version": "v" + markers[0],
+                        "status": status if status in accepted else "UNKNOWN"})
+    return results[:10]
+
+
 def integration_marker(target: str, candidate: dict, version: int = 2) -> str:
     identity = hashlib.sha256(
         (target.lower() + "\0" + candidate["repository"].lower()).encode()
@@ -323,6 +345,8 @@ def render_markdown(report: dict) -> str:
                          + ", overlap: " + ", ".join(item["shared_terms"]))
         for item in row.get("dispatches", []):
             lines.append("- Integration queue: " + item)
+        for item in row.get("integrations", []):
+            lines.append("- Tracked work: " + item["version"] + " " + item["status"])
         lines.append("")
     if report["errors"]:
         lines.extend(["## Errors", ""])
@@ -407,6 +431,12 @@ def main() -> int:
             existing = None
             report["errors"].append("Cannot inspect existing managed projects: " + str(exc))
         if existing is not None:
+            # Public issue rows originate only from public GitHub discovery.
+            # Never include private managed-project names or instruction text.
+            for public_row in report["projects"]:
+                public_row["integrations"] = public_integration_status(
+                    public_row["repository"], already
+                )
             # Limit active portfolio work across multiple scheduled/manual runs,
             # not merely the number of launches in this one workflow run.
             active_integrations = count_active_integrations(already)
