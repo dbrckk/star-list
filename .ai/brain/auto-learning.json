@@ -2,15 +2,15 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 25,
+    "example_count": 26,
     "rejected_count": 0,
     "terms": [
-      "catalog",
-      "exclude",
-      "filler",
-      "french",
-      "from",
-      "matches"
+      "integration",
+      "per-repository",
+      "safely",
+      "scoped",
+      "state",
+      "surface"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -18,7 +18,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix: exclude French filler from catalog matches",
+  "task": "fix: surface safely scoped per-repository integration state",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py"

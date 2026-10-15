@@ -27,20 +27,19 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-15T21:34:53Z
+Generated: 2026-10-15T21:46:31Z
 
 ### Git
 - Branch: `main`
-- Head: `def8d8374010`
-- Commit date: 2026-10-15T23:34:43+02:00
-- Commit: fix: exclude French filler from catalog matches
+- Head: `0d1b64471148`
+- Commit date: 2026-10-15T23:46:22+02:00
+- Commit: fix: surface safely scoped per-repository integration state
 - Tracked files: 274
 
 ### Recently changed files
-- `.github/workflows/portfolio-scan-smoke.yml`
 - `scripts/portfolio_daily.py`
+- `.github/workflows/portfolio-scan-smoke.yml`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
-- `.github/workflows/daily-portfolio-integration.yml`
 
 ### Project signals
 - No common build descriptor detected

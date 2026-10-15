@@ -9,10 +9,10 @@
     "top_score": 38
   },
   "cache": {
-    "fingerprint": "bb790a3504aad6277ca58cab479f05b630fefa6a4159734e95b3066b646e2751",
+    "fingerprint": "a28970c96073d79037dcbd4b224e09b1e8962e0d970a000b4df320d4bbc45fbb",
     "hit": false
   },
-  "candidate_count": 6,
+  "candidate_count": 5,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -39,6 +39,7 @@
         "launch_integration",
         "main",
         "project_profile",
+        "public_integration_status",
         "recommendations",
         "render_markdown",
         "request_json"

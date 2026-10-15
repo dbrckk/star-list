@@ -2115,6 +2115,21 @@ def count_failed_v2_integrations(projects: list[dict]) -> int
 ⋮----
 """Protect the free worker quota until failed high-budget jobs are reviewed."""
 ⋮----
+def public_integration_status(target: str, projects: list[dict]) -> list[dict]
+⋮----
+"""Expose only validated status enums for an already-public repository.
+
+    Never echo the worker instruction, project identifiers, private repository
+    names, task diagnostics or model-provider traces into the public issue.
+    """
+results = []
+accepted = {"ACTIVE", "QUEUED", "RUNNING", "NEEDS_ATTENTION",
+⋮----
+goal = str(project.get("final_goal") or "")
+markers = re.findall(r"starlist-integration-v([12])-[0-9a-f]{24}(?![0-9a-f])", goal)
+⋮----
+status = str(project.get("status") or "").upper().replace("-", "_")
+⋮----
 def integration_marker(target: str, candidate: dict, version: int = 2) -> str
 ⋮----
 identity = hashlib.sha256(
@@ -2172,6 +2187,9 @@ existing = request_json(service.rstrip("/") + "/v1/managed-projects", operator_t
 already = [p for p in (existing or {}).get("projects", []) if isinstance(p, dict)]
 ⋮----
 existing = None
+⋮----
+# Public issue rows originate only from public GitHub discovery.
+# Never include private managed-project names or instruction text.
 ⋮----
 # Limit active portfolio work across multiple scheduled/manual runs,
 # not merely the number of launches in this one workflow run.

@@ -445,6 +445,22 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix: surface safely scoped per-repository integration state",
+      "terms": [
+        "integration",
+        "per-repository",
+        "safely",
+        "scoped",
+        "state",
+        "surface"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -764,7 +780,7 @@
       "scripts/test_recommend.py": 4
     },
     "integration": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "integrations": {
       "scripts/portfolio_daily.py": 4
@@ -823,6 +839,9 @@
       "scripts/test_recommend.py": 4,
       "scripts/test_refresh_github_metadata.py": 8,
       "scripts/validate_catalog.py": 4
+    },
+    "per-repository": {
+      "scripts/portfolio_daily.py": 4
     },
     "pipeline": {
       "scripts/star_import_pipeline.py": 4,
@@ -926,6 +945,12 @@
       "scripts/star_import_pipeline.py": 4,
       "scripts/test_star_import_pipeline.py": 4
     },
+    "safely": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "scoped": {
+      "scripts/portfolio_daily.py": 4
+    },
     "selection": {
       "scripts/infer_selection_guidance.py": 4,
       "scripts/recommend.py": 4,
@@ -966,8 +991,14 @@
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
+    "state": {
+      "scripts/portfolio_daily.py": 4
+    },
     "status": {
       "scripts/validate_catalog.py": 4
+    },
+    "surface": {
+      "scripts/portfolio_daily.py": 4
     },
     "synchronize": {
       "scripts/sync_github_stars.py": 4,
