@@ -4,15 +4,15 @@
     "expand_to": 12,
     "max_files": 6,
     "requested_max_files": 12,
-    "score_margin": 3,
+    "score_margin": 12,
     "tier": "bounded",
     "top_score": 29
   },
   "cache": {
-    "fingerprint": "b5377feb45652e33bce8fa2e4363f9fcaced4fc3fab49392cc05b81f42480c58",
+    "fingerprint": "b8e9a41e84d7e98b0425b261591ffc734d5e5d5ad0832a2242f021ecd549992d",
     "hit": false
   },
-  "candidate_count": 9,
+  "candidate_count": 6,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -40,30 +40,6 @@
       "matched_terms": [
         "game"
       ],
-      "path": "scripts/portfolio_daily.py",
-      "reasons": [
-        "impact",
-        "recently-changed",
-        "search-index"
-      ],
-      "score": 26,
-      "symbols": [
-        "eligible",
-        "file_text",
-        "github_repos",
-        "launch_integration",
-        "main",
-        "project_profile",
-        "recommendations",
-        "render_markdown",
-        "request_json"
-      ]
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [
-        "game"
-      ],
       "path": "scripts/infer_selection_guidance.py",
       "reasons": [
         "search-index"
@@ -74,6 +50,28 @@
         "enrich",
         "infer_guidance",
         "main"
+      ]
+    },
+    {
+      "learning_score": 0,
+      "matched_terms": [
+        "game"
+      ],
+      "path": "scripts/portfolio_daily.py",
+      "reasons": [
+        "search-index"
+      ],
+      "score": 17,
+      "symbols": [
+        "eligible",
+        "file_text",
+        "github_repos",
+        "launch_integration",
+        "main",
+        "project_profile",
+        "recommendations",
+        "render_markdown",
+        "request_json"
       ]
     },
     {

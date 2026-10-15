@@ -1,50 +1,11 @@
 {
   "files": [
     {
-      "path": "scripts/portfolio_daily.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 345
-    },
-    {
-      "path": "catalog.json",
-      "reasons": [
-        "changed",
-        "recent-project-state"
-      ],
-      "score": 160
-    },
-    {
       "path": ".github/workflows/daily-portfolio-integration.yml",
       "reasons": [
         "changed"
       ],
       "score": 100
-    },
-    {
-      "path": ".github/workflows/portfolio-scan-smoke.yml",
-      "reasons": [
-        "changed"
-      ],
-      "score": 100
-    },
-    {
-      "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
-      "reasons": [
-        "changed"
-      ],
-      "score": 100
-    },
-    {
-      "path": ".repomixignore",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
     },
     {
       "path": "README.md",
@@ -54,14 +15,14 @@
       "score": 60
     },
     {
-      "path": "RECOMMENDER.md",
+      "path": "cache-health-history.json",
       "reasons": [
         "recent-project-state"
       ],
       "score": 60
     },
     {
-      "path": "cache-health-history.json",
+      "path": "catalog.json",
       "reasons": [
         "recent-project-state"
       ],
@@ -103,25 +64,18 @@
       "score": 60
     },
     {
+      "path": "scripts/portfolio_daily.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
       "path": "scripts/test_auto_stars_admission.py",
       "reasons": [
         "recent-project-state"
       ],
       "score": 60
-    },
-    {
-      "path": "stacks.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "scripts/recommend.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

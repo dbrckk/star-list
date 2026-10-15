@@ -27,14 +27,14 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-15T20:02:13Z
+Generated: 2026-10-15T20:27:21Z
 
 ### Git
 - Branch: `main`
-- Head: `12ffde72b4c6`
-- Commit date: 2026-10-15T22:02:01+02:00
-- Commit: feat: daily star-list portfolio discovery and qualified integration queue
-- Tracked files: 271
+- Head: `6f866264e3f2`
+- Commit date: 2026-10-15T22:27:12+02:00
+- Commit: ci: verify daily portfolio integration immediately on main
+- Tracked files: 274
 
 ### Recently changed files
 - `.github/workflows/daily-portfolio-integration.yml`
@@ -47,11 +47,6 @@ Generated: 2026-10-15T20:02:13Z
 - `docs/GITHUB_STARS_SYNC.md`
 - `scripts/admit_github_stars.py`
 - `scripts/test_auto_stars_admission.py`
-- `cache-health-history.json`
-- `discovery-cache.json`
-- `discovery-memory.json`
-- `health-snapshot.json`
-- `history.json`
 
 ### Project signals
 - No common build descriptor detected

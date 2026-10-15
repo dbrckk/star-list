@@ -1,28 +1,8 @@
 {
-  "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": true,
-  "learning_result": {
-    "example_count": 21,
-    "rejected_count": 0,
-    "terms": [
-      "daily",
-      "discovery",
-      "feat",
-      "integration",
-      "portfolio",
-      "qualified",
-      "queue",
-      "star-list"
-    ],
-    "test_count": 0,
-    "useful_count": 1
-  },
-  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
-  "rejected": [],
   "schema_version": 1,
-  "task": "feat: daily star-list portfolio discovery and qualified integration queue",
-  "tests_selected": [],
-  "useful": [
-    "scripts/portfolio_daily.py"
-  ]
+  "generated_by": "dbrckk/repo-brain-auto-learning-v1",
+  "learned": false,
+  "reason": "missing-task-or-source-change",
+  "task": "ci: verify daily portfolio integration immediately on main",
+  "useful": []
 }

@@ -1,18 +1,13 @@
 # Change impact
 
-Base: 1e3c8817164058777574153bffbd7dffa0a6726c
-Head: 12ffde72b4c66fcd9f989de67b0d58878e74f4bf
+Base: d3d3986d11ac04093345ee8f6fbc86da36659abf
+Head: 6f866264e3f2122d159fd96dd6bf874a31701cb3
 
 ## Changed files
-- A .github/workflows/daily-portfolio-integration.yml
-- A .github/workflows/portfolio-scan-smoke.yml
-- A docs/DAILY_PORTFOLIO_INTEGRATION.md
-- A scripts/portfolio_daily.py
+- M .github/workflows/daily-portfolio-integration.yml
 
 ## Affected areas
 - .github
-- docs
-- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.
