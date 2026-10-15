@@ -4,5 +4,747 @@
   "scope": "symbols defined in changed source files",
   "semantic": false,
   "note": "Occurrences are lexical word matches; verify source/LSP/compiler data before relying on them.",
-  "symbols": {}
+  "symbols": {
+    "request_json": {
+      "definition": {
+        "file": "scripts/portfolio_daily.py",
+        "line": 63,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 63,
+          "preview": "def request_json(url: str, token: str = \"\", *, method: str = \"GET\", data: dict | None = None):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 104,
+          "preview": "rows = request_json(base + separator + \"page=\" + str(page), portfolio_token or token)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 119,
+          "preview": "payload = request_json(endpoint, token)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 233,
+          "preview": "return request_json(url.rstrip(\"/\") + \"/v1/dashboard/launch\", token, method=\"POST\",",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 290,
+          "preview": "target = request_json(API + \"/repos/\" + args.repository, portfolio_token or gh_token)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 331,
+          "preview": "existing = request_json(service.rstrip(\"/\") + \"/v1/managed-projects\", operator_token)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 6
+    },
+    "github_repos": {
+      "definition": {
+        "file": "scripts/portfolio_daily.py",
+        "line": 97,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 97,
+          "preview": "def github_repos(owner: str, token: str, portfolio_token: str) -> list[dict]:",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 295,
+          "preview": "source = github_repos(args.owner, gh_token, portfolio_token)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 2
+    },
+    "file_text": {
+      "definition": {
+        "file": "scripts/portfolio_daily.py",
+        "line": 117,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 117,
+          "preview": "def file_text(full_name: str, path: str, token: str, *, limit: int = 5500) -> str:",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 132,
+          "preview": "intro = file_text(name, \"README.md\", token, limit=2800)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 135,
+          "preview": "value = file_text(name, filename, token, limit=3500)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 3
+    },
+    "project_profile": {
+      "definition": {
+        "file": "scripts/portfolio_daily.py",
+        "line": 128,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 128,
+          "preview": "def project_profile(repo: dict, token: str) -> dict:",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 308,
+          "preview": "profile = project_profile(repo, portfolio_token or gh_token)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 2
+    },
+    "eligible": {
+      "definition": {
+        "file": "scripts/portfolio_daily.py",
+        "line": 150,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 150,
+          "preview": "def eligible(item: dict) -> bool:",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 172,
+          "preview": "if slug.lower() == name or not eligible(tool):",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/recommend.py",
+          "line": 323,
+          "preview": "\"diagnostics\": {\"catalogSize\":len(repos), \"eligible\":len(ranked), \"returned\":len(top), \"filtered\":filtered},",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/star_import_pipeline.py",
+          "line": 91,
+          "preview": "\"\"\"Load offline metadata snapshots. Only explicitly reviewed entries are eligible.\"\"\"",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_recommend.py",
+          "line": 24,
+          "preview": "assert data[\"diagnostics\"][\"catalogSize\"] >= data[\"diagnostics\"][\"eligible\"] >= data[\"diagnostics\"][\"returned\"]",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 5
+    },
+    "recommendations": {
+      "definition": {
+        "file": "scripts/portfolio_daily.py",
+        "line": 164,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 164,
+          "preview": "def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) -> list[dict]:",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 309,
+          "preview": "row[\"suggestions\"] = recommendations(repo, profile, catalog, 3)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/recommend.py",
+          "line": 249,
+          "preview": "ap.add_argument(\"--include-audit\", action=\"store_true\", help=\"Allow audit-tier repositories in recommendations\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/recommend.py",
+          "line": 318,
+          "preview": "\"requiredCapabilities\": sorted(required_caps), \"recommendations\": top,",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_recommend.py",
+          "line": 22,
+          "preview": "assert data[\"recommendations\"], query",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_recommend.py",
+          "line": 23,
+          "preview": "assert all(\"repo\" in x and \"selectionScore\" in x and \"why\" in x for x in data[\"recommendations\"])",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_recommend.py",
+          "line": 27,
+          "preview": "for item in strict[\"recommendations\"]:",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_recommend.py",
+          "line": 32,
+          "preview": "assert high_threshold[\"recommendations\"] == []",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_recommend.py",
+          "line": 36,
+          "preview": "assert all(item[\"tier\"] != \"audit\" for item in default_audit[\"recommendations\"])",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_recommend.py",
+          "line": 41,
+          "preview": "assert any(item[\"repo\"] == \"DietrichGebert/ponytail\" for item in with_audit[\"recommendations\"])",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_recommend.py",
+          "line": 122,
+          "preview": "# Integration: returned relations must obey the same hard CLI filters as primary recommendations.",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_recommend.py",
+          "line": 129,
+          "preview": "for item in results[\"recommendations\"]:",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 12
+    },
+    "launch_integration": {
+      "definition": {
+        "file": "scripts/portfolio_daily.py",
+        "line": 214,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 214,
+          "preview": "def launch_integration(url: str, token: str, target: str, candidate: dict):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 347,
+          "preview": "result = launch_integration(service, operator_token, row[\"repository\"], item)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 2
+    },
+    "render_markdown": {
+      "definition": {
+        "file": "scripts/portfolio_daily.py",
+        "line": 237,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/analyze_cache_health.py",
+          "line": 52,
+          "preview": "def render_markdown(report):",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/analyze_cache_health.py",
+          "line": 83,
+          "preview": "args.markdown_output.write_text(render_markdown(report))",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/audit_catalog_quality.py",
+          "line": 138,
+          "preview": "def render_markdown(report):",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/audit_catalog_quality.py",
+          "line": 192,
+          "preview": "args.markdown_output.write_text(render_markdown(report))",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 237,
+          "preview": "def render_markdown(report: dict) -> str:",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 361,
+          "preview": "args.markdown.write_text(render_markdown(report), encoding=\"utf-8\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/star_import_pipeline.py",
+          "line": 172,
+          "preview": "def render_markdown(report: dict) -> str:",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/star_import_pipeline.py",
+          "line": 250,
+          "preview": "args.report_md.write_text(render_markdown(report), encoding=\"utf-8\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_cache_health_history.py",
+          "line": 61,
+          "preview": "assert \"Baseline confidence: **low** (62.5%)\" in mod.render_markdown(baseline_trend)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_cache_health_history.py",
+          "line": 77,
+          "preview": "assert \"Adaptive severity: **degraded**\" in mod.render_markdown(high_trend)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_cache_health_history.py",
+          "line": 98,
+          "preview": "assert \"Alert state: **healthy**\" in mod.render_markdown(recovery_2)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_catalog_quality.py",
+          "line": 113,
+          "preview": "markdown = mod.render_markdown(report)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/update_cache_health_history.py",
+          "line": 227,
+          "preview": "def render_markdown(trend):",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/update_cache_health_history.py",
+          "line": 276,
+          "preview": "if args.markdown_output: args.markdown_output.write_text(render_markdown(trend))",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 14
+    },
+    "main": {
+      "definition": {
+        "file": "scripts/portfolio_daily.py",
+        "line": 265,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/admit_github_stars.py",
+          "line": 200,
+          "preview": "def main(argv=None):",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/admit_github_stars.py",
+          "line": 236,
+          "preview": "sys.exit(main())",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/analyze_cache_health.py",
+          "line": 75,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/analyze_cache_health.py",
+          "line": 88,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/analyze_coverage.py",
+          "line": 48,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/analyze_coverage.py",
+          "line": 58,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/audit_catalog_quality.py",
+          "line": 179,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/audit_catalog_quality.py",
+          "line": 198,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/backfill_licenses.py",
+          "line": 34,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/backfill_licenses.py",
+          "line": 50,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/build_discovery_watchlist.py",
+          "line": 31,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/build_discovery_watchlist.py",
+          "line": 40,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/catalog_stats.py",
+          "line": 9,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/catalog_stats.py",
+          "line": 43,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/detect_health_drift.py",
+          "line": 26,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/detect_health_drift.py",
+          "line": 37,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 280,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 306,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 182,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 189,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/filter_discovery_memory.py",
+          "line": 71,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/filter_discovery_memory.py",
+          "line": 82,
+          "preview": "if __name__==\"__main__\": main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/find_replacements.py",
+          "line": 61,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/find_replacements.py",
+          "line": 76,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/health_score.py",
+          "line": 55,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/health_score.py",
+          "line": 62,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/infer_selection_guidance.py",
+          "line": 200,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/infer_selection_guidance.py",
+          "line": 215,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 265,
+          "preview": "def main() -> int:",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 367,
+          "preview": "sys.exit(main())",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/recommend.py",
+          "line": 236,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/recommend.py",
+          "line": 343,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/refresh_github_metadata.py",
+          "line": 184,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/refresh_github_metadata.py",
+          "line": 238,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/render_discovery_issue.py",
+          "line": 33,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/render_discovery_issue.py",
+          "line": 39,
+          "preview": "if __name__==\"__main__\": main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/render_health_issue.py",
+          "line": 43,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/render_health_issue.py",
+          "line": 55,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/star_import_pipeline.py",
+          "line": 227,
+          "preview": "def main(argv=None) -> int:",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/star_import_pipeline.py",
+          "line": 270,
+          "preview": "raise SystemExit(main())",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 234,
+          "preview": "def main(argv=None):",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/sync_github_stars.py",
+          "line": 276,
+          "preview": "sys.exit(main())",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_backfill_licenses.py",
+          "line": 12,
+          "preview": "{\"repo\":\"x/unknown\",\"github\":{\"license\":\"NOASSERTION\",\"defaultBranch\":\"main\"}},",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_backfill_licenses.py",
+          "line": 13,
+          "preview": "{\"repo\":\"x/null\",\"github\":{\"license\":None,\"defaultBranch\":\"main\"}},",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_backfill_licenses.py",
+          "line": 14,
+          "preview": "{\"repo\":\"x/known\",\"github\":{\"license\":\"MIT\",\"defaultBranch\":\"main\"}},",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_backfill_licenses.py",
+          "line": 28,
+          "preview": "assert seen == [(\"x/unknown\",\"main\",\"token\"),(\"x/null\",\"main\",\"token\")]",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_refresh_github_metadata.py",
+          "line": 27,
+          "preview": "refresh.main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_refresh_github_metadata.py",
+          "line": 56,
+          "preview": "\"default_branch\": \"main\",",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_refresh_github_metadata.py",
+          "line": 111,
+          "preview": "assert refresh.fallback_license(\"x/repo\", \"main\") == \"MIT\"",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_refresh_github_metadata.py",
+          "line": 127,
+          "preview": "assert refresh.fallback_license(\"x/repo\", \"main\") == \"CC-BY-4.0\"",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_refresh_github_metadata.py",
+          "line": 148,
+          "preview": "\"default_branch\": \"main\",",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_refresh_github_metadata.py",
+          "line": 182,
+          "preview": "\"default_branch\": \"main\",",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_star_import_pipeline.py",
+          "line": 71,
+          "preview": "\"defaultBranch\": \"main\", \"license\": \"MIT\", \"pushedAt\": \"2026-10-09T00:00:00Z\",",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 216,
+          "preview": "status = mod.main([",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 229,
+          "preview": "mod.main([\"--catalog\", str(catalog), \"--report-json\", str(report_json)])",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/update_cache_health_history.py",
+          "line": 261,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/update_cache_health_history.py",
+          "line": 281,
+          "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/update_history.py",
+          "line": 88,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/update_history.py",
+          "line": 99,
+          "preview": "if __name__==\"__main__\": main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/validate_json_contract.py",
+          "line": 115,
+          "preview": "def main():",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/validate_json_contract.py",
+          "line": 133,
+          "preview": "main()",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 61
+    }
+  }
 }

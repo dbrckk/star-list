@@ -27,26 +27,22 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-15T20:27:21Z
+Generated: 2026-10-15T20:31:33Z
 
 ### Git
 - Branch: `main`
-- Head: `6f866264e3f2`
-- Commit date: 2026-10-15T22:27:12+02:00
-- Commit: ci: verify daily portfolio integration immediately on main
+- Head: `3f0fd0a85a48`
+- Commit date: 2026-10-15T22:31:21+02:00
+- Commit: fix: qualify portfolio matches before Production-OS handoff
 - Tracked files: 274
 
 ### Recently changed files
-- `.github/workflows/daily-portfolio-integration.yml`
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
+- `.github/workflows/daily-portfolio-integration.yml`
 - `catalog.json`
 - `.github/workflows/sync-github-stars.yml`
-- `README.md`
-- `docs/GITHUB_STARS_SYNC.md`
-- `scripts/admit_github_stars.py`
-- `scripts/test_auto_stars_admission.py`
 
 ### Project signals
 - No common build descriptor detected

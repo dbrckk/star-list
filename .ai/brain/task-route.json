@@ -1,20 +1,45 @@
 {
   "budget": {
-    "confidence": "medium",
+    "confidence": "high",
     "expand_to": 12,
-    "max_files": 6,
+    "max_files": 3,
     "requested_max_files": 12,
-    "score_margin": 12,
-    "tier": "bounded",
-    "top_score": 29
+    "score_margin": 9,
+    "tier": "narrow",
+    "top_score": 38
   },
   "cache": {
-    "fingerprint": "b8e9a41e84d7e98b0425b261591ffc734d5e5d5ad0832a2242f021ecd549992d",
+    "fingerprint": "aebda7f153da0947ed80e83b852aca17754fbac50f518dc90ebd32c270040d78",
     "hit": false
   },
-  "candidate_count": 6,
+  "candidate_count": 7,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
+    {
+      "learning_score": 0,
+      "matched_terms": [
+        "engine",
+        "game"
+      ],
+      "path": "scripts/portfolio_daily.py",
+      "reasons": [
+        "impact",
+        "recently-changed",
+        "search-index"
+      ],
+      "score": 38,
+      "symbols": [
+        "eligible",
+        "file_text",
+        "github_repos",
+        "launch_integration",
+        "main",
+        "project_profile",
+        "recommendations",
+        "render_markdown",
+        "request_json"
+      ]
+    },
     {
       "learning_score": 0,
       "matched_terms": [
@@ -51,81 +76,6 @@
         "infer_guidance",
         "main"
       ]
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [
-        "game"
-      ],
-      "path": "scripts/portfolio_daily.py",
-      "reasons": [
-        "search-index"
-      ],
-      "score": 17,
-      "symbols": [
-        "eligible",
-        "file_text",
-        "github_repos",
-        "launch_integration",
-        "main",
-        "project_profile",
-        "recommendations",
-        "render_markdown",
-        "request_json"
-      ]
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [
-        "game"
-      ],
-      "path": "scripts/recommend.py",
-      "reasons": [
-        "search-index"
-      ],
-      "score": 17,
-      "symbols": [
-        "activity_adjustment",
-        "choose_stack",
-        "delta",
-        "explain_repo",
-        "guidance_weight",
-        "infer_alternatives",
-        "infer_complements",
-        "infer_domains",
-        "load",
-        "main",
-        "norm",
-        "resolve_relations",
-        "score_repo",
-        "tokens",
-        "trend_adjustment",
-        "usable"
-      ]
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [
-        "engine"
-      ],
-      "path": "scripts/test_recommend.py",
-      "reasons": [
-        "search-index"
-      ],
-      "score": 17,
-      "symbols": [
-        "run"
-      ]
-    },
-    {
-      "learning_score": 0,
-      "matched_terms": [],
-      "path": ".github/workflows/daily-portfolio-integration.yml",
-      "reasons": [
-        "recently-changed"
-      ],
-      "score": 3,
-      "symbols": []
     }
   ],
   "generated_by": "dbrckk/repo-brain-v8",

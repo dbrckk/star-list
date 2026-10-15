@@ -1,8 +1,26 @@
 {
-  "schema_version": 1,
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": false,
-  "reason": "missing-task-or-source-change",
-  "task": "ci: verify daily portfolio integration immediately on main",
-  "useful": []
+  "learned": true,
+  "learning_result": {
+    "example_count": 22,
+    "rejected_count": 0,
+    "terms": [
+      "before",
+      "handoff",
+      "matches",
+      "portfolio",
+      "production-os",
+      "qualify"
+    ],
+    "test_count": 0,
+    "useful_count": 1
+  },
+  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
+  "rejected": [],
+  "schema_version": 1,
+  "task": "fix: qualify portfolio matches before Production-OS handoff",
+  "tests_selected": [],
+  "useful": [
+    "scripts/portfolio_daily.py"
+  ]
 }

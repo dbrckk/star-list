@@ -1,44 +1,32 @@
 {
   "files": {
-    ".github/workflows/daily-portfolio-integration.yml": {
-      "sha256": "73f2e297c7e4cb6de165194652b4164ae9a609882051d966d54947102db23b3f",
-      "size": 2495
+    ".github/workflows/portfolio-scan-smoke.yml": {
+      "sha256": "78118c50d8c33e0c87866900aaa0877c2e74519eeba5eef0ea9d5f543bcc9bdb",
+      "size": 2007
     },
     "README.md": {
       "sha256": "dea883100d88ab0764cf2abb178680dbcbb4fa5821451e1e8efe7e0e08ad9e63",
       "size": 10436
     },
-    "cache-health-history.json": {
-      "sha256": "b19acae1949f702a886c4aec98099ed7435864ec9f4dec5c823cc67debb4b765",
-      "size": 1998
-    },
     "catalog.json": {
       "sha256": "ebdcfe460040966e9f0128a1fd3abcd78b862c3266597f8f97e503263b84dc4a",
       "size": 933304
     },
-    "discovery-cache.json": {
-      "sha256": "7faf792b8a24cb583b7737d0f40bdd1ca1a39f6140f274d116c7ff3e009ba144",
-      "size": 7380979
-    },
-    "discovery-memory.json": {
-      "sha256": "96d3b45041831ca3bee6c46fb16e8a5697225b8ec6947de43bbf0d017a55884b",
-      "size": 35267
-    },
-    "health-snapshot.json": {
-      "sha256": "ade28fe0d7c2f3e5d50889a61b8fede56d9747a58198a69751d89902406a1b3a",
-      "size": 103316
-    },
-    "history.json": {
-      "sha256": "a01575c7b076f206e1d367011fede31783beba7cc924b6ffb384f4c221e92006",
-      "size": 406325
+    "docs/DAILY_PORTFOLIO_INTEGRATION.md": {
+      "sha256": "6df13a248827e1eba97c3d366b98362d89acafe727db00e420f457753d672f48",
+      "size": 5762
     },
     "scripts/admit_github_stars.py": {
       "sha256": "4d8b60262f9f5cfec03ed9d1c5d1c31200a6e0c654437bf007bb0de7b4d502df",
       "size": 11149
     },
     "scripts/portfolio_daily.py": {
-      "sha256": "b5af07fa9130686d0872d05d3952d00f700979c8b18254ba7ae403ad87e54f85",
-      "size": 17519
+      "sha256": "9cdf5a7d4bc5bbc624362079367c7663c619465f1795ebd026ae225ced8dbc6e",
+      "size": 19724
+    },
+    "scripts/recommend.py": {
+      "sha256": "7df823d9a03718fc062f172b66c9a5ebcfd267e8e50d46a82111b1fb65138d17",
+      "size": 16505
     },
     "scripts/test_auto_stars_admission.py": {
       "sha256": "2b0a02d7ac9830a948773b56dcdfe1629ba54220a6c146a6f51a184b83b7e46c",

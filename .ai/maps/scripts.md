@@ -929,6 +929,11 @@ API = "https://api.github.com"
 ALLOWED_LICENSES = {
 KEYWORDS = {
 GENERIC = {"ai", "agent", "dev", "web", "python", "typescript", "app", "open", "tools", "github", "repo"}
+STOPWORDS = {
+# Engine-specific runtime components are not drop-in replacements for
+# incompatible engines. This is a hard gate, not a soft relevance penalty.
+ENGINE_CONFLICTS = {
+⋮----
 MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
 ⋮----
 def request_json(url: str, token: str = "", *, method: str = "GET", data: dict | None = None)
@@ -988,12 +993,19 @@ matches = []
 slug = str(tool.get("repo") or "")
 ⋮----
 terms = (tokens(slug) | tokens(" ".join(tool.get("capabilities") or []))
-shared = sorted((profile["terms"] & terms) - GENERIC)
+shared = sorted((profile["terms"] & terms) - GENERIC - STOPWORDS)
+⋮----
+# A lone match must describe an actual candidate capability/use case,
+# not merely an organization name (or an incidental README word).
+capability_terms = (tokens(" ".join(tool.get("capabilities") or []))
+⋮----
+target_identity = repo["name"].lower()
 ⋮----
 slug_name = slug.rsplit("/", 1)[-1].lower()
 ⋮----
 candidate_languages = set(str(x).lower() for x in (tool.get("languages") or []))
-languages_match = not candidate_languages or profile["language"] in candidate_languages
+# Missing language metadata is unknown compatibility, not native support.
+languages_match = bool(profile["language"]) and profile["language"] in candidate_languages
 score = score_repo(tool, profile["terms"], domains, set(), set())
 ⋮----
 # A language mismatch is reviewable as a service/CLI integration, never a direct dependency.
@@ -1037,6 +1049,11 @@ row = {"repository": target, "status": "scanned", "suggestions": [], "dispatches
 profile = project_profile(repo, portfolio_token or gh_token)
 ⋮----
 dispatched = 0
+⋮----
+# Validate the origin before even the read-only authenticated request.
+parsed_service = urlparse(service)
+⋮----
+operator_token = ""
 ⋮----
 # Always prioritize highest-confidence matches, irrespective of repository order.
 queue = sorted(((item["score"], row, item) for row in report["projects"]

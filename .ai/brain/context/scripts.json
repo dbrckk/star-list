@@ -2,14 +2,18 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/admit_github_stars.py",
+      "path": "scripts/portfolio_daily.py",
       "reasons": [
-        "recent-project-state"
+        "changed",
+        "changed-source",
+        "impact",
+        "recent-project-state",
+        "symbol-indexed"
       ],
-      "score": 60
+      "score": 405
     },
     {
-      "path": "scripts/portfolio_daily.py",
+      "path": "scripts/admit_github_stars.py",
       "reasons": [
         "recent-project-state"
       ],
@@ -21,6 +25,13 @@
         "recent-project-state"
       ],
       "score": 60
+    },
+    {
+      "path": "scripts/recommend.py",
+      "reasons": [
+        "dependency-neighbor"
+      ],
+      "score": 25
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

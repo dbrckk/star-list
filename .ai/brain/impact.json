@@ -1,17 +1,84 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "12ffde72b4c66fcd9f989de67b0d58878e74f4bf",
-  "head": "6f866264e3f2122d159fd96dd6bf874a31701cb3",
+  "base": "6f866264e3f2122d159fd96dd6bf874a31701cb3",
+  "head": "3f0fd0a85a48df2702bc59728b7e3e35687eb190",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": ".github/workflows/daily-portfolio-integration.yml",
+      "path": ".github/workflows/portfolio-scan-smoke.yml",
+      "status": "M"
+    },
+    {
+      "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
+      "status": "M"
+    },
+    {
+      "path": "scripts/portfolio_daily.py",
       "status": "M"
     }
   ],
-  "changed_source_files": [],
-  "impacted_files": [],
-  "impacted_symbols": [],
+  "changed_source_files": [
+    "scripts/portfolio_daily.py"
+  ],
+  "impacted_files": [
+    "scripts/portfolio_daily.py"
+  ],
+  "impacted_symbols": [
+    {
+      "name": "request_json",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 63
+    },
+    {
+      "name": "github_repos",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 97
+    },
+    {
+      "name": "file_text",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 117
+    },
+    {
+      "name": "project_profile",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 128
+    },
+    {
+      "name": "eligible",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 150
+    },
+    {
+      "name": "recommendations",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 164
+    },
+    {
+      "name": "launch_integration",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 214
+    },
+    {
+      "name": "render_markdown",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 237
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 265
+    }
+  ],
   "selected_tests": []
 }
