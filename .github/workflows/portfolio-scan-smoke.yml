@@ -35,6 +35,12 @@ jobs:
           assert result["summary"]["discovered"] >= 1
           assert result["summary"]["inspected"] == result["summary"]["discovered"]
           assert result["summary"]["dispatched"] == 0
+          for project in result["projects"]:
+              for candidate in project["suggestions"]:
+                  assert not ({"and", "as", "the", "with"} & set(candidate["shared_terms"])), candidate
+                  if "roblox" in project["repository"].lower():
+                      assert "godot" not in candidate["repository"].lower(), candidate
+          print("Verified meaningful matching and Roblox engine compatibility")
           print("Read-only scan verified:", result["summary"])
           PY
       - name: Preserve real scan evidence

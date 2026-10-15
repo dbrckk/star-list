@@ -42,6 +42,20 @@ KEYWORDS = {
     "productivity": ("promo", "discount", "deal", "price", "finder", "watch", "money"),
 }
 GENERIC = {"ai", "agent", "dev", "web", "python", "typescript", "app", "open", "tools", "github", "repo"}
+STOPWORDS = {
+    "a", "an", "and", "are", "as", "at", "be", "by", "can", "do", "does",
+    "each", "etc", "for", "from", "has", "have", "in", "into", "is",
+    "it", "its", "not", "of", "on", "or", "our", "that", "the", "their",
+    "these", "this", "to", "using", "via", "was", "we", "were", "what",
+    "when", "where", "which", "while", "will", "with", "you", "your",
+}
+# Engine-specific runtime components are not drop-in replacements for
+# incompatible engines. This is a hard gate, not a soft relevance penalty.
+ENGINE_CONFLICTS = {
+    "roblox": ("godotengine/", "godot", "unity", "unreal", "bevy", "defold"),
+    "godot": ("roblox", "unity", "unreal", "bevy", "defold"),
+}
+
 MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
              "build.gradle.kts", "pubspec.yaml")
 
@@ -161,14 +175,28 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
             continue
         terms = (tokens(slug) | tokens(" ".join(tool.get("capabilities") or []))
                  | tokens(" ".join(tool.get("bestFor") or [])))
-        shared = sorted((profile["terms"] & terms) - GENERIC)
+        shared = sorted((profile["terms"] & terms) - GENERIC - STOPWORDS)
         if not shared:
             continue
+        # A lone match must describe an actual candidate capability/use case,
+        # not merely an organization name (or an incidental README word).
+        capability_terms = (tokens(" ".join(tool.get("capabilities") or []))
+                            | tokens(" ".join(tool.get("bestFor") or []))) - GENERIC - STOPWORDS
+        if len(shared) < 2 and not (set(shared) & capability_terms):
+            continue
+        target_identity = repo["name"].lower()
+        if profile["language"] == "luau" or "roblox" in target_identity:
+            if any(marker in slug.lower() for marker in ENGINE_CONFLICTS["roblox"]):
+                continue
+        if profile["language"] == "gdscript" or "godot" in target_identity:
+            if any(marker in slug.lower() for marker in ENGINE_CONFLICTS["godot"]):
+                continue
         slug_name = slug.rsplit("/", 1)[-1].lower()
         if slug_name in profile["dependencies"] or slug_name in profile["overview"].lower():
             continue
         candidate_languages = set(str(x).lower() for x in (tool.get("languages") or []))
-        languages_match = not candidate_languages or profile["language"] in candidate_languages
+        # Missing language metadata is unknown compatibility, not native support.
+        languages_match = bool(profile["language"]) and profile["language"] in candidate_languages
         score = score_repo(tool, profile["terms"], domains, set(), set())
         if score is None or score < 35:
             continue
@@ -286,9 +314,19 @@ def main() -> int:
         report["projects"].append(row)
     dispatched = 0
     if operator_token:
+        # Validate the origin before even the read-only authenticated request.
+        parsed_service = urlparse(service)
+        if (parsed_service.scheme != "https"
+                or parsed_service.hostname != "production-os1.onrender.com"
+                or parsed_service.username or parsed_service.password
+                or parsed_service.query or parsed_service.fragment):
+            report["errors"].append("Production-OS URL rejected: unapproved operator-token destination")
+            operator_token = ""
+    if operator_token:
         # Always prioritize highest-confidence matches, irrespective of repository order.
         queue = sorted(((item["score"], row, item) for row in report["projects"]
-                        for item in row["suggestions"]), key=lambda p: (-p[0], p[1]["repository"]))
+                        for item in row["suggestions"] if item["mode"] == "native"),
+                        key=lambda p: (-p[0], p[1]["repository"]))
         try:
             existing = request_json(service.rstrip("/") + "/v1/managed-projects", operator_token)
             already = [str(p.get("final_goal") or "") for p in (existing or {}).get("projects", [])]
