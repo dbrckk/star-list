@@ -429,6 +429,22 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix: exclude French filler from catalog matches",
+      "terms": [
+        "catalog",
+        "exclude",
+        "filler",
+        "french",
+        "from",
+        "matches"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -585,6 +601,7 @@
     },
     "catalog": {
       "scripts/audit_catalog_quality.py": 4,
+      "scripts/portfolio_daily.py": 4,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
@@ -651,6 +668,7 @@
       "scripts/validate_catalog.py": 4
     },
     "exclude": {
+      "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
@@ -668,11 +686,18 @@
       "scripts/test_backfill_licenses.py": 4,
       "scripts/test_refresh_github_metadata.py": 8
     },
+    "filler": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "french": {
+      "scripts/portfolio_daily.py": 4
+    },
     "from": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/backfill_licenses.py": 4,
       "scripts/discover_candidates.py": 4,
       "scripts/find_replacements.py": 4,
+      "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 4,
       "scripts/refresh_github_metadata.py": 12,
       "scripts/test_backfill_licenses.py": 4,
@@ -776,7 +801,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "matches": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "merge": {
       "scripts/discover_candidates.py": 4,

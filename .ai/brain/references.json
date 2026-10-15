@@ -8,44 +8,44 @@
     "request_json": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 63,
+        "line": 79,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 63,
+          "line": 79,
           "preview": "def request_json(url: str, token: str = \"\", *, method: str = \"GET\", data: dict | None = None):",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 104,
+          "line": 120,
           "preview": "rows = request_json(base + separator + \"page=\" + str(page), portfolio_token or token)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 119,
+          "line": 135,
           "preview": "payload = request_json(endpoint, token)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 279,
+          "line": 295,
           "preview": "return request_json(url.rstrip(\"/\") + \"/v1/dashboard/launch\", token, method=\"POST\",",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 345,
+          "line": 361,
           "preview": "target = request_json(API + \"/repos/\" + args.repository, portfolio_token or gh_token)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 388,
+          "line": 404,
           "preview": "existing = request_json(service.rstrip(\"/\") + \"/v1/managed-projects\", operator_token)",
           "definition_candidate": false
         }
@@ -55,20 +55,20 @@
     "github_repos": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 97,
+        "line": 113,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 97,
+          "line": 113,
           "preview": "def github_repos(owner: str, token: str, portfolio_token: str) -> list[dict]:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 350,
+          "line": 366,
           "preview": "source = github_repos(args.owner, gh_token, portfolio_token)",
           "definition_candidate": false
         }
@@ -78,26 +78,26 @@
     "file_text": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 117,
+        "line": 133,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 117,
+          "line": 133,
           "preview": "def file_text(full_name: str, path: str, token: str, *, limit: int = 5500) -> str:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 132,
+          "line": 148,
           "preview": "intro = file_text(name, \"README.md\", token, limit=2800)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 135,
+          "line": 151,
           "preview": "value = file_text(name, filename, token, limit=3500)",
           "definition_candidate": false
         }
@@ -107,20 +107,20 @@
     "project_profile": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 128,
+        "line": 144,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 128,
+          "line": 144,
           "preview": "def project_profile(repo: dict, token: str) -> dict:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 363,
+          "line": 379,
           "preview": "profile = project_profile(repo, portfolio_token or gh_token)",
           "definition_candidate": false
         }
@@ -130,20 +130,20 @@
     "eligible": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 150,
+        "line": 166,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 150,
+          "line": 166,
           "preview": "def eligible(item: dict) -> bool:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 183,
+          "line": 199,
           "preview": "if slug.lower() == name or not eligible(tool):",
           "definition_candidate": false
         },
@@ -171,20 +171,20 @@
     "is_reference_candidate": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 164,
+        "line": 180,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 164,
+          "line": 180,
           "preview": "def is_reference_candidate(tool: dict) -> bool:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 218,
+          "line": 234,
           "preview": "\"mode\": (\"reference-review\" if is_reference_candidate(tool)",
           "definition_candidate": false
         }
@@ -194,20 +194,20 @@
     "recommendations": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 175,
+        "line": 191,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 175,
+          "line": 191,
           "preview": "def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) -> list[dict]:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 364,
+          "line": 380,
           "preview": "row[\"suggestions\"] = recommendations(repo, profile, catalog, 3)",
           "definition_candidate": false
         },
@@ -277,20 +277,20 @@
     "count_active_integrations": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 233,
+        "line": 249,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 233,
+          "line": 249,
           "preview": "def count_active_integrations(projects: list[dict]) -> int:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 396,
+          "line": 412,
           "preview": "active_integrations = count_active_integrations(already)",
           "definition_candidate": false
         }
@@ -300,20 +300,20 @@
     "count_failed_v2_integrations": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 243,
+        "line": 259,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 243,
+          "line": 259,
           "preview": "def count_failed_v2_integrations(projects: list[dict]) -> int:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 397,
+          "line": 413,
           "preview": "failed_v2_integrations = count_failed_v2_integrations(already)",
           "definition_candidate": false
         }
@@ -323,32 +323,32 @@
     "integration_marker": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 253,
+        "line": 269,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 253,
+          "line": 269,
           "preview": "def integration_marker(target: str, candidate: dict, version: int = 2) -> str:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 266,
+          "line": 282,
           "preview": "marker = integration_marker(target, candidate)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 406,
+          "line": 422,
           "preview": "marker = integration_marker(row[\"repository\"], item)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 407,
+          "line": 423,
           "preview": "previous = integration_marker(row[\"repository\"], item, version=1)",
           "definition_candidate": false
         }
@@ -358,20 +358,20 @@
     "launch_integration": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 260,
+        "line": 276,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 260,
+          "line": 276,
           "preview": "def launch_integration(url: str, token: str, target: str, candidate: dict):",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 427,
+          "line": 443,
           "preview": "result = launch_integration(service, operator_token, row[\"repository\"], item)",
           "definition_candidate": false
         }
@@ -381,7 +381,7 @@
     "render_markdown": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 286,
+        "line": 302,
         "kind": "function",
         "language": "python"
       },
@@ -412,13 +412,13 @@
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 286,
+          "line": 302,
           "preview": "def render_markdown(report: dict) -> str:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 445,
+          "line": 461,
           "preview": "args.markdown.write_text(render_markdown(report), encoding=\"utf-8\")",
           "definition_candidate": false
         },
@@ -476,7 +476,7 @@
     "main": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 320,
+        "line": 336,
         "kind": "function",
         "language": "python"
       },
@@ -651,13 +651,13 @@
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 320,
+          "line": 336,
           "preview": "def main() -> int:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 451,
+          "line": 467,
           "preview": "sys.exit(main())",
           "definition_candidate": false
         },

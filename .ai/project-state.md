@@ -27,19 +27,19 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-15T21:31:10Z
+Generated: 2026-10-15T21:34:53Z
 
 ### Git
 - Branch: `main`
-- Head: `f7a3872234e0`
-- Commit date: 2026-10-15T23:31:00+02:00
-- Commit: fix: make reference-only tools reviewable and cap portfolio queue
+- Head: `def8d8374010`
+- Commit date: 2026-10-15T23:34:43+02:00
+- Commit: fix: exclude French filler from catalog matches
 - Tracked files: 274
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
-- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
+- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `.github/workflows/daily-portfolio-integration.yml`
 
 ### Project signals

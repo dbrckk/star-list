@@ -2,16 +2,15 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 24,
+    "example_count": 25,
     "rejected_count": 0,
     "terms": [
-      "cap",
-      "make",
-      "portfolio",
-      "queue",
-      "reference-only",
-      "reviewable",
-      "tools"
+      "catalog",
+      "exclude",
+      "filler",
+      "french",
+      "from",
+      "matches"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -19,7 +18,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix: make reference-only tools reviewable and cap portfolio queue",
+  "task": "fix: exclude French filler from catalog matches",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py"
