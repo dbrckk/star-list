@@ -396,6 +396,22 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix: recover failed portfolio integrations with bounded budgets",
+      "terms": [
+        "bounded",
+        "budgets",
+        "failed",
+        "integrations",
+        "portfolio",
+        "recover"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -533,6 +549,12 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "bounded": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "budgets": {
+      "scripts/portfolio_daily.py": 4
+    },
     "build": {
       "scripts/star_import_pipeline.py": 4,
       "scripts/test_star_import_pipeline.py": 4
@@ -611,6 +633,9 @@
     "exclude": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "failed": {
+      "scripts/portfolio_daily.py": 4
     },
     "feat": {
       "scripts/admit_github_stars.py": 4,
@@ -696,6 +721,9 @@
     "integration": {
       "scripts/portfolio_daily.py": 4
     },
+    "integrations": {
+      "scripts/portfolio_daily.py": 4
+    },
     "into": {
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
@@ -753,7 +781,7 @@
       "scripts/test_star_import_pipeline.py": 4
     },
     "portfolio": {
-      "scripts/portfolio_daily.py": 8
+      "scripts/portfolio_daily.py": 12
     },
     "production-os": {
       "scripts/portfolio_daily.py": 4
@@ -797,6 +825,9 @@
       "scripts/infer_selection_guidance.py": 4,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 4
+    },
+    "recover": {
+      "scripts/portfolio_daily.py": 4
     },
     "relations": {
       "scripts/recommend.py": 8,

@@ -1010,10 +1010,15 @@ score = score_repo(tool, profile["terms"], domains, set(), set())
 ⋮----
 # A language mismatch is reviewable as a service/CLI integration, never a direct dependency.
 ⋮----
+INTEGRATION_TOKEN_BUDGET = 90000
+⋮----
+def integration_marker(target: str, candidate: dict, version: int = 2) -> str
+⋮----
+identity = hashlib.sha256(
+⋮----
 def launch_integration(url: str, token: str, target: str, candidate: dict)
 ⋮----
-identity = hashlib.sha256((target.lower() + "\0" + candidate["repository"].lower()).encode()).hexdigest()[:24]
-marker = "starlist-integration-v1-" + identity
+marker = integration_marker(target, candidate)
 goal = (
 ⋮----
 def render_markdown(report: dict) -> str
@@ -1059,11 +1064,21 @@ operator_token = ""
 queue = sorted(((item["score"], row, item) for row in report["projects"]
 ⋮----
 existing = request_json(service.rstrip("/") + "/v1/managed-projects", operator_token)
-already = [str(p.get("final_goal") or "") for p in (existing or {}).get("projects", [])]
+already = [p for p in (existing or {}).get("projects", []) if isinstance(p, dict)]
 ⋮----
 existing = None
 ⋮----
-marker = "starlist-integration-v1-" + hashlib.sha256(
+marker = integration_marker(row["repository"], item)
+previous = integration_marker(row["repository"], item, version=1)
+⋮----
+old = next(
+# Do not duplicate active/reviewable jobs. Allow exactly one
+# idempotent higher-budget restart when a v1 job has failed.
+is_recovery = False
+⋮----
+status = str(old.get("status") or "").upper().replace("-", "_")
+⋮----
+is_recovery = True
 ⋮----
 result = launch_integration(service, operator_token, row["repository"], item)
 ```

@@ -159,13 +159,34 @@
       ],
       "dependency_count": 3
     },
+    "integration_marker": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 217,
+        "end": 221
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
     "launch_integration": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 214,
-        "end": 234
+        "start": 224,
+        "end": 247
       },
       "symbol_dependencies": [
+        {
+          "symbol": "integration_marker",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 217,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
         {
           "symbol": "request_json",
           "definitions": [
@@ -179,13 +200,13 @@
           "relation": "same_file"
         }
       ],
-      "dependency_count": 1
+      "dependency_count": 2
     },
     "render_markdown": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 237,
-        "end": 262
+        "start": 250,
+        "end": 275
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -193,8 +214,8 @@
     "main": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 265,
-        "end": 363
+        "start": 278,
+        "end": 390
       },
       "symbol_dependencies": [
         {
@@ -210,11 +231,23 @@
           "relation": "same_file"
         },
         {
+          "symbol": "integration_marker",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 217,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
           "symbol": "launch_integration",
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 214,
+              "line": 224,
               "kind": "function",
               "language": "python"
             }
@@ -250,7 +283,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 237,
+              "line": 250,
               "kind": "function",
               "language": "python"
             }
@@ -270,7 +303,7 @@
           "relation": "same_file"
         }
       ],
-      "dependency_count": 6
+      "dependency_count": 7
     }
   }
 }

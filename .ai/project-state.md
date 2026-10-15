@@ -27,22 +27,21 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-15T20:31:33Z
+Generated: 2026-10-15T21:13:50Z
 
 ### Git
 - Branch: `main`
-- Head: `3f0fd0a85a48`
-- Commit date: 2026-10-15T22:31:21+02:00
-- Commit: fix: qualify portfolio matches before Production-OS handoff
+- Head: `3636bb0694ee`
+- Commit date: 2026-10-15T23:13:15+02:00
+- Commit: fix: recover failed portfolio integrations with bounded budgets
 - Tracked files: 274
 
 ### Recently changed files
-- `.github/workflows/portfolio-scan-smoke.yml`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
+- `.github/workflows/portfolio-scan-smoke.yml`
 - `.github/workflows/daily-portfolio-integration.yml`
 - `catalog.json`
-- `.github/workflows/sync-github-stars.yml`
 
 ### Project signals
 - No common build descriptor detected

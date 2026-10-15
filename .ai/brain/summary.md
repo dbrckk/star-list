@@ -3,7 +3,7 @@
 - Index mode: incremental
 - Files indexed: 52
 - Files reparsed this run: 1
-- Symbols: 204
+- Symbols: 205
 - Internal import edges: 10
 - Impacted files: 1
 - Selected tests: 0
@@ -18,8 +18,8 @@
 - scripts/evaluate_candidates.py: 12 symbols
 - scripts/test_refresh_github_metadata.py: 12 symbols
 - scripts/star_import_pipeline.py: 11 symbols
+- scripts/portfolio_daily.py: 10 symbols
 - scripts/refresh_github_metadata.py: 10 symbols
-- scripts/portfolio_daily.py: 9 symbols
 - scripts/sync_github_stars.py: 8 symbols
 - scripts/test_sync_github_stars.py: 8 symbols
 - scripts/filter_discovery_memory.py: 7 symbols
@@ -44,7 +44,7 @@
 - AST index mode: incremental
 - AST files reparsed this run: 1
 - outline files retained: 52
-- top-level items retained: 827
+- top-level items retained: 829
 - direct members retained: 8
 - symbol shards: 24
 - route named symbols via ast-routing.json, then fetch one ast-symbols/<initial>.json shard
