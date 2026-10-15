@@ -1,0 +1,71 @@
+name: Daily portfolio star-list integration
+
+on:
+  schedule:
+    - cron: "37 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: star-list-portfolio-daily
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Validate scanner syntax
+        run: python -m py_compile scripts/portfolio_daily.py
+      - name: Inspect every accessible owner repository and submit qualified work
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PORTFOLIO_GITHUB_TOKEN: ${{ secrets.PORTFOLIO_GITHUB_TOKEN }}
+          PRODUCTION_OS_OPERATOR_TOKEN: ${{ secrets.PRODUCTION_OS_OPERATOR_TOKEN }}
+          PRODUCTION_OS_URL: https://production-os1.onrender.com
+        run: |
+          python scripts/portfolio_daily.py \
+            --owner dbrckk \
+            --output portfolio-daily.json \
+            --markdown portfolio-daily.md \
+            --max-dispatch 3
+      - name: Preserve evidence for all scanned repositories
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-portfolio-star-list-review
+          path: |
+            portfolio-daily.json
+            portfolio-daily.md
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Update the persistent portfolio review issue
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -s portfolio-daily.md ]; then
+            echo "::error::No portfolio report available; refusing to report success"
+            exit 1
+          fi
+          existing="$(gh issue list --state open --limit 100 --json number,body \
+            --jq '[.[] | select(.body != null and (.body | contains("<!-- star-list-portfolio-daily -->")))] | .[0].number // empty')"
+          if [ -n "$existing" ]; then
+            gh issue edit "$existing" \
+              --title "Daily star-list portfolio integration review" \
+              --body-file portfolio-daily.md
+          else
+            gh issue create \
+              --title "Daily star-list portfolio integration review" \
+              --body-file portfolio-daily.md
+          fi
