@@ -288,7 +288,7 @@ def main() -> int:
     if operator_token:
         # Always prioritize highest-confidence matches, irrespective of repository order.
         queue = sorted(((item["score"], row, item) for row in report["projects"]
-                        for item in row["suggestions"][:1]), key=lambda p: (-p[0], p[1]["repository"]))
+                        for item in row["suggestions"]), key=lambda p: (-p[0], p[1]["repository"]))
         try:
             existing = request_json(service.rstrip("/") + "/v1/managed-projects", operator_token)
             already = [str(p.get("final_goal") or "") for p in (existing or {}).get("projects", [])]
