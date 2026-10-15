@@ -55,7 +55,7 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
 - Only open-source candidates with an eligible explicitly recognized SPDX
   license are considered. Verify upstream files and redistribution terms at
   implementation time; metadata alone is insufficient.
-- Max 3 managed-project launches per daily run and one top candidate per
+- Max 3 managed-project launches per daily run and up to three qualified candidates per
   target. All accessible repositories are still inspected on each run.
 - Do not interpret a high matching score as proof of compatibility. The worker
   must check dependency compatibility, licenses, security, test/build results,
