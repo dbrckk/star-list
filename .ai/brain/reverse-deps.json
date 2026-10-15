@@ -45,13 +45,23 @@
       "in_degree": 3,
       "out_degree": 0
     },
+    "scripts/portfolio_daily.py": {
+      "dependencies": [
+        "scripts/recommend.py"
+      ],
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 1
+    },
     "scripts/recommend.py": {
       "dependencies": [
         "scripts/find_replacements.py",
         "scripts/health_score.py"
       ],
-      "dependents": [],
-      "in_degree": 0,
+      "dependents": [
+        "scripts/portfolio_daily.py"
+      ],
+      "in_degree": 1,
       "out_degree": 2
     },
     "scripts/refresh_github_metadata.py": {

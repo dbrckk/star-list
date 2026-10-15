@@ -41,7 +41,9 @@ The content is organized as follows:
 .github/
   workflows/
     ai-repo-map.yml
+    daily-portfolio-integration.yml
     license-backfill.yml
+    portfolio-scan-smoke.yml
     refresh-metadata.yml
     semantic-refresh.yml
     sync-github-stars.yml
@@ -81,6 +83,7 @@ scripts/
   find_replacements.py
   health_score.py
   infer_selection_guidance.py
+  portfolio_daily.py
   recommend.py
   refresh_github_metadata.py
   render_discovery_issue.py
@@ -154,6 +157,80 @@ jobs:
     uses: dbrckk/repo-standards/.github/workflows/reusable-unified.yml@main
 ````
 
+## File: .github/workflows/daily-portfolio-integration.yml
+````yaml
+name: Daily portfolio star-list integration
+
+on:
+  schedule:
+    - cron: "37 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: star-list-portfolio-daily
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Validate scanner syntax
+        run: python -m py_compile scripts/portfolio_daily.py
+      - name: Inspect every accessible owner repository and submit qualified work
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PRODUCTION_OS_OPERATOR_TOKEN: ${{ secrets.PRODUCTION_OS_OPERATOR_TOKEN }}
+          PRODUCTION_OS_URL: https://production-os1.onrender.com
+        run: |
+          python scripts/portfolio_daily.py \
+            --owner dbrckk \
+            --output portfolio-daily.json \
+            --markdown portfolio-daily.md \
+            --max-dispatch 3
+      - name: Preserve evidence for all scanned repositories
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-portfolio-star-list-review
+          path: |
+            portfolio-daily.json
+            portfolio-daily.md
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Update the persistent portfolio review issue
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -s portfolio-daily.md ]; then
+            echo "::error::No portfolio report available; refusing to report success"
+            exit 1
+          fi
+          existing="$(gh issue list --state open --limit 100 --json number,body \
+            --jq '[.[] | select(.body != null and (.body | contains("<!-- star-list-portfolio-daily -->")))] | .[0].number // empty')"
+          if [ -n "$existing" ]; then
+            gh issue edit "$existing" \
+              --title "Daily star-list portfolio integration review" \
+              --body-file portfolio-daily.md
+          else
+            gh issue create \
+              --title "Daily star-list portfolio integration review" \
+              --body-file portfolio-daily.md
+          fi
+````
+
 ## File: .github/workflows/license-backfill.yml
 ````yaml
 name: One-shot license backfill
@@ -204,6 +281,59 @@ jobs:
           git commit -m "chore: backfill detected repository licenses"
           git pull --rebase origin main
           git push
+````
+
+## File: .github/workflows/portfolio-scan-smoke.yml
+````yaml
+name: Portfolio discovery live smoke
+
+on:
+  pull_request:
+    paths:
+      - "scripts/portfolio_daily.py"
+      - ".github/workflows/daily-portfolio-integration.yml"
+      - ".github/workflows/portfolio-scan-smoke.yml"
+      - "docs/DAILY_PORTFOLIO_INTEGRATION.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Read-only live portfolio discovery, without integration credentials
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/portfolio_daily.py \
+            --owner dbrckk --max-dispatch 0 \
+            --output portfolio-daily.json --markdown portfolio-daily.md
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path("portfolio-daily.json").read_text())
+          assert result["summary"]["discovered"] >= 1
+          assert result["summary"]["inspected"] == result["summary"]["discovered"]
+          assert result["summary"]["dispatched"] == 0
+          print("Read-only scan verified:", result["summary"])
+          PY
+      - name: Preserve real scan evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-live-readonly-smoke
+          path: |
+            portfolio-daily.json
+            portfolio-daily.md
+          if-no-files-found: warn
+          retention-days: 14
 ````
 
 ## File: .github/workflows/refresh-metadata.yml
@@ -1826,6 +1956,143 @@ args = parser.parse_args()
 ⋮----
 data = json.loads(CATALOG.read_text())
 changed = enrich(data.get("repositories", []), tier=args.tier, refresh_inferred=args.refresh_inferred)
+````
+
+## File: scripts/portfolio_daily.py
+````python
+#!/usr/bin/env python3
+"""Daily, read-only portfolio discovery with optional idempotent Production-OS handoff.
+
+The GitHub Actions token can scan public repositories but cannot write to
+other repositories. Actual code integration is delegated to a qualified
+Production-OS worker, never treated as completed by this script.
+"""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+API = "https://api.github.com"
+ALLOWED_LICENSES = {
+KEYWORDS = {
+GENERIC = {"ai", "agent", "dev", "web", "python", "typescript", "app", "open", "tools", "github", "repo"}
+MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
+⋮----
+def request_json(url: str, token: str = "", *, method: str = "GET", data: dict | None = None)
+⋮----
+parsed = urlparse(url)
+⋮----
+headers = {
+⋮----
+body = json.dumps(data).encode() if data is not None else None
+⋮----
+raw = response.read(3_000_000)
+⋮----
+def github_repos(owner: str, token: str, portfolio_token: str) -> list[dict]
+⋮----
+base = (API + "/user/repos?affiliation=owner&sort=full_name&per_page=100"
+result = []
+⋮----
+separator = "&" if "?" in base else "?"
+rows = request_json(base + separator + "page=" + str(page), portfolio_token or token)
+⋮----
+def file_text(full_name: str, path: str, token: str, *, limit: int = 5500) -> str
+⋮----
+endpoint = API + "/repos/" + "/".join(quote(part, safe="") for part in full_name.split("/")) + "/contents/" + quote(path, safe="")
+payload = request_json(endpoint, token)
+⋮----
+raw = base64.b64decode(payload.get("content", ""), validate=False)
+⋮----
+def project_profile(repo: dict, token: str) -> dict
+⋮----
+name = repo["full_name"]
+description = str(repo.get("description") or "")
+topics = repo.get("topics") or []
+intro = file_text(name, "README.md", token, limit=2800)
+dependency_text = ""
+⋮----
+value = file_text(name, filename, token, limit=3500)
+⋮----
+overview = " ".join([repo["name"], description, " ".join(topics), intro[:1200]])
+label_text = " ".join([repo["name"], description, " ".join(topics)]).lower()
+domains = set(infer_domains(tokens(label_text)))
+⋮----
+# README may refine a known project, but never invent a domain solely from README.
+⋮----
+def eligible(item: dict) -> bool
+⋮----
+gh = item.get("github") or {}
+⋮----
+license_key = str(gh.get("license") or "").strip().lower()
+⋮----
+def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) -> list[dict]
+⋮----
+name = repo["full_name"].lower()
+domains = set(profile["domains"])
+⋮----
+matches = []
+⋮----
+slug = str(tool.get("repo") or "")
+⋮----
+terms = (tokens(slug) | tokens(" ".join(tool.get("capabilities") or []))
+shared = sorted((profile["terms"] & terms) - GENERIC)
+⋮----
+slug_name = slug.rsplit("/", 1)[-1].lower()
+⋮----
+candidate_languages = set(str(x).lower() for x in (tool.get("languages") or []))
+languages_match = not candidate_languages or profile["language"] in candidate_languages
+score = score_repo(tool, profile["terms"], domains, set(), set())
+⋮----
+# A language mismatch is reviewable as a service/CLI integration, never a direct dependency.
+⋮----
+def launch_integration(url: str, token: str, target: str, candidate: dict)
+⋮----
+identity = hashlib.sha256((target.lower() + "\0" + candidate["repository"].lower()).encode()).hexdigest()[:24]
+marker = "starlist-integration-v1-" + identity
+goal = (
+⋮----
+def render_markdown(report: dict) -> str
+⋮----
+summary = report["summary"]
+lines = ["<!-- star-list-portfolio-daily -->", "# Daily star-list portfolio discovery", "",
+⋮----
+def main() -> int
+⋮----
+ap = argparse.ArgumentParser()
+⋮----
+args = ap.parse_args()
+⋮----
+gh_token = os.getenv("GITHUB_TOKEN", "")
+portfolio_token = os.getenv("PORTFOLIO_GITHUB_TOKEN", "")
+operator_token = os.getenv("PRODUCTION_OS_OPERATOR_TOKEN", "")
+service = os.getenv("PRODUCTION_OS_URL", "https://production-os1.onrender.com")
+report = {"generated_at": datetime.now(timezone.utc).isoformat(), "owner": args.owner,
+⋮----
+catalog = json.loads(args.catalog.read_text(encoding="utf-8"))["repositories"]
+⋮----
+target = request_json(API + "/repos/" + args.repository, portfolio_token or gh_token)
+⋮----
+source = [target]
+⋮----
+source = github_repos(args.owner, gh_token, portfolio_token)
+# The central issue is public: never publish private target metadata there.
+source = [repo for repo in source if not repo.get("private")]
+⋮----
+target = repo["full_name"]
+row = {"repository": target, "status": "scanned", "suggestions": [], "dispatches": []}
+⋮----
+profile = project_profile(repo, portfolio_token or gh_token)
+⋮----
+dispatched = 0
+⋮----
+# Always prioritize highest-confidence matches, irrespective of repository order.
+queue = sorted(((item["score"], row, item) for row in report["projects"]
+⋮----
+existing = request_json(service.rstrip("/") + "/v1/managed-projects", operator_token)
+already = [str(p.get("final_goal") or "") for p in (existing or {}).get("projects", [])]
+⋮----
+existing = None
+⋮----
+marker = "starlist-integration-v1-" + hashlib.sha256(
+⋮----
+result = launch_integration(service, operator_token, row["repository"], item)
 ````
 
 ## File: scripts/recommend.py
@@ -34942,6 +35209,6279 @@ Repository-specific rules:
       ],
       "guidanceSource": "curated",
       "lifecycle": "active"
+    },
+    {
+      "repo": "78/xiaozhi-esp32",
+      "githubRepositoryId": 850267588,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "chatbot",
+        "esp32",
+        "mcp"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 31192,
+        "forks": 7293,
+        "openIssues": 677,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T00:51:46Z"
+      },
+      "bestFor": [
+        "An MCP-based chatbot | 一个基于MCP的聊天机器人"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "abraxas/pfsense-qinq-parent-if",
+      "githubRepositoryId": 1417408240,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 17,
+        "forks": 2,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-13T15:58:37Z"
+      },
+      "bestFor": [
+        "pfSense CE 2.9.0-DEVELOPMENT - High - Remote - RCE - QinQ parent-if ifconfig"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "academa-labs/manimgx",
+      "githubRepositoryId": 1406372374,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Graphisme / 3D",
+      "domain": "graphics",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1382,
+        "forks": 95,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T09:24:18Z"
+      },
+      "bestFor": [
+        "The animation engine for agents: blazingly fast math and 3D videos with Manim's Python API, on a Rust GPU core."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ace-step/ACE-Step-1.5",
+      "githubRepositoryId": 1050131556,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "text2music"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 13615,
+        "forks": 1783,
+        "openIssues": 170,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-11T14:11:22Z"
+      },
+      "bestFor": [
+        "The most powerful local music generation model that outperforms almost all commercial alternatives, supporting Mac, AMD, Intel, and CUDA devices."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "activepieces/activepieces",
+      "githubRepositoryId": 573661753,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai-agent",
+        "ai-agent-tools",
+        "ai-agents",
+        "ai-agents-framework",
+        "mcp",
+        "mcp-server",
+        "mcp-tools",
+        "mcps",
+        "n8n-alternative",
+        "no-code-automation",
+        "workflow",
+        "workflow-automation"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 25061,
+        "forks": 4344,
+        "openIssues": 752,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T19:19:28Z"
+      },
+      "bestFor": [
+        "AI Agents & MCPs & AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows & AI Agents • MCPs for AI Agents"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Adaptix-Framework/AdaptixC2",
+      "githubRepositoryId": 845681113,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3763,
+        "forks": 687,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-08T20:58:59Z"
+      },
+      "bestFor": [
+        "AdaptixC2 is a highly modular advanced redteam toolkit"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Alibaba-NLP/DeepResearch",
+      "githubRepositoryId": 914316754,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "alibaba",
+        "artificial-intelligence",
+        "deep-research",
+        "deepresearch",
+        "information-seeking",
+        "llm",
+        "tongyi",
+        "web-agent"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 20053,
+        "forks": 1531,
+        "openIssues": 96,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-02-27T13:12:11Z"
+      },
+      "bestFor": [
+        "Tongyi Deep Research, the Leading Open-source Deep Research Agent"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Anil-matcha/AI-Youtube-Shorts-Generator",
+      "githubRepositoryId": 821280833,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "2short-ai-alternative",
+        "ai-clip-generator",
+        "ai-clipping",
+        "auto-clip",
+        "auto-crop",
+        "highlight-detection",
+        "klap-alternative",
+        "llm",
+        "open-source",
+        "opus-clip-alternative",
+        "reels",
+        "shorts-maker"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5365,
+        "forks": 970,
+        "openIssues": 25,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-11T11:19:33Z"
+      },
+      "bestFor": [
+        "Open-source alternative to Opus Clip, Vidyo.ai, Klap & SubMagic. Turn long-form YouTube videos into viral 9:16 shorts using LLM highlight detection, Whisper transcription, and auto vertical cropping —"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "antgroup/echomimic",
+      "githubRepositoryId": 823448250,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Graphisme / 3D",
+      "domain": "graphics",
+      "capabilities": [
+        "aaai2025",
+        "audio-driven-portrait-animations",
+        "audio-driven-talking-face",
+        "human-animation",
+        "talking-face-generation",
+        "talking-head"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4321,
+        "forks": 470,
+        "openIssues": 119,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-04-07T04:02:07Z"
+      },
+      "bestFor": [
+        "[AAAI 2025] EchoMimic: Lifelike Audio-Driven Portrait Animations through Editable Landmark Conditioning"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "anthropics/claude-agent-sdk-python",
+      "githubRepositoryId": 1000486904,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 8286,
+        "forks": 1344,
+        "openIssues": 554,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-14T19:25:39Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "anthropics/claude-quickstarts",
+      "githubRepositoryId": 849553306,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 18011,
+        "forks": 3103,
+        "openIssues": 228,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T17:34:23Z"
+      },
+      "bestFor": [
+        "A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "apache/caldera",
+      "githubRepositoryId": 112409981,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "adversary-emulation",
+        "caldera",
+        "cybersecurity",
+        "mitre-attack",
+        "red-team",
+        "security-automation",
+        "security-testing"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 7435,
+        "forks": 1401,
+        "openIssues": 77,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-12T19:16:34Z"
+      },
+      "bestFor": [
+        "Automated Adversary Emulation Platform"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Armur-Ai/Pentest-Swarm-AI",
+      "githubRepositoryId": 777597786,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "ai-agents",
+        "bug-bounty",
+        "cybersecurity",
+        "offensive-security",
+        "penetration-testing",
+        "penetration-testing-framework",
+        "penetration-testing-tools"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2981,
+        "forks": 546,
+        "openIssues": 17,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-11T13:10:50Z"
+      },
+      "bestFor": [
+        "Autonomous penetration testing using a swarm of AI agents. Orchestrates recon, classification, exploitation, and reporting specialists with ReAct reasoning — supports bug bounty, continuous monitoring"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Asad-Ismail/MoneyPrinterTurbo-Extended",
+      "githubRepositoryId": 988352805,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 509,
+        "forks": 160,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-08-20T15:13:11Z"
+      },
+      "bestFor": [
+        "An extended improved implementation of Money printer turbo"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "assafelovic/gpt-researcher",
+      "githubRepositoryId": 639835356,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "ai",
+        "automation",
+        "deepresearch",
+        "llms",
+        "mcp",
+        "mcp-server",
+        "python",
+        "research",
+        "search",
+        "webscraping"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 30114,
+        "forks": 4130,
+        "openIssues": 35,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-10T22:03:53Z"
+      },
+      "bestFor": [
+        "An autonomous agent that conducts deep research on any data using any LLM providers"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ATH-MaaS/Pixelle-Video",
+      "githubRepositoryId": 1091534692,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Génération de médias / IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "aigc",
+        "comfyui",
+        "image-generation",
+        "tts",
+        "video-generation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 29084,
+        "forks": 4230,
+        "openIssues": 169,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-06-14T12:40:58Z"
+      },
+      "bestFor": [
+        "🚀 AI 全自动短视频引擎 | AI Fully Automated Short Video Engine"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "bdring/Grbl_Esp32",
+      "githubRepositoryId": 142050049,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "cnc",
+        "esp32",
+        "grbl",
+        "stepper-motor"
+      ],
+      "languages": [
+        "nesc"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1975,
+        "forks": 593,
+        "openIssues": 627,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2024-02-25T18:35:23Z"
+      },
+      "bestFor": [
+        "A port of Grbl CNC Firmware for ESP32"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "bearinmindcat/morphe-patches",
+      "githubRepositoryId": 1384369772,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [],
+      "languages": [
+        "java"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 167,
+        "forks": 2,
+        "openIssues": 44,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-14T18:28:47Z"
+      },
+      "bestFor": [
+        "Morphe android app patches (for apps that I use) - stable releases"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "BishopFox/sliver",
+      "githubRepositoryId": 166304026,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "adversarial-attacks",
+        "adversary-simulation",
+        "c2",
+        "command-and-control",
+        "dns",
+        "dns-server",
+        "golang",
+        "gplv3",
+        "http",
+        "implant",
+        "red-team",
+        "red-team-engagement"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 12128,
+        "forks": 1627,
+        "openIssues": 232,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-14T15:56:17Z"
+      },
+      "bestFor": [
+        "Adversary Emulation Framework"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "BitMaker-hub/NerdMiner_v2",
+      "githubRepositoryId": 616222670,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "bitcoin",
+        "cpu-miner",
+        "opensource"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2809,
+        "forks": 651,
+        "openIssues": 258,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-06-14T22:09:28Z"
+      },
+      "bestFor": [
+        "Improved version of first ESP32 NerdMiner"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "black-forest-labs/flux2",
+      "githubRepositoryId": 1103476826,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2737,
+        "forks": 202,
+        "openIssues": 43,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-03-12T15:06:20Z"
+      },
+      "bestFor": [
+        "Official inference repo for FLUX.2 models"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "BojanJurca/Esp32_oscilloscope",
+      "githubRepositoryId": 204138683,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "esp32-arduino",
+        "oscilloscope",
+        "web-interface"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1082,
+        "forks": 137,
+        "openIssues": 4,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-06-02T13:45:55Z"
+      },
+      "bestFor": [
+        "ESP32 oscilloscope - see the signals through Web browser the way ESP32 sees them"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "BruceDevices/firmware",
+      "githubRepositoryId": 795166961,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "bruce",
+        "cardputer",
+        "embedded-systems",
+        "esp32-c5",
+        "esp32-s3",
+        "flipperzero",
+        "hardware",
+        "iot",
+        "lilygo",
+        "m5stack",
+        "m5stack-cardputer",
+        "m5stack-stickc"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6995,
+        "forks": 2332,
+        "openIssues": 245,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-15T14:46:48Z"
+      },
+      "bestFor": [
+        "Predatory ESP32 Firmware"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ccusage/ccusage",
+      "githubRepositoryId": 992755069,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 19018,
+        "forks": 878,
+        "openIssues": 7,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T19:17:39Z"
+      },
+      "bestFor": [
+        "npx ccusage"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "chatfire-AI/huobao-drama",
+      "githubRepositoryId": 1128267392,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "vue"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 16276,
+        "forks": 3014,
+        "openIssues": 35,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-05T16:33:20Z"
+      },
+      "bestFor": [
+        "🎬 火宝短剧 - 基于AI的一站式短剧生成平台 《一句话生成完整短剧，从剧本到成片全自动化》 Huobao Drama - An AI-Powered End-to-End Short Drama Generator \"One Sentence to Complete Drama: Fully Automated from Script to Final Video\""
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "chatwoot/chatwoot",
+      "githubRepositoryId": 202291859,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "DevOps / infrastructure",
+      "domain": "devops",
+      "capabilities": [
+        "actioncable",
+        "chat-widget",
+        "conversation",
+        "customer-support",
+        "dashboard",
+        "design",
+        "docker",
+        "docker-image",
+        "heroku",
+        "intercom",
+        "javascript",
+        "livechat"
+      ],
+      "languages": [
+        "ruby"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 37829,
+        "forks": 9216,
+        "openIssues": 1598,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "develop",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T14:28:31Z"
+      },
+      "bestFor": [
+        "Open-source live-chat, email support, omni-channel desk. An alternative to Intercom, Zendesk, Salesforce Service Cloud etc. 🔥💬"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "cifertech/ESP32-DIV",
+      "githubRepositoryId": 698976765,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "arduino",
+        "attack",
+        "bluetooth",
+        "deauthentication-attack",
+        "deauther",
+        "defense",
+        "esp32",
+        "esp32-s3",
+        "espressif",
+        "flipper-zero",
+        "flipperzero",
+        "hack"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4181,
+        "forks": 556,
+        "openIssues": 172,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-22T08:29:02Z"
+      },
+      "bestFor": [
+        "ESP32DIV is a multi-purpose wireless offensive and defensive toolkit powered by an ESP32"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ckcr4lyf/EvilAppleJuice-ESP32",
+      "githubRepositoryId": 690585078,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2316,
+        "forks": 219,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "WTFPL",
+        "pushedAt": "2026-06-06T08:23:19Z"
+      },
+      "bestFor": [
+        "Spam Apple Proximity Messages via an ESP32"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "copperheadhq/copperhead",
+      "githubRepositoryId": 1304752726,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "agentic-ai",
+        "cli",
+        "coding-agent",
+        "developer-tools",
+        "eda",
+        "electonics",
+        "hardware",
+        "hardware-design",
+        "kicad",
+        "kicad-pcb",
+        "kicad-pcb-design-electronics-led-open-hardware"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 514,
+        "forks": 115,
+        "openIssues": 222,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T18:35:54Z"
+      },
+      "bestFor": [
+        "Hardware as fast as software."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "cosmo-wander-ai/cosmo-edge",
+      "githubRepositoryId": 1263549136,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "bm1688",
+        "computer-vision",
+        "cpp17",
+        "cv186x",
+        "edge-ai",
+        "grounding-dino",
+        "on-device-ai",
+        "rk3576",
+        "rknn",
+        "rockchip",
+        "rv1126b",
+        "sophon"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1688,
+        "forks": 307,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T09:23:39Z"
+      },
+      "bestFor": [
+        "Production-grade C++ edge AI engine for video analytics and on-device VLM across Sophon, Rockchip RKNN, and x86, with visual orchestration, real-time OSD, events, and reproducible benchmarks."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "cyberman54/ESP32-Paxcounter",
+      "githubRepositoryId": 125756247,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "arduino",
+        "bme680",
+        "dcf77",
+        "esp32",
+        "gps",
+        "gps-tracker",
+        "helium-network",
+        "heltec",
+        "iot",
+        "lopy",
+        "lora",
+        "lorawan"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2114,
+        "forks": 455,
+        "openIssues": 19,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-04T15:16:15Z"
+      },
+      "bestFor": [
+        "Wifi & BLE driven passenger flow metering with cheap ESP32 boards"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "daimajia/AndroidSwipeLayout",
+      "githubRepositoryId": 23301468,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [],
+      "languages": [
+        "java"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 12348,
+        "forks": 2626,
+        "openIssues": 383,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2023-11-10T08:30:13Z"
+      },
+      "bestFor": [
+        "The Most Powerful Swipe Layout!"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "DroneBridge/ESP32",
+      "githubRepositoryId": 145338929,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "ardupilot",
+        "communication-systems",
+        "datalink",
+        "drone",
+        "dronebridge",
+        "esp32",
+        "espnow",
+        "espressif",
+        "inav",
+        "ltm",
+        "mavlink",
+        "msp"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1123,
+        "forks": 237,
+        "openIssues": 7,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-12T09:43:17Z"
+      },
+      "bestFor": [
+        "DroneBridge for ESP32. A secure & transparent telemetry link with support for WiFi and ESP-NOW. Supporting MAVLink, MSP, LTM or any other protocol"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "easytarget/esp32-cam-webserver",
+      "githubRepositoryId": 222949196,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "ai-thinker",
+        "ai-thinker-boards",
+        "camera",
+        "esp32-cam",
+        "espressif",
+        "face-recognition",
+        "webcam"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1538,
+        "forks": 390,
+        "openIssues": 30,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "LGPL-2.1",
+        "pushedAt": "2024-12-06T15:04:53Z"
+      },
+      "bestFor": [
+        "Expanded version of the Espressif ESP webcam"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Edzelf/ESP32-Radio",
+      "githubRepositoryId": 92173631,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1075,
+        "forks": 234,
+        "openIssues": 343,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-3.0",
+        "pushedAt": "2024-10-21T09:34:05Z"
+      },
+      "bestFor": [
+        "Internet radio based on ESP32, VS1053 and a TFT screen."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "elizaOS/eliza",
+      "githubRepositoryId": 826170402,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Mémoire / IA",
+      "domain": "ai_memory",
+      "capabilities": [
+        "agent",
+        "agentic",
+        "ai",
+        "autonomous",
+        "chatbot",
+        "crypto",
+        "discord",
+        "eliza",
+        "elizaos",
+        "framework",
+        "plugins",
+        "rag"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 19607,
+        "forks": 5817,
+        "openIssues": 71,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "develop",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T19:20:31Z"
+      },
+      "bestFor": [
+        "Open source agentic operating system"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "EmenstaNougat/ESP32-BlueJammer",
+      "githubRepositoryId": 825347997,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "bluetooth",
+        "bt",
+        "coding",
+        "cybersecurity",
+        "diy",
+        "electronics",
+        "esp32",
+        "flashing",
+        "hacker",
+        "hacking",
+        "jammer",
+        "nrf24"
+      ],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 8628,
+        "forks": 919,
+        "openIssues": 8,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-03-29T00:34:40Z"
+      },
+      "bestFor": [
+        "The ESP32-BlueJammer (Bluetooth jammer, BLE jammer, WiFi jammer, RC jammer) disrupts 2.4GHz communications. Using an ESP32 and nRF24 modules, it generates noise and unnecessary packets, causing interf"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "emsesp/EMS-ESP32",
+      "githubRepositoryId": 347619427,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Productivité",
+      "domain": "productivity",
+      "capabilities": [
+        "boiler",
+        "bosch",
+        "buderus",
+        "ems",
+        "esp32",
+        "heatpump",
+        "home-assistant",
+        "home-automation",
+        "ht3",
+        "iot",
+        "junkers",
+        "mqtt"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1038,
+        "forks": 155,
+        "openIssues": 16,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "dev",
+        "license": "LGPL-3.0",
+        "pushedAt": "2026-10-13T05:51:32Z"
+      },
+      "bestFor": [
+        "ESP32 firmware to read and control EMS and Heatronic compatible equipment such as boilers, thermostats, solar modules, and heat pumps"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Err0r-ICA/TermuxCyberArmy",
+      "githubRepositoryId": 255031199,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "hacking",
+        "hacking-tool",
+        "hacking-tools",
+        "hacks",
+        "kali",
+        "kali-linux",
+        "kali-scripts",
+        "linux",
+        "repository",
+        "termux",
+        "termux-hacking",
+        "termux-tool"
+      ],
+      "languages": [
+        "shell"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1753,
+        "forks": 117,
+        "openIssues": 15,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2025-05-27T01:03:13Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "espressif/arduino-esp32",
+      "githubRepositoryId": 70127218,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "arduino",
+        "esp-idf",
+        "esp32"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 17553,
+        "forks": 7925,
+        "openIssues": 95,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "LGPL-2.1",
+        "pushedAt": "2026-10-15T18:10:45Z"
+      },
+      "bestFor": [
+        "Arduino core for the ESP32 family of SoCs"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "espressif/esp-at",
+      "githubRepositoryId": 78652809,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "at",
+        "ble",
+        "esp-idf",
+        "esp32",
+        "esp32c2",
+        "esp32c3",
+        "esp32c6",
+        "esp8266",
+        "ethernet",
+        "qcloud",
+        "sdio",
+        "spi"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1297,
+        "forks": 1282,
+        "openIssues": 86,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T13:05:34Z"
+      },
+      "bestFor": [
+        "AT application for ESP32/ESP32-C2/ESP32-C3/ESP32-C6/ESP8266"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "espressif/esp-drone",
+      "githubRepositoryId": 274066307,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "drone",
+        "esp32",
+        "quadcopter"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2244,
+        "forks": 518,
+        "openIssues": 34,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-08-10T17:23:32Z"
+      },
+      "bestFor": [
+        "Mini Drone/Quadcopter Firmware for ESP32 and ESP32-S Series SoCs."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "espressif/esp32-camera",
+      "githubRepositoryId": 157359627,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2816,
+        "forks": 826,
+        "openIssues": 11,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-13T07:05:27Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Forget-C/Jellyfish",
+      "githubRepositoryId": 1174289380,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Génération de médias / IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "ai",
+        "short-drama"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6744,
+        "forks": 1154,
+        "openIssues": 8,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-07-30T02:19:18Z"
+      },
+      "bestFor": [
+        "An end-to-end production workspace for AI-generated short dramas. From script input to structured storyboarding, consistency management, shot preparation, video generation, and export."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "frappe/erpnext",
+      "githubRepositoryId": 1864233,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "accounting",
+        "asset-management",
+        "crm",
+        "distribution",
+        "erp",
+        "erpnext",
+        "frappe",
+        "healthcare",
+        "hrms",
+        "manufacturing",
+        "point-of-sale",
+        "procurement"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 40202,
+        "forks": 13146,
+        "openIssues": 1424,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "develop",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-15T18:33:33Z"
+      },
+      "bestFor": [
+        "Free and Open Source Enterprise Resource Planning (ERP)"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "frida/frida",
+      "githubRepositoryId": 9405122,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "frida",
+        "instrumentation",
+        "vala"
+      ],
+      "languages": [
+        "meson"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 22315,
+        "forks": 2251,
+        "openIssues": 1974,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T17:34:44Z"
+      },
+      "bestFor": [
+        "Main repo for hosting release binaries"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "fudan-generative-vision/hallo",
+      "githubRepositoryId": 813932983,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Graphisme / 3D",
+      "domain": "graphics",
+      "capabilities": [
+        "face-animation",
+        "image-animation",
+        "video-animation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 8669,
+        "forks": 1121,
+        "openIssues": 114,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2024-09-14T13:23:02Z"
+      },
+      "bestFor": [
+        "Hallo: Hierarchical Audio-Driven Visual Synthesis for Portrait Image Animation"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "fudan-generative-vision/hallo2",
+      "githubRepositoryId": 873495890,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Graphisme / 3D",
+      "domain": "graphics",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3749,
+        "forks": 544,
+        "openIssues": 50,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2025-02-27T03:24:55Z"
+      },
+      "bestFor": [
+        "[ICLR 2025] Hallo2: Long-Duration and High-Resolution Audio-driven Portrait Image Animation"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "fudan-generative-vision/hallo3",
+      "githubRepositoryId": 894800166,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Graphisme / 3D",
+      "domain": "graphics",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1416,
+        "forks": 188,
+        "openIssues": 35,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2025-03-13T08:34:43Z"
+      },
+      "bestFor": [
+        "[CVPR 2025] Hallo3: Highly Dynamic and Realistic Portrait Image Animation with Video Diffusion Transformer"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "geo-tp/ESP32-Bit-Pirate",
+      "githubRepositoryId": 1014515436,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "arduino",
+        "bluetooth",
+        "can-bus",
+        "debugging",
+        "eeprom",
+        "esp32",
+        "flipperzero",
+        "gpio",
+        "hardware-hacking",
+        "i2c",
+        "jtag",
+        "openocd"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6117,
+        "forks": 525,
+        "openIssues": 30,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "pioarduino",
+        "license": "MIT",
+        "pushedAt": "2026-10-12T13:39:58Z"
+      },
+      "bestFor": [
+        "A Hardware Hacking Tool with Web-Based CLI That Speaks Every Protocol"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "github/spec-kit",
+      "githubRepositoryId": 1042367133,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "ai",
+        "copilot",
+        "development",
+        "engineering",
+        "prd",
+        "spec",
+        "spec-driven"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 141411,
+        "forks": 12659,
+        "openIssues": 172,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T18:57:24Z"
+      },
+      "bestFor": [
+        "💫 Toolkit to help you get started with SDD or any other process!"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "h0m3us3r/eSpDR",
+      "githubRepositoryId": 1387871388,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 340,
+        "forks": 34,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-02T02:21:22Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "h0m3us3r/w1700k-sdr",
+      "githubRepositoryId": 1414851145,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 783,
+        "forks": 78,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-13T03:25:43Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Hackertrackersj/Instabruteforce",
+      "githubRepositoryId": 291504849,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "hacking",
+        "hacking-tool",
+        "instagram-bot",
+        "termux",
+        "termux-tool",
+        "tool"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1889,
+        "forks": 177,
+        "openIssues": 37,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2021-04-29T09:53:15Z"
+      },
+      "bestFor": [
+        "hacking-tool termux-tools termux noob-friendly instagram-bot bruteforce-password-cracker wordlist-technique"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "happydog-intj/CircleProgress",
+      "githubRepositoryId": 25979092,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [],
+      "languages": [
+        "java"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3797,
+        "forks": 911,
+        "openIssues": 71,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-09-11T11:14:21Z"
+      },
+      "bestFor": [
+        "CircleProgress, DonutProgress, ArcProgress for Android"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "HBAI-Ltd/Toonflow-app",
+      "githubRepositoryId": 1145022970,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Génération de médias / IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "ai-agents",
+        "ai-comic",
+        "ai-content-creation",
+        "ai-filmmaking",
+        "ai-short-drama",
+        "generative-ai",
+        "image-generation",
+        "image-to-video",
+        "infinite-canvas",
+        "libtv",
+        "motion-comics",
+        "node-based-editor"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 17865,
+        "forks": 3170,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-13T10:00:22Z"
+      },
+      "bestFor": [
+        "短剧、漫剧制作工具 Toonflow：开源 AI 视频创作平台，集成剧本创作、智能分镜、角色与场景资产管理、图像生成和视频生成。融合无限画布、AI Agent 与可视化工作流，支持本地部署、自选模型、跨平台客户端、MCP 与插件扩展。Open-source AI short drama and motion comic creation tool with an infinite canvas, "
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "hexgrad/kokoro",
+      "githubRepositoryId": 915054134,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 9328,
+        "forks": 1037,
+        "openIssues": 214,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2025-08-06T22:28:53Z"
+      },
+      "bestFor": [
+        "https://hf.co/hexgrad/Kokoro-82M"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "hugohe3/ppt-master",
+      "githubRepositoryId": 1113573066,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Graphisme / 3D",
+      "domain": "graphics",
+      "capabilities": [
+        "ai-agent",
+        "aippt",
+        "office",
+        "powerpoint",
+        "powerpoint-generation",
+        "ppt",
+        "pptx",
+        "presentation",
+        "slide",
+        "slides"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 62410,
+        "forks": 4950,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-14T04:20:34Z"
+      },
+      "bestFor": [
+        "AI turns documents or topics into real, native PowerPoint decks—with native shapes, transitions and animations, data-backed charts and tables on demand, audio narration from speaker notes, and support"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Humanive/cogfree",
+      "githubRepositoryId": 1403010415,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "shell"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 101,
+        "forks": 5,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-11T12:07:22Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "icsharpcode/ILSpy",
+      "githubRepositoryId": 1327739,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "c-sharp",
+        "decompile",
+        "decompiler",
+        "decompiler-engine",
+        "dotnet",
+        "dotnetcore",
+        "ilspy",
+        "mono",
+        "pdb",
+        "unity"
+      ],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 26661,
+        "forks": 3771,
+        "openIssues": 165,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-14T15:01:51Z"
+      },
+      "bestFor": [
+        ".NET Decompiler with support for PDB generation, ReadyToRun, Metadata (&more) - cross-platform!"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "InternLM/MindSearch",
+      "githubRepositoryId": 834688418,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai-search-engine",
+        "gpt",
+        "llm",
+        "llms",
+        "multi-agent-systems",
+        "perplexity-ai",
+        "search",
+        "searchgpt",
+        "transformer",
+        "web-search"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6943,
+        "forks": 693,
+        "openIssues": 60,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2025-07-04T10:06:45Z"
+      },
+      "bestFor": [
+        "🔍 An LLM-based Multi-agent Framework of Web Search Engine (like Perplexity.ai Pro and SearchGPT)"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ItzCrazyKns/Vane",
+      "githubRepositoryId": 784181462,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Mémoire / IA",
+      "domain": "ai_memory",
+      "capabilities": [
+        "ai-agents",
+        "ai-search-engine",
+        "answering-engine",
+        "artificial-intelligence",
+        "llm",
+        "machine-learning",
+        "open-source-ai-search-engine",
+        "perplexica",
+        "rag",
+        "search-engine",
+        "searxng",
+        "searxng-copilot"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 37346,
+        "forks": 4158,
+        "openIssues": 361,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-09-01T14:12:12Z"
+      },
+      "bestFor": [
+        "Vane is an AI-powered answering engine."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "joey-zhou/xiaozhi-esp32-server-java",
+      "githubRepositoryId": 939839664,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "esp32",
+        "java",
+        "mcp",
+        "mcp-client",
+        "mcp-server",
+        "spring-ai",
+        "stt",
+        "tts",
+        "xiaozhi",
+        "xiaozhi-ai",
+        "xiaozhi-esp32",
+        "xiaozhi-server"
+      ],
+      "languages": [
+        "java"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1372,
+        "forks": 503,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-27T09:52:17Z"
+      },
+      "bestFor": [
+        "小智ESP32的Java企业级管理平台，提供设备监控、音色定制、角色切换和对话记录管理的前后端及服务端一体化解决方案"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "KlingAIResearch/LivePortrait",
+      "githubRepositoryId": 823745702,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Graphisme / 3D",
+      "domain": "graphics",
+      "capabilities": [
+        "face-animation",
+        "image-animation",
+        "video-editing",
+        "video-generation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 19240,
+        "forks": 2003,
+        "openIssues": 289,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-06-01T17:25:09Z"
+      },
+      "bestFor": [
+        "Bring portraits to life!"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "krillinai/OpenCreator",
+      "githubRepositoryId": 904490600,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "agent-skills",
+        "codex-cli",
+        "deskop-app",
+        "dubbing",
+        "image-generation",
+        "localization",
+        "skills",
+        "tts",
+        "video-editing",
+        "video-generation",
+        "video-transcription",
+        "video-translation"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 13205,
+        "forks": 1430,
+        "openIssues": 33,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T14:45:58Z"
+      },
+      "bestFor": [
+        "Formerly KrillinAI, VideoTranslation and Dubbing Tool. Open-source AI workspace for creators, powered by Codex. Video downloading, video translation, create videos, images, voice, avatars, and edits w"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "langchain-ai/social-media-agent",
+      "githubRepositoryId": 892240018,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2842,
+        "forks": 523,
+        "openIssues": 19,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T00:50:57Z"
+      },
+      "bestFor": [
+        "📲 An agent for sourcing, curating, and scheduling social media posts with human-in-the-loop."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "LearningCircuit/local-deep-research",
+      "githubRepositoryId": 929868765,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "academia",
+        "anthropic",
+        "arxiv",
+        "brave",
+        "deep-research",
+        "encryption",
+        "home-automation",
+        "homeserver",
+        "local",
+        "local-deep-research",
+        "local-llm",
+        "mistral"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 9200,
+        "forks": 851,
+        "openIssues": 1125,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T19:20:00Z"
+      },
+      "bestFor": [
+        "~95% on SimpleQA (e.g. Qwen3.6-27B on a 3090). Supports all local and cloud LLMs (llama.cpp, Ollama, Google, ...). 10+ search engines - arXiv, PubMed, your private documents. Everything Local & Encryp"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "letscontrolit/ESPEasy",
+      "githubRepositoryId": 42119846,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3618,
+        "forks": 2218,
+        "openIssues": 387,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "mega",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-10T13:47:27Z"
+      },
+      "bestFor": [
+        "Easy MultiSensor device based on ESP8266/ESP32"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "lipku/LiveTalking",
+      "githubRepositoryId": 733283939,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "aigc",
+        "digihuman",
+        "digital-human",
+        "er-nerf",
+        "lip-sync",
+        "metahuman-stream",
+        "musetalk",
+        "nerf",
+        "realtime",
+        "streaming",
+        "talking-head",
+        "virtualhumans"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 9902,
+        "forks": 1585,
+        "openIssues": 238,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T08:39:48Z"
+      },
+      "bestFor": [
+        "Real time interactive streaming digital human"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "liseami/CCBaga",
+      "githubRepositoryId": 1413898431,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2336,
+        "forks": 234,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T14:13:44Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "lmarzen/esp32-weather-epd",
+      "githubRepositoryId": 467381275,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "display",
+        "eink",
+        "embedded",
+        "epaper",
+        "esp32",
+        "weather"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6310,
+        "forks": 483,
+        "openIssues": 42,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-07-22T21:44:48Z"
+      },
+      "bestFor": [
+        "A low-power E-Paper weather display powered by an ESP32 microcontroller. Utilizes the OpenWeatherMap API."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "luigifcruz/BirriaSDR",
+      "githubRepositoryId": 1416428935,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 83,
+        "forks": 8,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-14T17:56:09Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "lyogavin/airllm",
+      "githubRepositoryId": 652712035,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "chinese-llm",
+        "chinese-nlp",
+        "finetune",
+        "generative-ai",
+        "instruct-gpt",
+        "instruction-set",
+        "llama",
+        "llm",
+        "lora",
+        "open-models",
+        "open-source",
+        "open-source-models"
+      ],
+      "languages": [
+        "jupyter notebook"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 38836,
+        "forks": 3950,
+        "openIssues": 167,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T06:20:39Z"
+      },
+      "bestFor": [
+        "AirLLM 2.8T LLM inference with single 4GB GPU"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "MaeKing/geospy",
+      "githubRepositoryId": 226969141,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 251,
+        "forks": 46,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2019-12-08T23:25:04Z"
+      },
+      "bestFor": [
+        "Geolocation Spy (GeoSpy) is an OSINT analysis and research tool, which allows people to track and execute intelligent social engineering attacks in real time. It was created with the aim of teaching t"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "magnitudedev/magnitude",
+      "githubRepositoryId": 1267145484,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6774,
+        "forks": 468,
+        "openIssues": 39,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T19:09:41Z"
+      },
+      "bestFor": [
+        "Open source inference engine that tunes its kernels on your hardware to find the fastest way to run each model. 2x faster than Ollama. Works on Apple Silicon, NVIDIA, AMD, or just a CPU."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "makerspet/oomwoo",
+      "githubRepositoryId": 1264722786,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "3d-printing",
+        "arduino",
+        "diy-electronics",
+        "diy-project",
+        "esp32",
+        "esp32-arduino",
+        "home-assistant",
+        "lidar",
+        "lidar-slam",
+        "raspberry-pi",
+        "ros2",
+        "slam"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 11837,
+        "forks": 751,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T06:47:16Z"
+      },
+      "bestFor": [
+        "Open-source vacuum robot cleaner"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "manycore-research/SpatialLM",
+      "githubRepositoryId": 948245457,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "mllm",
+        "point-clouds",
+        "scene-understanding",
+        "spatial-intelligence"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5086,
+        "forks": 434,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-06-26T18:14:20Z"
+      },
+      "bestFor": [
+        "[NeurIPS 2025] SpatialLM: Training Large Language Models for Structured Indoor Modeling"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "marc-shade/world-intel-mcp",
+      "githubRepositoryId": 1106643041,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "ai-tools",
+        "ai-watch",
+        "anthropic",
+        "claude",
+        "cybersecurity",
+        "dashboard",
+        "geofencing",
+        "geopolitical",
+        "geospatial",
+        "intelligence",
+        "markets",
+        "mcp"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 952,
+        "forks": 158,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-12T19:11:43Z"
+      },
+      "bestFor": [
+        "139-tool MCP server for real-time global intelligence from free public APIs: markets, SEC filings, conflict, military, aircraft-cohort early warning, refugee and migration flows, cyber, climate, news,"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "martin-ger/esp32_nat_router",
+      "githubRepositoryId": 241046888,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "dhcp-server",
+        "esp-idf",
+        "esp32",
+        "firewall",
+        "home-assistant-integration",
+        "mcp-server",
+        "nat",
+        "pcap",
+        "router",
+        "vpn",
+        "wireguard",
+        "wt32-eth01"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2213,
+        "forks": 502,
+        "openIssues": 155,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-10-09T09:13:05Z"
+      },
+      "bestFor": [
+        "An AI-enabled NAT Router/Firewall for the ESP32"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "me-no-dev/ESPAsyncWebServer",
+      "githubRepositoryId": 48289924,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4046,
+        "forks": 1388,
+        "openIssues": 287,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "LGPL-3.0",
+        "pushedAt": "2025-01-20T16:17:03Z"
+      },
+      "bestFor": [
+        "Async Web Server for ESP8266 and ESP32"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "legacy"
+    },
+    {
+      "repo": "microsoft/BitNet",
+      "githubRepositoryId": 838253246,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 41169,
+        "forks": 3832,
+        "openIssues": 373,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-07-27T05:52:06Z"
+      },
+      "bestFor": [
+        "Official inference framework for 1-bit LLMs"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "MiniMax-AI/Mini-Agent",
+      "githubRepositoryId": 1086887314,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "llm",
+        "minimax"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3055,
+        "forks": 450,
+        "openIssues": 52,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-02-14T04:00:26Z"
+      },
+      "bestFor": [
+        "A minimal yet professional single agent demo project that showcases the core execution pipeline and production-grade features of agents."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "miqdadbadjuber/anti-slop",
+      "githubRepositoryId": 1326531152,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "accessibility",
+        "agent-skills",
+        "ai-agents",
+        "ai-coding-agent",
+        "ai-slop",
+        "anti-slop",
+        "claude-code",
+        "copywriting",
+        "design-rules",
+        "ui-design"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6169,
+        "forks": 412,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-13T05:27:32Z"
+      },
+      "bestFor": [
+        "Rules for an AI coding agent to filter out generic AI-generated UI designs, text, and code."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "mrexodia/ida-pro-mcp",
+      "githubRepositoryId": 954963562,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "ai",
+        "aiagent",
+        "binary-analysis",
+        "ida-plugin",
+        "ida-pro",
+        "mcp",
+        "mcp-server",
+        "modelcontextprotocol",
+        "reverse-engineering"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 12917,
+        "forks": 1563,
+        "openIssues": 58,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-26T15:42:10Z"
+      },
+      "bestFor": [
+        "AI-powered reverse engineering assistant that bridges IDA Pro with language models through MCP."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "multica-ai/andrej-karpathy-skills",
+      "githubRepositoryId": 1142983825,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 220047,
+        "forks": 22125,
+        "openIssues": 133,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-04-20T10:05:04Z"
+      },
+      "bestFor": [
+        "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "neilsonnn/image-blaster",
+      "githubRepositoryId": 1216542069,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 11359,
+        "forks": 1133,
+        "openIssues": 14,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-05-15T01:36:10Z"
+      },
+      "bestFor": [
+        "An image-to-world skillset for Claude."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "newliver666/apk-reverse",
+      "githubRepositoryId": 1377172300,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4700,
+        "forks": 947,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T18:08:06Z"
+      },
+      "bestFor": [
+        "Suitable for Android APK reverse engineering analysis"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "nhovongoc0-max/meme-radar",
+      "githubRepositoryId": 1366032081,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "bsc",
+        "crypto",
+        "gmgn",
+        "meme",
+        "security",
+        "solana",
+        "token-scanner"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 539,
+        "forks": 196,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-09T09:16:47Z"
+      },
+      "bestFor": [
+        "Meme雷达开源版：本地只读、多链 Meme 候选扫描与人工复核工具"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "nodemcu/nodemcu-firmware",
+      "githubRepositoryId": 26917568,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "esp32",
+        "esp8266",
+        "esp8285",
+        "espressif",
+        "firmware",
+        "lua",
+        "nodemcu",
+        "spiffs"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 7949,
+        "forks": 3097,
+        "openIssues": 119,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "release",
+        "license": "MIT",
+        "pushedAt": "2026-06-07T14:37:16Z"
+      },
+      "bestFor": [
+        "Lua based interactive firmware for ESP8266, ESP8285 and ESP32"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "NVIDIA-AI-Blueprints/deep-researcher-agent",
+      "githubRepositoryId": 931216241,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 898,
+        "forks": 281,
+        "openIssues": 38,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "develop",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-09T19:49:59Z"
+      },
+      "bestFor": [
+        "The NVIDIA Deep Researcher Agent Blueprint is an open reference example for building intelligent AI agents that connect to your enterprise data, reason using state-of-the-art models, and deliver trust"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "NVIDIA/garak",
+      "githubRepositoryId": 639097338,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "ai",
+        "llm-evaluation",
+        "llm-security",
+        "security-scanners",
+        "vulnerability-assessment"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 9582,
+        "forks": 1374,
+        "openIssues": 493,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T15:10:11Z"
+      },
+      "bestFor": [
+        "the LLM vulnerability scanner"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "NVlabs/Sana",
+      "githubRepositoryId": 871368615,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Data / Machine Learning",
+      "domain": "data_ml",
+      "capabilities": [
+        "diffusion",
+        "dit",
+        "linear-transformer",
+        "nvfp4",
+        "pytorch",
+        "reinforcement-learning",
+        "sana",
+        "streaming-video",
+        "system-algorithm-deisgn",
+        "text-to-image-generation",
+        "text-to-video",
+        "transformers"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 9346,
+        "forks": 747,
+        "openIssues": 143,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-12T08:34:17Z"
+      },
+      "bestFor": [
+        "SANA: Efficient High-Resolution Image Synthesis with Linear Diffusion Transformer"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "okalachev/flix",
+      "githubRepositoryId": 293365149,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "arduino",
+        "autopilot",
+        "control-theory",
+        "drone",
+        "esp32",
+        "flight-control",
+        "flight-controller",
+        "mavlink",
+        "quadcopter",
+        "quadcopter-firmware",
+        "uav"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2284,
+        "forks": 342,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-09-30T13:10:18Z"
+      },
+      "bestFor": [
+        "Making an ESP32-based quadcopter from scratch"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "onehumanbeing/esp32-iphone-agent",
+      "githubRepositoryId": 1414685342,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai-agent",
+        "airplay",
+        "automation",
+        "computer-use",
+        "esp32",
+        "esp32-s3",
+        "iphone",
+        "llm",
+        "usb-hid"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2368,
+        "forks": 316,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T14:59:03Z"
+      },
+      "bestFor": [
+        "Let an AI model use a real iPhone with a $7 ESP32: AirPlay eyes, USB HID hands, any OpenAI-compatible vision model. No Mac, no developer account, no jailbreak."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "openbin-ai/binny",
+      "githubRepositoryId": 1412775677,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "ghidra",
+        "llm-agent",
+        "malware-analysis",
+        "ollama",
+        "reverse-engineering",
+        "security-research"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 15,
+        "forks": 0,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-15T13:19:30Z"
+      },
+      "bestFor": [
+        "BINNY: an open source agent harness for reverse engineering. Plug in any model, or a local one."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "OpenBMB/MiniCPM-V",
+      "githubRepositoryId": 749647889,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "minicpm",
+        "minicpm-o",
+        "minicpm-v",
+        "multi-modal"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 26778,
+        "forks": 2096,
+        "openIssues": 62,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T16:38:06Z"
+      },
+      "bestFor": [
+        "See, hear, and interact on your local devices."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "openfw-game/OpenLiberty",
+      "githubRepositoryId": 563558121,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "cross-platform",
+        "foss",
+        "godot",
+        "godot-engine",
+        "godot4",
+        "grand-theft-auto",
+        "gta",
+        "gta3",
+        "multiplayer",
+        "open-source",
+        "open-world"
+      ],
+      "languages": [
+        "gdscript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 469,
+        "forks": 43,
+        "openIssues": 11,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-13T15:28:36Z"
+      },
+      "bestFor": [
+        "Open-world game implemented in Godot Engine that can load GTA 3D-era models and textures"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "OpenTalker/SadTalker",
+      "githubRepositoryId": 569518584,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Graphisme / 3D",
+      "domain": "graphics",
+      "capabilities": [
+        "audio-driven-talking-face",
+        "cvpr2023",
+        "deep-fake",
+        "deep-fakes",
+        "image-animation",
+        "talking-face",
+        "talking-face-generation",
+        "talking-head",
+        "talking-heads"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 14136,
+        "forks": 2701,
+        "openIssues": 664,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2024-06-26T12:51:53Z"
+      },
+      "bestFor": [
+        "[CVPR 2023] SadTalker：Learning Realistic 3D Motion Coefficients for Stylized Audio-Driven Single Image Talking Face Animation"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "peng-zhihui/ESP32-PicoDK",
+      "githubRepositoryId": 368728111,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1239,
+        "forks": 319,
+        "openIssues": 11,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2022-07-25T06:10:48Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "PlummersSoftwareLLC/NightDriverStrip",
+      "githubRepositoryId": 408525324,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "arduino",
+        "cpp",
+        "esp32",
+        "led",
+        "platformio"
+      ],
+      "languages": [
+        "g-code"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1589,
+        "forks": 239,
+        "openIssues": 18,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-08-14T23:13:27Z"
+      },
+      "bestFor": [
+        "NightDriver client for ESP32"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "pschatzmann/ESP32-A2DP",
+      "githubRepositoryId": 250600247,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "a2dp-sink",
+        "a2dp-source",
+        "arduino-library",
+        "audio",
+        "bluetooth",
+        "bluetooth-speaker",
+        "esp32",
+        "esp32-arduino",
+        "pcm-data"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2771,
+        "forks": 400,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-03T10:47:01Z"
+      },
+      "bestFor": [
+        "A Simple ESP32 Bluetooth A2DP Library (to implement a Music Receiver or Sender) that supports Arduino, PlatformIO and Espressif IDF"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "pytorch/pytorch",
+      "githubRepositoryId": 65600975,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Data / Machine Learning",
+      "domain": "data_ml",
+      "capabilities": [
+        "autograd",
+        "deep-learning",
+        "gpu",
+        "machine-learning",
+        "neural-network",
+        "numpy",
+        "python",
+        "tensor"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 104699,
+        "forks": 32532,
+        "openIssues": 17673,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T19:16:40Z"
+      },
+      "bestFor": [
+        "Tensors and Dynamic neural networks in Python with strong GPU acceleration"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ranxianglei/billion-context",
+      "githubRepositoryId": 1324949198,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "dsh-plugin"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1354,
+        "forks": 115,
+        "openIssues": 247,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T19:17:43Z"
+      },
+      "bestFor": [
+        "A context-compression plugin for small context windows (a 100K context is enough), token savings (5x fewer tokens), and month-long single sessions (billions of tokens).上下文压缩插件，兼顾小窗口(100k上下文足矣)省token(省"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "RavenSystem/esp-homekit-devices",
+      "githubRepositoryId": 119086992,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Mémoire / IA",
+      "domain": "ai_memory",
+      "capabilities": [
+        "apple",
+        "electrodragon",
+        "esp-idf",
+        "esp32",
+        "esp8266",
+        "firmware",
+        "home-automation",
+        "homekit",
+        "iot",
+        "matter",
+        "shelly",
+        "smarthome"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3010,
+        "forks": 372,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-09-18T10:33:23Z"
+      },
+      "bestFor": [
+        "Advanced firmware to add native Apple HomeKit and custom configurations, compatible with any SoC based on ESP32, ESP32-S, ESP32-C and ESP8266 series. (Shelly, Sonoff, Electrodragon, Tuya...)"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "remotion-dev/remotion",
+      "githubRepositoryId": 274495425,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement web",
+      "domain": "web_frontend",
+      "capabilities": [
+        "javascript",
+        "react",
+        "video"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 64360,
+        "forks": 5079,
+        "openIssues": 179,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T17:13:27Z"
+      },
+      "bestFor": [
+        "🎥 Make videos programmatically with React"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "remotion-dev/skills",
+      "githubRepositoryId": 1137388347,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5192,
+        "forks": 573,
+        "openIssues": 22,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-12T09:05:46Z"
+      },
+      "bestFor": [
+        "Agent Skills"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "repowise-dev/repowise",
+      "githubRepositoryId": 1189384516,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "ai",
+        "code-complexity",
+        "code-health",
+        "code-intelligence",
+        "code-quality",
+        "dead-code",
+        "developer-tools",
+        "documentation",
+        "git-analytics",
+        "mcp",
+        "open-source",
+        "python"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 7786,
+        "forks": 894,
+        "openIssues": 314,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-15T18:17:08Z"
+      },
+      "bestFor": [
+        "Codebase intelligence for AI and humans: code health scores, auto-generated docs, git analytics, dead code detection, and architectural decisions via MCP."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "risinek/esp32-wifi-penetration-tool",
+      "githubRepositoryId": 354963447,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "802-11",
+        "esp32",
+        "pmkid",
+        "wifi-security",
+        "wpa2-handshake"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3114,
+        "forks": 479,
+        "openIssues": 72,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2024-02-18T18:40:05Z"
+      },
+      "bestFor": [
+        "Exploring possibilities of ESP32 platform to attack on nearby Wi-Fi networks."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "roryclear/clearcam",
+      "githubRepositoryId": 912164685,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "ai",
+        "cctv",
+        "clip",
+        "nvr",
+        "object-detection",
+        "rtsp",
+        "selfhosted",
+        "tinygrad",
+        "yolov9"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1940,
+        "forks": 190,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-14T14:23:59Z"
+      },
+      "bestFor": [
+        "Add object detection, tracking, mobile notifications, and search to any security camera."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "rtk-ai/rtk",
+      "githubRepositoryId": 1139971460,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agentic-coding",
+        "ai-coding",
+        "anthropic",
+        "claude-code",
+        "cli",
+        "command-line-tool",
+        "cost-reduction",
+        "developer-tools",
+        "llm",
+        "open-source",
+        "productivity",
+        "rust"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 83499,
+        "forks": 5306,
+        "openIssues": 1525,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "develop",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T17:56:44Z"
+      },
+      "bestFor": [
+        "CLI proxy that reduces LLM token consumption by 60-90% on common dev commands. Single Rust binary, zero dependencies"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Rudrabha/Wav2Lip",
+      "githubRepositoryId": 285774113,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 13244,
+        "forks": 2850,
+        "openIssues": 371,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2025-06-22T02:41:21Z"
+      },
+      "bestFor": [
+        "This repository contains the codes of \"A Lip Sync Expert Is All You Need for Speech to Lip Generation In the Wild\", published at ACM Multimedia 2020. For HD commercial model, please try out Sync Labs"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "rzeldent/esp32cam-rtsp",
+      "githubRepositoryId": 510936336,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "ai-thinker",
+        "camera",
+        "cctv",
+        "esp32",
+        "esp32-arduino",
+        "esp32cam",
+        "m5stack",
+        "ov2640",
+        "platformio",
+        "rtsp",
+        "rtsp-server",
+        "rtsp-stream"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1207,
+        "forks": 219,
+        "openIssues": 14,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-12T20:53:14Z"
+      },
+      "bestFor": [
+        "Simple RTSP (streaming image) server for the ESP32CAM. Easy configuration and monitoring through the web interface."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "s60sc/ESP32-CAM_MJPEG2SD",
+      "githubRepositoryId": 238784472,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "arduino-esp32",
+        "avi",
+        "camera",
+        "esp32",
+        "esp32-cam",
+        "esp32s3",
+        "fpv",
+        "freenove",
+        "machine-learning",
+        "microphone",
+        "mjpeg",
+        "motion-capture"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1761,
+        "forks": 369,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-08T21:17:32Z"
+      },
+      "bestFor": [
+        "ESP32 Camera motion capture application to record JPEGs to SD card as AVI files and stream to browser as MJPEG. If a microphone is installed then a WAV file is also created. Files can be uploaded via "
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "SamboyCoding/Cpp2IL",
+      "githubRepositoryId": 192676329,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "analysis",
+        "decompiler",
+        "il2cpp",
+        "il2cpp-metadata",
+        "reverse-engineering",
+        "static-analysis",
+        "unity"
+      ],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3024,
+        "forks": 398,
+        "openIssues": 46,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "development",
+        "license": "MIT",
+        "pushedAt": "2026-09-15T15:05:50Z"
+      },
+      "bestFor": [
+        "Work-in-progress tool to reverse unity's IL2CPP toolchain."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ScrapeCreators/social-media-research-skills",
+      "githubRepositoryId": 1261571908,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skills",
+        "ai-agents",
+        "claude-code",
+        "claude-skills",
+        "competitor-analysis",
+        "content-marketing",
+        "cursor",
+        "influencer-marketing",
+        "market-research",
+        "social-media",
+        "social-media-research",
+        "workflow-automation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3748,
+        "forks": 52,
+        "openIssues": 4,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-08-26T17:26:01Z"
+      },
+      "bestFor": [
+        "AI agent skills for social media research. Outlier posts, comment mining, competitor teardowns, ad libraries & trends across TikTok, Instagram, YouTube, Reddit, X, LinkedIn & more. Powered by ScrapeCr"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ShawnPana/phone-harness",
+      "githubRepositoryId": 1327214801,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Productivité",
+      "domain": "productivity",
+      "capabilities": [
+        "agent",
+        "ai",
+        "automation",
+        "developer-tools",
+        "mobile-ai",
+        "mobile-development"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3650,
+        "forks": 368,
+        "openIssues": 62,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-14T22:52:05Z"
+      },
+      "bestFor": [
+        "let your agent control your phone"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "SimoneAvogadro/android-reverse-engineering-skill",
+      "githubRepositoryId": 1148127041,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [],
+      "languages": [
+        "shell"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 8149,
+        "forks": 920,
+        "openIssues": 10,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-12T08:15:55Z"
+      },
+      "bestFor": [
+        "Claude Code skill to support Android app's reverse engineering"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "slvDev/esp32-ai",
+      "githubRepositoryId": 1310057619,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4535,
+        "forks": 611,
+        "openIssues": 23,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-23T08:08:10Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "slymnoyann/hey.xyz",
+      "githubRepositoryId": 471728341,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement web",
+      "domain": "web_frontend",
+      "capabilities": [
+        "blockchain",
+        "crypto",
+        "dapp",
+        "graphql",
+        "hacktoberfest",
+        "lens-protocol",
+        "nextjs",
+        "react",
+        "social-media",
+        "tailwindcss",
+        "turborepo",
+        "typescript"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 29352,
+        "forks": 1803,
+        "openIssues": 7,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-09-06T19:08:14Z"
+      },
+      "bestFor": [
+        "Hey is a decentralized and permissionless social media app built with Lens Protocol 🌿"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "smoochiee/Bluetooth-jammer-esp32",
+      "githubRepositoryId": 767912363,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1079,
+        "forks": 232,
+        "openIssues": 4,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2024-11-04T11:16:24Z"
+      },
+      "bestFor": [
+        "Bluetooth jamming esp32 with nrf24l01"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "legacy"
+    },
+    {
+      "repo": "souzatharsis/podcastfy",
+      "githubRepositoryId": 865656561,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "elevenlabs",
+        "gemini",
+        "genai",
+        "notebooklm",
+        "openai",
+        "podcast"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6606,
+        "forks": 767,
+        "openIssues": 122,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-05-04T14:49:10Z"
+      },
+      "bestFor": [
+        "An Open Source Python alternative to NotebookLM's podcast feature: Transforming Multimodal Content into Captivating Multilingual Audio Conversations with GenAI"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "stanford-oval/storm",
+      "githubRepositoryId": 776854298,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Mémoire / IA",
+      "domain": "ai_memory",
+      "capabilities": [
+        "agentic-rag",
+        "deep-research",
+        "emnlp2024",
+        "knowledge-curation",
+        "large-language-models",
+        "naacl",
+        "nlp",
+        "report-generation",
+        "retrieval-augmented-generation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 31644,
+        "forks": 2985,
+        "openIssues": 111,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2025-09-30T18:07:21Z"
+      },
+      "bestFor": [
+        "An LLM-powered knowledge curation system that researches a topic and generates a full-length report with citations."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "sudoingX/local-ai-on-your-gaming-gpu",
+      "githubRepositoryId": 1377373768,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "amd",
+        "bonsai",
+        "gaming-gpu",
+        "linux",
+        "llama-cpp",
+        "local-ai",
+        "local-llm",
+        "qwen",
+        "radeon",
+        "rtx-3060",
+        "rtx-3070",
+        "rtx-3090"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 140,
+        "forks": 16,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-12T07:53:18Z"
+      },
+      "bestFor": [
+        "run a 27b local ai on your gaming gpu, rtx 3060 and up, radeon rx 6600 and up in beta, 8gb or more, linux and windows, one line to install"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "SWE-agent/mini-swe-agent",
+      "githubRepositoryId": 1010318950,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "agentic-ai",
+        "agentic-ai-cli",
+        "ai",
+        "ai-agent",
+        "textual"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 8549,
+        "forks": 1174,
+        "openIssues": 94,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-12T22:59:37Z"
+      },
+      "bestFor": [
+        "The 100 line AI agent that solves GitHub issues or helps you in your command line. Radically simple, no huge configs, no giant monorepo—but scores >74% on SWE-bench verified!"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "sybil-solutions/local-studio",
+      "githubRepositoryId": 1118209602,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai",
+        "exllama",
+        "hosting",
+        "llamacpp",
+        "local",
+        "local-ai",
+        "self",
+        "sglang",
+        "vllm"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1828,
+        "forks": 168,
+        "openIssues": 4,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-12T11:15:42Z"
+      },
+      "bestFor": [
+        "Control panel for VLLM, Sglang, llama.cpp, exllamav3"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "T-vK/ESP32-BLE-Keyboard",
+      "githubRepositoryId": 201084730,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "arduino",
+        "arduino-library",
+        "ble",
+        "bluetooth",
+        "bluetooth-le",
+        "esp32",
+        "keyboard"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3176,
+        "forks": 575,
+        "openIssues": 266,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2024-08-07T17:01:45Z"
+      },
+      "bestFor": [
+        "Bluetooth LE Keyboard library for the ESP32 (Arduino IDE compatible)"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "T-vK/ESP32-BLE-Mouse",
+      "githubRepositoryId": 200223585,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "arduino",
+        "arduino-ide",
+        "arduino-library",
+        "ble",
+        "bluetooth",
+        "bluetooth-le",
+        "esp32",
+        "mouse"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1035,
+        "forks": 214,
+        "openIssues": 62,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2024-01-15T23:47:29Z"
+      },
+      "bestFor": [
+        "Bluetooth LE Mouse library for the ESP32 (Arduino IDE compatible)"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "techjarves/Portable-Local-Studio",
+      "githubRepositoryId": 1258932513,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Génération de médias / IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "image-generation",
+        "speech-to-text",
+        "text-generation",
+        "text-to-speech"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1516,
+        "forks": 380,
+        "openIssues": 17,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-14T16:32:19Z"
+      },
+      "bestFor": [
+        "Portable local AI studio for Windows, Linux, and macOS. Zero-setup GUI for Image Generation, GGUF LLMs, Text to Speech & Speech to Text"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "TMElyralab/MuseTalk",
+      "githubRepositoryId": 777554659,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "lip-sync",
+        "virtualhumans"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6728,
+        "forks": 983,
+        "openIssues": 175,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2025-09-26T05:44:17Z"
+      },
+      "bestFor": [
+        "MuseTalk: Real-Time High Quality Lip Synchorization with Latent Space Inpainting"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "totec448-spec/chat-on-steroids",
+      "githubRepositoryId": 1342876750,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Productivité",
+      "domain": "productivity",
+      "capabilities": [
+        "automation",
+        "chatgpt",
+        "chrome-extension",
+        "electron",
+        "linux",
+        "local-first",
+        "macos",
+        "mcp",
+        "multi-agent",
+        "windows"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4778,
+        "forks": 634,
+        "openIssues": 23,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T19:14:40Z"
+      },
+      "bestFor": [
+        "Cross-platform local MCP capabilities for ChatGPT with Chrome integration, Goal, Compact & Resume, and durable multi-agent workflows."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "trailhq/Trail-Code",
+      "githubRepositoryId": 1288325627,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai-agents",
+        "anthropic",
+        "claude-code",
+        "cli",
+        "code-graph",
+        "codex",
+        "context-engineering",
+        "cursor",
+        "developer-tools",
+        "gemini",
+        "knowledge-graph",
+        "llm"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 10072,
+        "forks": 890,
+        "openIssues": 248,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T15:36:21Z"
+      },
+      "bestFor": [
+        "Turbocharge Claude Code, Cursor, Codex, Gemini & every coding agent: faster, cheaper, with contextual understanding specific to your codebase."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "twelvesec/gasmask",
+      "githubRepositoryId": 116033360,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "information-gathering",
+        "osint",
+        "reconnaissance"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1488,
+        "forks": 181,
+        "openIssues": 7,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-3.0",
+        "pushedAt": "2021-06-11T08:13:53Z"
+      },
+      "bestFor": [
+        "Information gathering tool - OSINT"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "UncleRus/esp-idf-lib",
+      "githubRepositoryId": 126475029,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "adc",
+        "co2-sensor",
+        "dac",
+        "esp-idf",
+        "esp32",
+        "esp32-s2",
+        "esp8266",
+        "gas-sensor",
+        "gpio-extender",
+        "humidity-sensor",
+        "i2c-device",
+        "led-controller"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1612,
+        "forks": 475,
+        "openIssues": 3,
+        "archived": true,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-01-24T10:01:30Z"
+      },
+      "bestFor": [
+        "Component library for ESP32-xx and ESP8266"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "legacy"
+    },
+    {
+      "repo": "v12-security/pocs",
+      "githubRepositoryId": 1237484347,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1123,
+        "forks": 171,
+        "openIssues": 4,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-15T16:13:02Z"
+      },
+      "bestFor": [
+        "poc it like it's hot"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "waooAI/waoowaoo",
+      "githubRepositoryId": 1139782619,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai-agent",
+        "ai-agents",
+        "automation",
+        "film-production",
+        "generative-ai",
+        "short-drama",
+        "storyboard",
+        "video-generation"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 14560,
+        "forks": 3199,
+        "openIssues": 145,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-09-21T10:39:25Z"
+      },
+      "bestFor": [
+        "首家工业级全流程 AI 影视生产平台。Industry-first professional AI Agent platform for controllable film & video production. From shorts to live-action with Hollywood-standard workflows."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "WerWolv/ImHex",
+      "githubRepositoryId": 311683390,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "analyzer",
+        "binary-analysis",
+        "c-plus-plus",
+        "cpp",
+        "cybersecurity",
+        "dark-mode",
+        "dear-imgui",
+        "disassembler",
+        "forensics",
+        "hacking",
+        "hacktoberfest",
+        "hex-editor"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 55225,
+        "forks": 2503,
+        "openIssues": 412,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-2.0",
+        "pushedAt": "2026-10-09T00:56:24Z"
+      },
+      "bestFor": [
+        "🔍 A Hex Editor for Reverse Engineers, Programmers and people who value their retinas when working at 3 AM."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "wesammustafa/Claude-Code-Everything-You-Need-to-Know",
+      "githubRepositoryId": 1039579222,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "agent-skills",
+        "agentic-coding",
+        "ai-agents",
+        "anthropic",
+        "anthropic-claude",
+        "best-practices",
+        "claude",
+        "claude-ai",
+        "claude-code",
+        "claude-code-guide",
+        "claude-code-hooks",
+        "claude-code-plugins"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3404,
+        "forks": 395,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T13:11:09Z"
+      },
+      "bestFor": [
+        "Claude Code guide in three levels, Beginner to Advanced: hands-on lessons with checked exercises, every volatile fact cited to its source. Independent community guide."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "whitecatboard/Lua-RTOS-ESP32",
+      "githubRepositoryId": 70908474,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "esp32",
+        "espressif",
+        "freertos",
+        "iot",
+        "iot-platform",
+        "lora",
+        "lorawan",
+        "lua",
+        "lua-rtos",
+        "rtos"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1337,
+        "forks": 239,
+        "openIssues": 42,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-04-29T16:49:44Z"
+      },
+      "bestFor": [
+        "Lua RTOS for ESP32"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "witnessmenow/ESP32-Cheap-Yellow-Display",
+      "githubRepositoryId": 642997489,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4532,
+        "forks": 460,
+        "openIssues": 77,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-18T19:20:49Z"
+      },
+      "bestFor": [
+        "Building a community around a cheap ESP32 Display with a touch screen"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "wled/WLED",
+      "githubRepositoryId": 76990209,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "esp32",
+        "esp8266",
+        "hacktoberfest",
+        "led",
+        "light"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 18856,
+        "forks": 4400,
+        "openIssues": 507,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "EUPL-1.2",
+        "pushedAt": "2026-10-15T18:02:02Z"
+      },
+      "bestFor": [
+        "Control WS2812B and many more types of digital RGB LEDs with an ESP32 over WiFi!"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "wshobson/agents",
+      "githubRepositoryId": 1025856648,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skills",
+        "agentic-ai",
+        "ai-agents",
+        "anthropic",
+        "antigravity",
+        "claude",
+        "claude-code",
+        "claude-code-marketplace",
+        "claude-code-plugin",
+        "claude-skills",
+        "codex",
+        "coding-agents"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 40848,
+        "forks": 4335,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T15:11:55Z"
+      },
+      "bestFor": [
+        "Multi-harness agentic plugin marketplace for Claude Code, Codex, Cursor, OpenCode, GitHub Copilot, Google Antigravity, and Pi"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "xinnan-tech/xiaozhi-esp32-server",
+      "githubRepositoryId": 926087200,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Backend / API",
+      "domain": "backend",
+      "capabilities": [
+        "dify",
+        "esp32",
+        "mcp-server",
+        "xiaozhi",
+        "xiaozhi-ai",
+        "xiaozhi-esp32",
+        "xiaozhi-server"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 10860,
+        "forks": 3701,
+        "openIssues": 726,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T14:58:11Z"
+      },
+      "bestFor": [
+        "本项目为xiaozhi-esp32提供后端服务，帮助您快速搭建ESP32设备控制服务器。Backend service for xiaozhi-esp32, helps you quickly build an ESP32 device control server."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "xtool-org/xtool",
+      "githubRepositoryId": 889784913,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [
+        "ios",
+        "linux",
+        "swift",
+        "swift-package-manager",
+        "windows",
+        "xcode"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 11549,
+        "forks": 541,
+        "openIssues": 107,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-14T04:44:37Z"
+      },
+      "bestFor": [
+        "Cross-platform Xcode replacement. Build and deploy iOS apps with SwiftPM on Linux, Windows, macOS."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "yamadashy/repomix",
+      "githubRepositoryId": 828119367,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai",
+        "anthropic",
+        "artificial-intelligence",
+        "chatbot",
+        "chatgpt",
+        "claude",
+        "deepseek",
+        "developer-tools",
+        "gemini",
+        "genai",
+        "generative-ai",
+        "gpt"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 28851,
+        "forks": 1598,
+        "openIssues": 154,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-11T16:00:19Z"
+      },
+      "bestFor": [
+        "📦 Repomix is a powerful tool that packs your entire repository into a single, AI-friendly file. Perfect for when you need to feed your codebase to Large Language Models (LLMs) or other AI tools like C"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "YILS-LIN/short-video-factory",
+      "githubRepositoryId": 1016509116,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Productivité",
+      "domain": "productivity",
+      "capabilities": [
+        "ai",
+        "automatic",
+        "automation",
+        "clipping",
+        "cross-platform",
+        "desktop",
+        "linux",
+        "mac",
+        "marketing",
+        "pc",
+        "product",
+        "shortvideo"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5647,
+        "forks": 782,
+        "openIssues": 27,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-15T09:25:23Z"
+      },
+      "bestFor": [
+        "一键生成产品营销与泛内容短视频，AI批量自动剪辑，高颜值跨平台桌面端工具 One click generation of product marketing and general content short videos, AI batch automatic cliping, beautiful cross platform desktop tool"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "yoursunny/esp32cam",
+      "githubRepositoryId": 163605157,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "arduino-library",
+        "esp32",
+        "hacktoberfest",
+        "ov2640"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 687,
+        "forks": 205,
+        "openIssues": 10,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "ISC",
+        "pushedAt": "2026-07-26T17:30:35Z"
+      },
+      "bestFor": [
+        "OV2640 camera on ESP32-CAM, Arduino library"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Zejun-Yang/AniPortrait",
+      "githubRepositoryId": 775873810,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Graphisme / 3D",
+      "domain": "graphics",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5017,
+        "forks": 615,
+        "openIssues": 84,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2024-07-02T02:22:52Z"
+      },
+      "bestFor": [
+        "AniPortrait: Audio-Driven Synthesis of Photorealistic Portrait Animation"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {

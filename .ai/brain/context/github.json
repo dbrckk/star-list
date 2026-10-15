@@ -2,7 +2,14 @@
   "area": "github",
   "files": [
     {
-      "path": ".github/workflows/sync-github-stars.yml",
+      "path": ".github/workflows/daily-portfolio-integration.yml",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": ".github/workflows/portfolio-scan-smoke.yml",
       "reasons": [
         "changed"
       ],

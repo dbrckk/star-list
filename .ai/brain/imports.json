@@ -100,6 +100,23 @@
       "json",
       "pathlib"
     ],
+    "scripts/portfolio_daily.py": [
+      "__future__",
+      "argparse",
+      "base64",
+      "datetime",
+      "hashlib",
+      "json",
+      "os",
+      "pathlib",
+      "re",
+      "recommend",
+      "sys",
+      "time",
+      "urllib.error",
+      "urllib.parse",
+      "urllib.request"
+    ],
     "scripts/recommend.py": [
       "argparse",
       "datetime",

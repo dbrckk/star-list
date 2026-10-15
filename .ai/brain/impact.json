@@ -1,17 +1,92 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "b18de25d860d3690809fd4684b3f8da3482479f5",
-  "head": "7de3e4e00521b10f2b8310e5777315b108eefcf8",
+  "base": "7de3e4e00521b10f2b8310e5777315b108eefcf8",
+  "head": "12ffde72b4c66fcd9f989de67b0d58878e74f4bf",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": ".github/workflows/sync-github-stars.yml",
+      "path": ".github/workflows/daily-portfolio-integration.yml",
+      "status": "A"
+    },
+    {
+      "path": ".github/workflows/portfolio-scan-smoke.yml",
+      "status": "A"
+    },
+    {
+      "path": "catalog.json",
       "status": "M"
+    },
+    {
+      "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
+      "status": "A"
+    },
+    {
+      "path": "scripts/portfolio_daily.py",
+      "status": "A"
     }
   ],
-  "changed_source_files": [],
-  "impacted_files": [],
-  "impacted_symbols": [],
+  "changed_source_files": [
+    "scripts/portfolio_daily.py"
+  ],
+  "impacted_files": [
+    "scripts/portfolio_daily.py"
+  ],
+  "impacted_symbols": [
+    {
+      "name": "request_json",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 49
+    },
+    {
+      "name": "github_repos",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 83
+    },
+    {
+      "name": "file_text",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 103
+    },
+    {
+      "name": "project_profile",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 114
+    },
+    {
+      "name": "eligible",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 136
+    },
+    {
+      "name": "recommendations",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 150
+    },
+    {
+      "name": "launch_integration",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 186
+    },
+    {
+      "name": "render_markdown",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 209
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 237
+    }
+  ],
   "selected_tests": []
 }

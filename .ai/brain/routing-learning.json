@@ -362,6 +362,24 @@
         "scripts/admit_github_stars.py",
         "scripts/test_auto_stars_admission.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat: daily star-list portfolio discovery and qualified integration queue",
+      "terms": [
+        "daily",
+        "discovery",
+        "feat",
+        "integration",
+        "portfolio",
+        "qualified",
+        "queue",
+        "star-list"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -526,6 +544,7 @@
       "scripts/test_recommend.py": 4
     },
     "daily": {
+      "scripts/portfolio_daily.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
@@ -555,6 +574,9 @@
       "scripts/star_import_pipeline.py": 4,
       "scripts/test_star_import_pipeline.py": 4
     },
+    "discovery": {
+      "scripts/portfolio_daily.py": 4
+    },
     "dynamically": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
@@ -573,6 +595,7 @@
     },
     "feat": {
       "scripts/admit_github_stars.py": 4,
+      "scripts/portfolio_daily.py": 4,
       "scripts/test_auto_stars_admission.py": 4
     },
     "files": {
@@ -648,6 +671,9 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "integration": {
+      "scripts/portfolio_daily.py": 4
+    },
     "into": {
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
@@ -701,6 +727,9 @@
       "scripts/star_import_pipeline.py": 4,
       "scripts/test_star_import_pipeline.py": 4
     },
+    "portfolio": {
+      "scripts/portfolio_daily.py": 4
+    },
     "public": {
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
@@ -715,9 +744,15 @@
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/validate_json_contract.py": 4
     },
+    "qualified": {
+      "scripts/portfolio_daily.py": 4
+    },
     "quality": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
+    },
+    "queue": {
+      "scripts/portfolio_daily.py": 4
     },
     "recommendation": {
       "scripts/recommend.py": 8,
@@ -806,6 +841,7 @@
     },
     "star-list": {
       "scripts/admit_github_stars.py": 4,
+      "scripts/portfolio_daily.py": 4,
       "scripts/test_auto_stars_admission.py": 4
     },
     "stars": {

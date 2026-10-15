@@ -1,14 +1,14 @@
 {
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
-  "files_indexed": 51,
-  "symbol_count": 195,
-  "edge_count": 9,
+  "files_indexed": 52,
+  "symbol_count": 204,
+  "edge_count": 10,
   "languages": {
-    "python": 51
+    "python": 52
   },
   "index_mode": "incremental",
-  "reparsed_files": 0,
+  "reparsed_files": 1,
   "top_symbol_files": [
     {
       "file": "scripts/discover_candidates.py",
@@ -37,6 +37,10 @@
     {
       "file": "scripts/refresh_github_metadata.py",
       "symbols": 10
+    },
+    {
+      "file": "scripts/portfolio_daily.py",
+      "symbols": 9
     },
     {
       "file": "scripts/sync_github_stars.py",

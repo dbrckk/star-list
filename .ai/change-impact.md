@@ -1,13 +1,18 @@
 # Change impact
 
-Base: bf8a814bb9a524ebe6a9dc65cf0a889a17840062
-Head: 7de3e4e00521b10f2b8310e5777315b108eefcf8
+Base: 1e3c8817164058777574153bffbd7dffa0a6726c
+Head: 12ffde72b4c66fcd9f989de67b0d58878e74f4bf
 
 ## Changed files
-- M .github/workflows/sync-github-stars.yml
+- A .github/workflows/daily-portfolio-integration.yml
+- A .github/workflows/portfolio-scan-smoke.yml
+- A docs/DAILY_PORTFOLIO_INTEGRATION.md
+- A scripts/portfolio_daily.py
 
 ## Affected areas
 - .github
+- docs
+- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.

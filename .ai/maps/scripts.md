@@ -52,6 +52,7 @@ filter_discovery_memory.py
 find_replacements.py
 health_score.py
 infer_selection_guidance.py
+portfolio_daily.py
 recommend.py
 refresh_github_metadata.py
 render_discovery_issue.py
@@ -911,6 +912,143 @@ args = parser.parse_args()
 ⋮----
 data = json.loads(CATALOG.read_text())
 changed = enrich(data.get("repositories", []), tier=args.tier, refresh_inferred=args.refresh_inferred)
+```
+
+## File: portfolio_daily.py
+```python
+#!/usr/bin/env python3
+"""Daily, read-only portfolio discovery with optional idempotent Production-OS handoff.
+
+The GitHub Actions token can scan public repositories but cannot write to
+other repositories. Actual code integration is delegated to a qualified
+Production-OS worker, never treated as completed by this script.
+"""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+API = "https://api.github.com"
+ALLOWED_LICENSES = {
+KEYWORDS = {
+GENERIC = {"ai", "agent", "dev", "web", "python", "typescript", "app", "open", "tools", "github", "repo"}
+MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
+⋮----
+def request_json(url: str, token: str = "", *, method: str = "GET", data: dict | None = None)
+⋮----
+parsed = urlparse(url)
+⋮----
+headers = {
+⋮----
+body = json.dumps(data).encode() if data is not None else None
+⋮----
+raw = response.read(3_000_000)
+⋮----
+def github_repos(owner: str, token: str, portfolio_token: str) -> list[dict]
+⋮----
+base = (API + "/user/repos?affiliation=owner&sort=full_name&per_page=100"
+result = []
+⋮----
+separator = "&" if "?" in base else "?"
+rows = request_json(base + separator + "page=" + str(page), portfolio_token or token)
+⋮----
+def file_text(full_name: str, path: str, token: str, *, limit: int = 5500) -> str
+⋮----
+endpoint = API + "/repos/" + "/".join(quote(part, safe="") for part in full_name.split("/")) + "/contents/" + quote(path, safe="")
+payload = request_json(endpoint, token)
+⋮----
+raw = base64.b64decode(payload.get("content", ""), validate=False)
+⋮----
+def project_profile(repo: dict, token: str) -> dict
+⋮----
+name = repo["full_name"]
+description = str(repo.get("description") or "")
+topics = repo.get("topics") or []
+intro = file_text(name, "README.md", token, limit=2800)
+dependency_text = ""
+⋮----
+value = file_text(name, filename, token, limit=3500)
+⋮----
+overview = " ".join([repo["name"], description, " ".join(topics), intro[:1200]])
+label_text = " ".join([repo["name"], description, " ".join(topics)]).lower()
+domains = set(infer_domains(tokens(label_text)))
+⋮----
+# README may refine a known project, but never invent a domain solely from README.
+⋮----
+def eligible(item: dict) -> bool
+⋮----
+gh = item.get("github") or {}
+⋮----
+license_key = str(gh.get("license") or "").strip().lower()
+⋮----
+def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) -> list[dict]
+⋮----
+name = repo["full_name"].lower()
+domains = set(profile["domains"])
+⋮----
+matches = []
+⋮----
+slug = str(tool.get("repo") or "")
+⋮----
+terms = (tokens(slug) | tokens(" ".join(tool.get("capabilities") or []))
+shared = sorted((profile["terms"] & terms) - GENERIC)
+⋮----
+slug_name = slug.rsplit("/", 1)[-1].lower()
+⋮----
+candidate_languages = set(str(x).lower() for x in (tool.get("languages") or []))
+languages_match = not candidate_languages or profile["language"] in candidate_languages
+score = score_repo(tool, profile["terms"], domains, set(), set())
+⋮----
+# A language mismatch is reviewable as a service/CLI integration, never a direct dependency.
+⋮----
+def launch_integration(url: str, token: str, target: str, candidate: dict)
+⋮----
+identity = hashlib.sha256((target.lower() + "\0" + candidate["repository"].lower()).encode()).hexdigest()[:24]
+marker = "starlist-integration-v1-" + identity
+goal = (
+⋮----
+def render_markdown(report: dict) -> str
+⋮----
+summary = report["summary"]
+lines = ["<!-- star-list-portfolio-daily -->", "# Daily star-list portfolio discovery", "",
+⋮----
+def main() -> int
+⋮----
+ap = argparse.ArgumentParser()
+⋮----
+args = ap.parse_args()
+⋮----
+gh_token = os.getenv("GITHUB_TOKEN", "")
+portfolio_token = os.getenv("PORTFOLIO_GITHUB_TOKEN", "")
+operator_token = os.getenv("PRODUCTION_OS_OPERATOR_TOKEN", "")
+service = os.getenv("PRODUCTION_OS_URL", "https://production-os1.onrender.com")
+report = {"generated_at": datetime.now(timezone.utc).isoformat(), "owner": args.owner,
+⋮----
+catalog = json.loads(args.catalog.read_text(encoding="utf-8"))["repositories"]
+⋮----
+target = request_json(API + "/repos/" + args.repository, portfolio_token or gh_token)
+⋮----
+source = [target]
+⋮----
+source = github_repos(args.owner, gh_token, portfolio_token)
+# The central issue is public: never publish private target metadata there.
+source = [repo for repo in source if not repo.get("private")]
+⋮----
+target = repo["full_name"]
+row = {"repository": target, "status": "scanned", "suggestions": [], "dispatches": []}
+⋮----
+profile = project_profile(repo, portfolio_token or gh_token)
+⋮----
+dispatched = 0
+⋮----
+# Always prioritize highest-confidence matches, irrespective of repository order.
+queue = sorted(((item["score"], row, item) for row in report["projects"]
+⋮----
+existing = request_json(service.rstrip("/") + "/v1/managed-projects", operator_token)
+already = [str(p.get("final_goal") or "") for p in (existing or {}).get("projects", [])]
+⋮----
+existing = None
+⋮----
+marker = "starlist-integration-v1-" + hashlib.sha256(
+⋮----
+result = launch_integration(service, operator_token, row["repository"], item)
 ```
 
 ## File: recommend.py

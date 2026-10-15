@@ -27,6 +27,11 @@
       "type": "imports"
     },
     {
+      "source": "scripts/portfolio_daily.py",
+      "target": "scripts/recommend.py",
+      "type": "imports"
+    },
+    {
       "source": "scripts/recommend.py",
       "target": "scripts/find_replacements.py",
       "type": "imports"

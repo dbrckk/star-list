@@ -27,31 +27,31 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-15T19:20:21Z
+Generated: 2026-10-15T20:02:13Z
 
 ### Git
 - Branch: `main`
-- Head: `7de3e4e00521`
-- Commit date: 2026-10-15T21:20:12+02:00
-- Commit: fix: rebase and retry Stars catalog commits after concurrent workflow pushes
-- Tracked files: 267
+- Head: `12ffde72b4c6`
+- Commit date: 2026-10-15T22:02:01+02:00
+- Commit: feat: daily star-list portfolio discovery and qualified integration queue
+- Tracked files: 271
 
 ### Recently changed files
+- `.github/workflows/daily-portfolio-integration.yml`
+- `.github/workflows/portfolio-scan-smoke.yml`
+- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
+- `scripts/portfolio_daily.py`
+- `catalog.json`
 - `.github/workflows/sync-github-stars.yml`
 - `README.md`
 - `docs/GITHUB_STARS_SYNC.md`
 - `scripts/admit_github_stars.py`
 - `scripts/test_auto_stars_admission.py`
 - `cache-health-history.json`
-- `catalog.json`
 - `discovery-cache.json`
 - `discovery-memory.json`
 - `health-snapshot.json`
 - `history.json`
-- `.github/workflows/validate.yml`
-- `RECOMMENDER.md`
-- `stacks.json`
-- `.repomixignore`
 
 ### Project signals
 - No common build descriptor detected
