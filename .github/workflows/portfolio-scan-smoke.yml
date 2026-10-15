@@ -1,0 +1,49 @@
+name: Portfolio discovery live smoke
+
+on:
+  pull_request:
+    paths:
+      - "scripts/portfolio_daily.py"
+      - ".github/workflows/daily-portfolio-integration.yml"
+      - ".github/workflows/portfolio-scan-smoke.yml"
+      - "docs/DAILY_PORTFOLIO_INTEGRATION.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Read-only live portfolio discovery, without integration credentials
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/portfolio_daily.py \
+            --owner dbrckk --max-dispatch 0 \
+            --output portfolio-daily.json --markdown portfolio-daily.md
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path("portfolio-daily.json").read_text())
+          assert result["summary"]["discovered"] >= 1
+          assert result["summary"]["inspected"] == result["summary"]["discovered"]
+          assert result["summary"]["dispatched"] == 0
+          print("Read-only scan verified:", result["summary"])
+          PY
+      - name: Preserve real scan evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-live-readonly-smoke
+          path: |
+            portfolio-daily.json
+            portfolio-daily.md
+          if-no-files-found: warn
+          retention-days: 14
