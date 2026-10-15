@@ -216,7 +216,7 @@ INTEGRATION_TOKEN_BUDGET = 90000
 
 def integration_marker(target: str, candidate: dict, version: int = 2) -> str:
     identity = hashlib.sha256(
-        (target.lower() + "\\0" + candidate["repository"].lower()).encode()
+        (target.lower() + "\0" + candidate["repository"].lower()).encode()
     ).hexdigest()[:24]
     return f"starlist-integration-v{version}-" + identity
 
