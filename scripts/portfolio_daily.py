@@ -49,6 +49,22 @@ STOPWORDS = {
     "these", "this", "to", "using", "via", "was", "we", "were", "what",
     "when", "where", "which", "while", "will", "with", "you", "your",
 }
+# Portfolio READMEs include French; shared prose must never be treated as
+# evidence that a developer tool is genuinely compatible with an app.
+STOPWORDS.update({
+    "afin", "ainsi", "alors", "avec", "avoir", "aux", "autre", "autres",
+    "car", "ce", "cela", "ces", "cette", "chez", "comme", "comment",
+    "dans", "de", "des", "donc", "du", "elle", "elles", "en", "entre",
+    "est", "et", "etre", "fait", "faire", "ici", "ils", "il", "je",
+    "la", "le", "les", "leur", "leurs", "mais", "mes", "mon", "nos",
+    "notre", "nous", "ou", "oui", "par", "pas", "peut", "peuvent",
+    "plus", "pour", "quand", "que", "quel", "quelle", "quelles",
+    "quels", "qui", "quoi", "sans", "ses", "se", "sont", "son",
+    "sur", "tous", "tout", "toute", "toutes", "une", "un", "vous",
+    "votre", "vos",
+})
+
+
 # Engine-specific runtime components are not drop-in replacements for
 # incompatible engines. This is a hard gate, not a soft relevance penalty.
 ENGINE_CONFLICTS = {
