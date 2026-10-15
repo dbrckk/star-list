@@ -1,79 +1,63 @@
 # Automatic GitHub Stars synchronization
 
-star-list can check the public GitHub Stars of the account **dbrckk** without
-sending screenshots or configuring any external service.
+The public GitHub Stars of **dbrckk** are synchronized into `catalog.json`
+hourly at approximately **minute 11** (UTC), and the workflow can be launched using
+**Actions → Sync GitHub Stars → Run workflow**.
 
-## Scheduled operation
+## Admission policy
 
-[Sync GitHub Stars](../.github/workflows/sync-github-stars.yml) runs daily at
-05:41 UTC, can be started manually in **GitHub → Actions → Sync GitHub Stars →
-Run workflow**, and runs automatically whenever `catalog.json` changes on `main` (so the review issue is reconciled immediately after admissions).
-
-It uses the built-in GITHUB_TOKEN (read access to the GitHub API; issues:write
-only for its review issue). It requires **no personal access token and no paid
-API**.
+All accessible, publicly starred repositories are eligible for **automatic
+catalog inclusion**, even when archived, inactive or missing clear license
+terms. Admission does not mean the software has been verified or endorsed.
 
 The workflow:
-1. Executes the offline synchronization regression tests.
-2. Fetches every accessible public Star for dbrckk (100 per page).
-3. Compares normalized owner/repository names and recorded permanent GitHub IDs with catalog.json.
-4. Generates an immutable-for-the-run JSON report, Markdown review, and a
-   star-import compatible manifest as **GitHub Actions artifacts** (14 days).
-5. Creates or updates **one** review issue if new repositories are found;
-   closes the previous issue when no review is needed.
+1. Fetches all accessible Stars (100 per page) and fails if pagination
+   or API responses cannot be completed.
+2. Reconciles case-insensitive repository names and permanent GitHub IDs
+   to avoid duplicates and recognize transfers.
+3. Fetches full GitHub metadata for each genuinely missing repository.
+4. Generates a schema-compatible catalog entry with topic-based
+   categorization, factual metadata and conservative defaults.
+5. Assigns **`tier: audit`**, **`score: 6.0`** and inferred guidance to
+   newly added entries. License and suitability remain unverified.
+6. Validates the complete candidate catalog before atomic replacement.
+7. Commits `catalog.json` to `main`, then closes the previous review issue
+   when all accessible Stars have been accounted for.
+8. Publishes synchronization and admission reports as Actions artifacts for
+   14 days.
 
-The catalog is **never** changed by this workflow. Only the existing,
-explicitly human-reviewed admission path in
-[scripts/star_import_pipeline.py](../scripts/star_import_pipeline.py) can write
-new entries. The report is a discovery aid, not a software review, license
-grant, or security assessment.
+If any repository cannot be verified, admission fails rather than committing
+a partial catalog. Subsequent scheduled runs retry. No Star is silently
+excluded because of its license, maturity, language or category.
 
-## Local execution
+## Manual/local commands
 
-Python 3.12 standard library is sufficient for the synchronizer.
-
-~~~bash
-python scripts/test_sync_github_stars.py
+```bash
 python scripts/sync_github_stars.py --user dbrckk \
   --report-json star-sync-report.json \
   --report-md star-sync-review.md \
   --manifest star-sync-manifest.json
-python scripts/validate_json_contract.py \
-  schemas/star-sync-report.schema.json star-sync-report.json
-~~~
 
-For higher GitHub rate limits, optionally set GITHUB_TOKEN in your environment.
-Do not put tokens in Git-tracked files. The default public endpoint can also
-work without a token, subject to lower API limits.
+python scripts/admit_github_stars.py \
+  --sync-report star-sync-report.json \
+  --report-json star-admission-report.json \
+  --dry-run
+```
 
-To inspect the discovered names using the existing read-only import pipeline:
+Remove `--dry-run` to validate and update the local catalog atomically.
+The GitHub Actions workflow performs that write automatically.
 
-~~~bash
-python scripts/star_import_pipeline.py star-sync-manifest.json \
-  --report-json star-sync-import-report.json
-~~~
+## Limitations
 
-Admitting a new entry still requires manually inspected and verified metadata,
-an explicit reviewed=true entry and the existing validator.
+- The built-in `GITHUB_TOKEN` reads public Stars, not necessarily private
+  repositories or private Stars unavailable to this token.
+- Previously cataloged entries remain after an unstar; the catalog is additive.
+- Renamed/transferred repositories with known stable IDs are recognized as
+  already present; legacy references may require a separate canonical rename.
+- GitHub's license label is only metadata; model weights, assets and commercial
+  usage may have separate restrictions.
+- Auto-admitted entries retain the `audit` tier until deeper manual curation.
+- A permission or branch policy preventing bot commits causes a visible workflow
+  failure, not a false successful synchronization.
 
-## Failure behavior and limitations
-
-- HTTP errors, malformed API data, exhausted retries and incomplete pagination
-  **fail the run** instead of claiming the catalog is complete.
-- The page limit defaults to 100 (up to 10,000 starred entries); reaching it
-  while a next page exists fails closed. Increase --max-pages if needed.
-- Only repositories visible through the GitHub account permissions used by
-  the job are returned; it cannot inspect private repositories inaccessible to
-  GITHUB_TOKEN. Stars removed from the account are not deleted from the catalog.
-- For catalog entries with a verified `githubRepositoryId`, GitHub Stars are
-  matched by that permanent ID even if the repository owner/name changes.
-  Older catalog entries without an ID still fall back to case-insensitive names;
-  their transfers may require a one-time identity review.
-- GitHub's license field is only a metadata hint; model weights and bundled
-  assets may use separate or more restrictive terms.
-- The issue displays at most 50 new repositories; the artifact contains all
-  results. A workflow failure does not update or close the previous issue.
-- When Actions permissions are restricted, review issue publication can fail.
-  The workflow must have issues:write; no admin or external connector is needed.
-
-Tests run without any network, API keys, or dependency installation.
+The synchronization uses Python 3.12 standard library and GitHub Actions.
