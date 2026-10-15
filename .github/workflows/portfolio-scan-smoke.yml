@@ -40,6 +40,17 @@ jobs:
                   assert not ({"and", "as", "the", "with"} & set(candidate["shared_terms"])), candidate
                   if "roblox" in project["repository"].lower():
                       assert "godot" not in candidate["repository"].lower(), candidate
+          import sys
+          sys.path.insert(0, "scripts")
+          from portfolio_daily import is_reference_candidate
+          catalog = json.loads(Path("catalog.json").read_text())["repositories"]
+          reference = next(x for x in catalog if x["repo"].lower() == "android/nowinandroid")
+          assert is_reference_candidate(reference), "Architecture example must be review-only"
+          for project in result["projects"]:
+              for candidate in project["suggestions"]:
+                  if candidate["repository"].lower() == "android/nowinandroid":
+                      assert candidate["mode"] == "reference-review", candidate
+          print("Verified reference applications cannot enter the automated dispatch queue")
           print("Verified meaningful matching and Roblox engine compatibility")
           print("Read-only scan verified:", result["summary"])
           PY
