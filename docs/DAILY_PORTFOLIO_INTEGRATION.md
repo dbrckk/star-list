@@ -87,6 +87,13 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   avoids permanently freezing the entire portfolio while also preventing
   runaway retries or repeated work from push/schedule dispatches. Missing
   creation timestamps are treated conservatively as same-day launches.
+- **Unknown launch outcome stops the queue:** if Production-OS times out,
+  returns an error or fails to confirm a managed project after a launch POST,
+  the scanner does not try any other candidate in that run. The POST may have
+  created work before its response was lost, despite its stable idempotency
+  key. The failed Actions run retains diagnostic artifacts; a later scan must
+  first re-read the authoritative managed-project inventory before any new
+  dispatch. Never treat an uncertain response as free capacity.
 - **Per-target single-flight protection:** candidate ranking never triggers
   simultaneous modifications of the same target. All suggestions remain in
   the report; only submission is deferred until active/review-pending work
