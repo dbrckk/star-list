@@ -46,6 +46,7 @@ jobs:
               is_reference_candidate, count_active_integrations,
               count_failed_v2_integrations, verified_managed_projects,
               integration_marker, recoverable_failure_targets,
+              count_launches_on_utc_date,
           )
           assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
           # All four actual Production-OS lifecycle states are recognized.
@@ -58,6 +59,16 @@ jobs:
           valid = {"projects": [active, completed], "total_count": 2, "complete": True}
           assert verified_managed_projects(valid) == valid["projects"]
           assert count_active_integrations(valid["projects"]) == 1
+          # The dispatch quota is tied to UTC, not to the worker's local date.
+          utc_boundary = [
+              {"final_goal": integration_marker("dbrckk/Jumpy", {"repository": "a/b"}),
+               "created_at": "2026-10-17T00:20:00+02:00"},
+              {"final_goal": integration_marker("dbrckk/Jumpy", {"repository": "c/d"}),
+               "created_at": "2026-10-16T23:20:00-02:00"},
+              {"final_goal": "unrelated", "created_at": "2026-10-16T15:00:00Z"},
+          ]
+          assert count_launches_on_utc_date(utc_boundary, "2026-10-16") == 1
+          assert count_launches_on_utc_date(utc_boundary, "2026-10-17") == 1
           for changes in (
               {"status": "IN_PROGRESS"},
               {"status": []},
