@@ -446,14 +446,43 @@ def main() -> int:
             # not merely the number of launches in this one workflow run.
             active_integrations = count_active_integrations(already)
             failed_v2_integrations = count_failed_v2_integrations(already)
-            # A v2 failure still occupies one admission slot. Continue
-            # scanning daily, but do not spend unlimited tokens on new
-            # projects while the free coding worker has unresolved failures.
-            available_slots = min(
-                args.max_dispatch,
-                max(0, 3 - active_integrations - failed_v2_integrations),
-            )
+            # Failed projects are quarantined instead of occupying all
+            # capacity slots forever. While failures remain, admit at most
+            # ONE distinct project per UTC day and only with an idle portfolio
+            # worker. This avoids both deadlock and unlimited paid/free-token
+            # retries from scans triggered repeatedly by GitHub events.
+            failed_targets = {
+                str(p.get("repository") or "").lower()
+                for p in already
+                if "starlist-integration-v2-" in str(p.get("final_goal") or "")
+                and str(p.get("status") or "").upper().replace("-", "_")
+                    == "NEEDS_ATTENTION"
+            }
+            if failed_v2_integrations:
+                current_day = report["generated_at"][:10]
+                launches_today = sum(
+                    1 for p in already
+                    if "starlist-integration-v2-" in str(p.get("final_goal") or "")
+                    and (
+                        not str(p.get("created_at") or "").strip()
+                        or str(p.get("created_at")).startswith(current_day)
+                    )
+                )
+                available_slots = (
+                    min(args.max_dispatch, max(0, 1 - launches_today))
+                    if active_integrations == 0 else 0
+                )
+            else:
+                available_slots = min(
+                    args.max_dispatch,
+                    max(0, 3 - active_integrations),
+                )
             for _, row, item in queue:
+                if row["repository"].lower() in failed_targets:
+                    row["dispatches"].append(
+                        "quarantined-v2: prior high-budget integration needs review"
+                    )
+                    continue
                 marker = integration_marker(row["repository"], item)
                 previous = integration_marker(row["repository"], item, version=1)
                 if any(marker in str(p.get("final_goal") or "") for p in already):

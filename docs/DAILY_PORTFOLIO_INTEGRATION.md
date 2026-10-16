@@ -67,6 +67,12 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   implementation time; metadata alone is insufficient.
 - Max 3 managed-project launches per daily run and up to three qualified candidates per
   target. All accessible repositories are still inspected on each run.
+- If any v2 high-budget integration needs attention, **quarantine its target**
+  from further automatic attempts and admit **at most one different project
+  per UTC day**, only when no other portfolio integration is active. This
+  avoids permanently freezing the entire portfolio while also preventing
+  runaway retries or repeated work from push/schedule dispatches. Missing
+  creation timestamps are treated conservatively as same-day launches.
 - **Fleet-level queue protection:** at most three portfolio integrations may be
   `ACTIVE`, `RUNNING` or `QUEUED` across all scans. Each unresolved
   failed **v2** integration also holds one slot until its failure is reviewed,
