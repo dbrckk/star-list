@@ -5,7 +5,7 @@ Status: active
 ## Working
 - GitHub Stars are reconciled automatically into `catalog.json` at audit tier, preserving atomic validation and failure artifacts.
 - Public portfolio scanning and recommendation reporting work; private-repository workflows run independently without publishing private project details.
-- Catalog contains 937 entries on 2026-10-16; the current validation and Repository standards workflows have passed.
+- Catalog contains 942 entries on 2026-10-16; the current validation and Repository standards workflows have passed.
 - Per-target single-flight dispatch and same-origin authenticated redirects have been merged (#80 and #81).
 - Portfolio execution remains subject to strict worker capacity, deduplication, and UTC launch caps.
 
@@ -19,6 +19,12 @@ Status: active
 - PRs #90-#93 merged: strict Production-OS launch receipts; development-side Roblox Studio MCP classification; upstream TypeScript metadata correction; exclusion of catalog-declared substitute game engines from Roblox recommendations.
 - Live discovery after PR #91 reported 38/38 accessible public repositories inspected, 15 with reviewable suggestions, 2 projects with native matches and 4 native candidates. The four historical v2 failures remained unresolved; no new integration was confirmed.
 - Verify actual worker outputs and target-side CI before counting any Production-OS handoff as completed.
+
+## New verified results (2026-10-16)
+- PRs #100–#103 merged: redacted failure artifacts on API outages, daily operator diagnosis, Hermes/OpenCode catalog matching, and targeted read-only failure inventory.
+- Production-OS PR #276 is live on Render and exposes opaque project IDs only to explicitly opted-in operators; default inventory remains redacted.
+- Operator diagnosis [run 38965266598](https://github.com/dbrckk/star-list/actions/runs/38965266598) succeeded with 4/4 v2 task details. All remain `capacity_exhausted`, 1/3 attempts, zero commits, zero PRs and no target CI evidence.
+- AI Dev Server PR #331 protects Production-OS and GitHub publishing credentials from Hermes/OpenCode subprocesses. This does not demonstrate available model inference capacity.
 
 ## Current priority
 1. **Restore usable free AI execution capacity.** Operator diagnosis on 2026-10-16 verified that all four unresolved v2 jobs failed with `capacity_exhausted`, exactly 1/3 attempts each, without commits, PRs or target CI. See `docs/PORTFOLIO_CAPACITY_RECOVERY.md`.
