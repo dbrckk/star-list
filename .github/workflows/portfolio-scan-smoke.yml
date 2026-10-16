@@ -100,14 +100,14 @@ jobs:
               argv = ["portfolio_daily.py", "--catalog", str(p / "catalog.json"),
                       "--output", str(p / "scan.json"),
                       "--markdown", str(p / "scan.md"), "--max-dispatch", "3"]
-              with patch.dict(os.environ, {"PRODUCTION_OS_OPERATOR_TOKEN": "offline-test"}), \\
-                   patch.object(sys, "argv", argv), \\
-                   patch.object(scanner, "github_repos", return_value=targets), \\
-                   patch.object(scanner, "project_profile", return_value={}), \\
+              with patch.dict(os.environ, {"PRODUCTION_OS_OPERATOR_TOKEN": "offline-test"}), \
+                   patch.object(sys, "argv", argv), \
+                   patch.object(scanner, "github_repos", return_value=targets), \
+                   patch.object(scanner, "project_profile", return_value={}), \
                    patch.object(scanner, "recommendations",
-                                side_effect=lambda repo, *_: offers[repo["full_name"]]), \\
+                                side_effect=lambda repo, *_: offers[repo["full_name"]]), \
                    patch.object(scanner, "request_json", return_value={
-                       "projects": [], "total_count": 0, "complete": True}), \\
+                       "projects": [], "total_count": 0, "complete": True}), \
                    patch.object(scanner, "launch_integration", side_effect=fake_launch):
                   assert scanner.main() == 0
               evidence = json.loads((p / "scan.json").read_text())
