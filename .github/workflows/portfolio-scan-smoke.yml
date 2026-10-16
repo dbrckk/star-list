@@ -300,6 +300,27 @@ jobs:
                           "language": "lua", "dependencies": "", "overview": ""}
           # Explicitly declared alternative engines are not Roblox plugins.
           assert recommendations(game, game_profile, engines, 3) == []
+          # Hermes/OpenCode are standalone agent processes. Even a matching
+          # implementation language must not turn them into native libraries.
+          for slug, language, terms in (
+              ("NousResearch/hermes-agent", "python",
+               "agent delegation memory automation mcp research scheduled workflows"),
+              ("anomalyco/opencode", "typescript",
+               "agent coding debugging tests mcp terminal repository development"),
+          ):
+              source = next(item for item in catalog_entries
+                            if item["repo"].lower() == slug.lower())
+              agent_profile = {
+                  "domains": ["ai_agents"],
+                  "language": language,
+                  "terms": scanner.tokens(terms),
+                  "dependencies": "",
+                  "overview": "",
+              }
+              target = {"name": "ai-service", "full_name": "dbrckk/ai-service"}
+              suggestions = recommendations(target, agent_profile, [source], 3)
+              assert len(suggestions) == 1, (slug, suggestions)
+              assert suggestions[0]["mode"] == "adapter-review", suggestions
           from urllib.request import Request
           protected = Request("https://production-os1.onrender.com/v1/dashboard/launch",
                               headers={"Authorization": "Bearer offline-test"})
