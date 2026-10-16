@@ -27,20 +27,19 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T16:22:31Z
+Generated: 2026-10-16T16:39:36Z
 
 ### Git
 - Branch: `main`
-- Head: `7ad27d9564d6`
-- Commit date: 2026-10-16T18:22:16+02:00
-- Commit: fix(portfolio): retire obsolete candidate quarantines safely
+- Head: `1a157ba0832c`
+- Commit date: 2026-10-16T18:39:26+02:00
+- Commit: fix(portfolio): enforce UTC daily launch quota and report throttling (#78)
 - Tracked files: 274
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
-- `catalog.json`
 
 ### Project signals
 - No common build descriptor detected

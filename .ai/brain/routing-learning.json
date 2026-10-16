@@ -625,6 +625,25 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): enforce UTC daily launch quota and report throttling (#78)",
+      "terms": [
+        "78",
+        "daily",
+        "enforce",
+        "launch",
+        "portfolio",
+        "quota",
+        "report",
+        "throttling",
+        "utc"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -723,6 +742,9 @@
       "scripts/portfolio_daily.py": 4
     },
     "74": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "78": {
       "scripts/portfolio_daily.py": 4
     },
     "add": {
@@ -832,7 +854,7 @@
       "scripts/test_recommend.py": 4
     },
     "daily": {
-      "scripts/portfolio_daily.py": 8,
+      "scripts/portfolio_daily.py": 12,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
@@ -882,6 +904,7 @@
       "scripts/test_recommend.py": 4
     },
     "enforce": {
+      "scripts/portfolio_daily.py": 4,
       "scripts/validate_catalog.py": 4
     },
     "evidence": {
@@ -1021,6 +1044,9 @@
     "latency": {
       "scripts/portfolio_daily.py": 4
     },
+    "launch": {
+      "scripts/portfolio_daily.py": 4
+    },
     "license": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/backfill_licenses.py": 4,
@@ -1126,6 +1152,9 @@
     "queue": {
       "scripts/portfolio_daily.py": 8
     },
+    "quota": {
+      "scripts/portfolio_daily.py": 4
+    },
     "recommendation": {
       "scripts/recommend.py": 8,
       "scripts/test_recommend.py": 8
@@ -1165,7 +1194,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "report": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "repos": {
       "scripts/portfolio_daily.py": 4
@@ -1283,6 +1312,9 @@
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
+    "throttling": {
+      "scripts/portfolio_daily.py": 4
+    },
     "tolerate": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1311,7 +1343,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "utc": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "v3": {
       "scripts/portfolio_daily.py": 4

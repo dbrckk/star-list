@@ -353,6 +353,7 @@ jobs:
               is_reference_candidate, count_active_integrations,
               count_failed_v2_integrations, verified_managed_projects,
               integration_marker, recoverable_failure_targets,
+              count_launches_on_utc_date,
           )
           assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
           # All four actual Production-OS lifecycle states are recognized.
@@ -365,6 +366,16 @@ jobs:
           valid = {"projects": [active, completed], "total_count": 2, "complete": True}
           assert verified_managed_projects(valid) == valid["projects"]
           assert count_active_integrations(valid["projects"]) == 1
+          # The dispatch quota is tied to UTC, not to the worker's local date.
+          utc_boundary = [
+              {"final_goal": integration_marker("dbrckk/Jumpy", {"repository": "a/b"}),
+               "created_at": "2026-10-17T00:20:00+02:00"},
+              {"final_goal": integration_marker("dbrckk/Jumpy", {"repository": "c/d"}),
+               "created_at": "2026-10-16T23:20:00-02:00"},
+              {"final_goal": "unrelated", "created_at": "2026-10-16T15:00:00Z"},
+          ]
+          assert count_launches_on_utc_date(utc_boundary, "2026-10-16") == 1
+          assert count_launches_on_utc_date(utc_boundary, "2026-10-17") == 1
           for changes in (
               {"status": "IN_PROGRESS"},
               {"status": []},
@@ -2258,6 +2269,15 @@ def count_failed_v2_integrations(projects: list[dict]) -> int
 ⋮----
 """Count only still-unresolved failed high-budget jobs."""
 ⋮----
+def count_launches_on_utc_date(projects: list[dict], utc_day: str) -> int
+⋮----
+"""Account for the UTC launch quota, regardless of an API timestamp offset.
+
+    Call only after verified_managed_projects has validated timezone-aware
+    timestamps. A local-calendar comparison can admit extra launches around
+    midnight even when the per-UTC-day safety quota is already exhausted.
+    """
+⋮----
 def verified_managed_projects(payload: object) -> list[dict]
 ⋮----
 """Fail closed unless the inventory can safely authorize more launches.
@@ -2353,6 +2373,8 @@ profile = project_profile(repo, portfolio_token or gh_token)
 dispatched = 0
 active_integrations = None
 failed_v2_integrations = None
+available_slots = None
+launches_today = None
 ⋮----
 # Validate the origin before even the read-only authenticated request.
 parsed_service = urlparse(service)
@@ -2387,7 +2409,7 @@ failed_targets = recoverable_failure_targets(
 # historical v2 failure remains unresolved.
 ⋮----
 current_day = report["generated_at"][:10]
-launches_today = sum(
+launches_today = count_launches_on_utc_date(already, current_day)
 available_slots = (
 ⋮----
 available_slots = min(
