@@ -357,8 +357,10 @@ jobs:
                   + str(result["summary"]["with_native_suggestions"]) + "**.") in report_markdown
           for project in result["projects"]:
               for candidate in project["suggestions"]:
-                  if "roblox" in project["repository"].lower() and candidate["repository"].lower() == "chrrxs/robloxstudio-mcp":
-                      assert candidate["mode"] == "adapter-review", candidate
+                  if "roblox" in project["repository"].lower():
+                      assert candidate["repository"].lower() not in {"libgdx/libgdx", "godotengine/godot"}, candidate
+                      if candidate["repository"].lower() == "chrrxs/robloxstudio-mcp":
+                          assert candidate["mode"] == "adapter-review", candidate
                   assert not ({"and", "as", "the", "with", "et", "pour", "avec", "dans", "les", "des"} & set(candidate["shared_terms"])), candidate
                   if "roblox" in project["repository"].lower():
                       assert "godot" not in candidate["repository"].lower(), candidate
@@ -417,6 +419,15 @@ jobs:
           assert matched[0]["mode"] == "adapter-review", matched
           # Development bridges remain reviewable, not dispatched natively.
           assert not any(x["mode"] == "native" for x in matched)
+          engines = [item for item in catalog_entries if item["repo"].lower()
+                     in {"godotengine/godot", "libgdx/libgdx"}]
+          assert len(engines) == 2
+          assert any("libgdx/libgdx" in (e.get("alternatives") or []) for e in engines)
+          game_profile = {"domains": ["game_dev"],
+                          "terms": scanner.tokens("roblox game development cross platform"),
+                          "language": "lua", "dependencies": "", "overview": ""}
+          # Explicitly declared alternative engines are not Roblox plugins.
+          assert recommendations(game, game_profile, engines, 3) == []
           from urllib.request import Request
           protected = Request("https://production-os1.onrender.com/v1/dashboard/launch",
                               headers={"Authorization": "Bearer offline-test"})
@@ -2496,11 +2507,16 @@ domains = set(profile["domains"])
 ⋮----
 target_identity = repo["name"].lower()
 godot_target = profile["language"] == "gdscript" or "godot" in target_identity
+roblox_target = profile["language"] in {"lua", "luau"} or "roblox" in target_identity
 existing_engine_sources = set(EXISTING_ENGINE_SOURCES["godot"]) if godot_target else set()
 # Engine alternatives are replacement *platforms*, not dependencies.
-# Derive them from the catalog's own explicit alternative relationships,
-# rather than chasing individual incompatible engine names by hand.
+# Derive them from curated alternative relationships, rather than chasing
+# arbitrary incompatible engine names by hand. Roblox has no cataloged
+# engine-source counterpart, so exclude both sides of declared engine
+# alternatives (e.g. godotengine/godot <-> libgdx/libgdx).
+engine_pairs = [
 excluded_engine_sources = existing_engine_sources | {
+⋮----
 matches = []
 ⋮----
 slug = str(tool.get("repo") or "")
@@ -34752,7 +34768,7 @@ Repository-specific rules:
         "multiplayer-testing"
       ],
       "languages": [
-        "lua"
+        "typescript"
       ],
       "platforms": [
         "windows",
@@ -45035,6 +45051,218 @@ Repository-specific rules:
       },
       "bestFor": [
         "An input that becomes what you mean: one text box that morphs into the right UI as you type. Powered by TypeSafe Jev, works offline."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "lukasz-madon/awesome-remote-job",
+      "githubRepositoryId": 28699471,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "awesome",
+        "awesome-list",
+        "list"
+      ],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 49560,
+        "forks": 4856,
+        "openIssues": 130,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-09-21T15:00:51Z"
+      },
+      "bestFor": [
+        "A curated list of awesome remote jobs and resources. Inspired by https://github.com/vinta/awesome-python"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "proxysoul/Empryo",
+      "githubRepositoryId": 1170138985,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-harness",
+        "ai",
+        "ai-agents",
+        "ai-coding-agent",
+        "claude-code",
+        "claude-code-alternative",
+        "cli",
+        "code-intelligence",
+        "coding-agent",
+        "coding-assistant",
+        "developer-tools",
+        "empryo"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1421,
+        "forks": 107,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-16T01:37:27Z"
+      },
+      "bestFor": [
+        "AI coding harness for desktop, terminal and CI. Maps your repo, edits code by symbol through AST and LSP, then runs your checks. Any model or the plan you already pay for. Get it at https://empryo.com"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "stkw0/awesome-telegram-groups",
+      "githubRepositoryId": 75951376,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "telegram",
+        "telegram-group"
+      ],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 127,
+        "forks": 17,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "WTFPL",
+        "pushedAt": "2020-11-17T19:15:58Z"
+      },
+      "bestFor": [
+        "List of telegram groups"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Usagi-org/ai-goofish-monitor",
+      "githubRepositoryId": 1020672081,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai",
+        "ai-assistant",
+        "ai-tools",
+        "automation",
+        "gemini",
+        "goofish",
+        "open-source",
+        "openai",
+        "playwright",
+        "tool",
+        "xian-yu",
+        "xianyu"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 14938,
+        "forks": 2641,
+        "openIssues": 35,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-10T07:39:16Z"
+      },
+      "bestFor": [
+        "基于 Playwright 和AI实现的闲鱼多任务实时/定时监控与智能分析系统，配备了功能完善的后台管理UI。帮助用户从闲鱼海量商品中，找到心仪产品。"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "XiaomingX/ai-money-maker-handbook",
+      "githubRepositoryId": 887171538,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Mémoire / IA",
+      "domain": "ai_memory",
+      "capabilities": [
+        "awesome",
+        "jobleap"
+      ],
+      "languages": [
+        "css"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6093,
+        "forks": 557,
+        "openIssues": 11,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-16T01:32:36Z"
+      },
+      "bestFor": [
+        "ai副业赚钱大集合，教你如何利用ai做一些副业项目，赚取更多额外收益。The Ultimate Guide to Making Money with AI Side Hustles: Learn how to leverage AI for some cool side gigs and rake in some extra cash. Check out the English version "
       ],
       "avoidWhen": [
         "production use before licensing and security review"

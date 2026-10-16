@@ -1025,11 +1025,16 @@ domains = set(profile["domains"])
 ⋮----
 target_identity = repo["name"].lower()
 godot_target = profile["language"] == "gdscript" or "godot" in target_identity
+roblox_target = profile["language"] in {"lua", "luau"} or "roblox" in target_identity
 existing_engine_sources = set(EXISTING_ENGINE_SOURCES["godot"]) if godot_target else set()
 # Engine alternatives are replacement *platforms*, not dependencies.
-# Derive them from the catalog's own explicit alternative relationships,
-# rather than chasing individual incompatible engine names by hand.
+# Derive them from curated alternative relationships, rather than chasing
+# arbitrary incompatible engine names by hand. Roblox has no cataloged
+# engine-source counterpart, so exclude both sides of declared engine
+# alternatives (e.g. godotengine/godot <-> libgdx/libgdx).
+engine_pairs = [
 excluded_engine_sources = existing_engine_sources | {
+⋮----
 matches = []
 ⋮----
 slug = str(tool.get("repo") or "")

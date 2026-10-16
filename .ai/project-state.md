@@ -32,19 +32,20 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T18:39:31Z
+Generated: 2026-10-16T18:44:01Z
 
 ### Git
 - Branch: `main`
-- Head: `207bdfdb2656`
-- Commit date: 2026-10-16T20:39:20+02:00
-- Commit: fix(portfolio): keep Roblox Studio MCP bridges out of native game integrations (#91)
+- Head: `34218e4c2841`
+- Commit date: 2026-10-16T20:43:50+02:00
+- Commit: fix(portfolio): exclude catalog-declared alternative game engines from Roblox (#93)
 - Tracked files: 275
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
+- `catalog.json`
 
 ### Project signals
 - No common build descriptor detected

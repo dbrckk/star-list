@@ -2,20 +2,18 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 45,
+    "example_count": 46,
     "rejected_count": 0,
     "terms": [
-      "91",
-      "bridges",
+      "93",
+      "alternative",
+      "catalog-declared",
+      "engines",
+      "exclude",
+      "from",
       "game",
-      "integrations",
-      "keep",
-      "mcp",
-      "native",
-      "out",
       "portfolio",
-      "roblox",
-      "studio"
+      "roblox"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -23,7 +21,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(portfolio): keep Roblox Studio MCP bridges out of native game integrations (#91)",
+  "task": "fix(portfolio): exclude catalog-declared alternative game engines from Roblox (#93)",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py"

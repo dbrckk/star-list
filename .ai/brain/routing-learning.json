@@ -819,6 +819,25 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): exclude catalog-declared alternative game engines from Roblox (#93)",
+      "terms": [
+        "93",
+        "alternative",
+        "catalog-declared",
+        "engines",
+        "exclude",
+        "from",
+        "game",
+        "portfolio",
+        "roblox"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -951,6 +970,9 @@
     "91": {
       "scripts/portfolio_daily.py": 4
     },
+    "93": {
+      "scripts/portfolio_daily.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -968,6 +990,9 @@
       "scripts/test_auto_stars_admission.py": 4
     },
     "already": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "alternative": {
       "scripts/portfolio_daily.py": 4
     },
     "api": {
@@ -1055,6 +1080,9 @@
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
+    },
+    "catalog-declared": {
+      "scripts/portfolio_daily.py": 4
     },
     "classify": {
       "scripts/audit_catalog_quality.py": 4,
@@ -1154,13 +1182,16 @@
     "engine": {
       "scripts/portfolio_daily.py": 4
     },
+    "engines": {
+      "scripts/portfolio_daily.py": 4
+    },
     "evidence": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
     },
     "exclude": {
-      "scripts/portfolio_daily.py": 8,
+      "scripts/portfolio_daily.py": 12,
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
@@ -1195,7 +1226,7 @@
       "scripts/backfill_licenses.py": 4,
       "scripts/discover_candidates.py": 4,
       "scripts/find_replacements.py": 4,
-      "scripts/portfolio_daily.py": 12,
+      "scripts/portfolio_daily.py": 16,
       "scripts/recommend.py": 4,
       "scripts/refresh_github_metadata.py": 12,
       "scripts/test_backfill_licenses.py": 4,
@@ -1212,7 +1243,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "game": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "games": {
       "scripts/portfolio_daily.py": 4
@@ -1565,7 +1596,7 @@
       "scripts/test_star_import_pipeline.py": 4
     },
     "roblox": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "safely": {
       "scripts/portfolio_daily.py": 12
