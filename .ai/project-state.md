@@ -27,13 +27,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T14:56:14Z
+Generated: 2026-10-16T16:22:31Z
 
 ### Git
 - Branch: `main`
-- Head: `fe8633c4736a`
-- Commit date: 2026-10-16T16:56:04+02:00
-- Commit: fix(portfolio): release quarantine after completed v3 recovery
+- Head: `7ad27d9564d6`
+- Commit date: 2026-10-16T18:22:16+02:00
+- Commit: fix(portfolio): retire obsolete candidate quarantines safely
 - Tracked files: 274
 
 ### Recently changed files

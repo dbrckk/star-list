@@ -1109,6 +1109,17 @@ def integration_marker(target: str, candidate: dict, version: int = 2) -> str
 ⋮----
 identity = hashlib.sha256(
 ⋮----
+"""Quarantine only targets with an *eligible* v3 retry still available.
+
+    A previous candidate may later be rejected as a reference application,
+    incompatible capability or low-value match. Keep the failed v2 record
+    visible, but do not permanently block an unrelated qualified native tool.
+    Existing v3 records (any status) are non-retryable.
+    """
+available: dict[str, set[str]] = {}
+⋮----
+target = str(project.get("repository") or "").lower()
+⋮----
 def launch_integration(url: str, token: str, target: str, candidate: dict, *, version: int = 2)
 ⋮----
 marker = integration_marker(target, candidate, version=version)
@@ -1176,7 +1187,11 @@ failed_v2_integrations = count_failed_v2_integrations(already)
 # worker. This avoids both deadlock and unlimited paid/free-token
 # retries from scans triggered repeatedly by GitHub events.
 unresolved_failures = unresolved_failed_v2_integrations(already)
-failed_targets = {
+failed_targets = recoverable_failure_targets(
+# Historical failures for candidates now disqualified remain
+# counted and reported; they cannot hold a target hostage forever.
+# The global one-launch-per-day cap still applies whenever a
+# historical v2 failure remains unresolved.
 ⋮----
 current_day = report["generated_at"][:10]
 launches_today = sum(

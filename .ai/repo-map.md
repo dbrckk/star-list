@@ -352,6 +352,7 @@ jobs:
           from portfolio_daily import (
               is_reference_candidate, count_active_integrations,
               count_failed_v2_integrations, verified_managed_projects,
+              integration_marker, recoverable_failure_targets,
           )
           assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
           # All four actual Production-OS lifecycle states are recognized.
@@ -432,6 +433,33 @@ jobs:
               failed_v2, {**completed_v3,
                           "final_goal": "starlist-integration-v3-" + "b" * 24},
           ]) == 1
+          target = "dbrckk/vibecheck-android"
+          old = {"repository": "android/nowinandroid"}
+          new = {"repository": "rive-app/rive-android"}
+          obsolete_failure = {
+              "repository": target,
+              "final_goal": integration_marker(target, old),
+              "status": "NEEDS_ATTENTION",
+          }
+          rows = [{"repository": target, "suggestions": [
+              {**old, "mode": "reference-review"},
+              {**new, "mode": "native"},
+          ]}]
+          # A disqualified prior tool is still a visible failure but must
+          # not permanently block a different qualified implementation.
+          assert recoverable_failure_targets([obsolete_failure], rows, []) == set()
+          rows[0]["suggestions"][0]["mode"] = "native"
+          assert recoverable_failure_targets(
+              [obsolete_failure], rows, [],
+          ) == {target.lower()}
+          terminal_retry = {"repository": target, "status": "NEEDS_ATTENTION",
+                            "final_goal": integration_marker(target, old, 3)}
+          assert recoverable_failure_targets(
+              [obsolete_failure], rows, [terminal_retry],
+          ) == set()
+          assert count_failed_v2_integrations(
+              [obsolete_failure, terminal_retry],
+          ) == 1
           assert result["summary"]["active_integrations"] is None
           assert result["summary"]["failed_v2_integrations"] is None
           catalog = json.loads(Path("catalog.json").read_text())["repositories"]
@@ -2274,6 +2302,17 @@ def integration_marker(target: str, candidate: dict, version: int = 2) -> str
 ⋮----
 identity = hashlib.sha256(
 ⋮----
+"""Quarantine only targets with an *eligible* v3 retry still available.
+
+    A previous candidate may later be rejected as a reference application,
+    incompatible capability or low-value match. Keep the failed v2 record
+    visible, but do not permanently block an unrelated qualified native tool.
+    Existing v3 records (any status) are non-retryable.
+    """
+available: dict[str, set[str]] = {}
+⋮----
+target = str(project.get("repository") or "").lower()
+⋮----
 def launch_integration(url: str, token: str, target: str, candidate: dict, *, version: int = 2)
 ⋮----
 marker = integration_marker(target, candidate, version=version)
@@ -2341,7 +2380,11 @@ failed_v2_integrations = count_failed_v2_integrations(already)
 # worker. This avoids both deadlock and unlimited paid/free-token
 # retries from scans triggered repeatedly by GitHub events.
 unresolved_failures = unresolved_failed_v2_integrations(already)
-failed_targets = {
+failed_targets = recoverable_failure_targets(
+# Historical failures for candidates now disqualified remain
+# counted and reported; they cannot hold a target hostage forever.
+# The global one-launch-per-day cap still applies whenever a
+# historical v2 failure remains unresolved.
 ⋮----
 current_day = report["generated_at"][:10]
 launches_today = sum(

@@ -259,11 +259,45 @@
       "symbol_dependencies": [],
       "dependency_count": 0
     },
-    "launch_integration": {
+    "recoverable_failure_targets": {
       "source": {
         "file": "scripts/portfolio_daily.py",
         "start": 410,
-        "end": 435
+        "end": 443
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "eligible",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 171,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "integration_marker",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 403,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "launch_integration": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 446,
+        "end": 471
       },
       "symbol_dependencies": [
         {
@@ -296,8 +330,8 @@
     "render_markdown": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 438,
-        "end": 471
+        "start": 474,
+        "end": 507
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -305,8 +339,8 @@
     "main": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 474,
-        "end": 680
+        "start": 510,
+        "end": 719
       },
       "symbol_dependencies": [
         {
@@ -362,7 +396,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 410,
+              "line": 446,
               "kind": "function",
               "language": "python"
             }
@@ -406,11 +440,23 @@
           "relation": "same_file"
         },
         {
+          "symbol": "recoverable_failure_targets",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 410,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
           "symbol": "render_markdown",
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 438,
+              "line": 474,
               "kind": "function",
               "language": "python"
             }
@@ -454,7 +500,7 @@
           "relation": "same_file"
         }
       ],
-      "dependency_count": 12
+      "dependency_count": 13
     }
   }
 }
