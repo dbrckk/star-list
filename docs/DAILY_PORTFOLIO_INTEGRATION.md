@@ -139,6 +139,11 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   suggestions must match a technical capability or use case. Cross-language
   adapter suggestions remain visible in the report, but are **never** sent to
   autonomous integration without a separate compatibility assessment.
+- Roblox Studio MCP bridges are **development-side tools**, even when their
+  catalog language matches a Roblox game. They require Studio, an MCP client
+  and a separate host, so the scanner presents them as `adapter-review`
+  instead of incorrectly dispatching a native runtime integration. They
+  remain available to developers for debugging, screenshots and playtesting.
 - Reference applications, demo repositories and code-example collections
   are marked `reference-review`, even when their language matches the
   target. They remain discoverable but **never** enter automated integration.

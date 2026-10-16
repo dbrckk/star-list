@@ -293,11 +293,20 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
             - GENERIC - STOPWORDS - WEAK_CAPABILITY_TERMS
         )
         capability_overlap = bool(set(shared) & concrete_terms)
+        # An MCP control bridge runs alongside Roblox Studio. Its Lua/Luau
+        # plugin is not a library embedded in the published game: external
+        # Studio access, an MCP client and a development host are required.
+        # Do not spend autonomous runtime-integration budget on this match.
+        capabilities = {str(v).strip().lower() for v in (tool.get("capabilities") or [])}
+        external_studio_bridge = (
+            "mcp" in capabilities and "roblox" in capabilities
+            and ("roblox" in target_identity or profile["language"] in {"lua", "luau"})
+        )
         # A language mismatch remains adapter-review; same-language tools
         # with only prose overlap remain discoverable but require review.
         mode = (
             "reference-review" if is_reference_candidate(tool) else
-            "adapter-review" if not languages_match else
+            "adapter-review" if external_studio_bridge or not languages_match else
             "native" if capability_overlap else "capability-review"
         )
         matches.append({"repository": slug, "score": round(score, 2),
