@@ -185,8 +185,8 @@
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 292,
-          "preview": "result = add_deep_task_diagnostics(public_diagnostics(inbox), inbox, token)",
+          "line": 309,
+          "preview": "result = add_deep_task_diagnostics(result, inbox, token)",
           "definition_candidate": false
         }
       ],
@@ -208,8 +208,8 @@
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 292,
-          "preview": "result = add_deep_task_diagnostics(public_diagnostics(inbox), inbox, token)",
+          "line": 307,
+          "preview": "result = public_diagnostics(inbox)",
           "definition_candidate": false
         }
       ],
@@ -411,7 +411,7 @@
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 304,
+          "line": 328,
           "preview": "sys.exit(main())",
           "definition_candidate": false
         },

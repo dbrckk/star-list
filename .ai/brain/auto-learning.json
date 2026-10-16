@@ -2,20 +2,19 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 50,
+    "example_count": 51,
     "rejected_count": 0,
     "terms": [
-      "99",
-      "absent",
-      "ambiguous",
-      "are",
-      "closed",
-      "details",
-      "fail",
-      "failure",
+      "100",
+      "api",
+      "diagnosis",
+      "fails",
+      "operator",
       "portfolio",
-      "when",
-      "worker"
+      "render",
+      "retain",
+      "sanitized",
+      "when"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -23,7 +22,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(portfolio): fail closed when worker failure details are absent or ambiguous (#99)",
+  "task": "fix(portfolio): retain sanitized operator diagnosis when Render API fails (#100)",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_failure_diagnostics.py"

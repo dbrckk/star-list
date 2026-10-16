@@ -1,7 +1,7 @@
 # Change impact
 
-Base: 5eb702b3d5bb23ef3eed66d0e74ce609d2fb4f3a
-Head: 7d381e6dea3b69763e377648c92696e00941936d
+Base: 9090a07420691ca8f79741331200be0cdf5806bb
+Head: 5e4169d1cf613c79fdce3bd2d0911413674fa2d0
 
 ## Changed files
 - M .github/workflows/portfolio-scan-smoke.yml

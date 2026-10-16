@@ -1428,13 +1428,24 @@ def main() -> int
 parser = argparse.ArgumentParser()
 ⋮----
 args = parser.parse_args()
+# Always create a secret-free artifact, including when Render is sleeping,
+# an operator credential is missing, or an authenticated read times out.
+# The previous early-return behavior concealed why a diagnosis failed.
+result = {
 token = os.environ.get("PRODUCTION_OS_OPERATOR_TOKEN", "")
 ⋮----
-inbox = request_json(ENDPOINT, token)
-result = add_deep_task_diagnostics(public_diagnostics(inbox), inbox, token)
+stage = "inbox"
 ⋮----
-# The log and artifact contain only strictly allowlisted public target names
-# and enumerated failure categories. Never show backend response bodies.
+inbox = request_json(ENDPOINT, token)
+result = public_diagnostics(inbox)
+stage = "task-details"
+result = add_deep_task_diagnostics(result, inbox, token)
+⋮----
+# Never echo network exception text or the private API response:
+# both can contain backend details or credential-bearing URLs.
+⋮----
+# The log and artifact contain only allowlisted public names, enums and
+# counters. Unavailable and incomplete diagnoses still exit nonzero.
 ```
 
 ## File: recommend.py

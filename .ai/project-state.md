@@ -37,13 +37,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T19:59:41Z
+Generated: 2026-10-16T20:35:38Z
 
 ### Git
 - Branch: `main`
-- Head: `7d381e6dea3b`
-- Commit date: 2026-10-16T21:59:31+02:00
-- Commit: fix(portfolio): fail closed when worker failure details are absent or ambiguous (#99)
+- Head: `5e4169d1cf61`
+- Commit date: 2026-10-16T16:35:27-04:00
+- Commit: fix(portfolio): retain sanitized operator diagnosis when Render API fails (#100)
 - Tracked files: 279
 
 ### Recently changed files
@@ -51,7 +51,6 @@ Generated: 2026-10-16T19:59:41Z
 - `docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md`
 - `scripts/portfolio_failure_diagnostics.py`
 - `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
-- `.github/workflows/portfolio-failure-diagnostics.yml`
 
 ### Project signals
 - No common build descriptor detected

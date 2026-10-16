@@ -521,6 +521,45 @@ jobs:
           assert deep["failures"][0]["worker_result_status"] == "unknown"
           assert "hidden" not in json.dumps(deep)
           assert "project_id" not in json.dumps(deep)
+          # Even an operator API outage must leave a sanitized failure
+          # artifact with a bounded enum; no raw exception may leak.
+          import contextlib
+          import io
+          import os
+          import sys
+          import tempfile
+          for api_response in (
+              RuntimeError("backend-private-secret-DO_NOT_LEAK"),
+              ValueError("malformed operator response: DO_NOT_LEAK"),
+          ):
+              with tempfile.TemporaryDirectory() as folder:
+                  out = Path(folder) / "diagnosis.json"
+                  with diagnostic_patch.dict(os.environ, {
+                      "PRODUCTION_OS_OPERATOR_TOKEN": "offline-test"
+                  }), diagnostic_patch.object(sys, "argv", [
+                      "portfolio_failure_diagnostics.py", "--output", str(out)
+                  ]), diagnostic_patch.object(failure_diagnostics, "request_json",
+                                             side_effect=api_response):
+                      printed = io.StringIO()
+                      with contextlib.redirect_stdout(printed):
+                          assert failure_diagnostics.main() == 2
+                  missing = json.loads(out.read_text())
+                  assert missing["diagnostic_status"] == "unavailable-inbox"
+                  assert missing["coverage_complete"] is False
+                  assert missing["details_complete"] is False
+                  assert missing["failures"] == []
+                  assert "DO_NOT_LEAK" not in out.read_text() + printed.getvalue()
+          with tempfile.TemporaryDirectory() as folder:
+              out = Path(folder) / "diagnosis.json"
+              with diagnostic_patch.dict(os.environ, {
+                  "PRODUCTION_OS_OPERATOR_TOKEN": ""
+              }), diagnostic_patch.object(sys, "argv", [
+                  "portfolio_failure_diagnostics.py", "--output", str(out)
+              ]), diagnostic_patch.object(failure_diagnostics, "request_json",
+                                         side_effect=AssertionError("No API call allowed")):
+                  with contextlib.redirect_stdout(io.StringIO()):
+                      assert failure_diagnostics.main() == 2
+              assert json.loads(out.read_text())["diagnostic_status"] == "missing-operator-token"
           # A syntactically valid detail object is insufficient unless it
           # contains actual terminal task evidence for this same project.
           for missing in ({}, {"current_workflow": {"tasks": []}},
@@ -3097,13 +3136,24 @@ def main() -> int
 parser = argparse.ArgumentParser()
 ⋮----
 args = parser.parse_args()
+# Always create a secret-free artifact, including when Render is sleeping,
+# an operator credential is missing, or an authenticated read times out.
+# The previous early-return behavior concealed why a diagnosis failed.
+result = {
 token = os.environ.get("PRODUCTION_OS_OPERATOR_TOKEN", "")
 ⋮----
-inbox = request_json(ENDPOINT, token)
-result = add_deep_task_diagnostics(public_diagnostics(inbox), inbox, token)
+stage = "inbox"
 ⋮----
-# The log and artifact contain only strictly allowlisted public target names
-# and enumerated failure categories. Never show backend response bodies.
+inbox = request_json(ENDPOINT, token)
+result = public_diagnostics(inbox)
+stage = "task-details"
+result = add_deep_task_diagnostics(result, inbox, token)
+⋮----
+# Never echo network exception text or the private API response:
+# both can contain backend details or credential-bearing URLs.
+⋮----
+# The log and artifact contain only allowlisted public names, enums and
+# counters. Unavailable and incomplete diagnoses still exit nonzero.
 ````
 
 ## File: scripts/recommend.py

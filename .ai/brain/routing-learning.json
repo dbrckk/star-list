@@ -922,11 +922,34 @@
       "useful": [
         "scripts/portfolio_failure_diagnostics.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): retain sanitized operator diagnosis when Render API fails (#100)",
+      "terms": [
+        "100",
+        "api",
+        "diagnosis",
+        "fails",
+        "operator",
+        "portfolio",
+        "render",
+        "retain",
+        "sanitized",
+        "when"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_failure_diagnostics.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
   "schema_version": 1,
   "term_file_scores": {
+    "100": {
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
     "17": {
       "scripts/discover_candidates.py": 4,
       "scripts/find_replacements.py": 4,
@@ -1098,7 +1121,8 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "api": {
-      "scripts/portfolio_daily.py": 8
+      "scripts/portfolio_daily.py": 8,
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "are": {
       "scripts/portfolio_failure_diagnostics.py": 4
@@ -1273,6 +1297,9 @@
       "scripts/star_import_pipeline.py": 4,
       "scripts/test_star_import_pipeline.py": 4
     },
+    "diagnosis": {
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
     "diagnostics": {
       "scripts/portfolio_failure_diagnostics.py": 4
     },
@@ -1327,6 +1354,9 @@
     "failed": {
       "scripts/portfolio_daily.py": 12,
       "scripts/portfolio_failure_diagnostics.py": 8
+    },
+    "fails": {
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "failure": {
       "scripts/portfolio_failure_diagnostics.py": 4
@@ -1567,7 +1597,7 @@
       "scripts/portfolio_daily.py": 8
     },
     "operator": {
-      "scripts/portfolio_failure_diagnostics.py": 4
+      "scripts/portfolio_failure_diagnostics.py": 8
     },
     "out": {
       "scripts/portfolio_daily.py": 4
@@ -1584,7 +1614,7 @@
     },
     "portfolio": {
       "scripts/portfolio_daily.py": 40,
-      "scripts/portfolio_failure_diagnostics.py": 16,
+      "scripts/portfolio_failure_diagnostics.py": 20,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
@@ -1678,7 +1708,8 @@
       "scripts/portfolio_daily.py": 4
     },
     "render": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "replacing": {
       "scripts/portfolio_daily.py": 4
@@ -1732,6 +1763,9 @@
     "resume": {
       "scripts/portfolio_daily.py": 8
     },
+    "retain": {
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
     "retire": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1760,6 +1794,9 @@
       "scripts/portfolio_daily.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
+    },
+    "sanitized": {
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "scan": {
       "scripts/portfolio_daily.py": 4
@@ -1911,7 +1948,7 @@
     },
     "when": {
       "scripts/portfolio_daily.py": 4,
-      "scripts/portfolio_failure_diagnostics.py": 4,
+      "scripts/portfolio_failure_diagnostics.py": 8,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
     },
