@@ -2,18 +2,18 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 32,
+    "example_count": 33,
     "rejected_count": 0,
     "terms": [
-      "74",
-      "before",
-      "dispatch",
-      "inventory",
+      "automatic",
+      "demo",
+      "exclude",
+      "from",
+      "generic",
+      "integration",
+      "matches",
       "portfolio",
-      "production-os",
-      "reject",
-      "states",
-      "unsafe"
+      "repos"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -21,7 +21,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(portfolio): reject unsafe Production-OS inventory states before dispatch (#74)",
+  "task": "fix(portfolio): exclude demo repos and generic matches from automatic integration",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py"

@@ -993,9 +993,16 @@ license_key = str(gh.get("license") or "").strip().lower()
 ⋮----
 def is_reference_candidate(tool: dict) -> bool
 ⋮----
-"""Keep example applications and architecture guides out of auto-implementation."""
+"""Keep demos, samples and architecture guides out of auto-implementation."""
 guidance = " ".join(str(v).lower() for v in (tool.get("bestFor") or []))
+capabilities = set(str(v).strip().lower() for v in (tool.get("capabilities") or []))
+slug = str(tool.get("repo") or "").lower()
 reference_clues = (
+⋮----
+# Generic README prose is not proof that a package provides an actionable
+# capability. Such matches may stay in the review report, but cannot trigger
+# an autonomous dependency integration solely because languages match.
+WEAK_CAPABILITY_TERMS = {
 ⋮----
 def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) -> list[dict]
 ⋮----
@@ -1022,11 +1029,17 @@ candidate_languages = set(str(x).lower() for x in (tool.get("languages") or []))
 languages_match = bool(profile["language"]) and profile["language"] in candidate_languages
 score = score_repo(tool, profile["terms"], domains, set(), set())
 ⋮----
-# A language mismatch is reviewable as a service/CLI integration, never a direct dependency.
+# An incidental word such as "workflows" from a README must not
+# qualify an otherwise unrelated same-language library for dispatch.
+concrete_terms = (
+capability_overlap = bool(set(shared) & concrete_terms)
+# A language mismatch remains adapter-review; same-language tools
+# with only prose overlap remain discoverable but require review.
+mode = (
 ⋮----
 # A native library gets precedence over example applications and adapters.
 # Otherwise a reference app can fill the three slots before a usable SDK.
-priority = {"native": 0, "adapter-review": 1, "reference-review": 2}
+priority = {"native": 0, "capability-review": 1,
 ⋮----
 INTEGRATION_TOKEN_BUDGET = 90000
 ⋮----

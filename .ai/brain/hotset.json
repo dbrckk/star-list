@@ -12,26 +12,18 @@
       "score": 435
     },
     {
-      "path": "catalog.json",
-      "reasons": [
-        "changed",
-        "recent-project-state"
-      ],
-      "score": 160
-    },
-    {
-      "path": ".github/workflows/portfolio-scan-smoke.yml",
-      "reasons": [
-        "changed"
-      ],
-      "score": 100
-    },
-    {
       "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
       "reasons": [
         "changed"
       ],
       "score": 100
+    },
+    {
+      "path": "catalog.json",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     },
     {
       "path": "scripts/recommend.py",

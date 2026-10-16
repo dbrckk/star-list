@@ -573,6 +573,25 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): exclude demo repos and generic matches from automatic integration",
+      "terms": [
+        "automatic",
+        "demo",
+        "exclude",
+        "from",
+        "generic",
+        "integration",
+        "matches",
+        "portfolio",
+        "repos"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -704,6 +723,9 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
     },
+    "automatic": {
+      "scripts/portfolio_daily.py": 4
+    },
     "automatically": {
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
@@ -789,6 +811,9 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "demo": {
+      "scripts/portfolio_daily.py": 4
+    },
     "detect": {
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
@@ -823,7 +848,7 @@
       "scripts/validate_catalog.py": 4
     },
     "exclude": {
-      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_daily.py": 8,
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
@@ -855,7 +880,7 @@
       "scripts/backfill_licenses.py": 4,
       "scripts/discover_candidates.py": 4,
       "scripts/find_replacements.py": 4,
-      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_daily.py": 8,
       "scripts/recommend.py": 4,
       "scripts/refresh_github_metadata.py": 12,
       "scripts/test_backfill_licenses.py": 4,
@@ -867,6 +892,9 @@
       "scripts/test_refresh_github_metadata.py": 12,
       "scripts/validate_catalog.py": 4,
       "scripts/validate_json_contract.py": 4
+    },
+    "generic": {
+      "scripts/portfolio_daily.py": 4
     },
     "github": {
       "scripts/admit_github_stars.py": 4,
@@ -928,7 +956,7 @@
       "scripts/test_recommend.py": 4
     },
     "integration": {
-      "scripts/portfolio_daily.py": 16
+      "scripts/portfolio_daily.py": 20
     },
     "integrations": {
       "scripts/portfolio_daily.py": 4
@@ -975,7 +1003,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "matches": {
-      "scripts/portfolio_daily.py": 8
+      "scripts/portfolio_daily.py": 12
     },
     "merge": {
       "scripts/discover_candidates.py": 4,
@@ -1012,7 +1040,7 @@
       "scripts/test_star_import_pipeline.py": 4
     },
     "portfolio": {
-      "scripts/portfolio_daily.py": 36
+      "scripts/portfolio_daily.py": 40
     },
     "production-os": {
       "scripts/portfolio_daily.py": 16
@@ -1083,6 +1111,9 @@
       "scripts/portfolio_daily.py": 4
     },
     "report": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "repos": {
       "scripts/portfolio_daily.py": 4
     },
     "repositories": {

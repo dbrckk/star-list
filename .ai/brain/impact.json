@@ -1,18 +1,10 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "537b7660e5084dfd2ac358311c90ac93d9bcfdf1",
-  "head": "dba192d571414d9f34e03b078ac241156251aa75",
+  "base": "dba192d571414d9f34e03b078ac241156251aa75",
+  "head": "1506ee4d6de890c92f27503522ed3c321788a48f",
   "index_mode": "incremental",
   "changed_files": [
-    {
-      "path": ".github/workflows/portfolio-scan-smoke.yml",
-      "status": "M"
-    },
-    {
-      "path": "catalog.json",
-      "status": "M"
-    },
     {
       "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
       "status": "M"
@@ -69,55 +61,55 @@
       "name": "recommendations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 196
+      "line": 212
     },
     {
       "name": "count_active_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 254
+      "line": 283
     },
     {
       "name": "count_failed_v2_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 264
+      "line": 293
     },
     {
       "name": "verified_managed_projects",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 275
+      "line": 304
     },
     {
       "name": "public_integration_status",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 326
+      "line": 355
     },
     {
       "name": "integration_marker",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 348
+      "line": 377
     },
     {
       "name": "launch_integration",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 355
+      "line": 384
     },
     {
       "name": "render_markdown",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 383
+      "line": 412
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 419
+      "line": 448
     }
   ],
   "selected_tests": []
