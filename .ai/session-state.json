@@ -8,7 +8,9 @@
   "last_verified_public_portfolio_scan": {
     "discovered": 38,
     "inspected": 38,
-    "with_suggestions": 15
+    "with_suggestions": 15,
+    "with_native_suggestions": 2,
+    "native_suggestions": 4
   },
   "last_verified_integration_inventory": {
     "active": 0,
@@ -23,9 +25,16 @@
     81,
     82,
     83,
+    84,
     85,
     86,
-    87
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -33,12 +42,14 @@
     "Prevent multiple simultaneous Production-OS integrations on one target",
     "Reject cross-origin authenticated API redirects",
     "Prevent Production-OS launches after incomplete GitHub discovery (PR #83)",
-    "Stop additional Production-OS dispatches after uncertain launch (PR #85)"
+    "Stop additional Production-OS dispatches after uncertain launch (PR #85)",
+    "Confirm Production-OS launch receipts before reserving worker capacity (PR #90)",
+    "Keep Roblox Studio MCP sidecars review-only, correct source language and exclude alternative engines (PRs #91-#93)"
   ],
   "next_priority": [
-    "Verify bound Production-OS launch acknowledgements before counting work as accepted",
-    "Investigate four unresolved Production-OS v2 failures with authorized operator evidence",
-    "Confirm target-side functional changes, PRs and CI before marking integrations complete"
+    "Inspect four unresolved Production-OS v2 failures with operator logs and target PR/CI evidence",
+    "Verify today's latest scheduled sync and public/private portfolio coverage",
+    "Benchmark review-only vs native suggestions on more target repositories while retaining strict worker quotas"
   ],
   "constraints": [
     "No automatic merge/deployment of third-party integrations",
