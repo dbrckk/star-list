@@ -47,6 +47,44 @@ jobs:
               count_failed_v2_integrations, verified_managed_projects,
           )
           assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
+          # All four actual Production-OS lifecycle states are recognized.
+          active = {"repository": "dbrckk/Ai-trading",
+                    "final_goal": "Tracking: starlist-integration-v2-" + "a" * 24,
+                    "status": "ACTIVE", "created_at": "2026-10-16T00:00:00+00:00"}
+          completed = {"repository": "dbrckk/Jumpy",
+                       "final_goal": "Tracking: starlist-integration-v3-" + "b" * 24,
+                       "status": "DONE", "created_at": "2026-10-15T23:00:00Z"}
+          valid = {"projects": [active, completed], "total_count": 2, "complete": True}
+          assert verified_managed_projects(valid) == valid["projects"]
+          assert count_active_integrations(valid["projects"]) == 1
+          for changes in (
+              {"status": "IN_PROGRESS"},
+              {"status": []},
+              {"status": ""},
+              {"created_at": ""},
+              {"created_at": "tomorrow"},
+              {"created_at": "2026-10-16T00:00:00"},
+              {"repository": ""},
+              {"repository": "not-a-repository"},
+              {"final_goal": "starlist-integration-v2-invalid"},
+          ):
+              corrupt = dict(active, **changes)
+              try:
+                  verified_managed_projects({
+                      "projects": [corrupt], "total_count": 1, "complete": True,
+                  })
+              except RuntimeError:
+                  pass
+              else:
+                  raise AssertionError("Corrupt tracked integration was accepted: " + str(changes))
+          try:
+              verified_managed_projects({
+                  "projects": [active, dict(active)], "total_count": 2, "complete": True,
+              })
+          except RuntimeError:
+              pass
+          else:
+              raise AssertionError("Duplicate tracking marker was accepted")
           for malformed in (
               None, {}, {"projects": "unavailable"}, {"projects": [None]},
               {"projects": []}, {"projects": [], "total_count": 1, "complete": True},
