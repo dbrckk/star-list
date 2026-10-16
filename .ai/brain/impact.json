@@ -1,12 +1,16 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "d393d1d76003bd33ee619fd85ff531e379c921fe",
-  "head": "fac94ed14705865022ccc101f62b56b84e09899c",
+  "base": "fac94ed14705865022ccc101f62b56b84e09899c",
+  "head": "1ad3174ec87423da3efb1fd38f55638f3ccd6513",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": ".github/workflows/daily-portfolio-integration.yml",
+      "path": "catalog.json",
+      "status": "M"
+    },
+    {
+      "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
       "status": "M"
     },
     {

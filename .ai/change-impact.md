@@ -1,14 +1,14 @@
 # Change impact
 
-Base: 6e634b65794cee74685feee297cbde4de919465b
-Head: fac94ed14705865022ccc101f62b56b84e09899c
+Base: 3ca18321bd1d8c1592da2b80c7cd9627a0b1858b
+Head: 1ad3174ec87423da3efb1fd38f55638f3ccd6513
 
 ## Changed files
-- M .github/workflows/daily-portfolio-integration.yml
+- M docs/DAILY_PORTFOLIO_INTEGRATION.md
 - M scripts/portfolio_daily.py
 
 ## Affected areas
-- .github
+- docs
 - scripts
 
 ## Related test candidates

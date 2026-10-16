@@ -365,13 +365,13 @@
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 457,
+          "line": 486,
           "preview": "marker = integration_marker(row[\"repository\"], item)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 458,
+          "line": 487,
           "preview": "previous = integration_marker(row[\"repository\"], item, version=1)",
           "definition_candidate": false
         }
@@ -394,7 +394,7 @@
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 478,
+          "line": 507,
           "preview": "result = launch_integration(service, operator_token, row[\"repository\"], item)",
           "definition_candidate": false
         }
@@ -441,7 +441,7 @@
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 496,
+          "line": 525,
           "preview": "args.markdown.write_text(render_markdown(report), encoding=\"utf-8\")",
           "definition_candidate": false
         },
@@ -680,7 +680,7 @@
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 502,
+          "line": 531,
           "preview": "sys.exit(main())",
           "definition_candidate": false
         },

@@ -2215,9 +2215,17 @@ existing = None
 # not merely the number of launches in this one workflow run.
 active_integrations = count_active_integrations(already)
 failed_v2_integrations = count_failed_v2_integrations(already)
-# A v2 failure still occupies one admission slot. Continue
-# scanning daily, but do not spend unlimited tokens on new
-# projects while the free coding worker has unresolved failures.
+# Failed projects are quarantined instead of occupying all
+# capacity slots forever. While failures remain, admit at most
+# ONE distinct project per UTC day and only with an idle portfolio
+# worker. This avoids both deadlock and unlimited paid/free-token
+# retries from scans triggered repeatedly by GitHub events.
+failed_targets = {
+⋮----
+current_day = report["generated_at"][:10]
+launches_today = sum(
+available_slots = (
+⋮----
 available_slots = min(
 ⋮----
 marker = integration_marker(row["repository"], item)
@@ -44253,6 +44261,49 @@ Repository-specific rules:
       },
       "bestFor": [
         "SwiftUI agent skill for Claude Code, Codex, and other AI tools."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "radek-sixi/laya-as-judge",
+      "githubRepositoryId": 1380981440,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "ai-security",
+        "evaluation",
+        "guardrails",
+        "llm-as-judge",
+        "llm-evaluation",
+        "python"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 18,
+        "forks": 1,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-26T08:15:03Z"
+      },
+      "bestFor": [
+        "JEV's alike open-source alternative Laya-MLX used as a \"LLM-as-a-judge\""
       ],
       "avoidWhen": [
         "production use before licensing and security review"

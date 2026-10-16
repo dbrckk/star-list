@@ -27,19 +27,20 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T06:30:18Z
+Generated: 2026-10-16T08:04:46Z
 
 ### Git
 - Branch: `main`
-- Head: `fac94ed14705`
-- Commit date: 2026-10-16T08:30:08+02:00
-- Commit: fix: tolerate Render API latency without replacing last healthy portfolio report
+- Head: `1ad3174ec874`
+- Commit date: 2026-10-16T10:04:36+02:00
+- Commit: fix(portfolio): quarantine failed attempts, resume one distinct project daily
 - Tracked files: 274
 
 ### Recently changed files
-- `.github/workflows/daily-portfolio-integration.yml`
+- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
 - `catalog.json`
+- `.github/workflows/daily-portfolio-integration.yml`
 
 ### Project signals
 - No common build descriptor detected

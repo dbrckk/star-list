@@ -2,19 +2,18 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 27,
+    "example_count": 28,
     "rejected_count": 0,
     "terms": [
-      "api",
-      "healthy",
-      "last",
-      "latency",
+      "attempts",
+      "daily",
+      "distinct",
+      "failed",
+      "one",
       "portfolio",
-      "render",
-      "replacing",
-      "report",
-      "tolerate",
-      "without"
+      "project",
+      "quarantine",
+      "resume"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -22,7 +21,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix: tolerate Render API latency without replacing last healthy portfolio report",
+  "task": "fix(portfolio): quarantine failed attempts, resume one distinct project daily",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py"

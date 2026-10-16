@@ -481,6 +481,25 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): quarantine failed attempts, resume one distinct project daily",
+      "terms": [
+        "attempts",
+        "daily",
+        "distinct",
+        "failed",
+        "one",
+        "portfolio",
+        "project",
+        "quarantine",
+        "resume"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -591,6 +610,9 @@
     "api": {
       "scripts/portfolio_daily.py": 4
     },
+    "attempts": {
+      "scripts/portfolio_daily.py": 4
+    },
     "audit": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
@@ -661,7 +683,7 @@
       "scripts/test_recommend.py": 4
     },
     "daily": {
-      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_daily.py": 8,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
@@ -694,6 +716,9 @@
     "discovery": {
       "scripts/portfolio_daily.py": 4
     },
+    "distinct": {
+      "scripts/portfolio_daily.py": 4
+    },
     "dynamically": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
@@ -712,7 +737,7 @@
       "scripts/test_recommend.py": 4
     },
     "failed": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "feat": {
       "scripts/admit_github_stars.py": 4,
@@ -872,6 +897,9 @@
       "scripts/test_refresh_github_metadata.py": 8,
       "scripts/validate_catalog.py": 4
     },
+    "one": {
+      "scripts/portfolio_daily.py": 4
+    },
     "per-repository": {
       "scripts/portfolio_daily.py": 4
     },
@@ -880,9 +908,12 @@
       "scripts/test_star_import_pipeline.py": 4
     },
     "portfolio": {
-      "scripts/portfolio_daily.py": 20
+      "scripts/portfolio_daily.py": 24
     },
     "production-os": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "project": {
       "scripts/portfolio_daily.py": 4
     },
     "public": {
@@ -908,6 +939,9 @@
     "quality": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
+    },
+    "quarantine": {
+      "scripts/portfolio_daily.py": 4
     },
     "queue": {
       "scripts/portfolio_daily.py": 8
@@ -974,6 +1008,9 @@
     "respect": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "resume": {
+      "scripts/portfolio_daily.py": 4
     },
     "review": {
       "scripts/sync_github_stars.py": 4,

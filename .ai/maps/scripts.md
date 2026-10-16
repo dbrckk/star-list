@@ -1118,9 +1118,17 @@ existing = None
 # not merely the number of launches in this one workflow run.
 active_integrations = count_active_integrations(already)
 failed_v2_integrations = count_failed_v2_integrations(already)
-# A v2 failure still occupies one admission slot. Continue
-# scanning daily, but do not spend unlimited tokens on new
-# projects while the free coding worker has unresolved failures.
+# Failed projects are quarantined instead of occupying all
+# capacity slots forever. While failures remain, admit at most
+# ONE distinct project per UTC day and only with an idle portfolio
+# worker. This avoids both deadlock and unlimited paid/free-token
+# retries from scans triggered repeatedly by GitHub events.
+failed_targets = {
+⋮----
+current_day = report["generated_at"][:10]
+launches_today = sum(
+available_slots = (
+⋮----
 available_slots = min(
 ⋮----
 marker = integration_marker(row["repository"], item)

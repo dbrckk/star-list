@@ -275,7 +275,7 @@
       "source": {
         "file": "scripts/portfolio_daily.py",
         "start": 365,
-        "end": 498
+        "end": 527
       },
       "symbol_dependencies": [
         {
@@ -397,21 +397,9 @@
             }
           ],
           "relation": "same_file"
-        },
-        {
-          "symbol": "tokens",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 38,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
         }
       ],
-      "dependency_count": 11
+      "dependency_count": 10
     }
   }
 }
