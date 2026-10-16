@@ -1,8 +1,30 @@
 {
-  "schema_version": 1,
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": false,
-  "reason": "missing-task-or-source-change",
-  "task": "ci: recover missed portfolio scans from trusted scheduled star sync",
-  "useful": []
+  "learned": true,
+  "learning_result": {
+    "example_count": 27,
+    "rejected_count": 0,
+    "terms": [
+      "api",
+      "healthy",
+      "last",
+      "latency",
+      "portfolio",
+      "render",
+      "replacing",
+      "report",
+      "tolerate",
+      "without"
+    ],
+    "test_count": 0,
+    "useful_count": 1
+  },
+  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
+  "rejected": [],
+  "schema_version": 1,
+  "task": "fix: tolerate Render API latency without replacing last healthy portfolio report",
+  "tests_selected": [],
+  "useful": [
+    "scripts/portfolio_daily.py"
+  ]
 }

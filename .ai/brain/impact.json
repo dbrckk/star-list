@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "0d1b64471148cbaf156a2c236a494da2835a6ad9",
-  "head": "d393d1d76003bd33ee619fd85ff531e379c921fe",
+  "base": "d393d1d76003bd33ee619fd85ff531e379c921fe",
+  "head": "fac94ed14705865022ccc101f62b56b84e09899c",
   "index_mode": "incremental",
   "changed_files": [
     {
@@ -10,12 +10,101 @@
       "status": "M"
     },
     {
-      "path": "catalog.json",
+      "path": "scripts/portfolio_daily.py",
       "status": "M"
     }
   ],
-  "changed_source_files": [],
-  "impacted_files": [],
-  "impacted_symbols": [],
+  "changed_source_files": [
+    "scripts/portfolio_daily.py"
+  ],
+  "impacted_files": [
+    "scripts/portfolio_daily.py"
+  ],
+  "impacted_symbols": [
+    {
+      "name": "request_json",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 79
+    },
+    {
+      "name": "github_repos",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 118
+    },
+    {
+      "name": "file_text",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 138
+    },
+    {
+      "name": "project_profile",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 149
+    },
+    {
+      "name": "eligible",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 171
+    },
+    {
+      "name": "is_reference_candidate",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 185
+    },
+    {
+      "name": "recommendations",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 196
+    },
+    {
+      "name": "count_active_integrations",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 254
+    },
+    {
+      "name": "count_failed_v2_integrations",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 264
+    },
+    {
+      "name": "public_integration_status",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 274
+    },
+    {
+      "name": "integration_marker",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 296
+    },
+    {
+      "name": "launch_integration",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 303
+    },
+    {
+      "name": "render_markdown",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 329
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 365
+    }
+  ],
   "selected_tests": []
 }

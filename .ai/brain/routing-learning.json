@@ -461,6 +461,26 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix: tolerate Render API latency without replacing last healthy portfolio report",
+      "terms": [
+        "api",
+        "healthy",
+        "last",
+        "latency",
+        "portfolio",
+        "render",
+        "replacing",
+        "report",
+        "tolerate",
+        "without"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -567,6 +587,9 @@
     "all": {
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
+    },
+    "api": {
+      "scripts/portfolio_daily.py": 4
     },
     "audit": {
       "scripts/audit_catalog_quality.py": 4,
@@ -750,6 +773,9 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "healthy": {
+      "scripts/portfolio_daily.py": 4
+    },
     "human": {
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
@@ -792,6 +818,12 @@
     "is": {
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
+    },
+    "last": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "latency": {
+      "scripts/portfolio_daily.py": 4
     },
     "license": {
       "scripts/audit_catalog_quality.py": 4,
@@ -848,7 +880,7 @@
       "scripts/test_star_import_pipeline.py": 4
     },
     "portfolio": {
-      "scripts/portfolio_daily.py": 16
+      "scripts/portfolio_daily.py": 20
     },
     "production-os": {
       "scripts/portfolio_daily.py": 4
@@ -902,6 +934,15 @@
     "relations": {
       "scripts/recommend.py": 8,
       "scripts/test_recommend.py": 8
+    },
+    "render": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "replacing": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "report": {
+      "scripts/portfolio_daily.py": 4
     },
     "repositories": {
       "scripts/audit_catalog_quality.py": 4,
@@ -1004,6 +1045,9 @@
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
+    "tolerate": {
+      "scripts/portfolio_daily.py": 4
+    },
     "tools": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1038,6 +1082,9 @@
     "when": {
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
+    },
+    "without": {
+      "scripts/portfolio_daily.py": 4
     },
     "workflow": {
       "scripts/star_import_pipeline.py": 4,

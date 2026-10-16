@@ -225,7 +225,9 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
       - name: Update the persistent portfolio review issue
-        if: always()
+        # Preserve the last verified report if discovery or dispatch fails.
+        # The failed run still exposes the full diagnostic artifact.
+        if: success()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
@@ -2041,6 +2043,11 @@ parsed = urlparse(url)
 headers = {
 ⋮----
 body = json.dumps(data).encode() if data is not None else None
+⋮----
+# Render free instances may need time to wake up. Restrict the
+# extended timeout to the approved control-plane host; keep
+# ordinary GitHub catalog lookups bounded at 25 seconds.
+request_timeout = 60 if parsed.hostname == "production-os1.onrender.com" else 25
 ⋮----
 raw = response.read(3_000_000)
 ⋮----

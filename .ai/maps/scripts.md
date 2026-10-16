@@ -947,6 +947,11 @@ headers = {
 ⋮----
 body = json.dumps(data).encode() if data is not None else None
 ⋮----
+# Render free instances may need time to wake up. Restrict the
+# extended timeout to the approved control-plane host; keep
+# ordinary GitHub catalog lookups bounded at 25 seconds.
+request_timeout = 60 if parsed.hostname == "production-os1.onrender.com" else 25
+⋮----
 raw = response.read(3_000_000)
 ⋮----
 def github_repos(owner: str, token: str, portfolio_token: str) -> list[dict]

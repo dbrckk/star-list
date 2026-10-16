@@ -27,20 +27,19 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T06:25:46Z
+Generated: 2026-10-16T06:30:18Z
 
 ### Git
 - Branch: `main`
-- Head: `d393d1d76003`
-- Commit date: 2026-10-16T08:25:34+02:00
-- Commit: ci: recover missed portfolio scans from trusted scheduled star sync
+- Head: `fac94ed14705`
+- Commit date: 2026-10-16T08:30:08+02:00
+- Commit: fix: tolerate Render API latency without replacing last healthy portfolio report
 - Tracked files: 274
 
 ### Recently changed files
 - `.github/workflows/daily-portfolio-integration.yml`
-- `catalog.json`
 - `scripts/portfolio_daily.py`
-- `.github/workflows/portfolio-scan-smoke.yml`
+- `catalog.json`
 
 ### Project signals
 - No common build descriptor detected
