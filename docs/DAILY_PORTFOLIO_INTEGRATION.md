@@ -23,6 +23,9 @@ or skipped by GitHub, so "daily" is a configured cadence, not a real-time SLA.
    configured, submits up to **3** new tasks per scan (never more than 3 active
    portfolio integrations at once) to the existing managed-project API.
    Earlier high-budget failures reduce this to at most one launch per UTC day.
+   A given target may receive at most **one** newly submitted integration per
+   scanner run. Targets with existing `ACTIVE` or `REVIEW_REQUIRED` work
+   receive no additional candidate until that work is resolved.
 7. Uses stable tracking IDs derived from target + upstream repo, so repeat
    scans cannot create duplicate projects. A failed v1 may receive one bounded
    v2 retry; a failed v2 may receive one bounded **v3** retry for the **same**
@@ -82,6 +85,11 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   avoids permanently freezing the entire portfolio while also preventing
   runaway retries or repeated work from push/schedule dispatches. Missing
   creation timestamps are treated conservatively as same-day launches.
+- **Per-target single-flight protection:** candidate ranking never triggers
+  simultaneous modifications of the same target. All suggestions remain in
+  the report; only submission is deferred until active/review-pending work
+  is resolved. The guard also applies after a successful dispatch within the
+  current run, not just to the previously fetched Production-OS inventory.
 - **Fleet-level queue protection:** at most three active portfolio integrations
   may run across all scans. Failed v2 tasks are **quarantined**, not counted as
   indefinitely active workers; while any remain unresolved, dispatch requires
