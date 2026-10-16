@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "updated_date_utc": "2026-10-16",
+  "repository": "dbrckk/star-list",
+  "reference_branch": "main",
+  "status": "active",
+  "verified_catalog_repositories": 937,
+  "last_verified_public_portfolio_scan": {
+    "discovered": 38,
+    "inspected": 38,
+    "with_suggestions": 15
+  },
+  "last_verified_integration_inventory": {
+    "active": 0,
+    "unresolved_v2": 4,
+    "launched_on_last_scan": 0,
+    "earlier_launches_same_utc_day": 1
+  },
+  "merged_pull_requests": [
+    78,
+    79,
+    80,
+    81
+  ],
+  "completed_work": [
+    "Preserve sync error reports and audit-tier admission semantics",
+    "Normalize UTC throttle timestamps and publish available quota",
+    "Prevent multiple simultaneous Production-OS integrations on one target",
+    "Reject cross-origin authenticated API redirects"
+  ],
+  "next_priority": [
+    "Inspect historical Production-OS v2 failure outcomes and actual target PR/CI evidence",
+    "Improve qualification precision before increasing launch throughput",
+    "Continue verifying public daily coverage and separately scoped private workflows"
+  ],
+  "constraints": [
+    "No automatic merge/deployment of third-party integrations",
+    "Only eligible licensed and truly compatible candidates may be handed off",
+    "Do not publish private target identifiers in public reports",
+    "Do not report a submitted Production-OS task as a completed integration"
+  ]
+}
