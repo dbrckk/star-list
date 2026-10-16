@@ -43,3 +43,15 @@ as ambiguous and does not read or attribute one candidate's task result to
 another. Such runs exit nonzero rather than asserting full coverage; the
 operator must reconcile the distinct candidates privately. Only actual
 terminal task evidence for unambiguous targets counts as deep coverage.
+
+**Operator API outages:** The workflow always retains a strictly redacted
+`portfolio-failure-diagnostics.json` artifact, including when an authenticated
+read fails, Render times out, the inbox response is malformed or the required
+operator token is absent. Its `diagnostic_status` is one of `complete`,
+`incomplete-task-evidence`, `unavailable-inbox`,
+`unavailable-task-details` or `missing-operator-token`.
+An unavailable API yields `coverage_complete=false` (or leaves previously
+verified public coverage intact when the later detail step fails) and exits
+nonzero. The artifact never contains the exception message or API response.
+Compare a failed run's explicit stage with the last successful operator
+run before attempting to repair workers or resubmit projects.
