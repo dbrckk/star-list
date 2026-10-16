@@ -273,29 +273,53 @@ def count_failed_v2_integrations(projects: list[dict]) -> int:
 
 
 def verified_managed_projects(payload: object) -> list[dict]:
-    """Fail closed if Production-OS cannot provide a complete inventory shape.
+    """Fail closed unless the inventory can safely authorize more launches.
 
-    A 404, bad credentials, or API schema drift must not silently turn off
-    dispatch checks while still reporting a successful portfolio scan.
+    Production-OS returns *every* star-list tracking record, with a known
+    lifecycle state and timestamp. An unknown state must not be interpreted
+    as idle capacity; a duplicate marker or missing timestamp must not make
+    retries look safe.
     """
     if not isinstance(payload, dict):
         raise RuntimeError("Production-OS managed-project inventory is unavailable")
     projects = payload.get("projects")
     if not isinstance(projects, list) or any(not isinstance(p, dict) for p in projects):
         raise RuntimeError("Production-OS managed-project inventory has invalid projects")
-    # A successful HTTP request can still return only a truncated page.
-    # Idempotency requires explicit server proof that all tracked jobs were
-    # enumerated, not merely a syntactically valid subset.
     if (payload.get("complete") is not True
             or type(payload.get("total_count")) is not int
             or payload["total_count"] != len(projects)):
         raise RuntimeError("Production-OS integration inventory is incomplete")
+
+    known_states = {"ACTIVE", "REVIEW_REQUIRED", "NEEDS_ATTENTION", "DONE"}
+    seen_markers: set[str] = set()
     for project in projects:
-        goal = str(project.get("final_goal") or "")
-        if "starlist-integration-v" in goal and (
-            not project.get("repository") or not project.get("status")
+        goal = project.get("final_goal")
+        marker = re.search(
+            r"(?<![a-z0-9])starlist-integration-v[123]-[0-9a-f]{24}(?![0-9a-f])",
+            goal if isinstance(goal, str) else "",
+        )
+        if marker is None or marker.group(0) in seen_markers:
+            raise RuntimeError("Production-OS integration inventory has invalid or duplicate tracking")
+        seen_markers.add(marker.group(0))
+
+        repo = project.get("repository")
+        if not isinstance(repo, str) or not re.fullmatch(
+            r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repo
         ):
-            raise RuntimeError("Production-OS inventory has an incomplete tracked integration")
+            raise RuntimeError("Production-OS inventory has an invalid tracked repository")
+        status = project.get("status")
+        if not isinstance(status, str) or status not in known_states:
+            raise RuntimeError("Production-OS inventory has an unknown integration state")
+
+        timestamp = project.get("created_at")
+        if not isinstance(timestamp, str) or not timestamp.strip():
+            raise RuntimeError("Production-OS inventory has a missing integration timestamp")
+        try:
+            created = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
+            if created.tzinfo is None:
+                raise ValueError("timezone missing")
+        except ValueError as exc:
+            raise RuntimeError("Production-OS inventory has an invalid integration timestamp") from exc
     return projects
 
 
