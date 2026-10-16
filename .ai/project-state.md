@@ -27,18 +27,18 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T08:04:46Z
+Generated: 2026-10-16T09:18:17Z
 
 ### Git
 - Branch: `main`
-- Head: `1ad3174ec874`
-- Commit date: 2026-10-16T10:04:36+02:00
-- Commit: fix(portfolio): quarantine failed attempts, resume one distinct project daily
+- Head: `22d0a67c222a`
+- Commit date: 2026-10-16T11:18:07+02:00
+- Commit: fix: resume one failed star-list integration safely per UTC day
 - Tracked files: 274
 
 ### Recently changed files
-- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
+- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `catalog.json`
 - `.github/workflows/daily-portfolio-integration.yml`
 

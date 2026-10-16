@@ -1,14 +1,12 @@
 # Change impact
 
-Base: 3ca18321bd1d8c1592da2b80c7cd9627a0b1858b
-Head: 1ad3174ec87423da3efb1fd38f55638f3ccd6513
+Base: 974e867aa365d4a85ae98ff51d4e286bf0225c7d
+Head: 22d0a67c222ad17a4920a6d214c01eb863267048
 
 ## Changed files
-- M docs/DAILY_PORTFOLIO_INTEGRATION.md
 - M scripts/portfolio_daily.py
 
 ## Affected areas
-- docs
 - scripts
 
 ## Related test candidates

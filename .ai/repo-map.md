@@ -2146,7 +2146,7 @@ results = []
 accepted = {"ACTIVE", "QUEUED", "RUNNING", "NEEDS_ATTENTION",
 ⋮----
 goal = str(project.get("final_goal") or "")
-markers = re.findall(r"starlist-integration-v([12])-[0-9a-f]{24}(?![0-9a-f])", goal)
+markers = re.findall(r"starlist-integration-v([123])-[0-9a-f]{24}(?![0-9a-f])", goal)
 ⋮----
 status = str(project.get("status") or "").upper().replace("-", "_")
 ⋮----
@@ -2154,9 +2154,9 @@ def integration_marker(target: str, candidate: dict, version: int = 2) -> str
 ⋮----
 identity = hashlib.sha256(
 ⋮----
-def launch_integration(url: str, token: str, target: str, candidate: dict)
+def launch_integration(url: str, token: str, target: str, candidate: dict, *, version: int = 2)
 ⋮----
-marker = integration_marker(target, candidate)
+marker = integration_marker(target, candidate, version=version)
 goal = (
 ⋮----
 def render_markdown(report: dict) -> str
@@ -2227,6 +2227,15 @@ launches_today = sum(
 available_slots = (
 ⋮----
 available_slots = min(
+# Reevaluate a previously failed compatible candidate before
+# consuming the single daily slot on an unrelated new project.
+# A v3 marker is distinct and can be submitted only once.
+⋮----
+failed_marker = integration_marker(row["repository"], item)
+recovery_marker = integration_marker(row["repository"], item, version=3)
+matching_failure = any(
+⋮----
+result = launch_integration(
 ⋮----
 marker = integration_marker(row["repository"], item)
 previous = integration_marker(row["repository"], item, version=1)
