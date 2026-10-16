@@ -271,6 +271,27 @@ def count_failed_v2_integrations(projects: list[dict]) -> int:
     )
 
 
+
+def verified_managed_projects(payload: object) -> list[dict]:
+    """Fail closed if Production-OS cannot provide a complete inventory shape.
+
+    A 404, bad credentials, or API schema drift must not silently turn off
+    dispatch checks while still reporting a successful portfolio scan.
+    """
+    if not isinstance(payload, dict):
+        raise RuntimeError("Production-OS managed-project inventory is unavailable")
+    projects = payload.get("projects")
+    if not isinstance(projects, list) or any(not isinstance(p, dict) for p in projects):
+        raise RuntimeError("Production-OS managed-project inventory has invalid projects")
+    for project in projects:
+        goal = str(project.get("final_goal") or "")
+        if "starlist-integration-v" in goal and (
+            not project.get("repository") or not project.get("status")
+        ):
+            raise RuntimeError("Production-OS inventory has an incomplete tracked integration")
+    return projects
+
+
 def public_integration_status(target: str, projects: list[dict]) -> list[dict]:
     """Expose only validated status enums for an already-public repository.
 
@@ -433,7 +454,7 @@ def main() -> int:
                         key=lambda p: (-p[0], p[1]["repository"]))
         try:
             existing = request_json(service.rstrip("/") + "/v1/managed-projects", operator_token)
-            already = [p for p in (existing or {}).get("projects", []) if isinstance(p, dict)]
+            already = verified_managed_projects(existing)
         except (RuntimeError, ValueError, TypeError) as exc:
             existing = None
             report["errors"].append("Cannot inspect existing managed projects: " + str(exc))
