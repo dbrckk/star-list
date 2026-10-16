@@ -46,7 +46,7 @@ jobs:
               is_reference_candidate, count_active_integrations,
               count_failed_v2_integrations, verified_managed_projects,
               integration_marker, recoverable_failure_targets,
-              count_launches_on_utc_date,
+              count_launches_on_utc_date, busy_integration_targets,
           )
           assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
           # All four actual Production-OS lifecycle states are recognized.
@@ -59,6 +59,18 @@ jobs:
           valid = {"projects": [active, completed], "total_count": 2, "complete": True}
           assert verified_managed_projects(valid) == valid["projects"]
           assert count_active_integrations(valid["projects"]) == 1
+          # A target is single-flight even when its previous job is already
+          # REVIEW_REQUIRED (no worker active but changes may need review).
+          pending_review = {**completed, "status": "REVIEW_REQUIRED"}
+          busy = busy_integration_targets([active, pending_review, completed])
+          assert busy == {"dbrckk/ai-trading", "dbrckk/jumpy"}
+          assert busy_integration_targets([completed]) == set()
+          assert busy_integration_targets([{
+              **active, "final_goal": "unrelated-project",
+          }]) == set()
+          assert "dbrckk/ai-trading" in busy_integration_targets([
+              {**active, "repository": "dbrckk/AI-Trading"},
+          ])
           # The dispatch quota is tied to UTC, not to the worker's local date.
           utc_boundary = [
               {"final_goal": integration_marker("dbrckk/Jumpy", {"repository": "a/b"}),
