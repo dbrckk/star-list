@@ -881,6 +881,26 @@
       "useful": [
         "scripts/portfolio_failure_diagnostics.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): distinguish worker capacity failures and observe bounded retry evidence (#97)",
+      "terms": [
+        "97",
+        "bounded",
+        "capacity",
+        "distinguish",
+        "evidence",
+        "failures",
+        "observe",
+        "portfolio",
+        "retry",
+        "worker"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_failure_diagnostics.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1022,6 +1042,9 @@
     "96": {
       "scripts/portfolio_failure_diagnostics.py": 4
     },
+    "97": {
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -1098,7 +1121,8 @@
       "scripts/portfolio_daily.py": 4
     },
     "bounded": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "bridges": {
       "scripts/portfolio_daily.py": 4
@@ -1122,6 +1146,9 @@
     },
     "cap": {
       "scripts/portfolio_daily.py": 4
+    },
+    "capacity": {
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "catalog": {
       "scripts/audit_catalog_quality.py": 4,
@@ -1225,7 +1252,8 @@
       "scripts/portfolio_daily.py": 4
     },
     "distinguish": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "do": {
       "scripts/portfolio_daily.py": 4
@@ -1246,6 +1274,7 @@
     },
     "evidence": {
       "scripts/audit_catalog_quality.py": 4,
+      "scripts/portfolio_failure_diagnostics.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
     },
@@ -1263,6 +1292,9 @@
     "failed": {
       "scripts/portfolio_daily.py": 12,
       "scripts/portfolio_failure_diagnostics.py": 8
+    },
+    "failures": {
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "feat": {
       "scripts/admit_github_stars.py": 4,
@@ -1487,6 +1519,9 @@
     "not": {
       "scripts/portfolio_daily.py": 4
     },
+    "observe": {
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
     "obsolete": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1511,7 +1546,7 @@
     },
     "portfolio": {
       "scripts/portfolio_daily.py": 40,
-      "scripts/portfolio_failure_diagnostics.py": 8,
+      "scripts/portfolio_failure_diagnostics.py": 12,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
@@ -1661,6 +1696,9 @@
     },
     "retire": {
       "scripts/portfolio_daily.py": 4
+    },
+    "retry": {
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "review": {
       "scripts/sync_github_stars.py": 4,
@@ -1843,7 +1881,7 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "worker": {
-      "scripts/portfolio_failure_diagnostics.py": 4
+      "scripts/portfolio_failure_diagnostics.py": 8
     },
     "workflow": {
       "scripts/star_import_pipeline.py": 4,

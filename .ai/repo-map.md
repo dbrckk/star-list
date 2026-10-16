@@ -464,11 +464,27 @@ jobs:
                              "evidence": {"next_stage": "inference"}},
               }]}
           })
-          assert evidence == {
-              "details_checked": True, "failed_task_count": 1,
-              "retry_budget_exhausted": True,
-              "failure_category": "provider-quota-or-token-budget",
-          }
+          assert evidence["details_checked"] is True
+          assert evidence["failed_task_count"] == 1
+          assert evidence["task_attempts"] == 3
+          assert evidence["task_max_attempts"] == 3
+          assert evidence["retry_budget_exhausted"] is True
+          assert evidence["failure_category"] == "provider-quota-or-token-budget"
+          assert evidence["result_fields_present"] == ["error", "evidence"]
+          capacity = task_failure_evidence({
+              "current_workflow": {"tasks": [{
+                  "status": "failed", "attempts": 1, "max_attempts": 3,
+                  "result": {"ai_dev_server_status": "capacity_exhausted",
+                             "evidence": {"pipeline_status": "capacity_exhausted",
+                                          "message": "private diagnostic"}}
+              }]}
+          })
+          assert capacity["failure_category"] == "worker-capacity-exhausted"
+          assert capacity["retry_budget_exhausted"] is False
+          assert capacity["worker_result_status"] == "capacity_exhausted"
+          assert capacity["pipeline_status"] == "capacity_exhausted"
+          assert capacity["evidence_fields_present"] == ["message", "pipeline_status"]
+          assert "private diagnostic" not in json.dumps(capacity)
           from unittest.mock import patch as diagnostic_patch
           import portfolio_failure_diagnostics as failure_diagnostics
           public_record = {**test_failure, "project_id": "a" * 32,
@@ -494,6 +510,9 @@ jobs:
           assert deep["details_complete"] is False  # 3 others not returned
           assert deep["failures"][0]["failure_category"] == "network-or-timeout"
           assert deep["failures"][0]["retry_budget_exhausted"] is True
+          assert deep["failures"][0]["task_attempts"] == 2
+          assert deep["failures"][0]["task_max_attempts"] == 2
+          assert deep["failures"][0]["worker_result_status"] == "unknown"
           assert "hidden" not in json.dumps(deep)
           assert "project_id" not in json.dumps(deep)
           try:
@@ -2976,6 +2995,10 @@ final = failed[-1] if failed else {}
 attempts = final.get("attempts")
 budget = final.get("max_attempts")
 exhausted = (attempts >= budget if type(attempts) is int
+result = final.get("result") if isinstance(final.get("result"), dict) else {}
+evidence = result.get("evidence") if isinstance(result.get("evidence"), dict) else {}
+known_result_keys = (
+known_evidence_keys = (
 ⋮----
 def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict
 ⋮----

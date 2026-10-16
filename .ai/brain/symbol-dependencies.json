@@ -8,8 +8,8 @@
     "safe_state": {
       "source": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "start": 49,
-        "end": 51
+        "start": 51,
+        "end": 53
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -17,8 +17,8 @@
     "failure_category": {
       "source": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "start": 54,
-        "end": 65
+        "start": 56,
+        "end": 67
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -26,8 +26,8 @@
     "safe_public_failure": {
       "source": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "start": 68,
-        "end": 102
+        "start": 70,
+        "end": 104
       },
       "symbol_dependencies": [
         {
@@ -35,7 +35,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_failure_diagnostics.py",
-              "line": 54,
+              "line": 56,
               "kind": "function",
               "language": "python"
             }
@@ -47,7 +47,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_failure_diagnostics.py",
-              "line": 49,
+              "line": 51,
               "kind": "function",
               "language": "python"
             }
@@ -60,8 +60,8 @@
     "task_failure_evidence": {
       "source": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "start": 105,
-        "end": 144
+        "start": 107,
+        "end": 170
       },
       "symbol_dependencies": [
         {
@@ -69,7 +69,19 @@
           "definitions": [
             {
               "file": "scripts/portfolio_failure_diagnostics.py",
-              "line": 54,
+              "line": 56,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "safe_state",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_failure_diagnostics.py",
+              "line": 51,
               "kind": "function",
               "language": "python"
             }
@@ -77,13 +89,13 @@
           "relation": "same_file"
         }
       ],
-      "dependency_count": 1
+      "dependency_count": 2
     },
     "add_deep_task_diagnostics": {
       "source": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "start": 147,
-        "end": 204
+        "start": 173,
+        "end": 234
       },
       "symbol_dependencies": [
         {
@@ -91,7 +103,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_failure_diagnostics.py",
-              "line": 54,
+              "line": 56,
               "kind": "function",
               "language": "python"
             }
@@ -115,7 +127,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_failure_diagnostics.py",
-              "line": 68,
+              "line": 70,
               "kind": "function",
               "language": "python"
             }
@@ -127,7 +139,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_failure_diagnostics.py",
-              "line": 105,
+              "line": 107,
               "kind": "function",
               "language": "python"
             }
@@ -140,8 +152,8 @@
     "public_diagnostics": {
       "source": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "start": 207,
-        "end": 228
+        "start": 237,
+        "end": 258
       },
       "symbol_dependencies": [
         {
@@ -149,7 +161,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_failure_diagnostics.py",
-              "line": 68,
+              "line": 70,
               "kind": "function",
               "language": "python"
             }
@@ -162,8 +174,8 @@
     "main": {
       "source": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "start": 231,
-        "end": 249
+        "start": 261,
+        "end": 279
       },
       "symbol_dependencies": [
         {
@@ -171,7 +183,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_failure_diagnostics.py",
-              "line": 147,
+              "line": 173,
               "kind": "function",
               "language": "python"
             }
@@ -183,7 +195,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_failure_diagnostics.py",
-              "line": 207,
+              "line": 237,
               "kind": "function",
               "language": "python"
             }

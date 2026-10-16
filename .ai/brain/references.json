@@ -8,91 +8,103 @@
     "safe_state": {
       "definition": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "line": 49,
+        "line": 51,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 49,
+          "line": 51,
           "preview": "def safe_state(raw: object, allowed: frozenset[str]) -> str:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 91,
+          "line": 93,
           "preview": "\"workflow_status\": safe_state(outcome.get(\"workflow_status\"), WORKFLOW_STATES),",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 92,
+          "line": 94,
           "preview": "\"validation_status\": safe_state(outcome.get(\"validation_status\"), VALIDATION_STATES),",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 96,
+          "line": 98,
           "preview": "\"runtime_phase\": safe_state(",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 101,
+          "line": 103,
           "preview": "\"task_status\": safe_state(runtime.get(\"task_status\"), WORKFLOW_STATES),",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 160,
+          "preview": "\"worker_result_status\": safe_state(",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 165,
+          "preview": "\"pipeline_status\": safe_state(",
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 5
+      "occurrence_count": 7
     },
     "failure_category": {
       "definition": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "line": 54,
+        "line": 56,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 54,
+          "line": 56,
           "preview": "def failure_category(outcome: object) -> str:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 90,
+          "line": 92,
           "preview": "\"failure_category\": failure_category(outcome),",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 111,
+          "line": 113,
           "preview": "\"retry_budget_exhausted\": None, \"failure_category\": \"unknown\"}",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 131,
+          "line": 133,
           "preview": "category = failure_category({\"summary\": description})",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 143,
+          "line": 157,
           "preview": "\"failure_category\": category,",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 195,
+          "line": 225,
           "preview": "if record[\"failure_category\"] == \"unknown\":",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 196,
+          "line": 226,
           "preview": "record[\"failure_category\"] = deeper[\"failure_category\"]",
           "definition_candidate": false
         }
@@ -102,26 +114,26 @@
     "safe_public_failure": {
       "definition": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "line": 68,
+        "line": 70,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 68,
+          "line": 70,
           "preview": "def safe_public_failure(item: object) -> dict | None:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 160,
+          "line": 186,
           "preview": "record = safe_public_failure(item)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 217,
+          "line": 247,
           "preview": "rows = [record for item in items if (record := safe_public_failure(item)) is not None]",
           "definition_candidate": false
         }
@@ -131,20 +143,20 @@
     "task_failure_evidence": {
       "definition": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "line": 105,
+        "line": 107,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 105,
+          "line": 107,
           "preview": "def task_failure_evidence(detail: object) -> dict:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 191,
+          "line": 217,
           "preview": "deeper = task_failure_evidence(project)",
           "definition_candidate": false
         }
@@ -154,20 +166,20 @@
     "add_deep_task_diagnostics": {
       "definition": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "line": 147,
+        "line": 173,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 147,
+          "line": 173,
           "preview": "def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 241,
+          "line": 271,
           "preview": "result = add_deep_task_diagnostics(public_diagnostics(inbox), inbox, token)",
           "definition_candidate": false
         }
@@ -177,20 +189,20 @@
     "public_diagnostics": {
       "definition": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "line": 207,
+        "line": 237,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 207,
+          "line": 237,
           "preview": "def public_diagnostics(payload: object) -> dict:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 241,
+          "line": 271,
           "preview": "result = add_deep_task_diagnostics(public_diagnostics(inbox), inbox, token)",
           "definition_candidate": false
         }
@@ -200,7 +212,7 @@
     "main": {
       "definition": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "line": 231,
+        "line": 261,
         "kind": "function",
         "language": "python"
       },
@@ -387,13 +399,13 @@
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 231,
+          "line": 261,
           "preview": "def main() -> int:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 253,
+          "line": 283,
           "preview": "sys.exit(main())",
           "definition_candidate": false
         },

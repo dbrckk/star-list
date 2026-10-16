@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "ef915f25dbd40249a087e6feb9482612817324b7",
-  "head": "43c2ad0c1fc32b5f66a19db3c634c3f429441d13",
+  "base": "43c2ad0c1fc32b5f66a19db3c634c3f429441d13",
+  "head": "289fc4e74b6c6b5e9771e919fdebc134cfb5b29e",
   "index_mode": "incremental",
   "changed_files": [
     {
@@ -29,43 +29,43 @@
       "name": "safe_state",
       "kind": "function",
       "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 49
+      "line": 51
     },
     {
       "name": "failure_category",
       "kind": "function",
       "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 54
+      "line": 56
     },
     {
       "name": "safe_public_failure",
       "kind": "function",
       "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 68
+      "line": 70
     },
     {
       "name": "task_failure_evidence",
       "kind": "function",
       "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 105
+      "line": 107
     },
     {
       "name": "add_deep_task_diagnostics",
       "kind": "function",
       "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 147
+      "line": 173
     },
     {
       "name": "public_diagnostics",
       "kind": "function",
       "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 207
+      "line": 237
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 231
+      "line": 261
     }
   ],
   "selected_tests": []

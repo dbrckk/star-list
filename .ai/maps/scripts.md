@@ -1365,6 +1365,10 @@ final = failed[-1] if failed else {}
 attempts = final.get("attempts")
 budget = final.get("max_attempts")
 exhausted = (attempts >= budget if type(attempts) is int
+result = final.get("result") if isinstance(final.get("result"), dict) else {}
+evidence = result.get("evidence") if isinstance(result.get("evidence"), dict) else {}
+known_result_keys = (
+known_evidence_keys = (
 ⋮----
 def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict
 ⋮----

@@ -2,13 +2,13 @@
 
 Summary: 3 success / 0 failure / 2 active
 
-- Validate catalog: in_progress / pending (43c2ad0c)
-- Diagnose failed star-list integrations: in_progress / pending (43c2ad0c)
-- Portfolio discovery live smoke: completed / success (bfa52793)
-- Validate catalog: completed / success (bfa52793)
-- Validate catalog: completed / success (bfa52793)
-- Validate catalog: completed / cancelled (210bb185)
-- Validate catalog: completed / cancelled (f9528b2a)
-- Validate catalog: completed / cancelled (87b42d08)
+- Diagnose failed star-list integrations: in_progress / pending (289fc4e7)
+- Validate catalog: in_progress / pending (289fc4e7)
+- Portfolio discovery live smoke: completed / success (5a0065b7)
+- Validate catalog: completed / success (5a0065b7)
+- Validate catalog: completed / success (5a0065b7)
+- Validate catalog: completed / cancelled (d2e804aa)
+- Validate catalog: completed / cancelled (572745e0)
+- Validate catalog: completed / cancelled (e448f050)
 
 > Generated summary only; inspect GitHub Actions for full logs when needed.

@@ -37,13 +37,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T19:23:01Z
+Generated: 2026-10-16T19:26:48Z
 
 ### Git
 - Branch: `main`
-- Head: `43c2ad0c1fc3`
-- Commit date: 2026-10-16T21:22:51+02:00
-- Commit: feat(portfolio): classify failed worker task details without exposing private data (#96)
+- Head: `289fc4e74b6c`
+- Commit date: 2026-10-16T21:26:37+02:00
+- Commit: fix(portfolio): distinguish worker capacity failures and observe bounded retry evidence (#97)
 - Tracked files: 278
 
 ### Recently changed files
