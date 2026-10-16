@@ -92,7 +92,12 @@ def request_json(url: str, token: str = "", *, method: str = "GET", data: dict |
         headers["Content-Type"] = "application/json"
     for attempt in range(3):
         try:
-            with urlopen(Request(url, headers=headers, method=method, data=body), timeout=25) as response:
+            # Render free instances may need time to wake up. Restrict the
+            # extended timeout to the approved control-plane host; keep
+            # ordinary GitHub catalog lookups bounded at 25 seconds.
+            request_timeout = 60 if parsed.hostname == "production-os1.onrender.com" else 25
+            with urlopen(Request(url, headers=headers, method=method, data=body),
+                         timeout=request_timeout) as response:
                 raw = response.read(3_000_000)
                 return json.loads(raw)
         except HTTPError as exc:
