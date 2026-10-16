@@ -63,7 +63,9 @@ repository secret:
 - `PRODUCTION_OS_OPERATOR_TOKEN`: valid Production-OS **operator** API
   token. Store only as a GitHub Actions secret, never commit or paste it.
 - The workflow sends this token **only** to
-  `https://production-os1.onrender.com`, over HTTPS.
+  `https://production-os1.onrender.com`, over HTTPS. Authenticated API requests
+  reject redirects to other origins or insecure protocols, rather than
+  forwarding bearer credentials to a new destination.
 - Production-OS must be deployed, ready, and have an authenticated, qualified
   `ai-dev-server` worker with access to the target repositories and a working
   inference provider. Check worker status and actual PR/CI evidence there.

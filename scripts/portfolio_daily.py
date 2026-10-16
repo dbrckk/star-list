@@ -19,7 +19,7 @@ import sys
 import time
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlparse
-from urllib.request import Request, urlopen
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 from recommend import DOMAIN_ALIASES, infer_domains, score_repo, tokens
 
@@ -76,6 +76,23 @@ MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
              "build.gradle.kts", "pubspec.yaml")
 
 
+class SameOriginRedirect(HTTPRedirectHandler):
+    """Never forward GitHub or Production-OS bearer tokens to another origin."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        original = urlparse(req.full_url)
+        destination = urlparse(newurl)
+        if (destination.scheme != "https"
+                or destination.hostname != original.hostname
+                or destination.port != original.port
+                or destination.username or destination.password):
+            raise RuntimeError("Refusing cross-origin redirect of authenticated API request")
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+SAFE_HTTP = build_opener(SameOriginRedirect())
+
+
 def request_json(url: str, token: str = "", *, method: str = "GET", data: dict | None = None):
     parsed = urlparse(url)
     if parsed.scheme != "https" or not parsed.hostname:
@@ -96,8 +113,8 @@ def request_json(url: str, token: str = "", *, method: str = "GET", data: dict |
             # extended timeout to the approved control-plane host; keep
             # ordinary GitHub catalog lookups bounded at 25 seconds.
             request_timeout = 60 if parsed.hostname == "production-os1.onrender.com" else 25
-            with urlopen(Request(url, headers=headers, method=method, data=body),
-                         timeout=request_timeout) as response:
+            with SAFE_HTTP.open(Request(url, headers=headers, method=method, data=body),
+                                timeout=request_timeout) as response:
                 raw = response.read(3_000_000)
                 return json.loads(raw)
         except HTTPError as exc:
