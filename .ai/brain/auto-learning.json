@@ -1,8 +1,31 @@
 {
-  "schema_version": 1,
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": false,
-  "reason": "missing-task-or-source-change",
-  "task": "docs(portfolio): record proven capacity exhaustion and safe recovery conditions (#98)",
-  "useful": []
+  "learned": true,
+  "learning_result": {
+    "example_count": 50,
+    "rejected_count": 0,
+    "terms": [
+      "99",
+      "absent",
+      "ambiguous",
+      "are",
+      "closed",
+      "details",
+      "fail",
+      "failure",
+      "portfolio",
+      "when",
+      "worker"
+    ],
+    "test_count": 0,
+    "useful_count": 1
+  },
+  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
+  "rejected": [],
+  "schema_version": 1,
+  "task": "fix(portfolio): fail closed when worker failure details are absent or ambiguous (#99)",
+  "tests_selected": [],
+  "useful": [
+    "scripts/portfolio_failure_diagnostics.py"
+  ]
 }

@@ -901,6 +901,27 @@
       "useful": [
         "scripts/portfolio_failure_diagnostics.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): fail closed when worker failure details are absent or ambiguous (#99)",
+      "terms": [
+        "99",
+        "absent",
+        "ambiguous",
+        "are",
+        "closed",
+        "details",
+        "fail",
+        "failure",
+        "portfolio",
+        "when",
+        "worker"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_failure_diagnostics.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1045,6 +1066,12 @@
     "97": {
       "scripts/portfolio_failure_diagnostics.py": 4
     },
+    "99": {
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "absent": {
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -1067,8 +1094,14 @@
     "alternative": {
       "scripts/portfolio_daily.py": 4
     },
+    "ambiguous": {
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
     "api": {
       "scripts/portfolio_daily.py": 8
+    },
+    "are": {
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "attempts": {
       "scripts/portfolio_daily.py": 4
@@ -1166,7 +1199,8 @@
       "scripts/test_catalog_quality.py": 4
     },
     "closed": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "complete": {
       "scripts/portfolio_daily.py": 4
@@ -1225,7 +1259,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "details": {
-      "scripts/portfolio_failure_diagnostics.py": 4
+      "scripts/portfolio_failure_diagnostics.py": 8
     },
     "detect": {
       "scripts/refresh_github_metadata.py": 4,
@@ -1287,11 +1321,15 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "fail": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "failed": {
       "scripts/portfolio_daily.py": 12,
       "scripts/portfolio_failure_diagnostics.py": 8
+    },
+    "failure": {
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "failures": {
       "scripts/portfolio_failure_diagnostics.py": 4
@@ -1546,7 +1584,7 @@
     },
     "portfolio": {
       "scripts/portfolio_daily.py": 40,
-      "scripts/portfolio_failure_diagnostics.py": 12,
+      "scripts/portfolio_failure_diagnostics.py": 16,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
@@ -1873,6 +1911,7 @@
     },
     "when": {
       "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_failure_diagnostics.py": 4,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
     },
@@ -1881,7 +1920,7 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "worker": {
-      "scripts/portfolio_failure_diagnostics.py": 8
+      "scripts/portfolio_failure_diagnostics.py": 12
     },
     "workflow": {
       "scripts/star_import_pipeline.py": 4,

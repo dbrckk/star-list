@@ -484,6 +484,12 @@ jobs:
           assert capacity["worker_result_status"] == "capacity_exhausted"
           assert capacity["pipeline_status"] == "capacity_exhausted"
           assert capacity["evidence_fields_present"] == ["message", "pipeline_status"]
+          # Missing/empty/nonterminal workflow tasks must not be certified
+          # as fully diagnosed, even when the project itself needs attention.
+          for sparse in ({}, {"current_workflow": {}},
+                         {"current_workflow": {"tasks": []}},
+                         {"current_workflow": {"tasks": [{"status": "running"}]}}):
+              assert task_failure_evidence(sparse)["details_checked"] is False
           assert "private diagnostic" not in json.dumps(capacity)
           from unittest.mock import patch as diagnostic_patch
           import portfolio_failure_diagnostics as failure_diagnostics
@@ -515,6 +521,39 @@ jobs:
           assert deep["failures"][0]["worker_result_status"] == "unknown"
           assert "hidden" not in json.dumps(deep)
           assert "project_id" not in json.dumps(deep)
+          # A syntactically valid detail object is insufficient unless it
+          # contains actual terminal task evidence for this same project.
+          for missing in ({}, {"current_workflow": {"tasks": []}},
+                          {"current_workflow": {"tasks": [{"status": "queued"}]}}):
+              incomplete_detail = {"project": {
+                  **synthetic_detail["project"], **missing}}
+              if "current_workflow" not in missing:
+                  incomplete_detail["project"].pop("current_workflow", None)
+              with diagnostic_patch.object(failure_diagnostics, "request_json",
+                                           return_value=incomplete_detail):
+                  partial = add_deep_task_diagnostics(
+                      public_diagnostics(diagnostic_inbox), diagnostic_inbox, "dummy")
+              assert partial["details_checked_v2"] == 0, partial
+              assert partial["details_complete"] is False, partial
+              assert partial["failures"][0]["details_checked"] is False, partial
+          # Multiple v2 failures for one target must never receive a single
+          # candidate's project details or count as complete coverage.
+          duplicate = {**public_record, "project_id": "b" * 32,
+                       "final_goal": "Tracking: starlist-integration-v2-" + "c" * 24}
+          duplicate_inbox = {
+              "schema_version": "production-os/production-inbox/v1",
+              "summary": {"matching": 2},
+              "items": [public_record, duplicate],
+          }
+          duplicate_report = public_diagnostics(duplicate_inbox)
+          assert duplicate_report["coverage_complete"] is False
+          with diagnostic_patch.object(failure_diagnostics, "request_json",
+                                       side_effect=AssertionError("Ambiguous GET attempted")):
+              ambiguous = add_deep_task_diagnostics(
+                  duplicate_report, duplicate_inbox, "dummy")
+          assert ambiguous["details_checked_v2"] == 0
+          assert all(row["details_checked"] is False for row in ambiguous["failures"])
+          assert ambiguous["details_complete"] is False
           try:
               public_diagnostics({"schema_version": "production-os/production-inbox/v1",
                                   "summary": {"matching": 201}, "items": []})
@@ -2980,6 +3019,9 @@ workflow = detail.get("current_workflow") if isinstance(detail, dict) else None
 tasks = workflow.get("tasks") if isinstance(workflow, dict) else None
 ⋮----
 failed = [task for task in tasks if isinstance(task, dict)
+# A terminal project without any terminal task is missing evidence, not
+# proof that a deep task diagnosis has succeeded.
+⋮----
 category = "unknown"
 ⋮----
 result = task.get("result")
@@ -3011,10 +3053,16 @@ def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict
 items = inbox.get("items")
 ⋮----
 selected = {}
+ambiguous_targets = set()
 ⋮----
 record = safe_public_failure(item)
 ⋮----
+target = record["target"]
+⋮----
 checked = 0
+⋮----
+# Never attribute one project/task result to a different historical
+# v2 candidate merely because the repository name is the same.
 ⋮----
 item = selected.get(record["target"])
 identifier = item.get("project_id") if isinstance(item, dict) else None
@@ -3038,7 +3086,11 @@ matching = summary.get("matching")
 ⋮----
 rows = [record for item in items if (record := safe_public_failure(item)) is not None]
 # The public issue previously verified exactly these four unresolved v2 targets.
-found = {row["target"] for row in rows if row["tracking_version"] == "v2"}
+v2_targets = [row["target"] for row in rows if row["tracking_version"] == "v2"]
+found = set(v2_targets)
+# Multiple failed v2 candidates for one repository require an explicit
+# per-candidate reconciliation, not silent attribution by target alone.
+unique_v2_targets = len(v2_targets) == len(found)
 ⋮----
 def main() -> int
 ⋮----

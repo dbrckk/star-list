@@ -1350,6 +1350,9 @@ workflow = detail.get("current_workflow") if isinstance(detail, dict) else None
 tasks = workflow.get("tasks") if isinstance(workflow, dict) else None
 ⋮----
 failed = [task for task in tasks if isinstance(task, dict)
+# A terminal project without any terminal task is missing evidence, not
+# proof that a deep task diagnosis has succeeded.
+⋮----
 category = "unknown"
 ⋮----
 result = task.get("result")
@@ -1381,10 +1384,16 @@ def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict
 items = inbox.get("items")
 ⋮----
 selected = {}
+ambiguous_targets = set()
 ⋮----
 record = safe_public_failure(item)
 ⋮----
+target = record["target"]
+⋮----
 checked = 0
+⋮----
+# Never attribute one project/task result to a different historical
+# v2 candidate merely because the repository name is the same.
 ⋮----
 item = selected.get(record["target"])
 identifier = item.get("project_id") if isinstance(item, dict) else None
@@ -1408,7 +1417,11 @@ matching = summary.get("matching")
 ⋮----
 rows = [record for item in items if (record := safe_public_failure(item)) is not None]
 # The public issue previously verified exactly these four unresolved v2 targets.
-found = {row["target"] for row in rows if row["tracking_version"] == "v2"}
+v2_targets = [row["target"] for row in rows if row["tracking_version"] == "v2"]
+found = set(v2_targets)
+# Multiple failed v2 candidates for one repository require an explicit
+# per-candidate reconciliation, not silent attribution by target alone.
+unique_v2_targets = len(v2_targets) == len(found)
 ⋮----
 def main() -> int
 ⋮----

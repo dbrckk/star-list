@@ -1,17 +1,72 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "289fc4e74b6c6b5e9771e919fdebc134cfb5b29e",
-  "head": "d5e3dc5afd4659e8a841869ff2cc1c42dd5fa1a1",
+  "base": "d5e3dc5afd4659e8a841869ff2cc1c42dd5fa1a1",
+  "head": "7d381e6dea3b69763e377648c92696e00941936d",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": "docs/PORTFOLIO_CAPACITY_RECOVERY.md",
-      "status": "A"
+      "path": ".github/workflows/portfolio-scan-smoke.yml",
+      "status": "M"
+    },
+    {
+      "path": "docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md",
+      "status": "M"
+    },
+    {
+      "path": "scripts/portfolio_failure_diagnostics.py",
+      "status": "M"
     }
   ],
-  "changed_source_files": [],
-  "impacted_files": [],
-  "impacted_symbols": [],
+  "changed_source_files": [
+    "scripts/portfolio_failure_diagnostics.py"
+  ],
+  "impacted_files": [
+    "scripts/portfolio_failure_diagnostics.py"
+  ],
+  "impacted_symbols": [
+    {
+      "name": "safe_state",
+      "kind": "function",
+      "file": "scripts/portfolio_failure_diagnostics.py",
+      "line": 51
+    },
+    {
+      "name": "failure_category",
+      "kind": "function",
+      "file": "scripts/portfolio_failure_diagnostics.py",
+      "line": 56
+    },
+    {
+      "name": "safe_public_failure",
+      "kind": "function",
+      "file": "scripts/portfolio_failure_diagnostics.py",
+      "line": 70
+    },
+    {
+      "name": "task_failure_evidence",
+      "kind": "function",
+      "file": "scripts/portfolio_failure_diagnostics.py",
+      "line": 107
+    },
+    {
+      "name": "add_deep_task_diagnostics",
+      "kind": "function",
+      "file": "scripts/portfolio_failure_diagnostics.py",
+      "line": 178
+    },
+    {
+      "name": "public_diagnostics",
+      "kind": "function",
+      "file": "scripts/portfolio_failure_diagnostics.py",
+      "line": 254
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/portfolio_failure_diagnostics.py",
+      "line": 282
+    }
+  ],
   "selected_tests": []
 }

@@ -37,23 +37,21 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T19:31:37Z
+Generated: 2026-10-16T19:59:41Z
 
 ### Git
 - Branch: `main`
-- Head: `d5e3dc5afd46`
-- Commit date: 2026-10-16T21:31:25+02:00
-- Commit: docs(portfolio): record proven capacity exhaustion and safe recovery conditions (#98)
+- Head: `7d381e6dea3b`
+- Commit date: 2026-10-16T21:59:31+02:00
+- Commit: fix(portfolio): fail closed when worker failure details are absent or ambiguous (#99)
 - Tracked files: 279
 
 ### Recently changed files
-- `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md`
 - `scripts/portfolio_failure_diagnostics.py`
+- `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
 - `.github/workflows/portfolio-failure-diagnostics.yml`
-- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
-- `scripts/portfolio_daily.py`
 
 ### Project signals
 - No common build descriptor detected
