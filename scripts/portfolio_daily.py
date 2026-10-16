@@ -326,6 +326,25 @@ def count_failed_v2_integrations(projects: list[dict]) -> int:
     return len(unresolved_failed_v2_integrations(projects))
 
 
+def count_launches_on_utc_date(projects: list[dict], utc_day: str) -> int:
+    """Account for the UTC launch quota, regardless of an API timestamp offset.
+
+    Call only after verified_managed_projects has validated timezone-aware
+    timestamps. A local-calendar comparison can admit extra launches around
+    midnight even when the per-UTC-day safety quota is already exhausted.
+    """
+    return sum(
+        1 for project in projects
+        if re.search(
+            r"starlist-integration-v[23]-[0-9a-f]{24}",
+            project["final_goal"],
+        )
+        and datetime.fromisoformat(
+            project["created_at"].replace("Z", "+00:00")
+        ).astimezone(timezone.utc).date().isoformat() == utc_day
+    )
+
+
 
 def verified_managed_projects(payload: object) -> list[dict]:
     """Fail closed unless the inventory can safely authorize more launches.
@@ -485,6 +504,12 @@ def render_markdown(report: dict) -> str:
     if isinstance(summary.get("failed_v2_integrations"), int):
         lines.extend(["Unresolved earlier v2 integration failures: **"
                       + str(summary["failed_v2_integrations"]) + "**.", ""])
+    if isinstance(summary.get("available_dispatch_slots"), int):
+        lines.extend(["Available launch slots for this scan: **"
+                      + str(summary["available_dispatch_slots"]) + "**.", ""])
+    if isinstance(summary.get("launches_today_utc"), int):
+        lines.extend(["Previously launched v2/v3 tasks today (UTC): **"
+                      + str(summary["launches_today_utc"]) + "**.", ""])
     for row in report["projects"]:
         lines.append("## " + row["repository"])
         lines.append("Status: " + row["status"])
@@ -560,6 +585,8 @@ def main() -> int:
     dispatched = 0
     active_integrations = None
     failed_v2_integrations = None
+    available_slots = None
+    launches_today = None
     if operator_token:
         # Validate the origin before even the read-only authenticated request.
         parsed_service = urlparse(service)
@@ -606,17 +633,7 @@ def main() -> int:
             # historical v2 failure remains unresolved.
             if failed_v2_integrations:
                 current_day = report["generated_at"][:10]
-                launches_today = sum(
-                    1 for p in already
-                    if re.search(
-                        r"starlist-integration-v[23]-[0-9a-f]{24}",
-                        str(p.get("final_goal") or ""),
-                    )
-                    and (
-                        not str(p.get("created_at") or "").strip()
-                        or str(p.get("created_at")).startswith(current_day)
-                    )
-                )
+                launches_today = count_launches_on_utc_date(already, current_day)
                 available_slots = (
                     min(args.max_dispatch, max(0, 1 - launches_today))
                     if active_integrations == 0 else 0
@@ -711,6 +728,8 @@ def main() -> int:
         "with_suggestions": sum(bool(p["suggestions"]) for p in report["projects"]),
         "dispatched": dispatched, "active_integrations": active_integrations,
         "failed_v2_integrations": failed_v2_integrations,
+        "available_dispatch_slots": available_slots,
+        "launches_today_utc": launches_today,
         "failures": len(report["errors"]),
     }
     args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
