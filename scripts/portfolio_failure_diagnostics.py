@@ -28,6 +28,8 @@ ENDPOINT = (
 )
 TRACKING = re.compile(r"(?<![a-z0-9])starlist-integration-v([123])-[0-9a-f]{24}(?![0-9a-f])")
 CATEGORIES = (
+    ("preview-cycle-limit", r"godot_preview_cycle_budget_exhausted|preview.cycle.budget.exhausted"),
+    ("worker-capacity-exhausted", r"capacity_exhausted|capacity.exhausted|no.compatible.worker|worker.capacity.exhausted"),
     ("provider-quota-or-token-budget", r"quota|rate.limit|429|token.{0,20}(?:budget|limit|exhaust)|(?:budget|limit).{0,20}token"),
     ("provider-unavailable-or-auth", r"provider|model.{0,25}(?:unavailable|fail)|401|403|unauthori[sz]|invalid.api.key"),
     ("network-or-timeout", r"timeout|timed.out|connect(?:ion)?.{0,20}(?:reset|refused|failed)|network|502|503|504"),
@@ -136,11 +138,35 @@ def task_failure_evidence(detail: object) -> dict:
     budget = final.get("max_attempts")
     exhausted = (attempts >= budget if type(attempts) is int
                  and type(budget) is int and budget > 0 else None)
+    result = final.get("result") if isinstance(final.get("result"), dict) else {}
+    evidence = result.get("evidence") if isinstance(result.get("evidence"), dict) else {}
+    known_result_keys = (
+        "summary", "message", "error", "reason", "failure_reason",
+        "ai_dev_server_status", "error_code", "status", "evidence",
+    )
+    known_evidence_keys = (
+        "error", "message", "reason", "failure_reason",
+        "error_code", "next_stage", "pipeline_status", "blocked_reason",
+    )
     return {
         "details_checked": True,
         "failed_task_count": min(100, len(failed)),
+        "task_attempts": min(100, attempts) if type(attempts) is int and attempts >= 0 else None,
+        "task_max_attempts": min(100, budget) if type(budget) is int and budget > 0 else None,
         "retry_budget_exhausted": exhausted,
         "failure_category": category,
+        "result_fields_present": [k for k in known_result_keys if k in result],
+        "evidence_fields_present": [k for k in known_evidence_keys if k in evidence],
+        "worker_result_status": safe_state(
+            result.get("ai_dev_server_status"),
+            frozenset({"blocked", "capacity_exhausted", "failed", "succeeded",
+                       "success", "unavailable", "running", "unknown"}),
+        ),
+        "pipeline_status": safe_state(
+            evidence.get("pipeline_status"),
+            frozenset({"blocked", "capacity_exhausted", "failed", "succeeded",
+                       "running", "ready", "pending", "unknown"}),
+        ),
     }
 
 
@@ -190,8 +216,12 @@ def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict:
                 raise RuntimeError("project state changed during diagnosis")
             deeper = task_failure_evidence(project)
             record["details_checked"] = True
-            record["failed_task_count"] = deeper["failed_task_count"]
-            record["retry_budget_exhausted"] = deeper["retry_budget_exhausted"]
+            for key in (
+                "failed_task_count", "task_attempts", "task_max_attempts",
+                "retry_budget_exhausted", "result_fields_present",
+                "evidence_fields_present", "worker_result_status", "pipeline_status",
+            ):
+                record[key] = deeper[key]
             if record["failure_category"] == "unknown":
                 record["failure_category"] = deeper["failure_category"]
             checked += 1
