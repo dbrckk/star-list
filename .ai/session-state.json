@@ -22,19 +22,23 @@
     80,
     81,
     82,
-    83
+    83,
+    84,
+    85
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
     "Normalize UTC throttle timestamps and publish available quota",
     "Prevent multiple simultaneous Production-OS integrations on one target",
     "Reject cross-origin authenticated API redirects",
-    "Prevent Production-OS launches after incomplete GitHub discovery (PR #83)"
+    "Fail closed if GitHub discovery is incomplete (PR #83)",
+    "Explain UTC launch throttling and inventory outages (PR #84)",
+    "Stop all dispatch after uncertain v2/v3 launch responses (PR #85)"
   ],
   "next_priority": [
-    "Verify and land truthful dispatch status for UTC throttling, missing inventory, and incomplete scans",
-    "Inspect four historical Production-OS v2 failure reasons and PR/CI evidence before retries",
-    "Improve recommendation qualification precision without increasing token budget"
+    "Validate strict Production-OS launch acknowledgements against actual managed-project IDs, request markers and 90k token budget",
+    "Investigate unresolved v2 tasks using authorized Production-OS operator evidence",
+    "Verify end-to-end target code changes and target CI; do not equate queue acceptance with integration"
   ],
   "constraints": [
     "No automatic merge/deployment of third-party integrations",
