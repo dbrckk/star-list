@@ -109,10 +109,15 @@ def task_failure_evidence(detail: object) -> dict:
     workflow = detail.get("current_workflow") if isinstance(detail, dict) else None
     tasks = workflow.get("tasks") if isinstance(workflow, dict) else None
     if not isinstance(tasks, list):
-        return {"details_checked": True, "failed_task_count": 0,
+        return {"details_checked": False, "failed_task_count": 0,
                 "retry_budget_exhausted": None, "failure_category": "unknown"}
     failed = [task for task in tasks if isinstance(task, dict)
               and task.get("status") in {"failed", "blocked", "cancelled"}]
+    # A terminal project without any terminal task is missing evidence, not
+    # proof that a deep task diagnosis has succeeded.
+    if not failed:
+        return {"details_checked": False, "failed_task_count": 0,
+                "retry_budget_exhausted": None, "failure_category": "unknown"}
     category = "unknown"
     for task in reversed(failed):
         result = task.get("result")
@@ -182,14 +187,24 @@ def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict:
     if not isinstance(items, list):
         raise RuntimeError("missing private diagnostic rows")
     selected = {}
+    ambiguous_targets = set()
     for item in items:
         record = safe_public_failure(item)
         if record is None or record["tracking_version"] != "v2":
             continue
-        selected[record["target"]] = item
+        target = record["target"]
+        if target in selected:
+            ambiguous_targets.add(target)
+        else:
+            selected[target] = item
     checked = 0
     for record in result["failures"]:
         if record["tracking_version"] != "v2":
+            continue
+        # Never attribute one project/task result to a different historical
+        # v2 candidate merely because the repository name is the same.
+        if record["target"] in ambiguous_targets:
+            record["details_checked"] = False
             continue
         item = selected.get(record["target"])
         identifier = item.get("project_id") if isinstance(item, dict) else None
@@ -215,7 +230,9 @@ def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict:
             if project.get("status") != "NEEDS_ATTENTION":
                 raise RuntimeError("project state changed during diagnosis")
             deeper = task_failure_evidence(project)
-            record["details_checked"] = True
+            record["details_checked"] = deeper["details_checked"] is True
+            if not record["details_checked"]:
+                continue
             for key in (
                 "failed_task_count", "task_attempts", "task_max_attempts",
                 "retry_budget_exhausted", "result_fields_present",
@@ -246,14 +263,18 @@ def public_diagnostics(payload: object) -> dict:
         raise RuntimeError("incomplete or invalid diagnostic page")
     rows = [record for item in items if (record := safe_public_failure(item)) is not None]
     # The public issue previously verified exactly these four unresolved v2 targets.
-    found = {row["target"] for row in rows if row["tracking_version"] == "v2"}
+    v2_targets = [row["target"] for row in rows if row["tracking_version"] == "v2"]
+    found = set(v2_targets)
+    # Multiple failed v2 candidates for one repository require an explicit
+    # per-candidate reconciliation, not silent attribution by target alone.
+    unique_v2_targets = len(v2_targets) == len(found)
     rows.sort(key=lambda r: (r["target"], r["tracking_version"]))
     return {
         "schema_version": "star-list/public-failure-diagnostics/v1",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "expected_public_v2_targets": len(PUBLIC_FAILED_TARGETS),
         "observed_public_v2_targets": len(found),
-        "coverage_complete": found == PUBLIC_FAILED_TARGETS,
+        "coverage_complete": found == PUBLIC_FAILED_TARGETS and unique_v2_targets,
         "failures": rows,
     }
 
