@@ -163,5 +163,9 @@ GitHub may delay a scheduled job; missing GitHub API permissions may prevent
 private repository discovery. Files above the scan size limit and missing
 manifests are not downloaded. An individual repository read failure is
 recorded as `scan-failed` and makes the workflow fail; it is never reported
-as a successful complete scan. Unselected catalog matches remain available
+as a successful complete scan. **Fail closed:** if any target cannot be
+inspected or the catalog/owner discovery fails, no Production-OS inventory
+request or integration launch is attempted, even if other repositories have
+qualified candidates. The JSON/Markdown report remains available for triage
+and `dispatch_status` states why launches were blocked. Unselected catalog matches remain available
 for later review; not every third-party project is safe or useful to install.

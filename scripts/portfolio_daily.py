@@ -619,6 +619,11 @@ def main() -> int:
             row["status"] = "scan-failed"
             report["errors"].append(target + ": " + str(exc))
         report["projects"].append(row)
+    # Discovery must be complete before starting any potentially mutating
+    # managed project. A per-repository read error is not a partial success.
+    scan_complete = not report["errors"]
+    if not scan_complete and operator_token:
+        report["dispatch_status"] = "blocked (incomplete repository scan)"
     dispatched = 0
     active_integrations = None
     failed_v2_integrations = None
@@ -632,8 +637,9 @@ def main() -> int:
                 or parsed_service.username or parsed_service.password
                 or parsed_service.query or parsed_service.fragment):
             report["errors"].append("Production-OS URL rejected: unapproved operator-token destination")
+            report["dispatch_status"] = "blocked (unapproved Production-OS URL)"
             operator_token = ""
-    if operator_token:
+    if operator_token and scan_complete and not report["errors"]:
         # Always prioritize highest-confidence matches, irrespective of repository order.
         queue = sorted(((item["score"], row, item) for row in report["projects"]
                         for item in row["suggestions"] if item["mode"] == "native"),

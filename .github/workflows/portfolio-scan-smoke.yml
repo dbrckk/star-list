@@ -134,6 +134,31 @@ jobs:
               assert evidence["summary"]["dispatched"] == 2
               assert launches == [("dbrckk/alpha", "upstream/one"),
                                   ("dbrckk/beta", "upstream/three")], launches
+              # A failed repository scan must fail closed before even reading
+              # Production-OS inventory, despite earlier eligible suggestions.
+              launches.clear()
+              def fail_second_profile(repo, _token):
+                  if repo["name"] == "beta":
+                      raise RuntimeError("injected GitHub read failure")
+                  return {}
+              with patch.dict(os.environ, {"PRODUCTION_OS_OPERATOR_TOKEN": "offline-test"}), \
+                   patch.object(sys, "argv", argv), \
+                   patch.object(scanner, "github_repos", return_value=targets), \
+                   patch.object(scanner, "project_profile", side_effect=fail_second_profile), \
+                   patch.object(scanner, "recommendations",
+                                side_effect=lambda repo, *_: offers[repo["full_name"]]), \
+                   patch.object(scanner, "request_json",
+                                side_effect=AssertionError("Production-OS called after scan failure")), \
+                   patch.object(scanner, "launch_integration", side_effect=fake_launch):
+                  assert scanner.main() == 1
+              failed_evidence = json.loads((p / "scan.json").read_text())
+              assert failed_evidence["summary"]["discovered"] == 2
+              assert failed_evidence["summary"]["inspected"] == 1
+              assert failed_evidence["summary"]["dispatched"] == 0
+              assert failed_evidence["summary"]["failures"] == 1
+              assert failed_evidence["dispatch_status"] == "blocked (incomplete repository scan)"
+              assert failed_evidence["projects"][1]["status"] == "scan-failed"
+              assert launches == [], launches
           # The dispatch quota is tied to UTC, not to the worker's local date.
           utc_boundary = [
               {"final_goal": integration_marker("dbrckk/Jumpy", {"repository": "a/b"}),
