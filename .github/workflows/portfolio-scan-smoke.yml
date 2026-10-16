@@ -45,6 +45,7 @@ jobs:
           from portfolio_daily import (
               is_reference_candidate, count_active_integrations,
               count_failed_v2_integrations, verified_managed_projects,
+              integration_marker, recoverable_failure_targets,
           )
           assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
           # All four actual Production-OS lifecycle states are recognized.
@@ -125,6 +126,33 @@ jobs:
               failed_v2, {**completed_v3,
                           "final_goal": "starlist-integration-v3-" + "b" * 24},
           ]) == 1
+          target = "dbrckk/vibecheck-android"
+          old = {"repository": "android/nowinandroid"}
+          new = {"repository": "rive-app/rive-android"}
+          obsolete_failure = {
+              "repository": target,
+              "final_goal": integration_marker(target, old),
+              "status": "NEEDS_ATTENTION",
+          }
+          rows = [{"repository": target, "suggestions": [
+              {**old, "mode": "reference-review"},
+              {**new, "mode": "native"},
+          ]}]
+          # A disqualified prior tool is still a visible failure but must
+          # not permanently block a different qualified implementation.
+          assert recoverable_failure_targets([obsolete_failure], rows, []) == set()
+          rows[0]["suggestions"][0]["mode"] = "native"
+          assert recoverable_failure_targets(
+              [obsolete_failure], rows, [],
+          ) == {target.lower()}
+          terminal_retry = {"repository": target, "status": "NEEDS_ATTENTION",
+                            "final_goal": integration_marker(target, old, 3)}
+          assert recoverable_failure_targets(
+              [obsolete_failure], rows, [terminal_retry],
+          ) == set()
+          assert count_failed_v2_integrations(
+              [obsolete_failure, terminal_retry],
+          ) == 1
           assert result["summary"]["active_integrations"] is None
           assert result["summary"]["failed_v2_integrations"] is None
           catalog = json.loads(Path("catalog.json").read_text())["repositories"]
