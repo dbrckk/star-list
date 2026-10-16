@@ -27,19 +27,24 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T16:39:36Z
+Generated: 2026-10-16T17:15:48Z
 
 ### Git
 - Branch: `main`
-- Head: `1a157ba0832c`
-- Commit date: 2026-10-16T18:39:26+02:00
-- Commit: fix(portfolio): enforce UTC daily launch quota and report throttling (#78)
+- Head: `18d464436894`
+- Commit date: 2026-10-16T19:15:37+02:00
+- Commit: fix(portfolio): block concurrent integrations into the same repository (#80)
 - Tracked files: 274
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
+- `catalog.json`
+- `.github/workflows/sync-github-stars.yml`
+- `docs/GITHUB_STARS_SYNC.md`
+- `scripts/sync_github_stars.py`
+- `scripts/test_sync_github_stars.py`
 
 ### Project signals
 - No common build descriptor detected

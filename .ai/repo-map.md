@@ -353,7 +353,7 @@ jobs:
               is_reference_candidate, count_active_integrations,
               count_failed_v2_integrations, verified_managed_projects,
               integration_marker, recoverable_failure_targets,
-              count_launches_on_utc_date,
+              count_launches_on_utc_date, busy_integration_targets,
           )
           assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
           # All four actual Production-OS lifecycle states are recognized.
@@ -366,6 +366,61 @@ jobs:
           valid = {"projects": [active, completed], "total_count": 2, "complete": True}
           assert verified_managed_projects(valid) == valid["projects"]
           assert count_active_integrations(valid["projects"]) == 1
+          # A target is single-flight even when its previous job is already
+          # REVIEW_REQUIRED (no worker active but changes may need review).
+          pending_review = {**completed, "status": "REVIEW_REQUIRED"}
+          busy = busy_integration_targets([active, pending_review, completed])
+          assert busy == {"dbrckk/ai-trading", "dbrckk/jumpy"}
+          assert busy_integration_targets([completed]) == set()
+          assert busy_integration_targets([{
+              **active, "final_goal": "unrelated-project",
+          }]) == set()
+          assert "dbrckk/ai-trading" in busy_integration_targets([
+              {**active, "repository": "dbrckk/AI-Trading"},
+          ])
+          # Exercise the actual dispatcher with three qualified suggestions
+          # spread across two repositories. No network, token or worker call.
+          import os
+          import tempfile
+          from unittest.mock import patch
+          import portfolio_daily as scanner
+          targets = [
+              {"name": name, "full_name": "dbrckk/" + name, "private": False}
+              for name in ("alpha", "beta")
+          ]
+          def suggestion(slug, score):
+              return {"repository": slug, "score": score, "mode": "native",
+                      "url": "https://github.com/" + slug, "license": "MIT",
+                      "shared_terms": ["integration"]}
+          offers = {
+              "dbrckk/alpha": [suggestion("upstream/one", 60),
+                               suggestion("upstream/two", 59)],
+              "dbrckk/beta": [suggestion("upstream/three", 58)],
+          }
+          launches = []
+          def fake_launch(_url, _token, target, candidate, **_kwargs):
+              launches.append((target, candidate["repository"]))
+              return {"project": {"id": len(launches)}}
+          with tempfile.TemporaryDirectory() as scratch:
+              p = Path(scratch)
+              (p / "catalog.json").write_text('{"repositories": []}')
+              argv = ["portfolio_daily.py", "--catalog", str(p / "catalog.json"),
+                      "--output", str(p / "scan.json"),
+                      "--markdown", str(p / "scan.md"), "--max-dispatch", "3"]
+              with patch.dict(os.environ, {"PRODUCTION_OS_OPERATOR_TOKEN": "offline-test"}), \
+                   patch.object(sys, "argv", argv), \
+                   patch.object(scanner, "github_repos", return_value=targets), \
+                   patch.object(scanner, "project_profile", return_value={}), \
+                   patch.object(scanner, "recommendations",
+                                side_effect=lambda repo, *_: offers[repo["full_name"]]), \
+                   patch.object(scanner, "request_json", return_value={
+                       "projects": [], "total_count": 0, "complete": True}), \
+                   patch.object(scanner, "launch_integration", side_effect=fake_launch):
+                  assert scanner.main() == 0
+              evidence = json.loads((p / "scan.json").read_text())
+              assert evidence["summary"]["dispatched"] == 2
+              assert launches == [("dbrckk/alpha", "upstream/one"),
+                                  ("dbrckk/beta", "upstream/three")], launches
           # The dispatch quota is tied to UTC, not to the worker's local date.
           utc_boundary = [
               {"final_goal": integration_marker("dbrckk/Jumpy", {"repository": "a/b"}),
@@ -749,8 +804,10 @@ jobs:
             exit 1
           fi
       - name: Preserve synchronization and admission results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
+          if-no-files-found: warn
           name: star-list-public-stars-admission
           path: |
             star-sync-report.json
@@ -2251,6 +2308,15 @@ def count_active_integrations(projects: list[dict]) -> int
 ⋮----
 """Only in-flight portfolio jobs occupy coding-worker capacity slots."""
 ⋮----
+def busy_integration_targets(projects: list[dict]) -> set[str]
+⋮----
+"""Do not launch concurrent or review-conflicting changes into one repo.
+
+    Unlike the fleet's worker cap, REVIEW_REQUIRED also blocks the target:
+    that result may still have a branch/PR awaiting review. DONE and failed
+    attempts are handled independently by versioned tracking/quarantine.
+    """
+⋮----
 def unresolved_failed_v2_integrations(projects: list[dict]) -> list[dict]
 ⋮----
 """Failed v2 jobs still needing review after any successful v3 recovery.
@@ -2396,6 +2462,7 @@ existing = None
 # not merely the number of launches in this one workflow run.
 active_integrations = count_active_integrations(already)
 failed_v2_integrations = count_failed_v2_integrations(already)
+busy_targets = busy_integration_targets(already)
 # Failed projects are quarantined instead of occupying all
 # capacity slots forever. While failures remain, admit at most
 # ONE distinct project per UTC day and only with an idle portfolio
@@ -2416,6 +2483,9 @@ available_slots = min(
 # Reevaluate a previously failed compatible candidate before
 # consuming the single daily slot on an unrelated new project.
 # A v3 marker is distinct and can be submitted only once.
+⋮----
+# Existing work and earlier successful dispatches in this same
+# run must not modify one target repository concurrently.
 ⋮----
 failed_marker = integration_marker(row["repository"], item)
 recovery_marker = integration_marker(row["repository"], item, version=3)
@@ -44671,6 +44741,42 @@ Repository-specific rules:
       },
       "bestFor": [
         "Python scraper based on AI"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "anishfn/shapeshift",
+      "githubRepositoryId": 1381152958,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 962,
+        "forks": 98,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-23T23:57:19Z"
+      },
+      "bestFor": [
+        "An input that becomes what you mean: one text box that morphs into the right UI as you type. Powered by TypeSafe Jev, works offline."
       ],
       "avoidWhen": [
         "production use before licensing and security review"

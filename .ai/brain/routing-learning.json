@@ -644,6 +644,26 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): block concurrent integrations into the same repository (#80)",
+      "terms": [
+        "80",
+        "block",
+        "concurrent",
+        "integrations",
+        "into",
+        "portfolio",
+        "repository",
+        "same"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py",
+        "scripts/sync_github_stars.py",
+        "scripts/test_sync_github_stars.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -747,6 +767,11 @@
     "78": {
       "scripts/portfolio_daily.py": 4
     },
+    "80": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -802,6 +827,11 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "block": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
+    },
     "bounded": {
       "scripts/portfolio_daily.py": 4
     },
@@ -841,6 +871,11 @@
     },
     "completed": {
       "scripts/portfolio_daily.py": 4
+    },
+    "concurrent": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
     },
     "constraints": {
       "scripts/recommend.py": 4,
@@ -1024,11 +1059,16 @@
       "scripts/portfolio_daily.py": 20
     },
     "integrations": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8,
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
     },
     "into": {
       "scripts/admit_github_stars.py": 4,
-      "scripts/test_auto_stars_admission.py": 4
+      "scripts/portfolio_daily.py": 4,
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_auto_stars_admission.py": 4,
+      "scripts/test_sync_github_stars.py": 4
     },
     "inventory": {
       "scripts/portfolio_daily.py": 8
@@ -1111,7 +1151,9 @@
       "scripts/test_star_import_pipeline.py": 4
     },
     "portfolio": {
-      "scripts/portfolio_daily.py": 40
+      "scripts/portfolio_daily.py": 40,
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
     },
     "production-os": {
       "scripts/portfolio_daily.py": 16
@@ -1211,10 +1253,13 @@
     "repository": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/backfill_licenses.py": 4,
+      "scripts/portfolio_daily.py": 4,
       "scripts/refresh_github_metadata.py": 8,
+      "scripts/sync_github_stars.py": 4,
       "scripts/test_backfill_licenses.py": 4,
       "scripts/test_catalog_quality.py": 4,
-      "scripts/test_refresh_github_metadata.py": 8
+      "scripts/test_refresh_github_metadata.py": 8,
+      "scripts/test_sync_github_stars.py": 4
     },
     "request": {
       "scripts/discover_candidates.py": 4,
@@ -1252,6 +1297,11 @@
     },
     "safely": {
       "scripts/portfolio_daily.py": 12
+    },
+    "same": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
     },
     "scoped": {
       "scripts/portfolio_daily.py": 4

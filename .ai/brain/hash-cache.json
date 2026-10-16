@@ -1,24 +1,48 @@
 {
   "files": {
     ".github/workflows/portfolio-scan-smoke.yml": {
-      "sha256": "be1e6d603cf91e4a6072cb5d1dbb1aa19f5599c9a6936ce2b492164af021baba",
-      "size": 9114
+      "sha256": "6409f4ca4a3ca7853b7562fd17b51c17587698fa28b51b9644a07dc3a853d3f9",
+      "size": 12363
+    },
+    ".github/workflows/sync-github-stars.yml": {
+      "sha256": "31fdc138acc04a468146184f3b47828a1b0c39cd78a813919677dc4b2cf36d81",
+      "size": 3757
     },
     "catalog.json": {
-      "sha256": "72073dd3fbe4bd1086b15a5e98798dfbd819858eb88f2103e24f61465398ddbc",
-      "size": 1010174
+      "sha256": "b6f7799c66eedc9545d93b78038d7e2b1eaad3955b2fc12b8c197f2b4dc90f39",
+      "size": 1011210
     },
     "docs/DAILY_PORTFOLIO_INTEGRATION.md": {
-      "sha256": "069f4bb73fcf83ad3e50bec4594f6df22b683d3c13ca3b98e95c893c2f4e6bc7",
-      "size": 9294
+      "sha256": "781147d4caf1e900330ab48ddc54bad43effa2a7b93b4ce4a5a573db25c38004",
+      "size": 9887
+    },
+    "docs/GITHUB_STARS_SYNC.md": {
+      "sha256": "e7c422d00018dd95240536888dbe2aaedb19170b626b9e056e2a03280a67b2c7",
+      "size": 2995
+    },
+    "scripts/admit_github_stars.py": {
+      "sha256": "4d8b60262f9f5cfec03ed9d1c5d1c31200a6e0c654437bf007bb0de7b4d502df",
+      "size": 11149
     },
     "scripts/portfolio_daily.py": {
-      "sha256": "4a16ad99b999eab9f0b948bba3493fe05b85d5363a0cc73c1722b3c58c5eb92e",
-      "size": 37984
+      "sha256": "eed41daff04505fbf7dd8663c9be55411ad34593385dd463696a931c67a77f61",
+      "size": 39459
     },
     "scripts/recommend.py": {
       "sha256": "7df823d9a03718fc062f172b66c9a5ebcfd267e8e50d46a82111b1fb65138d17",
       "size": 16505
+    },
+    "scripts/star_import_pipeline.py": {
+      "sha256": "0ef31e842ff42e674498f10836f984c2813a70642d2430f46b55f6a58626eb5f",
+      "size": 12719
+    },
+    "scripts/sync_github_stars.py": {
+      "sha256": "15d937b99f239edb8e6040528fad336d17b41f9556cab7c9978a25ee09ceec02",
+      "size": 12118
+    },
+    "scripts/test_sync_github_stars.py": {
+      "sha256": "f0708f43c98de8eeac27cc55ec8c8348686496b397f57d3abaab8b033529c7e1",
+      "size": 9068
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

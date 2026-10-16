@@ -2,28 +2,29 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 36,
+    "example_count": 37,
     "rejected_count": 0,
     "terms": [
-      "78",
-      "daily",
-      "enforce",
-      "launch",
+      "80",
+      "block",
+      "concurrent",
+      "integrations",
+      "into",
       "portfolio",
-      "quota",
-      "report",
-      "throttling",
-      "utc"
+      "repository",
+      "same"
     ],
     "test_count": 0,
-    "useful_count": 1
+    "useful_count": 3
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(portfolio): enforce UTC daily launch quota and report throttling (#78)",
+  "task": "fix(portfolio): block concurrent integrations into the same repository (#80)",
   "tests_selected": [],
   "useful": [
-    "scripts/portfolio_daily.py"
+    "scripts/portfolio_daily.py",
+    "scripts/sync_github_stars.py",
+    "scripts/test_sync_github_stars.py"
   ]
 }

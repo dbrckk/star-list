@@ -1047,6 +1047,15 @@ def count_active_integrations(projects: list[dict]) -> int
 ⋮----
 """Only in-flight portfolio jobs occupy coding-worker capacity slots."""
 ⋮----
+def busy_integration_targets(projects: list[dict]) -> set[str]
+⋮----
+"""Do not launch concurrent or review-conflicting changes into one repo.
+
+    Unlike the fleet's worker cap, REVIEW_REQUIRED also blocks the target:
+    that result may still have a branch/PR awaiting review. DONE and failed
+    attempts are handled independently by versioned tracking/quarantine.
+    """
+⋮----
 def unresolved_failed_v2_integrations(projects: list[dict]) -> list[dict]
 ⋮----
 """Failed v2 jobs still needing review after any successful v3 recovery.
@@ -1192,6 +1201,7 @@ existing = None
 # not merely the number of launches in this one workflow run.
 active_integrations = count_active_integrations(already)
 failed_v2_integrations = count_failed_v2_integrations(already)
+busy_targets = busy_integration_targets(already)
 # Failed projects are quarantined instead of occupying all
 # capacity slots forever. While failures remain, admit at most
 # ONE distinct project per UTC day and only with an idle portfolio
@@ -1212,6 +1222,9 @@ available_slots = min(
 # Reevaluate a previously failed compatible candidate before
 # consuming the single daily slot on an unrelated new project.
 # A v3 marker is distinct and can be submitted only once.
+⋮----
+# Existing work and earlier successful dispatches in this same
+# run must not modify one target repository concurrently.
 ⋮----
 failed_marker = integration_marker(row["repository"], item)
 recovery_marker = integration_marker(row["repository"], item, version=3)
