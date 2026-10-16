@@ -236,6 +236,19 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
     domains = set(profile["domains"])
     if not domains:
         return []
+    target_identity = repo["name"].lower()
+    godot_target = profile["language"] == "gdscript" or "godot" in target_identity
+    existing_engine_sources = set(EXISTING_ENGINE_SOURCES["godot"]) if godot_target else set()
+    # Engine alternatives are replacement *platforms*, not dependencies.
+    # Derive them from the catalog's own explicit alternative relationships,
+    # rather than chasing individual incompatible engine names by hand.
+    excluded_engine_sources = existing_engine_sources | {
+        alternative.lower()
+        for engine in catalog
+        if str(engine.get("repo") or "").lower() in existing_engine_sources
+        for alternative in (engine.get("alternatives") or [])
+        if isinstance(alternative, str)
+    }
     matches = []
     for tool in catalog:
         slug = str(tool.get("repo") or "")
@@ -254,12 +267,9 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
                             | tokens(" ".join(tool.get("bestFor") or []))) - GENERIC - STOPWORDS
         if len(shared) < 2 and not (set(shared) & capability_terms):
             continue
-        target_identity = repo["name"].lower()
-        if (profile["language"] == "gdscript" or "godot" in target_identity) and (
-            slug.lower() in EXISTING_ENGINE_SOURCES["godot"]
-        ):
-            # An engine already running this game is a platform, not an
-            # installable feature. Retain compatible plugins and addons.
+        if slug.lower() in excluded_engine_sources:
+            # Ignore the installed engine source and explicit substitute
+            # engines. Continue recommending compatible plugins/addons.
             continue
         if profile["language"] == "luau" or "roblox" in target_identity:
             if any(marker in slug.lower() for marker in ENGINE_CONFLICTS["roblox"]):
