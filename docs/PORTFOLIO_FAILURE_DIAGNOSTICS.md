@@ -34,3 +34,12 @@ states. It recognizes `capacity_exhausted` and
 `godot_preview_cycle_budget_exhausted` separately from external
 provider-quota problems. Values outside the allowed enums become
 `unknown`; raw diagnostic values are never emitted.
+
+**Evidence integrity:** An absent workflow task list, an empty list, or a
+list without a failed/blocked/cancelled task is **incomplete diagnosis**, not
+`details_checked=true`. If the problem inbox contains multiple failed v2
+candidate records for the same public target, the report treats that target
+as ambiguous and does not read or attribute one candidate's task result to
+another. Such runs exit nonzero rather than asserting full coverage; the
+operator must reconcile the distinct candidates privately. Only actual
+terminal task evidence for unambiguous targets counts as deep coverage.
