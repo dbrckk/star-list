@@ -27,19 +27,19 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T14:51:25Z
+Generated: 2026-10-16T14:56:14Z
 
 ### Git
 - Branch: `main`
-- Head: `1506ee4d6de8`
-- Commit date: 2026-10-16T16:51:14+02:00
-- Commit: fix(portfolio): exclude demo repos and generic matches from automatic integration
+- Head: `fe8633c4736a`
+- Commit date: 2026-10-16T16:56:04+02:00
+- Commit: fix(portfolio): release quarantine after completed v3 recovery
 - Tracked files: 274
 
 ### Recently changed files
+- `.github/workflows/portfolio-scan-smoke.yml`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
-- `.github/workflows/portfolio-scan-smoke.yml`
 - `catalog.json`
 
 ### Project signals

@@ -592,6 +592,23 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): release quarantine after completed v3 recovery",
+      "terms": [
+        "after",
+        "completed",
+        "portfolio",
+        "quarantine",
+        "recovery",
+        "release",
+        "v3"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -701,6 +718,9 @@
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
     },
+    "after": {
+      "scripts/portfolio_daily.py": 4
+    },
     "all": {
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
@@ -776,6 +796,9 @@
       "scripts/portfolio_daily.py": 4
     },
     "complete": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "completed": {
       "scripts/portfolio_daily.py": 4
     },
     "constraints": {
@@ -1073,7 +1096,7 @@
       "scripts/test_catalog_quality.py": 4
     },
     "quarantine": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "queue": {
       "scripts/portfolio_daily.py": 8
@@ -1094,6 +1117,9 @@
     "recover": {
       "scripts/portfolio_daily.py": 4
     },
+    "recovery": {
+      "scripts/portfolio_daily.py": 4
+    },
     "reference-only": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1103,6 +1129,9 @@
     "relations": {
       "scripts/recommend.py": 8,
       "scripts/test_recommend.py": 8
+    },
+    "release": {
+      "scripts/portfolio_daily.py": 4
     },
     "render": {
       "scripts/portfolio_daily.py": 4
@@ -1254,6 +1283,9 @@
       "scripts/portfolio_daily.py": 4
     },
     "utc": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "v3": {
       "scripts/portfolio_daily.py": 4
     },
     "validation": {

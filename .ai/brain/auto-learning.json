@@ -2,18 +2,16 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 33,
+    "example_count": 34,
     "rejected_count": 0,
     "terms": [
-      "automatic",
-      "demo",
-      "exclude",
-      "from",
-      "generic",
-      "integration",
-      "matches",
+      "after",
+      "completed",
       "portfolio",
-      "repos"
+      "quarantine",
+      "recovery",
+      "release",
+      "v3"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -21,7 +19,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(portfolio): exclude demo repos and generic matches from automatic integration",
+  "task": "fix(portfolio): release quarantine after completed v3 recovery",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py"

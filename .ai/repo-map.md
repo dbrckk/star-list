@@ -411,10 +411,26 @@ jobs:
               {"final_goal": "unrelated", "status": "ACTIVE"},
               {"final_goal": "starlist-integration-v2-another", "status": "QUEUED"},
           ]) == 2
+          failed_v2 = {
+              "final_goal": "starlist-integration-v2-" + "a" * 24,
+              "status": "NEEDS_ATTENTION",
+          }
+          completed_v3 = {
+              "final_goal": "starlist-integration-v3-" + "a" * 24,
+              "status": "DONE",
+          }
           assert count_failed_v2_integrations([
               {"final_goal": "starlist-integration-v1-old", "status": "NEEDS_ATTENTION"},
-              {"final_goal": "starlist-integration-v2-failed", "status": "NEEDS_ATTENTION"},
-              {"final_goal": "starlist-integration-v2-active", "status": "ACTIVE"},
+              failed_v2,
+              {"final_goal": "starlist-integration-v2-" + "b" * 24, "status": "ACTIVE"},
+          ]) == 1
+          assert count_failed_v2_integrations([failed_v2, completed_v3]) == 0
+          assert count_failed_v2_integrations([
+              failed_v2, {**completed_v3, "status": "REVIEW_REQUIRED"},
+          ]) == 1
+          assert count_failed_v2_integrations([
+              failed_v2, {**completed_v3,
+                          "final_goal": "starlist-integration-v3-" + "b" * 24},
           ]) == 1
           assert result["summary"]["active_integrations"] is None
           assert result["summary"]["failed_v2_integrations"] is None
@@ -2196,9 +2212,23 @@ def count_active_integrations(projects: list[dict]) -> int
 ⋮----
 """Only in-flight portfolio jobs occupy coding-worker capacity slots."""
 ⋮----
+def unresolved_failed_v2_integrations(projects: list[dict]) -> list[dict]
+⋮----
+"""Failed v2 jobs still needing review after any successful v3 recovery.
+
+    The v2 record itself remains NEEDS_ATTENTION forever: a later completed
+    v3 recovery for the same exact candidate supersedes it for admission and
+    reporting. Other failed candidate identities remain quarantined.
+    """
+recovered = set()
+⋮----
+marker = re.search(
+⋮----
+unresolved = []
+⋮----
 def count_failed_v2_integrations(projects: list[dict]) -> int
 ⋮----
-"""Protect the free worker quota until failed high-budget jobs are reviewed."""
+"""Count only still-unresolved failed high-budget jobs."""
 ⋮----
 def verified_managed_projects(payload: object) -> list[dict]
 ⋮----
@@ -2216,7 +2246,6 @@ known_states = {"ACTIVE", "REVIEW_REQUIRED", "NEEDS_ATTENTION", "DONE"}
 seen_markers: set[str] = set()
 ⋮----
 goal = project.get("final_goal")
-marker = re.search(
 ⋮----
 repo = project.get("repository")
 ⋮----
@@ -2311,6 +2340,7 @@ failed_v2_integrations = count_failed_v2_integrations(already)
 # ONE distinct project per UTC day and only with an idle portfolio
 # worker. This avoids both deadlock and unlimited paid/free-token
 # retries from scans triggered repeatedly by GitHub events.
+unresolved_failures = unresolved_failed_v2_integrations(already)
 failed_targets = {
 ⋮----
 current_day = report["generated_at"][:10]
