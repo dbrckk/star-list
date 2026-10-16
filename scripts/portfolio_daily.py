@@ -307,7 +307,8 @@ def verified_managed_projects(payload: object) -> list[dict]:
             r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repo
         ):
             raise RuntimeError("Production-OS inventory has an invalid tracked repository")
-        if project.get("status") not in known_states:
+        status = project.get("status")
+        if not isinstance(status, str) or status not in known_states:
             raise RuntimeError("Production-OS inventory has an unknown integration state")
 
         timestamp = project.get("created_at")
