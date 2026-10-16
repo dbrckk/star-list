@@ -28,7 +28,10 @@ or skipped by GitHub, so "daily" is a configured cadence, not a real-time SLA.
    v2 retry; a failed v2 may receive one bounded **v3** retry for the **same**
    candidate. Any prior v3 marker permanently blocks additional automatic
    retries for that candidate. Failed targets stay quarantined from unrelated
-   candidate launches until reviewed.
+   candidate launches until reviewed. Once that exact candidate's v3 recovery
+   reaches `DONE`, its superseded v2 failure no longer counts as unresolved
+   or blocks unrelated qualified tools. An active, failed, or review-pending
+   v3 recovery does not clear the quarantine.
 8. Production-OS / ai-dev-server must actually inspect, implement and verify
    the integration in the target. A suggestion or queued task is NOT a
    completed integration. The managed project must produce a functional
