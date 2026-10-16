@@ -80,7 +80,7 @@ assert [r["repo"] for r in report["newRepositories"]] == ["New/Alpha", "New/Beta
 rendered = mod.render_issue(report, limit=1)
 assert mod.ISSUE_MARKER in rendered and "New/Alpha" in rendered
 assert "New/Beta" not in rendered and "Showing 1 of 2" in rendered
-assert "not" in rendered.lower() and "automatically" in rendered.lower()
+assert "automatically admitted" in rendered.lower() and "not approval" in rendered.lower()
 assert "All accessible starred" in mod.render_issue(
     mod.build_report("dbrckk", items, {x["repo"].lower() for x in items}, pages)
 )
