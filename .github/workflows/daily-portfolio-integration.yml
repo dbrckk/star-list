@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "37 3 * * *"
   workflow_dispatch:
+  # GitHub may omit a scheduled workflow; use the already-qualified star
+  # synchronization schedule as a second, trusted entrypoint.
+  workflow_run:
+    workflows: ["Sync GitHub Stars"]
+    types: [completed]
   push:
     branches: [main]
     paths:
@@ -20,6 +25,14 @@ concurrency:
 
 jobs:
   scan:
+    # Never use secrets on a workflow_run fired from a PR or a fork.
+    # Do not consume predecessor artifacts; always checkout trusted main.
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'schedule' &&
+       github.event.workflow_run.head_branch == 'main' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
