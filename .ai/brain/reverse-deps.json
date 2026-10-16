@@ -49,6 +49,16 @@
       "dependencies": [
         "scripts/recommend.py"
       ],
+      "dependents": [
+        "scripts/portfolio_failure_diagnostics.py"
+      ],
+      "in_degree": 1,
+      "out_degree": 1
+    },
+    "scripts/portfolio_failure_diagnostics.py": {
+      "dependencies": [
+        "scripts/portfolio_daily.py"
+      ],
       "dependents": [],
       "in_degree": 0,
       "out_degree": 1

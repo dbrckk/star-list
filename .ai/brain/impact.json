@@ -1,165 +1,63 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "207bdfdb26569bda584381e0b46ce91723a4797d",
-  "head": "34218e4c2841c582186d5cf47f0f98588ded0758",
+  "base": "34218e4c2841c582186d5cf47f0f98588ded0758",
+  "head": "ef915f25dbd40249a087e6feb9482612817324b7",
   "index_mode": "incremental",
   "changed_files": [
+    {
+      "path": ".github/workflows/portfolio-failure-diagnostics.yml",
+      "status": "A"
+    },
     {
       "path": ".github/workflows/portfolio-scan-smoke.yml",
       "status": "M"
     },
     {
-      "path": "catalog.json",
-      "status": "M"
+      "path": "docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md",
+      "status": "A"
     },
     {
-      "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
-      "status": "M"
-    },
-    {
-      "path": "scripts/portfolio_daily.py",
-      "status": "M"
+      "path": "scripts/portfolio_failure_diagnostics.py",
+      "status": "A"
     }
   ],
   "changed_source_files": [
-    "scripts/portfolio_daily.py"
+    "scripts/portfolio_failure_diagnostics.py"
   ],
   "impacted_files": [
-    "scripts/portfolio_daily.py"
+    "scripts/portfolio_failure_diagnostics.py"
   ],
   "impacted_symbols": [
     {
-      "name": "SameOriginRedirect",
-      "kind": "class",
-      "file": "scripts/portfolio_daily.py",
-      "line": 84
+      "name": "safe_state",
+      "kind": "function",
+      "file": "scripts/portfolio_failure_diagnostics.py",
+      "line": 49
     },
     {
-      "name": "redirect_request",
+      "name": "failure_category",
       "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 87
+      "file": "scripts/portfolio_failure_diagnostics.py",
+      "line": 54
     },
     {
-      "name": "request_json",
+      "name": "safe_public_failure",
       "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 101
+      "file": "scripts/portfolio_failure_diagnostics.py",
+      "line": 68
     },
     {
-      "name": "github_repos",
+      "name": "public_diagnostics",
       "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 140
-    },
-    {
-      "name": "file_text",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 160
-    },
-    {
-      "name": "project_profile",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 171
-    },
-    {
-      "name": "eligible",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 193
-    },
-    {
-      "name": "is_reference_candidate",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 207
-    },
-    {
-      "name": "recommendations",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 234
-    },
-    {
-      "name": "count_active_integrations",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 347
-    },
-    {
-      "name": "busy_integration_targets",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 357
-    },
-    {
-      "name": "unresolved_failed_v2_integrations",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 377
-    },
-    {
-      "name": "count_failed_v2_integrations",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 408
-    },
-    {
-      "name": "count_launches_on_utc_date",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 413
-    },
-    {
-      "name": "verified_managed_projects",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 433
-    },
-    {
-      "name": "public_integration_status",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 484
-    },
-    {
-      "name": "integration_marker",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 506
-    },
-    {
-      "name": "recoverable_failure_targets",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 513
-    },
-    {
-      "name": "launch_integration",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 549
-    },
-    {
-      "name": "confirmed_launch",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 577
-    },
-    {
-      "name": "render_markdown",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 611
+      "file": "scripts/portfolio_failure_diagnostics.py",
+      "line": 105
     },
     {
       "name": "main",
       "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 657
+      "file": "scripts/portfolio_failure_diagnostics.py",
+      "line": 129
     }
   ],
   "selected_tests": []

@@ -53,6 +53,7 @@ find_replacements.py
 health_score.py
 infer_selection_guidance.py
 portfolio_daily.py
+portfolio_failure_diagnostics.py
 recommend.py
 refresh_github_metadata.py
 render_discovery_issue.py
@@ -1298,6 +1299,72 @@ status = str(old.get("status") or "").upper().replace("-", "_")
 is_recovery = True
 ⋮----
 result = launch_integration(service, operator_token, row["repository"], item)
+```
+
+## File: portfolio_failure_diagnostics.py
+```python
+#!/usr/bin/env python3
+"""Operator-only, read-only diagnosis of failed public star-list integrations.
+
+Do not copy worker goals, error messages, project IDs, job keys, private repos,
+tokens or URLs from Production-OS into a public GitHub Actions artifact.
+"""
+⋮----
+PUBLIC_FAILED_TARGETS = frozenset({
+ENDPOINT = (
+TRACKING = re.compile(r"(?<![a-z0-9])starlist-integration-v([123])-[0-9a-f]{24}(?![0-9a-f])")
+CATEGORIES = (
+WORKFLOW_STATES = frozenset({
+VALIDATION_STATES = frozenset({
+⋮----
+def safe_state(raw: object, allowed: frozenset[str]) -> str
+⋮----
+value = raw.strip().lower() if isinstance(raw, str) else ""
+⋮----
+def failure_category(outcome: object) -> str
+⋮----
+# Scan free text internally only; NEVER persist or print it.
+⋮----
+message = outcome.get("summary")
+⋮----
+content = message[:8000].lower()
+⋮----
+def safe_public_failure(item: object) -> dict | None
+⋮----
+target = item.get("repository")
+⋮----
+goal = item.get("final_goal")
+marker = TRACKING.search(goal) if isinstance(goal, str) else None
+⋮----
+outcome = item.get("outcome")
+outcome = outcome if isinstance(outcome, dict) else {}
+runtime = item.get("runtime")
+runtime = runtime if isinstance(runtime, dict) else {}
+commits = outcome.get("commit_shas")
+commits_count = min(20, len(commits)) if isinstance(commits, list) else 0
+⋮----
+def public_diagnostics(payload: object) -> dict
+⋮----
+summary = payload.get("summary")
+items = payload.get("items")
+⋮----
+matching = summary.get("matching")
+⋮----
+rows = [record for item in items if (record := safe_public_failure(item)) is not None]
+# The public issue previously verified exactly these four unresolved v2 targets.
+found = {row["target"] for row in rows if row["tracking_version"] == "v2"}
+⋮----
+def main() -> int
+⋮----
+parser = argparse.ArgumentParser()
+⋮----
+args = parser.parse_args()
+token = os.environ.get("PRODUCTION_OS_OPERATOR_TOKEN", "")
+⋮----
+result = public_diagnostics(request_json(ENDPOINT, token))
+⋮----
+# The log and artifact contain only strictly allowlisted public target names
+# and enumerated failure categories. Never show backend response bodies.
 ```
 
 ## File: recommend.py

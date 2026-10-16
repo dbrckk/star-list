@@ -37,17 +37,20 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T18:44:01Z
+Generated: 2026-10-16T19:17:19Z
 
 ### Git
 - Branch: `main`
-- Head: `34218e4c2841`
-- Commit date: 2026-10-16T20:43:50+02:00
-- Commit: fix(portfolio): exclude catalog-declared alternative game engines from Roblox (#93)
-- Tracked files: 275
+- Head: `ef915f25dbd4`
+- Commit date: 2026-10-16T21:16:57+02:00
+- Commit: feat(portfolio): inspect four failed integrations safely via operator diagnostics (#95)
+- Tracked files: 278
 
 ### Recently changed files
+- `.github/workflows/portfolio-failure-diagnostics.yml`
 - `.github/workflows/portfolio-scan-smoke.yml`
+- `docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md`
+- `scripts/portfolio_failure_diagnostics.py`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
 - `catalog.json`

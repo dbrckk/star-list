@@ -838,6 +838,27 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(portfolio): inspect four failed integrations safely via operator diagnostics (#95)",
+      "terms": [
+        "95",
+        "diagnostics",
+        "failed",
+        "feat",
+        "four",
+        "inspect",
+        "integrations",
+        "operator",
+        "portfolio",
+        "safely",
+        "via"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_failure_diagnostics.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -972,6 +993,9 @@
     },
     "93": {
       "scripts/portfolio_daily.py": 4
+    },
+    "95": {
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
@@ -1156,6 +1180,9 @@
       "scripts/star_import_pipeline.py": 4,
       "scripts/test_star_import_pipeline.py": 4
     },
+    "diagnostics": {
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
     "discovery": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1199,11 +1226,13 @@
       "scripts/portfolio_daily.py": 4
     },
     "failed": {
-      "scripts/portfolio_daily.py": 12
+      "scripts/portfolio_daily.py": 12,
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "feat": {
       "scripts/admit_github_stars.py": 4,
       "scripts/portfolio_daily.py": 8,
+      "scripts/portfolio_failure_diagnostics.py": 4,
       "scripts/test_auto_stars_admission.py": 4
     },
     "files": {
@@ -1217,6 +1246,9 @@
     },
     "forwarding": {
       "scripts/portfolio_daily.py": 4
+    },
+    "four": {
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "french": {
       "scripts/portfolio_daily.py": 4
@@ -1319,11 +1351,15 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "inspect": {
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
     "integration": {
       "scripts/portfolio_daily.py": 28
     },
     "integrations": {
       "scripts/portfolio_daily.py": 12,
+      "scripts/portfolio_failure_diagnostics.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
@@ -1422,6 +1458,9 @@
     "one": {
       "scripts/portfolio_daily.py": 8
     },
+    "operator": {
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
     "out": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1437,6 +1476,7 @@
     },
     "portfolio": {
       "scripts/portfolio_daily.py": 40,
+      "scripts/portfolio_failure_diagnostics.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
@@ -1599,7 +1639,8 @@
       "scripts/portfolio_daily.py": 8
     },
     "safely": {
-      "scripts/portfolio_daily.py": 12
+      "scripts/portfolio_daily.py": 12,
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "same": {
       "scripts/portfolio_daily.py": 4,
@@ -1743,6 +1784,9 @@
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_backfill_licenses.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
+    },
+    "via": {
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "weight": {
       "scripts/recommend.py": 4,

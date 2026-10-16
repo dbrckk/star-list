@@ -117,6 +117,17 @@
       "urllib.parse",
       "urllib.request"
     ],
+    "scripts/portfolio_failure_diagnostics.py": [
+      "__future__",
+      "argparse",
+      "datetime",
+      "json",
+      "os",
+      "pathlib",
+      "portfolio_daily",
+      "re",
+      "sys"
+    ],
     "scripts/recommend.py": [
       "argparse",
       "datetime",

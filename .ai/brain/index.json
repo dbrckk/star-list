@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
-  "files_indexed": 52,
-  "symbol_count": 217,
-  "edge_count": 10,
+  "files_indexed": 53,
+  "symbol_count": 222,
+  "edge_count": 11,
   "languages": {
-    "python": 52
+    "python": 53
   },
   "index_mode": "incremental",
   "reparsed_files": 1,
@@ -68,6 +68,10 @@
     },
     {
       "file": "scripts/audit_catalog_quality.py",
+      "symbols": 5
+    },
+    {
+      "file": "scripts/portfolio_failure_diagnostics.py",
       "symbols": 5
     },
     {

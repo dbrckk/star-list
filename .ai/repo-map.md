@@ -43,6 +43,7 @@ The content is organized as follows:
     ai-repo-map.yml
     daily-portfolio-integration.yml
     license-backfill.yml
+    portfolio-failure-diagnostics.yml
     portfolio-scan-smoke.yml
     refresh-metadata.yml
     semantic-refresh.yml
@@ -84,6 +85,7 @@ scripts/
   health_score.py
   infer_selection_guidance.py
   portfolio_daily.py
+  portfolio_failure_diagnostics.py
   recommend.py
   refresh_github_metadata.py
   render_discovery_issue.py
@@ -303,6 +305,52 @@ jobs:
           git push
 ````
 
+## File: .github/workflows/portfolio-failure-diagnostics.yml
+````yaml
+name: Diagnose failed star-list integrations
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/portfolio_failure_diagnostics.py"
+      - ".github/workflows/portfolio-failure-diagnostics.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: star-list-failure-diagnostics
+  cancel-in-progress: false
+
+jobs:
+  inspect:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Read-only operator diagnosis with strict public-field allowlist
+        env:
+          PRODUCTION_OS_OPERATOR_TOKEN: ${{ secrets.PRODUCTION_OS_OPERATOR_TOKEN }}
+        run: |
+          python -m py_compile scripts/portfolio_failure_diagnostics.py
+          python scripts/portfolio_failure_diagnostics.py \
+            --output portfolio-failure-diagnostics.json
+      - name: Preserve sanitized public diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sanitized-public-portfolio-failures
+          path: portfolio-failure-diagnostics.json
+          if-no-files-found: warn
+          retention-days: 14
+````
+
 ## File: .github/workflows/portfolio-scan-smoke.yml
 ````yaml
 name: Portfolio discovery live smoke
@@ -311,6 +359,8 @@ on:
   pull_request:
     paths:
       - "scripts/portfolio_daily.py"
+      - "scripts/portfolio_failure_diagnostics.py"
+      - ".github/workflows/portfolio-failure-diagnostics.yml"
       - ".github/workflows/daily-portfolio-integration.yml"
       - ".github/workflows/portfolio-scan-smoke.yml"
       - "docs/DAILY_PORTFOLIO_INTEGRATION.md"
@@ -366,6 +416,11 @@ jobs:
                       assert "godot" not in candidate["repository"].lower(), candidate
           import sys
           sys.path.insert(0, "scripts")
+          from portfolio_failure_diagnostics import (
+              failure_category, safe_public_failure, public_diagnostics,
+          )
+          assert failure_category({"summary": "Provider quota exceeded"}) == "provider-quota-or-token-budget"
+          assert failure_category({"summary": "check secret text"}) == "unknown"
           from portfolio_daily import (
               is_reference_candidate, count_active_integrations,
               count_failed_v2_integrations, verified_managed_projects,
@@ -373,6 +428,41 @@ jobs:
               count_launches_on_utc_date, busy_integration_targets,
           )
           assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
+          test_failure = {
+              "repository": "dbrckk/Ai-trading", "status": "NEEDS_ATTENTION",
+              "final_goal": "Private instruction. Tracking: " +
+                  "starlist-integration-v2-" + "a" * 24,
+              "project_id": "sensitive-id",
+              "outcome": {"summary": "Provider quota exhausted. secret=private",
+                          "commit_shas": [], "pull_request": None, "ci": None,
+                          "workflow_status": "failed", "validation_status": "failed"},
+              "runtime": {"phase": "needs_attention", "task_status": "failed",
+                          "worker_id": "sensitive-worker"},
+          }
+          safe = safe_public_failure(test_failure)
+          assert safe["target"] == "dbrckk/ai-trading"
+          assert safe["tracking_version"] == "v2"
+          assert safe["failure_category"] == "provider-quota-or-token-budget"
+          assert not ({"project_id", "final_goal", "summary", "worker_id"} & set(safe))
+          report = public_diagnostics({
+              "schema_version": "production-os/production-inbox/v1",
+              "summary": {"matching": 2},
+              "items": [test_failure, {
+                  **test_failure, "repository": "private/secret",
+                  "outcome": {"summary": "secret=DO_NOT_LEAK"},
+              }],
+          })
+          assert report["observed_public_v2_targets"] == 1
+          assert report["coverage_complete"] is False
+          assert "DO_NOT_LEAK" not in json.dumps(report)
+          assert "sensitive-worker" not in json.dumps(report)
+          try:
+              public_diagnostics({"schema_version": "production-os/production-inbox/v1",
+                                  "summary": {"matching": 201}, "items": []})
+          except RuntimeError:
+              pass
+          else:
+              raise AssertionError("Incomplete diagnosis page was accepted")
           # All four actual Production-OS lifecycle states are recognized.
           active = {"repository": "dbrckk/Ai-trading",
                     "final_goal": "Tracking: starlist-integration-v2-" + "a" * 24,
@@ -2780,6 +2870,72 @@ status = str(old.get("status") or "").upper().replace("-", "_")
 is_recovery = True
 ⋮----
 result = launch_integration(service, operator_token, row["repository"], item)
+````
+
+## File: scripts/portfolio_failure_diagnostics.py
+````python
+#!/usr/bin/env python3
+"""Operator-only, read-only diagnosis of failed public star-list integrations.
+
+Do not copy worker goals, error messages, project IDs, job keys, private repos,
+tokens or URLs from Production-OS into a public GitHub Actions artifact.
+"""
+⋮----
+PUBLIC_FAILED_TARGETS = frozenset({
+ENDPOINT = (
+TRACKING = re.compile(r"(?<![a-z0-9])starlist-integration-v([123])-[0-9a-f]{24}(?![0-9a-f])")
+CATEGORIES = (
+WORKFLOW_STATES = frozenset({
+VALIDATION_STATES = frozenset({
+⋮----
+def safe_state(raw: object, allowed: frozenset[str]) -> str
+⋮----
+value = raw.strip().lower() if isinstance(raw, str) else ""
+⋮----
+def failure_category(outcome: object) -> str
+⋮----
+# Scan free text internally only; NEVER persist or print it.
+⋮----
+message = outcome.get("summary")
+⋮----
+content = message[:8000].lower()
+⋮----
+def safe_public_failure(item: object) -> dict | None
+⋮----
+target = item.get("repository")
+⋮----
+goal = item.get("final_goal")
+marker = TRACKING.search(goal) if isinstance(goal, str) else None
+⋮----
+outcome = item.get("outcome")
+outcome = outcome if isinstance(outcome, dict) else {}
+runtime = item.get("runtime")
+runtime = runtime if isinstance(runtime, dict) else {}
+commits = outcome.get("commit_shas")
+commits_count = min(20, len(commits)) if isinstance(commits, list) else 0
+⋮----
+def public_diagnostics(payload: object) -> dict
+⋮----
+summary = payload.get("summary")
+items = payload.get("items")
+⋮----
+matching = summary.get("matching")
+⋮----
+rows = [record for item in items if (record := safe_public_failure(item)) is not None]
+# The public issue previously verified exactly these four unresolved v2 targets.
+found = {row["target"] for row in rows if row["tracking_version"] == "v2"}
+⋮----
+def main() -> int
+⋮----
+parser = argparse.ArgumentParser()
+⋮----
+args = parser.parse_args()
+token = os.environ.get("PRODUCTION_OS_OPERATOR_TOKEN", "")
+⋮----
+result = public_diagnostics(request_json(ENDPOINT, token))
+⋮----
+# The log and artifact contain only strictly allowlisted public target names
+# and enumerated failure categories. Never show backend response bodies.
 ````
 
 ## File: scripts/recommend.py
