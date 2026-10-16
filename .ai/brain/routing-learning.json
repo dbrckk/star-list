@@ -554,6 +554,25 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): reject unsafe Production-OS inventory states before dispatch (#74)",
+      "terms": [
+        "74",
+        "before",
+        "dispatch",
+        "inventory",
+        "portfolio",
+        "production-os",
+        "reject",
+        "states",
+        "unsafe"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -651,6 +670,9 @@
     "72": {
       "scripts/portfolio_daily.py": 4
     },
+    "74": {
+      "scripts/portfolio_daily.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -694,7 +716,7 @@
       "scripts/validate_catalog.py": 4
     },
     "before": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "below": {
       "scripts/recommend.py": 4,
@@ -780,6 +802,9 @@
       "scripts/test_star_import_pipeline.py": 4
     },
     "discovery": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "dispatch": {
       "scripts/portfolio_daily.py": 4
     },
     "distinct": {
@@ -913,7 +938,7 @@
       "scripts/test_auto_stars_admission.py": 4
     },
     "inventory": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "is": {
       "scripts/portfolio_daily.py": 4,
@@ -987,10 +1012,10 @@
       "scripts/test_star_import_pipeline.py": 4
     },
     "portfolio": {
-      "scripts/portfolio_daily.py": 32
+      "scripts/portfolio_daily.py": 36
     },
     "production-os": {
-      "scripts/portfolio_daily.py": 12
+      "scripts/portfolio_daily.py": 16
     },
     "project": {
       "scripts/portfolio_daily.py": 4
@@ -1042,6 +1067,9 @@
       "scripts/portfolio_daily.py": 4
     },
     "reference-only": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "reject": {
       "scripts/portfolio_daily.py": 4
     },
     "relations": {
@@ -1154,6 +1182,9 @@
     "state": {
       "scripts/portfolio_daily.py": 4
     },
+    "states": {
+      "scripts/portfolio_daily.py": 4
+    },
     "status": {
       "scripts/validate_catalog.py": 4
     },
@@ -1187,6 +1218,9 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
+    },
+    "unsafe": {
+      "scripts/portfolio_daily.py": 4
     },
     "utc": {
       "scripts/portfolio_daily.py": 4

@@ -2,15 +2,18 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 31,
+    "example_count": 32,
     "rejected_count": 0,
     "terms": [
-      "complete",
-      "index",
-      "integration",
+      "74",
+      "before",
+      "dispatch",
+      "inventory",
       "portfolio",
       "production-os",
-      "require"
+      "reject",
+      "states",
+      "unsafe"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -18,7 +21,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(portfolio): require complete Production-OS integration index",
+  "task": "fix(portfolio): reject unsafe Production-OS inventory states before dispatch (#74)",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py"

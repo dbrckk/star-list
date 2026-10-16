@@ -354,6 +354,44 @@ jobs:
               count_failed_v2_integrations, verified_managed_projects,
           )
           assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
+          # All four actual Production-OS lifecycle states are recognized.
+          active = {"repository": "dbrckk/Ai-trading",
+                    "final_goal": "Tracking: starlist-integration-v2-" + "a" * 24,
+                    "status": "ACTIVE", "created_at": "2026-10-16T00:00:00+00:00"}
+          completed = {"repository": "dbrckk/Jumpy",
+                       "final_goal": "Tracking: starlist-integration-v3-" + "b" * 24,
+                       "status": "DONE", "created_at": "2026-10-15T23:00:00Z"}
+          valid = {"projects": [active, completed], "total_count": 2, "complete": True}
+          assert verified_managed_projects(valid) == valid["projects"]
+          assert count_active_integrations(valid["projects"]) == 1
+          for changes in (
+              {"status": "IN_PROGRESS"},
+              {"status": []},
+              {"status": ""},
+              {"created_at": ""},
+              {"created_at": "tomorrow"},
+              {"created_at": "2026-10-16T00:00:00"},
+              {"repository": ""},
+              {"repository": "not-a-repository"},
+              {"final_goal": "starlist-integration-v2-invalid"},
+          ):
+              corrupt = dict(active, **changes)
+              try:
+                  verified_managed_projects({
+                      "projects": [corrupt], "total_count": 1, "complete": True,
+                  })
+              except RuntimeError:
+                  pass
+              else:
+                  raise AssertionError("Corrupt tracked integration was accepted: " + str(changes))
+          try:
+              verified_managed_projects({
+                  "projects": [active, dict(active)], "total_count": 2, "complete": True,
+              })
+          except RuntimeError:
+              pass
+          else:
+              raise AssertionError("Duplicate tracking marker was accepted")
           for malformed in (
               None, {}, {"projects": "unavailable"}, {"projects": [None]},
               {"projects": []}, {"projects": [], "total_count": 1, "complete": True},
@@ -2151,19 +2189,29 @@ def count_failed_v2_integrations(projects: list[dict]) -> int
 ⋮----
 def verified_managed_projects(payload: object) -> list[dict]
 ⋮----
-"""Fail closed if Production-OS cannot provide a complete inventory shape.
+"""Fail closed unless the inventory can safely authorize more launches.
 
-    A 404, bad credentials, or API schema drift must not silently turn off
-    dispatch checks while still reporting a successful portfolio scan.
+    Production-OS returns *every* star-list tracking record, with a known
+    lifecycle state and timestamp. An unknown state must not be interpreted
+    as idle capacity; a duplicate marker or missing timestamp must not make
+    retries look safe.
     """
 ⋮----
 projects = payload.get("projects")
 ⋮----
-# A successful HTTP request can still return only a truncated page.
-# Idempotency requires explicit server proof that all tracked jobs were
-# enumerated, not merely a syntactically valid subset.
+known_states = {"ACTIVE", "REVIEW_REQUIRED", "NEEDS_ATTENTION", "DONE"}
+seen_markers: set[str] = set()
 ⋮----
-goal = str(project.get("final_goal") or "")
+goal = project.get("final_goal")
+marker = re.search(
+⋮----
+repo = project.get("repository")
+⋮----
+status = project.get("status")
+⋮----
+timestamp = project.get("created_at")
+⋮----
+created = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
 ⋮----
 def public_integration_status(target: str, projects: list[dict]) -> list[dict]
 ⋮----
@@ -2175,6 +2223,7 @@ def public_integration_status(target: str, projects: list[dict]) -> list[dict]
 results = []
 accepted = {"ACTIVE", "QUEUED", "RUNNING", "NEEDS_ATTENTION",
 ⋮----
+goal = str(project.get("final_goal") or "")
 markers = re.findall(r"starlist-integration-v([123])-[0-9a-f]{24}(?![0-9a-f])", goal)
 ⋮----
 status = str(project.get("status") or "").upper().replace("-", "_")
@@ -44342,6 +44391,178 @@ Repository-specific rules:
       },
       "bestFor": [
         "JEV's alike open-source alternative Laya-MLX used as a \"LLM-as-a-judge\""
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "baidu/Unlimited-OCR",
+      "githubRepositoryId": 1273138090,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 27614,
+        "forks": 2891,
+        "openIssues": 86,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-12T10:37:00Z"
+      },
+      "bestFor": [
+        "Unlimited OCR Works: Welcome the Era of One-shot Long-horizon Parsing."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Liquid4All/cookbook",
+      "githubRepositoryId": 1069004513,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [
+        "android",
+        "edge",
+        "ios",
+        "language-model",
+        "language-models",
+        "laptop"
+      ],
+      "languages": [
+        "jupyter notebook"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2566,
+        "forks": 399,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-16T12:16:39Z"
+      },
+      "bestFor": [
+        "Examples, end-2-end tutorials and apps built using Liquid AI Foundational Models (LFM) and the LEAP SDK"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "oxylabs/web-api-mcp",
+      "githubRepositoryId": 1344122020,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Backend / API",
+      "domain": "backend",
+      "capabilities": [
+        "mcp",
+        "mcp-server",
+        "mcp-servers",
+        "mcp-tools",
+        "web-api",
+        "web-api-mcp",
+        "web-apis"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2,
+        "forks": 2,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T11:29:04Z"
+      },
+      "bestFor": [
+        "Self-hostable MCP server for the Oxylabs Web API"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ScrapeGraphAI/Scrapegraph-ai",
+      "githubRepositoryId": 749126547,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Mémoire / IA",
+      "domain": "ai_memory",
+      "capabilities": [
+        "ai-crawler",
+        "ai-scraping",
+        "ai-search",
+        "crawler",
+        "data-extraction",
+        "firecrawl-alternative",
+        "large-language-model",
+        "llm",
+        "markdown",
+        "rag",
+        "scraping",
+        "scraping-python"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 31805,
+        "forks": 3275,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-06T08:27:54Z"
+      },
+      "bestFor": [
+        "Python scraper based on AI"
       ],
       "avoidWhen": [
         "production use before licensing and security review"

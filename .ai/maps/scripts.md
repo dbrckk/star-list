@@ -1040,19 +1040,29 @@ def count_failed_v2_integrations(projects: list[dict]) -> int
 ⋮----
 def verified_managed_projects(payload: object) -> list[dict]
 ⋮----
-"""Fail closed if Production-OS cannot provide a complete inventory shape.
+"""Fail closed unless the inventory can safely authorize more launches.
 
-    A 404, bad credentials, or API schema drift must not silently turn off
-    dispatch checks while still reporting a successful portfolio scan.
+    Production-OS returns *every* star-list tracking record, with a known
+    lifecycle state and timestamp. An unknown state must not be interpreted
+    as idle capacity; a duplicate marker or missing timestamp must not make
+    retries look safe.
     """
 ⋮----
 projects = payload.get("projects")
 ⋮----
-# A successful HTTP request can still return only a truncated page.
-# Idempotency requires explicit server proof that all tracked jobs were
-# enumerated, not merely a syntactically valid subset.
+known_states = {"ACTIVE", "REVIEW_REQUIRED", "NEEDS_ATTENTION", "DONE"}
+seen_markers: set[str] = set()
 ⋮----
-goal = str(project.get("final_goal") or "")
+goal = project.get("final_goal")
+marker = re.search(
+⋮----
+repo = project.get("repository")
+⋮----
+status = project.get("status")
+⋮----
+timestamp = project.get("created_at")
+⋮----
+created = datetime.fromisoformat(timestamp.replace("Z", "+00:00"))
 ⋮----
 def public_integration_status(target: str, projects: list[dict]) -> list[dict]
 ⋮----
@@ -1064,6 +1074,7 @@ def public_integration_status(target: str, projects: list[dict]) -> list[dict]
 results = []
 accepted = {"ACTIVE", "QUEUED", "RUNNING", "NEEDS_ATTENTION",
 ⋮----
+goal = str(project.get("final_goal") or "")
 markers = re.findall(r"starlist-integration-v([123])-[0-9a-f]{24}(?![0-9a-f])", goal)
 ⋮----
 status = str(project.get("status") or "").upper().replace("-", "_")

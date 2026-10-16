@@ -27,19 +27,19 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T11:13:01Z
+Generated: 2026-10-16T14:26:59Z
 
 ### Git
 - Branch: `main`
-- Head: `537b7660e508`
-- Commit date: 2026-10-16T13:12:51+02:00
-- Commit: fix(portfolio): require complete Production-OS integration index
+- Head: `dba192d57141`
+- Commit date: 2026-10-16T16:26:48+02:00
+- Commit: fix(portfolio): reject unsafe Production-OS inventory states before dispatch (#74)
 - Tracked files: 274
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
-- `scripts/portfolio_daily.py`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
+- `scripts/portfolio_daily.py`
 - `catalog.json`
 
 ### Project signals

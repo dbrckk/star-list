@@ -1,12 +1,20 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "ffb50a49688ebdd919301bbf4d3ca48b6f892d9a",
-  "head": "537b7660e5084dfd2ac358311c90ac93d9bcfdf1",
+  "base": "537b7660e5084dfd2ac358311c90ac93d9bcfdf1",
+  "head": "dba192d571414d9f34e03b078ac241156251aa75",
   "index_mode": "incremental",
   "changed_files": [
     {
       "path": ".github/workflows/portfolio-scan-smoke.yml",
+      "status": "M"
+    },
+    {
+      "path": "catalog.json",
+      "status": "M"
+    },
+    {
+      "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
       "status": "M"
     },
     {
@@ -85,31 +93,31 @@
       "name": "public_integration_status",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 302
+      "line": 326
     },
     {
       "name": "integration_marker",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 324
+      "line": 348
     },
     {
       "name": "launch_integration",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 331
+      "line": 355
     },
     {
       "name": "render_markdown",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 359
+      "line": 383
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 395
+      "line": 419
     }
   ],
   "selected_tests": []
