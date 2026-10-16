@@ -538,6 +538,22 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): require complete Production-OS integration index",
+      "terms": [
+        "complete",
+        "index",
+        "integration",
+        "portfolio",
+        "production-os",
+        "require"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -715,6 +731,9 @@
     "closed": {
       "scripts/portfolio_daily.py": 4
     },
+    "complete": {
+      "scripts/portfolio_daily.py": 4
+    },
     "constraints": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
@@ -872,6 +891,9 @@
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
     },
+    "index": {
+      "scripts/portfolio_daily.py": 4
+    },
     "infer": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
@@ -881,7 +903,7 @@
       "scripts/test_recommend.py": 4
     },
     "integration": {
-      "scripts/portfolio_daily.py": 12
+      "scripts/portfolio_daily.py": 16
     },
     "integrations": {
       "scripts/portfolio_daily.py": 4
@@ -965,10 +987,10 @@
       "scripts/test_star_import_pipeline.py": 4
     },
     "portfolio": {
-      "scripts/portfolio_daily.py": 28
+      "scripts/portfolio_daily.py": 32
     },
     "production-os": {
-      "scripts/portfolio_daily.py": 8
+      "scripts/portfolio_daily.py": 12
     },
     "project": {
       "scripts/portfolio_daily.py": 4
@@ -1061,6 +1083,9 @@
       "scripts/test_json_contracts.py": 4,
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/validate_json_contract.py": 4
+    },
+    "require": {
+      "scripts/portfolio_daily.py": 4
     },
     "respect": {
       "scripts/recommend.py": 4,

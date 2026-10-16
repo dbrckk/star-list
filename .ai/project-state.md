@@ -27,13 +27,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T10:35:06Z
+Generated: 2026-10-16T11:13:01Z
 
 ### Git
 - Branch: `main`
-- Head: `ffb50a49688e`
-- Commit date: 2026-10-16T12:34:57+02:00
-- Commit: fix(portfolio): fail closed when Production-OS inventory is unavailable (#72)
+- Head: `537b7660e508`
+- Commit date: 2026-10-16T13:12:51+02:00
+- Commit: fix(portfolio): require complete Production-OS integration index
 - Tracked files: 274
 
 ### Recently changed files
@@ -41,7 +41,6 @@ Generated: 2026-10-16T10:35:06Z
 - `scripts/portfolio_daily.py`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `catalog.json`
-- `.github/workflows/daily-portfolio-integration.yml`
 
 ### Project signals
 - No common build descriptor detected

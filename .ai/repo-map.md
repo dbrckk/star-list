@@ -353,9 +353,12 @@ jobs:
               is_reference_candidate, count_active_integrations,
               count_failed_v2_integrations, verified_managed_projects,
           )
-          assert verified_managed_projects({"projects": []}) == []
+          assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
           for malformed in (
               None, {}, {"projects": "unavailable"}, {"projects": [None]},
+              {"projects": []}, {"projects": [], "total_count": 1, "complete": True},
+              {"projects": [], "total_count": 0, "complete": False},
+              {"projects": [], "total_count": True, "complete": True},
               {"projects": [{"final_goal": "starlist-integration-v2-broken", "status": "ACTIVE"}]},
           ):
               try:
@@ -2156,6 +2159,10 @@ def verified_managed_projects(payload: object) -> list[dict]
 ⋮----
 projects = payload.get("projects")
 ⋮----
+# A successful HTTP request can still return only a truncated page.
+# Idempotency requires explicit server proof that all tracked jobs were
+# enumerated, not merely a syntactically valid subset.
+⋮----
 goal = str(project.get("final_goal") or "")
 ⋮----
 def public_integration_status(target: str, projects: list[dict]) -> list[dict]
@@ -2225,7 +2232,7 @@ operator_token = ""
 # Always prioritize highest-confidence matches, irrespective of repository order.
 queue = sorted(((item["score"], row, item) for row in report["projects"]
 ⋮----
-existing = request_json(service.rstrip("/") + "/v1/managed-projects", operator_token)
+existing = request_json(service.rstrip("/") + "/v1/managed-projects/integration-inventory", operator_token)
 already = verified_managed_projects(existing)
 ⋮----
 existing = None
