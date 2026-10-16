@@ -141,6 +141,14 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   suggestions must match a technical capability or use case. Cross-language
   adapter suggestions remain visible in the report, but are **never** sent to
   autonomous integration without a separate compatibility assessment.
+- **Hermes Agent and OpenCode are development-side CLIs**, not runtime
+  dependencies to embed in a target. Their curated capabilities (MCP,
+  orchestration/memory for Hermes; terminal coding/debugging/testing for
+  OpenCode) may improve agent-tool recommendations, but the scanner assigns
+  these standalone agents `adapter-review` even when a target uses Python
+  or TypeScript. They require separate installation, explicit provider
+  configuration, bounded budgets, verified permissions and runtime evidence;
+  their presence in the catalog does not assert that free AI capacity exists.
 - Roblox Studio MCP bridges are **development-side tools**, even when their
   catalog language matches a Roblox game. They require Studio, an MCP client
   and a separate host, so the scanner presents them as `adapter-review`

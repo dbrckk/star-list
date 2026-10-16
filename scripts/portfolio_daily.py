@@ -77,6 +77,14 @@ EXISTING_ENGINE_SOURCES = {
     "godot": frozenset({"godotengine/godot"}),
 }
 
+# These are independently running coding agents/CLIs, not importable runtime
+# libraries. Recommend them as development-side adapters, never dispatch a
+# native app dependency just because the implementation language matches.
+EXTERNAL_CODING_AGENT_CLIS = frozenset({
+    "nousresearch/hermes-agent",
+    "anomalyco/opencode",
+})
+
 MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
              "build.gradle.kts", "pubspec.yaml")
 
@@ -323,7 +331,8 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
         # with only prose overlap remain discoverable but require review.
         mode = (
             "reference-review" if is_reference_candidate(tool) else
-            "adapter-review" if external_studio_bridge or not languages_match else
+            "adapter-review" if external_studio_bridge or slug.lower() in EXTERNAL_CODING_AGENT_CLIS
+            or not languages_match else
             "native" if capability_overlap else "capability-review"
         )
         matches.append({"repository": slug, "score": round(score, 2),
