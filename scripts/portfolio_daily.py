@@ -283,6 +283,13 @@ def verified_managed_projects(payload: object) -> list[dict]:
     projects = payload.get("projects")
     if not isinstance(projects, list) or any(not isinstance(p, dict) for p in projects):
         raise RuntimeError("Production-OS managed-project inventory has invalid projects")
+    # A successful HTTP request can still return only a truncated page.
+    # Idempotency requires explicit server proof that all tracked jobs were
+    # enumerated, not merely a syntactically valid subset.
+    if (payload.get("complete") is not True
+            or type(payload.get("total_count")) is not int
+            or payload["total_count"] != len(projects)):
+        raise RuntimeError("Production-OS integration inventory is incomplete")
     for project in projects:
         goal = str(project.get("final_goal") or "")
         if "starlist-integration-v" in goal and (
@@ -453,7 +460,7 @@ def main() -> int:
                         for item in row["suggestions"] if item["mode"] == "native"),
                         key=lambda p: (-p[0], p[1]["repository"]))
         try:
-            existing = request_json(service.rstrip("/") + "/v1/managed-projects", operator_token)
+            existing = request_json(service.rstrip("/") + "/v1/managed-projects/integration-inventory", operator_token)
             already = verified_managed_projects(existing)
         except (RuntimeError, ValueError, TypeError) as exc:
             existing = None
