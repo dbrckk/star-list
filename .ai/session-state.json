@@ -4,7 +4,7 @@
   "repository": "dbrckk/star-list",
   "reference_branch": "main",
   "status": "active",
-  "verified_catalog_repositories": 937,
+  "verified_catalog_repositories": 942,
   "last_verified_public_portfolio_scan": {
     "discovered": 38,
     "inspected": 38,
@@ -21,7 +21,8 @@
     "delivered_commits": 0,
     "reviewable_prs": 0,
     "ci_evidence": 0,
-    "diagnostic_run": 38954955707
+    "diagnostic_run": 38965266598,
+    "diagnostic_status": "complete"
   },
   "merged_pull_requests": [
     78,
@@ -43,7 +44,13 @@
     94,
     95,
     96,
-    97
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -54,12 +61,19 @@
     "Stop additional Production-OS dispatches after uncertain launch (PR #85)",
     "Confirm Production-OS launch receipts before reserving worker capacity (PR #90)",
     "Keep Roblox Studio MCP sidecars review-only, correct source language and exclude alternative engines (PRs #91-#93)",
-    "Read-only operator-only Production-OS diagnostics with complete v2 task coverage (#95-#97)"
+    "Read-only operator-only Production-OS diagnostics with complete v2 task coverage (#95-#97)",
+    "Always persist strictly redacted operator diagnostics, even during Render outages (#100)",
+    "Daily failure diagnosis at 04:17 UTC without worker launches (#101)",
+    "Curate Hermes/OpenCode capability descriptions and keep them review-only adapters (#102)",
+    "Switch failed integration diagnosis to targeted, operator-only Production-OS inventory (#103)",
+    "Production-OS PR #276 deployed live with explicit opt-in IDs; diagnostic run #38965266598 complete for all four historical v2 failures",
+    "AI Dev Server PR #331 prevents Hermes/OpenCode from inheriting Production-OS/GitHub/SSH control credentials"
   ],
   "next_priority": [
-    "Restore and positively verify usable free AI worker/model capacity; all four v2 tasks stopped with capacity_exhausted (1/3 attempts each)",
-    "Only then allow idempotent, candidate-qualified v3 recovery within existing UTC/fleet caps",
-    "Confirm target-side source changes and CI; do not claim any integration completed"
+    "Verify actual free model inference capacity separately from healthy worker configuration; four historical v2 attempts still report capacity_exhausted and no target changes",
+    "Track ai-dev-server PR #332 headless OpenCode completion verification to CI then merge when all checks pass",
+    "Only requalify native candidate and relaunch bounded v3 recovery once available worker + model capacity are positively established",
+    "Continue verification of daily public/private scans and Stars sync without claiming unproven integrations"
   ],
   "constraints": [
     "No automatic merge/deployment of third-party integrations",
