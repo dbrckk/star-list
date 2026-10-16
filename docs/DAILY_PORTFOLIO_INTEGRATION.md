@@ -96,10 +96,15 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   suggestions must match a technical capability or use case. Cross-language
   adapter suggestions remain visible in the report, but are **never** sent to
   autonomous integration without a separate compatibility assessment.
-- Reference applications and architecture demos are marked `reference-review`
-  even when their language matches the target. They remain discoverable but
-  **never** enter the automated integration queue. Usable native libraries
-  rank ahead of adapters and reference projects.
+- Reference applications, demo repositories and code-example collections
+  are marked `reference-review`, even when their language matches the
+  target. They remain discoverable but **never** enter automated integration.
+  This also applies to catalogs whose best-for text describes studying
+  examples rather than installing a runtime component.
+- Same-language matches must also share a **concrete named capability** with
+  the target to qualify as `native`. Generic overlap such as `workflows`
+  or `data` produces `capability-review` instead: visible in the review,
+  but not automatically dispatched. Usable native libraries rank first.
 - Even native-language suggestions are only hypotheses: a managed worker must
   reject non-integrable toolchains and dependencies that cannot be used and
   validated in the existing target.
