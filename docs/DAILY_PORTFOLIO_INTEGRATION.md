@@ -116,7 +116,9 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   budget fields for backwards compatibility. These are token caps,
   not a guarantee of successful code delivery or of provider availability.
   No paid provider is added or selected by this scanner.
-- Exclude generic words and incompatible game engines from matching. Single-term
+- Exclude generic words and incompatible game engines from matching. An
+  existing Godot project is not offered `godotengine/godot` itself as a new
+  dependency; Godot-compatible addons remain candidates. Single-term
   suggestions must match a technical capability or use case. Cross-language
   adapter suggestions remain visible in the report, but are **never** sent to
   autonomous integration without a separate compatibility assessment.
