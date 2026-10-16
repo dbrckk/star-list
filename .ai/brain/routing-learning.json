@@ -684,6 +684,25 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): refuse autonomous dispatch after incomplete repository scan (#83)",
+      "terms": [
+        "83",
+        "after",
+        "autonomous",
+        "dispatch",
+        "incomplete",
+        "portfolio",
+        "refuse",
+        "repository",
+        "scan"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -795,6 +814,9 @@
     "81": {
       "scripts/portfolio_daily.py": 4
     },
+    "83": {
+      "scripts/portfolio_daily.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -805,7 +827,7 @@
       "scripts/test_auto_stars_admission.py": 4
     },
     "after": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "all": {
       "scripts/admit_github_stars.py": 4,
@@ -835,6 +857,9 @@
     "automatically": {
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
+    },
+    "autonomous": {
+      "scripts/portfolio_daily.py": 4
     },
     "backfill": {
       "scripts/infer_selection_guidance.py": 4,
@@ -958,7 +983,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "dispatch": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "distinct": {
       "scripts/portfolio_daily.py": 4
@@ -1071,6 +1096,9 @@
     "improve": {
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
+    },
+    "incomplete": {
+      "scripts/portfolio_daily.py": 4
     },
     "inconclusive": {
       "scripts/refresh_github_metadata.py": 4,
@@ -1254,6 +1282,9 @@
     "reference-only": {
       "scripts/portfolio_daily.py": 4
     },
+    "refuse": {
+      "scripts/portfolio_daily.py": 4
+    },
     "reject": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1288,7 +1319,7 @@
     "repository": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/backfill_licenses.py": 4,
-      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_daily.py": 8,
       "scripts/refresh_github_metadata.py": 8,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_backfill_licenses.py": 4,
@@ -1337,6 +1368,9 @@
       "scripts/portfolio_daily.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
+    },
+    "scan": {
+      "scripts/portfolio_daily.py": 4
     },
     "scoped": {
       "scripts/portfolio_daily.py": 4

@@ -2,19 +2,18 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 38,
+    "example_count": 39,
     "rejected_count": 0,
     "terms": [
-      "81",
-      "api",
-      "bearer",
-      "before",
-      "block",
-      "cross-origin",
-      "forwarding",
-      "redirects",
-      "security",
-      "tokens"
+      "83",
+      "after",
+      "autonomous",
+      "dispatch",
+      "incomplete",
+      "portfolio",
+      "refuse",
+      "repository",
+      "scan"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -22,7 +21,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(security): block cross-origin API redirects before forwarding bearer tokens (#81)",
+  "task": "fix(portfolio): refuse autonomous dispatch after incomplete repository scan (#83)",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py"

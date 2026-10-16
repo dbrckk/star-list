@@ -1186,6 +1186,10 @@ row = {"repository": target, "status": "scanned", "suggestions": [], "dispatches
 ⋮----
 profile = project_profile(repo, portfolio_token or gh_token)
 ⋮----
+# Discovery must be complete before starting any potentially mutating
+# managed project. A per-repository read error is not a partial success.
+scan_complete = not report["errors"]
+⋮----
 dispatched = 0
 active_integrations = None
 failed_v2_integrations = None

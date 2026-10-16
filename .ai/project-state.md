@@ -32,14 +32,14 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T17:17:56Z
+Generated: 2026-10-16T17:29:41Z
 
 ### Git
 - Branch: `main`
-- Head: `daacad6ff38d`
-- Commit date: 2026-10-16T19:17:45+02:00
-- Commit: fix(security): block cross-origin API redirects before forwarding bearer tokens (#81)
-- Tracked files: 274
+- Head: `166a31060113`
+- Commit date: 2026-10-16T19:29:31+02:00
+- Commit: fix(portfolio): refuse autonomous dispatch after incomplete repository scan (#83)
+- Tracked files: 275
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
