@@ -1,0 +1,42 @@
+name: Diagnose failed star-list integrations
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/portfolio_failure_diagnostics.py"
+      - ".github/workflows/portfolio-failure-diagnostics.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: star-list-failure-diagnostics
+  cancel-in-progress: false
+
+jobs:
+  inspect:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Read-only operator diagnosis with strict public-field allowlist
+        env:
+          PRODUCTION_OS_OPERATOR_TOKEN: ${{ secrets.PRODUCTION_OS_OPERATOR_TOKEN }}
+        run: |
+          python -m py_compile scripts/portfolio_failure_diagnostics.py
+          python scripts/portfolio_failure_diagnostics.py \
+            --output portfolio-failure-diagnostics.json
+      - name: Preserve sanitized public diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sanitized-public-portfolio-failures
+          path: portfolio-failure-diagnostics.json
+          if-no-files-found: warn
+          retention-days: 14
