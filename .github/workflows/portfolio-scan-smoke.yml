@@ -136,7 +136,7 @@ jobs:
               assert evidence["dispatch_status"] == "enabled"
               assert launches == [("dbrckk/alpha", "upstream/one"),
                                   ("dbrckk/beta", "upstream/three")], launches
-# The server may accept a launch before its response is lost.
+              # The server may accept a launch before its response is lost.
               # Neither transport failure nor malformed acknowledgement can
               # authorize a second POST for a different repository.
               def ambiguous_launch(_url, _token, target, candidate, **_kwargs):
