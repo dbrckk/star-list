@@ -32,13 +32,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T17:29:41Z
+Generated: 2026-10-16T17:33:16Z
 
 ### Git
 - Branch: `main`
-- Head: `166a31060113`
-- Commit date: 2026-10-16T19:29:31+02:00
-- Commit: fix(portfolio): refuse autonomous dispatch after incomplete repository scan (#83)
+- Head: `1b8864178a68`
+- Commit date: 2026-10-16T19:33:08+02:00
+- Commit: fix(portfolio): distinguish throttled, blocked and idle integration scans (#84)
 - Tracked files: 275
 
 ### Recently changed files
@@ -46,10 +46,6 @@ Generated: 2026-10-16T17:29:41Z
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
 - `catalog.json`
-- `.github/workflows/sync-github-stars.yml`
-- `docs/GITHUB_STARS_SYNC.md`
-- `scripts/sync_github_stars.py`
-- `scripts/test_sync_github_stars.py`
 
 ### Project signals
 - No common build descriptor detected

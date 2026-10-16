@@ -414,7 +414,7 @@
       "source": {
         "file": "scripts/portfolio_daily.py",
         "start": 572,
-        "end": 791
+        "end": 806
       },
       "symbol_dependencies": [
         {
@@ -459,6 +459,18 @@
             {
               "file": "scripts/portfolio_daily.py",
               "line": 366,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "eligible",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 188,
               "kind": "function",
               "language": "python"
             }
@@ -598,7 +610,7 @@
           "relation": "same_file"
         }
       ],
-      "dependency_count": 15
+      "dependency_count": 16
     }
   }
 }

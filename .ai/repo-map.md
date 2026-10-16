@@ -382,6 +382,7 @@ jobs:
           # spread across two repositories. No network, token or worker call.
           import os
           import tempfile
+          from datetime import datetime, timezone
           from unittest.mock import patch
           import portfolio_daily as scanner
           from urllib.request import Request
@@ -439,6 +440,7 @@ jobs:
                   assert scanner.main() == 0
               evidence = json.loads((p / "scan.json").read_text())
               assert evidence["summary"]["dispatched"] == 2
+              assert evidence["dispatch_status"] == "enabled"
               assert launches == [("dbrckk/alpha", "upstream/one"),
                                   ("dbrckk/beta", "upstream/three")], launches
               # A failed repository scan must fail closed before even reading
@@ -465,6 +467,33 @@ jobs:
               assert failed_evidence["summary"]["failures"] == 1
               assert failed_evidence["dispatch_status"] == "blocked (incomplete repository scan)"
               assert failed_evidence["projects"][1]["status"] == "scan-failed"
+              assert launches == [], launches
+              # Even a healthy scan must explain why an exhausted UTC quota
+              # prevents dispatch. No Production-OS launch may occur.
+              current_time = datetime.now(timezone.utc).isoformat()
+              inventory = {"complete": True, "total_count": 2, "projects": [
+                  {"repository": "dbrckk/other", "status": "NEEDS_ATTENTION",
+                   "created_at": current_time,
+                   "final_goal": integration_marker(
+                       "dbrckk/other", {"repository": "upstream/failure"})},
+                  {"repository": "dbrckk/another", "status": "DONE",
+                   "created_at": current_time,
+                   "final_goal": integration_marker(
+                       "dbrckk/another", {"repository": "upstream/earlier"})},
+              ]}
+              with patch.dict(os.environ, {"PRODUCTION_OS_OPERATOR_TOKEN": "offline-test"}), \
+                   patch.object(sys, "argv", argv), \
+                   patch.object(scanner, "github_repos", return_value=targets), \
+                   patch.object(scanner, "project_profile", return_value={}), \
+                   patch.object(scanner, "recommendations",
+                                side_effect=lambda repo, *_: offers[repo["full_name"]]), \
+                   patch.object(scanner, "request_json", return_value=inventory), \
+                   patch.object(scanner, "launch_integration", side_effect=fake_launch):
+                  assert scanner.main() == 0
+              throttled = json.loads((p / "scan.json").read_text())
+              assert throttled["summary"]["available_dispatch_slots"] == 0
+              assert throttled["summary"]["dispatched"] == 0
+              assert throttled["dispatch_status"] == "throttled (UTC daily launch quota exhausted)"
               assert launches == [], launches
           # The dispatch quota is tied to UTC, not to the worker's local date.
           utc_boundary = [

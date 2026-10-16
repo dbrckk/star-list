@@ -703,6 +703,24 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): distinguish throttled, blocked and idle integration scans (#84)",
+      "terms": [
+        "84",
+        "blocked",
+        "distinguish",
+        "idle",
+        "integration",
+        "portfolio",
+        "scans",
+        "throttled"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -817,6 +835,9 @@
     "83": {
       "scripts/portfolio_daily.py": 4
     },
+    "84": {
+      "scripts/portfolio_daily.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -882,6 +903,9 @@
       "scripts/portfolio_daily.py": 8,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
+    },
+    "blocked": {
+      "scripts/portfolio_daily.py": 4
     },
     "bounded": {
       "scripts/portfolio_daily.py": 4
@@ -988,6 +1012,9 @@
     "distinct": {
       "scripts/portfolio_daily.py": 4
     },
+    "distinguish": {
+      "scripts/portfolio_daily.py": 4
+    },
     "dynamically": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
@@ -1089,6 +1116,9 @@
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
     },
+    "idle": {
+      "scripts/portfolio_daily.py": 4
+    },
     "import": {
       "scripts/star_import_pipeline.py": 8,
       "scripts/test_star_import_pipeline.py": 8
@@ -1116,7 +1146,7 @@
       "scripts/test_recommend.py": 4
     },
     "integration": {
-      "scripts/portfolio_daily.py": 20
+      "scripts/portfolio_daily.py": 24
     },
     "integrations": {
       "scripts/portfolio_daily.py": 8,
@@ -1372,6 +1402,9 @@
     "scan": {
       "scripts/portfolio_daily.py": 4
     },
+    "scans": {
+      "scripts/portfolio_daily.py": 4
+    },
     "scoped": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1433,6 +1466,9 @@
     "synchronize": {
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
+    },
+    "throttled": {
+      "scripts/portfolio_daily.py": 4
     },
     "throttling": {
       "scripts/portfolio_daily.py": 4
