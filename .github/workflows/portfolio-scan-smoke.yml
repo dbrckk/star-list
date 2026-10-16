@@ -64,6 +64,7 @@ jobs:
           from portfolio_failure_diagnostics import (
               failure_category, safe_public_failure, public_diagnostics,
               task_failure_evidence, add_deep_task_diagnostics,
+              inventory_diagnostic_inbox,
           )
           assert failure_category({"summary": "Provider quota exceeded"}) == "provider-quota-or-token-budget"
           assert failure_category({"summary": "check secret text"}) == "unknown"
@@ -102,6 +103,39 @@ jobs:
           assert report["coverage_complete"] is False
           assert "DO_NOT_LEAK" not in json.dumps(report)
           assert "sensitive-worker" not in json.dumps(report)
+          # The fast Production-OS tracking index stays private; only four
+          # allowlisted public target rows may reach the sanitized output.
+          tracking_index = {
+              "complete": True, "total_count": 2, "projects": [
+                  {"repository": "dbrckk/Ai-trading",
+                   "status": "NEEDS_ATTENTION",
+                   "final_goal": test_failure["final_goal"],
+                   "project_id": "a" * 32},
+                  {"repository": "private/secret",
+                   "status": "NEEDS_ATTENTION",
+                   "final_goal": test_failure["final_goal"],
+                   "project_id": "b" * 32},
+              ],
+          }
+          transformed = inventory_diagnostic_inbox(tracking_index)
+          assert transformed["summary"]["matching"] == 2
+          safe_fast = public_diagnostics(transformed)
+          assert safe_fast["observed_public_v2_targets"] == 1
+          assert "private/secret" not in json.dumps(safe_fast)
+          for malformed in (
+              {},
+              {**tracking_index, "complete": False},
+              {**tracking_index, "total_count": 1},
+              {**tracking_index, "projects": [
+                  {k: v for k, v in tracking_index["projects"][0].items()
+                   if k != "project_id"}]},
+          ):
+              try:
+                  inventory_diagnostic_inbox(malformed)
+              except RuntimeError:
+                  pass
+              else:
+                  raise AssertionError("Incomplete privileged index was accepted")
           evidence = task_failure_evidence({
               "current_workflow": {"tasks": [{
                   "status": "failed", "attempts": 3, "max_attempts": 3,

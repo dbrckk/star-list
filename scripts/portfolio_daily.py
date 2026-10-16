@@ -106,10 +106,13 @@ class SameOriginRedirect(HTTPRedirectHandler):
 SAFE_HTTP = build_opener(SameOriginRedirect())
 
 
-def request_json(url: str, token: str = "", *, method: str = "GET", data: dict | None = None):
+def request_json(url: str, token: str = "", *, method: str = "GET", data: dict | None = None,
+                 max_attempts: int = 3):
     parsed = urlparse(url)
     if parsed.scheme != "https" or not parsed.hostname:
         raise ValueError("HTTPS endpoint required")
+    if type(max_attempts) is not int or max_attempts < 1 or max_attempts > 3:
+        raise ValueError("HTTP retry count must be between 1 and 3")
     headers = {
         "Accept": "application/vnd.github+json" if parsed.hostname == "api.github.com" else "application/json",
         "User-Agent": "star-list-portfolio-daily/1.0",
@@ -120,7 +123,7 @@ def request_json(url: str, token: str = "", *, method: str = "GET", data: dict |
     body = json.dumps(data).encode() if data is not None else None
     if body is not None:
         headers["Content-Type"] = "application/json"
-    for attempt in range(3):
+    for attempt in range(max_attempts):
         try:
             # Render free instances may need time to wake up. Restrict the
             # extended timeout to the approved control-plane host; keep
@@ -133,12 +136,12 @@ def request_json(url: str, token: str = "", *, method: str = "GET", data: dict |
         except HTTPError as exc:
             if exc.code == 404:
                 return None
-            if exc.code in (429, 500, 502, 503, 504) and attempt < 2:
+            if exc.code in (429, 500, 502, 503, 504) and attempt + 1 < max_attempts:
                 time.sleep(2 ** attempt)
                 continue
             raise RuntimeError(f"HTTP {exc.code} for {parsed.path}") from exc
         except (URLError, TimeoutError) as exc:
-            if attempt < 2:
+            if attempt + 1 < max_attempts:
                 time.sleep(2 ** attempt)
                 continue
             raise RuntimeError(f"Network error for {parsed.path}: {type(exc).__name__}") from exc
