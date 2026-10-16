@@ -19,3 +19,10 @@ runtime before marking any job done.
 The workflow runs on a trusted main-branch change to itself or the diagnosis
 script and also supports authenticated manual dispatch. It never launches,
 retries, modifies or approves a managed project. No paid service is required.
+
+For each failed v2 task, the operator workflow now also reads the project-specific
+workflow result (at most four additional GETs). It inspects failed/blocked task
+results in memory for allowlisted categories, retry-exhaustion status and task
+counts. No raw task result, project ID, job key or workflow payload is emitted.
+`details_complete` must be true for all four verified failed v2 targets;
+otherwise the workflow exits nonzero while preserving partial safe evidence.
