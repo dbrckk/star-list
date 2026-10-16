@@ -1191,6 +1191,9 @@ profile = project_profile(repo, portfolio_token or gh_token)
 scan_complete = not report["errors"]
 ⋮----
 dispatched = 0
+# A lost response does not prove a POST was rejected. Stop sending other
+# candidates until the next run reconciles a fresh managed-project inventory.
+launch_outcome_uncertain = False
 active_integrations = None
 failed_v2_integrations = None
 available_slots = None
@@ -1246,6 +1249,8 @@ recovery_marker = integration_marker(row["repository"], item, version=3)
 matching_failure = any(
 ⋮----
 result = launch_integration(
+⋮----
+launch_outcome_uncertain = True
 ⋮----
 marker = integration_marker(row["repository"], item)
 previous = integration_marker(row["repository"], item, version=1)

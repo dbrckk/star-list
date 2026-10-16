@@ -2,17 +2,18 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 40,
+    "example_count": 41,
     "rejected_count": 0,
     "terms": [
-      "84",
-      "blocked",
-      "distinguish",
-      "idle",
-      "integration",
+      "85",
+      "after",
+      "further",
+      "launches",
       "portfolio",
-      "scans",
-      "throttled"
+      "production-os",
+      "response",
+      "stop",
+      "uncertain"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -20,7 +21,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(portfolio): distinguish throttled, blocked and idle integration scans (#84)",
+  "task": "fix(portfolio): stop further launches after uncertain Production-OS response (#85)",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py"

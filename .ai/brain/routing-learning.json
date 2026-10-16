@@ -721,6 +721,25 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): stop further launches after uncertain Production-OS response (#85)",
+      "terms": [
+        "85",
+        "after",
+        "further",
+        "launches",
+        "portfolio",
+        "production-os",
+        "response",
+        "stop",
+        "uncertain"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -838,6 +857,9 @@
     "84": {
       "scripts/portfolio_daily.py": 4
     },
+    "85": {
+      "scripts/portfolio_daily.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -848,7 +870,7 @@
       "scripts/test_auto_stars_admission.py": 4
     },
     "after": {
-      "scripts/portfolio_daily.py": 8
+      "scripts/portfolio_daily.py": 12
     },
     "all": {
       "scripts/admit_github_stars.py": 4,
@@ -1077,6 +1099,9 @@
       "scripts/validate_catalog.py": 4,
       "scripts/validate_json_contract.py": 4
     },
+    "further": {
+      "scripts/portfolio_daily.py": 4
+    },
     "generic": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1177,6 +1202,9 @@
     "launch": {
       "scripts/portfolio_daily.py": 4
     },
+    "launches": {
+      "scripts/portfolio_daily.py": 4
+    },
     "license": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/backfill_licenses.py": 4,
@@ -1246,7 +1274,7 @@
       "scripts/test_sync_github_stars.py": 4
     },
     "production-os": {
-      "scripts/portfolio_daily.py": 16
+      "scripts/portfolio_daily.py": 20
     },
     "project": {
       "scripts/portfolio_daily.py": 4
@@ -1374,6 +1402,9 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "response": {
+      "scripts/portfolio_daily.py": 4
+    },
     "resume": {
       "scripts/portfolio_daily.py": 8
     },
@@ -1460,6 +1491,9 @@
     "status": {
       "scripts/validate_catalog.py": 4
     },
+    "stop": {
+      "scripts/portfolio_daily.py": 4
+    },
     "surface": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1493,6 +1527,9 @@
       "scripts/validate_catalog.py": 4
     },
     "unavailable": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "uncertain": {
       "scripts/portfolio_daily.py": 4
     },
     "unresolved": {

@@ -443,6 +443,56 @@ jobs:
               assert evidence["dispatch_status"] == "enabled"
               assert launches == [("dbrckk/alpha", "upstream/one"),
                                   ("dbrckk/beta", "upstream/three")], launches
+              # The server may accept a launch before its response is lost.
+              # Neither transport failure nor malformed acknowledgement can
+              # authorize a second POST for a different repository.
+              def ambiguous_launch(_url, _token, target, candidate, **_kwargs):
+                  launches.append((target, candidate["repository"]))
+                  raise RuntimeError("simulated timeout after accepted POST")
+              def unconfirmed_launch(_url, _token, target, candidate, **_kwargs):
+                  launches.append((target, candidate["repository"]))
+                  return {"project": None}
+              for launch_impl in (ambiguous_launch, unconfirmed_launch):
+                  launches.clear()
+                  with patch.dict(os.environ, {"PRODUCTION_OS_OPERATOR_TOKEN": "offline-test"}), \
+                       patch.object(sys, "argv", argv), \
+                       patch.object(scanner, "github_repos", return_value=targets), \
+                       patch.object(scanner, "project_profile", return_value={}), \
+                       patch.object(scanner, "recommendations",
+                                    side_effect=lambda repo, *_: offers[repo["full_name"]]), \
+                       patch.object(scanner, "request_json", return_value={
+                           "projects": [], "total_count": 0, "complete": True}), \
+                       patch.object(scanner, "launch_integration", side_effect=launch_impl):
+                      assert scanner.main() == 1
+                  uncertain = json.loads((p / "scan.json").read_text())
+                  assert uncertain["summary"]["dispatched"] == 0
+                  assert uncertain["summary"]["failures"] == 1
+                  assert uncertain["dispatch_status"] == "blocked (unconfirmed Production-OS launch)"
+                  assert launches == [("dbrckk/alpha", "upstream/one")], launches
+              # The v3 recovery branch must also stop the queue after an
+              # ambiguous launch, even if another target has eligible work.
+              launches.clear()
+              failed_prior = {
+                  "repository": "dbrckk/alpha", "status": "NEEDS_ATTENTION",
+                  "created_at": "2026-01-01T00:00:00Z",
+                  "final_goal": integration_marker(
+                      "dbrckk/alpha", {"repository": "upstream/one"}),
+              }
+              with patch.dict(os.environ, {"PRODUCTION_OS_OPERATOR_TOKEN": "offline-test"}), \
+                   patch.object(sys, "argv", argv), \
+                   patch.object(scanner, "github_repos", return_value=targets), \
+                   patch.object(scanner, "project_profile", return_value={}), \
+                   patch.object(scanner, "recommendations",
+                                side_effect=lambda repo, *_: offers[repo["full_name"]]), \
+                   patch.object(scanner, "request_json", return_value={
+                       "projects": [failed_prior], "total_count": 1, "complete": True}), \
+                   patch.object(scanner, "launch_integration", side_effect=ambiguous_launch):
+                  assert scanner.main() == 1
+              recovery = json.loads((p / "scan.json").read_text())
+              assert recovery["summary"]["failed_v2_integrations"] == 1
+              assert recovery["summary"]["dispatched"] == 0
+              assert recovery["dispatch_status"] == "blocked (unconfirmed Production-OS launch)"
+              assert launches == [("dbrckk/alpha", "upstream/one")], launches
               # A failed repository scan must fail closed before even reading
               # Production-OS inventory, despite earlier eligible suggestions.
               launches.clear()
@@ -2526,6 +2576,9 @@ profile = project_profile(repo, portfolio_token or gh_token)
 scan_complete = not report["errors"]
 ⋮----
 dispatched = 0
+# A lost response does not prove a POST was rejected. Stop sending other
+# candidates until the next run reconciles a fresh managed-project inventory.
+launch_outcome_uncertain = False
 active_integrations = None
 failed_v2_integrations = None
 available_slots = None
@@ -2581,6 +2634,8 @@ recovery_marker = integration_marker(row["repository"], item, version=3)
 matching_failure = any(
 ⋮----
 result = launch_integration(
+⋮----
+launch_outcome_uncertain = True
 ⋮----
 marker = integration_marker(row["repository"], item)
 previous = integration_marker(row["repository"], item, version=1)

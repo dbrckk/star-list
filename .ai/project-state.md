@@ -32,20 +32,19 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T17:33:16Z
+Generated: 2026-10-16T18:26:59Z
 
 ### Git
 - Branch: `main`
-- Head: `1b8864178a68`
-- Commit date: 2026-10-16T19:33:08+02:00
-- Commit: fix(portfolio): distinguish throttled, blocked and idle integration scans (#84)
+- Head: `b54f48aca5e1`
+- Commit date: 2026-10-16T20:26:49+02:00
+- Commit: fix(portfolio): stop further launches after uncertain Production-OS response (#85)
 - Tracked files: 275
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
-- `catalog.json`
 
 ### Project signals
 - No common build descriptor detected
