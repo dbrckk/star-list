@@ -1,72 +1,21 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "7d381e6dea3b69763e377648c92696e00941936d",
-  "head": "5e4169d1cf613c79fdce3bd2d0911413674fa2d0",
+  "base": "5e4169d1cf613c79fdce3bd2d0911413674fa2d0",
+  "head": "bddc86888ec53452f81b88faddf51f8393d0d907",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": ".github/workflows/portfolio-scan-smoke.yml",
+      "path": ".github/workflows/portfolio-failure-diagnostics.yml",
       "status": "M"
     },
     {
       "path": "docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md",
       "status": "M"
-    },
-    {
-      "path": "scripts/portfolio_failure_diagnostics.py",
-      "status": "M"
     }
   ],
-  "changed_source_files": [
-    "scripts/portfolio_failure_diagnostics.py"
-  ],
-  "impacted_files": [
-    "scripts/portfolio_failure_diagnostics.py"
-  ],
-  "impacted_symbols": [
-    {
-      "name": "safe_state",
-      "kind": "function",
-      "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 51
-    },
-    {
-      "name": "failure_category",
-      "kind": "function",
-      "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 56
-    },
-    {
-      "name": "safe_public_failure",
-      "kind": "function",
-      "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 70
-    },
-    {
-      "name": "task_failure_evidence",
-      "kind": "function",
-      "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 107
-    },
-    {
-      "name": "add_deep_task_diagnostics",
-      "kind": "function",
-      "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 178
-    },
-    {
-      "name": "public_diagnostics",
-      "kind": "function",
-      "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 254
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 282
-    }
-  ],
+  "changed_source_files": [],
+  "impacted_files": [],
+  "impacted_symbols": [],
   "selected_tests": []
 }

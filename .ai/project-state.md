@@ -37,18 +37,19 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T20:35:38Z
+Generated: 2026-10-16T20:41:09Z
 
 ### Git
 - Branch: `main`
-- Head: `5e4169d1cf61`
-- Commit date: 2026-10-16T16:35:27-04:00
-- Commit: fix(portfolio): retain sanitized operator diagnosis when Render API fails (#100)
+- Head: `bddc86888ec5`
+- Commit date: 2026-10-16T16:40:57-04:00
+- Commit: feat(portfolio): schedule a daily read-only failed-integration diagnosis (#101)
 - Tracked files: 279
 
 ### Recently changed files
-- `.github/workflows/portfolio-scan-smoke.yml`
+- `.github/workflows/portfolio-failure-diagnostics.yml`
 - `docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md`
+- `.github/workflows/portfolio-scan-smoke.yml`
 - `scripts/portfolio_failure_diagnostics.py`
 - `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
 

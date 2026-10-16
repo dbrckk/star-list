@@ -310,6 +310,9 @@ jobs:
 name: Diagnose failed star-list integrations
 
 on:
+  schedule:
+    # Run after the 03:37 UTC portfolio scan; GitHub may delay schedules.
+    - cron: "17 4 * * *"
   workflow_dispatch:
   push:
     branches: [main]
