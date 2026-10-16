@@ -68,8 +68,10 @@ jobs:
             exit 1
           fi
       - name: Preserve synchronization and admission results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
+          if-no-files-found: warn
           name: star-list-public-stars-admission
           path: |
             star-sync-report.json

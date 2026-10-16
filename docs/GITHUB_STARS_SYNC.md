@@ -24,7 +24,8 @@ The workflow:
 7. Commits `catalog.json` to `main`, then closes the previous review issue
    when all accessible Stars have been accounted for.
 8. Publishes synchronization and admission reports as Actions artifacts for
-   14 days.
+   14 days, including any partial diagnostic reports produced before a failed
+   admission or validation run. An incomplete run is not marked successful.
 
 If any repository cannot be verified, admission fails rather than committing
 a partial catalog. Subsequent scheduled runs retry. No Star is silently
