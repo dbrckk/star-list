@@ -64,7 +64,9 @@ jobs:
           if-no-files-found: warn
           retention-days: 30
       - name: Update the persistent portfolio review issue
-        if: always()
+        # Preserve the last verified report if discovery or dispatch fails.
+        # The failed run still exposes the full diagnostic artifact.
+        if: success()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
