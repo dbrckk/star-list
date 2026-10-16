@@ -407,7 +407,9 @@ def integration_marker(target: str, candidate: dict, version: int = 2) -> str:
     return f"starlist-integration-v{version}-" + identity
 
 
-def recoverable_failure_targets(failures: list[dict], projects: list[dict]) -> set[str]:
+def recoverable_failure_targets(
+    failures: list[dict], projects: list[dict], inventory: list[dict],
+) -> set[str]:
     """Quarantine only targets with an *eligible* v3 retry still available.
 
     A previous candidate may later be rejected as a reference application,
@@ -425,12 +427,17 @@ def recoverable_failure_targets(failures: list[dict], projects: list[dict]) -> s
                 )
 
     return {
-        str(failure.get("repository") or "").lower()
+        str(failure["repository"]).lower()
         for failure in failures
         if isinstance(failure.get("repository"), str)
         and str(failure["repository"]).lower() in available
         and any(
             marker in str(failure.get("final_goal") or "")
+            and not any(
+                marker.replace("starlist-integration-v2-", "starlist-integration-v3-")
+                in str(previous.get("final_goal") or "")
+                for previous in inventory
+            )
             for marker in available[str(failure["repository"]).lower()]
         )
     }
@@ -591,7 +598,7 @@ def main() -> int:
             # retries from scans triggered repeatedly by GitHub events.
             unresolved_failures = unresolved_failed_v2_integrations(already)
             failed_targets = recoverable_failure_targets(
-                unresolved_failures, report["projects"]
+                unresolved_failures, report["projects"], already
             )
             # Historical failures for candidates now disqualified remain
             # counted and reported; they cannot hold a target hostage forever.
