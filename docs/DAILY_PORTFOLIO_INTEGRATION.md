@@ -87,7 +87,11 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   indefinitely active workers; while any remain unresolved, dispatch requires
   an idle fleet and permits at most one new or v3 recovery task per UTC day.
   Daily scanning and recommendations continue when no launch slots are
-  available. The authenticated Production-OS inventory must declare itself
+  available. The daily quota is calculated from timezone-aware timestamps
+  normalized to **UTC**, not the date prefix returned by Production-OS.
+  The public review issue reports the remaining launch slots and, when the
+  failure throttle applies, the number of earlier launches on that UTC date.
+  The authenticated Production-OS inventory must declare itself
   complete, contain valid unique v1/v2/v3 markers, valid target identities,
   timezone-aware creation dates, and known lifecycle states
   (`ACTIVE`, `REVIEW_REQUIRED`, `NEEDS_ATTENTION`, `DONE`).
