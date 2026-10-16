@@ -27,19 +27,20 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-15T21:46:31Z
+Generated: 2026-10-16T06:25:46Z
 
 ### Git
 - Branch: `main`
-- Head: `0d1b64471148`
-- Commit date: 2026-10-15T23:46:22+02:00
-- Commit: fix: surface safely scoped per-repository integration state
+- Head: `d393d1d76003`
+- Commit date: 2026-10-16T08:25:34+02:00
+- Commit: ci: recover missed portfolio scans from trusted scheduled star sync
 - Tracked files: 274
 
 ### Recently changed files
+- `.github/workflows/daily-portfolio-integration.yml`
+- `catalog.json`
 - `scripts/portfolio_daily.py`
 - `.github/workflows/portfolio-scan-smoke.yml`
-- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 
 ### Project signals
 - No common build descriptor detected

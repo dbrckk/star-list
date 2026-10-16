@@ -1,12 +1,16 @@
 {
   "files": {
+    ".github/workflows/daily-portfolio-integration.yml": {
+      "sha256": "cf394487f5bec09627c6289a2cb933e304cdd68b9b96ec7425c7ee1fdb197e60",
+      "size": 3160
+    },
+    "catalog.json": {
+      "sha256": "9b691f1a0b98e0d7714c8035f44ab3d02f8b4a391ab318c7b7ecc4436150e815",
+      "size": 1004619
+    },
     "scripts/portfolio_daily.py": {
       "sha256": "5b828a3a6bd5278d73772a38b77448597bd9a9b74c90114e1d1fd0bc3c0d6d05",
       "size": 26168
-    },
-    "scripts/recommend.py": {
-      "sha256": "7df823d9a03718fc062f172b66c9a5ebcfd267e8e50d46a82111b1fb65138d17",
-      "size": 16505
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

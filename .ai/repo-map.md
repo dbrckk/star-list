@@ -165,6 +165,11 @@ on:
   schedule:
     - cron: "37 3 * * *"
   workflow_dispatch:
+  # GitHub may omit a scheduled workflow; use the already-qualified star
+  # synchronization schedule as a second, trusted entrypoint.
+  workflow_run:
+    workflows: ["Sync GitHub Stars"]
+    types: [completed]
   push:
     branches: [main]
     paths:
@@ -181,6 +186,14 @@ concurrency:
 
 jobs:
   scan:
+    # Never use secrets on a workflow_run fired from a PR or a fork.
+    # Do not consume predecessor artifacts; always checkout trusted main.
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'schedule' &&
+       github.event.workflow_run.head_branch == 'main' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -41596,6 +41609,2643 @@ Repository-specific rules:
       },
       "bestFor": [
         "AniPortrait: Audio-Driven Synthesis of Photorealistic Portrait Animation"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "0xNyk/awesome-hermes-agent",
+      "githubRepositoryId": 1189234446,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "agent-skills",
+        "ai-agents",
+        "ai-tools",
+        "awesome",
+        "awesome-list",
+        "hermes-agent",
+        "mcp",
+        "memory",
+        "nous-research",
+        "skills"
+      ],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5853,
+        "forks": 442,
+        "openIssues": 160,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-09-22T06:26:00Z"
+      },
+      "bestFor": [
+        "Independent directory of useful skills, plugins, memory providers, tools, surfaces, and guides for Nous Research's open-source Hermes Agent."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "1Panel-dev/1Panel",
+      "githubRepositoryId": 515647260,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "deepseek-harness",
+        "docker",
+        "docker-ui",
+        "hermes",
+        "hermes-agent",
+        "linux",
+        "lnmp",
+        "ollama",
+        "openclaw",
+        "openresty",
+        "qwenpaw"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 37180,
+        "forks": 3377,
+        "openIssues": 364,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "dev-v2",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-15T07:45:27Z"
+      },
+      "bestFor": [
+        "🔥 1Panel is a modern, open-source Linux server management panel and a lightweight AI management platform."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "aaron-he-zhu/aaron-marketing-skills",
+      "githubRepositoryId": 1118625972,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Productivité",
+      "domain": "productivity",
+      "capabilities": [
+        "aaron-marketing",
+        "agent-skills",
+        "ai-staff",
+        "brand-messaging",
+        "brand-narrative",
+        "content-optimization",
+        "email-marketing",
+        "generative-engine-optimization",
+        "geo",
+        "grok",
+        "hermes",
+        "influencer-marketing"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2960,
+        "forks": 381,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T20:51:05Z"
+      },
+      "bestFor": [
+        "120 marketing skills as an AI marketing staff — plugin, portable skills, or an 8-bot team across 7 disciplines (narrative, SEO/GEO, social, email, paid, influencer, launch) on one contract, with 8 aud"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "abundantbeing/hermes-browser-extension",
+      "githubRepositoryId": 1278668528,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "ai-agent",
+        "browser-extension",
+        "chrome-extension",
+        "edge-extension",
+        "hermes-agent",
+        "local-first",
+        "nous-research",
+        "sidepanel"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1670,
+        "forks": 163,
+        "openIssues": 10,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-14T12:30:28Z"
+      },
+      "bestFor": [
+        "Browser-native side panel for Hermes Agent — connect web context to your local Hermes runtime."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "alchaincyf/hermes-agent-orange-book",
+      "githubRepositoryId": 1204451436,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4981,
+        "forks": 498,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-08-23T14:21:45Z"
+      },
+      "bestFor": [
+        "Hermes Agent 从入门到精通 · 橙皮书系列 · Nous Research 开源 AI Agent 框架实战指南"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "AlexAnys/awesome-openclaw-usecases-zh",
+      "githubRepositoryId": 1164376059,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai-agent",
+        "ai-assistant",
+        "ai-automation",
+        "ai-tools",
+        "automation",
+        "awesome-list",
+        "chinese",
+        "claude",
+        "content-creation",
+        "devops",
+        "hermes",
+        "knowledge-management"
+      ],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4444,
+        "forks": 466,
+        "openIssues": 42,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-07-12T10:14:25Z"
+      },
+      "bestFor": [
+        "🇨🇳 OpenClaw中文用例大全 | 50个真实场景 | 国内特色 + 海外案例的国内适配 | 自动化办公·内容创作·运维·AI助理·知识管理 | 新手友好"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "AMAP-ML/SkillClaw",
+      "githubRepositoryId": 1206566990,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "agentic-ai",
+        "ai-agent",
+        "collective-intelligence",
+        "continual-learning",
+        "hermes",
+        "llm",
+        "llms",
+        "openclaw",
+        "self-evolving",
+        "skill-evolution",
+        "skill-learning"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2700,
+        "forks": 270,
+        "openIssues": 43,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-08-17T08:48:07Z"
+      },
+      "bestFor": [
+        "Let Skills Evolve Collectively with Agentic Evolver"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "anysearch-ai/anysearch-skill",
+      "githubRepositoryId": 1225178950,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "anysearch",
+        "hermes",
+        "openclaw",
+        "qclaw",
+        "skill",
+        "skills"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6520,
+        "forks": 380,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-17T10:11:41Z"
+      },
+      "bestFor": [
+        "Unified real-time search engine skill for AI agents. Supports general web search, vertical domain search, parallel batch search, and full-page content extraction."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "bitwarden/server",
+      "githubRepositoryId": 46755185,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Backend / API",
+      "domain": "backend",
+      "capabilities": [
+        "api",
+        "aspnet",
+        "aspnetcore",
+        "bitwarden",
+        "csharp",
+        "docker",
+        "dotnet",
+        "dotnet-core",
+        "signalr",
+        "sql",
+        "sql-server"
+      ],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 20320,
+        "forks": 1796,
+        "openIssues": 262,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T22:35:35Z"
+      },
+      "bestFor": [
+        "Bitwarden infrastructure/backend (API, database, Docker, etc)."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "CellularPrivacy/Android-IMSI-Catcher-Detector",
+      "githubRepositoryId": 14640193,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [
+        "android"
+      ],
+      "languages": [
+        "java"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5431,
+        "forks": 1057,
+        "openIssues": 185,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "development",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-04T15:51:36Z"
+      },
+      "bestFor": [
+        "AIMSICD • Fight IMSI-Catcher, StingRay and silent SMS!"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "conorbronsdon/avoid-ai-writing",
+      "githubRepositoryId": 1174224707,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai-writing",
+        "claude",
+        "claude-code",
+        "llm",
+        "prompt-engineering",
+        "skill",
+        "writing"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5033,
+        "forks": 448,
+        "openIssues": 17,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T21:40:09Z"
+      },
+      "bestFor": [
+        "Skill that audits and rewrites content to remove AI writing patterns. Use it with your favorite agents including Claude Code, OpenClaw, Codex, and Hermes."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "crafter-station/petdex",
+      "githubRepositoryId": 1227102698,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement web",
+      "domain": "web_frontend",
+      "capabilities": [
+        "claude-code",
+        "clerk",
+        "cli",
+        "codex",
+        "developer-tools",
+        "drizzle-orm",
+        "dsh-plugin",
+        "mascot",
+        "neon",
+        "nextjs",
+        "pixel-art",
+        "postgres"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4243,
+        "forks": 212,
+        "openIssues": 17,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-10T22:07:22Z"
+      },
+      "bestFor": [
+        "A public gallery of animated pets for Codex, Claude Code, DeepSeek Harness, Hermes, OpenCode, Gemini CLI, and more."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "EKKOLearnAI/ekko-studio",
+      "githubRepositoryId": 1207639951,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "ai-agent",
+        "chat-ui",
+        "coding-agents",
+        "dashboard",
+        "ekko-studio",
+        "hermes",
+        "hermes-agent",
+        "hermes-studio",
+        "hermes-web-ui",
+        "llm",
+        "multi-agent"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 11425,
+        "forks": 1409,
+        "openIssues": 499,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T15:36:58Z"
+      },
+      "bestFor": [
+        "Ekko Studio is a local-first AI workspace for multi-agent chat, coding, and visual workflows, available on desktop and the web."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "EverMind-AI/Raven",
+      "githubRepositoryId": 1245465729,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai",
+        "ai-agents",
+        "anthropic",
+        "chatgpt",
+        "claude",
+        "codex",
+        "evermind",
+        "hermes",
+        "hermes-agent",
+        "llm",
+        "multi-agent",
+        "multi-agent-systems"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5463,
+        "forks": 169,
+        "openIssues": 74,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T22:54:37Z"
+      },
+      "bestFor": [
+        "The Harness of Harnesses • built for RSI: a trusted, persistent, self-evolving multi-agent ecosystem for all-domain collaboration."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "facebook/hermes",
+      "githubRepositoryId": 154201259,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 11374,
+        "forks": 882,
+        "openIssues": 272,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "static_h",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T18:42:29Z"
+      },
+      "bestFor": [
+        "A JavaScript engine optimized for running React Native."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "facebook/memlab",
+      "githubRepositoryId": 496768943,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "detector",
+        "e2e",
+        "facebook",
+        "heap",
+        "hermes",
+        "javascript",
+        "leak",
+        "memory",
+        "nodejs",
+        "perf-tools",
+        "performance",
+        "snapshot"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5070,
+        "forks": 148,
+        "openIssues": 14,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T07:51:08Z"
+      },
+      "bestFor": [
+        "A framework for finding JavaScript memory leaks and analyzing heap snapshots"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Faceplugin-ltd/Open-Source-Face-Recognition-SDK",
+      "githubRepositoryId": 917979862,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "deep-learning",
+        "face-detection",
+        "face-landmark-detection",
+        "face-recognition",
+        "identity-verification",
+        "machine-learning",
+        "open-source",
+        "python"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2585,
+        "forks": 443,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-02T08:53:24Z"
+      },
+      "bestFor": [
+        "Face Recognition, Face Liveness Detection, Face Anti-Spoofing, Face Detection, Face Landmarks, Face Compare, Face Matching, Face Pose, Face Expression, Face Attributes, Face Templates Extraction, Face"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "FailproofAI/failproofai",
+      "githubRepositoryId": 1202410617,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-failure",
+        "agent-harness",
+        "agent-observability",
+        "agent-reliability",
+        "agent-tracing",
+        "ai-agent",
+        "claude-code",
+        "codex",
+        "enforcement",
+        "evals",
+        "guardrails",
+        "hermes"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5524,
+        "forks": 503,
+        "openIssues": 57,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T15:30:16Z"
+      },
+      "bestFor": [
+        "Observability and enforcement for AI agent harnesses. Capture every run and runtime reliability with policy enforcement."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "farion1231/cc-switch",
+      "githubRepositoryId": 1031912724,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "ai-tools",
+        "claude-code",
+        "codex",
+        "desktop-app",
+        "grok",
+        "grokbuild",
+        "hermes",
+        "hermes-agent",
+        "mcp",
+        "open-source",
+        "openclaw",
+        "openclaw-ui"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 144724,
+        "forks": 9587,
+        "openIssues": 1955,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T18:37:08Z"
+      },
+      "bestFor": [
+        "A cross-platform desktop All-in-One assistant for Claude Code, Codex, OpenCode, OpenClaw, Grok Build & Hermes Agent. Only official website: ccswitch.io"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "fathah/hermes-desktop",
+      "githubRepositoryId": 1199668171,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai",
+        "ai-agent",
+        "autonomous-agents",
+        "chatbot",
+        "hermes",
+        "llm"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 14421,
+        "forks": 1649,
+        "openIssues": 301,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-13T14:53:59Z"
+      },
+      "bestFor": [
+        "Desktop Companion for Hermes Agent"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "garrytan/gbrain",
+      "githubRepositoryId": 1202057891,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 30904,
+        "forks": 4632,
+        "openIssues": 205,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T23:01:09Z"
+      },
+      "bestFor": [
+        "Garry's Opinionated OpenClaw/Hermes Agent Brain"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "getpaseo/paseo",
+      "githubRepositoryId": 1075381375,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [
+        "ade",
+        "agents",
+        "android",
+        "claude-code",
+        "codex",
+        "copilot",
+        "developer-tools",
+        "hermes",
+        "ios",
+        "linux",
+        "mobile",
+        "opencode"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 21001,
+        "forks": 2493,
+        "openIssues": 1311,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T22:46:12Z"
+      },
+      "bestFor": [
+        "Orchestrate multiple coding agents from desktop and mobile"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Infisical/agent-vault",
+      "githubRepositoryId": 1194056092,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agents",
+        "ai-agents",
+        "secrets-management"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2356,
+        "forks": 168,
+        "openIssues": 95,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-11T01:54:54Z"
+      },
+      "bestFor": [
+        "A HTTP credential proxy and vault for AI agents like Claude Code, OpenClaw, Hermes, custom agents + harnesses, and more."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "iOfficeAI/AionUi",
+      "githubRepositoryId": 1033778670,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "acp",
+        "agent-team",
+        "ai",
+        "ai-agent",
+        "chat",
+        "chatbot",
+        "claude-code",
+        "clawdbot",
+        "codex",
+        "cowork",
+        "gemini",
+        "gemini-cli"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 33566,
+        "forks": 3484,
+        "openIssues": 866,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-14T04:18:39Z"
+      },
+      "bestFor": [
+        "Open-source 24/7 Cowork app for OpenClaw, Hermes, Claude Code, Codex, OpenCode and 20+ more CLI Agent | Customize your assistants | Team them up｜Star if you like it!"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "jnMetaCode/superpowers-zh",
+      "githubRepositoryId": 1186742994,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skills",
+        "agentic-coding",
+        "ai-coding",
+        "chinese",
+        "claude-code",
+        "code-review",
+        "cursor",
+        "gemini-cli",
+        "kiro",
+        "mcp",
+        "npm-package",
+        "prompt-engineering"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 8322,
+        "forks": 774,
+        "openIssues": 13,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T06:45:46Z"
+      },
+      "bestFor": [
+        "🦸 AI 编程超能力 · 中文增强版 — superpowers（250k+ ⭐）完整汉化 + 4 个中国原创 skills，让 Claude Code / Copilot CLI / Hermes Agent / Cursor / Windsurf / Kiro / Gemini CLI / Qoder 等 26 款 AI 编程工具真正会干活"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "junhoyeo/tokscale",
+      "githubRepositoryId": 1107676388,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "ai",
+        "ai-agents",
+        "ampcode",
+        "claude",
+        "claude-code",
+        "clawdbot",
+        "codex",
+        "cursor",
+        "cursor-ide",
+        "droid",
+        "gemini",
+        "gemini-cli"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5687,
+        "forks": 479,
+        "openIssues": 85,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T17:34:18Z"
+      },
+      "bestFor": [
+        "🛰️ Track token usage across AI coding agents from your terminal. 🏅 Global leaderboard with trillions of tokens tracked."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "K-Dense-AI/scientific-agent-skills",
+      "githubRepositoryId": 1079456184,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-skills",
+        "ai-scientist",
+        "bioinformatics",
+        "chemoinformatics",
+        "claude",
+        "claude-skills",
+        "claudecode",
+        "clinical-research",
+        "computational-biology",
+        "data-analysis",
+        "drug-discovery",
+        "genomics"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 50416,
+        "forks": 4485,
+        "openIssues": 39,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T22:02:24Z"
+      },
+      "bestFor": [
+        "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 250,000+ scientists worldwide. 177 ready-to-use validated skills plus 100+ scientific databases covering biolog"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "langbot-app/LangBot",
+      "githubRepositoryId": 575321313,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Mémoire / IA",
+      "domain": "ai_memory",
+      "capabilities": [
+        "agent",
+        "coze",
+        "deepseek",
+        "dify",
+        "dingtalk",
+        "discord",
+        "feishu",
+        "kook",
+        "langbot",
+        "lark",
+        "line",
+        "llm"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 18191,
+        "forks": 1657,
+        "openIssues": 143,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T14:51:04Z"
+      },
+      "bestFor": [
+        "Production-grade platform for building agentic IM bots - 生产级多平台智能机器人开发平台/ Agent、知识库编排、插件系统 / Bots for Discord / Slack / LINE / Telegram / WeChat(企业微信, 企微智能机器人, 公众号) / 飞书 / 钉钉 / QQ / Matrix e.g. Integr"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "LearnPrompt/LearnPrompt",
+      "githubRepositoryId": 631484230,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Génération de médias / IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "agent",
+        "aimusic",
+        "aivoice",
+        "chatgpt-app",
+        "claude-code",
+        "cli",
+        "codex",
+        "hermes-agent",
+        "llms-book",
+        "midjourney-app",
+        "openclaw",
+        "prompt"
+      ],
+      "languages": [
+        "mdx"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2701,
+        "forks": 226,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-13T08:29:57Z"
+      },
+      "bestFor": [
+        "永久免费开源的 AIGC 课程, 目前已支持Claude Code，Codex，Hermes，OpenClaw，Obsidian，Prompt Engineering, ChatGPT, Midjourney, Runway, Stable Diffusion, AI数字人，AI声音&音乐，开源大模型"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "liaohch3/claude-tap",
+      "githubRepositoryId": 1158479469,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-debugging",
+        "agent-observability",
+        "ai-agents",
+        "ai-tools",
+        "api-debugging",
+        "claude-code",
+        "codex",
+        "codex-cli",
+        "cursor-cli",
+        "developer-tools",
+        "gemini-cli",
+        "hermes-agent"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3285,
+        "forks": 285,
+        "openIssues": 39,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-10T06:00:44Z"
+      },
+      "bestFor": [
+        "Intercept and inspect Coding Agent API traffic from Claude Code, Codex CLI, Gemini CLI, Cursor CLI, OpenCode, Kimi/Kimi Code, Pi, and Hermes in a local trace viewer."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "lightseekorg/tokenspeed",
+      "githubRepositoryId": 1230933500,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "b200",
+        "b300",
+        "blackwell",
+        "deepseek",
+        "gb200",
+        "gb300",
+        "glm",
+        "gpt-oss",
+        "inkling",
+        "kimi",
+        "lightseek",
+        "llm"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2465,
+        "forks": 336,
+        "openIssues": 90,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T22:51:37Z"
+      },
+      "bestFor": [
+        "TokenSpeed is a speed-of-light LLM inference engine."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "LoRexxar/Kunlun-M",
+      "githubRepositoryId": 102699687,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2418,
+        "forks": 316,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-14T02:37:44Z"
+      },
+      "bestFor": [
+        "KunLun-M — Open-source static code analysis for PHP, Nodejs/JavaScript, Python, Golang, Java and C/C++, with AST-based semantic scanning and one-click AI Agent integration (OpenClaw, Codex, Claude Cod"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "matcornic/hermes",
+      "githubRepositoryId": 86179273,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "awesome-go",
+        "email",
+        "email-template",
+        "email-template-generator",
+        "emails",
+        "generator",
+        "golang",
+        "hermes",
+        "mailgen",
+        "smtp",
+        "template",
+        "templating"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3037,
+        "forks": 249,
+        "openIssues": 22,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2025-04-04T08:12:02Z"
+      },
+      "bestFor": [
+        "Golang package that generates clean, responsive HTML e-mails for sending transactional mail"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "MemoriLabs/Memori",
+      "githubRepositoryId": 1025381911,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Mémoire / IA",
+      "domain": "ai_memory",
+      "capabilities": [
+        "agent",
+        "agent-memory",
+        "agenticai",
+        "ai",
+        "ai-memory",
+        "claude-code",
+        "enterprise",
+        "hermes",
+        "llm",
+        "long-short-term-memory",
+        "memory",
+        "memory-management"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 17152,
+        "forks": 3725,
+        "openIssues": 37,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-03T01:33:14Z"
+      },
+      "bestFor": [
+        "Memori is agent-native memory infrastructure. A LLM-agnostic layer that turns agent execution and conversation into structured, persistent state for production systems. Built for enterprise, Memori wo"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "MemTensor/MemOS",
+      "githubRepositoryId": 1014729376,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Mémoire / IA",
+      "domain": "ai_memory",
+      "capabilities": [
+        "agent",
+        "agentic-ai",
+        "ai",
+        "ai-agents",
+        "chatgpt",
+        "claude",
+        "deepseek-harness",
+        "dsh-plugin",
+        "hermes",
+        "llm",
+        "long-term-memory",
+        "mcp"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 11880,
+        "forks": 1095,
+        "openIssues": 141,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-10T07:55:31Z"
+      },
+      "bestFor": [
+        "Self-evolving memory OS for LLM & AI Agents: ultra-persistent memory, hybrid-retrieval, and cross-task skill reuse, with 35.24% token savings and DeepSeek Harness support."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "MervinPraison/PraisonAI",
+      "githubRepositoryId": 774497032,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Mémoire / IA",
+      "domain": "ai_memory",
+      "capabilities": [
+        "agents",
+        "ai",
+        "ai-agent-framework",
+        "ai-agent-sdk",
+        "ai-agents",
+        "ai-agents-framework",
+        "ai-agents-sdk",
+        "ai-framwork",
+        "aiagent",
+        "aiagentframework",
+        "aiagents",
+        "aiagentsframework"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 9240,
+        "forks": 1480,
+        "openIssues": 108,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T17:52:05Z"
+      },
+      "bestFor": [
+        "PraisonAI 🦞 — Hire a 24/7 AI Workforce. Stop writing boilerplate and start shipping autonomous self-improving agents that research, plan, code, and execute tasks. Deployed in 5 lines of code with buil"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "mnemosyne-oss/mnemosyne",
+      "githubRepositoryId": 1202070696,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "agents",
+        "ai",
+        "hermes",
+        "hermes-agent",
+        "ml",
+        "nousresearch"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3422,
+        "forks": 299,
+        "openIssues": 157,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-14T12:19:26Z"
+      },
+      "bestFor": [
+        "Zero-cloud AI memory that works everywhere. SQLite-backed. One pure-Python dependency."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "nesquena/hermes-webui",
+      "githubRepositoryId": 1196617276,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "agent",
+        "ai-agents",
+        "hermes",
+        "hermes-agent",
+        "nous-research"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 18953,
+        "forks": 2742,
+        "openIssues": 918,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T22:35:23Z"
+      },
+      "bestFor": [
+        "Hermes WebUI: The best way to use Hermes Agent from the web or from your phone!"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "NousResearch/autonovel",
+      "githubRepositoryId": 1181397760,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1627,
+        "forks": 319,
+        "openIssues": 23,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": null,
+        "pushedAt": "2026-03-20T16:17:11Z"
+      },
+      "bestFor": [
+        "An autonomous novel writing pipeline, by Hermes Agent"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "NousResearch/hermes-agent-self-evolution",
+      "githubRepositoryId": 1176753219,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5507,
+        "forks": 662,
+        "openIssues": 128,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-06-17T11:53:04Z"
+      },
+      "bestFor": [
+        "⚒ Evolutionary self-improvement for Hermes Agent — optimize skills, prompts, and code using DSPy + GEPA"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "NousResearch/hermes-paperclip-adapter",
+      "githubRepositoryId": 1178355842,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1978,
+        "forks": 394,
+        "openIssues": 151,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-04-04T05:44:23Z"
+      },
+      "bestFor": [
+        "Paperclip adapter for Hermes Agent — run Hermes as a managed employee in a Paperclip company"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "NVIDIA/NemoClaw",
+      "githubRepositoryId": 1182547092,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai-agents",
+        "deep-agents",
+        "hermes",
+        "nvidia",
+        "openclaw",
+        "openshell",
+        "sandboxing",
+        "typescript"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 22752,
+        "forks": 3142,
+        "openIssues": 801,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T22:45:11Z"
+      },
+      "bestFor": [
+        "Run agents like Hermes, LangChain Deep Agents, and OpenClaw more securely inside NVIDIA OpenShell with managed inference"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ok1cdj/ESP32-ATV",
+      "githubRepositoryId": 1418783436,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [],
+      "languages": [
+        "kotlin"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 7,
+        "forks": 1,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-15T18:05:46Z"
+      },
+      "bestFor": [
+        "DATV on 13 cm with ESP32: stand-alone ESP32-C3 DVB-S2 beacon and ATV RX, an ESP32-S3 + Android receiver (beta)"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "openai/whisper",
+      "githubRepositoryId": 537603333,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 110586,
+        "forks": 13405,
+        "openIssues": 172,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-08-31T17:19:19Z"
+      },
+      "bestFor": [
+        "Robust Speech Recognition via Large-Scale Weak Supervision"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Oros42/IMSI-catcher",
+      "githubRepositoryId": 36830211,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "cellphones",
+        "frequency",
+        "gr-gsm",
+        "gsm",
+        "hackrf",
+        "imsi-catcher",
+        "imsi-numbers",
+        "osmocombb",
+        "rtl-sdr"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4594,
+        "forks": 915,
+        "openIssues": 25,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "CC0-1.0",
+        "pushedAt": "2026-06-06T13:47:14Z"
+      },
+      "bestFor": [
+        "This program show you IMSI numbers of cellphones around you."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "outsourc-e/hermes-workspace",
+      "githubRepositoryId": 1182887460,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement web",
+      "domain": "web_frontend",
+      "capabilities": [
+        "agent-ui",
+        "ai-workspace",
+        "hackathon",
+        "hermes-agent",
+        "nous-research",
+        "react",
+        "typescript"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6718,
+        "forks": 1050,
+        "openIssues": 176,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-29T23:49:31Z"
+      },
+      "bestFor": [
+        "Native web workspace for Hermes Agent — chat, terminal, memory, skills, inspector."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "penpot/penpot",
+      "githubRepositoryId": 48769241,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "clojure",
+        "clojurescript",
+        "design",
+        "prototyping",
+        "ui",
+        "ux-design",
+        "ux-experience"
+      ],
+      "languages": [
+        "clojure"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 61143,
+        "forks": 4232,
+        "openIssues": 846,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "develop",
+        "license": "MPL-2.0",
+        "pushedAt": "2026-10-15T21:36:05Z"
+      },
+      "bestFor": [
+        "Penpot: The open-source design platform for Product teams that need scalable collaboration."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "qingchencloud/clawpanel",
+      "githubRepositoryId": 1167607007,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "admin-panel",
+        "ai-agent",
+        "ai-assistant",
+        "ai-chat",
+        "ai-tools",
+        "chatgpt",
+        "cross-platform",
+        "deepseek",
+        "desktop-app",
+        "hermes-agent",
+        "llm",
+        "management-panel"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2933,
+        "forks": 367,
+        "openIssues": 127,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T20:38:43Z"
+      },
+      "bestFor": [
+        "🦞 OpenClaw & Hermes Agent 多引擎 AI 管理面板 — 内置 AI 助手（工具调用 + 图片识别 + 多模态），一键安装 | Tauri v2 跨平台桌面应用 | 11 种语言"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "rohitg00/agentmemory",
+      "githubRepositoryId": 1166408297,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "agentmemory",
+        "agents",
+        "ai",
+        "claude",
+        "claudecode",
+        "codex",
+        "copilot",
+        "cursor",
+        "genai",
+        "harness",
+        "hermes",
+        "memory"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 29544,
+        "forks": 2607,
+        "openIssues": 572,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-14T13:53:58Z"
+      },
+      "bestFor": [
+        "#1 Persistent memory for AI coding agents based on real-world benchmarks"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "screenpipe/screenpipe",
+      "githubRepositoryId": 817326197,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agents",
+        "agi",
+        "ai",
+        "ai-memory",
+        "audio-recording",
+        "computer-vision",
+        "hermes",
+        "hermes-agent",
+        "llm",
+        "local-ai",
+        "local-first",
+        "machine-learning"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 21954,
+        "forks": 2247,
+        "openIssues": 35,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T19:53:28Z"
+      },
+      "bestFor": [
+        "YC (S26) | Open Computer History | Continuously record your company computer work, map your workflows, help you find work worth automating, and power your agents' context"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "spinabot/brigade",
+      "githubRepositoryId": 1274498048,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent-runtime",
+        "ai",
+        "ai-crew",
+        "autonomous-agents",
+        "brigade",
+        "brigade-agent",
+        "chatgpt",
+        "clawdbot",
+        "codex",
+        "crustacean",
+        "hermes",
+        "hermes-agent"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 11335,
+        "forks": 87,
+        "openIssues": 37,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-12T03:30:08Z"
+      },
+      "bestFor": [
+        "Brigade — Your personal intelligence, built enterprise-grade"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "uzairansaruzi/hermex",
+      "githubRepositoryId": 1287168491,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "hermes",
+        "hermes-agent",
+        "hermex",
+        "ios",
+        "llm",
+        "self-hosted",
+        "swift",
+        "swiftui"
+      ],
+      "languages": [
+        "swift"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1514,
+        "forks": 231,
+        "openIssues": 96,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T19:24:40Z"
+      },
+      "bestFor": [
+        "Native iPhone app for your Hermes agent"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Waishnav/devspace",
+      "githubRepositoryId": 1269395331,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "agent-orchestration",
+        "chatgpt",
+        "claude",
+        "claude-code",
+        "codex",
+        "dyanmic-workflow",
+        "pi-coding-agent"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5248,
+        "forks": 596,
+        "openIssues": 77,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-12T03:45:50Z"
+      },
+      "bestFor": [
+        "Minimal Coding Agent Harness on MCP for ChatGPT, Claude, Hermes, Grok Bot, OpenClaw"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "xerj-org/xerj",
+      "githubRepositoryId": 1284653133,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "ai-search",
+        "ai-search-algorithms",
+        "ai-search-engine",
+        "ai-search-free",
+        "ai-search-module",
+        "ai-search-optimization",
+        "ai-searchengine",
+        "bm25-search",
+        "elastic-search",
+        "elasticsearch",
+        "elasticstack",
+        "graph-search"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5595,
+        "forks": 307,
+        "openIssues": 47,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T16:22:50Z"
+      },
+      "bestFor": [
+        "XERJ is the new way for AI to search data. Its autoindex capability activates agents to know your data without the token waste of grep and sed. One command indexes code, docs, logs and PDFs for search"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "YeQing17-2026/OmniAgent",
+      "githubRepositoryId": 1212568395,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "agent",
+        "hermes",
+        "open-claw"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2576,
+        "forks": 389,
+        "openIssues": 41,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-07-27T07:54:11Z"
+      },
+      "bestFor": [
+        "An agent capable of self-evolving and dynamically hardening security"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "yt-dlp/yt-dlp",
+      "githubRepositoryId": 307260205,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "cli",
+        "downloader",
+        "python",
+        "sponsorblock",
+        "youtube-dl",
+        "youtube-downloader",
+        "yt-dlp"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 198115,
+        "forks": 17271,
+        "openIssues": 2702,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Unlicense",
+        "pushedAt": "2026-10-10T21:15:52Z"
+      },
+      "bestFor": [
+        "A feature-rich command-line audio/video downloader"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "100yenadmin/fish-audio-hermes",
+      "githubRepositoryId": 1405168737,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "fish-audio",
+        "hermes-agent",
+        "hermes-plugin",
+        "speech-to-text",
+        "stt",
+        "text-to-speech",
+        "tts",
+        "voice-cloning"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 107,
+        "forks": 1,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-15T17:07:48Z"
+      },
+      "bestFor": [
+        "Official Fish Audio plugin for Hermes Agent: expressive text-to-speech, speech-to-text, voice library, cloning and voice design."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "richiemcilroy/Tov",
+      "githubRepositoryId": 1396004915,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 686,
+        "forks": 24,
+        "openIssues": 39,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-13T17:03:56Z"
+      },
+      "bestFor": [
+        "A TypeScript-shaped language built for coding agents. It compiles to small, fast native binaries."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "twostraws/SwiftUI-Agent-Skill",
+      "githubRepositoryId": 1173845549,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6097,
+        "forks": 221,
+        "openIssues": 15,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-07T13:39:28Z"
+      },
+      "bestFor": [
+        "SwiftUI agent skill for Claude Code, Codex, and other AI tools."
       ],
       "avoidWhen": [
         "production use before licensing and security review"

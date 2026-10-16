@@ -1,22 +1,25 @@
 {
   "files": [
     {
-      "path": "scripts/portfolio_daily.py",
+      "path": ".github/workflows/daily-portfolio-integration.yml",
       "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "recent-project-state",
-        "symbol-indexed"
+        "changed"
       ],
-      "score": 430
+      "score": 100
     },
     {
-      "path": "scripts/recommend.py",
+      "path": "catalog.json",
       "reasons": [
-        "dependency-neighbor"
+        "changed"
       ],
-      "score": 25
+      "score": 100
+    },
+    {
+      "path": "scripts/portfolio_daily.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",
