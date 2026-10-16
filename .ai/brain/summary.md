@@ -3,7 +3,7 @@
 - Index mode: incremental
 - Files indexed: 53
 - Files reparsed this run: 1
-- Symbols: 222
+- Symbols: 224
 - Internal import edges: 11
 - Impacted files: 1
 - Selected tests: 0
@@ -23,11 +23,11 @@
 - scripts/sync_github_stars.py: 8 symbols
 - scripts/test_sync_github_stars.py: 8 symbols
 - scripts/filter_discovery_memory.py: 7 symbols
+- scripts/portfolio_failure_diagnostics.py: 7 symbols
 - scripts/test_discovery_cache_stats.py: 7 symbols
 - scripts/update_history.py: 7 symbols
 - scripts/admit_github_stars.py: 6 symbols
 - scripts/audit_catalog_quality.py: 5 symbols
-- scripts/portfolio_failure_diagnostics.py: 5 symbols
 - scripts/analyze_cache_health.py: 4 symbols
 - scripts/find_replacements.py: 4 symbols
 - scripts/health_score.py: 4 symbols
@@ -44,7 +44,7 @@
 - AST index mode: incremental
 - AST files reparsed this run: 1
 - outline files retained: 53
-- top-level items retained: 862
+- top-level items retained: 864
 - direct members retained: 9
 - symbol shards: 24
 - route named symbols via ast-routing.json, then fetch one ast-symbols/<initial>.json shard

@@ -1343,6 +1343,58 @@ runtime = runtime if isinstance(runtime, dict) else {}
 commits = outcome.get("commit_shas")
 commits_count = min(20, len(commits)) if isinstance(commits, list) else 0
 ⋮----
+def task_failure_evidence(detail: object) -> dict
+⋮----
+"""Summarize failed workflow tasks without exposing source text or identifiers."""
+workflow = detail.get("current_workflow") if isinstance(detail, dict) else None
+tasks = workflow.get("tasks") if isinstance(workflow, dict) else None
+⋮----
+failed = [task for task in tasks if isinstance(task, dict)
+category = "unknown"
+⋮----
+result = task.get("result")
+⋮----
+fields = [result.get(key) for key in (
+evidence = result.get("evidence")
+⋮----
+# All raw fields are classified in memory only; none are persisted.
+description = " ".join(value[:1000] for value in fields if isinstance(value, str))
+category = failure_category({"summary": description})
+⋮----
+final = failed[-1] if failed else {}
+attempts = final.get("attempts")
+budget = final.get("max_attempts")
+exhausted = (attempts >= budget if type(attempts) is int
+⋮----
+def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict
+⋮----
+"""Fetch each public failed v2 project individually with operator privileges.
+
+    Internal project IDs are used only in the request path, never in output.
+    A missing/mismatched detail makes the diagnosis incomplete, not successful.
+    """
+⋮----
+items = inbox.get("items")
+⋮----
+selected = {}
+⋮----
+record = safe_public_failure(item)
+⋮----
+checked = 0
+⋮----
+item = selected.get(record["target"])
+identifier = item.get("project_id") if isinstance(item, dict) else None
+⋮----
+response = request_json(
+project = response.get("project") if isinstance(response, dict) else None
+⋮----
+raw_goal = str(project.get("final_goal") or "")
+expected_goal = str(item.get("final_goal") or "")
+actual = TRACKING.search(raw_goal)
+expected = TRACKING.search(expected_goal)
+⋮----
+deeper = task_failure_evidence(project)
+⋮----
 def public_diagnostics(payload: object) -> dict
 ⋮----
 summary = payload.get("summary")
@@ -1361,7 +1413,8 @@ parser = argparse.ArgumentParser()
 args = parser.parse_args()
 token = os.environ.get("PRODUCTION_OS_OPERATOR_TOKEN", "")
 ⋮----
-result = public_diagnostics(request_json(ENDPOINT, token))
+inbox = request_json(ENDPOINT, token)
+result = add_deep_task_diagnostics(public_diagnostics(inbox), inbox, token)
 ⋮----
 # The log and artifact contain only strictly allowlisted public target names
 # and enumerated failure categories. Never show backend response bodies.

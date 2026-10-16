@@ -57,11 +57,91 @@
       ],
       "dependency_count": 2
     },
-    "public_diagnostics": {
+    "task_failure_evidence": {
       "source": {
         "file": "scripts/portfolio_failure_diagnostics.py",
         "start": 105,
-        "end": 126
+        "end": 144
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "failure_category",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_failure_diagnostics.py",
+              "line": 54,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "add_deep_task_diagnostics": {
+      "source": {
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "start": 147,
+        "end": 204
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "failure_category",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_failure_diagnostics.py",
+              "line": 54,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "request_json",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 101,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "safe_public_failure",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_failure_diagnostics.py",
+              "line": 68,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "task_failure_evidence",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_failure_diagnostics.py",
+              "line": 105,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 4
+    },
+    "public_diagnostics": {
+      "source": {
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "start": 207,
+        "end": 228
       },
       "symbol_dependencies": [
         {
@@ -82,16 +162,28 @@
     "main": {
       "source": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "start": 129,
-        "end": 146
+        "start": 231,
+        "end": 249
       },
       "symbol_dependencies": [
+        {
+          "symbol": "add_deep_task_diagnostics",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_failure_diagnostics.py",
+              "line": 147,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
         {
           "symbol": "public_diagnostics",
           "definitions": [
             {
               "file": "scripts/portfolio_failure_diagnostics.py",
-              "line": 105,
+              "line": 207,
               "kind": "function",
               "language": "python"
             }
@@ -111,7 +203,7 @@
           "relation": "imported_module"
         }
       ],
-      "dependency_count": 2
+      "dependency_count": 3
     }
   }
 }

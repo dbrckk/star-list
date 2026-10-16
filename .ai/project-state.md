@@ -37,20 +37,20 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T19:17:19Z
+Generated: 2026-10-16T19:23:01Z
 
 ### Git
 - Branch: `main`
-- Head: `ef915f25dbd4`
-- Commit date: 2026-10-16T21:16:57+02:00
-- Commit: feat(portfolio): inspect four failed integrations safely via operator diagnostics (#95)
+- Head: `43c2ad0c1fc3`
+- Commit date: 2026-10-16T21:22:51+02:00
+- Commit: feat(portfolio): classify failed worker task details without exposing private data (#96)
 - Tracked files: 278
 
 ### Recently changed files
-- `.github/workflows/portfolio-failure-diagnostics.yml`
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md`
 - `scripts/portfolio_failure_diagnostics.py`
+- `.github/workflows/portfolio-failure-diagnostics.yml`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
 - `catalog.json`

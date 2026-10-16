@@ -859,6 +859,28 @@
       "useful": [
         "scripts/portfolio_failure_diagnostics.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(portfolio): classify failed worker task details without exposing private data (#96)",
+      "terms": [
+        "96",
+        "classify",
+        "data",
+        "details",
+        "exposing",
+        "failed",
+        "feat",
+        "portfolio",
+        "private",
+        "task",
+        "without",
+        "worker"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_failure_diagnostics.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -997,6 +1019,9 @@
     "95": {
       "scripts/portfolio_failure_diagnostics.py": 4
     },
+    "96": {
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -1110,6 +1135,7 @@
     },
     "classify": {
       "scripts/audit_catalog_quality.py": 4,
+      "scripts/portfolio_failure_diagnostics.py": 4,
       "scripts/test_catalog_quality.py": 4
     },
     "closed": {
@@ -1148,6 +1174,9 @@
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
+    "data": {
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
     "day": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1167,6 +1196,9 @@
     },
     "demo": {
       "scripts/portfolio_daily.py": 4
+    },
+    "details": {
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "detect": {
       "scripts/refresh_github_metadata.py": 4,
@@ -1222,17 +1254,20 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "exposing": {
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
     "fail": {
       "scripts/portfolio_daily.py": 4
     },
     "failed": {
       "scripts/portfolio_daily.py": 12,
-      "scripts/portfolio_failure_diagnostics.py": 4
+      "scripts/portfolio_failure_diagnostics.py": 8
     },
     "feat": {
       "scripts/admit_github_stars.py": 4,
       "scripts/portfolio_daily.py": 8,
-      "scripts/portfolio_failure_diagnostics.py": 4,
+      "scripts/portfolio_failure_diagnostics.py": 8,
       "scripts/test_auto_stars_admission.py": 4
     },
     "files": {
@@ -1476,9 +1511,12 @@
     },
     "portfolio": {
       "scripts/portfolio_daily.py": 40,
-      "scripts/portfolio_failure_diagnostics.py": 4,
+      "scripts/portfolio_failure_diagnostics.py": 8,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
+    },
+    "private": {
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "production-os": {
       "scripts/portfolio_daily.py": 20
@@ -1727,6 +1765,9 @@
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
+    "task": {
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
     "throttled": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1798,7 +1839,11 @@
       "scripts/test_refresh_github_metadata.py": 4
     },
     "without": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "worker": {
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "workflow": {
       "scripts/star_import_pipeline.py": 4,

@@ -1,25 +1,21 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "34218e4c2841c582186d5cf47f0f98588ded0758",
-  "head": "ef915f25dbd40249a087e6feb9482612817324b7",
+  "base": "ef915f25dbd40249a087e6feb9482612817324b7",
+  "head": "43c2ad0c1fc32b5f66a19db3c634c3f429441d13",
   "index_mode": "incremental",
   "changed_files": [
-    {
-      "path": ".github/workflows/portfolio-failure-diagnostics.yml",
-      "status": "A"
-    },
     {
       "path": ".github/workflows/portfolio-scan-smoke.yml",
       "status": "M"
     },
     {
       "path": "docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md",
-      "status": "A"
+      "status": "M"
     },
     {
       "path": "scripts/portfolio_failure_diagnostics.py",
-      "status": "A"
+      "status": "M"
     }
   ],
   "changed_source_files": [
@@ -48,16 +44,28 @@
       "line": 68
     },
     {
-      "name": "public_diagnostics",
+      "name": "task_failure_evidence",
       "kind": "function",
       "file": "scripts/portfolio_failure_diagnostics.py",
       "line": 105
     },
     {
+      "name": "add_deep_task_diagnostics",
+      "kind": "function",
+      "file": "scripts/portfolio_failure_diagnostics.py",
+      "line": 147
+    },
+    {
+      "name": "public_diagnostics",
+      "kind": "function",
+      "file": "scripts/portfolio_failure_diagnostics.py",
+      "line": 207
+    },
+    {
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 129
+      "line": 231
     }
   ],
   "selected_tests": []

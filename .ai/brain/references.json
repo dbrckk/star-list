@@ -65,9 +65,39 @@
           "line": 90,
           "preview": "\"failure_category\": failure_category(outcome),",
           "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 111,
+          "preview": "\"retry_budget_exhausted\": None, \"failure_category\": \"unknown\"}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 131,
+          "preview": "category = failure_category({\"summary\": description})",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 143,
+          "preview": "\"failure_category\": category,",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 195,
+          "preview": "if record[\"failure_category\"] == \"unknown\":",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 196,
+          "preview": "record[\"failure_category\"] = deeper[\"failure_category\"]",
+          "definition_candidate": false
         }
       ],
-      "occurrence_count": 2
+      "occurrence_count": 7
     },
     "safe_public_failure": {
       "definition": {
@@ -85,14 +115,20 @@
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 115,
+          "line": 160,
+          "preview": "record = safe_public_failure(item)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 217,
           "preview": "rows = [record for item in items if (record := safe_public_failure(item)) is not None]",
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 2
+      "occurrence_count": 3
     },
-    "public_diagnostics": {
+    "task_failure_evidence": {
       "definition": {
         "file": "scripts/portfolio_failure_diagnostics.py",
         "line": 105,
@@ -103,13 +139,59 @@
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
           "line": 105,
+          "preview": "def task_failure_evidence(detail: object) -> dict:",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 191,
+          "preview": "deeper = task_failure_evidence(project)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 2
+    },
+    "add_deep_task_diagnostics": {
+      "definition": {
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "line": 147,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 147,
+          "preview": "def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict:",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 241,
+          "preview": "result = add_deep_task_diagnostics(public_diagnostics(inbox), inbox, token)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 2
+    },
+    "public_diagnostics": {
+      "definition": {
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "line": 207,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 207,
           "preview": "def public_diagnostics(payload: object) -> dict:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 138,
-          "preview": "result = public_diagnostics(request_json(ENDPOINT, token))",
+          "line": 241,
+          "preview": "result = add_deep_task_diagnostics(public_diagnostics(inbox), inbox, token)",
           "definition_candidate": false
         }
       ],
@@ -118,7 +200,7 @@
     "main": {
       "definition": {
         "file": "scripts/portfolio_failure_diagnostics.py",
-        "line": 129,
+        "line": 231,
         "kind": "function",
         "language": "python"
       },
@@ -305,13 +387,13 @@
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 129,
+          "line": 231,
           "preview": "def main() -> int:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 150,
+          "line": 253,
           "preview": "sys.exit(main())",
           "definition_candidate": false
         },

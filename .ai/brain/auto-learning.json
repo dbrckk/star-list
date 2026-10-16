@@ -2,20 +2,21 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 47,
+    "example_count": 48,
     "rejected_count": 0,
     "terms": [
-      "95",
-      "diagnostics",
+      "96",
+      "classify",
+      "data",
+      "details",
+      "exposing",
       "failed",
       "feat",
-      "four",
-      "inspect",
-      "integrations",
-      "operator",
       "portfolio",
-      "safely",
-      "via"
+      "private",
+      "task",
+      "without",
+      "worker"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -23,7 +24,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(portfolio): inspect four failed integrations safely via operator diagnostics (#95)",
+  "task": "feat(portfolio): classify failed worker task details without exposing private data (#96)",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_failure_diagnostics.py"

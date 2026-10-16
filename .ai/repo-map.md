@@ -418,6 +418,7 @@ jobs:
           sys.path.insert(0, "scripts")
           from portfolio_failure_diagnostics import (
               failure_category, safe_public_failure, public_diagnostics,
+              task_failure_evidence, add_deep_task_diagnostics,
           )
           assert failure_category({"summary": "Provider quota exceeded"}) == "provider-quota-or-token-budget"
           assert failure_category({"summary": "check secret text"}) == "unknown"
@@ -456,6 +457,45 @@ jobs:
           assert report["coverage_complete"] is False
           assert "DO_NOT_LEAK" not in json.dumps(report)
           assert "sensitive-worker" not in json.dumps(report)
+          evidence = task_failure_evidence({
+              "current_workflow": {"tasks": [{
+                  "status": "failed", "attempts": 3, "max_attempts": 3,
+                  "result": {"error": "provider rate limit 429: secret=hidden",
+                             "evidence": {"next_stage": "inference"}},
+              }]}
+          })
+          assert evidence == {
+              "details_checked": True, "failed_task_count": 1,
+              "retry_budget_exhausted": True,
+              "failure_category": "provider-quota-or-token-budget",
+          }
+          from unittest.mock import patch as diagnostic_patch
+          import portfolio_failure_diagnostics as failure_diagnostics
+          public_record = {**test_failure, "project_id": "a" * 32,
+                           "outcome": {}}
+          diagnostic_inbox = {
+              "schema_version": "production-os/production-inbox/v1",
+              "summary": {"matching": 1}, "items": [public_record],
+          }
+          synthetic_detail = {"project": {
+              "repository": public_record["repository"],
+              "status": "NEEDS_ATTENTION",
+              "final_goal": public_record["final_goal"],
+              "current_workflow": {"tasks": [{
+                  "status": "failed", "attempts": 2, "max_attempts": 2,
+                  "result": {"message": "connection timed out; secret=hidden"},
+              }]},
+          }}
+          with diagnostic_patch.object(failure_diagnostics, "request_json",
+                                       return_value=synthetic_detail):
+              deep = add_deep_task_diagnostics(
+                  public_diagnostics(diagnostic_inbox), diagnostic_inbox, "dummy")
+          assert deep["details_checked_v2"] == 1
+          assert deep["details_complete"] is False  # 3 others not returned
+          assert deep["failures"][0]["failure_category"] == "network-or-timeout"
+          assert deep["failures"][0]["retry_budget_exhausted"] is True
+          assert "hidden" not in json.dumps(deep)
+          assert "project_id" not in json.dumps(deep)
           try:
               public_diagnostics({"schema_version": "production-os/production-inbox/v1",
                                   "summary": {"matching": 201}, "items": []})
@@ -2914,6 +2954,58 @@ runtime = runtime if isinstance(runtime, dict) else {}
 commits = outcome.get("commit_shas")
 commits_count = min(20, len(commits)) if isinstance(commits, list) else 0
 ⋮----
+def task_failure_evidence(detail: object) -> dict
+⋮----
+"""Summarize failed workflow tasks without exposing source text or identifiers."""
+workflow = detail.get("current_workflow") if isinstance(detail, dict) else None
+tasks = workflow.get("tasks") if isinstance(workflow, dict) else None
+⋮----
+failed = [task for task in tasks if isinstance(task, dict)
+category = "unknown"
+⋮----
+result = task.get("result")
+⋮----
+fields = [result.get(key) for key in (
+evidence = result.get("evidence")
+⋮----
+# All raw fields are classified in memory only; none are persisted.
+description = " ".join(value[:1000] for value in fields if isinstance(value, str))
+category = failure_category({"summary": description})
+⋮----
+final = failed[-1] if failed else {}
+attempts = final.get("attempts")
+budget = final.get("max_attempts")
+exhausted = (attempts >= budget if type(attempts) is int
+⋮----
+def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict
+⋮----
+"""Fetch each public failed v2 project individually with operator privileges.
+
+    Internal project IDs are used only in the request path, never in output.
+    A missing/mismatched detail makes the diagnosis incomplete, not successful.
+    """
+⋮----
+items = inbox.get("items")
+⋮----
+selected = {}
+⋮----
+record = safe_public_failure(item)
+⋮----
+checked = 0
+⋮----
+item = selected.get(record["target"])
+identifier = item.get("project_id") if isinstance(item, dict) else None
+⋮----
+response = request_json(
+project = response.get("project") if isinstance(response, dict) else None
+⋮----
+raw_goal = str(project.get("final_goal") or "")
+expected_goal = str(item.get("final_goal") or "")
+actual = TRACKING.search(raw_goal)
+expected = TRACKING.search(expected_goal)
+⋮----
+deeper = task_failure_evidence(project)
+⋮----
 def public_diagnostics(payload: object) -> dict
 ⋮----
 summary = payload.get("summary")
@@ -2932,7 +3024,8 @@ parser = argparse.ArgumentParser()
 args = parser.parse_args()
 token = os.environ.get("PRODUCTION_OS_OPERATOR_TOKEN", "")
 ⋮----
-result = public_diagnostics(request_json(ENDPOINT, token))
+inbox = request_json(ENDPOINT, token)
+result = add_deep_task_diagnostics(public_diagnostics(inbox), inbox, token)
 ⋮----
 # The log and artifact contain only strictly allowlisted public target names
 # and enumerated failure categories. Never show backend response bodies.
