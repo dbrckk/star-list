@@ -46,9 +46,12 @@ jobs:
               is_reference_candidate, count_active_integrations,
               count_failed_v2_integrations, verified_managed_projects,
           )
-          assert verified_managed_projects({"projects": []}) == []
+          assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
           for malformed in (
               None, {}, {"projects": "unavailable"}, {"projects": [None]},
+              {"projects": []}, {"projects": [], "total_count": 1, "complete": True},
+              {"projects": [], "total_count": 0, "complete": False},
+              {"projects": [], "total_count": True, "complete": True},
               {"projects": [{"final_goal": "starlist-integration-v2-broken", "status": "ACTIVE"}]},
           ):
               try:
