@@ -2,13 +2,17 @@
 
 To inspect unresolved managed integrations without an operator-token leak, run
 the **Diagnose failed star-list integrations** GitHub Actions workflow. Its
-operator-authenticated query reads Production-OS's problem inbox but writes
-only a strict allowlist of public repositories, enum-valued failure
+operator-authenticated query reads Production-OS's complete redacted integration
+index with explicit opt-in for opaque project IDs, instead of the slow global
+problem inbox. It writes only a strict allowlist of public repositories, enum-valued failure
 categories/statuses and boolean delivery indicators. Raw goals, worker
 messages, internal IDs, URLs, private-repository identities, token values,
 and provider traces never appear in artifacts or action logs.
 
-The query is bounded to 200 problem projects and refuses an incomplete page.
+The index is bounded by Production-OS to 10,000 tracking rows; a missing,
+truncated or malformed index fails closed. The operator-only project IDs are
+used exclusively in memory for four targeted detail requests and are never
+included in reports.
 The report separately marks `coverage_complete` based on the four publicly
 verified unresolved v2 targets (Ai-trading, vibecheck-android,
 viral-android-game, xbow-perso). Missing entries are **not** treated as
@@ -39,7 +43,7 @@ provider-quota problems. Values outside the allowed enums become
 
 **Evidence integrity:** An absent workflow task list, an empty list, or a
 list without a failed/blocked/cancelled task is **incomplete diagnosis**, not
-`details_checked=true`. If the problem inbox contains multiple failed v2
+`details_checked=true`. If the tracking index contains multiple failed v2
 candidate records for the same public target, the report treats that target
 as ambiguous and does not read or attribute one candidate's task result to
 another. Such runs exit nonzero rather than asserting full coverage; the
@@ -48,7 +52,7 @@ terminal task evidence for unambiguous targets counts as deep coverage.
 
 **Operator API outages:** The workflow always retains a strictly redacted
 `portfolio-failure-diagnostics.json` artifact, including when an authenticated
-read fails, Render times out, the inbox response is malformed or the required
+read fails, Render times out, the tracking index response is malformed or the required
 operator token is absent. Its `diagnostic_status` is one of `complete`,
 `incomplete-task-evidence`, `unavailable-inbox`,
 `unavailable-task-details` or `missing-operator-token`.
@@ -57,3 +61,11 @@ verified public coverage intact when the later detail step fails) and exits
 nonzero. The artifact never contains the exception message or API response.
 Compare a failed run's explicit stage with the last successful operator
 run before attempting to repair workers or resubmit projects.
+
+**Bounded read costs:** The privileged index performs a single database
+inventory query, then fetches only the four known public failed v2 project
+records. Each diagnostic read uses one bounded HTTP attempt (60 seconds on
+the approved Render origin), rather than the scanner's standard three retries.
+This keeps the complete diagnosis within the workflow limit even during an
+unavailable provider/API period. The API extension must be live before this
+client update is merged.
