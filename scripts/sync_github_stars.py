@@ -192,8 +192,8 @@ def render_issue(report, limit=50):
             counts["starred"], counts["alreadyCataloged"], counts["new"]
         ),
         "",
-        "New repositories are **not** imported or approved automatically.",
-        "Review identity, licensing, functionality and compatibility before using the existing reviewed-metadata importer.",
+        "New accessible public Stars are automatically admitted at **audit** tier after catalog validation.",
+        "Catalog inclusion is not approval to use or integrate the software: verify identity, licensing, functionality and compatibility first.",
         "",
     ]
     if not entries:
