@@ -27,16 +27,17 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T09:18:17Z
+Generated: 2026-10-16T10:35:06Z
 
 ### Git
 - Branch: `main`
-- Head: `22d0a67c222a`
-- Commit date: 2026-10-16T11:18:07+02:00
-- Commit: fix: resume one failed star-list integration safely per UTC day
+- Head: `ffb50a49688e`
+- Commit date: 2026-10-16T12:34:57+02:00
+- Commit: fix(portfolio): fail closed when Production-OS inventory is unavailable (#72)
 - Tracked files: 274
 
 ### Recently changed files
+- `.github/workflows/portfolio-scan-smoke.yml`
 - `scripts/portfolio_daily.py`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `catalog.json`

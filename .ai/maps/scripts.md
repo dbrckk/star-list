@@ -1038,6 +1038,18 @@ def count_failed_v2_integrations(projects: list[dict]) -> int
 ⋮----
 """Protect the free worker quota until failed high-budget jobs are reviewed."""
 ⋮----
+def verified_managed_projects(payload: object) -> list[dict]
+⋮----
+"""Fail closed if Production-OS cannot provide a complete inventory shape.
+
+    A 404, bad credentials, or API schema drift must not silently turn off
+    dispatch checks while still reporting a successful portfolio scan.
+    """
+⋮----
+projects = payload.get("projects")
+⋮----
+goal = str(project.get("final_goal") or "")
+⋮----
 def public_integration_status(target: str, projects: list[dict]) -> list[dict]
 ⋮----
 """Expose only validated status enums for an already-public repository.
@@ -1048,7 +1060,6 @@ def public_integration_status(target: str, projects: list[dict]) -> list[dict]
 results = []
 accepted = {"ACTIVE", "QUEUED", "RUNNING", "NEEDS_ATTENTION",
 ⋮----
-goal = str(project.get("final_goal") or "")
 markers = re.findall(r"starlist-integration-v([123])-[0-9a-f]{24}(?![0-9a-f])", goal)
 ⋮----
 status = str(project.get("status") or "").upper().replace("-", "_")
@@ -1107,7 +1118,7 @@ operator_token = ""
 queue = sorted(((item["score"], row, item) for row in report["projects"]
 ⋮----
 existing = request_json(service.rstrip("/") + "/v1/managed-projects", operator_token)
-already = [p for p in (existing or {}).get("projects", []) if isinstance(p, dict)]
+already = verified_managed_projects(existing)
 ⋮----
 existing = None
 ⋮----

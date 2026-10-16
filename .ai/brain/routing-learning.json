@@ -519,6 +519,25 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): fail closed when Production-OS inventory is unavailable (#72)",
+      "terms": [
+        "72",
+        "closed",
+        "fail",
+        "inventory",
+        "is",
+        "portfolio",
+        "production-os",
+        "unavailable",
+        "when"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -613,6 +632,9 @@
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
     },
+    "72": {
+      "scripts/portfolio_daily.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -690,6 +712,9 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
     },
+    "closed": {
+      "scripts/portfolio_daily.py": 4
+    },
     "constraints": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
@@ -757,6 +782,9 @@
       "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "fail": {
+      "scripts/portfolio_daily.py": 4
     },
     "failed": {
       "scripts/portfolio_daily.py": 12
@@ -862,7 +890,11 @@
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
     },
+    "inventory": {
+      "scripts/portfolio_daily.py": 4
+    },
     "is": {
+      "scripts/portfolio_daily.py": 4,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
     },
@@ -933,10 +965,10 @@
       "scripts/test_star_import_pipeline.py": 4
     },
     "portfolio": {
-      "scripts/portfolio_daily.py": 24
+      "scripts/portfolio_daily.py": 28
     },
     "production-os": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "project": {
       "scripts/portfolio_daily.py": 4
@@ -1123,6 +1155,9 @@
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
     },
+    "unavailable": {
+      "scripts/portfolio_daily.py": 4
+    },
     "unresolved": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -1145,6 +1180,7 @@
       "scripts/test_recommend.py": 4
     },
     "when": {
+      "scripts/portfolio_daily.py": 4,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
     },

@@ -2,18 +2,18 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 29,
+    "example_count": 30,
     "rejected_count": 0,
     "terms": [
-      "day",
-      "failed",
-      "integration",
-      "one",
-      "per",
-      "resume",
-      "safely",
-      "star-list",
-      "utc"
+      "72",
+      "closed",
+      "fail",
+      "inventory",
+      "is",
+      "portfolio",
+      "production-os",
+      "unavailable",
+      "when"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -21,7 +21,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix: resume one failed star-list integration safely per UTC day",
+  "task": "fix(portfolio): fail closed when Production-OS inventory is unavailable (#72)",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py"
