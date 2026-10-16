@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - "scripts/portfolio_daily.py"
+      - "scripts/portfolio_failure_diagnostics.py"
+      - ".github/workflows/portfolio-failure-diagnostics.yml"
       - ".github/workflows/daily-portfolio-integration.yml"
       - ".github/workflows/portfolio-scan-smoke.yml"
       - "docs/DAILY_PORTFOLIO_INTEGRATION.md"
@@ -59,6 +61,11 @@ jobs:
                       assert "godot" not in candidate["repository"].lower(), candidate
           import sys
           sys.path.insert(0, "scripts")
+          from portfolio_failure_diagnostics import (
+              failure_category, safe_public_failure, public_diagnostics,
+          )
+          assert failure_category({"summary": "Provider quota exceeded"}) == "provider-quota-or-token-budget"
+          assert failure_category({"summary": "check secret text"}) == "unknown"
           from portfolio_daily import (
               is_reference_candidate, count_active_integrations,
               count_failed_v2_integrations, verified_managed_projects,
@@ -66,6 +73,41 @@ jobs:
               count_launches_on_utc_date, busy_integration_targets,
           )
           assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
+          test_failure = {
+              "repository": "dbrckk/Ai-trading", "status": "NEEDS_ATTENTION",
+              "final_goal": "Private instruction. Tracking: " +
+                  "starlist-integration-v2-" + "a" * 24,
+              "project_id": "sensitive-id",
+              "outcome": {"summary": "Provider quota exhausted. secret=private",
+                          "commit_shas": [], "pull_request": None, "ci": None,
+                          "workflow_status": "failed", "validation_status": "failed"},
+              "runtime": {"phase": "needs_attention", "task_status": "failed",
+                          "worker_id": "sensitive-worker"},
+          }
+          safe = safe_public_failure(test_failure)
+          assert safe["target"] == "dbrckk/ai-trading"
+          assert safe["tracking_version"] == "v2"
+          assert safe["failure_category"] == "provider-quota-or-token-budget"
+          assert not ({"project_id", "final_goal", "summary", "worker_id"} & set(safe))
+          report = public_diagnostics({
+              "schema_version": "production-os/production-inbox/v1",
+              "summary": {"matching": 2},
+              "items": [test_failure, {
+                  **test_failure, "repository": "private/secret",
+                  "outcome": {"summary": "secret=DO_NOT_LEAK"},
+              }],
+          })
+          assert report["observed_public_v2_targets"] == 1
+          assert report["coverage_complete"] is False
+          assert "DO_NOT_LEAK" not in json.dumps(report)
+          assert "sensitive-worker" not in json.dumps(report)
+          try:
+              public_diagnostics({"schema_version": "production-os/production-inbox/v1",
+                                  "summary": {"matching": 201}, "items": []})
+          except RuntimeError:
+              pass
+          else:
+              raise AssertionError("Incomplete diagnosis page was accepted")
           # All four actual Production-OS lifecycle states are recognized.
           active = {"repository": "dbrckk/Ai-trading",
                     "final_goal": "Tracking: starlist-integration-v2-" + "a" * 24,
