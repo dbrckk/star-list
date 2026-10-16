@@ -543,7 +543,9 @@ def render_markdown(report: dict) -> str:
     lines = ["<!-- star-list-portfolio-daily -->", "# Daily star-list portfolio discovery", "",
              "Generated (UTC): " + report["generated_at"], "",
              "Repositories inspected: **" + str(summary["inspected"]) + "/" + str(summary["discovered"]) + "**.",
-             "Projects with qualified suggestions: **" + str(summary["with_suggestions"]) + "**.",
+             "Projects with reviewable suggestions: **" + str(summary["with_suggestions"]) + "**.",
+             "Projects with native-mode candidates: **" + str(summary["with_native_suggestions"]) + "**.",
+             "Native-mode candidates: **" + str(summary["native_suggestions"]) + "**.",
              "New Production-OS integration requests: **" + str(summary["dispatched"]) + "**.",
              "Dispatch: **" + report["dispatch_status"] + "**.", ""]
     if isinstance(summary.get("active_integrations"), int):
@@ -574,9 +576,11 @@ def render_markdown(report: dict) -> str:
     if report["errors"]:
         lines.extend(["## Errors", ""])
         lines.extend("- " + error for error in report["errors"])
-    lines.extend(["", "Only qualified licensed matches can be sent to Production-OS. "
-                  "A queued request is not a completed integration: runtime checks "
-                  "and a real validated code change are mandatory."])
+    lines.extend(["", "Native-mode means a preliminary language/capability match, "
+                  "not verified installability. Review-only suggestions cannot be "
+                  "dispatched automatically. A queued request is not a completed "
+                  "integration: runtime checks and a real validated code change "
+                  "are mandatory."])
     return "\n".join(lines) + "\n"
 
 
@@ -814,6 +818,14 @@ def main() -> int:
     report["summary"] = {
         "discovered": len(source), "inspected": sum(p["status"] != "scan-failed" for p in report["projects"]),
         "with_suggestions": sum(bool(p["suggestions"]) for p in report["projects"]),
+        "with_native_suggestions": sum(
+            any(item["mode"] == "native" for item in p["suggestions"])
+            for p in report["projects"]
+        ),
+        "native_suggestions": sum(
+            item["mode"] == "native"
+            for p in report["projects"] for item in p["suggestions"]
+        ),
         "dispatched": dispatched, "active_integrations": active_integrations,
         "failed_v2_integrations": failed_v2_integrations,
         "available_dispatch_slots": available_slots,

@@ -18,7 +18,10 @@ or skipped by GitHub, so "daily" is a configured cadence, not a real-time SLA.
    high-complexity candidates before deciding that an integration is eligible.
 5. Records each scanned target, including those with **no useful match**, in
    `portfolio-daily.json`, `portfolio-daily.md`, a retained Actions artifact
-   and an updated GitHub issue.
+   and an updated GitHub issue. Reports both reviewable suggestions and the
+   smaller subset classified `native`, with separate project and candidate
+   counts. `native` is preliminary evidence, **not** proof that integration
+   succeeded or that the package will work at runtime.
 6. If a qualified suggestion exists and a Production-OS **operator** secret is
    configured, submits up to **3** new tasks per scan (never more than 3 active
    portfolio integrations at once) to the existing managed-project API.

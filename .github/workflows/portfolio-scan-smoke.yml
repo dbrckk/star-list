@@ -35,6 +35,19 @@ jobs:
           assert result["summary"]["discovered"] >= 1
           assert result["summary"]["inspected"] == result["summary"]["discovered"]
           assert result["summary"]["dispatched"] == 0
+          native_by_project = [
+              sum(item["mode"] == "native" for item in row["suggestions"])
+              for row in result["projects"]
+          ]
+          assert result["summary"]["native_suggestions"] == sum(native_by_project)
+          assert result["summary"]["with_native_suggestions"] == sum(
+              count > 0 for count in native_by_project
+          )
+          assert result["summary"]["with_native_suggestions"] <= result["summary"]["with_suggestions"]
+          assert result["summary"]["native_suggestions"] >= result["summary"]["with_native_suggestions"]
+          report_markdown = Path("portfolio-daily.md").read_text()
+          assert ("Projects with native-mode candidates: **"
+                  + str(result["summary"]["with_native_suggestions"]) + "**.") in report_markdown
           for project in result["projects"]:
               for candidate in project["suggestions"]:
                   assert not ({"and", "as", "the", "with", "et", "pour", "avec", "dans", "les", "des"} & set(candidate["shared_terms"])), candidate
@@ -133,6 +146,9 @@ jobs:
                   assert scanner.main() == 0
               evidence = json.loads((p / "scan.json").read_text())
               assert evidence["summary"]["dispatched"] == 2
+              assert evidence["summary"]["with_native_suggestions"] == 2
+              assert evidence["summary"]["native_suggestions"] == 3
+              assert evidence["summary"]["with_suggestions"] == 2
               assert evidence["dispatch_status"] == "enabled"
               assert launches == [("dbrckk/alpha", "upstream/one"),
                                   ("dbrckk/beta", "upstream/three")], launches
