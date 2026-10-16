@@ -650,6 +650,7 @@ def main() -> int:
         except (RuntimeError, ValueError, TypeError) as exc:
             existing = None
             report["errors"].append("Cannot inspect existing managed projects: " + str(exc))
+            report["dispatch_status"] = "blocked (Production-OS inventory unavailable)"
         if existing is not None:
             # Public issue rows originate only from public GitHub discovery.
             # Never include private managed-project names or instruction text.
@@ -776,6 +777,20 @@ def main() -> int:
                     dispatched += 1
                 except (RuntimeError, ValueError, TypeError) as exc:
                     report["errors"].append(row["repository"] + " dispatch: " + str(exc))
+    if operator_token and scan_complete and available_slots is not None:
+        if report["errors"]:
+            report["dispatch_status"] = "failed (integration dispatch errors)"
+        elif args.max_dispatch == 0:
+            report["dispatch_status"] = "disabled (read-only scan)"
+        elif available_slots == 0:
+            if active_integrations:
+                report["dispatch_status"] = "paused (active portfolio integrations)"
+            elif failed_v2_integrations and launches_today is not None and launches_today >= 1:
+                report["dispatch_status"] = "throttled (UTC daily launch quota exhausted)"
+            else:
+                report["dispatch_status"] = "paused (fleet capacity unavailable)"
+        elif dispatched == 0:
+            report["dispatch_status"] = "idle (no new eligible integration)"
     report["summary"] = {
         "discovered": len(source), "inspected": sum(p["status"] != "scan-failed" for p in report["projects"]),
         "with_suggestions": sum(bool(p["suggestions"]) for p in report["projects"]),
