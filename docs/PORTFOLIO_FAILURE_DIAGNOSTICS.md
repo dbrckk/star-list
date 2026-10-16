@@ -26,3 +26,11 @@ results in memory for allowlisted categories, retry-exhaustion status and task
 counts. No raw task result, project ID, job key or workflow payload is emitted.
 `details_complete` must be true for all four verified failed v2 targets;
 otherwise the workflow exits nonzero while preserving partial safe evidence.
+
+When a task result is present, the sanitized output also records the
+number of attempts used, the configured retry maximum, a fixed whitelist
+of available result/evidence field names, and fixed-enum worker/pipeline
+states. It recognizes `capacity_exhausted` and
+`godot_preview_cycle_budget_exhausted` separately from external
+provider-quota problems. Values outside the allowed enums become
+`unknown`; raw diagnostic values are never emitted.
