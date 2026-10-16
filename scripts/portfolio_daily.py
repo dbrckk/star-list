@@ -407,6 +407,35 @@ def integration_marker(target: str, candidate: dict, version: int = 2) -> str:
     return f"starlist-integration-v{version}-" + identity
 
 
+def recoverable_failure_targets(failures: list[dict], projects: list[dict]) -> set[str]:
+    """Quarantine only targets with an *eligible* v3 retry still available.
+
+    A previous candidate may later be rejected as a reference application,
+    incompatible capability or low-value match. Keep the failed v2 record
+    visible, but do not permanently block an unrelated qualified native tool.
+    Existing v3 records (any status) are non-retryable.
+    """
+    available: dict[str, set[str]] = {}
+    for project in projects:
+        target = str(project.get("repository") or "").lower()
+        for candidate in project.get("suggestions") or []:
+            if isinstance(candidate, dict) and candidate.get("mode") == "native":
+                available.setdefault(target, set()).add(
+                    integration_marker(target, candidate)
+                )
+
+    return {
+        str(failure.get("repository") or "").lower()
+        for failure in failures
+        if isinstance(failure.get("repository"), str)
+        and str(failure["repository"]).lower() in available
+        and any(
+            marker in str(failure.get("final_goal") or "")
+            for marker in available[str(failure["repository"]).lower()]
+        )
+    }
+
+
 def launch_integration(url: str, token: str, target: str, candidate: dict, *, version: int = 2):
     parsed = urlparse(url)
     if parsed.scheme != "https" or parsed.username or parsed.password or parsed.query or parsed.fragment:
@@ -561,10 +590,13 @@ def main() -> int:
             # worker. This avoids both deadlock and unlimited paid/free-token
             # retries from scans triggered repeatedly by GitHub events.
             unresolved_failures = unresolved_failed_v2_integrations(already)
-            failed_targets = {
-                str(p.get("repository") or "").lower()
-                for p in unresolved_failures
-            }
+            failed_targets = recoverable_failure_targets(
+                unresolved_failures, report["projects"]
+            )
+            # Historical failures for candidates now disqualified remain
+            # counted and reported; they cannot hold a target hostage forever.
+            # The global one-launch-per-day cap still applies whenever a
+            # historical v2 failure remains unresolved.
             if failed_v2_integrations:
                 current_day = report["generated_at"][:10]
                 launches_today = sum(
