@@ -22,9 +22,12 @@ PUBLIC_FAILED_TARGETS = frozenset({
     "dbrckk/viral-android-game",
     "dbrckk/xbow-perso",
 })
+# This O(1)-query index replaces the global production inbox, which eagerly
+# materializes hundreds of unrelated project statuses before search filtering.
+# Only an authenticated operator receives per-project diagnostic IDs.
 ENDPOINT = (
-    "https://production-os1.onrender.com/v1/dashboard/productions"
-    "?filter=problems&q=starlist-integration-v&limit=200"
+    "https://production-os1.onrender.com/v1/managed-projects/integration-inventory"
+    "?include_project_ids=1"
 )
 TRACKING = re.compile(r"(?<![a-z0-9])starlist-integration-v([123])-[0-9a-f]{24}(?![0-9a-f])")
 CATEGORIES = (
@@ -214,7 +217,7 @@ def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict:
         try:
             response = request_json(
                 "https://production-os1.onrender.com/v1/managed-projects/" + identifier,
-                token,
+                token, max_attempts=1,
             )
             project = response.get("project") if isinstance(response, dict) else None
             if not isinstance(project, dict):
@@ -249,6 +252,42 @@ def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict:
         result["coverage_complete"] and checked == len(PUBLIC_FAILED_TARGETS)
     )
     return result
+
+
+def inventory_diagnostic_inbox(payload: object) -> dict:
+    """Convert a complete operator-only index into filtered-inbox structure.
+
+    Never copy raw worker instructions into artifacts. The server itself
+    redacts tracking goals; this in-memory conversion keeps only the fields
+    needed to fetch the four public failed v2 project details.
+    """
+    if not isinstance(payload, dict) or payload.get("complete") is not True:
+        raise RuntimeError("operator integration inventory unavailable")
+    rows = payload.get("projects")
+    total = payload.get("total_count")
+    if (not isinstance(rows, list) or type(total) is not int
+            or total != len(rows) or total > 10000
+            or any(not isinstance(row, dict) for row in rows)):
+        raise RuntimeError("operator integration inventory incomplete")
+    items = []
+    for row in rows:
+        # An incomplete privileged index cannot prove absence of a job.
+        if (not isinstance(row.get("repository"), str)
+                or not isinstance(row.get("final_goal"), str)
+                or not isinstance(row.get("status"), str)
+                or not isinstance(row.get("project_id"), str)):
+            raise RuntimeError("operator integration inventory missing identity")
+        items.append({
+            "repository": row["repository"],
+            "status": row["status"],
+            "final_goal": row["final_goal"],
+            "project_id": row["project_id"],
+        })
+    return {
+        "schema_version": "production-os/production-inbox/v1",
+        "summary": {"matching": len(items)},
+        "items": items,
+    }
 
 
 def public_diagnostics(payload: object) -> dict:
@@ -303,7 +342,9 @@ def main() -> int:
     else:
         stage = "inbox"
         try:
-            inbox = request_json(ENDPOINT, token)
+            inbox = inventory_diagnostic_inbox(
+                request_json(ENDPOINT, token, max_attempts=1)
+            )
             result = public_diagnostics(inbox)
             stage = "task-details"
             result = add_deep_task_diagnostics(result, inbox, token)
