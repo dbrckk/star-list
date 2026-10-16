@@ -357,6 +357,8 @@ jobs:
                   + str(result["summary"]["with_native_suggestions"]) + "**.") in report_markdown
           for project in result["projects"]:
               for candidate in project["suggestions"]:
+                  if "roblox" in project["repository"].lower() and candidate["repository"].lower() == "chrrxs/robloxstudio-mcp":
+                      assert candidate["mode"] == "adapter-review", candidate
                   assert not ({"and", "as", "the", "with", "et", "pour", "avec", "dans", "les", "des"} & set(candidate["shared_terms"])), candidate
                   if "roblox" in project["repository"].lower():
                       assert "godot" not in candidate["repository"].lower(), candidate
@@ -398,6 +400,23 @@ jobs:
           from datetime import datetime, timezone
           from unittest.mock import patch
           import portfolio_daily as scanner
+          # Use the real catalog metadata to verify that a Roblox Studio MCP
+          # sidecar cannot be mistaken for a native Lua game dependency.
+          catalog_entries = json.loads(Path("catalog.json").read_text())["repositories"]
+          bridge = next(item for item in catalog_entries
+                        if item["repo"].lower() == "chrrxs/robloxstudio-mcp")
+          assert "mcp" in bridge["capabilities"]
+          profile = {"domains": ["game_dev"], "terms": scanner.tokens(
+              "roblox playtesting debugging studio multiplayer profiling"),
+              "dependencies": "", "overview": "roblox game", "language": "lua"}
+          game = {"full_name": "dbrckk/chaos-survival-roblox",
+                  "name": "chaos-survival-roblox"}
+          from portfolio_daily import recommendations
+          matched = recommendations(game, profile, [bridge], 3)
+          assert len(matched) == 1, matched
+          assert matched[0]["mode"] == "adapter-review", matched
+          # Development bridges remain reviewable, not dispatched natively.
+          assert not any(x["mode"] == "native" for x in matched)
           from urllib.request import Request
           protected = Request("https://production-os1.onrender.com/v1/dashboard/launch",
                               headers={"Authorization": "Bearer offline-test"})
@@ -2507,6 +2526,12 @@ score = score_repo(tool, profile["terms"], domains, set(), set())
 # qualify an otherwise unrelated same-language library for dispatch.
 concrete_terms = (
 capability_overlap = bool(set(shared) & concrete_terms)
+# An MCP control bridge runs alongside Roblox Studio. Its Lua/Luau
+# plugin is not a library embedded in the published game: external
+# Studio access, an MCP client and a development host are required.
+# Do not spend autonomous runtime-integration budget on this match.
+capabilities = {str(v).strip().lower() for v in (tool.get("capabilities") or [])}
+external_studio_bridge = (
 # A language mismatch remains adapter-review; same-language tools
 # with only prose overlap remain discoverable but require review.
 mode = (

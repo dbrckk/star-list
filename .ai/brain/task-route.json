@@ -4,19 +4,19 @@
     "expand_to": 12,
     "max_files": 3,
     "requested_max_files": 12,
-    "score_margin": 13,
+    "score_margin": 17,
     "tier": "narrow",
-    "top_score": 42
+    "top_score": 46
   },
   "cache": {
-    "fingerprint": "0d44add6162313bc85a0daeb5be025f7810222ac800e86248a249430249c6947",
+    "fingerprint": "de82dc9f7e65429f9a40ca4d9570fffae01d9622da721731beaf0f75f75a21f5",
     "hit": false
   },
   "candidate_count": 7,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
-      "learning_score": 4,
+      "learning_score": 8,
       "matched_terms": [
         "engine",
         "game"
@@ -28,7 +28,7 @@
         "recently-changed",
         "search-index"
       ],
-      "score": 42,
+      "score": 46,
       "symbols": [
         "SameOriginRedirect",
         "busy_integration_targets",

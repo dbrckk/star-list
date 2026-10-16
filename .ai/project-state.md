@@ -32,13 +32,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T18:34:07Z
+Generated: 2026-10-16T18:39:31Z
 
 ### Git
 - Branch: `main`
-- Head: `e1f9fffad3f8`
-- Commit date: 2026-10-16T20:33:36+02:00
-- Commit: fix(portfolio): strictly verify launch receipts on current main (#90)
+- Head: `207bdfdb2656`
+- Commit date: 2026-10-16T20:39:20+02:00
+- Commit: fix(portfolio): keep Roblox Studio MCP bridges out of native game integrations (#91)
 - Tracked files: 275
 
 ### Recently changed files

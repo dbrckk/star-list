@@ -1055,6 +1055,12 @@ score = score_repo(tool, profile["terms"], domains, set(), set())
 # qualify an otherwise unrelated same-language library for dispatch.
 concrete_terms = (
 capability_overlap = bool(set(shared) & concrete_terms)
+# An MCP control bridge runs alongside Roblox Studio. Its Lua/Luau
+# plugin is not a library embedded in the published game: external
+# Studio access, an MCP client and a development host are required.
+# Do not spend autonomous runtime-integration budget on this match.
+capabilities = {str(v).strip().lower() for v in (tool.get("capabilities") or [])}
+external_studio_bridge = (
 # A language mismatch remains adapter-review; same-language tools
 # with only prose overlap remain discoverable but require review.
 mode = (
