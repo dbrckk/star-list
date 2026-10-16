@@ -1023,6 +1023,13 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
 name = repo["full_name"].lower()
 domains = set(profile["domains"])
 ⋮----
+target_identity = repo["name"].lower()
+godot_target = profile["language"] == "gdscript" or "godot" in target_identity
+existing_engine_sources = set(EXISTING_ENGINE_SOURCES["godot"]) if godot_target else set()
+# Engine alternatives are replacement *platforms*, not dependencies.
+# Derive them from the catalog's own explicit alternative relationships,
+# rather than chasing individual incompatible engine names by hand.
+excluded_engine_sources = existing_engine_sources | {
 matches = []
 ⋮----
 slug = str(tool.get("repo") or "")
@@ -1034,10 +1041,8 @@ shared = sorted((profile["terms"] & terms) - GENERIC - STOPWORDS)
 # not merely an organization name (or an incidental README word).
 capability_terms = (tokens(" ".join(tool.get("capabilities") or []))
 ⋮----
-target_identity = repo["name"].lower()
-⋮----
-# An engine already running this game is a platform, not an
-# installable feature. Retain compatible plugins and addons.
+# Ignore the installed engine source and explicit substitute
+# engines. Continue recommending compatible plugins/addons.
 ⋮----
 slug_name = slug.rsplit("/", 1)[-1].lower()
 ⋮----
@@ -1159,6 +1164,17 @@ def launch_integration(url: str, token: str, target: str, candidate: dict, *, ve
 ⋮----
 marker = integration_marker(target, candidate, version=version)
 goal = (
+⋮----
+def confirmed_launch(result: object, target: str, candidate: dict, *, version: int = 2) -> bool
+⋮----
+"""Accept only a bound, persistent, idempotent Production-OS receipt.
+
+    An HTTP success containing {"project": {}} is not proof of the requested
+    launch. Wrong-target acknowledgements must not consume a fleet slot or
+    permit the dispatcher to submit more work under an inconsistent inventory.
+    """
+⋮----
+identifier = project.get("id")
 ⋮----
 def render_markdown(report: dict) -> str
 ⋮----

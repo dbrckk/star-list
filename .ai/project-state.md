@@ -32,13 +32,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T18:30:38Z
+Generated: 2026-10-16T18:34:07Z
 
 ### Git
 - Branch: `main`
-- Head: `e9ae07c4c697`
-- Commit date: 2026-10-16T20:30:28+02:00
-- Commit: feat(portfolio): separate reviewable matches from native integration candidates (#87)
+- Head: `e1f9fffad3f8`
+- Commit date: 2026-10-16T20:33:36+02:00
+- Commit: fix(portfolio): strictly verify launch receipts on current main (#90)
 - Tracked files: 275
 
 ### Recently changed files

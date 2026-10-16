@@ -1,14 +1,14 @@
 # CI status
 
-Summary: 5 success / 0 failure / 2 active
+Summary: 4 success / 0 failure / 3 active
 
-- Daily portfolio star-list integration: in_progress / pending (e9ae07c4)
-- Validate catalog: in_progress / pending (e9ae07c4)
-- Validate catalog: completed / success (4a61917c)
-- Portfolio discovery live smoke: completed / success (4a61917c)
-- Validate catalog: completed / success (4a61917c)
-- Validate catalog: completed / success (c33b711f)
-- Portfolio discovery live smoke: completed / success (c33b711f)
-- Validate catalog: completed / cancelled (c9c0467f)
+- Validate catalog: queued / pending (e1f9fffa)
+- Daily portfolio star-list integration: pending / pending (e1f9fffa)
+- Validate catalog: completed / cancelled (38fba181)
+- Daily portfolio star-list integration: in_progress / pending (38fba181)
+- Validate catalog: completed / success (e6306147)
+- Portfolio discovery live smoke: completed / success (e6306147)
+- Portfolio discovery live smoke: completed / success (48126322)
+- Validate catalog: completed / success (48126322)
 
 > Generated summary only; inspect GitHub Actions for full logs when needed.

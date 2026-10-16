@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "17cc9dda40c96ea31b7d4cb00b56fae938436681",
-  "head": "e9ae07c4c69726696de4e4b23b7452122bfd1bae",
+  "base": "e9ae07c4c69726696de4e4b23b7452122bfd1bae",
+  "head": "e1f9fffad3f82a316c9b30ed01509a69cd8757e8",
   "index_mode": "incremental",
   "changed_files": [
     {
@@ -83,73 +83,79 @@
       "name": "count_active_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 311
+      "line": 321
     },
     {
       "name": "busy_integration_targets",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 321
+      "line": 331
     },
     {
       "name": "unresolved_failed_v2_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 341
+      "line": 351
     },
     {
       "name": "count_failed_v2_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 372
+      "line": 382
     },
     {
       "name": "count_launches_on_utc_date",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 377
+      "line": 387
     },
     {
       "name": "verified_managed_projects",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 397
+      "line": 407
     },
     {
       "name": "public_integration_status",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 448
+      "line": 458
     },
     {
       "name": "integration_marker",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 470
+      "line": 480
     },
     {
       "name": "recoverable_failure_targets",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 477
+      "line": 487
     },
     {
       "name": "launch_integration",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 513
+      "line": 523
+    },
+    {
+      "name": "confirmed_launch",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 551
     },
     {
       "name": "render_markdown",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 541
+      "line": 585
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 587
+      "line": 631
     }
   ],
   "selected_tests": []

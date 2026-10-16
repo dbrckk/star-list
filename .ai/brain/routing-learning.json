@@ -780,6 +780,24 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): strictly verify launch receipts on current main (#90)",
+      "terms": [
+        "90",
+        "current",
+        "launch",
+        "main",
+        "portfolio",
+        "receipts",
+        "strictly",
+        "verify"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -904,6 +922,9 @@
       "scripts/portfolio_daily.py": 4
     },
     "87": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "90": {
       "scripts/portfolio_daily.py": 4
     },
     "add": {
@@ -1039,6 +1060,9 @@
     "curated": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "current": {
+      "scripts/portfolio_daily.py": 4
     },
     "daily": {
       "scripts/portfolio_daily.py": 12,
@@ -1264,7 +1288,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "launch": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "launches": {
       "scripts/portfolio_daily.py": 4
@@ -1288,6 +1312,9 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
+    },
+    "main": {
+      "scripts/portfolio_daily.py": 4
     },
     "make": {
       "scripts/portfolio_daily.py": 4
@@ -1383,6 +1410,9 @@
       "scripts/portfolio_daily.py": 8
     },
     "quota": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "receipts": {
       "scripts/portfolio_daily.py": 4
     },
     "recommend": {
@@ -1570,6 +1600,9 @@
     "stop": {
       "scripts/portfolio_daily.py": 4
     },
+    "strictly": {
+      "scripts/portfolio_daily.py": 4
+    },
     "surface": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1630,6 +1663,7 @@
     },
     "verify": {
       "scripts/backfill_licenses.py": 4,
+      "scripts/portfolio_daily.py": 4,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_backfill_licenses.py": 4,
       "scripts/test_refresh_github_metadata.py": 4

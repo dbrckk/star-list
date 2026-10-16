@@ -432,9 +432,23 @@ jobs:
               "dbrckk/beta": [suggestion("upstream/three", 58)],
           }
           launches = []
-          def fake_launch(_url, _token, target, candidate, **_kwargs):
+          def fake_launch(_url, _token, target, candidate, **kwargs):
               launches.append((target, candidate["repository"]))
-              return {"project": {"id": len(launches)}}
+              identity = f"{len(launches):032x}"
+              marker = integration_marker(target, candidate,
+                                          version=kwargs.get("version", 2))
+              return {
+                  "project": {
+                      "id": identity, "project_id": identity,
+                      "repository": target, "final_goal": "Tracking: " + marker,
+                      "token_budget": scanner.INTEGRATION_TOKEN_BUDGET,
+                  },
+                  "launch": {
+                      "mode": "managed-project", "persistent": True,
+                      "idempotent": True, "request_id": marker,
+                      "token_budget": scanner.INTEGRATION_TOKEN_BUDGET,
+                  },
+              }
           with tempfile.TemporaryDirectory() as scratch:
               p = Path(scratch)
               (p / "catalog.json").write_text('{"repositories": []}')
@@ -468,7 +482,20 @@ jobs:
               def unconfirmed_launch(_url, _token, target, candidate, **_kwargs):
                   launches.append((target, candidate["repository"]))
                   return {"project": None}
-              for launch_impl in (ambiguous_launch, unconfirmed_launch):
+              def mismatched_target(_url, _token, target, candidate, **kwargs):
+                  result = fake_launch(_url, _token, target, candidate, **kwargs)
+                  result["project"]["repository"] = "dbrckk/wrong-target"
+                  return result
+              def mismatched_marker(_url, _token, target, candidate, **kwargs):
+                  result = fake_launch(_url, _token, target, candidate, **kwargs)
+                  result["launch"]["request_id"] = "other-request-id"
+                  return result
+              def wrong_budget(_url, _token, target, candidate, **kwargs):
+                  result = fake_launch(_url, _token, target, candidate, **kwargs)
+                  result["launch"]["token_budget"] = 30000
+                  return result
+              for launch_impl in (ambiguous_launch, unconfirmed_launch,
+                                  mismatched_target, mismatched_marker, wrong_budget):
                   launches.clear()
                   with patch.dict(os.environ, {"PRODUCTION_OS_OPERATOR_TOKEN": "offline-test"}), \
                        patch.object(sys, "argv", argv), \
@@ -672,19 +699,27 @@ jobs:
           # Regression from the real Jumpy scan: a Godot game cannot
           # "integrate" the whole Godot engine as a new dependency.
           godot_engine = next(x for x in catalog if x["repo"].lower() == "godotengine/godot")
+          libgdx_engine = next(x for x in catalog if x["repo"].lower() == "libgdx/libgdx")
+          assert "libgdx/libgdx" in [
+              x.lower() for x in godot_engine.get("alternatives", [])
+          ], "Catalog must explicitly identify libGDX as an alternative to Godot"
           jumpy = {"name": "Jumpy", "full_name": "dbrckk/Jumpy"}
           godot_profile = {
               "domains": ["game_dev"], "language": "gdscript",
               "terms": scanner.tokens("godot game development cross-platform"),
               "dependencies": "", "overview": "",
           }
-          assert scanner.recommendations(jumpy, godot_profile, [godot_engine], 3) == []
-          # The exclusion is specific to the engine source, not Godot addons.
+          assert scanner.recommendations(
+              jumpy, godot_profile, [godot_engine, libgdx_engine], 3
+          ) == []
+          # The exclusion is specific to engine sources and their explicit
+          # alternatives, not normal Godot plugins or compatible addons.
           assert "godotengine/godot" in scanner.EXISTING_ENGINE_SOURCES["godot"]
           for project in result["projects"]:
               if project["repository"].lower() == "dbrckk/jumpy":
-                  assert all(item["repository"].lower() != "godotengine/godot"
-                             for item in project["suggestions"]), project
+                  assert all(item["repository"].lower() not in {
+                      "godotengine/godot", "libgdx/libgdx"
+                  } for item in project["suggestions"]), project
           reference = next(x for x in catalog if x["repo"].lower() == "android/nowinandroid")
           assert is_reference_candidate(reference), "Architecture example must be review-only"
           for project in result["projects"]:
@@ -2440,6 +2475,13 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
 name = repo["full_name"].lower()
 domains = set(profile["domains"])
 ⋮----
+target_identity = repo["name"].lower()
+godot_target = profile["language"] == "gdscript" or "godot" in target_identity
+existing_engine_sources = set(EXISTING_ENGINE_SOURCES["godot"]) if godot_target else set()
+# Engine alternatives are replacement *platforms*, not dependencies.
+# Derive them from the catalog's own explicit alternative relationships,
+# rather than chasing individual incompatible engine names by hand.
+excluded_engine_sources = existing_engine_sources | {
 matches = []
 ⋮----
 slug = str(tool.get("repo") or "")
@@ -2451,10 +2493,8 @@ shared = sorted((profile["terms"] & terms) - GENERIC - STOPWORDS)
 # not merely an organization name (or an incidental README word).
 capability_terms = (tokens(" ".join(tool.get("capabilities") or []))
 ⋮----
-target_identity = repo["name"].lower()
-⋮----
-# An engine already running this game is a platform, not an
-# installable feature. Retain compatible plugins and addons.
+# Ignore the installed engine source and explicit substitute
+# engines. Continue recommending compatible plugins/addons.
 ⋮----
 slug_name = slug.rsplit("/", 1)[-1].lower()
 ⋮----
@@ -2576,6 +2616,17 @@ def launch_integration(url: str, token: str, target: str, candidate: dict, *, ve
 ⋮----
 marker = integration_marker(target, candidate, version=version)
 goal = (
+⋮----
+def confirmed_launch(result: object, target: str, candidate: dict, *, version: int = 2) -> bool
+⋮----
+"""Accept only a bound, persistent, idempotent Production-OS receipt.
+
+    An HTTP success containing {"project": {}} is not proof of the requested
+    launch. Wrong-target acknowledgements must not consume a fleet slot or
+    permit the dispatcher to submit more work under an inconsistent inventory.
+    """
+⋮----
+identifier = project.get("id")
 ⋮----
 def render_markdown(report: dict) -> str
 ⋮----
