@@ -658,6 +658,27 @@ jobs:
                           "language": "lua", "dependencies": "", "overview": ""}
           # Explicitly declared alternative engines are not Roblox plugins.
           assert recommendations(game, game_profile, engines, 3) == []
+          # Hermes/OpenCode are standalone agent processes. Even a matching
+          # implementation language must not turn them into native libraries.
+          for slug, language, terms in (
+              ("NousResearch/hermes-agent", "python",
+               "agent delegation memory automation mcp research scheduled workflows"),
+              ("anomalyco/opencode", "typescript",
+               "agent coding debugging tests mcp terminal repository development"),
+          ):
+              source = next(item for item in catalog_entries
+                            if item["repo"].lower() == slug.lower())
+              agent_profile = {
+                  "domains": ["ai_agents"],
+                  "language": language,
+                  "terms": scanner.tokens(terms),
+                  "dependencies": "",
+                  "overview": "",
+              }
+              target = {"name": "ai-service", "full_name": "dbrckk/ai-service"}
+              suggestions = recommendations(target, agent_profile, [source], 3)
+              assert len(suggestions) == 1, (slug, suggestions)
+              assert suggestions[0]["mode"] == "adapter-review", suggestions
           from urllib.request import Request
           protected = Request("https://production-os1.onrender.com/v1/dashboard/launch",
                               headers={"Authorization": "Bearer offline-test"})
@@ -2651,6 +2672,11 @@ ENGINE_CONFLICTS = {
 # A repository *using* an engine should not be told to integrate that engine's
 # complete source tree as if it were a missing application dependency.
 EXISTING_ENGINE_SOURCES = {
+⋮----
+# These are independently running coding agents/CLIs, not importable runtime
+# libraries. Recommend them as development-side adapters, never dispatch a
+# native app dependency just because the implementation language matches.
+EXTERNAL_CODING_AGENT_CLIS = frozenset({
 ⋮----
 MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
 ⋮----
@@ -6302,7 +6328,12 @@ Repository-specific rules:
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
       "capabilities": [
-        "agent"
+        "agent",
+        "coding",
+        "mcp",
+        "repo-analysis",
+        "debugging",
+        "testing"
       ],
       "alternatives": [
         "OpenHands/OpenHands",
@@ -6314,11 +6345,13 @@ Repository-specific rules:
         "langfuse/langfuse"
       ],
       "bestFor": [
-        "autonomous coding",
-        "terminal workflows"
+        "autonomous coding in a terminal",
+        "repository exploration, edits and tests",
+        "MCP-assisted coding workflows"
       ],
       "avoidWhen": [
-        "GUI-first workflows"
+        "no configured working model provider",
+        "embedding application runtime libraries"
       ],
       "languages": [
         "typescript"
@@ -6393,7 +6426,12 @@ Repository-specific rules:
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
       "capabilities": [
-        "agent"
+        "agent",
+        "mcp",
+        "delegation",
+        "agent-memory",
+        "automation",
+        "repo-analysis"
       ],
       "languages": [
         "python"
@@ -6420,10 +6458,13 @@ Repository-specific rules:
         "pushedAt": "2026-10-12T11:45:48Z"
       },
       "bestFor": [
-        "agentic workflows"
+        "delegated research and agent workflows",
+        "persistent agent memory and reusable skills",
+        "scheduled automations and MCP tool orchestration"
       ],
       "avoidWhen": [
-        "simple deterministic scripts without agent orchestration"
+        "no configured working model provider",
+        "simple deterministic tasks not requiring an external agent"
       ],
       "guidanceSource": "inferred"
     },

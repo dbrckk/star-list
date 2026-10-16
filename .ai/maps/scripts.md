@@ -941,6 +941,11 @@ ENGINE_CONFLICTS = {
 # complete source tree as if it were a missing application dependency.
 EXISTING_ENGINE_SOURCES = {
 ⋮----
+# These are independently running coding agents/CLIs, not importable runtime
+# libraries. Recommend them as development-side adapters, never dispatch a
+# native app dependency just because the implementation language matches.
+EXTERNAL_CODING_AGENT_CLIS = frozenset({
+⋮----
 MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
 ⋮----
 class SameOriginRedirect(HTTPRedirectHandler)

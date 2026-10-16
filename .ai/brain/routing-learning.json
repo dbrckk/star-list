@@ -942,6 +942,27 @@
       "useful": [
         "scripts/portfolio_failure_diagnostics.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(catalog): accurately recommend Hermes and OpenCode without unsafe native dispatch (#102)",
+      "terms": [
+        "102",
+        "accurately",
+        "catalog",
+        "dispatch",
+        "feat",
+        "hermes",
+        "native",
+        "opencode",
+        "recommend",
+        "unsafe",
+        "without"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -949,6 +970,9 @@
   "term_file_scores": {
     "100": {
       "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "102": {
+      "scripts/portfolio_daily.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1095,6 +1119,9 @@
     "absent": {
       "scripts/portfolio_failure_diagnostics.py": 4
     },
+    "accurately": {
+      "scripts/portfolio_daily.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -1209,7 +1236,7 @@
     },
     "catalog": {
       "scripts/audit_catalog_quality.py": 4,
-      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_daily.py": 8,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
@@ -1307,7 +1334,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "dispatch": {
-      "scripts/portfolio_daily.py": 8
+      "scripts/portfolio_daily.py": 12
     },
     "distinct": {
       "scripts/portfolio_daily.py": 4
@@ -1366,7 +1393,7 @@
     },
     "feat": {
       "scripts/admit_github_stars.py": 4,
-      "scripts/portfolio_daily.py": 8,
+      "scripts/portfolio_daily.py": 12,
       "scripts/portfolio_failure_diagnostics.py": 8,
       "scripts/test_auto_stars_admission.py": 4
     },
@@ -1446,6 +1473,9 @@
       "scripts/test_recommend.py": 4
     },
     "healthy": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "hermes": {
       "scripts/portfolio_daily.py": 4
     },
     "human": {
@@ -1582,7 +1612,7 @@
       "scripts/validate_catalog.py": 4
     },
     "native": {
-      "scripts/portfolio_daily.py": 8
+      "scripts/portfolio_daily.py": 12
     },
     "not": {
       "scripts/portfolio_daily.py": 4
@@ -1595,6 +1625,9 @@
     },
     "one": {
       "scripts/portfolio_daily.py": 8
+    },
+    "opencode": {
+      "scripts/portfolio_daily.py": 4
     },
     "operator": {
       "scripts/portfolio_failure_diagnostics.py": 8
@@ -1667,7 +1700,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "recommend": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "recommendation": {
       "scripts/recommend.py": 8,
@@ -1918,7 +1951,7 @@
       "scripts/validate_catalog.py": 4
     },
     "unsafe": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "using": {
       "scripts/portfolio_daily.py": 4
@@ -1953,7 +1986,7 @@
       "scripts/test_refresh_github_metadata.py": 4
     },
     "without": {
-      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_daily.py": 8,
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "worker": {

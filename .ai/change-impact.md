@@ -1,15 +1,19 @@
 # Change impact
 
-Base: b83258157e12b1cd445f1a630959302e75a45ac6
-Head: bddc86888ec53452f81b88faddf51f8393d0d907
+Base: ef68cdb217ba81fc95385a5dba5cf42cbf916bfe
+Head: 31185fa3e103744dbbaf0944ff6242eb6aaa76b0
 
 ## Changed files
-- M .github/workflows/portfolio-failure-diagnostics.yml
-- M docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md
+- M .github/workflows/portfolio-scan-smoke.yml
+- M catalog.json
+- M docs/DAILY_PORTFOLIO_INTEGRATION.md
+- M scripts/portfolio_daily.py
 
 ## Affected areas
 - .github
+- (root)
 - docs
+- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.

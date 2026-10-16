@@ -1,8 +1,31 @@
 {
-  "schema_version": 1,
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": false,
-  "reason": "missing-task-or-source-change",
-  "task": "feat(portfolio): schedule a daily read-only failed-integration diagnosis (#101)",
-  "useful": []
+  "learned": true,
+  "learning_result": {
+    "example_count": 52,
+    "rejected_count": 0,
+    "terms": [
+      "102",
+      "accurately",
+      "catalog",
+      "dispatch",
+      "feat",
+      "hermes",
+      "native",
+      "opencode",
+      "recommend",
+      "unsafe",
+      "without"
+    ],
+    "test_count": 0,
+    "useful_count": 1
+  },
+  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
+  "rejected": [],
+  "schema_version": 1,
+  "task": "feat(catalog): accurately recommend Hermes and OpenCode without unsafe native dispatch (#102)",
+  "tests_selected": [],
+  "useful": [
+    "scripts/portfolio_daily.py"
+  ]
 }

@@ -37,19 +37,22 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T20:41:09Z
+Generated: 2026-10-16T20:44:59Z
 
 ### Git
 - Branch: `main`
-- Head: `bddc86888ec5`
-- Commit date: 2026-10-16T16:40:57-04:00
-- Commit: feat(portfolio): schedule a daily read-only failed-integration diagnosis (#101)
+- Head: `31185fa3e103`
+- Commit date: 2026-10-16T16:44:49-04:00
+- Commit: feat(catalog): accurately recommend Hermes and OpenCode without unsafe native dispatch (#102)
 - Tracked files: 279
 
 ### Recently changed files
+- `.github/workflows/portfolio-scan-smoke.yml`
+- `catalog.json`
+- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
+- `scripts/portfolio_daily.py`
 - `.github/workflows/portfolio-failure-diagnostics.yml`
 - `docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md`
-- `.github/workflows/portfolio-scan-smoke.yml`
 - `scripts/portfolio_failure_diagnostics.py`
 - `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
 
