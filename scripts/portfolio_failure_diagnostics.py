@@ -102,6 +102,108 @@ def safe_public_failure(item: object) -> dict | None:
     }
 
 
+def task_failure_evidence(detail: object) -> dict:
+    """Summarize failed workflow tasks without exposing source text or identifiers."""
+    workflow = detail.get("current_workflow") if isinstance(detail, dict) else None
+    tasks = workflow.get("tasks") if isinstance(workflow, dict) else None
+    if not isinstance(tasks, list):
+        return {"details_checked": True, "failed_task_count": 0,
+                "retry_budget_exhausted": None, "failure_category": "unknown"}
+    failed = [task for task in tasks if isinstance(task, dict)
+              and task.get("status") in {"failed", "blocked", "cancelled"}]
+    category = "unknown"
+    for task in reversed(failed):
+        result = task.get("result")
+        if not isinstance(result, dict):
+            continue
+        fields = [result.get(key) for key in (
+            "summary", "message", "error", "reason", "failure_reason",
+            "ai_dev_server_status", "error_code", "status",
+        )]
+        evidence = result.get("evidence")
+        if isinstance(evidence, dict):
+            fields.extend(evidence.get(key) for key in (
+                "error", "message", "reason", "failure_reason", "error_code",
+                "next_stage", "pipeline_status", "blocked_reason",
+            ))
+        # All raw fields are classified in memory only; none are persisted.
+        description = " ".join(value[:1000] for value in fields if isinstance(value, str))
+        category = failure_category({"summary": description})
+        if category != "unknown":
+            break
+    final = failed[-1] if failed else {}
+    attempts = final.get("attempts")
+    budget = final.get("max_attempts")
+    exhausted = (attempts >= budget if type(attempts) is int
+                 and type(budget) is int and budget > 0 else None)
+    return {
+        "details_checked": True,
+        "failed_task_count": min(100, len(failed)),
+        "retry_budget_exhausted": exhausted,
+        "failure_category": category,
+    }
+
+
+def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict:
+    """Fetch each public failed v2 project individually with operator privileges.
+
+    Internal project IDs are used only in the request path, never in output.
+    A missing/mismatched detail makes the diagnosis incomplete, not successful.
+    """
+    if not isinstance(inbox, dict):
+        raise RuntimeError("invalid private diagnostic inbox")
+    items = inbox.get("items")
+    if not isinstance(items, list):
+        raise RuntimeError("missing private diagnostic rows")
+    selected = {}
+    for item in items:
+        record = safe_public_failure(item)
+        if record is None or record["tracking_version"] != "v2":
+            continue
+        selected[record["target"]] = item
+    checked = 0
+    for record in result["failures"]:
+        if record["tracking_version"] != "v2":
+            continue
+        item = selected.get(record["target"])
+        identifier = item.get("project_id") if isinstance(item, dict) else None
+        if not isinstance(identifier, str) or not re.fullmatch(r"[a-f0-9]{32}", identifier):
+            record["details_checked"] = False
+            continue
+        try:
+            response = request_json(
+                "https://production-os1.onrender.com/v1/managed-projects/" + identifier,
+                token,
+            )
+            project = response.get("project") if isinstance(response, dict) else None
+            if not isinstance(project, dict):
+                raise RuntimeError("missing project detail")
+            if str(project.get("repository") or "").lower() != record["target"]:
+                raise RuntimeError("project identity mismatch")
+            raw_goal = str(project.get("final_goal") or "")
+            expected_goal = str(item.get("final_goal") or "")
+            actual = TRACKING.search(raw_goal)
+            expected = TRACKING.search(expected_goal)
+            if actual is None or expected is None or actual.group() != expected.group():
+                raise RuntimeError("project tracking marker mismatch")
+            if project.get("status") != "NEEDS_ATTENTION":
+                raise RuntimeError("project state changed during diagnosis")
+            deeper = task_failure_evidence(project)
+            record["details_checked"] = True
+            record["failed_task_count"] = deeper["failed_task_count"]
+            record["retry_budget_exhausted"] = deeper["retry_budget_exhausted"]
+            if record["failure_category"] == "unknown":
+                record["failure_category"] = deeper["failure_category"]
+            checked += 1
+        except (RuntimeError, ValueError, TypeError, KeyError):
+            record["details_checked"] = False
+    result["details_checked_v2"] = checked
+    result["details_complete"] = (
+        result["coverage_complete"] and checked == len(PUBLIC_FAILED_TARGETS)
+    )
+    return result
+
+
 def public_diagnostics(payload: object) -> dict:
     if not isinstance(payload, dict) or payload.get("schema_version") != "production-os/production-inbox/v1":
         raise RuntimeError("invalid diagnostic response schema")
@@ -135,7 +237,8 @@ def main() -> int:
         print("operator diagnostic unavailable: missing configured secret", file=sys.stderr)
         return 2
     try:
-        result = public_diagnostics(request_json(ENDPOINT, token))
+        inbox = request_json(ENDPOINT, token)
+        result = add_deep_task_diagnostics(public_diagnostics(inbox), inbox, token)
     except (RuntimeError, ValueError, TypeError, KeyError):
         print("operator diagnostic unavailable: invalid or incomplete response", file=sys.stderr)
         return 2
@@ -143,7 +246,7 @@ def main() -> int:
     # The log and artifact contain only strictly allowlisted public target names
     # and enumerated failure categories. Never show backend response bodies.
     print(json.dumps(result, ensure_ascii=False, sort_keys=True))
-    return 0 if result["coverage_complete"] else 2
+    return 0 if result["coverage_complete"] and result["details_complete"] else 2
 
 
 if __name__ == "__main__":
