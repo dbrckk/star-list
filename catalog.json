@@ -40251,6 +40251,49 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "radek-sixi/laya-as-judge",
+      "githubRepositoryId": 1380981440,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "ai-security",
+        "evaluation",
+        "guardrails",
+        "llm-as-judge",
+        "llm-evaluation",
+        "python"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 18,
+        "forks": 1,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-26T08:15:03Z"
+      },
+      "bestFor": [
+        "JEV's alike open-source alternative Laya-MLX used as a \"LLM-as-a-judge\""
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
