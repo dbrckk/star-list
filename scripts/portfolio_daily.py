@@ -290,14 +290,40 @@ def count_active_integrations(projects: list[dict]) -> int:
     )
 
 
+def unresolved_failed_v2_integrations(projects: list[dict]) -> list[dict]:
+    """Failed v2 jobs still needing review after any successful v3 recovery.
+
+    The v2 record itself remains NEEDS_ATTENTION forever: a later completed
+    v3 recovery for the same exact candidate supersedes it for admission and
+    reporting. Other failed candidate identities remain quarantined.
+    """
+    recovered = set()
+    for row in projects:
+        if str(row.get("status") or "").upper().replace("-", "_") != "DONE":
+            continue
+        marker = re.search(
+            r"starlist-integration-v3-([0-9a-f]{24})(?![0-9a-f])",
+            str(row.get("final_goal") or ""),
+        )
+        if marker:
+            recovered.add(marker.group(1))
+
+    unresolved = []
+    for row in projects:
+        if str(row.get("status") or "").upper().replace("-", "_") != "NEEDS_ATTENTION":
+            continue
+        marker = re.search(
+            r"starlist-integration-v2-([0-9a-f]{24})(?![0-9a-f])",
+            str(row.get("final_goal") or ""),
+        )
+        if marker and marker.group(1) not in recovered:
+            unresolved.append(row)
+    return unresolved
+
+
 def count_failed_v2_integrations(projects: list[dict]) -> int:
-    """Protect the free worker quota until failed high-budget jobs are reviewed."""
-    return sum(
-        1 for row in projects
-        if "starlist-integration-v2-" in str(row.get("final_goal") or "")
-        and str(row.get("status") or "").upper().replace("-", "_")
-            == "NEEDS_ATTENTION"
-    )
+    """Count only still-unresolved failed high-budget jobs."""
+    return len(unresolved_failed_v2_integrations(projects))
 
 
 
@@ -534,12 +560,10 @@ def main() -> int:
             # ONE distinct project per UTC day and only with an idle portfolio
             # worker. This avoids both deadlock and unlimited paid/free-token
             # retries from scans triggered repeatedly by GitHub events.
+            unresolved_failures = unresolved_failed_v2_integrations(already)
             failed_targets = {
                 str(p.get("repository") or "").lower()
-                for p in already
-                if "starlist-integration-v2-" in str(p.get("final_goal") or "")
-                and str(p.get("status") or "").upper().replace("-", "_")
-                    == "NEEDS_ATTENTION"
+                for p in unresolved_failures
             }
             if failed_v2_integrations:
                 current_day = report["generated_at"][:10]
@@ -573,7 +597,7 @@ def main() -> int:
                         in str(p.get("final_goal") or "")
                         and str(p.get("status") or "").upper().replace("-", "_")
                             == "NEEDS_ATTENTION"
-                        for p in already
+                        for p in unresolved_failures
                     ),
                     -entry[0], entry[1]["repository"],
                 ))
@@ -585,7 +609,7 @@ def main() -> int:
                         failed_marker in str(p.get("final_goal") or "")
                         and str(p.get("status") or "").upper().replace("-", "_")
                             == "NEEDS_ATTENTION"
-                        for p in already
+                        for p in unresolved_failures
                     )
                     if not matching_failure:
                         row["dispatches"].append(
