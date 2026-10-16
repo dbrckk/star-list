@@ -290,6 +290,26 @@ def count_active_integrations(projects: list[dict]) -> int:
     )
 
 
+def busy_integration_targets(projects: list[dict]) -> set[str]:
+    """Do not launch concurrent or review-conflicting changes into one repo.
+
+    Unlike the fleet's worker cap, REVIEW_REQUIRED also blocks the target:
+    that result may still have a branch/PR awaiting review. DONE and failed
+    attempts are handled independently by versioned tracking/quarantine.
+    """
+    return {
+        str(row["repository"]).lower()
+        for row in projects
+        if re.search(
+            r"starlist-integration-v[123]-[0-9a-f]{24}(?![0-9a-f])",
+            str(row.get("final_goal") or ""),
+        )
+        and str(row.get("status") or "").upper().replace("-", "_")
+            in {"ACTIVE", "REVIEW_REQUIRED", "QUEUED", "RUNNING"}
+        and isinstance(row.get("repository"), str)
+    }
+
+
 def unresolved_failed_v2_integrations(projects: list[dict]) -> list[dict]:
     """Failed v2 jobs still needing review after any successful v3 recovery.
 
@@ -618,6 +638,7 @@ def main() -> int:
             # not merely the number of launches in this one workflow run.
             active_integrations = count_active_integrations(already)
             failed_v2_integrations = count_failed_v2_integrations(already)
+            busy_targets = busy_integration_targets(already)
             # Failed projects are quarantined instead of occupying all
             # capacity slots forever. While failures remain, admit at most
             # ONE distinct project per UTC day and only with an idle portfolio
@@ -658,6 +679,11 @@ def main() -> int:
                     -entry[0], entry[1]["repository"],
                 ))
             for _, row, item in queue:
+                # Existing work and earlier successful dispatches in this same
+                # run must not modify one target repository concurrently.
+                if row["repository"].lower() in busy_targets:
+                    row["dispatches"].append("deferred: target integration active or awaiting review")
+                    continue
                 if row["repository"].lower() in failed_targets:
                     failed_marker = integration_marker(row["repository"], item)
                     recovery_marker = integration_marker(row["repository"], item, version=3)
@@ -687,7 +713,9 @@ def main() -> int:
                         if not isinstance(result, dict) or not isinstance(result.get("project"), dict):
                             raise RuntimeError("Production-OS did not confirm a managed project")
                         row["dispatches"].append("recovery-v3: " + item["repository"])
-                        already.append({"final_goal": recovery_marker, "status": "ACTIVE"})
+                        already.append({"repository": row["repository"],
+                                        "final_goal": recovery_marker, "status": "ACTIVE"})
+                        busy_targets.add(row["repository"].lower())
                         dispatched += 1
                     except (RuntimeError, ValueError, TypeError) as exc:
                         report["errors"].append(row["repository"] + " recovery: " + str(exc))
@@ -719,7 +747,9 @@ def main() -> int:
                     row["dispatches"].append(
                         ("recovery-v2: " if is_recovery else "submitted-v2: ") + item["repository"]
                     )
-                    already.append({"final_goal": marker, "status": "ACTIVE"})
+                    already.append({"repository": row["repository"],
+                                    "final_goal": marker, "status": "ACTIVE"})
+                    busy_targets.add(row["repository"].lower())
                     dispatched += 1
                 except (RuntimeError, ValueError, TypeError) as exc:
                     report["errors"].append(row["repository"] + " dispatch: " + str(exc))
