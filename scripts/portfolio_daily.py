@@ -183,14 +183,30 @@ def eligible(item: dict) -> bool:
 
 
 def is_reference_candidate(tool: dict) -> bool:
-    """Keep example applications and architecture guides out of auto-implementation."""
+    """Keep demos, samples and architecture guides out of auto-implementation."""
     guidance = " ".join(str(v).lower() for v in (tool.get("bestFor") or []))
+    capabilities = set(str(v).strip().lower() for v in (tool.get("capabilities") or []))
+    slug = str(tool.get("repo") or "").lower()
     reference_clues = (
         "architecture reference", "reference app", "reference application",
         "reference project", "example application", "sample application",
-        "tutorial project", "reference app structure",
+        "tutorial project", "reference app structure", "étudier des exemples",
+        "study examples", "reproducible examples",
     )
-    return any(clue in guidance for clue in reference_clues)
+    return (
+        any(clue in guidance for clue in reference_clues)
+        or bool(capabilities & {"example", "examples", "demo", "demos", "samples"})
+        or bool(re.search(r"(?:^|[-_/])(?:demo|demos|examples|samples)(?:[-_/]|$)", slug))
+    )
+
+
+# Generic README prose is not proof that a package provides an actionable
+# capability. Such matches may stay in the review report, but cannot trigger
+# an autonomous dependency integration solely because languages match.
+WEAK_CAPABILITY_TERMS = {
+    "workflow", "workflows", "tool", "tools", "data", "general",
+    "example", "examples", "demo", "demos", "project", "projects",
+}
 
 
 def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) -> list[dict]:
@@ -232,17 +248,30 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
         score = score_repo(tool, profile["terms"], domains, set(), set())
         if score is None or score < 35:
             continue
-        # A language mismatch is reviewable as a service/CLI integration, never a direct dependency.
+        # An incidental word such as "workflows" from a README must not
+        # qualify an otherwise unrelated same-language library for dispatch.
+        concrete_terms = (
+            tokens(" ".join(tool.get("capabilities") or []))
+            - GENERIC - STOPWORDS - WEAK_CAPABILITY_TERMS
+        )
+        capability_overlap = bool(set(shared) & concrete_terms)
+        # A language mismatch remains adapter-review; same-language tools
+        # with only prose overlap remain discoverable but require review.
+        mode = (
+            "reference-review" if is_reference_candidate(tool) else
+            "adapter-review" if not languages_match else
+            "native" if capability_overlap else "capability-review"
+        )
         matches.append({"repository": slug, "score": round(score, 2),
                         "quality": tool["score"], "domain": tool["domain"],
                         "shared_terms": shared[:5],
-                        "mode": ("reference-review" if is_reference_candidate(tool)
-                                 else "native" if languages_match else "adapter-review"),
+                        "mode": mode,
                         "license": tool.get("github", {}).get("license"),
                         "url": "https://github.com/" + slug})
     # A native library gets precedence over example applications and adapters.
     # Otherwise a reference app can fill the three slots before a usable SDK.
-    priority = {"native": 0, "adapter-review": 1, "reference-review": 2}
+    priority = {"native": 0, "capability-review": 1,
+                "adapter-review": 2, "reference-review": 3}
     matches.sort(key=lambda r: (priority.get(r["mode"], 3),
                                 -r["score"], -r["quality"], r["repository"].lower()))
     return matches[:count]
