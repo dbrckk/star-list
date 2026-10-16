@@ -101,6 +101,9 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   normalized to **UTC**, not the date prefix returned by Production-OS.
   The public review issue reports the remaining launch slots and, when the
   failure throttle applies, the number of earlier launches on that UTC date.
+  The `dispatch_status` value distinguishes a genuinely enabled dispatcher
+  from a saturated UTC quota, active worker capacity, a read-only scan,
+  unavailable Production-OS inventory or an incomplete repository scan.
   The authenticated Production-OS inventory must declare itself
   complete, contain valid unique v1/v2/v3 markers, valid target identities,
   timezone-aware creation dates, and known lifecycle states
