@@ -15,6 +15,11 @@ Status: active
 - Dispatched work has not been established as functional until the target receives a real tested change and passes its own CI. Review Production-OS worker failures rather than increasing launch budgets.
 - The 2026-10-09 Repository standards map-size failure is historical; later Repository standards workflow runs passed on 2026-10-16.
 
+## Latest verified improvements (2026-10-16)
+- PRs #90-#93 merged: strict Production-OS launch receipts; development-side Roblox Studio MCP classification; upstream TypeScript metadata correction; exclusion of catalog-declared substitute game engines from Roblox recommendations.
+- Live discovery after PR #91 reported 38/38 accessible public repositories inspected, 15 with reviewable suggestions, 2 projects with native matches and 4 native candidates. The four historical v2 failures remained unresolved; no new integration was confirmed.
+- Verify actual worker outputs and target-side CI before counting any Production-OS handoff as completed.
+
 ## Current priority
 1. Investigate the four unresolved Production-OS v2 integrations with target-side worker logs, task outcomes and PR/CI evidence. Do not conflate queue submissions with completed installations.
 2. Check the effectiveness of catalog recommendation matching, particularly suggestions labeled `native`, before enabling higher-throughput automation.
