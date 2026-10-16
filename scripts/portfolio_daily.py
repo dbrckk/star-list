@@ -284,7 +284,7 @@ def public_integration_status(target: str, projects: list[dict]) -> list[dict]:
         if str(project.get("repository") or "").lower() != target.lower():
             continue
         goal = str(project.get("final_goal") or "")
-        markers = re.findall(r"starlist-integration-v([12])-[0-9a-f]{24}(?![0-9a-f])", goal)
+        markers = re.findall(r"starlist-integration-v([123])-[0-9a-f]{24}(?![0-9a-f])", goal)
         if not markers:
             continue
         status = str(project.get("status") or "").upper().replace("-", "_")
@@ -300,13 +300,15 @@ def integration_marker(target: str, candidate: dict, version: int = 2) -> str:
     return f"starlist-integration-v{version}-" + identity
 
 
-def launch_integration(url: str, token: str, target: str, candidate: dict):
+def launch_integration(url: str, token: str, target: str, candidate: dict, *, version: int = 2):
     parsed = urlparse(url)
     if parsed.scheme != "https" or parsed.username or parsed.password or parsed.query or parsed.fragment:
         raise ValueError("Production-OS endpoint must be a plain HTTPS origin")
     if parsed.hostname not in {"production-os1.onrender.com"}:
         raise ValueError("Unapproved Production-OS host; refusing to send operator credentials")
-    marker = integration_marker(target, candidate)
+    if version not in (2, 3):
+        raise ValueError("unsupported integration tracking version")
+    marker = integration_marker(target, candidate, version=version)
     goal = (
         "Integrate a genuinely useful existing open-source tool into the actual target repository. "
         "Source: " + candidate["url"] + " (catalog license: " + str(candidate["license"]) + "). "
@@ -338,7 +340,7 @@ def render_markdown(report: dict) -> str:
         lines.extend(["Active star-list integrations at scan: **"
                       + str(summary["active_integrations"]) + "/3**.", ""])
     if isinstance(summary.get("failed_v2_integrations"), int):
-        lines.extend(["Unresolved v2 integration failures (reserved slots): **"
+        lines.extend(["Unresolved earlier v2 integration failures: **"
                       + str(summary["failed_v2_integrations"]) + "**.", ""])
     for row in report["projects"]:
         lines.append("## " + row["repository"])
@@ -462,7 +464,10 @@ def main() -> int:
                 current_day = report["generated_at"][:10]
                 launches_today = sum(
                     1 for p in already
-                    if "starlist-integration-v2-" in str(p.get("final_goal") or "")
+                    if re.search(
+                        r"starlist-integration-v[23]-[0-9a-f]{24}",
+                        str(p.get("final_goal") or ""),
+                    )
                     and (
                         not str(p.get("created_at") or "").strip()
                         or str(p.get("created_at")).startswith(current_day)
@@ -477,11 +482,54 @@ def main() -> int:
                     args.max_dispatch,
                     max(0, 3 - active_integrations),
                 )
+            # Reevaluate a previously failed compatible candidate before
+            # consuming the single daily slot on an unrelated new project.
+            # A v3 marker is distinct and can be submitted only once.
+            if failed_targets:
+                queue.sort(key=lambda entry: (
+                    not any(
+                        integration_marker(entry[1]["repository"], entry[2])
+                        in str(p.get("final_goal") or "")
+                        and str(p.get("status") or "").upper().replace("-", "_")
+                            == "NEEDS_ATTENTION"
+                        for p in already
+                    ),
+                    -entry[0], entry[1]["repository"],
+                ))
             for _, row, item in queue:
                 if row["repository"].lower() in failed_targets:
-                    row["dispatches"].append(
-                        "quarantined-v2: prior high-budget integration needs review"
+                    failed_marker = integration_marker(row["repository"], item)
+                    recovery_marker = integration_marker(row["repository"], item, version=3)
+                    matching_failure = any(
+                        failed_marker in str(p.get("final_goal") or "")
+                        and str(p.get("status") or "").upper().replace("-", "_")
+                            == "NEEDS_ATTENTION"
+                        for p in already
                     )
+                    if not matching_failure:
+                        row["dispatches"].append(
+                            "quarantined-v2: other prior candidate needs review"
+                        )
+                        continue
+                    if any(
+                        recovery_marker in str(p.get("final_goal") or "")
+                        for p in already
+                    ):
+                        row["dispatches"].append("existing-v3: " + item["repository"])
+                        continue
+                    if dispatched >= available_slots:
+                        break
+                    try:
+                        result = launch_integration(
+                            service, operator_token, row["repository"], item, version=3
+                        )
+                        if not isinstance(result, dict) or not isinstance(result.get("project"), dict):
+                            raise RuntimeError("Production-OS did not confirm a managed project")
+                        row["dispatches"].append("recovery-v3: " + item["repository"])
+                        already.append({"final_goal": recovery_marker, "status": "ACTIVE"})
+                        dispatched += 1
+                    except (RuntimeError, ValueError, TypeError) as exc:
+                        report["errors"].append(row["repository"] + " recovery: " + str(exc))
                     continue
                 marker = integration_marker(row["repository"], item)
                 previous = integration_marker(row["repository"], item, version=1)
