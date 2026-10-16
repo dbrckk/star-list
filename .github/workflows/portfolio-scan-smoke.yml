@@ -112,9 +112,23 @@ jobs:
               "dbrckk/beta": [suggestion("upstream/three", 58)],
           }
           launches = []
-          def fake_launch(_url, _token, target, candidate, **_kwargs):
+          def fake_launch(_url, _token, target, candidate, **kwargs):
               launches.append((target, candidate["repository"]))
-              return {"project": {"id": len(launches)}}
+              identity = f"{len(launches):032x}"
+              marker = integration_marker(target, candidate,
+                                          version=kwargs.get("version", 2))
+              return {
+                  "project": {
+                      "id": identity, "project_id": identity,
+                      "repository": target, "final_goal": "Tracking: " + marker,
+                      "token_budget": scanner.INTEGRATION_TOKEN_BUDGET,
+                  },
+                  "launch": {
+                      "mode": "managed-project", "persistent": True,
+                      "idempotent": True, "request_id": marker,
+                      "token_budget": scanner.INTEGRATION_TOKEN_BUDGET,
+                  },
+              }
           with tempfile.TemporaryDirectory() as scratch:
               p = Path(scratch)
               (p / "catalog.json").write_text('{"repositories": []}')
@@ -145,7 +159,20 @@ jobs:
               def unconfirmed_launch(_url, _token, target, candidate, **_kwargs):
                   launches.append((target, candidate["repository"]))
                   return {"project": None}
-              for launch_impl in (ambiguous_launch, unconfirmed_launch):
+              def mismatched_target(_url, _token, target, candidate, **kwargs):
+                  result = fake_launch(_url, _token, target, candidate, **kwargs)
+                  result["project"]["repository"] = "dbrckk/wrong-target"
+                  return result
+              def mismatched_marker(_url, _token, target, candidate, **kwargs):
+                  result = fake_launch(_url, _token, target, candidate, **kwargs)
+                  result["launch"]["request_id"] = "other-request-id"
+                  return result
+              def wrong_budget(_url, _token, target, candidate, **kwargs):
+                  result = fake_launch(_url, _token, target, candidate, **kwargs)
+                  result["launch"]["token_budget"] = 30000
+                  return result
+              for launch_impl in (ambiguous_launch, unconfirmed_launch,
+                                  mismatched_target, mismatched_marker, wrong_budget):
                   launches.clear()
                   with patch.dict(os.environ, {"PRODUCTION_OS_OPERATOR_TOKEN": "offline-test"}), \
                        patch.object(sys, "argv", argv), \
