@@ -15,8 +15,13 @@
   "last_verified_integration_inventory": {
     "active": 0,
     "unresolved_v2": 4,
-    "launched_on_last_scan": 0,
-    "earlier_launches_same_utc_day": 1
+    "capacity_exhausted_v2": 4,
+    "attempts_each": 1,
+    "max_attempts_each": 3,
+    "delivered_commits": 0,
+    "reviewable_prs": 0,
+    "ci_evidence": 0,
+    "diagnostic_run": 38954955707
   },
   "merged_pull_requests": [
     78,
@@ -34,7 +39,11 @@
     90,
     91,
     92,
-    93
+    93,
+    94,
+    95,
+    96,
+    97
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -44,12 +53,13 @@
     "Prevent Production-OS launches after incomplete GitHub discovery (PR #83)",
     "Stop additional Production-OS dispatches after uncertain launch (PR #85)",
     "Confirm Production-OS launch receipts before reserving worker capacity (PR #90)",
-    "Keep Roblox Studio MCP sidecars review-only, correct source language and exclude alternative engines (PRs #91-#93)"
+    "Keep Roblox Studio MCP sidecars review-only, correct source language and exclude alternative engines (PRs #91-#93)",
+    "Read-only operator-only Production-OS diagnostics with complete v2 task coverage (#95-#97)"
   ],
   "next_priority": [
-    "Inspect four unresolved Production-OS v2 failures with operator logs and target PR/CI evidence",
-    "Verify today's latest scheduled sync and public/private portfolio coverage",
-    "Benchmark review-only vs native suggestions on more target repositories while retaining strict worker quotas"
+    "Restore and positively verify usable free AI worker/model capacity; all four v2 tasks stopped with capacity_exhausted (1/3 attempts each)",
+    "Only then allow idempotent, candidate-qualified v3 recovery within existing UTC/fleet caps",
+    "Confirm target-side source changes and CI; do not claim any integration completed"
   ],
   "constraints": [
     "No automatic merge/deployment of third-party integrations",
