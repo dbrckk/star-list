@@ -32,13 +32,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T18:28:30Z
+Generated: 2026-10-16T18:30:38Z
 
 ### Git
 - Branch: `main`
-- Head: `17cc9dda40c9`
-- Commit date: 2026-10-16T20:28:19+02:00
-- Commit: fix(portfolio): do not recommend the Godot engine to games already using Godot (#86)
+- Head: `e9ae07c4c697`
+- Commit date: 2026-10-16T20:30:28+02:00
+- Commit: feat(portfolio): separate reviewable matches from native integration candidates (#87)
 - Tracked files: 275
 
 ### Recently changed files

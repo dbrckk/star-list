@@ -760,6 +760,26 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(portfolio): separate reviewable matches from native integration candidates (#87)",
+      "terms": [
+        "87",
+        "candidates",
+        "feat",
+        "from",
+        "integration",
+        "matches",
+        "native",
+        "portfolio",
+        "reviewable",
+        "separate"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -883,6 +903,9 @@
     "86": {
       "scripts/portfolio_daily.py": 4
     },
+    "87": {
+      "scripts/portfolio_daily.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -970,6 +993,9 @@
       "scripts/test_recommend.py": 4
     },
     "candidate": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "candidates": {
       "scripts/portfolio_daily.py": 4
     },
     "cap": {
@@ -1095,7 +1121,7 @@
     },
     "feat": {
       "scripts/admit_github_stars.py": 4,
-      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_daily.py": 8,
       "scripts/test_auto_stars_admission.py": 4
     },
     "files": {
@@ -1118,7 +1144,7 @@
       "scripts/backfill_licenses.py": 4,
       "scripts/discover_candidates.py": 4,
       "scripts/find_replacements.py": 4,
-      "scripts/portfolio_daily.py": 8,
+      "scripts/portfolio_daily.py": 12,
       "scripts/recommend.py": 4,
       "scripts/refresh_github_metadata.py": 12,
       "scripts/test_backfill_licenses.py": 4,
@@ -1209,7 +1235,7 @@
       "scripts/test_recommend.py": 4
     },
     "integration": {
-      "scripts/portfolio_daily.py": 24
+      "scripts/portfolio_daily.py": 28
     },
     "integrations": {
       "scripts/portfolio_daily.py": 8,
@@ -1267,7 +1293,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "matches": {
-      "scripts/portfolio_daily.py": 12
+      "scripts/portfolio_daily.py": 16
     },
     "merge": {
       "scripts/discover_candidates.py": 4,
@@ -1289,6 +1315,9 @@
       "scripts/test_recommend.py": 4,
       "scripts/test_refresh_github_metadata.py": 8,
       "scripts/validate_catalog.py": 4
+    },
+    "native": {
+      "scripts/portfolio_daily.py": 4
     },
     "not": {
       "scripts/portfolio_daily.py": 4
@@ -1460,7 +1489,7 @@
       "scripts/test_sync_github_stars.py": 4
     },
     "reviewable": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "reviewed": {
       "scripts/star_import_pipeline.py": 4,
@@ -1492,6 +1521,9 @@
       "scripts/test_recommend.py": 4,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 8
+    },
+    "separate": {
+      "scripts/portfolio_daily.py": 4
     },
     "separately": {
       "scripts/audit_catalog_quality.py": 4,
