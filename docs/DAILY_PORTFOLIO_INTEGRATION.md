@@ -31,7 +31,11 @@ or skipped by GitHub, so "daily" is a configured cadence, not a real-time SLA.
    candidate launches until reviewed. Once that exact candidate's v3 recovery
    reaches `DONE`, its superseded v2 failure no longer counts as unresolved
    or blocks unrelated qualified tools. An active, failed, or review-pending
-   v3 recovery does not clear the quarantine.
+   v3 recovery does not clear the quarantine. If the previous v2 tool is
+   now classified as reference-only or otherwise not native-eligible, or has
+   already received its one v3 attempt, the target is no longer quarantined
+   against *different* qualified native tools. Its historical failure remains
+   visible and the global one-launch-per-UTC-day limit still applies.
 8. Production-OS / ai-dev-server must actually inspect, implement and verify
    the integration in the target. A suggestion or queued task is NOT a
    completed integration. The managed project must produce a functional
