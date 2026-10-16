@@ -1,40 +1,28 @@
 {
   "files": [
     {
-      "path": "scripts/portfolio_failure_diagnostics.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "recent-project-state",
-        "symbol-indexed"
-      ],
-      "score": 395
-    },
-    {
-      "path": ".github/workflows/portfolio-scan-smoke.yml",
+      "path": "docs/PORTFOLIO_CAPACITY_RECOVERY.md",
       "reasons": [
         "changed"
       ],
       "score": 100
     },
     {
-      "path": "docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md",
+      "path": "catalog.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
     },
     {
       "path": "scripts/portfolio_daily.py",
       "reasons": [
-        "dependency-neighbor",
         "recent-project-state"
       ],
-      "score": 85
+      "score": 60
     },
     {
-      "path": "catalog.json",
+      "path": "scripts/portfolio_failure_diagnostics.py",
       "reasons": [
         "recent-project-state"
       ],
