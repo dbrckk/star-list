@@ -20,13 +20,15 @@ or skipped by GitHub, so "daily" is a configured cadence, not a real-time SLA.
    `portfolio-daily.json`, `portfolio-daily.md`, a retained Actions artifact
    and an updated GitHub issue.
 6. If a qualified suggestion exists and a Production-OS **operator** secret is
-   configured, submits at most **3** new tasks per day to the existing
-   `Production-OS` managed-project API.
-7. Uses a stable **v2** request ID derived from target + upstream repo, so
-   repeat scans cannot produce duplicate managed projects. An older v1 project
-   is not duplicated while active or awaiting review. If its 30,000-token
-   attempt ended in `NEEDS_ATTENTION`, the scanner permits **one** distinct,
-   idempotent v2 recovery attempt; it never loops on failed v2 attempts.
+   configured, submits up to **3** new tasks per scan (never more than 3 active
+   portfolio integrations at once) to the existing managed-project API.
+   Earlier high-budget failures reduce this to at most one launch per UTC day.
+7. Uses stable tracking IDs derived from target + upstream repo, so repeat
+   scans cannot create duplicate projects. A failed v1 may receive one bounded
+   v2 retry; a failed v2 may receive one bounded **v3** retry for the **same**
+   candidate. Any prior v3 marker permanently blocks additional automatic
+   retries for that candidate. Failed targets stay quarantined from unrelated
+   candidate launches until reviewed.
 8. Production-OS / ai-dev-server must actually inspect, implement and verify
    the integration in the target. A suggestion or queued task is NOT a
    completed integration. The managed project must produce a functional
@@ -73,14 +75,16 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   avoids permanently freezing the entire portfolio while also preventing
   runaway retries or repeated work from push/schedule dispatches. Missing
   creation timestamps are treated conservatively as same-day launches.
-- **Fleet-level queue protection:** at most three portfolio integrations may be
-  `ACTIVE`, `RUNNING` or `QUEUED` across all scans. Each unresolved
-  failed **v2** integration also holds one slot until its failure is reviewed,
-  stopping repeated quota consumption when the coding model cannot deliver.
-  Older failed v1 attempts do **not** block their one-time v2 recovery.
-  Daily scanning and recommendations continue even when no launch slots are
-  available. An unavailable Production-OS inventory fails closed rather
-  than risking duplicate/unbounded submissions.
+- **Fleet-level queue protection:** at most three active portfolio integrations
+  may run across all scans. Failed v2 tasks are **quarantined**, not counted as
+  indefinitely active workers; while any remain unresolved, dispatch requires
+  an idle fleet and permits at most one new or v3 recovery task per UTC day.
+  Daily scanning and recommendations continue when no launch slots are
+  available. The authenticated Production-OS inventory must declare itself
+  complete, contain valid unique v1/v2/v3 markers, valid target identities,
+  timezone-aware creation dates, and known lifecycle states
+  (`ACTIVE`, `REVIEW_REQUIRED`, `NEEDS_ATTENTION`, `DONE`).
+  Unknown status or malformed inventory **fails closed** before dispatch.
 - A qualified v2 integration requests a bounded **90,000-token** envelope
   through Production-OS's operator-only dashboard API using the explicit
   `launch_profile: portfolio-integration` option. Ordinary dashboard
