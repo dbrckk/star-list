@@ -232,6 +232,18 @@ def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict:
                 raise RuntimeError("project tracking marker mismatch")
             if project.get("status") != "NEEDS_ATTENTION":
                 raise RuntimeError("project state changed during diagnosis")
+            # The lightweight tracking index intentionally has no outcome.
+            # Populate delivery/validation evidence only from this separately
+            # identity-verified project detail, never assume zero delivery.
+            verified_detail = safe_public_failure(project)
+            if (verified_detail is None
+                    or verified_detail["tracking_version"] != record["tracking_version"]):
+                raise RuntimeError("project detail failed public identity validation")
+            for key in (
+                "commit_count", "pull_request_reported", "ci_reported",
+                "workflow_status", "validation_status", "failure_category",
+            ):
+                record[key] = verified_detail[key]
             deeper = task_failure_evidence(project)
             record["details_checked"] = deeper["details_checked"] is True
             if not record["details_checked"]:
