@@ -170,6 +170,7 @@ jobs:
           # artifact with a bounded enum; no raw exception may leak.
           import contextlib
           import io
+          import tempfile
           for api_response in (
               RuntimeError("backend-private-secret-DO_NOT_LEAK"),
               ValueError("malformed operator response: DO_NOT_LEAK"),
