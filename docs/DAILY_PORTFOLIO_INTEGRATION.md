@@ -134,8 +134,10 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
 - Exclude generic words and incompatible game engines from matching. An
   existing Godot project is not offered `godotengine/godot` itself or any
   engine explicitly identified as an alternative in that catalog entry
-  (such as `libgdx/libgdx`) as a new dependency. Godot-compatible addons
-  remain candidates. Single-term
+  (such as `libgdx/libgdx`) as a new dependency. Roblox games also exclude
+  both sides of those same explicitly declared cross-engine alternatives:
+  switching engines is not an integration of a useful Roblox component.
+  Godot-compatible and Roblox-compatible addons remain candidates. Single-term
   suggestions must match a technical capability or use case. Cross-language
   adapter suggestions remain visible in the report, but are **never** sent to
   autonomous integration without a separate compatibility assessment.

@@ -50,8 +50,10 @@ jobs:
                   + str(result["summary"]["with_native_suggestions"]) + "**.") in report_markdown
           for project in result["projects"]:
               for candidate in project["suggestions"]:
-                  if "roblox" in project["repository"].lower() and candidate["repository"].lower() == "chrrxs/robloxstudio-mcp":
-                      assert candidate["mode"] == "adapter-review", candidate
+                  if "roblox" in project["repository"].lower():
+                      assert candidate["repository"].lower() not in {"libgdx/libgdx", "godotengine/godot"}, candidate
+                      if candidate["repository"].lower() == "chrrxs/robloxstudio-mcp":
+                          assert candidate["mode"] == "adapter-review", candidate
                   assert not ({"and", "as", "the", "with", "et", "pour", "avec", "dans", "les", "des"} & set(candidate["shared_terms"])), candidate
                   if "roblox" in project["repository"].lower():
                       assert "godot" not in candidate["repository"].lower(), candidate
@@ -110,6 +112,15 @@ jobs:
           assert matched[0]["mode"] == "adapter-review", matched
           # Development bridges remain reviewable, not dispatched natively.
           assert not any(x["mode"] == "native" for x in matched)
+          engines = [item for item in catalog_entries if item["repo"].lower()
+                     in {"godotengine/godot", "libgdx/libgdx"}]
+          assert len(engines) == 2
+          assert any("libgdx/libgdx" in (e.get("alternatives") or []) for e in engines)
+          game_profile = {"domains": ["game_dev"],
+                          "terms": scanner.tokens("roblox game development cross platform"),
+                          "language": "lua", "dependencies": "", "overview": ""}
+          # Explicitly declared alternative engines are not Roblox plugins.
+          assert recommendations(game, game_profile, engines, 3) == []
           from urllib.request import Request
           protected = Request("https://production-os1.onrender.com/v1/dashboard/launch",
                               headers={"Authorization": "Bearer offline-test"})

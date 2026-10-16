@@ -238,17 +238,34 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
         return []
     target_identity = repo["name"].lower()
     godot_target = profile["language"] == "gdscript" or "godot" in target_identity
+    roblox_target = profile["language"] in {"lua", "luau"} or "roblox" in target_identity
     existing_engine_sources = set(EXISTING_ENGINE_SOURCES["godot"]) if godot_target else set()
     # Engine alternatives are replacement *platforms*, not dependencies.
-    # Derive them from the catalog's own explicit alternative relationships,
-    # rather than chasing individual incompatible engine names by hand.
-    excluded_engine_sources = existing_engine_sources | {
-        alternative.lower()
+    # Derive them from curated alternative relationships, rather than chasing
+    # arbitrary incompatible engine names by hand. Roblox has no cataloged
+    # engine-source counterpart, so exclude both sides of declared engine
+    # alternatives (e.g. godotengine/godot <-> libgdx/libgdx).
+    engine_pairs = [
+        (str(engine.get("repo") or "").lower(), [
+            alternative.lower()
+            for alternative in (engine.get("alternatives") or [])
+            if isinstance(alternative, str)
+        ])
         for engine in catalog
-        if str(engine.get("repo") or "").lower() in existing_engine_sources
-        for alternative in (engine.get("alternatives") or [])
-        if isinstance(alternative, str)
+        if engine.get("domain") == "game_dev"
+        and "game-development" in (engine.get("capabilities") or [])
+    ]
+    excluded_engine_sources = existing_engine_sources | {
+        alternative
+        for source, alternatives in engine_pairs
+        if source in existing_engine_sources
+        for alternative in alternatives
     }
+    if roblox_target:
+        for source, alternatives in engine_pairs:
+            if alternatives:
+                excluded_engine_sources.add(source)
+                excluded_engine_sources.update(alternatives)
     matches = []
     for tool in catalog:
         slug = str(tool.get("repo") or "")
