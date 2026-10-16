@@ -71,6 +71,49 @@ jobs:
           assert "dbrckk/ai-trading" in busy_integration_targets([
               {**active, "repository": "dbrckk/AI-Trading"},
           ])
+          # Exercise the actual dispatcher with three qualified suggestions
+          # spread across two repositories. No network, token or worker call.
+          import os
+          import tempfile
+          from unittest.mock import patch
+          import portfolio_daily as scanner
+          targets = [
+              {"name": name, "full_name": "dbrckk/" + name, "private": False}
+              for name in ("alpha", "beta")
+          ]
+          def suggestion(slug, score):
+              return {"repository": slug, "score": score, "mode": "native",
+                      "url": "https://github.com/" + slug, "license": "MIT",
+                      "shared_terms": ["integration"]}
+          offers = {
+              "dbrckk/alpha": [suggestion("upstream/one", 60),
+                               suggestion("upstream/two", 59)],
+              "dbrckk/beta": [suggestion("upstream/three", 58)],
+          }
+          launches = []
+          def fake_launch(_url, _token, target, candidate, **_kwargs):
+              launches.append((target, candidate["repository"]))
+              return {"project": {"id": len(launches)}}
+          with tempfile.TemporaryDirectory() as scratch:
+              p = Path(scratch)
+              (p / "catalog.json").write_text('{"repositories": []}')
+              argv = ["portfolio_daily.py", "--catalog", str(p / "catalog.json"),
+                      "--output", str(p / "scan.json"),
+                      "--markdown", str(p / "scan.md"), "--max-dispatch", "3"]
+              with patch.dict(os.environ, {"PRODUCTION_OS_OPERATOR_TOKEN": "offline-test"}), \\
+                   patch.object(sys, "argv", argv), \\
+                   patch.object(scanner, "github_repos", return_value=targets), \\
+                   patch.object(scanner, "project_profile", return_value={}), \\
+                   patch.object(scanner, "recommendations",
+                                side_effect=lambda repo, *_: offers[repo["full_name"]]), \\
+                   patch.object(scanner, "request_json", return_value={
+                       "projects": [], "total_count": 0, "complete": True}), \\
+                   patch.object(scanner, "launch_integration", side_effect=fake_launch):
+                  assert scanner.main() == 0
+              evidence = json.loads((p / "scan.json").read_text())
+              assert evidence["summary"]["dispatched"] == 2
+              assert launches == [("dbrckk/alpha", "upstream/one"),
+                                  ("dbrckk/beta", "upstream/three")], launches
           # The dispatch quota is tied to UTC, not to the worker's local date.
           utc_boundary = [
               {"final_goal": integration_marker("dbrckk/Jumpy", {"repository": "a/b"}),
