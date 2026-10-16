@@ -16,8 +16,10 @@ successful recovery; the workflow exits nonzero. The diagnostic cannot prove
 successful code integration. Confirm changed source, PR, target CI and actual
 runtime before marking any job done.
 
-The workflow runs on a trusted main-branch change to itself or the diagnosis
-script and also supports authenticated manual dispatch. It never launches,
+The workflow runs every day at **04:17 UTC**, after the scheduled public
+portfolio scan (03:37 UTC); GitHub may delay or skip scheduled Actions runs.
+It also runs on a trusted main-branch change to itself or the diagnosis
+script and supports authenticated manual dispatch. It never launches,
 retries, modifies or approves a managed project. No paid service is required.
 
 For each failed v2 task, the operator workflow now also reads the project-specific
