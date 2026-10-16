@@ -44,8 +44,19 @@ jobs:
           sys.path.insert(0, "scripts")
           from portfolio_daily import (
               is_reference_candidate, count_active_integrations,
-              count_failed_v2_integrations,
+              count_failed_v2_integrations, verified_managed_projects,
           )
+          assert verified_managed_projects({"projects": []}) == []
+          for malformed in (
+              None, {}, {"projects": "unavailable"}, {"projects": [None]},
+              {"projects": [{"final_goal": "starlist-integration-v2-broken", "status": "ACTIVE"}]},
+          ):
+              try:
+                  verified_managed_projects(malformed)
+              except RuntimeError:
+                  pass
+              else:
+                  raise AssertionError("Malformed managed-project inventory was accepted")
           assert count_active_integrations([
               {"final_goal": "starlist-integration-v2-project", "status": "ACTIVE"},
               {"final_goal": "starlist-integration-v1-previous", "status": "NEEDS_ATTENTION"},
