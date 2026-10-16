@@ -104,10 +104,26 @@ jobs:
               {"final_goal": "unrelated", "status": "ACTIVE"},
               {"final_goal": "starlist-integration-v2-another", "status": "QUEUED"},
           ]) == 2
+          failed_v2 = {
+              "final_goal": "starlist-integration-v2-" + "a" * 24,
+              "status": "NEEDS_ATTENTION",
+          }
+          completed_v3 = {
+              "final_goal": "starlist-integration-v3-" + "a" * 24,
+              "status": "DONE",
+          }
           assert count_failed_v2_integrations([
               {"final_goal": "starlist-integration-v1-old", "status": "NEEDS_ATTENTION"},
-              {"final_goal": "starlist-integration-v2-failed", "status": "NEEDS_ATTENTION"},
-              {"final_goal": "starlist-integration-v2-active", "status": "ACTIVE"},
+              failed_v2,
+              {"final_goal": "starlist-integration-v2-" + "b" * 24, "status": "ACTIVE"},
+          ]) == 1
+          assert count_failed_v2_integrations([failed_v2, completed_v3]) == 0
+          assert count_failed_v2_integrations([
+              failed_v2, {**completed_v3, "status": "REVIEW_REQUIRED"},
+          ]) == 1
+          assert count_failed_v2_integrations([
+              failed_v2, {**completed_v3,
+                          "final_goal": "starlist-integration-v3-" + "b" * 24},
           ]) == 1
           assert result["summary"]["active_integrations"] is None
           assert result["summary"]["failed_v2_integrations"] is None
