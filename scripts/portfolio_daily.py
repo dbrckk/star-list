@@ -71,6 +71,11 @@ ENGINE_CONFLICTS = {
     "roblox": ("godotengine/", "godot", "unity", "unreal", "bevy", "defold"),
     "godot": ("roblox", "unity", "unreal", "bevy", "defold"),
 }
+# A repository *using* an engine should not be told to integrate that engine's
+# complete source tree as if it were a missing application dependency.
+EXISTING_ENGINE_SOURCES = {
+    "godot": frozenset({"godotengine/godot"}),
+}
 
 MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
              "build.gradle.kts", "pubspec.yaml")
@@ -250,6 +255,12 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
         if len(shared) < 2 and not (set(shared) & capability_terms):
             continue
         target_identity = repo["name"].lower()
+        if (profile["language"] == "gdscript" or "godot" in target_identity) and (
+            slug.lower() in EXISTING_ENGINE_SOURCES["godot"]
+        ):
+            # An engine already running this game is a platform, not an
+            # installable feature. Retain compatible plugins and addons.
+            continue
         if profile["language"] == "luau" or "roblox" in target_identity:
             if any(marker in slug.lower() for marker in ENGINE_CONFLICTS["roblox"]):
                 continue
