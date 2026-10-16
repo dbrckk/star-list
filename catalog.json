@@ -40294,6 +40294,178 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "baidu/Unlimited-OCR",
+      "githubRepositoryId": 1273138090,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 27614,
+        "forks": 2891,
+        "openIssues": 86,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-12T10:37:00Z"
+      },
+      "bestFor": [
+        "Unlimited OCR Works: Welcome the Era of One-shot Long-horizon Parsing."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Liquid4All/cookbook",
+      "githubRepositoryId": 1069004513,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [
+        "android",
+        "edge",
+        "ios",
+        "language-model",
+        "language-models",
+        "laptop"
+      ],
+      "languages": [
+        "jupyter notebook"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2566,
+        "forks": 399,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-16T12:16:39Z"
+      },
+      "bestFor": [
+        "Examples, end-2-end tutorials and apps built using Liquid AI Foundational Models (LFM) and the LEAP SDK"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "oxylabs/web-api-mcp",
+      "githubRepositoryId": 1344122020,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Backend / API",
+      "domain": "backend",
+      "capabilities": [
+        "mcp",
+        "mcp-server",
+        "mcp-servers",
+        "mcp-tools",
+        "web-api",
+        "web-api-mcp",
+        "web-apis"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2,
+        "forks": 2,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-15T11:29:04Z"
+      },
+      "bestFor": [
+        "Self-hostable MCP server for the Oxylabs Web API"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ScrapeGraphAI/Scrapegraph-ai",
+      "githubRepositoryId": 749126547,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Mémoire / IA",
+      "domain": "ai_memory",
+      "capabilities": [
+        "ai-crawler",
+        "ai-scraping",
+        "ai-search",
+        "crawler",
+        "data-extraction",
+        "firecrawl-alternative",
+        "large-language-model",
+        "llm",
+        "markdown",
+        "rag",
+        "scraping",
+        "scraping-python"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 31805,
+        "forks": 3275,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-06T08:27:54Z"
+      },
+      "bestFor": [
+        "Python scraper based on AI"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
