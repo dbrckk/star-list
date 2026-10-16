@@ -271,6 +271,34 @@ def count_failed_v2_integrations(projects: list[dict]) -> int:
     )
 
 
+
+def failed_reference_integration_slots(
+    projects: list[dict], catalog: list[dict], public_targets: set[str],
+) -> int:
+    """Count failed v2 attempts using examples, not reusable dependencies.
+
+    These attempts remain visible as NEEDS_ATTENTION, but an explicitly
+    reference-only upstream must not permanently starve the integration
+    queue. Only publicly scanned targets qualify for a public count.
+    """
+    references = {
+        str(tool.get("repo") or "").lower()
+        for tool in catalog if isinstance(tool, dict) and is_reference_candidate(tool)
+    }
+    if not references or not public_targets:
+        return 0
+    sources = tuple("source: https://github.com/" + slug + " (" for slug in references)
+    targets = tuple("target: " + target.lower() + ". tracking:"
+                    for target in public_targets)
+    return sum(
+        1 for row in projects
+        if str(row.get("status") or "").upper().replace("-", "_") == "NEEDS_ATTENTION"
+        and "starlist-integration-v2-" in str(row.get("final_goal") or "")
+        and any(source in str(row.get("final_goal") or "").lower() for source in sources)
+        and any(target in str(row.get("final_goal") or "").lower() for target in targets)
+    )
+
+
 def public_integration_status(target: str, projects: list[dict]) -> list[dict]:
     """Expose only validated status enums for an already-public repository.
 
@@ -340,6 +368,9 @@ def render_markdown(report: dict) -> str:
     if isinstance(summary.get("failed_v2_integrations"), int):
         lines.extend(["Unresolved v2 integration failures (reserved slots): **"
                       + str(summary["failed_v2_integrations"]) + "**.", ""])
+    if isinstance(summary.get("reference_only_failures"), int):
+        lines.extend(["Failed reference-only v2 attempts (review required, slots released): **"
+                      + str(summary["reference_only_failures"]) + "**.", ""])
     for row in report["projects"]:
         lines.append("## " + row["repository"])
         lines.append("Status: " + row["status"])
@@ -415,6 +446,7 @@ def main() -> int:
     dispatched = 0
     active_integrations = None
     failed_v2_integrations = None
+    reference_only_failures = None
     if operator_token:
         # Validate the origin before even the read-only authenticated request.
         parsed_service = urlparse(service)
@@ -445,12 +477,20 @@ def main() -> int:
             # Limit active portfolio work across multiple scheduled/manual runs,
             # not merely the number of launches in this one workflow run.
             active_integrations = count_active_integrations(already)
-            failed_v2_integrations = count_failed_v2_integrations(already)
-            # A v2 failure still occupies one admission slot. Continue
-            # scanning daily, but do not spend unlimited tokens on new
-            # projects while the free coding worker has unresolved failures.
+            reference_only_failures = failed_reference_integration_slots(
+                already, catalog,
+                {row["repository"] for row in report["projects"]},
+            )
+            failed_v2_integrations = max(
+                0, count_failed_v2_integrations(already) - reference_only_failures
+            )
+            # Reserve slots for failures whose upstream is genuinely integrable,
+            # but do not starve the queue with failed architecture examples.
+            # After releasing such slots admit at most one new project per
+            # scan, preserving scarce free inference capacity.
             available_slots = min(
                 args.max_dispatch,
+                1 if reference_only_failures else args.max_dispatch,
                 max(0, 3 - active_integrations - failed_v2_integrations),
             )
             for _, row, item in queue:
@@ -490,6 +530,7 @@ def main() -> int:
         "with_suggestions": sum(bool(p["suggestions"]) for p in report["projects"]),
         "dispatched": dispatched, "active_integrations": active_integrations,
         "failed_v2_integrations": failed_v2_integrations,
+        "reference_only_failures": reference_only_failures,
         "failures": len(report["errors"]),
     }
     args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
