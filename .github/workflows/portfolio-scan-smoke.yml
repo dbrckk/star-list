@@ -365,19 +365,27 @@ jobs:
           # Regression from the real Jumpy scan: a Godot game cannot
           # "integrate" the whole Godot engine as a new dependency.
           godot_engine = next(x for x in catalog if x["repo"].lower() == "godotengine/godot")
+          libgdx_engine = next(x for x in catalog if x["repo"].lower() == "libgdx/libgdx")
+          assert "libgdx/libgdx" in [
+              x.lower() for x in godot_engine.get("alternatives", [])
+          ], "Catalog must explicitly identify libGDX as an alternative to Godot"
           jumpy = {"name": "Jumpy", "full_name": "dbrckk/Jumpy"}
           godot_profile = {
               "domains": ["game_dev"], "language": "gdscript",
               "terms": scanner.tokens("godot game development cross-platform"),
               "dependencies": "", "overview": "",
           }
-          assert scanner.recommendations(jumpy, godot_profile, [godot_engine], 3) == []
-          # The exclusion is specific to the engine source, not Godot addons.
+          assert scanner.recommendations(
+              jumpy, godot_profile, [godot_engine, libgdx_engine], 3
+          ) == []
+          # The exclusion is specific to engine sources and their explicit
+          # alternatives, not normal Godot plugins or compatible addons.
           assert "godotengine/godot" in scanner.EXISTING_ENGINE_SOURCES["godot"]
           for project in result["projects"]:
               if project["repository"].lower() == "dbrckk/jumpy":
-                  assert all(item["repository"].lower() != "godotengine/godot"
-                             for item in project["suggestions"]), project
+                  assert all(item["repository"].lower() not in {
+                      "godotengine/godot", "libgdx/libgdx"
+                  } for item in project["suggestions"]), project
           reference = next(x for x in catalog if x["repo"].lower() == "android/nowinandroid")
           assert is_reference_candidate(reference), "Architecture example must be review-only"
           for project in result["projects"]:
