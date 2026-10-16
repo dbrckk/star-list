@@ -936,6 +936,9 @@ STOPWORDS = {
 # Engine-specific runtime components are not drop-in replacements for
 # incompatible engines. This is a hard gate, not a soft relevance penalty.
 ENGINE_CONFLICTS = {
+# A repository *using* an engine should not be told to integrate that engine's
+# complete source tree as if it were a missing application dependency.
+EXISTING_ENGINE_SOURCES = {
 ⋮----
 MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
 ⋮----
@@ -1032,6 +1035,9 @@ shared = sorted((profile["terms"] & terms) - GENERIC - STOPWORDS)
 capability_terms = (tokens(" ".join(tool.get("capabilities") or []))
 ⋮----
 target_identity = repo["name"].lower()
+⋮----
+# An engine already running this game is a platform, not an
+# installable feature. Retain compatible plugins and addons.
 ⋮----
 slug_name = slug.rsplit("/", 1)[-1].lower()
 ⋮----

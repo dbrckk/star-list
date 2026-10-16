@@ -2,18 +2,19 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 41,
+    "example_count": 42,
     "rejected_count": 0,
     "terms": [
-      "85",
-      "after",
-      "further",
-      "launches",
+      "86",
+      "already",
+      "do",
+      "engine",
+      "games",
+      "godot",
+      "not",
       "portfolio",
-      "production-os",
-      "response",
-      "stop",
-      "uncertain"
+      "recommend",
+      "using"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -21,7 +22,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(portfolio): stop further launches after uncertain Production-OS response (#85)",
+  "task": "fix(portfolio): do not recommend the Godot engine to games already using Godot (#86)",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py"

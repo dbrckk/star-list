@@ -653,6 +653,22 @@ jobs:
           assert result["summary"]["active_integrations"] is None
           assert result["summary"]["failed_v2_integrations"] is None
           catalog = json.loads(Path("catalog.json").read_text())["repositories"]
+          # Regression from the real Jumpy scan: a Godot game cannot
+          # "integrate" the whole Godot engine as a new dependency.
+          godot_engine = next(x for x in catalog if x["repo"].lower() == "godotengine/godot")
+          jumpy = {"name": "Jumpy", "full_name": "dbrckk/Jumpy"}
+          godot_profile = {
+              "domains": ["game_dev"], "language": "gdscript",
+              "terms": scanner.tokens("godot game development cross-platform"),
+              "dependencies": "", "overview": "",
+          }
+          assert scanner.recommendations(jumpy, godot_profile, [godot_engine], 3) == []
+          # The exclusion is specific to the engine source, not Godot addons.
+          assert "godotengine/godot" in scanner.EXISTING_ENGINE_SOURCES["godot"]
+          for project in result["projects"]:
+              if project["repository"].lower() == "dbrckk/jumpy":
+                  assert all(item["repository"].lower() != "godotengine/godot"
+                             for item in project["suggestions"]), project
           reference = next(x for x in catalog if x["repo"].lower() == "android/nowinandroid")
           assert is_reference_candidate(reference), "Architecture example must be review-only"
           for project in result["projects"]:
@@ -2321,6 +2337,9 @@ STOPWORDS = {
 # Engine-specific runtime components are not drop-in replacements for
 # incompatible engines. This is a hard gate, not a soft relevance penalty.
 ENGINE_CONFLICTS = {
+# A repository *using* an engine should not be told to integrate that engine's
+# complete source tree as if it were a missing application dependency.
+EXISTING_ENGINE_SOURCES = {
 ⋮----
 MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
 ⋮----
@@ -2417,6 +2436,9 @@ shared = sorted((profile["terms"] & terms) - GENERIC - STOPWORDS)
 capability_terms = (tokens(" ".join(tool.get("capabilities") or []))
 ⋮----
 target_identity = repo["name"].lower()
+⋮----
+# An engine already running this game is a platform, not an
+# installable feature. Retain compatible plugins and addons.
 ⋮----
 slug_name = slug.rsplit("/", 1)[-1].lower()
 ⋮----
