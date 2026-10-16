@@ -283,21 +283,45 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, default=Path("portfolio-failure-diagnostics.json"))
     args = parser.parse_args()
+    # Always create a secret-free artifact, including when Render is sleeping,
+    # an operator credential is missing, or an authenticated read times out.
+    # The previous early-return behavior concealed why a diagnosis failed.
+    result = {
+        "schema_version": "star-list/public-failure-diagnostics/v1",
+        "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+        "expected_public_v2_targets": len(PUBLIC_FAILED_TARGETS),
+        "observed_public_v2_targets": 0,
+        "coverage_complete": False,
+        "details_checked_v2": 0,
+        "details_complete": False,
+        "failures": [],
+        "diagnostic_status": "unavailable",
+    }
     token = os.environ.get("PRODUCTION_OS_OPERATOR_TOKEN", "")
     if not token:
-        print("operator diagnostic unavailable: missing configured secret", file=sys.stderr)
-        return 2
-    try:
-        inbox = request_json(ENDPOINT, token)
-        result = add_deep_task_diagnostics(public_diagnostics(inbox), inbox, token)
-    except (RuntimeError, ValueError, TypeError, KeyError):
-        print("operator diagnostic unavailable: invalid or incomplete response", file=sys.stderr)
-        return 2
+        result["diagnostic_status"] = "missing-operator-token"
+    else:
+        stage = "inbox"
+        try:
+            inbox = request_json(ENDPOINT, token)
+            result = public_diagnostics(inbox)
+            stage = "task-details"
+            result = add_deep_task_diagnostics(result, inbox, token)
+            result["diagnostic_status"] = (
+                "complete" if result["coverage_complete"] and result["details_complete"]
+                else "incomplete-task-evidence"
+            )
+        except (RuntimeError, ValueError, TypeError, KeyError):
+            # Never echo network exception text or the private API response:
+            # both can contain backend details or credential-bearing URLs.
+            result["diagnostic_status"] = "unavailable-" + stage
+            result.setdefault("details_checked_v2", 0)
+            result.setdefault("details_complete", False)
     args.output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    # The log and artifact contain only strictly allowlisted public target names
-    # and enumerated failure categories. Never show backend response bodies.
+    # The log and artifact contain only allowlisted public names, enums and
+    # counters. Unavailable and incomplete diagnoses still exit nonzero.
     print(json.dumps(result, ensure_ascii=False, sort_keys=True))
-    return 0 if result["coverage_complete"] and result["details_complete"] else 2
+    return 0 if result["diagnostic_status"] == "complete" else 2
 
 
 if __name__ == "__main__":
