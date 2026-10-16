@@ -52,7 +52,7 @@
       "source": {
         "file": "scripts/portfolio_daily.py",
         "start": 109,
-        "end": 145
+        "end": 148
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -60,8 +60,8 @@
     "github_repos": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 148,
-        "end": 165
+        "start": 151,
+        "end": 168
       },
       "symbol_dependencies": [
         {
@@ -82,8 +82,8 @@
     "file_text": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 168,
-        "end": 176
+        "start": 171,
+        "end": 179
       },
       "symbol_dependencies": [
         {
@@ -104,8 +104,8 @@
     "project_profile": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 179,
-        "end": 198
+        "start": 182,
+        "end": 201
       },
       "symbol_dependencies": [
         {
@@ -113,7 +113,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 168,
+              "line": 171,
               "kind": "function",
               "language": "python"
             }
@@ -150,8 +150,8 @@
     "eligible": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 201,
-        "end": 212
+        "start": 204,
+        "end": 215
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -159,8 +159,8 @@
     "is_reference_candidate": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 215,
-        "end": 230
+        "start": 218,
+        "end": 233
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -168,8 +168,8 @@
     "recommendations": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 242,
-        "end": 350
+        "start": 245,
+        "end": 353
       },
       "symbol_dependencies": [
         {
@@ -177,7 +177,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 201,
+              "line": 204,
               "kind": "function",
               "language": "python"
             }
@@ -189,7 +189,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 215,
+              "line": 218,
               "kind": "function",
               "language": "python"
             }
@@ -238,8 +238,8 @@
     "count_active_integrations": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 356,
-        "end": 363
+        "start": 359,
+        "end": 366
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -247,8 +247,8 @@
     "busy_integration_targets": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 366,
-        "end": 383
+        "start": 369,
+        "end": 386
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -256,8 +256,8 @@
     "unresolved_failed_v2_integrations": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 386,
-        "end": 414
+        "start": 389,
+        "end": 417
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -265,8 +265,8 @@
     "count_failed_v2_integrations": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 417,
-        "end": 419
+        "start": 420,
+        "end": 422
       },
       "symbol_dependencies": [
         {
@@ -274,7 +274,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 386,
+              "line": 389,
               "kind": "function",
               "language": "python"
             }
@@ -287,8 +287,8 @@
     "count_launches_on_utc_date": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 422,
-        "end": 438
+        "start": 425,
+        "end": 441
       },
       "symbol_dependencies": [
         {
@@ -296,7 +296,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 442,
+              "line": 445,
               "kind": "function",
               "language": "python"
             }
@@ -309,8 +309,8 @@
     "verified_managed_projects": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 442,
-        "end": 490
+        "start": 445,
+        "end": 493
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -318,8 +318,8 @@
     "public_integration_status": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 493,
-        "end": 512
+        "start": 496,
+        "end": 515
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -327,8 +327,8 @@
     "integration_marker": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 515,
-        "end": 519
+        "start": 518,
+        "end": 522
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -336,8 +336,8 @@
     "recoverable_failure_targets": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 522,
-        "end": 555
+        "start": 525,
+        "end": 558
       },
       "symbol_dependencies": [
         {
@@ -345,7 +345,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 201,
+              "line": 204,
               "kind": "function",
               "language": "python"
             }
@@ -357,7 +357,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 515,
+              "line": 518,
               "kind": "function",
               "language": "python"
             }
@@ -370,8 +370,8 @@
     "launch_integration": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 558,
-        "end": 583
+        "start": 561,
+        "end": 586
       },
       "symbol_dependencies": [
         {
@@ -379,7 +379,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 515,
+              "line": 518,
               "kind": "function",
               "language": "python"
             }
@@ -404,8 +404,8 @@
     "confirmed_launch": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 586,
-        "end": 617
+        "start": 589,
+        "end": 620
       },
       "symbol_dependencies": [
         {
@@ -413,7 +413,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 515,
+              "line": 518,
               "kind": "function",
               "language": "python"
             }
@@ -426,8 +426,8 @@
     "render_markdown": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 620,
-        "end": 663
+        "start": 623,
+        "end": 666
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -435,8 +435,8 @@
     "main": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 666,
-        "end": 917
+        "start": 669,
+        "end": 920
       },
       "symbol_dependencies": [
         {
@@ -444,7 +444,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 366,
+              "line": 369,
               "kind": "function",
               "language": "python"
             }
@@ -456,7 +456,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 586,
+              "line": 589,
               "kind": "function",
               "language": "python"
             }
@@ -468,7 +468,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 356,
+              "line": 359,
               "kind": "function",
               "language": "python"
             }
@@ -480,7 +480,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 417,
+              "line": 420,
               "kind": "function",
               "language": "python"
             }
@@ -492,7 +492,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 422,
+              "line": 425,
               "kind": "function",
               "language": "python"
             }
@@ -504,7 +504,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 201,
+              "line": 204,
               "kind": "function",
               "language": "python"
             }
@@ -516,7 +516,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 148,
+              "line": 151,
               "kind": "function",
               "language": "python"
             }
@@ -528,7 +528,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 515,
+              "line": 518,
               "kind": "function",
               "language": "python"
             }
@@ -540,7 +540,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 558,
+              "line": 561,
               "kind": "function",
               "language": "python"
             }
@@ -552,7 +552,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 179,
+              "line": 182,
               "kind": "function",
               "language": "python"
             }
@@ -564,7 +564,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 493,
+              "line": 496,
               "kind": "function",
               "language": "python"
             }
@@ -576,7 +576,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 242,
+              "line": 245,
               "kind": "function",
               "language": "python"
             }
@@ -588,7 +588,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 522,
+              "line": 525,
               "kind": "function",
               "language": "python"
             }
@@ -600,7 +600,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 620,
+              "line": 623,
               "kind": "function",
               "language": "python"
             }
@@ -624,7 +624,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 386,
+              "line": 389,
               "kind": "function",
               "language": "python"
             }
@@ -636,7 +636,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 442,
+              "line": 445,
               "kind": "function",
               "language": "python"
             }
@@ -645,6 +645,181 @@
         }
       ],
       "dependency_count": 17
+    },
+    "safe_state": {
+      "source": {
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "start": 54,
+        "end": 56
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "failure_category": {
+      "source": {
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "start": 59,
+        "end": 70
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "safe_public_failure": {
+      "source": {
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "start": 73,
+        "end": 107
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "failure_category",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_failure_diagnostics.py",
+              "line": 59,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "safe_state",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_failure_diagnostics.py",
+              "line": 54,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "task_failure_evidence": {
+      "source": {
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "start": 110,
+        "end": 178
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "failure_category",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_failure_diagnostics.py",
+              "line": 59,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "safe_state",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_failure_diagnostics.py",
+              "line": 54,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "add_deep_task_diagnostics": {
+      "source": {
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "start": 181,
+        "end": 266
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "failure_category",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_failure_diagnostics.py",
+              "line": 59,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "request_json",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 109,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "safe_public_failure",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_failure_diagnostics.py",
+              "line": 73,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "task_failure_evidence",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_failure_diagnostics.py",
+              "line": 110,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 4
+    },
+    "inventory_diagnostic_inbox": {
+      "source": {
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "start": 269,
+        "end": 302
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "public_diagnostics": {
+      "source": {
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "start": 305,
+        "end": 330
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "safe_public_failure",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_failure_diagnostics.py",
+              "line": 73,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
     }
   }
 }

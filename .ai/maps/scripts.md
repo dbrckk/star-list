@@ -959,8 +959,6 @@ destination = urlparse(newurl)
 ⋮----
 SAFE_HTTP = build_opener(SameOriginRedirect())
 ⋮----
-def request_json(url: str, token: str = "", *, method: str = "GET", data: dict | None = None)
-⋮----
 parsed = urlparse(url)
 ⋮----
 headers = {
@@ -1316,6 +1314,9 @@ tokens or URLs from Production-OS into a public GitHub Actions artifact.
 """
 ⋮----
 PUBLIC_FAILED_TARGETS = frozenset({
+# This O(1)-query index replaces the global production inbox, which eagerly
+# materializes hundreds of unrelated project statuses before search filtering.
+# Only an authenticated operator receives per-project diagnostic IDs.
 ENDPOINT = (
 TRACKING = re.compile(r"(?<![a-z0-9])starlist-integration-v([123])-[0-9a-f]{24}(?![0-9a-f])")
 CATEGORIES = (
@@ -1411,7 +1412,28 @@ expected_goal = str(item.get("final_goal") or "")
 actual = TRACKING.search(raw_goal)
 expected = TRACKING.search(expected_goal)
 ⋮----
+# The lightweight tracking index intentionally has no outcome.
+# Populate delivery/validation evidence only from this separately
+# identity-verified project detail, never assume zero delivery.
+verified_detail = safe_public_failure(project)
+⋮----
 deeper = task_failure_evidence(project)
+⋮----
+def inventory_diagnostic_inbox(payload: object) -> dict
+⋮----
+"""Convert a complete operator-only index into filtered-inbox structure.
+
+    Never copy raw worker instructions into artifacts. The server itself
+    redacts tracking goals; this in-memory conversion keeps only the fields
+    needed to fetch the four public failed v2 project details.
+    """
+⋮----
+rows = payload.get("projects")
+total = payload.get("total_count")
+⋮----
+items = []
+⋮----
+# An incomplete privileged index cannot prove absence of a job.
 ⋮----
 def public_diagnostics(payload: object) -> dict
 ⋮----
@@ -1441,7 +1463,7 @@ token = os.environ.get("PRODUCTION_OS_OPERATOR_TOKEN", "")
 ⋮----
 stage = "inbox"
 ⋮----
-inbox = request_json(ENDPOINT, token)
+inbox = inventory_diagnostic_inbox(
 result = public_diagnostics(inbox)
 stage = "task-details"
 result = add_deep_task_diagnostics(result, inbox, token)

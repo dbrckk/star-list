@@ -37,24 +37,23 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T20:44:59Z
+Generated: 2026-10-16T20:51:43Z
 
 ### Git
 - Branch: `main`
-- Head: `31185fa3e103`
-- Commit date: 2026-10-16T16:44:49-04:00
-- Commit: feat(catalog): accurately recommend Hermes and OpenCode without unsafe native dispatch (#102)
+- Head: `dddc919539b0`
+- Commit date: 2026-10-16T16:51:34-04:00
+- Commit: fix(portfolio): diagnose failed tasks using targeted operator inventory instead of slow dashboard (#103)
 - Tracked files: 279
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
+- `docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md`
+- `scripts/portfolio_daily.py`
+- `scripts/portfolio_failure_diagnostics.py`
 - `catalog.json`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
-- `scripts/portfolio_daily.py`
 - `.github/workflows/portfolio-failure-diagnostics.yml`
-- `docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md`
-- `scripts/portfolio_failure_diagnostics.py`
-- `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
 
 ### Project signals
 - No common build descriptor detected

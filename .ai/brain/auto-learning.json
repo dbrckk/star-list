@@ -2,30 +2,32 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 52,
+    "example_count": 53,
     "rejected_count": 0,
     "terms": [
-      "102",
-      "accurately",
-      "catalog",
-      "dispatch",
-      "feat",
-      "hermes",
-      "native",
-      "opencode",
-      "recommend",
-      "unsafe",
-      "without"
+      "103",
+      "dashboard",
+      "diagnose",
+      "failed",
+      "instead",
+      "inventory",
+      "operator",
+      "portfolio",
+      "slow",
+      "targeted",
+      "tasks",
+      "using"
     ],
     "test_count": 0,
-    "useful_count": 1
+    "useful_count": 2
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(catalog): accurately recommend Hermes and OpenCode without unsafe native dispatch (#102)",
+  "task": "fix(portfolio): diagnose failed tasks using targeted operator inventory instead of slow dashboard (#103)",
   "tests_selected": [],
   "useful": [
-    "scripts/portfolio_daily.py"
+    "scripts/portfolio_daily.py",
+    "scripts/portfolio_failure_diagnostics.py"
   ]
 }

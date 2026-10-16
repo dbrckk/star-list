@@ -9,10 +9,10 @@
     "top_score": 50
   },
   "cache": {
-    "fingerprint": "e2114917026a042d47bfe7eec740fd2489bab5a8e781464c8a0c9dd811f05553",
+    "fingerprint": "e368bab6bb454f3a3c3e46f89b49243616aa685eda3a90f1b0e082e981d30df4",
     "hit": false
   },
-  "candidate_count": 9,
+  "candidate_count": 8,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -80,12 +80,14 @@
       "path": "scripts/portfolio_failure_diagnostics.py",
       "reasons": [
         "impact",
+        "recently-changed",
         "search-index"
       ],
-      "score": 23,
+      "score": 26,
       "symbols": [
         "add_deep_task_diagnostics",
         "failure_category",
+        "inventory_diagnostic_inbox",
         "main",
         "public_diagnostics",
         "safe_public_failure",

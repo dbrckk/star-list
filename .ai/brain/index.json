@@ -2,13 +2,13 @@
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
   "files_indexed": 53,
-  "symbol_count": 224,
+  "symbol_count": 225,
   "edge_count": 11,
   "languages": {
     "python": 53
   },
   "index_mode": "incremental",
-  "reparsed_files": 1,
+  "reparsed_files": 2,
   "top_symbol_files": [
     {
       "file": "scripts/discover_candidates.py",
@@ -43,6 +43,10 @@
       "symbols": 10
     },
     {
+      "file": "scripts/portfolio_failure_diagnostics.py",
+      "symbols": 8
+    },
+    {
       "file": "scripts/sync_github_stars.py",
       "symbols": 8
     },
@@ -52,10 +56,6 @@
     },
     {
       "file": "scripts/filter_discovery_memory.py",
-      "symbols": 7
-    },
-    {
-      "file": "scripts/portfolio_failure_diagnostics.py",
       "symbols": 7
     },
     {
