@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "1a157ba0832cf6c0b7ad737df362e7bc70dd4da5",
-  "head": "18d464436894212690882ee5993fc5bcd5839d0d",
+  "base": "18d464436894212690882ee5993fc5bcd5839d0d",
+  "head": "daacad6ff38dc3c6a5f97d582c32313d86a1a706",
   "index_mode": "incremental",
   "changed_files": [
     {
@@ -10,294 +10,147 @@
       "status": "M"
     },
     {
-      "path": ".github/workflows/sync-github-stars.yml",
-      "status": "M"
-    },
-    {
-      "path": "catalog.json",
-      "status": "M"
-    },
-    {
       "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
-      "status": "M"
-    },
-    {
-      "path": "docs/GITHUB_STARS_SYNC.md",
       "status": "M"
     },
     {
       "path": "scripts/portfolio_daily.py",
       "status": "M"
-    },
-    {
-      "path": "scripts/sync_github_stars.py",
-      "status": "M"
-    },
-    {
-      "path": "scripts/test_sync_github_stars.py",
-      "status": "M"
     }
   ],
   "changed_source_files": [
-    "scripts/portfolio_daily.py",
-    "scripts/sync_github_stars.py",
-    "scripts/test_sync_github_stars.py"
+    "scripts/portfolio_daily.py"
   ],
   "impacted_files": [
-    "scripts/admit_github_stars.py",
-    "scripts/portfolio_daily.py",
-    "scripts/sync_github_stars.py",
-    "scripts/test_sync_github_stars.py"
+    "scripts/portfolio_daily.py"
   ],
   "impacted_symbols": [
     {
-      "name": "classify",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 52
+      "name": "SameOriginRedirect",
+      "kind": "class",
+      "file": "scripts/portfolio_daily.py",
+      "line": 79
     },
     {
-      "name": "get_repo",
+      "name": "redirect_request",
       "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 64
-    },
-    {
-      "name": "catalog_entry",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 100
-    },
-    {
-      "name": "count",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 111
-    },
-    {
-      "name": "admit",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 159
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 200
+      "file": "scripts/portfolio_daily.py",
+      "line": 82
     },
     {
       "name": "request_json",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 79
+      "line": 96
     },
     {
       "name": "github_repos",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 118
+      "line": 135
     },
     {
       "name": "file_text",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 138
+      "line": 155
     },
     {
       "name": "project_profile",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 149
+      "line": 166
     },
     {
       "name": "eligible",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 171
+      "line": 188
     },
     {
       "name": "is_reference_candidate",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 185
+      "line": 202
     },
     {
       "name": "recommendations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 212
+      "line": 229
     },
     {
       "name": "count_active_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 283
+      "line": 300
     },
     {
       "name": "busy_integration_targets",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 293
+      "line": 310
     },
     {
       "name": "unresolved_failed_v2_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 313
+      "line": 330
     },
     {
       "name": "count_failed_v2_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 344
+      "line": 361
     },
     {
       "name": "count_launches_on_utc_date",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 349
+      "line": 366
     },
     {
       "name": "verified_managed_projects",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 369
+      "line": 386
     },
     {
       "name": "public_integration_status",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 420
+      "line": 437
     },
     {
       "name": "integration_marker",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 442
+      "line": 459
     },
     {
       "name": "recoverable_failure_targets",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 449
+      "line": 466
     },
     {
       "name": "launch_integration",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 485
+      "line": 502
     },
     {
       "name": "render_markdown",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 513
+      "line": 530
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 555
-    },
-    {
-      "name": "validate_user",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 23
-    },
-    {
-      "name": "normalize_repo",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 29
-    },
-    {
-      "name": "api_stars",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 35
-    },
-    {
-      "name": "catalog_identities",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 124
-    },
-    {
-      "name": "build_report",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 153
-    },
-    {
-      "name": "render_issue",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 178
-    },
-    {
-      "name": "write_json",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 228
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 234
-    },
-    {
-      "name": "star",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 20
-    },
-    {
-      "name": "Response",
-      "kind": "class",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 34
-    },
-    {
-      "name": "__init__",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 35
-    },
-    {
-      "name": "__enter__",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 39
-    },
-    {
-      "name": "__exit__",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 42
-    },
-    {
-      "name": "read",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 45
-    },
-    {
-      "name": "two_page_opener",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 50
-    },
-    {
-      "name": "rate_limited",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 126
+      "line": 572
     }
   ],
-  "selected_tests": [
-    "scripts/test_sync_github_stars.py"
-  ]
+  "selected_tests": []
 }

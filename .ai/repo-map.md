@@ -384,6 +384,26 @@ jobs:
           import tempfile
           from unittest.mock import patch
           import portfolio_daily as scanner
+          from urllib.request import Request
+          protected = Request("https://production-os1.onrender.com/v1/dashboard/launch",
+                              headers={"Authorization": "Bearer offline-test"})
+          redirect = scanner.SameOriginRedirect()
+          for destination in (
+              "http://production-os1.onrender.com/unsafe",
+              "https://example.com/collect",
+              "https://production-os1.onrender.com.evil.test/collect",
+              "https://user:password@production-os1.onrender.com/collect",
+          ):
+              try:
+                  redirect.redirect_request(protected, None, 302, "Found", {}, destination)
+              except RuntimeError:
+                  pass
+              else:
+                  raise AssertionError("Cross-origin API redirect accepted: " + destination)
+          same_origin = redirect.redirect_request(
+              protected, None, 302, "Found", {},
+              "https://production-os1.onrender.com/v1/managed-projects")
+          assert same_origin.get_header("Authorization") == "Bearer offline-test"
           targets = [
               {"name": name, "full_name": "dbrckk/" + name, "private": False}
               for name in ("alpha", "beta")
@@ -2199,6 +2219,17 @@ STOPWORDS = {
 ENGINE_CONFLICTS = {
 ⋮----
 MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
+⋮----
+class SameOriginRedirect(HTTPRedirectHandler)
+⋮----
+"""Never forward GitHub or Production-OS bearer tokens to another origin."""
+⋮----
+def redirect_request(self, req, fp, code, msg, headers, newurl)
+⋮----
+original = urlparse(req.full_url)
+destination = urlparse(newurl)
+⋮----
+SAFE_HTTP = build_opener(SameOriginRedirect())
 ⋮----
 def request_json(url: str, token: str = "", *, method: str = "GET", data: dict | None = None)
 ⋮----

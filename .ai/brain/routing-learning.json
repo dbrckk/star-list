@@ -664,6 +664,26 @@
         "scripts/sync_github_stars.py",
         "scripts/test_sync_github_stars.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(security): block cross-origin API redirects before forwarding bearer tokens (#81)",
+      "terms": [
+        "81",
+        "api",
+        "bearer",
+        "before",
+        "block",
+        "cross-origin",
+        "forwarding",
+        "redirects",
+        "security",
+        "tokens"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -772,6 +792,9 @@
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
+    "81": {
+      "scripts/portfolio_daily.py": 4
+    },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
@@ -789,7 +812,7 @@
       "scripts/test_auto_stars_admission.py": 4
     },
     "api": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "attempts": {
       "scripts/portfolio_daily.py": 4
@@ -820,15 +843,18 @@
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 4
     },
+    "bearer": {
+      "scripts/portfolio_daily.py": 4
+    },
     "before": {
-      "scripts/portfolio_daily.py": 8
+      "scripts/portfolio_daily.py": 12
     },
     "below": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
     "block": {
-      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_daily.py": 8,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
@@ -883,6 +909,9 @@
     },
     "core": {
       "scripts/validate_catalog.py": 4
+    },
+    "cross-origin": {
+      "scripts/portfolio_daily.py": 4
     },
     "curated": {
       "scripts/recommend.py": 4,
@@ -970,6 +999,9 @@
       "scripts/test_refresh_github_metadata.py": 8
     },
     "filler": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "forwarding": {
       "scripts/portfolio_daily.py": 4
     },
     "french": {
@@ -1216,6 +1248,9 @@
     "recovery": {
       "scripts/portfolio_daily.py": 4
     },
+    "redirects": {
+      "scripts/portfolio_daily.py": 4
+    },
     "reference-only": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1306,6 +1341,9 @@
     "scoped": {
       "scripts/portfolio_daily.py": 4
     },
+    "security": {
+      "scripts/portfolio_daily.py": 4
+    },
     "selection": {
       "scripts/infer_selection_guidance.py": 4,
       "scripts/recommend.py": 4,
@@ -1363,6 +1401,9 @@
       "scripts/test_sync_github_stars.py": 4
     },
     "throttling": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "tokens": {
       "scripts/portfolio_daily.py": 4
     },
     "tolerate": {

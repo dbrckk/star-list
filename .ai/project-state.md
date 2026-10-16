@@ -27,13 +27,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T17:15:48Z
+Generated: 2026-10-16T17:17:56Z
 
 ### Git
 - Branch: `main`
-- Head: `18d464436894`
-- Commit date: 2026-10-16T19:15:37+02:00
-- Commit: fix(portfolio): block concurrent integrations into the same repository (#80)
+- Head: `daacad6ff38d`
+- Commit date: 2026-10-16T19:17:45+02:00
+- Commit: fix(security): block cross-origin API redirects before forwarding bearer tokens (#81)
 - Tracked files: 274
 
 ### Recently changed files

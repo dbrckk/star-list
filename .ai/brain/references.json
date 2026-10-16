@@ -5,47 +5,93 @@
   "semantic": false,
   "note": "Occurrences are lexical word matches; verify source/LSP/compiler data before relying on them.",
   "symbols": {
-    "request_json": {
+    "SameOriginRedirect": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
         "line": 79,
-        "kind": "function",
+        "kind": "class",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
           "line": 79,
+          "preview": "class SameOriginRedirect(HTTPRedirectHandler):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 93,
+          "preview": "SAFE_HTTP = build_opener(SameOriginRedirect())",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 2
+    },
+    "redirect_request": {
+      "definition": {
+        "file": "scripts/portfolio_daily.py",
+        "line": 82,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 82,
+          "preview": "def redirect_request(self, req, fp, code, msg, headers, newurl):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 90,
+          "preview": "return super().redirect_request(req, fp, code, msg, headers, newurl)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 2
+    },
+    "request_json": {
+      "definition": {
+        "file": "scripts/portfolio_daily.py",
+        "line": 96,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/portfolio_daily.py",
+          "line": 96,
           "preview": "def request_json(url: str, token: str = \"\", *, method: str = \"GET\", data: dict | None = None):",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 125,
+          "line": 142,
           "preview": "rows = request_json(base + separator + \"page=\" + str(page), portfolio_token or token)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 140,
+          "line": 157,
           "preview": "payload = request_json(endpoint, token)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 506,
+          "line": 523,
           "preview": "return request_json(url.rstrip(\"/\") + \"/v1/dashboard/launch\", token, method=\"POST\",",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 580,
+          "line": 597,
           "preview": "target = request_json(API + \"/repos/\" + args.repository, portfolio_token or gh_token)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 625,
+          "line": 642,
           "preview": "existing = request_json(service.rstrip(\"/\") + \"/v1/managed-projects/integration-inventory\", operator_token)",
           "definition_candidate": false
         }
@@ -55,20 +101,20 @@
     "github_repos": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 118,
+        "line": 135,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 118,
+          "line": 135,
           "preview": "def github_repos(owner: str, token: str, portfolio_token: str) -> list[dict]:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 585,
+          "line": 602,
           "preview": "source = github_repos(args.owner, gh_token, portfolio_token)",
           "definition_candidate": false
         }
@@ -78,26 +124,26 @@
     "file_text": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 138,
+        "line": 155,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 138,
+          "line": 155,
           "preview": "def file_text(full_name: str, path: str, token: str, *, limit: int = 5500) -> str:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 153,
+          "line": 170,
           "preview": "intro = file_text(name, \"README.md\", token, limit=2800)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 156,
+          "line": 173,
           "preview": "value = file_text(name, filename, token, limit=3500)",
           "definition_candidate": false
         }
@@ -107,20 +153,20 @@
     "project_profile": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 149,
+        "line": 166,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 149,
+          "line": 166,
           "preview": "def project_profile(repo: dict, token: str) -> dict:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 598,
+          "line": 615,
           "preview": "profile = project_profile(repo, portfolio_token or gh_token)",
           "definition_candidate": false
         }
@@ -130,26 +176,26 @@
     "eligible": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 171,
+        "line": 188,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 171,
+          "line": 188,
           "preview": "def eligible(item: dict) -> bool:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 220,
+          "line": 237,
           "preview": "if slug.lower() == name or not eligible(tool):",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 452,
+          "line": 469,
           "preview": "\"\"\"Quarantine only targets with an *eligible* v3 retry still available.",
           "definition_candidate": false
         },
@@ -177,20 +223,20 @@
     "is_reference_candidate": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 185,
+        "line": 202,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 185,
+          "line": 202,
           "preview": "def is_reference_candidate(tool: dict) -> bool:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 261,
+          "line": 278,
           "preview": "\"reference-review\" if is_reference_candidate(tool) else",
           "definition_candidate": false
         }
@@ -200,20 +246,20 @@
     "recommendations": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 212,
+        "line": 229,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 212,
+          "line": 229,
           "preview": "def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) -> list[dict]:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 599,
+          "line": 616,
           "preview": "row[\"suggestions\"] = recommendations(repo, profile, catalog, 3)",
           "definition_candidate": false
         },
@@ -283,20 +329,20 @@
     "count_active_integrations": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 283,
+        "line": 300,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 283,
+          "line": 300,
           "preview": "def count_active_integrations(projects: list[dict]) -> int:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 639,
+          "line": 656,
           "preview": "active_integrations = count_active_integrations(already)",
           "definition_candidate": false
         }
@@ -306,20 +352,20 @@
     "busy_integration_targets": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 293,
+        "line": 310,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 293,
+          "line": 310,
           "preview": "def busy_integration_targets(projects: list[dict]) -> set[str]:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 641,
+          "line": 658,
           "preview": "busy_targets = busy_integration_targets(already)",
           "definition_candidate": false
         }
@@ -329,26 +375,26 @@
     "unresolved_failed_v2_integrations": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 313,
+        "line": 330,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 313,
+          "line": 330,
           "preview": "def unresolved_failed_v2_integrations(projects: list[dict]) -> list[dict]:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 346,
+          "line": 363,
           "preview": "return len(unresolved_failed_v2_integrations(projects))",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 647,
+          "line": 664,
           "preview": "unresolved_failures = unresolved_failed_v2_integrations(already)",
           "definition_candidate": false
         }
@@ -358,20 +404,20 @@
     "count_failed_v2_integrations": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 344,
+        "line": 361,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 344,
+          "line": 361,
           "preview": "def count_failed_v2_integrations(projects: list[dict]) -> int:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 640,
+          "line": 657,
           "preview": "failed_v2_integrations = count_failed_v2_integrations(already)",
           "definition_candidate": false
         }
@@ -381,20 +427,20 @@
     "count_launches_on_utc_date": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 349,
+        "line": 366,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 349,
+          "line": 366,
           "preview": "def count_launches_on_utc_date(projects: list[dict], utc_day: str) -> int:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 657,
+          "line": 674,
           "preview": "launches_today = count_launches_on_utc_date(already, current_day)",
           "definition_candidate": false
         }
@@ -404,26 +450,26 @@
     "verified_managed_projects": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 369,
+        "line": 386,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 352,
+          "line": 369,
           "preview": "Call only after verified_managed_projects has validated timezone-aware",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 369,
+          "line": 386,
           "preview": "def verified_managed_projects(payload: object) -> list[dict]:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 626,
+          "line": 643,
           "preview": "already = verified_managed_projects(existing)",
           "definition_candidate": false
         }
@@ -433,20 +479,20 @@
     "public_integration_status": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 420,
+        "line": 437,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 420,
+          "line": 437,
           "preview": "def public_integration_status(target: str, projects: list[dict]) -> list[dict]:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 634,
+          "line": 651,
           "preview": "public_row[\"integrations\"] = public_integration_status(",
           "definition_candidate": false
         }
@@ -456,56 +502,56 @@
     "integration_marker": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 442,
+        "line": 459,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 442,
+          "line": 459,
           "preview": "def integration_marker(target: str, candidate: dict, version: int = 2) -> str:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 465,
+          "line": 482,
           "preview": "integration_marker(target, candidate)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 493,
+          "line": 510,
           "preview": "marker = integration_marker(target, candidate, version=version)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 673,
+          "line": 690,
           "preview": "integration_marker(entry[1][\"repository\"], entry[2])",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 688,
+          "line": 705,
           "preview": "failed_marker = integration_marker(row[\"repository\"], item)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 689,
+          "line": 706,
           "preview": "recovery_marker = integration_marker(row[\"repository\"], item, version=3)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 723,
+          "line": 740,
           "preview": "marker = integration_marker(row[\"repository\"], item)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 724,
+          "line": 741,
           "preview": "previous = integration_marker(row[\"repository\"], item, version=1)",
           "definition_candidate": false
         }
@@ -515,20 +561,20 @@
     "recoverable_failure_targets": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 449,
+        "line": 466,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 449,
+          "line": 466,
           "preview": "def recoverable_failure_targets(",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 648,
+          "line": 665,
           "preview": "failed_targets = recoverable_failure_targets(",
           "definition_candidate": false
         }
@@ -538,26 +584,26 @@
     "launch_integration": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 485,
+        "line": 502,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 485,
+          "line": 502,
           "preview": "def launch_integration(url: str, token: str, target: str, candidate: dict, *, version: int = 2):",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 710,
+          "line": 727,
           "preview": "result = launch_integration(",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 744,
+          "line": 761,
           "preview": "result = launch_integration(service, operator_token, row[\"repository\"], item)",
           "definition_candidate": false
         }
@@ -567,7 +613,7 @@
     "render_markdown": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 513,
+        "line": 530,
         "kind": "function",
         "language": "python"
       },
@@ -598,13 +644,13 @@
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 513,
+          "line": 530,
           "preview": "def render_markdown(report: dict) -> str:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 766,
+          "line": 783,
           "preview": "args.markdown.write_text(render_markdown(report), encoding=\"utf-8\")",
           "definition_candidate": false
         },
@@ -662,7 +708,7 @@
     "main": {
       "definition": {
         "file": "scripts/portfolio_daily.py",
-        "line": 555,
+        "line": 572,
         "kind": "function",
         "language": "python"
       },
@@ -837,13 +883,13 @@
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 555,
+          "line": 572,
           "preview": "def main() -> int:",
           "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 772,
+          "line": 789,
           "preview": "sys.exit(main())",
           "definition_candidate": false
         },
@@ -1035,987 +1081,6 @@
         }
       ],
       "occurrence_count": 61
-    },
-    "validate_user": {
-      "definition": {
-        "file": "scripts/sync_github_stars.py",
-        "line": 23,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 23,
-          "preview": "def validate_user(user):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 37,
-          "preview": "validate_user(user)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 164,
-          "preview": "\"username\": validate_user(username),",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "normalize_repo": {
-      "definition": {
-        "file": "scripts/sync_github_stars.py",
-        "line": 29,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 22,
-          "preview": "from sync_github_stars import ROOT, normalize_repo",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 66,
-          "preview": "normalize_repo(repo)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 102,
-          "preview": "normalize_repo(repo)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 164,
-          "preview": "by_name = {normalize_repo(x[\"repo\"]) for x in old}",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 172,
-          "preview": "key = normalize_repo(star[\"repo\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 183,
-          "preview": "canonical = normalize_repo(entry[\"repo\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 29,
-          "preview": "def normalize_repo(repo):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 91,
-          "preview": "key = normalize_repo(repo)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 137,
-          "preview": "identity = normalize_repo(row.get(\"repo\"))",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 158,
-          "preview": "if normalize_repo(entry[\"repo\"]) not in catalog",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 95,
-          "preview": "mod.normalize_repo(\"not-a-name\")",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 11
-    },
-    "api_stars": {
-      "definition": {
-        "file": "scripts/sync_github_stars.py",
-        "line": 35,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 35,
-          "preview": "def api_stars(user, token=None, max_pages=100, opener=urlopen, sleeper=time.sleep):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 248,
-          "preview": "stars, pages, duplicates = api_stars(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 66,
-          "preview": "items, pages, duplicates = mod.api_stars(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 90,
-          "preview": "mod.api_stars(\"bad/user\", opener=two_page_opener)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 102,
-          "preview": "mod.api_stars(\"dbrckk\", opener=lambda _req, timeout=20: Response(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 112,
-          "preview": "mod.api_stars(\"dbrckk\", opener=lambda _req, timeout=20: Response(payload))",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 118,
-          "preview": "mod.api_stars(\"dbrckk\", opener=lambda _req, timeout=20: Response(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 131,
-          "preview": "assert len(mod.api_stars(\"dbrckk\", opener=rate_limited, sleeper=lambda _: None)[0]) == 1",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 136,
-          "preview": "mod.api_stars(\"dbrckk\", opener=lambda request, timeout=20: (",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 145,
-          "preview": "transfer_items, transfer_pages, _ = mod.api_stars(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 160,
-          "preview": "mod.api_stars(\"dbrckk\", opener=lambda _req, timeout=20: Response(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 212,
-          "preview": "original_api = mod.api_stars",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 214,
-          "preview": "mod.api_stars = lambda *_args, **_kwargs: (items, 2, 1)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 226,
-          "preview": "mod.api_stars = lambda *_args, **_kwargs: (_ for _ in ()).throw(RuntimeError(\"offline\"))",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 235,
-          "preview": "mod.api_stars = original_api",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 15
-    },
-    "catalog_identities": {
-      "definition": {
-        "file": "scripts/sync_github_stars.py",
-        "line": 124,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 124,
-          "preview": "def catalog_identities(path, include_ids=False):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 247,
-          "preview": "catalog, catalog_ids = catalog_identities(args.catalog, include_ids=True)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 172,
-          "preview": "assert mod.catalog_identities(catalog) == {\"known/repo\"}",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 174,
-          "preview": "assert mod.catalog_identities(catalog, include_ids=True) == (",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 179,
-          "preview": "mod.catalog_identities(catalog, include_ids=True)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 185,
-          "preview": "mod.catalog_identities(catalog, include_ids=True)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 191,
-          "preview": "mod.catalog_identities(catalog)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 197,
-          "preview": "mod.catalog_identities(catalog)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 8
-    },
-    "build_report": {
-      "definition": {
-        "file": "scripts/sync_github_stars.py",
-        "line": 153,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 141,
-          "preview": "def build_report(partition: dict, malformed: list[dict], import_files: list[str],",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 242,
-          "preview": "report = build_report(partition, malformed, [str(p) for p in paths],",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 153,
-          "preview": "def build_report(username, stars, catalog, pages, duplicates=0, now=None, catalog_ids=None):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 251,
-          "preview": "report = build_report(args.user, stars, catalog, pages, duplicates, catalog_ids=catalog_ids)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 9,
-          "preview": "build_report,",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 55,
-          "preview": "report = build_report(partition, malformed, [str(p1), str(p2)])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 86,
-          "preview": "review_report = build_report(partition, malformed, [\"batch\"], {candidate[\"key\"]: reviewed}, [\"metadata\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 74,
-          "preview": "report = mod.build_report(\"dbrckk\", items, {\"known/repo\"}, pages, duplicates, now=stamp)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 85,
-          "preview": "mod.build_report(\"dbrckk\", items, {x[\"repo\"].lower() for x in items}, pages)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 150,
-          "preview": "by_name_only = mod.build_report(\"dbrckk\", transfer_items, {\"old-owner/project\"}, transfer_pages)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 152,
-          "preview": "by_stable_id = mod.build_report(",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 11
-    },
-    "render_issue": {
-      "definition": {
-        "file": "scripts/sync_github_stars.py",
-        "line": 178,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 178,
-          "preview": "def render_issue(report, limit=50):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 259,
-          "preview": "args.report_md.write_text(render_issue(report, args.issue_limit) + \"\\n\", encoding=\"utf-8\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 80,
-          "preview": "rendered = mod.render_issue(report, limit=1)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 84,
-          "preview": "assert \"All accessible starred\" in mod.render_issue(",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 4
-    },
-    "write_json": {
-      "definition": {
-        "file": "scripts/sync_github_stars.py",
-        "line": 228,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 228,
-          "preview": "def write_json(path, payload):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 256,
-          "preview": "write_json(args.report_json, report)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 261,
-          "preview": "write_json(args.manifest, {",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "star": {
-      "definition": {
-        "file": "scripts/test_sync_github_stars.py",
-        "line": 20,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 71,
-          "preview": "\"User-Agent\": \"star-list-admission\",",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 171,
-          "preview": "for star in stars:",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 172,
-          "preview": "key = normalize_repo(star[\"repo\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 173,
-          "preview": "rid = star.get(\"githubRepositoryId\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 177,
-          "preview": "transfers.append(star[\"repo\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 179,
-          "preview": "meta = fetcher(star[\"repo\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 182,
-          "preview": "raise RuntimeError(\"Star identity changed while synchronizing: \" + star[\"repo\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 188,
-          "preview": "raise RuntimeError(\"Unexpected private repository in public Stars: \" + star[\"repo\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/analyze_cache_health.py",
-          "line": 55,
-          "preview": "\"<!-- star-list-cache-health -->\",",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/audit_catalog_quality.py",
-          "line": 141,
-          "preview": "\"<!-- star-list-catalog-quality -->\",",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/discover_candidates.py",
-          "line": 193,
-          "preview": "headers={\"Accept\":\"application/vnd.github+json\",\"User-Agent\":\"star-list-discovery\",\"X-GitHub-Api-Version\":\"2022-11-28\"}",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/discover_candidates.py",
-          "line": 202,
-          "preview": "headers={\"Accept\":\"application/vnd.github+json\",\"User-Agent\":\"star-list-discovery\",\"X-GitHub-Api-Version\":\"2022-11-28\"}",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 85,
-          "preview": "\"User-Agent\": \"star-list-portfolio-daily/1.0\",",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 372,
-          "preview": "Production-OS returns *every* star-list tracking record, with a known",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 515,
-          "preview": "lines = [\"<!-- star-list-portfolio-daily -->\", \"# Daily star-list portfolio discovery\", \"\",",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 522,
-          "preview": "lines.extend([\"Active star-list integrations at scan: **\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 237,
-          "preview": "ap = argparse.ArgumentParser(description=\"Recommend repositories from star-list catalog.\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 33,
-          "preview": "headers = {\"Accept\":\"application/vnd.github+json\",\"User-Agent\":\"star-list-metadata-refresh\",\"X-GitHub-Api-Version\":\"2022-11-28\"}",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/render_discovery_issue.py",
-          "line": 30,
-          "preview": "lines += [\"\",\"Candidates are never added to the catalog automatically.\",\"\",\"<!-- star-list-discovery-candidates -->\"]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/render_health_issue.py",
-          "line": 40,
-          "preview": "lines += [\"This report is advisory. No repository is automatically removed or replaced.\", \"\", \"<!-- star-list-health-review -->\"]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 2,
-          "preview": "\"\"\"Deterministic ingestion for screenshot-derived GitHub star manifests.\"\"\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 195,
-          "preview": "with tempfile.TemporaryDirectory(prefix=\"star-list-validate-\") as td:",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 20,
-          "preview": "ISSUE_MARKER = \"<!-- star-list-star-sync -->\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 42,
-          "preview": "\"User-Agent\": \"star-list-star-sync\",",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 235,
-          "preview": "parser = argparse.ArgumentParser(description=\"Check GitHub Stars against star-list (read-only).\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_catalog_quality.py",
-          "line": 114,
-          "preview": "assert \"<!-- star-list-catalog-quality -->\" in markdown",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_pipeline_integration.py",
-          "line": 114,
-          "preview": "assert \"<!-- star-list-discovery-candidates -->\" in body",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_render_discovery_issue.py",
-          "line": 11,
-          "preview": "assert \"<!-- star-list-discovery-candidates -->\" in body",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_render_health_issue.py",
-          "line": 13,
-          "preview": "assert \"<!-- star-list-health-review -->\" in body",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 187,
-          "preview": "print(\"OK: star import pipeline tests passed\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 20,
-          "preview": "def star(name, **overrides):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 58,
-          "preview": "[star(\"Known/Repo\"), star(\"New/Beta\", archived=True, license=None)],",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 62,
-          "preview": "return Response([star(\"new/beta\"), star(\"New/Alpha\")])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 103,
-          "preview": "[star(\"X/Y\")], '<https://api.github.com/users/dbrckk/starred?page=2>; rel=\"next\"'",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 110,
-          "preview": "for payload in ({\"message\": \"rate limited\"}, [None], [star(\"../../../evil\")]):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 130,
-          "preview": "return Response([star(\"X/Y\")])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 144,
-          "preview": "transfer_api = [star(\"New-Owner/Project\", id=338719962)]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 161,
-          "preview": "[star(\"Test/Repo\", id=bad_id)]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/validate_json_contract.py",
-          "line": 2,
-          "preview": "\"\"\"Validate JSON documents against the contract-focused JSON Schema subset used by star-list.\"\"\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/validate_json_contract.py",
-          "line": 116,
-          "preview": "ap=argparse.ArgumentParser(description=\"Validate a JSON document against a star-list JSON contract.\")",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 40
-    },
-    "Response": {
-      "definition": {
-        "file": "scripts/test_sync_github_stars.py",
-        "line": 34,
-        "kind": "class",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_discovery_cache_stats.py",
-          "line": 47,
-          "preview": "class Response:",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_discovery_cache_stats.py",
-          "line": 54,
-          "preview": "mod.urlopen = lambda *args, **kwargs: Response()",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 34,
-          "preview": "class Response:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 57,
-          "preview": "return Response(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 62,
-          "preview": "return Response([star(\"new/beta\"), star(\"New/Alpha\")])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 102,
-          "preview": "mod.api_stars(\"dbrckk\", opener=lambda _req, timeout=20: Response(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 112,
-          "preview": "mod.api_stars(\"dbrckk\", opener=lambda _req, timeout=20: Response(payload))",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 118,
-          "preview": "mod.api_stars(\"dbrckk\", opener=lambda _req, timeout=20: Response(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 130,
-          "preview": "return Response([star(\"X/Y\")])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 147,
-          "preview": "opener=lambda _req, timeout=20: Response(transfer_api)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 160,
-          "preview": "mod.api_stars(\"dbrckk\", opener=lambda _req, timeout=20: Response(",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 11
-    },
-    "__init__": {
-      "definition": {
-        "file": "scripts/test_sync_github_stars.py",
-        "line": 35,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_discovery_cache_stats.py",
-          "line": 48,
-          "preview": "def __init__(self): self.headers = {\"ETag\": '\"network\"'}",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 35,
-          "preview": "def __init__(self, payload, link=\"\"):",
-          "definition_candidate": true
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "__enter__": {
-      "definition": {
-        "file": "scripts/test_sync_github_stars.py",
-        "line": 39,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_discovery_cache_stats.py",
-          "line": 49,
-          "preview": "def __enter__(self): return self",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 39,
-          "preview": "def __enter__(self):",
-          "definition_candidate": true
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "__exit__": {
-      "definition": {
-        "file": "scripts/test_sync_github_stars.py",
-        "line": 42,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_discovery_cache_stats.py",
-          "line": 50,
-          "preview": "def __exit__(self, *args): return False",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 42,
-          "preview": "def __exit__(self, *_):",
-          "definition_candidate": true
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "read": {
-      "definition": {
-        "file": "scripts/test_sync_github_stars.py",
-        "line": 45,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 2,
-          "preview": "\"\"\"Daily, read-only portfolio discovery with optional idempotent Production-OS handoff.",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 101,
-          "preview": "raw = response.read(3_000_000)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 611,
-          "preview": "# Validate the origin before even the read-only authenticated request.",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 59,
-          "preview": "raw = response.read()",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 235,
-          "preview": "parser = argparse.ArgumentParser(description=\"Check GitHub Stars against star-list (read-only).\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_auto_stars_admission.py",
-          "line": 8,
-          "preview": "def read(path):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_auto_stars_admission.py",
-          "line": 15,
-          "preview": "catalog = read(\"catalog.json\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_auto_stars_admission.py",
-          "line": 16,
-          "preview": "manifest = read(\"imports/github-stars-2026-10-09-auto-1.json\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_auto_stars_admission.py",
-          "line": 17,
-          "preview": "review = read(\"reports/github-stars-review-2026-10-09-reviewed.json\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_auto_stars_admission.py",
-          "line": 18,
-          "preview": "report = read(\"reports/github-stars-review-2026-10-09-summary.json\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_auto_stars_admission.py",
-          "line": 19,
-          "preview": "snapshots = (read(\"reports/github-stars-review-2026-10-09-metadata-1.json\")[\"repositories\"]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_auto_stars_admission.py",
-          "line": 20,
-          "preview": "+ read(\"reports/github-stars-review-2026-10-09-metadata-2.json\")[\"repositories\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_auto_stars_admission.py",
-          "line": 51,
-          "preview": "historic = read(\"history.json\")[\"repositories\"]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_auto_stars_admission.py",
-          "line": 52,
-          "preview": "health_names = {entry[\"repo\"] for entry in read(\"health-snapshot.json\")[\"repositories\"]}",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_auto_stars_admission.py",
-          "line": 53,
-          "preview": "stack_names = {name for stack in read(\"stacks.json\")[\"stacks\"] for name in stack[\"repos\"]}",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_auto_stars_admission.py",
-          "line": 87,
-          "preview": "followup = read(\"reports/github-stars-followup-2026-10-09-reviewed.json\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_auto_stars_admission.py",
-          "line": 88,
-          "preview": "later = read(\"reports/github-stars-followup-2026-10-09-metadata.json\")[\"repositories\"]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_discovery_cache_stats.py",
-          "line": 51,
-          "preview": "def read(self): return b'{\"ok\":\"network\"}'",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 45,
-          "preview": "def read(self):",
-          "definition_candidate": true
-        }
-      ],
-      "occurrence_count": 19
-    },
-    "two_page_opener": {
-      "definition": {
-        "file": "scripts/test_sync_github_stars.py",
-        "line": 50,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 50,
-          "preview": "def two_page_opener(request, timeout=20):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 67,
-          "preview": "\"dbrckk\", token=\"testing-token\", opener=two_page_opener",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 90,
-          "preview": "mod.api_stars(\"bad/user\", opener=two_page_opener)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "rate_limited": {
-      "definition": {
-        "file": "scripts/test_sync_github_stars.py",
-        "line": 126,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 126,
-          "preview": "def rate_limited(request, timeout=20):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 131,
-          "preview": "assert len(mod.api_stars(\"dbrckk\", opener=rate_limited, sleeper=lambda _: None)[0]) == 1",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
     }
   }
 }

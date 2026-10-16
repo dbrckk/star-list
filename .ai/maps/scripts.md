@@ -939,6 +939,17 @@ ENGINE_CONFLICTS = {
 ⋮----
 MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
 ⋮----
+class SameOriginRedirect(HTTPRedirectHandler)
+⋮----
+"""Never forward GitHub or Production-OS bearer tokens to another origin."""
+⋮----
+def redirect_request(self, req, fp, code, msg, headers, newurl)
+⋮----
+original = urlparse(req.full_url)
+destination = urlparse(newurl)
+⋮----
+SAFE_HTTP = build_opener(SameOriginRedirect())
+⋮----
 def request_json(url: str, token: str = "", *, method: str = "GET", data: dict | None = None)
 ⋮----
 parsed = urlparse(url)

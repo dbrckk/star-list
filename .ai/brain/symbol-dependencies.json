@@ -5,11 +5,54 @@
   "semantic": false,
   "note": "Dependencies are known symbol names lexically present inside the symbol's AST/source range.",
   "symbols": {
-    "request_json": {
+    "SameOriginRedirect": {
       "source": {
         "file": "scripts/portfolio_daily.py",
         "start": 79,
-        "end": 115
+        "end": 90
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "redirect_request",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 82,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "tokens",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 38,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "redirect_request": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 82,
+        "end": 90
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "request_json": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 96,
+        "end": 132
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -17,8 +60,8 @@
     "github_repos": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 118,
-        "end": 135
+        "start": 135,
+        "end": 152
       },
       "symbol_dependencies": [
         {
@@ -26,7 +69,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 79,
+              "line": 96,
               "kind": "function",
               "language": "python"
             }
@@ -39,8 +82,8 @@
     "file_text": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 138,
-        "end": 146
+        "start": 155,
+        "end": 163
       },
       "symbol_dependencies": [
         {
@@ -48,7 +91,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 79,
+              "line": 96,
               "kind": "function",
               "language": "python"
             }
@@ -61,8 +104,8 @@
     "project_profile": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 149,
-        "end": 168
+        "start": 166,
+        "end": 185
       },
       "symbol_dependencies": [
         {
@@ -70,7 +113,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 138,
+              "line": 155,
               "kind": "function",
               "language": "python"
             }
@@ -107,8 +150,8 @@
     "eligible": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 171,
-        "end": 182
+        "start": 188,
+        "end": 199
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -116,8 +159,8 @@
     "is_reference_candidate": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 185,
-        "end": 200
+        "start": 202,
+        "end": 217
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -125,8 +168,8 @@
     "recommendations": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 212,
-        "end": 277
+        "start": 229,
+        "end": 294
       },
       "symbol_dependencies": [
         {
@@ -134,7 +177,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 171,
+              "line": 188,
               "kind": "function",
               "language": "python"
             }
@@ -146,7 +189,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 185,
+              "line": 202,
               "kind": "function",
               "language": "python"
             }
@@ -195,8 +238,8 @@
     "count_active_integrations": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 283,
-        "end": 290
+        "start": 300,
+        "end": 307
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -204,8 +247,8 @@
     "busy_integration_targets": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 293,
-        "end": 310
+        "start": 310,
+        "end": 327
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -213,8 +256,8 @@
     "unresolved_failed_v2_integrations": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 313,
-        "end": 341
+        "start": 330,
+        "end": 358
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -222,8 +265,8 @@
     "count_failed_v2_integrations": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 344,
-        "end": 346
+        "start": 361,
+        "end": 363
       },
       "symbol_dependencies": [
         {
@@ -231,7 +274,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 313,
+              "line": 330,
               "kind": "function",
               "language": "python"
             }
@@ -244,8 +287,8 @@
     "count_launches_on_utc_date": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 349,
-        "end": 365
+        "start": 366,
+        "end": 382
       },
       "symbol_dependencies": [
         {
@@ -253,7 +296,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 369,
+              "line": 386,
               "kind": "function",
               "language": "python"
             }
@@ -266,8 +309,8 @@
     "verified_managed_projects": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 369,
-        "end": 417
+        "start": 386,
+        "end": 434
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -275,8 +318,8 @@
     "public_integration_status": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 420,
-        "end": 439
+        "start": 437,
+        "end": 456
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -284,8 +327,8 @@
     "integration_marker": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 442,
-        "end": 446
+        "start": 459,
+        "end": 463
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -293,8 +336,8 @@
     "recoverable_failure_targets": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 449,
-        "end": 482
+        "start": 466,
+        "end": 499
       },
       "symbol_dependencies": [
         {
@@ -302,7 +345,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 171,
+              "line": 188,
               "kind": "function",
               "language": "python"
             }
@@ -314,7 +357,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 442,
+              "line": 459,
               "kind": "function",
               "language": "python"
             }
@@ -327,8 +370,8 @@
     "launch_integration": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 485,
-        "end": 510
+        "start": 502,
+        "end": 527
       },
       "symbol_dependencies": [
         {
@@ -336,7 +379,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 442,
+              "line": 459,
               "kind": "function",
               "language": "python"
             }
@@ -348,7 +391,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 79,
+              "line": 96,
               "kind": "function",
               "language": "python"
             }
@@ -361,8 +404,8 @@
     "render_markdown": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 513,
-        "end": 552
+        "start": 530,
+        "end": 569
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -370,8 +413,8 @@
     "main": {
       "source": {
         "file": "scripts/portfolio_daily.py",
-        "start": 555,
-        "end": 768
+        "start": 572,
+        "end": 785
       },
       "symbol_dependencies": [
         {
@@ -379,7 +422,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 293,
+              "line": 310,
               "kind": "function",
               "language": "python"
             }
@@ -391,7 +434,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 283,
+              "line": 300,
               "kind": "function",
               "language": "python"
             }
@@ -403,7 +446,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 344,
+              "line": 361,
               "kind": "function",
               "language": "python"
             }
@@ -415,7 +458,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 349,
+              "line": 366,
               "kind": "function",
               "language": "python"
             }
@@ -427,7 +470,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 118,
+              "line": 135,
               "kind": "function",
               "language": "python"
             }
@@ -439,7 +482,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 442,
+              "line": 459,
               "kind": "function",
               "language": "python"
             }
@@ -451,7 +494,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 485,
+              "line": 502,
               "kind": "function",
               "language": "python"
             }
@@ -463,7 +506,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 149,
+              "line": 166,
               "kind": "function",
               "language": "python"
             }
@@ -475,7 +518,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 420,
+              "line": 437,
               "kind": "function",
               "language": "python"
             }
@@ -487,7 +530,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 212,
+              "line": 229,
               "kind": "function",
               "language": "python"
             }
@@ -499,7 +542,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 449,
+              "line": 466,
               "kind": "function",
               "language": "python"
             }
@@ -511,7 +554,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 513,
+              "line": 530,
               "kind": "function",
               "language": "python"
             }
@@ -523,7 +566,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 79,
+              "line": 96,
               "kind": "function",
               "language": "python"
             }
@@ -535,7 +578,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 313,
+              "line": 330,
               "kind": "function",
               "language": "python"
             }
@@ -547,7 +590,7 @@
           "definitions": [
             {
               "file": "scripts/portfolio_daily.py",
-              "line": 369,
+              "line": 386,
               "kind": "function",
               "language": "python"
             }
@@ -556,303 +599,6 @@
         }
       ],
       "dependency_count": 15
-    },
-    "validate_user": {
-      "source": {
-        "file": "scripts/sync_github_stars.py",
-        "start": 23,
-        "end": 26
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "normalize_repo": {
-      "source": {
-        "file": "scripts/sync_github_stars.py",
-        "start": 29,
-        "end": 32
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "api_stars": {
-      "source": {
-        "file": "scripts/sync_github_stars.py",
-        "start": 35,
-        "end": 121
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "normalize_repo",
-          "definitions": [
-            {
-              "file": "scripts/sync_github_stars.py",
-              "line": 29,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "validate_user",
-          "definitions": [
-            {
-              "file": "scripts/sync_github_stars.py",
-              "line": 23,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 2
-    },
-    "catalog_identities": {
-      "source": {
-        "file": "scripts/sync_github_stars.py",
-        "start": 124,
-        "end": 150
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "normalize_repo",
-          "definitions": [
-            {
-              "file": "scripts/sync_github_stars.py",
-              "line": 29,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 1
-    },
-    "build_report": {
-      "source": {
-        "file": "scripts/sync_github_stars.py",
-        "start": 153,
-        "end": 175
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "normalize_repo",
-          "definitions": [
-            {
-              "file": "scripts/sync_github_stars.py",
-              "line": 29,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "validate_user",
-          "definitions": [
-            {
-              "file": "scripts/sync_github_stars.py",
-              "line": 23,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 2
-    },
-    "render_issue": {
-      "source": {
-        "file": "scripts/sync_github_stars.py",
-        "start": 178,
-        "end": 225
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "write_json": {
-      "source": {
-        "file": "scripts/sync_github_stars.py",
-        "start": 228,
-        "end": 231
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "star": {
-      "source": {
-        "file": "scripts/test_sync_github_stars.py",
-        "start": 20,
-        "end": 31
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "Response": {
-      "source": {
-        "file": "scripts/test_sync_github_stars.py",
-        "start": 34,
-        "end": 46
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "__enter__",
-          "definitions": [
-            {
-              "file": "scripts/test_sync_github_stars.py",
-              "line": 39,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "__exit__",
-          "definitions": [
-            {
-              "file": "scripts/test_sync_github_stars.py",
-              "line": 42,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "__init__",
-          "definitions": [
-            {
-              "file": "scripts/test_sync_github_stars.py",
-              "line": 35,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "read",
-          "definitions": [
-            {
-              "file": "scripts/test_sync_github_stars.py",
-              "line": 45,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 4
-    },
-    "__init__": {
-      "source": {
-        "file": "scripts/test_sync_github_stars.py",
-        "start": 35,
-        "end": 37
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "__enter__": {
-      "source": {
-        "file": "scripts/test_sync_github_stars.py",
-        "start": 39,
-        "end": 40
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "__exit__": {
-      "source": {
-        "file": "scripts/test_sync_github_stars.py",
-        "start": 42,
-        "end": 43
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "read": {
-      "source": {
-        "file": "scripts/test_sync_github_stars.py",
-        "start": 45,
-        "end": 46
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "two_page_opener": {
-      "source": {
-        "file": "scripts/test_sync_github_stars.py",
-        "start": 50,
-        "end": 63
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "Response",
-          "definitions": [
-            {
-              "file": "scripts/test_sync_github_stars.py",
-              "line": 34,
-              "kind": "class",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "star",
-          "definitions": [
-            {
-              "file": "scripts/test_sync_github_stars.py",
-              "line": 20,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 2
-    },
-    "rate_limited": {
-      "source": {
-        "file": "scripts/test_sync_github_stars.py",
-        "start": 126,
-        "end": 130
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "Response",
-          "definitions": [
-            {
-              "file": "scripts/test_sync_github_stars.py",
-              "line": 34,
-              "kind": "class",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "star",
-          "definitions": [
-            {
-              "file": "scripts/test_sync_github_stars.py",
-              "line": 20,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 2
     }
   }
 }

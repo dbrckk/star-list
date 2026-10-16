@@ -4,15 +4,15 @@
     "expand_to": 12,
     "max_files": 3,
     "requested_max_files": 12,
-    "score_margin": 3,
+    "score_margin": 9,
     "tier": "narrow",
     "top_score": 38
   },
   "cache": {
-    "fingerprint": "27466f72f13b53fe2ef87f08bce2a46c16ac1dc4616663fd906e243bdf3c9f0a",
+    "fingerprint": "3d18a157b1bbb68f4af5c27bf56caa2ea4dc148efefd9bcf3c504dbd4e7ca06a",
     "hit": false
   },
-  "candidate_count": 12,
+  "candidate_count": 7,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -29,6 +29,7 @@
       ],
       "score": 38,
       "symbols": [
+        "SameOriginRedirect",
         "busy_integration_targets",
         "count_active_integrations",
         "count_failed_v2_integrations",
@@ -44,10 +45,10 @@
         "public_integration_status",
         "recommendations",
         "recoverable_failure_targets",
+        "redirect_request",
         "render_markdown",
         "request_json",
-        "unresolved_failed_v2_integrations",
-        "verified_managed_projects"
+        "unresolved_failed_v2_integrations"
       ]
     },
     {
@@ -58,10 +59,9 @@
       ],
       "path": "scripts/admit_github_stars.py",
       "reasons": [
-        "impact",
         "search-index"
       ],
-      "score": 35,
+      "score": 29,
       "symbols": [
         "admit",
         "catalog_entry",

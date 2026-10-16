@@ -10,48 +10,24 @@
         "recent-project-state",
         "symbol-indexed"
       ],
-      "score": 455
-    },
-    {
-      "path": "scripts/test_sync_github_stars.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 410
+      "score": 465
     },
     {
       "path": "scripts/sync_github_stars.py",
       "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
+        "recent-project-state"
       ],
-      "score": 360
+      "score": 60
     },
     {
-      "path": "scripts/admit_github_stars.py",
+      "path": "scripts/test_sync_github_stars.py",
       "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "symbol-indexed"
+        "recent-project-state"
       ],
-      "score": 140
+      "score": 60
     },
     {
       "path": "scripts/recommend.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
-    },
-    {
-      "path": "scripts/star_import_pipeline.py",
       "reasons": [
         "dependency-neighbor"
       ],

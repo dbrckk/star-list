@@ -9,55 +9,10 @@
         "recent-project-state",
         "symbol-indexed"
       ],
-      "score": 455
-    },
-    {
-      "path": "scripts/test_sync_github_stars.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 410
-    },
-    {
-      "path": "scripts/sync_github_stars.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 360
-    },
-    {
-      "path": "scripts/admit_github_stars.py",
-      "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "symbol-indexed"
-      ],
-      "score": 140
+      "score": 465
     },
     {
       "path": ".github/workflows/portfolio-scan-smoke.yml",
-      "reasons": [
-        "changed"
-      ],
-      "score": 100
-    },
-    {
-      "path": ".github/workflows/sync-github-stars.yml",
-      "reasons": [
-        "changed"
-      ],
-      "score": 100
-    },
-    {
-      "path": "catalog.json",
       "reasons": [
         "changed"
       ],
@@ -71,21 +26,28 @@
       "score": 100
     },
     {
-      "path": "docs/GITHUB_STARS_SYNC.md",
+      "path": "catalog.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
+    },
+    {
+      "path": "scripts/sync_github_stars.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/test_sync_github_stars.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     },
     {
       "path": "scripts/recommend.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
-    },
-    {
-      "path": "scripts/star_import_pipeline.py",
       "reasons": [
         "dependency-neighbor"
       ],

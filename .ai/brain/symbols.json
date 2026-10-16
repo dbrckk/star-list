@@ -556,135 +556,149 @@
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
-      "kind": "function",
-      "name": "request_json",
+      "kind": "class",
+      "name": "SameOriginRedirect",
       "line": 79
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
+      "name": "redirect_request",
+      "line": 82
+    },
+    {
+      "file": "scripts/portfolio_daily.py",
+      "language": "python",
+      "kind": "function",
+      "name": "request_json",
+      "line": 96
+    },
+    {
+      "file": "scripts/portfolio_daily.py",
+      "language": "python",
+      "kind": "function",
       "name": "github_repos",
-      "line": 118
+      "line": 135
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "file_text",
-      "line": 138
+      "line": 155
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "project_profile",
-      "line": 149
+      "line": 166
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "eligible",
-      "line": 171
+      "line": 188
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "is_reference_candidate",
-      "line": 185
+      "line": 202
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "recommendations",
-      "line": 212
+      "line": 229
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "count_active_integrations",
-      "line": 283
+      "line": 300
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "busy_integration_targets",
-      "line": 293
+      "line": 310
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "unresolved_failed_v2_integrations",
-      "line": 313
+      "line": 330
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "count_failed_v2_integrations",
-      "line": 344
+      "line": 361
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "count_launches_on_utc_date",
-      "line": 349
+      "line": 366
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "verified_managed_projects",
-      "line": 369
+      "line": 386
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "public_integration_status",
-      "line": 420
+      "line": 437
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "integration_marker",
-      "line": 442
+      "line": 459
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "recoverable_failure_targets",
-      "line": 449
+      "line": 466
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "launch_integration",
-      "line": 485
+      "line": 502
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "render_markdown",
-      "line": 513
+      "line": 530
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "main",
-      "line": 555
+      "line": 572
     },
     {
       "file": "scripts/recommend.py",

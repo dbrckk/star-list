@@ -2,29 +2,29 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 37,
+    "example_count": 38,
     "rejected_count": 0,
     "terms": [
-      "80",
+      "81",
+      "api",
+      "bearer",
+      "before",
       "block",
-      "concurrent",
-      "integrations",
-      "into",
-      "portfolio",
-      "repository",
-      "same"
+      "cross-origin",
+      "forwarding",
+      "redirects",
+      "security",
+      "tokens"
     ],
     "test_count": 0,
-    "useful_count": 3
+    "useful_count": 1
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(portfolio): block concurrent integrations into the same repository (#80)",
+  "task": "fix(security): block cross-origin API redirects before forwarding bearer tokens (#81)",
   "tests_selected": [],
   "useful": [
-    "scripts/portfolio_daily.py",
-    "scripts/sync_github_stars.py",
-    "scripts/test_sync_github_stars.py"
+    "scripts/portfolio_daily.py"
   ]
 }
