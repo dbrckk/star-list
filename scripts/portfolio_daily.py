@@ -625,6 +625,9 @@ def main() -> int:
     if not scan_complete and operator_token:
         report["dispatch_status"] = "blocked (incomplete repository scan)"
     dispatched = 0
+    # A lost response does not prove a POST was rejected. Stop sending other
+    # candidates until the next run reconciles a fresh managed-project inventory.
+    launch_outcome_uncertain = False
     active_integrations = None
     failed_v2_integrations = None
     available_slots = None
@@ -743,6 +746,8 @@ def main() -> int:
                         dispatched += 1
                     except (RuntimeError, ValueError, TypeError) as exc:
                         report["errors"].append(row["repository"] + " recovery: " + str(exc))
+                        launch_outcome_uncertain = True
+                        break
                     continue
                 marker = integration_marker(row["repository"], item)
                 previous = integration_marker(row["repository"], item, version=1)
@@ -777,8 +782,12 @@ def main() -> int:
                     dispatched += 1
                 except (RuntimeError, ValueError, TypeError) as exc:
                     report["errors"].append(row["repository"] + " dispatch: " + str(exc))
+                    launch_outcome_uncertain = True
+                    break
     if operator_token and scan_complete and available_slots is not None:
-        if report["errors"]:
+        if launch_outcome_uncertain:
+            report["dispatch_status"] = "blocked (unconfirmed Production-OS launch)"
+        elif report["errors"]:
             report["dispatch_status"] = "failed (integration dispatch errors)"
         elif args.max_dispatch == 0:
             report["dispatch_status"] = "disabled (read-only scan)"
