@@ -87,6 +87,11 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   avoids permanently freezing the entire portfolio while also preventing
   runaway retries or repeated work from push/schedule dispatches. Missing
   creation timestamps are treated conservatively as same-day launches.
+- **Verified launch acknowledgment:** a successful HTTP response is not enough;
+  it must identify the intended target repository, a real persistent project ID,
+  the exact v2/v3 tracking/request ID, the managed-project idempotency flags,
+  and the requested bounded token budget. An incomplete or misbound response
+  is treated as uncertain and blocks all other submissions for that scan.
 - **Unknown launch outcome stops the queue:** if Production-OS times out,
   returns an error or fails to confirm a managed project after a launch POST,
   the scanner does not try any other candidate in that run. The POST may have
