@@ -538,6 +538,40 @@ def launch_integration(url: str, token: str, target: str, candidate: dict, *, ve
                               "token_budget": INTEGRATION_TOKEN_BUDGET})
 
 
+def confirmed_launch(result: object, target: str, candidate: dict, *, version: int = 2) -> bool:
+    """Accept only a bound, persistent, idempotent Production-OS receipt.
+
+    An HTTP success containing {"project": {}} is not proof of the requested
+    launch. Wrong-target acknowledgements must not consume a fleet slot or
+    permit the dispatcher to submit more work under an inconsistent inventory.
+    """
+    if not isinstance(result, dict):
+        return False
+    project, launch = result.get("project"), result.get("launch")
+    if not isinstance(project, dict) or not isinstance(launch, dict):
+        return False
+    identifier = project.get("id")
+    if not isinstance(identifier, str) or not re.fullmatch(r"[0-9a-f]{32}", identifier):
+        return False
+    marker = integration_marker(target, candidate, version=version)
+    goal = project.get("final_goal")
+    return (
+        project.get("project_id") == identifier
+        and isinstance(project.get("repository"), str)
+        and project["repository"].lower() == target.lower()
+        and isinstance(goal, str)
+        and "Tracking: " + marker in goal
+        and project.get("token_budget") == INTEGRATION_TOKEN_BUDGET
+        and type(project.get("token_budget")) is int
+        and launch.get("mode") == "managed-project"
+        and launch.get("persistent") is True
+        and launch.get("request_id") == marker
+        and launch.get("idempotent") is True
+        and type(launch.get("token_budget")) is int
+        and launch.get("token_budget") == INTEGRATION_TOKEN_BUDGET
+    )
+
+
 def render_markdown(report: dict) -> str:
     summary = report["summary"]
     lines = ["<!-- star-list-portfolio-daily -->", "# Daily star-list portfolio discovery", "",
@@ -752,8 +786,8 @@ def main() -> int:
                         result = launch_integration(
                             service, operator_token, row["repository"], item, version=3
                         )
-                        if not isinstance(result, dict) or not isinstance(result.get("project"), dict):
-                            raise RuntimeError("Production-OS did not confirm a managed project")
+                        if not confirmed_launch(result, row["repository"], item, version=3):
+                            raise RuntimeError("Production-OS launch receipt did not match requested v3 project")
                         row["dispatches"].append("recovery-v3: " + item["repository"])
                         already.append({"repository": row["repository"],
                                         "final_goal": recovery_marker, "status": "ACTIVE"})
@@ -786,8 +820,8 @@ def main() -> int:
                     break
                 try:
                     result = launch_integration(service, operator_token, row["repository"], item)
-                    if not isinstance(result, dict) or not isinstance(result.get("project"), dict):
-                        raise RuntimeError("Production-OS did not confirm a managed project")
+                    if not confirmed_launch(result, row["repository"], item):
+                        raise RuntimeError("Production-OS launch receipt did not match requested v2 project")
                     row["dispatches"].append(
                         ("recovery-v2: " if is_recovery else "submitted-v2: ") + item["repository"]
                     )
