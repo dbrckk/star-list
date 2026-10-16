@@ -127,8 +127,10 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   not a guarantee of successful code delivery or of provider availability.
   No paid provider is added or selected by this scanner.
 - Exclude generic words and incompatible game engines from matching. An
-  existing Godot project is not offered `godotengine/godot` itself as a new
-  dependency; Godot-compatible addons remain candidates. Single-term
+  existing Godot project is not offered `godotengine/godot` itself or any
+  engine explicitly identified as an alternative in that catalog entry
+  (such as `libgdx/libgdx`) as a new dependency. Godot-compatible addons
+  remain candidates. Single-term
   suggestions must match a technical capability or use case. Cross-language
   adapter suggestions remain visible in the report, but are **never** sent to
   autonomous integration without a separate compatibility assessment.
