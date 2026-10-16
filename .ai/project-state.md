@@ -21,10 +21,10 @@ Status: active
 - Verify actual worker outputs and target-side CI before counting any Production-OS handoff as completed.
 
 ## Current priority
-1. Investigate the four unresolved Production-OS v2 integrations with target-side worker logs, task outcomes and PR/CI evidence. Do not conflate queue submissions with completed installations.
-2. Check the effectiveness of catalog recommendation matching, particularly suggestions labeled `native`, before enabling higher-throughput automation.
-3. Keep hourly intended Stars synchronization and daily scans observable; verify private workflows separately when repository coverage changes.
-4. Preserve fail-closed token transport, per-target single-flight and documented dispatch budgets.
+1. **Restore usable free AI execution capacity.** Operator diagnosis on 2026-10-16 verified that all four unresolved v2 jobs failed with `capacity_exhausted`, exactly 1/3 attempts each, without commits, PRs or target CI. See `docs/PORTFOLIO_CAPACITY_RECOVERY.md`.
+2. Verify a real ready provider and worker before bounded v3 recovery; never increase or bypass the UTC/fleet and per-target launch caps to mask unavailable capacity.
+3. Requalify current native candidates before retries (currently Ai-trading and vibecheck-android). Require real source edits, review and target CI before counting success.
+4. Preserve daily public/private scans, Stars reconciliation, credential isolation and fail-closed diagnostics.
 
 ## Validation
 - 2026-10-16: `Validate catalog`, `Portfolio discovery live smoke`, `Sync GitHub Stars` and `Repository standards` successful in relevant runs.
