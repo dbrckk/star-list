@@ -11,13 +11,36 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
+from urllib.parse import urlencode, urlsplit
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 ROOT = Path(__file__).resolve().parents[1]
 USER_PATTERN = re.compile(r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?\Z")
 REPO_PATTERN = re.compile(r"([A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?)/([A-Za-z0-9_.-]{1,100})\Z")
 ISSUE_MARKER = "<!-- star-list-star-sync -->"
+
+
+class SameOriginGitHubRedirect(HTTPRedirectHandler):
+    """Do not forward the Stars workflow's bearer token outside GitHub API.
+
+    urllib's default redirect handler copies request headers, including
+    Authorization. The public Stars sync and metadata admission both use
+    authenticated GitHub API calls; fail closed on redirect origin changes.
+    """
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        original = urlsplit(req.full_url)
+        destination = urlsplit(newurl)
+        if (original.scheme != "https" or original.hostname != "api.github.com"
+                or destination.scheme != "https"
+                or destination.hostname != original.hostname
+                or destination.port != original.port
+                or destination.username or destination.password):
+            raise RuntimeError("Refusing cross-origin GitHub API redirect")
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+SAFE_GITHUB_HTTP = build_opener(SameOriginGitHubRedirect())
 
 
 def validate_user(user):
@@ -32,7 +55,7 @@ def normalize_repo(repo):
     return repo.lower()
 
 
-def api_stars(user, token=None, max_pages=100, opener=urlopen, sleeper=time.sleep):
+def api_stars(user, token=None, max_pages=100, opener=SAFE_GITHUB_HTTP.open, sleeper=time.sleep):
     """Fetch all public stars. A failed/truncated page aborts the entire synchronization."""
     validate_user(user)
     if not isinstance(max_pages, int) or max_pages < 1:
