@@ -76,6 +76,32 @@ jobs:
               count_launches_on_utc_date, busy_integration_targets,
           )
           assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
+          # Functional transport smoke: an ambiguous mutating request is sent
+          # once; a read-only GET retains the bounded retry policy.
+          import portfolio_daily as portfolio_transport
+          from urllib.error import URLError
+          from unittest.mock import patch as transport_patch
+          class UnavailableTransport:
+              def __init__(self):
+                  self.calls = 0
+              def open(self, request, timeout):
+                  self.calls += 1
+                  raise URLError("simulated transient outage")
+          for method, expected_calls in (("POST", 1), ("GET", 3)):
+              transport = UnavailableTransport()
+              with transport_patch.object(portfolio_transport, "SAFE_HTTP", transport), \
+                   transport_patch.object(portfolio_transport.time, "sleep", return_value=None):
+                  try:
+                      portfolio_transport.request_json(
+                          "https://production-os1.onrender.com/v1/dashboard/launch",
+                          "dummy", method=method,
+                          data={"request_id": "offline-smoke"} if method == "POST" else None,
+                      )
+                  except RuntimeError:
+                      pass
+                  else:
+                      raise AssertionError("A failed transport was accepted")
+              assert transport.calls == expected_calls, (method, transport.calls)
           test_failure = {
               "repository": "dbrckk/Ai-trading", "status": "NEEDS_ATTENTION",
               "final_goal": "Private instruction. Tracking: " +

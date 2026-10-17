@@ -113,6 +113,11 @@ def request_json(url: str, token: str = "", *, method: str = "GET", data: dict |
         raise ValueError("HTTPS endpoint required")
     if type(max_attempts) is not int or max_attempts < 1 or max_attempts > 3:
         raise ValueError("HTTP retry count must be between 1 and 3")
+    # Retrying a POST after a timeout or 5xx can submit the same autonomous
+    # work twice if the first response was lost. Reconcile the authoritative
+    # inventory on the next scan instead of replaying a mutating request.
+    if method != "GET":
+        max_attempts = 1
     headers = {
         "Accept": "application/vnd.github+json" if parsed.hostname == "api.github.com" else "application/json",
         "User-Agent": "star-list-portfolio-daily/1.0",
