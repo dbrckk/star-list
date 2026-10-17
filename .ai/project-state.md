@@ -43,22 +43,22 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-16T20:51:43Z
+Generated: 2026-10-17T08:12:02Z
 
 ### Git
 - Branch: `main`
-- Head: `dddc919539b0`
-- Commit date: 2026-10-16T16:51:34-04:00
-- Commit: fix(portfolio): diagnose failed tasks using targeted operator inventory instead of slow dashboard (#103)
+- Head: `46fde4c4efb0`
+- Commit date: 2026-10-17T04:11:53-04:00
+- Commit: fix(portfolio): stop new integration launches after failed final v3 recovery (#105)
 - Tracked files: 279
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
-- `docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md`
+- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
+- `docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md`
 - `scripts/portfolio_failure_diagnostics.py`
 - `catalog.json`
-- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `.github/workflows/portfolio-failure-diagnostics.yml`
 
 ### Project signals

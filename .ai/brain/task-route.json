@@ -9,7 +9,7 @@
     "top_score": 50
   },
   "cache": {
-    "fingerprint": "e368bab6bb454f3a3c3e46f89b49243616aa685eda3a90f1b0e082e981d30df4",
+    "fingerprint": "a2433377f4f6e370ea02aec6fa0104dfcbc18d7e5960bb373b905b27c20e7088",
     "hit": false
   },
   "candidate_count": 8,
@@ -35,6 +35,7 @@
         "confirmed_launch",
         "count_active_integrations",
         "count_failed_v2_integrations",
+        "count_failed_v3_integrations",
         "count_launches_on_utc_date",
         "eligible",
         "file_text",
@@ -48,8 +49,7 @@
         "recommendations",
         "recoverable_failure_targets",
         "redirect_request",
-        "render_markdown",
-        "request_json"
+        "render_markdown"
       ]
     },
     {
@@ -80,10 +80,9 @@
       "path": "scripts/portfolio_failure_diagnostics.py",
       "reasons": [
         "impact",
-        "recently-changed",
         "search-index"
       ],
-      "score": 26,
+      "score": 23,
       "symbols": [
         "add_deep_task_diagnostics",
         "failure_category",

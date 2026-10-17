@@ -986,6 +986,27 @@
         "scripts/portfolio_daily.py",
         "scripts/portfolio_failure_diagnostics.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): stop new integration launches after failed final v3 recovery (#105)",
+      "terms": [
+        "105",
+        "after",
+        "failed",
+        "final",
+        "integration",
+        "launches",
+        "new",
+        "portfolio",
+        "recovery",
+        "stop",
+        "v3"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1000,6 +1021,9 @@
     "103": {
       "scripts/portfolio_daily.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "105": {
+      "scripts/portfolio_daily.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1159,7 +1183,7 @@
       "scripts/test_auto_stars_admission.py": 4
     },
     "after": {
-      "scripts/portfolio_daily.py": 12
+      "scripts/portfolio_daily.py": 16
     },
     "all": {
       "scripts/admit_github_stars.py": 4,
@@ -1414,7 +1438,7 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "failed": {
-      "scripts/portfolio_daily.py": 16,
+      "scripts/portfolio_daily.py": 20,
       "scripts/portfolio_failure_diagnostics.py": 12
     },
     "fails": {
@@ -1439,6 +1463,9 @@
       "scripts/test_refresh_github_metadata.py": 8
     },
     "filler": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "final": {
       "scripts/portfolio_daily.py": 4
     },
     "forwarding": {
@@ -1559,7 +1586,7 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "integration": {
-      "scripts/portfolio_daily.py": 28
+      "scripts/portfolio_daily.py": 32
     },
     "integrations": {
       "scripts/portfolio_daily.py": 12,
@@ -1596,7 +1623,7 @@
       "scripts/portfolio_daily.py": 8
     },
     "launches": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "license": {
       "scripts/audit_catalog_quality.py": 4,
@@ -1653,6 +1680,9 @@
     },
     "native": {
       "scripts/portfolio_daily.py": 12
+    },
+    "new": {
+      "scripts/portfolio_daily.py": 4
     },
     "not": {
       "scripts/portfolio_daily.py": 4
@@ -1760,7 +1790,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "recovery": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "redirects": {
       "scripts/portfolio_daily.py": 4
@@ -1941,7 +1971,7 @@
       "scripts/validate_catalog.py": 4
     },
     "stop": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "strictly": {
       "scripts/portfolio_daily.py": 4
@@ -2014,7 +2044,7 @@
       "scripts/portfolio_daily.py": 8
     },
     "v3": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "validation": {
       "scripts/validate_catalog.py": 4

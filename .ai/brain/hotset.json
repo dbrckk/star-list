@@ -10,19 +10,17 @@
         "recent-project-state",
         "symbol-indexed"
       ],
-      "score": 495
+      "score": 500
     },
     {
       "path": "scripts/portfolio_failure_diagnostics.py",
       "reasons": [
-        "changed",
-        "changed-source",
         "impact",
         "recent-project-state",
         "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
-      "score": 430
+      "score": 210
     },
     {
       "path": ".github/workflows/portfolio-scan-smoke.yml",
@@ -32,7 +30,7 @@
       "score": 100
     },
     {
-      "path": "docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md",
+      "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
       "reasons": [
         "changed"
       ],

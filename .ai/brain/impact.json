@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "31185fa3e103744dbbaf0944ff6242eb6aaa76b0",
-  "head": "dddc919539b0385a5672288351ad2189b82af43f",
+  "base": "dddc919539b0385a5672288351ad2189b82af43f",
+  "head": "46fde4c4efb0b876a66dd9c51699f37eda53f815",
   "index_mode": "incremental",
   "changed_files": [
     {
@@ -10,21 +10,16 @@
       "status": "M"
     },
     {
-      "path": "docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md",
+      "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
       "status": "M"
     },
     {
       "path": "scripts/portfolio_daily.py",
       "status": "M"
-    },
-    {
-      "path": "scripts/portfolio_failure_diagnostics.py",
-      "status": "M"
     }
   ],
   "changed_source_files": [
-    "scripts/portfolio_daily.py",
-    "scripts/portfolio_failure_diagnostics.py"
+    "scripts/portfolio_daily.py"
   ],
   "impacted_files": [
     "scripts/portfolio_daily.py",
@@ -110,58 +105,64 @@
       "line": 420
     },
     {
-      "name": "count_launches_on_utc_date",
+      "name": "count_failed_v3_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
       "line": 425
     },
     {
+      "name": "count_launches_on_utc_date",
+      "kind": "function",
+      "file": "scripts/portfolio_daily.py",
+      "line": 441
+    },
+    {
       "name": "verified_managed_projects",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 445
+      "line": 461
     },
     {
       "name": "public_integration_status",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 496
+      "line": 512
     },
     {
       "name": "integration_marker",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 518
+      "line": 534
     },
     {
       "name": "recoverable_failure_targets",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 525
+      "line": 541
     },
     {
       "name": "launch_integration",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 561
+      "line": 577
     },
     {
       "name": "confirmed_launch",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 589
+      "line": 605
     },
     {
       "name": "render_markdown",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 623
+      "line": 639
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 669
+      "line": 688
     },
     {
       "name": "safe_state",

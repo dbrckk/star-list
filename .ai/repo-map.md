@@ -428,7 +428,8 @@ jobs:
           assert failure_category({"summary": "check secret text"}) == "unknown"
           from portfolio_daily import (
               is_reference_candidate, count_active_integrations,
-              count_failed_v2_integrations, verified_managed_projects,
+              count_failed_v2_integrations, count_failed_v3_integrations,
+              verified_managed_projects,
               integration_marker, recoverable_failure_targets,
               count_launches_on_utc_date, busy_integration_targets,
           )
@@ -902,6 +903,44 @@ jobs:
               assert throttled["summary"]["available_dispatch_slots"] == 0
               assert throttled["summary"]["dispatched"] == 0
               assert throttled["dispatch_status"] == "throttled (UTC daily launch quota exhausted)"
+              assert throttled["summary"]["failed_v3_integrations"] == 0
+              assert launches == [], launches
+              # A final v3 recovery failure is a fleet-wide hard stop, even
+              # on a fresh UTC day with otherwise eligible unrelated tools.
+              # The scanner must still produce complete public discovery.
+              final_v3_failure = {
+                  "repository": "dbrckk/alpha", "status": "NEEDS_ATTENTION",
+                  "created_at": "2026-01-01T00:00:00Z",
+                  "final_goal": integration_marker(
+                      "dbrckk/alpha", {"repository": "upstream/one"}, version=3),
+              }
+              assert count_failed_v3_integrations([final_v3_failure]) == 1
+              assert count_failed_v3_integrations([
+                  {**final_v3_failure, "status": "DONE"}
+              ]) == 0
+              launches.clear()
+              final_inventory = {"complete": True, "total_count": 1,
+                                 "projects": [final_v3_failure]}
+              with patch.dict(os.environ, {"PRODUCTION_OS_OPERATOR_TOKEN": "offline-test"}), \
+                   patch.object(sys, "argv", argv), \
+                   patch.object(scanner, "github_repos", return_value=targets), \
+                   patch.object(scanner, "project_profile", return_value={}), \
+                   patch.object(scanner, "recommendations",
+                                side_effect=lambda repo, *_: offers[repo["full_name"]]), \
+                   patch.object(scanner, "request_json", return_value=final_inventory), \
+                   patch.object(scanner, "launch_integration",
+                                side_effect=AssertionError("Final v3 failure was ignored")):
+                  assert scanner.main() == 0
+              gated = json.loads((p / "scan.json").read_text())
+              assert gated["summary"]["inspected"] == 2
+              assert gated["summary"]["with_suggestions"] == 2
+              assert gated["summary"]["dispatched"] == 0
+              assert gated["summary"]["available_dispatch_slots"] == 0
+              assert gated["summary"]["failed_v3_integrations"] == 1
+              assert gated["dispatch_status"] == (
+                  "paused (failed v3 recovery needs operator review)")
+              assert "Failed final v3 recovery attempts requiring operator review: **1**" in (
+                  p / "scan.md").read_text()
               assert launches == [], launches
           # The dispatch quota is tied to UTC, not to the worker's local date.
           utc_boundary = [
@@ -2877,6 +2916,14 @@ def count_failed_v2_integrations(projects: list[dict]) -> int
 ⋮----
 """Count only still-unresolved failed high-budget jobs."""
 ⋮----
+def count_failed_v3_integrations(projects: list[dict]) -> int
+⋮----
+"""A terminal v3 retry is an operator-review gate, not an open slot.
+
+    Never automatically launch unrelated jobs after a final recovery already
+    failed. First establish real model/worker capacity and review the result.
+    """
+⋮----
 def count_launches_on_utc_date(projects: list[dict], utc_day: str) -> int
 ⋮----
 """Account for the UTC launch quota, regardless of an API timestamp offset.
@@ -2999,6 +3046,7 @@ dispatched = 0
 launch_outcome_uncertain = False
 active_integrations = None
 failed_v2_integrations = None
+failed_v3_integrations = None
 available_slots = None
 launches_today = None
 ⋮----
@@ -3022,6 +3070,7 @@ existing = None
 # not merely the number of launches in this one workflow run.
 active_integrations = count_active_integrations(already)
 failed_v2_integrations = count_failed_v2_integrations(already)
+failed_v3_integrations = count_failed_v3_integrations(already)
 busy_targets = busy_integration_targets(already)
 # Failed projects are quarantined instead of occupying all
 # capacity slots forever. While failures remain, admit at most
@@ -3040,6 +3089,12 @@ launches_today = count_launches_on_utc_date(already, current_day)
 available_slots = (
 ⋮----
 available_slots = min(
+# The final automatic recovery version has already failed.
+# Until operators establish working capacity and review outcomes,
+# further autonomous submissions only consume scarce free tokens.
+# Continue full discovery, reporting and inventory reconciliation.
+⋮----
+available_slots = 0
 # Reevaluate a previously failed compatible candidate before
 # consuming the single daily slot on an unrelated new project.
 # A v3 marker is distinct and can be submitted only once.

@@ -1111,6 +1111,14 @@ def count_failed_v2_integrations(projects: list[dict]) -> int
 ⋮----
 """Count only still-unresolved failed high-budget jobs."""
 ⋮----
+def count_failed_v3_integrations(projects: list[dict]) -> int
+⋮----
+"""A terminal v3 retry is an operator-review gate, not an open slot.
+
+    Never automatically launch unrelated jobs after a final recovery already
+    failed. First establish real model/worker capacity and review the result.
+    """
+⋮----
 def count_launches_on_utc_date(projects: list[dict], utc_day: str) -> int
 ⋮----
 """Account for the UTC launch quota, regardless of an API timestamp offset.
@@ -1233,6 +1241,7 @@ dispatched = 0
 launch_outcome_uncertain = False
 active_integrations = None
 failed_v2_integrations = None
+failed_v3_integrations = None
 available_slots = None
 launches_today = None
 ⋮----
@@ -1256,6 +1265,7 @@ existing = None
 # not merely the number of launches in this one workflow run.
 active_integrations = count_active_integrations(already)
 failed_v2_integrations = count_failed_v2_integrations(already)
+failed_v3_integrations = count_failed_v3_integrations(already)
 busy_targets = busy_integration_targets(already)
 # Failed projects are quarantined instead of occupying all
 # capacity slots forever. While failures remain, admit at most
@@ -1274,6 +1284,12 @@ launches_today = count_launches_on_utc_date(already, current_day)
 available_slots = (
 ⋮----
 available_slots = min(
+# The final automatic recovery version has already failed.
+# Until operators establish working capacity and review outcomes,
+# further autonomous submissions only consume scarce free tokens.
+# Continue full discovery, reporting and inventory reconciliation.
+⋮----
+available_slots = 0
 # Reevaluate a previously failed compatible candidate before
 # consuming the single daily slot on an unrelated new project.
 # A v3 marker is distinct and can be submitted only once.

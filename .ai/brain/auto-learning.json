@@ -2,32 +2,30 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 53,
+    "example_count": 54,
     "rejected_count": 0,
     "terms": [
-      "103",
-      "dashboard",
-      "diagnose",
+      "105",
+      "after",
       "failed",
-      "instead",
-      "inventory",
-      "operator",
+      "final",
+      "integration",
+      "launches",
+      "new",
       "portfolio",
-      "slow",
-      "targeted",
-      "tasks",
-      "using"
+      "recovery",
+      "stop",
+      "v3"
     ],
     "test_count": 0,
-    "useful_count": 2
+    "useful_count": 1
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(portfolio): diagnose failed tasks using targeted operator inventory instead of slow dashboard (#103)",
+  "task": "fix(portfolio): stop new integration launches after failed final v3 recovery (#105)",
   "tests_selected": [],
   "useful": [
-    "scripts/portfolio_daily.py",
-    "scripts/portfolio_failure_diagnostics.py"
+    "scripts/portfolio_daily.py"
   ]
 }
