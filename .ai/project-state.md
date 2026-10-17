@@ -26,6 +26,13 @@ Status: active
 - Operator diagnosis [run 38965266598](https://github.com/dbrckk/star-list/actions/runs/38965266598) succeeded with 4/4 v2 task details. All remain `capacity_exhausted`, 1/3 attempts, zero commits, zero PRs and no target CI evidence.
 - AI Dev Server PR #331 protects Production-OS and GitHub publishing credentials from Hermes/OpenCode subprocesses. This does not demonstrate available model inference capacity.
 
+## Verified diagnosis and fleet safety (2026-10-17)
+- PRs #105 and #106 merged: prevent new autonomous launches after terminal v3 failure and inspect failed v2/v3 tasks independently with an operator-only read endpoint.
+- [Operator diagnosis run 39016621939](https://github.com/dbrckk/star-list/actions/runs/39016621939) passed with **4/4 historical v2 and 1/1 terminal v3 task details**. All five failures are `capacity_exhausted`, 1/3 attempts, zero commits/PRs and no target CI evidence.
+- [Public portfolio report #61](https://github.com/dbrckk/star-list/issues/61) on 2026-10-17: 38/38 public repos inspected, 14 with reviewable suggestions, two targets with four native candidates; dispatch paused due final v3 failure, no new launch.
+- Last verified private workflows for `Finders` and `tube`: scheduled runs 2026-10-16 passed. Current-day cadence is not asserted until a newer run completes.
+- Hermes/OpenCode are already registered and security-filtered in AI Dev Server; their installation alone does not provide verified free inference capacity.
+
 ## Current priority
 1. **Restore usable free AI execution capacity.** Operator diagnosis on 2026-10-16 verified that all four unresolved v2 jobs failed with `capacity_exhausted`, exactly 1/3 attempts each, without commits, PRs or target CI. See `docs/PORTFOLIO_CAPACITY_RECOVERY.md`.
 2. Verify a real ready provider and worker before bounded v3 recovery; never increase or bypass the UTC/fleet and per-target launch caps to mask unavailable capacity.
@@ -38,7 +45,7 @@ Status: active
 - Catalog identity uniqueness and schema remain enforced by the existing validation workflow.
 
 ## Last verified
-- 2026-10-16 (937 catalog entries; 38/38 public projects inspected; 4 unresolved v2 historical jobs; target changes not yet verified for those jobs).
+- 2026-10-17 (942 catalog entries at the last checkpoint; 38/38 public repos inspected; four historical v2 and one final v3 integration failure; no target source delivery verified).
 
 <!-- AUTO:START -->
 ## Automatic repository state

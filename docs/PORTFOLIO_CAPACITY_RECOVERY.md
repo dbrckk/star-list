@@ -24,6 +24,26 @@ The Render service `production-os1` deployed successfully on October 16;
 that server deployment alone does **not** establish downstream AI model
 capacity or successful worker execution.
 
+## Final v3 recovery evidence (2026-10-17)
+
+The [authenticated operator diagnosis](https://github.com/dbrckk/star-list/actions/runs/39016621939)
+verified **all five terminal v2/v3 task results**: the four earlier v2
+failures and the new final v3 recovery for `dbrckk/Ai-trading`. All five
+show `worker_result_status=capacity_exhausted` and
+`pipeline_status=capacity_exhausted`, exactly **1/3** task attempts,
+**zero** delivered commits, **zero** reviewable PRs and no CI evidence.
+The v3 result is not a recovered integration. This is direct worker-task
+evidence; it does not establish whether the limiting provider, model quota
+or project envelope specifically caused the underlying shortage.
+
+After [star-list PR #105](https://github.com/dbrckk/star-list/pull/105),
+a terminal `v3 NEEDS_ATTENTION` is a fleet-wide **automatic launch stop**,
+independent of the UTC daily limit. Repo discovery, Stars sync and read-only
+failure diagnosis continue. The stop is intentional: do not raise the token
+budget, reset tracking markers, manually relaunch the same v3, or circumvent
+the safety gate until a real provider inference route and worker are positively
+verified and the operator has reviewed the previous attempt.
+
 ## What to check before a recovery
 
 1. Inspect `dbrckk/ai-dev-server` provider health, token availability,
@@ -42,9 +62,8 @@ capacity or successful worker execution.
    provides operational evidence. Its historical failed-job counts must
    not be mistaken for fresh jobs waiting in the queue.
 4. Run a **read-only** star-list portfolio scan and requalify each candidate
-   on actual language, environment, license and use case. Currently only
-   `Ai-trading` and `vibecheck-android` have native-mode candidates in
-   the public scan. The other historical failures should not be restarted
+   on actual language, environment, license and use case. The latest public scan shows
+   only `Ai-trading` and `vibecheck-android` with native-mode candidates. The other historical failures should not be restarted
    simply to raise the completed count.
 5. Only after capacity is proven, use the existing bounded, idempotent
    higher-version recovery path. Preserve the one-launch-per-UTC-day rule
