@@ -36,13 +36,38 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
+      # The Stars workflow runs every hour. Its workflow_run trigger is a
+      # fallback for a missed daily cron, not a request for 24 full scans.
+      # A published review issue is written only after a successful scan.
+      - name: Skip duplicate UTC-day scheduled scans
+        id: cadence
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_run'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          today="$(date -u +%F)"
+          report="$(gh issue list --state open --limit 100 --json number,body \
+            --jq '[.[] | select(.body != null and (.body | contains("<!-- star-list-portfolio-daily -->")))] | .[0].body // ""')"
+          if [[ "$report" == *"Generated (UTC): ${today}T"* ]]; then
+            echo "skip_scan=true" >> "$GITHUB_OUTPUT"
+            echo "Full portfolio report for ${today} UTC already published; skipping duplicate scan."
+          else
+            echo "skip_scan=false" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/checkout@v7
+        if: steps.cadence.outputs.skip_scan != 'true'
       - uses: actions/setup-python@v7
+        if: steps.cadence.outputs.skip_scan != 'true'
         with:
           python-version: "3.12"
       - name: Validate scanner syntax
+        if: steps.cadence.outputs.skip_scan != 'true'
         run: python -m py_compile scripts/portfolio_daily.py
       - name: Inspect every accessible owner repository and submit qualified work
+        if: steps.cadence.outputs.skip_scan != 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PRODUCTION_OS_OPERATOR_TOKEN: ${{ secrets.PRODUCTION_OS_OPERATOR_TOKEN }}
@@ -54,7 +79,7 @@ jobs:
             --markdown portfolio-daily.md \
             --max-dispatch 3
       - name: Preserve evidence for all scanned repositories
-        if: always()
+        if: always() && steps.cadence.outputs.skip_scan != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: daily-portfolio-star-list-review
@@ -66,7 +91,7 @@ jobs:
       - name: Update the persistent portfolio review issue
         # Preserve the last verified report if discovery or dispatch fails.
         # The failed run still exposes the full diagnostic artifact.
-        if: success()
+        if: success() && steps.cadence.outputs.skip_scan != 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
