@@ -89,7 +89,7 @@ same_origin = redirect.redirect_request(
     "https://api.github.com/users/dbrckk/starred?page=2",
 )
 assert same_origin.get_header("Authorization") == "Bearer private-github-token"
-assert mod.api_stars.__defaults__[1].__self__ is mod.SAFE_GITHUB_HTTP
+assert mod.api_stars.__defaults__[2].__self__ is mod.SAFE_GITHUB_HTTP
 # The admission stage must use the same restricted transport by default.
 if str(SCRIPT.parent) not in sys.path:
     sys.path.insert(0, str(SCRIPT.parent))
