@@ -1,40 +1,24 @@
 {
   "files": {
-    ".github/workflows/portfolio-scan-smoke.yml": {
-      "sha256": "f6cbba6b54b5a8a13953dd43e38259de67c7c277be1830f44d94eaad34078cce",
-      "size": 47436
+    ".github/workflows/catalog-quality-on-change.yml": {
+      "sha256": "e7dfd5ce819ca394e6ceb9862573776bbcbb9d09d40d334ef4d4f756927710cb",
+      "size": 2896
     },
     "catalog.json": {
       "sha256": "ad7a69459c1f0fe3ae9a3300d8e7f243f47be9c3fe5de4591dc75491a8b536f6",
       "size": 1038102
     },
-    "docs/DAILY_PORTFOLIO_INTEGRATION.md": {
-      "sha256": "232f74a763734eaf40daad0e2cebc877074bfaf6be23017e61492a791bb5434d",
-      "size": 14962
-    },
-    "scripts/admit_github_stars.py": {
-      "sha256": "45566208bb77dac15216556bfe344988d6de00d41024635c8b08a0d83265e1ac",
-      "size": 11172
+    "scripts/audit_catalog_quality.py": {
+      "sha256": "a75662f5ed2c7c2ca34167b8bb755a4d77888bd0fbf8ff03680b4dec0ba7b1a0",
+      "size": 8773
     },
     "scripts/portfolio_daily.py": {
       "sha256": "a0fa1f0db7a9081879a8ca1bd1f9e707654b8bf383cae627fa9c3163b4a76aa3",
       "size": 49156
     },
-    "scripts/portfolio_failure_diagnostics.py": {
-      "sha256": "3f6972d50b7db5c499ccb845dbe21ff4c760dac1db12c6b6d5190adea586e62b",
-      "size": 19022
-    },
-    "scripts/recommend.py": {
-      "sha256": "7df823d9a03718fc062f172b66c9a5ebcfd267e8e50d46a82111b1fb65138d17",
-      "size": 16505
-    },
-    "scripts/sync_github_stars.py": {
-      "sha256": "fe24698843cb1ed316de83495b1543a97edd6ec5b3de65f46c32414e8ae1236e",
-      "size": 13204
-    },
-    "scripts/test_sync_github_stars.py": {
-      "sha256": "389f52864f857f32b10de153f18e58510cdb52e69f3148ea60e4ac8d9ca60f7a",
-      "size": 10515
+    "scripts/test_catalog_quality.py": {
+      "sha256": "5d937ce7da35cf1cff7749a6a2f7d4618afd5a8b9bcf0ed074fb4cda4465b252",
+      "size": 4916
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

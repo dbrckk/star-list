@@ -1,16 +1,15 @@
 # Change impact
 
-Base: 408090f5c4ba345a9adf728e22e22cb5b58eb3af
-Head: b5ee5bdaeee3aadef4ce76406d95d5e633eb0ba5
+Base: c278425ac2afe44dd7275c4392e3586852c728b0
+Head: 628a5c8114855fc63df2c9f6555d0388ddfc2d2f
 
 ## Changed files
-- M .github/workflows/portfolio-scan-smoke.yml
-- M docs/DAILY_PORTFOLIO_INTEGRATION.md
-- M scripts/portfolio_daily.py
+- A .github/workflows/catalog-quality-on-change.yml
+- M scripts/audit_catalog_quality.py
+- M scripts/test_catalog_quality.py
 
 ## Affected areas
 - .github
-- docs
 - scripts
 
 ## Related test candidates

@@ -41,6 +41,7 @@ The content is organized as follows:
 .github/
   workflows/
     ai-repo-map.yml
+    catalog-quality-on-change.yml
     daily-portfolio-integration.yml
     license-backfill.yml
     portfolio-failure-diagnostics.yml
@@ -157,6 +158,87 @@ concurrency:
 jobs:
   repository-standards:
     uses: dbrckk/repo-standards/.github/workflows/reusable-unified.yml@main
+````
+
+## File: .github/workflows/catalog-quality-on-change.yml
+````yaml
+name: Refresh catalog quality on catalog changes
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'catalog.json'
+      - '.github/workflows/catalog-quality-on-change.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: star-list-catalog-quality-publication
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Audit the actual current catalog
+        run: |
+          python scripts/audit_catalog_quality.py --markdown-output catalog-quality.md > catalog-quality.json
+          python scripts/validate_json_contract.py schemas/catalog-quality.schema.json catalog-quality.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          catalog = json.loads(Path('catalog.json').read_text(encoding='utf-8'))
+          audit = json.loads(Path('catalog-quality.json').read_text(encoding='utf-8'))
+          markdown = Path('catalog-quality.md').read_text(encoding='utf-8')
+          assert audit['repositories'] == len(catalog['repositories'])
+          assert '<!-- star-list-catalog-quality -->' in markdown
+          assert f"Repositories: **{audit['repositories']}**" in markdown
+          PY
+      - name: Preserve current audit evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalog-quality-on-change
+          path: |
+            catalog-quality.json
+            catalog-quality.md
+          retention-days: 14
+      - name: Update catalog-quality review issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          read -r REVIEW INFO TOTAL < <(python - <<'PY'
+          import json
+          summary = json.load(open('catalog-quality.json', encoding='utf-8'))['summary']
+          print(summary['review'], summary['info'], summary['findings'])
+          PY
+          )
+          existing="$(gh issue list --state open --limit 100 --json number,body \
+            --jq '[.[] | select(.body != null and (.body | contains("<!-- star-list-catalog-quality -->")))] | .[0].number // empty')"
+          if [ "$TOTAL" = '0' ]; then
+            if [ -n "$existing" ]; then
+              gh issue close "$existing" --comment 'Current catalog quality audit has no findings.'
+            fi
+          elif [ -n "$existing" ]; then
+            gh issue edit "$existing" --title "Catalog quality: $REVIEW review / $INFO info" \
+              --body-file catalog-quality.md
+          else
+            gh issue create --title "Catalog quality: $REVIEW review / $INFO info" \
+              --body-file catalog-quality.md
+          fi
 ````
 
 ## File: .github/workflows/daily-portfolio-integration.yml
@@ -2239,6 +2321,16 @@ lines = [
 review = [row for row in report["findings"] if row["severity"] == "review"]
 info = [row for row in report["findings"] if row["severity"] == "info"]
 ⋮----
+rendered = "\n".join(lines) + "\n"
+# GitHub issue bodies have a size limit. Always retain complete JSON
+# evidence while presenting a bounded, prioritized public review: the
+# review-level rows precede informational findings.
+max_bytes = 60_000
+⋮----
+cost = len((line + "\n").encode("utf-8"))
+⋮----
+bounded = "\n".join(kept) + "\n"
+⋮----
 def main()
 ⋮----
 parser = argparse.ArgumentParser(description="Audit catalog maintenance debt.")
@@ -4071,6 +4163,11 @@ repos = [
 report = mod.analyze(repos, stale_days=730, now=now)
 ⋮----
 markdown = mod.render_markdown(report)
+⋮----
+# Large collections must not exceed the GitHub issue-body limit: full
+# structured evidence remains available from the workflow artifact.
+oversized = {**report, "findings": report["findings"] * 1000}
+oversized_markdown = mod.render_markdown(oversized)
 ````
 
 ## File: scripts/test_degraded_inputs.py

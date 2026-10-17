@@ -2,29 +2,30 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 57,
+    "example_count": 58,
     "rejected_count": 0,
     "terms": [
-      "113",
+      "114",
       "after",
-      "duplicate",
-      "launch",
-      "portfolio",
-      "posts",
-      "prevent",
-      "production-os",
-      "responses",
-      "uncertain"
+      "audit",
+      "catalog",
+      "current",
+      "feat",
+      "publish",
+      "quality",
+      "star",
+      "updates"
     ],
     "test_count": 0,
-    "useful_count": 1
+    "useful_count": 2
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(portfolio): prevent duplicate Production-OS launch POSTs after uncertain responses (#113)",
+  "task": "feat(catalog): publish current quality audit after star catalog updates (#114)",
   "tests_selected": [],
   "useful": [
-    "scripts/portfolio_daily.py"
+    "scripts/audit_catalog_quality.py",
+    "scripts/test_catalog_quality.py"
   ]
 }

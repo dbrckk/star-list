@@ -1068,6 +1068,27 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(catalog): publish current quality audit after star catalog updates (#114)",
+      "terms": [
+        "114",
+        "after",
+        "audit",
+        "catalog",
+        "current",
+        "feat",
+        "publish",
+        "quality",
+        "star",
+        "updates"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/audit_catalog_quality.py",
+        "scripts/test_catalog_quality.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1096,6 +1117,10 @@
     },
     "113": {
       "scripts/portfolio_daily.py": 4
+    },
+    "114": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1255,7 +1280,9 @@
       "scripts/test_auto_stars_admission.py": 4
     },
     "after": {
-      "scripts/portfolio_daily.py": 20
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/portfolio_daily.py": 20,
+      "scripts/test_catalog_quality.py": 4
     },
     "all": {
       "scripts/admit_github_stars.py": 4,
@@ -1281,8 +1308,8 @@
       "scripts/portfolio_daily.py": 4
     },
     "audit": {
-      "scripts/audit_catalog_quality.py": 4,
-      "scripts/test_catalog_quality.py": 4
+      "scripts/audit_catalog_quality.py": 8,
+      "scripts/test_catalog_quality.py": 8
     },
     "audit-tier": {
       "scripts/recommend.py": 4,
@@ -1359,10 +1386,10 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "catalog": {
-      "scripts/audit_catalog_quality.py": 4,
+      "scripts/audit_catalog_quality.py": 8,
       "scripts/portfolio_daily.py": 8,
       "scripts/refresh_github_metadata.py": 4,
-      "scripts/test_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 8,
       "scripts/test_refresh_github_metadata.py": 4
     },
     "catalog-declared": {
@@ -1411,7 +1438,9 @@
       "scripts/test_recommend.py": 4
     },
     "current": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_catalog_quality.py": 4
     },
     "daily": {
       "scripts/portfolio_daily.py": 12,
@@ -1536,9 +1565,11 @@
     },
     "feat": {
       "scripts/admit_github_stars.py": 4,
+      "scripts/audit_catalog_quality.py": 4,
       "scripts/portfolio_daily.py": 12,
       "scripts/portfolio_failure_diagnostics.py": 12,
-      "scripts/test_auto_stars_admission.py": 4
+      "scripts/test_auto_stars_admission.py": 4,
+      "scripts/test_catalog_quality.py": 4
     },
     "files": {
       "scripts/backfill_licenses.py": 4,
@@ -1826,6 +1857,10 @@
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
     },
+    "publish": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4
+    },
     "pull": {
       "scripts/discover_candidates.py": 4,
       "scripts/find_replacements.py": 4,
@@ -1843,8 +1878,8 @@
       "scripts/portfolio_daily.py": 4
     },
     "quality": {
-      "scripts/audit_catalog_quality.py": 4,
-      "scripts/test_catalog_quality.py": 4
+      "scripts/audit_catalog_quality.py": 8,
+      "scripts/test_catalog_quality.py": 8
     },
     "quarantine": {
       "scripts/portfolio_daily.py": 8
@@ -2048,7 +2083,9 @@
       "scripts/validate_catalog.py": 4
     },
     "star": {
+      "scripts/audit_catalog_quality.py": 4,
       "scripts/star_import_pipeline.py": 8,
+      "scripts/test_catalog_quality.py": 4,
       "scripts/test_star_import_pipeline.py": 8
     },
     "star-list": {
@@ -2141,6 +2178,10 @@
     },
     "unsafe": {
       "scripts/portfolio_daily.py": 8
+    },
+    "updates": {
+      "scripts/audit_catalog_quality.py": 4,
+      "scripts/test_catalog_quality.py": 4
     },
     "using": {
       "scripts/portfolio_daily.py": 8,

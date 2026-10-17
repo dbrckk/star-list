@@ -58,16 +58,19 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-17T15:27:42Z
+Generated: 2026-10-17T17:23:07Z
 
 ### Git
 - Branch: `main`
-- Head: `b5ee5bdaeee3`
-- Commit date: 2026-10-17T11:27:33-04:00
-- Commit: fix(portfolio): prevent duplicate Production-OS launch POSTs after uncertain responses (#113)
-- Tracked files: 279
+- Head: `628a5c811485`
+- Commit date: 2026-10-17T13:22:57-04:00
+- Commit: feat(catalog): publish current quality audit after star catalog updates (#114)
+- Tracked files: 280
 
 ### Recently changed files
+- `.github/workflows/catalog-quality-on-change.yml`
+- `scripts/audit_catalog_quality.py`
+- `scripts/test_catalog_quality.py`
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`

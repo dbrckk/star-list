@@ -323,6 +323,16 @@ lines = [
 review = [row for row in report["findings"] if row["severity"] == "review"]
 info = [row for row in report["findings"] if row["severity"] == "info"]
 ⋮----
+rendered = "\n".join(lines) + "\n"
+# GitHub issue bodies have a size limit. Always retain complete JSON
+# evidence while presenting a bounded, prioritized public review: the
+# review-level rows precede informational findings.
+max_bytes = 60_000
+⋮----
+cost = len((line + "\n").encode("utf-8"))
+⋮----
+bounded = "\n".join(kept) + "\n"
+⋮----
 def main()
 ⋮----
 parser = argparse.ArgumentParser(description="Audit catalog maintenance debt.")
@@ -2155,6 +2165,11 @@ repos = [
 report = mod.analyze(repos, stale_days=730, now=now)
 ⋮----
 markdown = mod.render_markdown(report)
+⋮----
+# Large collections must not exceed the GitHub issue-body limit: full
+# structured evidence remains available from the workflow artifact.
+oversized = {**report, "findings": report["findings"] * 1000}
+oversized_markdown = mod.render_markdown(oversized)
 ```
 
 ## File: test_degraded_inputs.py
