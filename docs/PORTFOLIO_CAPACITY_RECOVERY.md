@@ -84,6 +84,37 @@ live, authenticated code-editing inference preflight in this environment.
 | Cloudflare Workers AI | [Official pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/): 10,000 Neurons per day on Workers Free, resetting at 00:00 UTC | Free tier still fails after the allowance; neurons are **not** the same as tokens. Some high-end coding models now require Workers Paid or prepaid credits. Use a currently Free-eligible model (for example [GLM-4.7-Flash](https://developers.cloudflare.com/changelog/post/2026-07-28-models-require-workers-paid/)) for a small qualified probe, not an assumed 90k-token job. |
 | Pollinations | [Official authentication](https://gen.pollinations.ai/docs): OpenAI-compatible text API, user-scoped key required for generation | Public models have individual prices; only catalog models explicitly priced at zero can be assumed free at the Pollinations layer. A key can be valid but out of its allowance (`402 PAYMENT_REQUIRED`). Do not treat a publicly accessible model list as guaranteed free inference. |
 
+### Implemented opt-in Cloudflare fallback — not yet activated (2026-10-17)
+
+[AI Dev Server PR #335](https://github.com/dbrckk/ai-dev-server/pull/335)
+is merged into `ai-dev-server/main` as commit
+[`b0cd423`](https://github.com/dbrckk/ai-dev-server/commit/b0cd423262325cce3fdc13cfca294525154944f9).
+Its exact PR head passed all **seven** GitHub checks: CI, validation,
+Production-OS worker integration, fault injection, resilience, mobile build and
+multi-engine benchmark. The merge only adds an **optional** free-eligible
+`@cf/zai-org/glm-4.7-flash` route. It is disabled by default and does not
+prove a live usable quota or completion of any portfolio integration.
+
+To qualify this path, an operator first confirms a **Workers Free** account and
+then configures the `dbrckk/ai-dev-server` Actions secret
+`CLOUDFLARE_API_TOKEN` and Actions variables `CLOUDFLARE_ACCOUNT_ID`
+(32 hexadecimal characters) and `STUDIO_CLOUDFLARE_FREE_TIER_ONLY=1`.
+The Cloudflare token is excluded from third-party agent subprocesses. The
+built-in fallback is injected only with these opt-in values, a default NVIDIA
+base URL and an empty `STUDIO_PROVIDERS_JSON` override. The Workers Paid
+plan is not a safe zero-cost substitute: over-quota usage can be billed.
+
+Run the existing
+[Production-OS Live Diagnostics](https://github.com/dbrckk/ai-dev-server/actions/workflows/production-os-live-diagnostics.yml)
+only after confirming the free-plan settings; it probes a small actual
+inference and operator access without changing a target. Record sanitized
+results, then establish adequate provider/worker capacity and a small
+reviewable coding delivery before any operator-approved portfolio recovery.
+**Do not clear** the terminal-v3 global safety stop merely because the
+diagnostic probe or an unrelated CI workflow passes. No Cloudflare account,
+token, billing-plan confirmation or successful live inference has yet been
+verified in this project.
+
 For a free alternative, the safe evaluation sequence is:
 
 1. Obtain a user-authorized, budget-constrained provider key and save it
