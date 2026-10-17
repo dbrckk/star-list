@@ -57,7 +57,9 @@
     103,
     104,
     105,
-    106
+    106,
+    107,
+    108
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -76,17 +78,28 @@
     "Production-OS PR #276 deployed live with explicit opt-in IDs; diagnostic run #38965266598 complete for all four historical v2 failures",
     "AI Dev Server PR #331 prevents Hermes/OpenCode from inheriting Production-OS/GitHub/SSH control credentials",
     "Stop autonomous Production-OS launches on terminal v3 recovery failure and continue read-only discovery (#105)",
-    "Sanitize and separately verify v2 + v3 operator failure evidence (#106; run 39016621939; 5/5 failures capacity_exhausted)"
+    "Sanitize and separately verify v2 + v3 operator failure evidence (#106; run 39016621939; 5/5 failures capacity_exhausted)",
+    "Qualify Cloudflare Workers AI and Pollinations free-tier constraints before any capacity recovery (star-list PR #108)",
+    "Prevent inherited model-provider token leakage in Hermes/OpenCode/Codex subprocess evidence (AI Dev Server PR #333; 7/7 CI)",
+    "Require structured terminal receipts for Hermes and Codex instead of accepting silent exit 0 (AI Dev Server PR #334; core CI validated)"
   ],
   "next_priority": [
-    "Confirm real free model inference capacity and worker readiness before attempting any further integrations; verified five v2/v3 attempts failed capacity_exhausted with no commits or PR/CI evidence",
-    "Investigate AI Dev Server provider token/quota health without exposing credentials, raising budgets, or bypassing final-v3 fleet safety stop",
-    "Review failed final v3 with operator, maintain read-only daily scans, and require target-side branch/CI and actual runtime use before declaring integration completed"
+    "Prove one genuinely free, authenticated, budget-bounded coding inference route and a qualified live worker before any new Production-OS task",
+    "Investigate all four v2 plus the final v3 capacity_exhausted results; preserve the operator-reviewed global admission stop, do not reset markers or raise budgets",
+    "Continue daily public/private discovery and GitHub Stars sync; require actual target branch/CI/runtime evidence before declaring integrations completed"
   ],
   "constraints": [
     "No automatic merge/deployment of third-party integrations",
     "Only eligible licensed and truly compatible candidates may be handed off",
     "Do not publish private target identifiers in public reports",
     "Do not report a submitted Production-OS task as a completed integration"
-  ]
+  ],
+  "last_verified_public_star_sync": {
+    "run_id": 39002112723,
+    "checked_at_utc": "2026-10-17",
+    "public_accessible_stars": 804,
+    "already_cataloged": 804,
+    "missing": 0,
+    "pages": 9
+  }
 }

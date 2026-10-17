@@ -5,13 +5,13 @@ Status: active
 ## Working
 - GitHub Stars are reconciled automatically into `catalog.json` at audit tier, preserving atomic validation and failure artifacts.
 - Public portfolio scanning and recommendation reporting work; private-repository workflows run independently without publishing private project details.
-- Catalog contains 942 entries on 2026-10-16; the current validation and Repository standards workflows have passed.
+- Catalog contains 942 entries at the 2026-10-17 checkpoint; GitHub Stars sync, Validate catalog and Repository standards have successful verified runs.
 - Per-target single-flight dispatch and same-origin authenticated redirects have been merged (#80 and #81).
 - Portfolio execution remains subject to strict worker capacity, deduplication, and UTC launch caps.
 
 ## Broken / blockers
 - Public Stars API access does not guarantee discovery of inaccessible private stars; no total-private-stars completeness claim is made.
-- Production-OS inventory has four unresolved historical v2 integrations (last report on 2026-10-16). No automatic integration was launched in that scan because one UTC-day launch slot had already been consumed.
+- Production-OS has four unresolved v2 failures and one terminal v3 recovery failure, all `capacity_exhausted` in the 2026-10-17 operator diagnosis; autonomous launches are paused pending positive model-capacity proof and operator review.
 - Dispatched work has not been established as functional until the target receives a real tested change and passes its own CI. Review Production-OS worker failures rather than increasing launch budgets.
 - The 2026-10-09 Repository standards map-size failure is historical; later Repository standards workflow runs passed on 2026-10-16.
 
@@ -33,14 +33,20 @@ Status: active
 - Last verified private workflows for `Finders` and `tube`: scheduled runs 2026-10-16 passed. Current-day cadence is not asserted until a newer run completes.
 - Hermes/OpenCode are already registered and security-filtered in AI Dev Server; their installation alone does not provide verified free inference capacity.
 
+## Provider and agent execution hardening (2026-10-17)
+- Star-list [PR #108](https://github.com/dbrckk/star-list/pull/108) documents conservative Cloudflare Workers AI and Pollinations free-tier options and mandates positive authenticated capacity and a small non-mutating inference probe before retries.
+- AI Dev Server [PR #333](https://github.com/dbrckk/ai-dev-server/pull/333) merged: provider keys inherited by Hermes/OpenCode/Codex cannot persist in subprocess stdout/stderr tails. The exact PR head ultimately passed **all seven** CI workflows including the mobile build.
+- AI Dev Server [PR #334](https://github.com/dbrckk/ai-dev-server/pull/334) merged: Hermes uses documented one-shot JSONL terminal results and Codex must show `turn.completed`; zero-exit without proof is no longer success. Core CI, security/resilience and Production-OS integration checks passed on the reconciled PR head; additional long mobile/benchmark jobs were still in progress when last observed.
+- [GitHub Stars run 39002112723](https://github.com/dbrckk/star-list/actions/runs/39002112723) on October 17 checked **804/804 accessible public favorites** (9 pages; no uncataloged stars). This does not verify inaccessible private stars. Public discovery continues at 38/38 with 14 projects showing suggestions; no integration is counted complete.
+
 ## Current priority
-1. **Restore usable free AI execution capacity.** Operator diagnosis on 2026-10-16 verified that all four unresolved v2 jobs failed with `capacity_exhausted`, exactly 1/3 attempts each, without commits, PRs or target CI. See `docs/PORTFOLIO_CAPACITY_RECOVERY.md`.
-2. Verify a real ready provider and worker before bounded v3 recovery; never increase or bypass the UTC/fleet and per-target launch caps to mask unavailable capacity.
+1. **Restore usable free AI execution capacity.** 2026-10-17 diagnosis verified 4 v2 and 1 failed final v3, all `capacity_exhausted`, with no delivered commit, reviewable PR or target CI. See `docs/PORTFOLIO_CAPACITY_RECOVERY.md`.
+2. Qualify one zero-cost provider/model route with authenticated quota and a successful small inference probe before any operator-approved recovery; the final-v3 fleet stop is intentionally in effect. Do not reset markers, bypass caps or raise budgets.
 3. Requalify current native candidates before retries (currently Ai-trading and vibecheck-android). Require real source edits, review and target CI before counting success.
 4. Preserve daily public/private scans, Stars reconciliation, credential isolation and fail-closed diagnostics.
 
 ## Validation
-- 2026-10-16: `Validate catalog`, `Portfolio discovery live smoke`, `Sync GitHub Stars` and `Repository standards` successful in relevant runs.
+- 2026-10-17: `Validate catalog`, `Repository standards` and `Sync GitHub Stars` have verified successful runs; prior `Portfolio discovery live smoke` and authenticated operator diagnosis also passed.
 - Successful live smoke checks include read-only public discovery, offline single-flight dispatch, and authenticated redirect restrictions.
 - Catalog identity uniqueness and schema remain enforced by the existing validation workflow.
 
