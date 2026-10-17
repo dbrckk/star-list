@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_date_utc": "2026-10-16",
+  "updated_date_utc": "2026-10-17",
   "repository": "dbrckk/star-list",
   "reference_branch": "main",
   "status": "active",
@@ -8,7 +8,7 @@
   "last_verified_public_portfolio_scan": {
     "discovered": 38,
     "inspected": 38,
-    "with_suggestions": 15,
+    "with_suggestions": 14,
     "with_native_suggestions": 2,
     "native_suggestions": 4
   },
@@ -16,13 +16,17 @@
     "active": 0,
     "unresolved_v2": 4,
     "capacity_exhausted_v2": 4,
+    "failed_v3": 1,
+    "capacity_exhausted_v3": 1,
     "attempts_each": 1,
     "max_attempts_each": 3,
     "delivered_commits": 0,
     "reviewable_prs": 0,
     "ci_evidence": 0,
-    "diagnostic_run": 38965266598,
-    "diagnostic_status": "complete"
+    "diagnostic_run": 39016621939,
+    "diagnostic_status": "complete",
+    "details_checked_v2": 4,
+    "details_checked_v3": 1
   },
   "merged_pull_requests": [
     78,
@@ -50,7 +54,10 @@
     100,
     101,
     102,
-    103
+    103,
+    104,
+    105,
+    106
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -67,13 +74,14 @@
     "Curate Hermes/OpenCode capability descriptions and keep them review-only adapters (#102)",
     "Switch failed integration diagnosis to targeted, operator-only Production-OS inventory (#103)",
     "Production-OS PR #276 deployed live with explicit opt-in IDs; diagnostic run #38965266598 complete for all four historical v2 failures",
-    "AI Dev Server PR #331 prevents Hermes/OpenCode from inheriting Production-OS/GitHub/SSH control credentials"
+    "AI Dev Server PR #331 prevents Hermes/OpenCode from inheriting Production-OS/GitHub/SSH control credentials",
+    "Stop autonomous Production-OS launches on terminal v3 recovery failure and continue read-only discovery (#105)",
+    "Sanitize and separately verify v2 + v3 operator failure evidence (#106; run 39016621939; 5/5 failures capacity_exhausted)"
   ],
   "next_priority": [
-    "Verify actual free model inference capacity separately from healthy worker configuration; four historical v2 attempts still report capacity_exhausted and no target changes",
-    "Track ai-dev-server PR #332 headless OpenCode completion verification to CI then merge when all checks pass",
-    "Only requalify native candidate and relaunch bounded v3 recovery once available worker + model capacity are positively established",
-    "Continue verification of daily public/private scans and Stars sync without claiming unproven integrations"
+    "Confirm real free model inference capacity and worker readiness before attempting any further integrations; verified five v2/v3 attempts failed capacity_exhausted with no commits or PR/CI evidence",
+    "Investigate AI Dev Server provider token/quota health without exposing credentials, raising budgets, or bypassing final-v3 fleet safety stop",
+    "Review failed final v3 with operator, maintain read-only daily scans, and require target-side branch/CI and actual runtime use before declaring integration completed"
   ],
   "constraints": [
     "No automatic merge/deployment of third-party integrations",
