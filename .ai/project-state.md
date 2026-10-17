@@ -50,13 +50,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-17T08:17:23Z
+Generated: 2026-10-17T08:30:03Z
 
 ### Git
 - Branch: `main`
-- Head: `8198c1c0cf1d`
-- Commit date: 2026-10-17T04:17:13-04:00
-- Commit: docs(portfolio): checkpoint verified v3 capacity exhaustion and admission pause (#107)
+- Head: `06e057565b69`
+- Commit date: 2026-10-17T04:29:53-04:00
+- Commit: docs(portfolio): document verified free model alternatives and conservative preflight (#108)
 - Tracked files: 279
 
 ### Recently changed files
@@ -66,7 +66,6 @@ Generated: 2026-10-17T08:17:23Z
 - `scripts/portfolio_failure_diagnostics.py`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
-- `catalog.json`
 
 ### Project signals
 - No common build descriptor detected
