@@ -115,6 +115,10 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   key. The failed Actions run retains diagnostic artifacts; a later scan must
   first re-read the authoritative managed-project inventory before any new
   dispatch. Never treat an uncertain response as free capacity.
+  **Non-replay rule:** reads may retry transient transport/server failures,
+  but mutating launch `POST` requests have one network attempt only (even for
+  HTTP 429/5xx or timeouts). The next scan rechecks managed-project inventory;
+  it must not blindly replay a possibly accepted launch.
 - **Per-target single-flight protection:** candidate ranking never triggers
   simultaneous modifications of the same target. All suggestions remain in
   the report; only submission is deferred until active/review-pending work
