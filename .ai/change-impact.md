@@ -1,17 +1,13 @@
 # Change impact
 
-Base: 7f2d8862d9667e8ae479a40700e1446b80d7eb98
-Head: 6d895db28b002e7e80e00a997037561cf6d038d8
+Base: f702976c6e431bac992f8c092ac07ca4fe66ba25
+Head: 8198c1c0cf1d2a29330e8b40959fdf0f7cdab415
 
 ## Changed files
-- M .github/workflows/portfolio-scan-smoke.yml
-- M docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md
-- M scripts/portfolio_failure_diagnostics.py
+- M docs/PORTFOLIO_CAPACITY_RECOVERY.md
 
 ## Affected areas
-- .github
 - docs
-- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.

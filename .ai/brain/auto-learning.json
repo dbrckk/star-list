@@ -1,31 +1,8 @@
 {
-  "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": true,
-  "learning_result": {
-    "example_count": 55,
-    "rejected_count": 0,
-    "terms": [
-      "106",
-      "diagnostics",
-      "failures",
-      "feat",
-      "final",
-      "inspect",
-      "operator",
-      "portfolio",
-      "recovery",
-      "safe",
-      "v3"
-    ],
-    "test_count": 0,
-    "useful_count": 1
-  },
-  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
-  "rejected": [],
   "schema_version": 1,
-  "task": "feat(portfolio): inspect final v3 recovery failures with safe operator diagnostics (#106)",
-  "tests_selected": [],
-  "useful": [
-    "scripts/portfolio_failure_diagnostics.py"
-  ]
+  "generated_by": "dbrckk/repo-brain-auto-learning-v1",
+  "learned": false,
+  "reason": "missing-task-or-source-change",
+  "task": "docs(portfolio): checkpoint verified v3 capacity exhaustion and admission pause (#107)",
+  "useful": []
 }

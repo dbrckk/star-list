@@ -50,23 +50,23 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-17T08:14:41Z
+Generated: 2026-10-17T08:17:23Z
 
 ### Git
 - Branch: `main`
-- Head: `6d895db28b00`
-- Commit date: 2026-10-17T04:14:33-04:00
-- Commit: feat(portfolio): inspect final v3 recovery failures with safe operator diagnostics (#106)
+- Head: `8198c1c0cf1d`
+- Commit date: 2026-10-17T04:17:13-04:00
+- Commit: docs(portfolio): checkpoint verified v3 capacity exhaustion and admission pause (#107)
 - Tracked files: 279
 
 ### Recently changed files
+- `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md`
 - `scripts/portfolio_failure_diagnostics.py`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
 - `catalog.json`
-- `.github/workflows/portfolio-failure-diagnostics.yml`
 
 ### Project signals
 - No common build descriptor detected

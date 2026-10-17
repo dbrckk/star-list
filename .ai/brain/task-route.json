@@ -9,10 +9,10 @@
     "top_score": 41
   },
   "cache": {
-    "fingerprint": "727b40059b7c668f0728d9046de231fa72c4697dbbe55774cdd7d8b91b08ba15",
+    "fingerprint": "6e852b1e50faab093c79113021ee2ee3582350bac136227719ea91a7a1242f72",
     "hit": false
   },
-  "candidate_count": 8,
+  "candidate_count": 7,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -75,22 +75,16 @@
       "matched_terms": [
         "game"
       ],
-      "path": "scripts/portfolio_failure_diagnostics.py",
+      "path": "scripts/infer_selection_guidance.py",
       "reasons": [
-        "impact",
-        "recently-changed",
         "search-index"
       ],
-      "score": 26,
+      "score": 17,
       "symbols": [
-        "add_deep_task_diagnostics",
-        "failure_category",
-        "inventory_diagnostic_inbox",
-        "main",
-        "public_diagnostics",
-        "safe_public_failure",
-        "safe_state",
-        "task_failure_evidence"
+        "_humanize",
+        "enrich",
+        "infer_guidance",
+        "main"
       ]
     }
   ],
