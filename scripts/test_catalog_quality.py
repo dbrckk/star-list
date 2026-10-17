@@ -115,4 +115,12 @@ assert "<!-- star-list-catalog-quality -->" in markdown
 assert "x/stable" in markdown
 assert "x/legacy-archive" in markdown
 assert "Review required" in markdown
+# Large collections must not exceed the GitHub issue-body limit: full
+# structured evidence remains available from the workflow artifact.
+oversized = {**report, "findings": report["findings"] * 1000}
+oversized_markdown = mod.render_markdown(oversized)
+assert len(oversized_markdown.encode("utf-8")) <= 60_000
+assert "display truncated" in oversized_markdown
+assert "<!-- star-list-catalog-quality -->" in oversized_markdown
+assert "x/stale" in oversized_markdown
 print("OK: catalog quality audit tests passed")
