@@ -70,7 +70,8 @@ jobs:
           assert failure_category({"summary": "check secret text"}) == "unknown"
           from portfolio_daily import (
               is_reference_candidate, count_active_integrations,
-              count_failed_v2_integrations, verified_managed_projects,
+              count_failed_v2_integrations, count_failed_v3_integrations,
+              verified_managed_projects,
               integration_marker, recoverable_failure_targets,
               count_launches_on_utc_date, busy_integration_targets,
           )
@@ -544,6 +545,44 @@ jobs:
               assert throttled["summary"]["available_dispatch_slots"] == 0
               assert throttled["summary"]["dispatched"] == 0
               assert throttled["dispatch_status"] == "throttled (UTC daily launch quota exhausted)"
+              assert throttled["summary"]["failed_v3_integrations"] == 0
+              assert launches == [], launches
+              # A final v3 recovery failure is a fleet-wide hard stop, even
+              # on a fresh UTC day with otherwise eligible unrelated tools.
+              # The scanner must still produce complete public discovery.
+              final_v3_failure = {
+                  "repository": "dbrckk/alpha", "status": "NEEDS_ATTENTION",
+                  "created_at": "2026-01-01T00:00:00Z",
+                  "final_goal": integration_marker(
+                      "dbrckk/alpha", {"repository": "upstream/one"}, version=3),
+              }
+              assert count_failed_v3_integrations([final_v3_failure]) == 1
+              assert count_failed_v3_integrations([
+                  {**final_v3_failure, "status": "DONE"}
+              ]) == 0
+              launches.clear()
+              final_inventory = {"complete": True, "total_count": 1,
+                                 "projects": [final_v3_failure]}
+              with patch.dict(os.environ, {"PRODUCTION_OS_OPERATOR_TOKEN": "offline-test"}), \
+                   patch.object(sys, "argv", argv), \
+                   patch.object(scanner, "github_repos", return_value=targets), \
+                   patch.object(scanner, "project_profile", return_value={}), \
+                   patch.object(scanner, "recommendations",
+                                side_effect=lambda repo, *_: offers[repo["full_name"]]), \
+                   patch.object(scanner, "request_json", return_value=final_inventory), \
+                   patch.object(scanner, "launch_integration",
+                                side_effect=AssertionError("Final v3 failure was ignored")):
+                  assert scanner.main() == 0
+              gated = json.loads((p / "scan.json").read_text())
+              assert gated["summary"]["inspected"] == 2
+              assert gated["summary"]["with_suggestions"] == 2
+              assert gated["summary"]["dispatched"] == 0
+              assert gated["summary"]["available_dispatch_slots"] == 0
+              assert gated["summary"]["failed_v3_integrations"] == 1
+              assert gated["dispatch_status"] == (
+                  "paused (failed v3 recovery needs operator review)")
+              assert "Failed final v3 recovery attempts requiring operator review: **1**" in (
+                  p / "scan.md").read_text()
               assert launches == [], launches
           # The dispatch quota is tied to UTC, not to the worker's local date.
           utc_boundary = [
