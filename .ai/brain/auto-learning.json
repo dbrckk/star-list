@@ -1,8 +1,30 @@
 {
-  "schema_version": 1,
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": false,
-  "reason": "missing-task-or-source-change",
-  "task": "docs(capacity): checkpoint validated free-provider integration (#112)",
-  "useful": []
+  "learned": true,
+  "learning_result": {
+    "example_count": 57,
+    "rejected_count": 0,
+    "terms": [
+      "113",
+      "after",
+      "duplicate",
+      "launch",
+      "portfolio",
+      "posts",
+      "prevent",
+      "production-os",
+      "responses",
+      "uncertain"
+    ],
+    "test_count": 0,
+    "useful_count": 1
+  },
+  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
+  "rejected": [],
+  "schema_version": 1,
+  "task": "fix(portfolio): prevent duplicate Production-OS launch POSTs after uncertain responses (#113)",
+  "tests_selected": [],
+  "useful": [
+    "scripts/portfolio_daily.py"
+  ]
 }

@@ -961,6 +961,11 @@ SAFE_HTTP = build_opener(SameOriginRedirect())
 ⋮----
 parsed = urlparse(url)
 ⋮----
+# Retrying a POST after a timeout or 5xx can submit the same autonomous
+# work twice if the first response was lost. Reconcile the authoritative
+# inventory on the next scan instead of replaying a mutating request.
+⋮----
+max_attempts = 1
 headers = {
 ⋮----
 body = json.dumps(data).encode() if data is not None else None

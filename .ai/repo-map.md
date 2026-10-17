@@ -459,6 +459,32 @@ jobs:
               count_launches_on_utc_date, busy_integration_targets,
           )
           assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
+          # Functional transport smoke: an ambiguous mutating request is sent
+          # once; a read-only GET retains the bounded retry policy.
+          import portfolio_daily as portfolio_transport
+          from urllib.error import URLError
+          from unittest.mock import patch as transport_patch
+          class UnavailableTransport:
+              def __init__(self):
+                  self.calls = 0
+              def open(self, request, timeout):
+                  self.calls += 1
+                  raise URLError("simulated transient outage")
+          for method, expected_calls in (("POST", 1), ("GET", 3)):
+              transport = UnavailableTransport()
+              with transport_patch.object(portfolio_transport, "SAFE_HTTP", transport), \
+                   transport_patch.object(portfolio_transport.time, "sleep", return_value=None):
+                  try:
+                      portfolio_transport.request_json(
+                          "https://production-os1.onrender.com/v1/dashboard/launch",
+                          "dummy", method=method,
+                          data={"request_id": "offline-smoke"} if method == "POST" else None,
+                      )
+                  except RuntimeError:
+                      pass
+                  else:
+                      raise AssertionError("A failed transport was accepted")
+              assert transport.calls == expected_calls, (method, transport.calls)
           test_failure = {
               "repository": "dbrckk/Ai-trading", "status": "NEEDS_ATTENTION",
               "final_goal": "Private instruction. Tracking: " +
@@ -2851,6 +2877,11 @@ SAFE_HTTP = build_opener(SameOriginRedirect())
 ⋮----
 parsed = urlparse(url)
 ⋮----
+# Retrying a POST after a timeout or 5xx can submit the same autonomous
+# work twice if the first response was lost. Reconcile the authoritative
+# inventory on the next scan instead of replaying a mutating request.
+⋮----
+max_attempts = 1
 headers = {
 ⋮----
 body = json.dumps(data).encode() if data is not None else None
@@ -46250,6 +46281,368 @@ Repository-specific rules:
       },
       "bestFor": [
         "SVG Optimizer for Node.js and CLI. ⚙️"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Goochbeater/Spiritual-Spell-Red-Teaming",
+      "githubRepositoryId": 1117138770,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3999,
+        "forks": 733,
+        "openIssues": 28,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-17T08:27:27Z"
+      },
+      "bestFor": [
+        "A repo for jailbreaking various LLMs, mainly Claude"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "iBotPeaches/Apktool",
+      "githubRepositoryId": 3766706,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [
+        "9patch",
+        "android",
+        "apk",
+        "apktool",
+        "arsc",
+        "reverse-engineering"
+      ],
+      "languages": [
+        "java"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 25969,
+        "forks": 4050,
+        "openIssues": 77,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-17T10:46:18Z"
+      },
+      "bestFor": [
+        "A tool for reverse engineering Android apk files"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Kablex/ComfyUI-Ref2VA-VSA",
+      "githubRepositoryId": 1358168733,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Génération de médias / IA",
+      "domain": "ai_media",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 634,
+        "forks": 77,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-17T04:15:24Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "LumaryLabsLLC/muxin",
+      "githubRepositoryId": 1410747188,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai-agents",
+        "claude-code",
+        "devtools",
+        "gpui",
+        "mcp",
+        "remote-desktop",
+        "rust",
+        "self-hosted-runners",
+        "ssh",
+        "tailscale"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 187,
+        "forks": 32,
+        "openIssues": 14,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-16T19:29:26Z"
+      },
+      "bestFor": [
+        "All your machines, one app. For you and your AI agents: agent sessions, desktops, files, logs and GitHub across your Macs, Linux and Windows machines, with an MCP server."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "MG1937/rust_ASC",
+      "githubRepositoryId": 1421657964,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [
+        "ai-agent",
+        "android",
+        "decompilation",
+        "mobile",
+        "reverse",
+        "rust",
+        "rust-lang"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 51,
+        "forks": 7,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-16T09:17:03Z"
+      },
+      "bestFor": [
+        "Rust ASC is a super FAST and lightweight Android decompiler designed for Agents/Mobile Researchers."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "mw00/project-maya",
+      "githubRepositoryId": 1407997858,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "cuda",
+        "glm",
+        "glm-5",
+        "llm",
+        "llm-inference",
+        "local-llm",
+        "mixture-of-experts",
+        "moe",
+        "openai-api",
+        "quantization",
+        "rocm",
+        "self-hosted"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 985,
+        "forks": 126,
+        "openIssues": 57,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-16T22:22:14Z"
+      },
+      "bestFor": [
+        "Project Maya - run GLM-5.3-Flash (321B MoE) privately on your own GPU(s), from one card to 16, NVIDIA or AMD, Linux or Windows. Engine, server, dashboard, OpenAI- and Anthropic-compatible API, quant t"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ReFirmLabs/binwalk",
+      "githubRepositoryId": 14434734,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 14499,
+        "forks": 1852,
+        "openIssues": 100,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-08-11T15:27:34Z"
+      },
+      "bestFor": [
+        "Firmware Analysis Tool"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "skylot/jadx",
+      "githubRepositoryId": 8859474,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [
+        "android",
+        "decompiler",
+        "dex",
+        "java"
+      ],
+      "languages": [
+        "java"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 51035,
+        "forks": 5825,
+        "openIssues": 457,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-14T22:10:04Z"
+      },
+      "bestFor": [
+        "Dex to Java decompiler"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "VITASID57/bluntcore-intimacy-lab",
+      "githubRepositoryId": 1422357371,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 186,
+        "forks": 38,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-17T13:32:19Z"
+      },
+      "bestFor": [
+        "🧬 钝核｜人机亲密实验室 · Bluntcore Intimacy Lab｜人机恋、成人 AI、Prompt、Memory、Agent、模型床测与实验记录。"
       ],
       "avoidWhen": [
         "production use before licensing and security review"

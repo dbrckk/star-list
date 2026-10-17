@@ -1048,6 +1048,26 @@
         "scripts/sync_github_stars.py",
         "scripts/test_sync_github_stars.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): prevent duplicate Production-OS launch POSTs after uncertain responses (#113)",
+      "terms": [
+        "113",
+        "after",
+        "duplicate",
+        "launch",
+        "portfolio",
+        "posts",
+        "prevent",
+        "production-os",
+        "responses",
+        "uncertain"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1073,6 +1093,9 @@
       "scripts/admit_github_stars.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
+    },
+    "113": {
+      "scripts/portfolio_daily.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1232,7 +1255,7 @@
       "scripts/test_auto_stars_admission.py": 4
     },
     "after": {
-      "scripts/portfolio_daily.py": 16
+      "scripts/portfolio_daily.py": 20
     },
     "all": {
       "scripts/admit_github_stars.py": 4,
@@ -1463,6 +1486,9 @@
     "do": {
       "scripts/portfolio_daily.py": 4
     },
+    "duplicate": {
+      "scripts/portfolio_daily.py": 4
+    },
     "dynamically": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
@@ -1679,7 +1705,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "launch": {
-      "scripts/portfolio_daily.py": 8
+      "scripts/portfolio_daily.py": 12
     },
     "launches": {
       "scripts/portfolio_daily.py": 8
@@ -1781,11 +1807,17 @@
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
+    "posts": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "prevent": {
+      "scripts/portfolio_daily.py": 4
+    },
     "private": {
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "production-os": {
-      "scripts/portfolio_daily.py": 20
+      "scripts/portfolio_daily.py": 24
     },
     "project": {
       "scripts/portfolio_daily.py": 4
@@ -1925,6 +1957,9 @@
       "scripts/test_recommend.py": 4
     },
     "response": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "responses": {
       "scripts/portfolio_daily.py": 4
     },
     "resume": {
@@ -2097,7 +2132,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "uncertain": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "unresolved": {
       "scripts/audit_catalog_quality.py": 4,

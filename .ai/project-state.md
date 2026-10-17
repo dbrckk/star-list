@@ -58,23 +58,22 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-17T13:05:41Z
+Generated: 2026-10-17T15:27:42Z
 
 ### Git
 - Branch: `main`
-- Head: `b12c468044f3`
-- Commit date: 2026-10-17T09:05:31-04:00
-- Commit: docs(capacity): checkpoint validated free-provider integration (#112)
+- Head: `b5ee5bdaeee3`
+- Commit date: 2026-10-17T11:27:33-04:00
+- Commit: fix(portfolio): prevent duplicate Production-OS launch POSTs after uncertain responses (#113)
 - Tracked files: 279
 
 ### Recently changed files
+- `.github/workflows/portfolio-scan-smoke.yml`
+- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
+- `scripts/portfolio_daily.py`
+- `catalog.json`
 - `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
 - `.github/workflows/daily-portfolio-integration.yml`
-- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
-- `catalog.json`
-- `scripts/admit_github_stars.py`
-- `scripts/sync_github_stars.py`
-- `scripts/test_sync_github_stars.py`
 
 ### Project signals
 - No common build descriptor detected

@@ -1,18 +1,46 @@
 {
   "files": [
     {
-      "path": "docs/PORTFOLIO_CAPACITY_RECOVERY.md",
+      "path": "scripts/portfolio_daily.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "dependency-neighbor",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 440
+    },
+    {
+      "path": "catalog.json",
+      "reasons": [
+        "changed",
+        "recent-project-state"
+      ],
+      "score": 160
+    },
+    {
+      "path": "scripts/portfolio_failure_diagnostics.py",
+      "reasons": [
+        "impact",
+        "reverse-dependency-neighbor",
+        "symbol-indexed"
+      ],
+      "score": 150
+    },
+    {
+      "path": ".github/workflows/portfolio-scan-smoke.yml",
       "reasons": [
         "changed"
       ],
       "score": 100
     },
     {
-      "path": "catalog.json",
+      "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
       "reasons": [
-        "recent-project-state"
+        "changed"
       ],
-      "score": 60
+      "score": 100
     },
     {
       "path": "scripts/admit_github_stars.py",
@@ -34,6 +62,13 @@
         "recent-project-state"
       ],
       "score": 60
+    },
+    {
+      "path": "scripts/recommend.py",
+      "reasons": [
+        "dependency-neighbor"
+      ],
+      "score": 25
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",
