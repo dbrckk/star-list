@@ -201,6 +201,66 @@ jobs:
           assert deep["failures"][0]["worker_result_status"] == "unknown"
           assert "hidden" not in json.dumps(deep)
           assert "project_id" not in json.dumps(deep)
+          # v2 + v3 on a single public repo are separate allowed identities.
+          # Diagnose the final failed recovery independently and redact both
+          # underlying opaque project IDs and worker result content.
+          final_v3 = {
+              **public_record,
+              "project_id": "b" * 32,
+              "final_goal": "Tracking: starlist-integration-v3-" + "c" * 24,
+          }
+          mixed_inbox = {
+              "schema_version": "production-os/production-inbox/v1",
+              "summary": {"matching": 2},
+              "items": [public_record, final_v3],
+          }
+          final_detail = {
+              "project": {
+                  **synthetic_detail["project"],
+                  "final_goal": final_v3["final_goal"],
+                  "current_workflow": {"tasks": [{
+                      "status": "failed", "attempts": 1, "max_attempts": 3,
+                      "result": {
+                          "ai_dev_server_status": "capacity_exhausted",
+                          "evidence": {"pipeline_status": "capacity_exhausted",
+                                       "message": "PRIVATE_V3_TRACE"},
+                      },
+                  }]},
+              },
+          }
+          def get_versioned_project(url, _token, **_kwargs):
+              if url.endswith("a" * 32):
+                  return synthetic_detail
+              if url.endswith("b" * 32):
+                  return final_detail
+              raise AssertionError("Unknown internal project")
+          with diagnostic_patch.object(failure_diagnostics, "request_json",
+                                       side_effect=get_versioned_project):
+              mixed = add_deep_task_diagnostics(
+                  public_diagnostics(mixed_inbox), mixed_inbox, "dummy")
+          assert mixed["observed_public_v3_failures"] == 1
+          assert mixed["details_checked_v2"] == 1
+          assert mixed["details_checked_v3"] == 1
+          assert mixed["coverage_complete"] is False  # three v2 targets missing
+          assert mixed["details_complete"] is False
+          v3_row = next(row for row in mixed["failures"]
+                        if row["tracking_version"] == "v3")
+          assert v3_row["worker_result_status"] == "capacity_exhausted"
+          assert v3_row["pipeline_status"] == "capacity_exhausted"
+          assert "PRIVATE_V3_TRACE" not in json.dumps(mixed)
+          assert "project_id" not in json.dumps(mixed)
+          # A missing v3 task result must block complete deep coverage.
+          with diagnostic_patch.object(failure_diagnostics, "request_json",
+                                       side_effect=lambda url, token, **kwargs:
+                                           synthetic_detail if url.endswith("a" * 32)
+                                           else {"project": {
+                                               **final_detail["project"],
+                                               "current_workflow": {"tasks": []}}}):
+              incomplete_v3 = add_deep_task_diagnostics(
+                  public_diagnostics(mixed_inbox), mixed_inbox, "dummy")
+          assert incomplete_v3["details_checked_v2"] == 1
+          assert incomplete_v3["details_checked_v3"] == 0
+          assert incomplete_v3["details_complete"] is False
           # Even an operator API outage must leave a sanitized failure
           # artifact with a bounded enum; no raw exception may leak.
           import contextlib

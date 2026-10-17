@@ -11,8 +11,8 @@ and provider traces never appear in artifacts or action logs.
 
 The index is bounded by Production-OS to 10,000 tracking rows; a missing,
 truncated or malformed index fails closed. The operator-only project IDs are
-used exclusively in memory for four targeted detail requests and are never
-included in reports.
+used exclusively in memory for four known public failed v2 records and any
+newly observed terminal v3 records. None are included in reports.
 The report separately marks `coverage_complete` based on the four publicly
 verified unresolved v2 targets (Ai-trading, vibecheck-android,
 viral-android-game, xbow-perso). Missing entries are **not** treated as
@@ -26,12 +26,16 @@ It also runs on a trusted main-branch change to itself or the diagnosis
 script and supports authenticated manual dispatch. It never launches,
 retries, modifies or approves a managed project. No paid service is required.
 
-For each failed v2 task, the operator workflow now also reads the project-specific
-workflow result (at most four additional GETs). It inspects failed/blocked task
+For each failed v2 task **and any final v3 recovery failure**, the operator
+workflow also reads the individual project-specific workflow result. It inspects failed/blocked task
 results in memory for allowlisted categories, retry-exhaustion status and task
 counts. No raw task result, project ID, job key or workflow payload is emitted.
-`details_complete` must be true for all four verified failed v2 targets;
-otherwise the workflow exits nonzero while preserving partial safe evidence.
+`details_complete` requires all four verified failed v2 targets **and all
+observed public v3 failures** to have terminal task evidence. The report adds
+`observed_public_v3_failures` and `details_checked_v3` counters. The v3 count
+is discovered dynamically from the authenticated inventory; an absent or
+unreadable v3 task is never treated as a successful recovery. The workflow
+exits nonzero on incomplete evidence while preserving partial safe results.
 
 When a task result is present, the sanitized output also records the
 number of attempts used, the configured retry maximum, a fixed whitelist
@@ -43,10 +47,10 @@ provider-quota problems. Values outside the allowed enums become
 
 **Evidence integrity:** An absent workflow task list, an empty list, or a
 list without a failed/blocked/cancelled task is **incomplete diagnosis**, not
-`details_checked=true`. If the tracking index contains multiple failed v2
-candidate records for the same public target, the report treats that target
-as ambiguous and does not read or attribute one candidate's task result to
-another. Such runs exit nonzero rather than asserting full coverage; the
+`details_checked=true`. If the tracking index contains multiple failed candidate records for the
+same public target **and version**, the report treats that identity as
+ambiguous and does not misattribute one candidate's task result to another.
+A failed v2 and failed v3 for the same repository are independently examined. Such runs exit nonzero rather than asserting full coverage; the
 operator must reconcile the distinct candidates privately. Only actual
 terminal task evidence for unambiguous targets counts as deep coverage.
 
@@ -64,7 +68,7 @@ run before attempting to repair workers or resubmit projects.
 
 **Bounded read costs:** The privileged index performs a single database
 inventory query, then fetches only the four known public failed v2 project
-records. Each diagnostic read uses one bounded HTTP attempt (60 seconds on
+records plus newly observed public terminal v3 recovery records. Each diagnostic read uses one bounded HTTP attempt (60 seconds on
 the approved Render origin), rather than the scanner's standard three retries.
 This keeps the complete diagnosis within the workflow limit even during an
 unavailable provider/API period. The API extension must be live before this

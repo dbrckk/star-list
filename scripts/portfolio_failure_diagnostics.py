@@ -179,7 +179,7 @@ def task_failure_evidence(detail: object) -> dict:
 
 
 def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict:
-    """Fetch each public failed v2 project individually with operator privileges.
+    """Inspect public failed v2 and v3 projects with operator privileges.
 
     Internal project IDs are used only in the request path, never in output.
     A missing/mismatched detail makes the diagnosis incomplete, not successful.
@@ -190,26 +190,28 @@ def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict:
     if not isinstance(items, list):
         raise RuntimeError("missing private diagnostic rows")
     selected = {}
-    ambiguous_targets = set()
+    ambiguous = set()
     for item in items:
         record = safe_public_failure(item)
-        if record is None or record["tracking_version"] != "v2":
+        if record is None or record["tracking_version"] not in {"v2", "v3"}:
             continue
-        target = record["target"]
-        if target in selected:
-            ambiguous_targets.add(target)
+        # v2 and v3 on the same target are distinct projects and must both
+        # be inspected; only duplicate identities within a version are unsafe.
+        identity = (record["target"], record["tracking_version"])
+        if identity in selected:
+            ambiguous.add(identity)
         else:
-            selected[target] = item
-    checked = 0
+            selected[identity] = item
+    checked_v2 = 0
+    checked_v3 = 0
     for record in result["failures"]:
-        if record["tracking_version"] != "v2":
+        if record["tracking_version"] not in {"v2", "v3"}:
             continue
-        # Never attribute one project/task result to a different historical
-        # v2 candidate merely because the repository name is the same.
-        if record["target"] in ambiguous_targets:
+        identity = (record["target"], record["tracking_version"])
+        if identity in ambiguous:
             record["details_checked"] = False
             continue
-        item = selected.get(record["target"])
+        item = selected.get(identity)
         identifier = item.get("project_id") if isinstance(item, dict) else None
         if not isinstance(identifier, str) or not re.fullmatch(r"[a-f0-9]{32}", identifier):
             record["details_checked"] = False
@@ -256,12 +258,20 @@ def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict:
                 record[key] = deeper[key]
             if record["failure_category"] == "unknown":
                 record["failure_category"] = deeper["failure_category"]
-            checked += 1
+            if record["tracking_version"] == "v2":
+                checked_v2 += 1
+            else:
+                checked_v3 += 1
         except (RuntimeError, ValueError, TypeError, KeyError):
             record["details_checked"] = False
-    result["details_checked_v2"] = checked
+    result["details_checked_v2"] = checked_v2
+    result["details_checked_v3"] = checked_v3
+    # Fail closed on terminal v3 evidence as well: it is the final allowed
+    # recovery, and its failure must be understood before further admission.
     result["details_complete"] = (
-        result["coverage_complete"] and checked == len(PUBLIC_FAILED_TARGETS)
+        result["coverage_complete"]
+        and checked_v2 == len(PUBLIC_FAILED_TARGETS)
+        and checked_v3 == result["observed_public_v3_failures"]
     )
     return result
 
@@ -316,16 +326,22 @@ def public_diagnostics(payload: object) -> dict:
     # The public issue previously verified exactly these four unresolved v2 targets.
     v2_targets = [row["target"] for row in rows if row["tracking_version"] == "v2"]
     found = set(v2_targets)
-    # Multiple failed v2 candidates for one repository require an explicit
-    # per-candidate reconciliation, not silent attribution by target alone.
+    # Multiple failures for the same target and version cannot safely be
+    # attributed by repository alone. A v2 and v3 pair is expected and valid.
     unique_v2_targets = len(v2_targets) == len(found)
+    v3_targets = [row["target"] for row in rows if row["tracking_version"] == "v3"]
+    unique_v3_targets = len(v3_targets) == len(set(v3_targets))
     rows.sort(key=lambda r: (r["target"], r["tracking_version"]))
     return {
         "schema_version": "star-list/public-failure-diagnostics/v1",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "expected_public_v2_targets": len(PUBLIC_FAILED_TARGETS),
         "observed_public_v2_targets": len(found),
-        "coverage_complete": found == PUBLIC_FAILED_TARGETS and unique_v2_targets,
+        "observed_public_v3_failures": len(v3_targets),
+        "coverage_complete": (
+            found == PUBLIC_FAILED_TARGETS
+            and unique_v2_targets and unique_v3_targets
+        ),
         "failures": rows,
     }
 
@@ -344,6 +360,8 @@ def main() -> int:
         "observed_public_v2_targets": 0,
         "coverage_complete": False,
         "details_checked_v2": 0,
+        "details_checked_v3": 0,
+        "observed_public_v3_failures": 0,
         "details_complete": False,
         "failures": [],
         "diagnostic_status": "unavailable",
@@ -369,6 +387,7 @@ def main() -> int:
             # both can contain backend details or credential-bearing URLs.
             result["diagnostic_status"] = "unavailable-" + stage
             result.setdefault("details_checked_v2", 0)
+            result.setdefault("details_checked_v3", 0)
             result.setdefault("details_complete", False)
     args.output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     # The log and artifact contain only allowlisted public names, enums and
