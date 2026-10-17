@@ -1,15 +1,15 @@
 # Change impact
 
-Base: ebbc2b782efb5d11c02aca169ee0614ef4546a9e
-Head: 407a4741d99fa3b52a49e24ec9caf4782ccca79c
+Base: 65c55d910094fc3f4cde6aba2416d651e6268196
+Head: b56f319b15b2dde5468d22033c2cf9e80e5a61c8
 
 ## Changed files
-- M scripts/admit_github_stars.py
-- M scripts/sync_github_stars.py
-- M scripts/test_sync_github_stars.py
+- M .github/workflows/daily-portfolio-integration.yml
+- M docs/DAILY_PORTFOLIO_INTEGRATION.md
 
 ## Affected areas
-- scripts
+- .github
+- docs
 
 ## Related test candidates
 - No direct filename-based test match detected.

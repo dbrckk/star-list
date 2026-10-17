@@ -56,25 +56,23 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-17T08:42:44Z
+Generated: 2026-10-17T11:01:37Z
 
 ### Git
 - Branch: `main`
-- Head: `407a4741d99f`
-- Commit date: 2026-10-17T04:42:34-04:00
-- Commit: fix(stars): block cross-origin redirects of GitHub sync credentials (#110)
+- Head: `b56f319b15b2`
+- Commit date: 2026-10-17T07:01:26-04:00
+- Commit: fix(portfolio): avoid redundant daily scans while retaining fallback (#111)
 - Tracked files: 279
 
 ### Recently changed files
+- `.github/workflows/daily-portfolio-integration.yml`
+- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
+- `catalog.json`
 - `scripts/admit_github_stars.py`
 - `scripts/sync_github_stars.py`
 - `scripts/test_sync_github_stars.py`
 - `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
-- `.github/workflows/portfolio-scan-smoke.yml`
-- `docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md`
-- `scripts/portfolio_failure_diagnostics.py`
-- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
-- `scripts/portfolio_daily.py`
 
 ### Project signals
 - No common build descriptor detected

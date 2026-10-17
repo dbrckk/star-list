@@ -1,39 +1,32 @@
 {
   "files": [
     {
-      "path": "scripts/test_sync_github_stars.py",
+      "path": ".github/workflows/daily-portfolio-integration.yml",
       "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
+        "changed"
       ],
-      "score": 500
+      "score": 100
     },
     {
-      "path": "scripts/sync_github_stars.py",
+      "path": "catalog.json",
       "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
+        "changed"
       ],
-      "score": 420
+      "score": 100
+    },
+    {
+      "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
     },
     {
       "path": "scripts/admit_github_stars.py",
       "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "reverse-dependency-neighbor",
-        "symbol-indexed"
+        "recent-project-state"
       ],
-      "score": 385
+      "score": 60
     },
     {
       "path": "scripts/portfolio_daily.py",
@@ -50,11 +43,18 @@
       "score": 60
     },
     {
-      "path": "scripts/star_import_pipeline.py",
+      "path": "scripts/sync_github_stars.py",
       "reasons": [
-        "dependency-neighbor"
+        "recent-project-state"
       ],
-      "score": 25
+      "score": 60
+    },
+    {
+      "path": "scripts/test_sync_github_stars.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

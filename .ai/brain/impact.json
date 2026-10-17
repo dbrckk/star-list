@@ -1,180 +1,25 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "06e057565b69bd4b86e7fa3d68faa3cdca067bf5",
-  "head": "407a4741d99fa3b52a49e24ec9caf4782ccca79c",
+  "base": "407a4741d99fa3b52a49e24ec9caf4782ccca79c",
+  "head": "b56f319b15b2dde5468d22033c2cf9e80e5a61c8",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": "scripts/admit_github_stars.py",
+      "path": ".github/workflows/daily-portfolio-integration.yml",
       "status": "M"
     },
     {
-      "path": "scripts/sync_github_stars.py",
+      "path": "catalog.json",
       "status": "M"
     },
     {
-      "path": "scripts/test_sync_github_stars.py",
+      "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
       "status": "M"
     }
   ],
-  "changed_source_files": [
-    "scripts/admit_github_stars.py",
-    "scripts/sync_github_stars.py",
-    "scripts/test_sync_github_stars.py"
-  ],
-  "impacted_files": [
-    "scripts/admit_github_stars.py",
-    "scripts/sync_github_stars.py",
-    "scripts/test_sync_github_stars.py"
-  ],
-  "impacted_symbols": [
-    {
-      "name": "classify",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 52
-    },
-    {
-      "name": "get_repo",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 64
-    },
-    {
-      "name": "catalog_entry",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 100
-    },
-    {
-      "name": "count",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 111
-    },
-    {
-      "name": "admit",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 159
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 200
-    },
-    {
-      "name": "SameOriginGitHubRedirect",
-      "kind": "class",
-      "file": "scripts/sync_github_stars.py",
-      "line": 23
-    },
-    {
-      "name": "redirect_request",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 31
-    },
-    {
-      "name": "validate_user",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 46
-    },
-    {
-      "name": "normalize_repo",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 52
-    },
-    {
-      "name": "api_stars",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 58
-    },
-    {
-      "name": "catalog_identities",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 147
-    },
-    {
-      "name": "build_report",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 176
-    },
-    {
-      "name": "render_issue",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 201
-    },
-    {
-      "name": "write_json",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 251
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 257
-    },
-    {
-      "name": "star",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 21
-    },
-    {
-      "name": "Response",
-      "kind": "class",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 35
-    },
-    {
-      "name": "__init__",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 36
-    },
-    {
-      "name": "__enter__",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 40
-    },
-    {
-      "name": "__exit__",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 43
-    },
-    {
-      "name": "read",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 46
-    },
-    {
-      "name": "two_page_opener",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 51
-    },
-    {
-      "name": "rate_limited",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 160
-    }
-  ],
-  "selected_tests": [
-    "scripts/test_sync_github_stars.py"
-  ]
+  "changed_source_files": [],
+  "impacted_files": [],
+  "impacted_symbols": [],
+  "selected_tests": []
 }

@@ -1,5 +1,17 @@
 {
   "files": {
+    ".github/workflows/daily-portfolio-integration.yml": {
+      "sha256": "6a1f30c26185d0c8538a4299c60d95a5a126af47c6ce37d7cda1e1eebfb3a0fa",
+      "size": 4710
+    },
+    "catalog.json": {
+      "sha256": "a6ca0e1a0f10ef56ae6245d7c5e8425ad0733846080e1b4389f7186f8fd499af",
+      "size": 1028381
+    },
+    "docs/DAILY_PORTFOLIO_INTEGRATION.md": {
+      "sha256": "5381a50eb670b91006a35864de390a13a4d136435b02acc12abc762e39b7416f",
+      "size": 14672
+    },
     "scripts/admit_github_stars.py": {
       "sha256": "45566208bb77dac15216556bfe344988d6de00d41024635c8b08a0d83265e1ac",
       "size": 11172
@@ -11,10 +23,6 @@
     "scripts/portfolio_failure_diagnostics.py": {
       "sha256": "3f6972d50b7db5c499ccb845dbe21ff4c760dac1db12c6b6d5190adea586e62b",
       "size": 19022
-    },
-    "scripts/star_import_pipeline.py": {
-      "sha256": "0ef31e842ff42e674498f10836f984c2813a70642d2430f46b55f6a58626eb5f",
-      "size": 12719
     },
     "scripts/sync_github_stars.py": {
       "sha256": "fe24698843cb1ed316de83495b1543a97edd6ec5b3de65f46c32414e8ae1236e",
