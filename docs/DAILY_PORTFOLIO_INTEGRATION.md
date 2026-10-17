@@ -107,6 +107,15 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
   the report; only submission is deferred until active/review-pending work
   is resolved. The guard also applies after a successful dispatch within the
   current run, not just to the previously fetched Production-OS inventory.
+- **Final v3 recovery safety stop:** any tracked `v3` integration in
+  `NEEDS_ATTENTION` indicates that the last allowed autonomous recovery has
+  failed. Suspend **all** subsequent integration launches until an operator
+  has reviewed the terminal task, verified usable AI provider/worker capacity
+  and determined a safe manual resolution. This gate applies independently
+  of the UTC quota and does not silently clear if the clock changes; public
+  and private discovery remains read-only and continues to report candidates.
+  The public issue reports the number of terminal v3 failures but never
+  their internal project identifiers, instructions or worker logs.
 - **Fleet-level queue protection:** at most three active portfolio integrations
   may run across all scans. Failed v2 tasks are **quarantined**, not counted as
   indefinitely active workers; while any remain unresolved, dispatch requires
