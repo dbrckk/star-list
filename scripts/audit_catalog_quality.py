@@ -173,7 +173,30 @@ def render_markdown(report):
     else:
         lines.append("No informational findings.")
 
-    return "\n".join(lines) + "\n"
+    rendered = "\n".join(lines) + "\n"
+    # GitHub issue bodies have a size limit. Always retain complete JSON
+    # evidence while presenting a bounded, prioritized public review: the
+    # review-level rows precede informational findings.
+    max_bytes = 60_000
+    if len(rendered.encode("utf-8")) <= max_bytes:
+        return rendered
+    kept, byte_count = [], 0
+    for line in lines:
+        cost = len((line + "\n").encode("utf-8"))
+        if byte_count + cost > max_bytes - 300:
+            break
+        kept.append(line)
+        byte_count += cost
+    kept.extend([
+        "",
+        "**Issue display truncated at a complete line.** The counts above cover",
+        "every finding; the validated `catalog-quality.json` Actions artifact",
+        "contains the full audit.",
+    ])
+    bounded = "\n".join(kept) + "\n"
+    if len(bounded.encode("utf-8")) > max_bytes:
+        raise RuntimeError("Catalog-quality summary cannot fit GitHub issue limit")
+    return bounded
 
 
 def main():
