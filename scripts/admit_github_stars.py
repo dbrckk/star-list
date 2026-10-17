@@ -16,10 +16,10 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
-from urllib.request import Request, urlopen
+from urllib.request import Request
 
 from star_import_pipeline import write_catalog_if_valid
-from sync_github_stars import ROOT, normalize_repo
+from sync_github_stars import ROOT, SAFE_GITHUB_HTTP, normalize_repo
 
 DOMAINS = (
     ("cybersecurity", ("cybersecurity", "security", "pentest", "vulnerability", "bug bounty", "ctf", "malware", "osint", "exploit")),
@@ -61,7 +61,7 @@ def classify(meta):
     return "other"
 
 
-def get_repo(repo, token=None, opener=urlopen, sleeper=time.sleep):
+def get_repo(repo, token=None, opener=SAFE_GITHUB_HTTP.open, sleeper=time.sleep):
     """Fetch full repository metadata, with bounded retry and canonical ID check."""
     normalize_repo(repo)
     url = "https://api.github.com/repos/" + repo
