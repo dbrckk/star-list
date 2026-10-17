@@ -422,6 +422,22 @@ def count_failed_v2_integrations(projects: list[dict]) -> int:
     return len(unresolved_failed_v2_integrations(projects))
 
 
+def count_failed_v3_integrations(projects: list[dict]) -> int:
+    """A terminal v3 retry is an operator-review gate, not an open slot.
+
+    Never automatically launch unrelated jobs after a final recovery already
+    failed. First establish real model/worker capacity and review the result.
+    """
+    return sum(
+        1 for row in projects
+        if str(row.get("status") or "").upper().replace("-", "_") == "NEEDS_ATTENTION"
+        and re.search(
+            r"(?<![a-z0-9])starlist-integration-v3-[0-9a-f]{24}(?![0-9a-f])",
+            str(row.get("final_goal") or ""),
+        )
+    )
+
+
 def count_launches_on_utc_date(projects: list[dict], utc_day: str) -> int:
     """Account for the UTC launch quota, regardless of an API timestamp offset.
 
@@ -636,6 +652,9 @@ def render_markdown(report: dict) -> str:
     if isinstance(summary.get("failed_v2_integrations"), int):
         lines.extend(["Unresolved earlier v2 integration failures: **"
                       + str(summary["failed_v2_integrations"]) + "**.", ""])
+    if isinstance(summary.get("failed_v3_integrations"), int):
+        lines.extend(["Failed final v3 recovery attempts requiring operator review: **"
+                      + str(summary["failed_v3_integrations"]) + "**.", ""])
     if isinstance(summary.get("available_dispatch_slots"), int):
         lines.extend(["Available launch slots for this scan: **"
                       + str(summary["available_dispatch_slots"]) + "**.", ""])
@@ -727,6 +746,7 @@ def main() -> int:
     launch_outcome_uncertain = False
     active_integrations = None
     failed_v2_integrations = None
+    failed_v3_integrations = None
     available_slots = None
     launches_today = None
     if operator_token:
@@ -762,6 +782,7 @@ def main() -> int:
             # not merely the number of launches in this one workflow run.
             active_integrations = count_active_integrations(already)
             failed_v2_integrations = count_failed_v2_integrations(already)
+            failed_v3_integrations = count_failed_v3_integrations(already)
             busy_targets = busy_integration_targets(already)
             # Failed projects are quarantined instead of occupying all
             # capacity slots forever. While failures remain, admit at most
@@ -788,6 +809,12 @@ def main() -> int:
                     args.max_dispatch,
                     max(0, 3 - active_integrations),
                 )
+            # The final automatic recovery version has already failed.
+            # Until operators establish working capacity and review outcomes,
+            # further autonomous submissions only consume scarce free tokens.
+            # Continue full discovery, reporting and inventory reconciliation.
+            if failed_v3_integrations:
+                available_slots = 0
             # Reevaluate a previously failed compatible candidate before
             # consuming the single daily slot on an unrelated new project.
             # A v3 marker is distinct and can be submitted only once.
@@ -888,6 +915,8 @@ def main() -> int:
             report["dispatch_status"] = "failed (integration dispatch errors)"
         elif args.max_dispatch == 0:
             report["dispatch_status"] = "disabled (read-only scan)"
+        elif failed_v3_integrations:
+            report["dispatch_status"] = "paused (failed v3 recovery needs operator review)"
         elif available_slots == 0:
             if active_integrations:
                 report["dispatch_status"] = "paused (active portfolio integrations)"
@@ -910,6 +939,7 @@ def main() -> int:
         ),
         "dispatched": dispatched, "active_integrations": active_integrations,
         "failed_v2_integrations": failed_v2_integrations,
+        "failed_v3_integrations": failed_v3_integrations,
         "available_dispatch_slots": available_slots,
         "launches_today_utc": launches_today,
         "failures": len(report["errors"]),
