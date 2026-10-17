@@ -1,7 +1,7 @@
 {
   "files": [
     {
-      "path": ".github/workflows/daily-portfolio-integration.yml",
+      "path": "docs/PORTFOLIO_CAPACITY_RECOVERY.md",
       "reasons": [
         "changed"
       ],
@@ -10,33 +10,12 @@
     {
       "path": "catalog.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
-    },
-    {
-      "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
-      "reasons": [
-        "changed"
-      ],
-      "score": 100
+      "score": 60
     },
     {
       "path": "scripts/admit_github_stars.py",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "scripts/portfolio_daily.py",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "scripts/portfolio_failure_diagnostics.py",
       "reasons": [
         "recent-project-state"
       ],

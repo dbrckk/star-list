@@ -1,14 +1,12 @@
 # Change impact
 
-Base: 65c55d910094fc3f4cde6aba2416d651e6268196
-Head: b56f319b15b2dde5468d22033c2cf9e80e5a61c8
+Base: c3847e3b0573a8b0fd4eabb890f2d3083c128569
+Head: b12c468044f341d946cc72a533c0edb767d65f2b
 
 ## Changed files
-- M .github/workflows/daily-portfolio-integration.yml
-- M docs/DAILY_PORTFOLIO_INTEGRATION.md
+- M docs/PORTFOLIO_CAPACITY_RECOVERY.md
 
 ## Affected areas
-- .github
 - docs
 
 ## Related test candidates

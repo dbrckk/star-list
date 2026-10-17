@@ -58,23 +58,23 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-17T11:01:37Z
+Generated: 2026-10-17T13:05:41Z
 
 ### Git
 - Branch: `main`
-- Head: `b56f319b15b2`
-- Commit date: 2026-10-17T07:01:26-04:00
-- Commit: fix(portfolio): avoid redundant daily scans while retaining fallback (#111)
+- Head: `b12c468044f3`
+- Commit date: 2026-10-17T09:05:31-04:00
+- Commit: docs(capacity): checkpoint validated free-provider integration (#112)
 - Tracked files: 279
 
 ### Recently changed files
+- `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
 - `.github/workflows/daily-portfolio-integration.yml`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `catalog.json`
 - `scripts/admit_github_stars.py`
 - `scripts/sync_github_stars.py`
 - `scripts/test_sync_github_stars.py`
-- `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
 
 ### Project signals
 - No common build descriptor detected
