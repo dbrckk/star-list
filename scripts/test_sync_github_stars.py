@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import parse_qs, urlsplit
+from urllib.request import Request
 
 SCRIPT = Path(__file__).with_name("sync_github_stars.py")
 spec = importlib.util.spec_from_file_location("sync_github_stars", SCRIPT)
@@ -62,6 +63,39 @@ def two_page_opener(request, timeout=20):
         return Response([star("new/beta"), star("New/Alpha")])
     raise AssertionError("unexpected page")
 
+
+# Authenticated GitHub API redirects must not forward the workflow's token
+# to an attacker-controlled host, downgrade to HTTP, or change port.
+auth = Request(
+    "https://api.github.com/users/dbrckk/starred?page=1",
+    headers={"Authorization": "Bearer private-github-token"},
+)
+redirect = mod.SameOriginGitHubRedirect()
+for unsafe in (
+    "https://example.com/steal",
+    "https://api.github.com.attacker.example/steal",
+    "http://api.github.com/users/dbrckk/starred",
+    "https://api.github.com:444/users/dbrckk/starred",
+    "https://name:pass@api.github.com/users/dbrckk/starred",
+):
+    try:
+        redirect.redirect_request(auth, None, 302, "Found", {}, unsafe)
+    except RuntimeError:
+        pass
+    else:
+        raise AssertionError("GitHub API auth redirect escaped approved origin")
+same_origin = redirect.redirect_request(
+    auth, None, 302, "Found", {},
+    "https://api.github.com/users/dbrckk/starred?page=2",
+)
+assert same_origin.get_header("Authorization") == "Bearer private-github-token"
+assert mod.api_stars.__defaults__[1].__self__ is mod.SAFE_GITHUB_HTTP
+# The admission stage must use the same restricted transport by default.
+if str(SCRIPT.parent) not in sys.path:
+    sys.path.insert(0, str(SCRIPT.parent))
+import admit_github_stars as admission
+import sync_github_stars as imported_sync
+assert admission.get_repo.__defaults__[1].__self__ is imported_sync.SAFE_GITHUB_HTTP
 
 items, pages, duplicates = mod.api_stars(
     "dbrckk", token="testing-token", opener=two_page_opener
