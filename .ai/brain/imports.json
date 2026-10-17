@@ -318,16 +318,19 @@
       "tempfile"
     ],
     "scripts/test_sync_github_stars.py": [
+      "admit_github_stars",
       "contextlib",
       "datetime",
       "importlib.util",
       "io",
       "json",
       "pathlib",
+      "sync_github_stars",
       "sys",
       "tempfile",
       "urllib.error",
-      "urllib.parse"
+      "urllib.parse",
+      "urllib.request"
     ],
     "scripts/update_cache_health_history.py": [
       "argparse",

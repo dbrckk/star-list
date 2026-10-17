@@ -1,12 +1,8 @@
 {
   "files": {
-    "catalog.json": {
-      "sha256": "0771ea9553fd80105abf92aad9b00365b1f22e5cb027bd33abc94c5fe5fa019b",
-      "size": 1017779
-    },
-    "docs/PORTFOLIO_CAPACITY_RECOVERY.md": {
-      "sha256": "90e957ea6727b440a4d8d862e8abbc4aa3e526159118c51230af75c2b9ec95bc",
-      "size": 7658
+    "scripts/admit_github_stars.py": {
+      "sha256": "45566208bb77dac15216556bfe344988d6de00d41024635c8b08a0d83265e1ac",
+      "size": 11172
     },
     "scripts/portfolio_daily.py": {
       "sha256": "7d13bad607b5c5d1d5d497ac43750a8e5067abaa8ab134ff4afaf31f60c2da03",
@@ -15,6 +11,18 @@
     "scripts/portfolio_failure_diagnostics.py": {
       "sha256": "3f6972d50b7db5c499ccb845dbe21ff4c760dac1db12c6b6d5190adea586e62b",
       "size": 19022
+    },
+    "scripts/star_import_pipeline.py": {
+      "sha256": "0ef31e842ff42e674498f10836f984c2813a70642d2430f46b55f6a58626eb5f",
+      "size": 12719
+    },
+    "scripts/sync_github_stars.py": {
+      "sha256": "fe24698843cb1ed316de83495b1543a97edd6ec5b3de65f46c32414e8ae1236e",
+      "size": 13204
+    },
+    "scripts/test_sync_github_stars.py": {
+      "sha256": "389f52864f857f32b10de153f18e58510cdb52e69f3148ea60e4ac8d9ca60f7a",
+      "size": 10515
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

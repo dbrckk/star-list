@@ -1028,6 +1028,26 @@
       "useful": [
         "scripts/portfolio_failure_diagnostics.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(stars): block cross-origin redirects of GitHub sync credentials (#110)",
+      "terms": [
+        "110",
+        "block",
+        "credentials",
+        "cross-origin",
+        "github",
+        "redirects",
+        "stars",
+        "sync"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/admit_github_stars.py",
+        "scripts/sync_github_stars.py",
+        "scripts/test_sync_github_stars.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1048,6 +1068,11 @@
     },
     "106": {
       "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "110": {
+      "scripts/admit_github_stars.py": 4,
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1272,9 +1297,10 @@
       "scripts/test_recommend.py": 4
     },
     "block": {
+      "scripts/admit_github_stars.py": 4,
       "scripts/portfolio_daily.py": 8,
-      "scripts/sync_github_stars.py": 4,
-      "scripts/test_sync_github_stars.py": 4
+      "scripts/sync_github_stars.py": 8,
+      "scripts/test_sync_github_stars.py": 8
     },
     "blocked": {
       "scripts/portfolio_daily.py": 4
@@ -1346,8 +1372,16 @@
     "core": {
       "scripts/validate_catalog.py": 4
     },
+    "credentials": {
+      "scripts/admit_github_stars.py": 4,
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
+    },
     "cross-origin": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/admit_github_stars.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
     },
     "curated": {
       "scripts/recommend.py": 4,
@@ -1533,14 +1567,14 @@
       "scripts/portfolio_daily.py": 4
     },
     "github": {
-      "scripts/admit_github_stars.py": 4,
+      "scripts/admit_github_stars.py": 8,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/star_import_pipeline.py": 8,
-      "scripts/sync_github_stars.py": 4,
+      "scripts/sync_github_stars.py": 8,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/test_star_import_pipeline.py": 8,
-      "scripts/test_sync_github_stars.py": 4
+      "scripts/test_sync_github_stars.py": 8
     },
     "godot": {
       "scripts/portfolio_daily.py": 4
@@ -1819,7 +1853,10 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "redirects": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/admit_github_stars.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
     },
     "reference-only": {
       "scripts/portfolio_daily.py": 4
@@ -1985,10 +2022,10 @@
       "scripts/test_auto_stars_admission.py": 4
     },
     "stars": {
-      "scripts/admit_github_stars.py": 4,
-      "scripts/sync_github_stars.py": 4,
+      "scripts/admit_github_stars.py": 8,
+      "scripts/sync_github_stars.py": 8,
       "scripts/test_auto_stars_admission.py": 4,
-      "scripts/test_sync_github_stars.py": 4
+      "scripts/test_sync_github_stars.py": 8
     },
     "state": {
       "scripts/portfolio_daily.py": 4
@@ -2010,6 +2047,11 @@
     },
     "surface": {
       "scripts/portfolio_daily.py": 4
+    },
+    "sync": {
+      "scripts/admit_github_stars.py": 4,
+      "scripts/sync_github_stars.py": 4,
+      "scripts/test_sync_github_stars.py": 4
     },
     "synchronize": {
       "scripts/sync_github_stars.py": 4,

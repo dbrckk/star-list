@@ -55,6 +55,21 @@
       "source": "scripts/test_star_import_pipeline.py",
       "target": "scripts/star_import_pipeline.py",
       "type": "imports"
+    },
+    {
+      "source": "scripts/test_sync_github_stars.py",
+      "target": "scripts/admit_github_stars.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_sync_github_stars.py",
+      "target": "scripts/sync_github_stars.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_sync_github_stars.py",
+      "target": "scripts/sync_github_stars.py",
+      "type": "symbol-reference"
     }
   ],
   "schema_version": 1

@@ -1,13 +1,15 @@
 # Change impact
 
-Base: 36f378c9df09528fc8a37cb59c4a7d32004d93f7
-Head: 06e057565b69bd4b86e7fa3d68faa3cdca067bf5
+Base: ebbc2b782efb5d11c02aca169ee0614ef4546a9e
+Head: 407a4741d99fa3b52a49e24ec9caf4782ccca79c
 
 ## Changed files
-- M docs/PORTFOLIO_CAPACITY_RECOVERY.md
+- M scripts/admit_github_stars.py
+- M scripts/sync_github_stars.py
+- M scripts/test_sync_github_stars.py
 
 ## Affected areas
-- docs
+- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.

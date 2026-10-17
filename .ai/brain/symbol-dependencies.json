@@ -4,5 +4,585 @@
   "scope": "symbols defined in changed source files",
   "semantic": false,
   "note": "Dependencies are known symbol names lexically present inside the symbol's AST/source range.",
-  "symbols": {}
+  "symbols": {
+    "classify": {
+      "source": {
+        "file": "scripts/admit_github_stars.py",
+        "start": 52,
+        "end": 61
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "get_repo": {
+      "source": {
+        "file": "scripts/admit_github_stars.py",
+        "start": 64,
+        "end": 97
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "normalize_repo",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 52,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "catalog_entry": {
+      "source": {
+        "file": "scripts/admit_github_stars.py",
+        "start": 100,
+        "end": 156
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "classify",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 52,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "count",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 111,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "normalize_repo",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 52,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 3
+    },
+    "count": {
+      "source": {
+        "file": "scripts/admit_github_stars.py",
+        "start": 111,
+        "end": 231
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "admit",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 159,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "catalog_entry",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 100,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "classify",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 52,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "get_repo",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 64,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "main",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 200,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "normalize_repo",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 52,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "write_catalog_if_valid",
+          "definitions": [
+            {
+              "file": "scripts/star_import_pipeline.py",
+              "line": 208,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 7
+    },
+    "admit": {
+      "source": {
+        "file": "scripts/admit_github_stars.py",
+        "start": 159,
+        "end": 197
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "catalog_entry",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 100,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "normalize_repo",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 52,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "main": {
+      "source": {
+        "file": "scripts/admit_github_stars.py",
+        "start": 200,
+        "end": 232
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "admit",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 159,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "get_repo",
+          "definitions": [
+            {
+              "file": "scripts/admit_github_stars.py",
+              "line": 64,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "write_catalog_if_valid",
+          "definitions": [
+            {
+              "file": "scripts/star_import_pipeline.py",
+              "line": 208,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 3
+    },
+    "SameOriginGitHubRedirect": {
+      "source": {
+        "file": "scripts/sync_github_stars.py",
+        "start": 23,
+        "end": 40
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "redirect_request",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 31,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "redirect_request": {
+      "source": {
+        "file": "scripts/sync_github_stars.py",
+        "start": 31,
+        "end": 40
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "validate_user": {
+      "source": {
+        "file": "scripts/sync_github_stars.py",
+        "start": 46,
+        "end": 49
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "normalize_repo": {
+      "source": {
+        "file": "scripts/sync_github_stars.py",
+        "start": 52,
+        "end": 55
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "api_stars": {
+      "source": {
+        "file": "scripts/sync_github_stars.py",
+        "start": 58,
+        "end": 144
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "normalize_repo",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 52,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "validate_user",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 46,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "catalog_identities": {
+      "source": {
+        "file": "scripts/sync_github_stars.py",
+        "start": 147,
+        "end": 173
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "normalize_repo",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 52,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "build_report": {
+      "source": {
+        "file": "scripts/sync_github_stars.py",
+        "start": 176,
+        "end": 198
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "normalize_repo",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 52,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "validate_user",
+          "definitions": [
+            {
+              "file": "scripts/sync_github_stars.py",
+              "line": 46,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "render_issue": {
+      "source": {
+        "file": "scripts/sync_github_stars.py",
+        "start": 201,
+        "end": 248
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "write_json": {
+      "source": {
+        "file": "scripts/sync_github_stars.py",
+        "start": 251,
+        "end": 254
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "star": {
+      "source": {
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 21,
+        "end": 32
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "Response": {
+      "source": {
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 35,
+        "end": 47
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "__enter__",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 40,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "__exit__",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 43,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "__init__",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 36,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "read",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 46,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 4
+    },
+    "__init__": {
+      "source": {
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 36,
+        "end": 38
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "__enter__": {
+      "source": {
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 40,
+        "end": 41
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "__exit__": {
+      "source": {
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 43,
+        "end": 44
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "read": {
+      "source": {
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 46,
+        "end": 47
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "two_page_opener": {
+      "source": {
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 51,
+        "end": 64
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "Response",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 35,
+              "kind": "class",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "star",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 21,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "rate_limited": {
+      "source": {
+        "file": "scripts/test_sync_github_stars.py",
+        "start": 160,
+        "end": 164
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "Response",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 35,
+              "kind": "class",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "star",
+          "definitions": [
+            {
+              "file": "scripts/test_sync_github_stars.py",
+              "line": 21,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    }
+  }
 }

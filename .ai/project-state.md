@@ -56,16 +56,19 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-17T08:30:03Z
+Generated: 2026-10-17T08:42:44Z
 
 ### Git
 - Branch: `main`
-- Head: `06e057565b69`
-- Commit date: 2026-10-17T04:29:53-04:00
-- Commit: docs(portfolio): document verified free model alternatives and conservative preflight (#108)
+- Head: `407a4741d99f`
+- Commit date: 2026-10-17T04:42:34-04:00
+- Commit: fix(stars): block cross-origin redirects of GitHub sync credentials (#110)
 - Tracked files: 279
 
 ### Recently changed files
+- `scripts/admit_github_stars.py`
+- `scripts/sync_github_stars.py`
+- `scripts/test_sync_github_stars.py`
 - `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md`

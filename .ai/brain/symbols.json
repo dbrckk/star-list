@@ -1067,58 +1067,72 @@
     {
       "file": "scripts/sync_github_stars.py",
       "language": "python",
-      "kind": "function",
-      "name": "validate_user",
+      "kind": "class",
+      "name": "SameOriginGitHubRedirect",
       "line": 23
     },
     {
       "file": "scripts/sync_github_stars.py",
       "language": "python",
       "kind": "function",
+      "name": "redirect_request",
+      "line": 31
+    },
+    {
+      "file": "scripts/sync_github_stars.py",
+      "language": "python",
+      "kind": "function",
+      "name": "validate_user",
+      "line": 46
+    },
+    {
+      "file": "scripts/sync_github_stars.py",
+      "language": "python",
+      "kind": "function",
       "name": "normalize_repo",
-      "line": 29
+      "line": 52
     },
     {
       "file": "scripts/sync_github_stars.py",
       "language": "python",
       "kind": "function",
       "name": "api_stars",
-      "line": 35
+      "line": 58
     },
     {
       "file": "scripts/sync_github_stars.py",
       "language": "python",
       "kind": "function",
       "name": "catalog_identities",
-      "line": 124
+      "line": 147
     },
     {
       "file": "scripts/sync_github_stars.py",
       "language": "python",
       "kind": "function",
       "name": "build_report",
-      "line": 153
+      "line": 176
     },
     {
       "file": "scripts/sync_github_stars.py",
       "language": "python",
       "kind": "function",
       "name": "render_issue",
-      "line": 178
+      "line": 201
     },
     {
       "file": "scripts/sync_github_stars.py",
       "language": "python",
       "kind": "function",
       "name": "write_json",
-      "line": 228
+      "line": 251
     },
     {
       "file": "scripts/sync_github_stars.py",
       "language": "python",
       "kind": "function",
       "name": "main",
-      "line": 234
+      "line": 257
     },
     {
       "file": "scripts/test_auto_stars_admission.py",
@@ -1321,56 +1335,56 @@
       "language": "python",
       "kind": "function",
       "name": "star",
-      "line": 20
+      "line": 21
     },
     {
       "file": "scripts/test_sync_github_stars.py",
       "language": "python",
       "kind": "class",
       "name": "Response",
-      "line": 34
-    },
-    {
-      "file": "scripts/test_sync_github_stars.py",
-      "language": "python",
-      "kind": "function",
-      "name": "__init__",
       "line": 35
     },
     {
       "file": "scripts/test_sync_github_stars.py",
       "language": "python",
       "kind": "function",
+      "name": "__init__",
+      "line": 36
+    },
+    {
+      "file": "scripts/test_sync_github_stars.py",
+      "language": "python",
+      "kind": "function",
       "name": "__enter__",
-      "line": 39
+      "line": 40
     },
     {
       "file": "scripts/test_sync_github_stars.py",
       "language": "python",
       "kind": "function",
       "name": "__exit__",
-      "line": 42
+      "line": 43
     },
     {
       "file": "scripts/test_sync_github_stars.py",
       "language": "python",
       "kind": "function",
       "name": "read",
-      "line": 45
+      "line": 46
     },
     {
       "file": "scripts/test_sync_github_stars.py",
       "language": "python",
       "kind": "function",
       "name": "two_page_opener",
-      "line": 50
+      "line": 51
     },
     {
       "file": "scripts/test_sync_github_stars.py",
       "language": "python",
       "kind": "function",
       "name": "rate_limited",
-      "line": 126
+      "line": 160
     },
     {
       "file": "scripts/update_cache_health_history.py",

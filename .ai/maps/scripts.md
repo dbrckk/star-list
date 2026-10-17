@@ -112,7 +112,7 @@ def classify(meta)
 ⋮----
 text = " ".join([
 ⋮----
-def get_repo(repo, token=None, opener=urlopen, sleeper=time.sleep)
+def get_repo(repo, token=None, opener=SAFE_GITHUB_HTTP.open, sleeper=time.sleep)
 ⋮----
 """Fetch full repository metadata, with bounded retry and canonical ID check."""
 ⋮----
@@ -1926,11 +1926,27 @@ USER_PATTERN = re.compile(r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?\Z")
 REPO_PATTERN = re.compile(r"([A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?)/([A-Za-z0-9_.-]{1,100})\Z")
 ISSUE_MARKER = "<!-- star-list-star-sync -->"
 ⋮----
+class SameOriginGitHubRedirect(HTTPRedirectHandler)
+⋮----
+"""Do not forward the Stars workflow's bearer token outside GitHub API.
+
+    urllib's default redirect handler copies request headers, including
+    Authorization. The public Stars sync and metadata admission both use
+    authenticated GitHub API calls; fail closed on redirect origin changes.
+    """
+⋮----
+def redirect_request(self, req, fp, code, msg, headers, newurl)
+⋮----
+original = urlsplit(req.full_url)
+destination = urlsplit(newurl)
+⋮----
+SAFE_GITHUB_HTTP = build_opener(SameOriginGitHubRedirect())
+⋮----
 def validate_user(user)
 ⋮----
 def normalize_repo(repo)
 ⋮----
-def api_stars(user, token=None, max_pages=100, opener=urlopen, sleeper=time.sleep)
+def api_stars(user, token=None, max_pages=100, opener=SAFE_GITHUB_HTTP.open, sleeper=time.sleep)
 ⋮----
 """Fetch all public stars. A failed/truncated page aborts the entire synchronization."""
 ⋮----
@@ -2687,67 +2703,6 @@ new_before_repeat = catalog_path.read_text()
 repeat = subprocess.run(args + ["--write"], text=True, capture_output=True)
 ⋮----
 bad = subprocess.run(args + ["--write"], text=True, capture_output=True)
-```
-
-## File: test_sync_github_stars.py
-```python
-#!/usr/bin/env python3
-"""Offline regression tests for public GitHub Stars synchronization."""
-⋮----
-SCRIPT = Path(__file__).with_name("sync_github_stars.py")
-spec = importlib.util.spec_from_file_location("sync_github_stars", SCRIPT)
-mod = importlib.util.module_from_spec(spec)
-⋮----
-def star(name, **overrides)
-⋮----
-item = {
-⋮----
-class Response
-⋮----
-def __init__(self, payload, link="")
-⋮----
-def __enter__(self)
-⋮----
-def __exit__(self, *_)
-⋮----
-def read(self)
-⋮----
-calls = []
-def two_page_opener(request, timeout=20)
-⋮----
-query = parse_qs(urlsplit(request.full_url).query)
-⋮----
-stamp = datetime(2026, 10, 9, tzinfo=timezone.utc)
-report = mod.build_report("dbrckk", items, {"known/repo"}, pages, duplicates, now=stamp)
-⋮----
-rendered = mod.render_issue(report, limit=1)
-⋮----
-# Never report the first N pages as complete when the API signals more pages.
-⋮----
-# Invalid API shapes and identities fail closed.
-⋮----
-attempts = []
-def rate_limited(request, timeout=20)
-⋮----
-# GitHub repository ID is stable even when the owner/name changes.
-transfer_api = [star("New-Owner/Project", id=338719962)]
-⋮----
-by_name_only = mod.build_report("dbrckk", transfer_items, {"old-owner/project"}, transfer_pages)
-⋮----
-by_stable_id = mod.build_report(
-⋮----
-# Corrupt/missing catalogs must not produce misleading lists.
-⋮----
-root = Path(tmp)
-catalog = root / "catalog.json"
-⋮----
-# CLI creates a parseable manifest usable by existing star_import_pipeline.py,
-# emits review files, and must never change the authoritative catalog.
-⋮----
-original = catalog.read_bytes()
-original_api = mod.api_stars
-⋮----
-status = mod.main([
 ```
 
 ## File: update_cache_health_history.py
