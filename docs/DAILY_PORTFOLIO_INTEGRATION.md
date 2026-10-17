@@ -7,6 +7,19 @@ at **03:37 UTC** and is also available through **Actions > Daily portfolio
 star-list integration > Run workflow**. GitHub Actions schedules can be delayed
 or skipped by GitHub, so "daily" is a configured cadence, not a real-time SLA.
 
+The hourly **Sync GitHub Stars** workflow also triggers this workflow as a
+fallback when the daily schedule is missed. To prevent dozens of redundant
+full-portfolio scans per day, scheduled and Stars-triggered runs first check
+the dated, successfully published `<!-- star-list-portfolio-daily -->`
+review issue. If it already contains a generated report for the **current UTC
+day**, the scan, dispatch, artifact publication and review-issue update are
+skipped. Failed or incomplete scans do **not** publish a successful report and
+remain eligible for retry on the next trigger. If the GitHub issue lookup
+fails, the workflow fails visibly instead of assuming a completed scan.
+Manual dispatch and relevant pushes bypass this deduplication guard so an
+operator can deliberately run another scan. This does not affect private
+repositories' own daily workflows.
+
 ## What it does
 
 1. Enumerates **every accessible** repository owned by `dbrckk`,
