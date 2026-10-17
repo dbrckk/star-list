@@ -4,12 +4,12 @@
     "expand_to": 12,
     "max_files": 3,
     "requested_max_files": 12,
-    "score_margin": 21,
+    "score_margin": 12,
     "tier": "narrow",
-    "top_score": 50
+    "top_score": 41
   },
   "cache": {
-    "fingerprint": "a2433377f4f6e370ea02aec6fa0104dfcbc18d7e5960bb373b905b27c20e7088",
+    "fingerprint": "727b40059b7c668f0728d9046de231fa72c4697dbbe55774cdd7d8b91b08ba15",
     "hit": false
   },
   "candidate_count": 8,
@@ -23,12 +23,10 @@
       ],
       "path": "scripts/portfolio_daily.py",
       "reasons": [
-        "impact",
         "learning",
-        "recently-changed",
         "search-index"
       ],
-      "score": 50,
+      "score": 41,
       "symbols": [
         "SameOriginRedirect",
         "busy_integration_targets",
@@ -80,9 +78,10 @@
       "path": "scripts/portfolio_failure_diagnostics.py",
       "reasons": [
         "impact",
+        "recently-changed",
         "search-index"
       ],
-      "score": 23,
+      "score": 26,
       "symbols": [
         "add_deep_task_diagnostics",
         "failure_category",

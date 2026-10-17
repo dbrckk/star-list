@@ -2,19 +2,19 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 54,
+    "example_count": 55,
     "rejected_count": 0,
     "terms": [
-      "105",
-      "after",
-      "failed",
+      "106",
+      "diagnostics",
+      "failures",
+      "feat",
       "final",
-      "integration",
-      "launches",
-      "new",
+      "inspect",
+      "operator",
       "portfolio",
       "recovery",
-      "stop",
+      "safe",
       "v3"
     ],
     "test_count": 0,
@@ -23,9 +23,9 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(portfolio): stop new integration launches after failed final v3 recovery (#105)",
+  "task": "feat(portfolio): inspect final v3 recovery failures with safe operator diagnostics (#106)",
   "tests_selected": [],
   "useful": [
-    "scripts/portfolio_daily.py"
+    "scripts/portfolio_failure_diagnostics.py"
   ]
 }

@@ -5,7 +5,7 @@
 - Files reparsed this run: 1
 - Symbols: 226
 - Internal import edges: 11
-- Impacted files: 2
+- Impacted files: 1
 - Selected tests: 0
 
 ## Languages

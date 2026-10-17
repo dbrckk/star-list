@@ -43,21 +43,21 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-17T08:12:02Z
+Generated: 2026-10-17T08:14:41Z
 
 ### Git
 - Branch: `main`
-- Head: `46fde4c4efb0`
-- Commit date: 2026-10-17T04:11:53-04:00
-- Commit: fix(portfolio): stop new integration launches after failed final v3 recovery (#105)
+- Head: `6d895db28b00`
+- Commit date: 2026-10-17T04:14:33-04:00
+- Commit: feat(portfolio): inspect final v3 recovery failures with safe operator diagnostics (#106)
 - Tracked files: 279
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
-- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
-- `scripts/portfolio_daily.py`
 - `docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md`
 - `scripts/portfolio_failure_diagnostics.py`
+- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
+- `scripts/portfolio_daily.py`
 - `catalog.json`
 - `.github/workflows/portfolio-failure-diagnostics.yml`
 

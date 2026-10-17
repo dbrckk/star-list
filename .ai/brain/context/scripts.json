@@ -2,33 +2,23 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/portfolio_daily.py",
+      "path": "scripts/portfolio_failure_diagnostics.py",
       "reasons": [
         "changed",
         "changed-source",
+        "impact",
+        "recent-project-state",
+        "symbol-indexed"
+      ],
+      "score": 400
+    },
+    {
+      "path": "scripts/portfolio_daily.py",
+      "reasons": [
         "dependency-neighbor",
-        "impact",
-        "recent-project-state",
-        "symbol-indexed"
+        "recent-project-state"
       ],
-      "score": 500
-    },
-    {
-      "path": "scripts/portfolio_failure_diagnostics.py",
-      "reasons": [
-        "impact",
-        "recent-project-state",
-        "reverse-dependency-neighbor",
-        "symbol-indexed"
-      ],
-      "score": 210
-    },
-    {
-      "path": "scripts/recommend.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
+      "score": 85
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

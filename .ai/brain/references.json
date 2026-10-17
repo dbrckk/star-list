@@ -5,792 +5,255 @@
   "semantic": false,
   "note": "Occurrences are lexical word matches; verify source/LSP/compiler data before relying on them.",
   "symbols": {
-    "SameOriginRedirect": {
+    "safe_state": {
       "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 92,
-        "kind": "class",
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "line": 54,
+        "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/portfolio_daily.py",
-          "line": 92,
-          "preview": "class SameOriginRedirect(HTTPRedirectHandler):",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 54,
+          "preview": "def safe_state(raw: object, allowed: frozenset[str]) -> str:",
           "definition_candidate": true
         },
         {
-          "file": "scripts/portfolio_daily.py",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 96,
+          "preview": "\"workflow_status\": safe_state(outcome.get(\"workflow_status\"), WORKFLOW_STATES),",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 97,
+          "preview": "\"validation_status\": safe_state(outcome.get(\"validation_status\"), VALIDATION_STATES),",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 101,
+          "preview": "\"runtime_phase\": safe_state(",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
           "line": 106,
-          "preview": "SAFE_HTTP = build_opener(SameOriginRedirect())",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "redirect_request": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 95,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 95,
-          "preview": "def redirect_request(self, req, fp, code, msg, headers, newurl):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 103,
-          "preview": "return super().redirect_request(req, fp, code, msg, headers, newurl)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "request_json": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 109,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 109,
-          "preview": "def request_json(url: str, token: str = \"\", *, method: str = \"GET\", data: dict | None = None,",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 158,
-          "preview": "rows = request_json(base + separator + \"page=\" + str(page), portfolio_token or token)",
+          "preview": "\"task_status\": safe_state(runtime.get(\"task_status\"), WORKFLOW_STATES),",
           "definition_candidate": false
         },
         {
-          "file": "scripts/portfolio_daily.py",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 168,
+          "preview": "\"worker_result_status\": safe_state(",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
           "line": 173,
-          "preview": "payload = request_json(endpoint, token)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 598,
-          "preview": "return request_json(url.rstrip(\"/\") + \"/v1/dashboard/launch\", token, method=\"POST\",",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 713,
-          "preview": "target = request_json(API + \"/repos/\" + args.repository, portfolio_token or gh_token)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 768,
-          "preview": "existing = request_json(service.rstrip(\"/\") + \"/v1/managed-projects/integration-inventory\", operator_token)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 17,
-          "preview": "from portfolio_daily import request_json",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 218,
-          "preview": "response = request_json(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 358,
-          "preview": "request_json(ENDPOINT, token, max_attempts=1)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 9
-    },
-    "github_repos": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 151,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 151,
-          "preview": "def github_repos(owner: str, token: str, portfolio_token: str) -> list[dict]:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 718,
-          "preview": "source = github_repos(args.owner, gh_token, portfolio_token)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "file_text": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 171,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 171,
-          "preview": "def file_text(full_name: str, path: str, token: str, *, limit: int = 5500) -> str:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 186,
-          "preview": "intro = file_text(name, \"README.md\", token, limit=2800)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 189,
-          "preview": "value = file_text(name, filename, token, limit=3500)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "project_profile": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 182,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 182,
-          "preview": "def project_profile(repo: dict, token: str) -> dict:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 731,
-          "preview": "profile = project_profile(repo, portfolio_token or gh_token)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "eligible": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 204,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 204,
-          "preview": "def eligible(item: dict) -> bool:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 283,
-          "preview": "if slug.lower() == name or not eligible(tool):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 544,
-          "preview": "\"\"\"Quarantine only targets with an *eligible* v3 retry still available.",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 928,
-          "preview": "report[\"dispatch_status\"] = \"idle (no new eligible integration)\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 323,
-          "preview": "\"diagnostics\": {\"catalogSize\":len(repos), \"eligible\":len(ranked), \"returned\":len(top), \"filtered\":filtered},",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 91,
-          "preview": "\"\"\"Load offline metadata snapshots. Only explicitly reviewed entries are eligible.\"\"\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 24,
-          "preview": "assert data[\"diagnostics\"][\"catalogSize\"] >= data[\"diagnostics\"][\"eligible\"] >= data[\"diagnostics\"][\"returned\"]",
+          "preview": "\"pipeline_status\": safe_state(",
           "definition_candidate": false
         }
       ],
       "occurrence_count": 7
     },
-    "is_reference_candidate": {
+    "failure_category": {
       "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 218,
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "line": 59,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/portfolio_daily.py",
-          "line": 218,
-          "preview": "def is_reference_candidate(tool: dict) -> bool:",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 59,
+          "preview": "def failure_category(outcome: object) -> str:",
           "definition_candidate": true
         },
         {
-          "file": "scripts/portfolio_daily.py",
-          "line": 336,
-          "preview": "\"reference-review\" if is_reference_candidate(tool) else",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "recommendations": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 245,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 245,
-          "preview": "def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) -> list[dict]:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 732,
-          "preview": "row[\"suggestions\"] = recommendations(repo, profile, catalog, 3)",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 95,
+          "preview": "\"failure_category\": failure_category(outcome),",
           "definition_candidate": false
         },
         {
-          "file": "scripts/recommend.py",
-          "line": 249,
-          "preview": "ap.add_argument(\"--include-audit\", action=\"store_true\", help=\"Allow audit-tier repositories in recommendations\")",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 116,
+          "preview": "\"retry_budget_exhausted\": None, \"failure_category\": \"unknown\"}",
           "definition_candidate": false
         },
         {
-          "file": "scripts/recommend.py",
-          "line": 318,
-          "preview": "\"requiredCapabilities\": sorted(required_caps), \"recommendations\": top,",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 123,
+          "preview": "\"retry_budget_exhausted\": None, \"failure_category\": \"unknown\"}",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 22,
-          "preview": "assert data[\"recommendations\"], query",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 141,
+          "preview": "category = failure_category({\"summary\": description})",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 23,
-          "preview": "assert all(\"repo\" in x and \"selectionScore\" in x and \"why\" in x for x in data[\"recommendations\"])",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 165,
+          "preview": "\"failure_category\": category,",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 27,
-          "preview": "for item in strict[\"recommendations\"]:",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 246,
+          "preview": "\"workflow_status\", \"validation_status\", \"failure_category\",",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 32,
-          "preview": "assert high_threshold[\"recommendations\"] == []",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 259,
+          "preview": "if record[\"failure_category\"] == \"unknown\":",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_recommend.py",
-          "line": 36,
-          "preview": "assert all(item[\"tier\"] != \"audit\" for item in default_audit[\"recommendations\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 41,
-          "preview": "assert any(item[\"repo\"] == \"DietrichGebert/ponytail\" for item in with_audit[\"recommendations\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 122,
-          "preview": "# Integration: returned relations must obey the same hard CLI filters as primary recommendations.",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 129,
-          "preview": "for item in results[\"recommendations\"]:",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 12
-    },
-    "count_active_integrations": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 359,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 359,
-          "preview": "def count_active_integrations(projects: list[dict]) -> int:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 783,
-          "preview": "active_integrations = count_active_integrations(already)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "busy_integration_targets": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 369,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 369,
-          "preview": "def busy_integration_targets(projects: list[dict]) -> set[str]:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 786,
-          "preview": "busy_targets = busy_integration_targets(already)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "unresolved_failed_v2_integrations": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 389,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 389,
-          "preview": "def unresolved_failed_v2_integrations(projects: list[dict]) -> list[dict]:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 422,
-          "preview": "return len(unresolved_failed_v2_integrations(projects))",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 792,
-          "preview": "unresolved_failures = unresolved_failed_v2_integrations(already)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "count_failed_v2_integrations": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 420,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 420,
-          "preview": "def count_failed_v2_integrations(projects: list[dict]) -> int:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 784,
-          "preview": "failed_v2_integrations = count_failed_v2_integrations(already)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "count_failed_v3_integrations": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 425,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 425,
-          "preview": "def count_failed_v3_integrations(projects: list[dict]) -> int:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 785,
-          "preview": "failed_v3_integrations = count_failed_v3_integrations(already)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "count_launches_on_utc_date": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 441,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 441,
-          "preview": "def count_launches_on_utc_date(projects: list[dict], utc_day: str) -> int:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 802,
-          "preview": "launches_today = count_launches_on_utc_date(already, current_day)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "verified_managed_projects": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 461,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 444,
-          "preview": "Call only after verified_managed_projects has validated timezone-aware",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 461,
-          "preview": "def verified_managed_projects(payload: object) -> list[dict]:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 769,
-          "preview": "already = verified_managed_projects(existing)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "public_integration_status": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 512,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 512,
-          "preview": "def public_integration_status(target: str, projects: list[dict]) -> list[dict]:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 778,
-          "preview": "public_row[\"integrations\"] = public_integration_status(",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "integration_marker": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 534,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 534,
-          "preview": "def integration_marker(target: str, candidate: dict, version: int = 2) -> str:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 557,
-          "preview": "integration_marker(target, candidate)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 585,
-          "preview": "marker = integration_marker(target, candidate, version=version)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 620,
-          "preview": "marker = integration_marker(target, candidate, version=version)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 824,
-          "preview": "integration_marker(entry[1][\"repository\"], entry[2])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 839,
-          "preview": "failed_marker = integration_marker(row[\"repository\"], item)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 840,
-          "preview": "recovery_marker = integration_marker(row[\"repository\"], item, version=3)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 876,
-          "preview": "marker = integration_marker(row[\"repository\"], item)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 877,
-          "preview": "previous = integration_marker(row[\"repository\"], item, version=1)",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 260,
+          "preview": "record[\"failure_category\"] = deeper[\"failure_category\"]",
           "definition_candidate": false
         }
       ],
       "occurrence_count": 9
     },
-    "recoverable_failure_targets": {
+    "safe_public_failure": {
       "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 541,
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "line": 73,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/portfolio_daily.py",
-          "line": 541,
-          "preview": "def recoverable_failure_targets(",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 73,
+          "preview": "def safe_public_failure(item: object) -> dict | None:",
           "definition_candidate": true
         },
         {
-          "file": "scripts/portfolio_daily.py",
-          "line": 793,
-          "preview": "failed_targets = recoverable_failure_targets(",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 195,
+          "preview": "record = safe_public_failure(item)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 240,
+          "preview": "verified_detail = safe_public_failure(project)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 325,
+          "preview": "rows = [record for item in items if (record := safe_public_failure(item)) is not None]",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 4
+    },
+    "task_failure_evidence": {
+      "definition": {
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "line": 110,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 110,
+          "preview": "def task_failure_evidence(detail: object) -> dict:",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 249,
+          "preview": "deeper = task_failure_evidence(project)",
           "definition_candidate": false
         }
       ],
       "occurrence_count": 2
     },
-    "launch_integration": {
+    "add_deep_task_diagnostics": {
       "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 577,
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "line": 181,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/portfolio_daily.py",
-          "line": 577,
-          "preview": "def launch_integration(url: str, token: str, target: str, candidate: dict, *, version: int = 2):",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 181,
+          "preview": "def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict:",
           "definition_candidate": true
         },
         {
-          "file": "scripts/portfolio_daily.py",
-          "line": 861,
-          "preview": "result = launch_integration(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 897,
-          "preview": "result = launch_integration(service, operator_token, row[\"repository\"], item)",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 380,
+          "preview": "result = add_deep_task_diagnostics(result, inbox, token)",
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 3
+      "occurrence_count": 2
     },
-    "confirmed_launch": {
+    "inventory_diagnostic_inbox": {
       "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 605,
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "line": 279,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/portfolio_daily.py",
-          "line": 605,
-          "preview": "def confirmed_launch(result: object, target: str, candidate: dict, *, version: int = 2) -> bool:",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 279,
+          "preview": "def inventory_diagnostic_inbox(payload: object) -> dict:",
           "definition_candidate": true
         },
         {
-          "file": "scripts/portfolio_daily.py",
-          "line": 864,
-          "preview": "if not confirmed_launch(result, row[\"repository\"], item, version=3):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 898,
-          "preview": "if not confirmed_launch(result, row[\"repository\"], item):",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 375,
+          "preview": "inbox = inventory_diagnostic_inbox(",
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 3
+      "occurrence_count": 2
     },
-    "render_markdown": {
+    "public_diagnostics": {
       "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 639,
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "line": 315,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/analyze_cache_health.py",
-          "line": 52,
-          "preview": "def render_markdown(report):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/analyze_cache_health.py",
-          "line": 83,
-          "preview": "args.markdown_output.write_text(render_markdown(report))",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/audit_catalog_quality.py",
-          "line": 138,
-          "preview": "def render_markdown(report):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/audit_catalog_quality.py",
-          "line": 192,
-          "preview": "args.markdown_output.write_text(render_markdown(report))",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 639,
-          "preview": "def render_markdown(report: dict) -> str:",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 315,
+          "preview": "def public_diagnostics(payload: object) -> dict:",
           "definition_candidate": true
         },
         {
-          "file": "scripts/portfolio_daily.py",
-          "line": 948,
-          "preview": "args.markdown.write_text(render_markdown(report), encoding=\"utf-8\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 172,
-          "preview": "def render_markdown(report: dict) -> str:",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 250,
-          "preview": "args.report_md.write_text(render_markdown(report), encoding=\"utf-8\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_cache_health_history.py",
-          "line": 61,
-          "preview": "assert \"Baseline confidence: **low** (62.5%)\" in mod.render_markdown(baseline_trend)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_cache_health_history.py",
-          "line": 77,
-          "preview": "assert \"Adaptive severity: **degraded**\" in mod.render_markdown(high_trend)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_cache_health_history.py",
-          "line": 98,
-          "preview": "assert \"Alert state: **healthy**\" in mod.render_markdown(recovery_2)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_catalog_quality.py",
-          "line": 113,
-          "preview": "markdown = mod.render_markdown(report)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/update_cache_health_history.py",
-          "line": 227,
-          "preview": "def render_markdown(trend):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/update_cache_health_history.py",
-          "line": 276,
-          "preview": "if args.markdown_output: args.markdown_output.write_text(render_markdown(trend))",
+          "file": "scripts/portfolio_failure_diagnostics.py",
+          "line": 378,
+          "preview": "result = public_diagnostics(inbox)",
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 14
+      "occurrence_count": 2
     },
     "main": {
       "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 688,
+        "file": "scripts/portfolio_failure_diagnostics.py",
+        "line": 349,
         "kind": "function",
         "language": "python"
       },
@@ -967,7 +430,7 @@
           "file": "scripts/portfolio_daily.py",
           "line": 688,
           "preview": "def main() -> int:",
-          "definition_candidate": true
+          "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
@@ -977,13 +440,13 @@
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 333,
+          "line": 349,
           "preview": "def main() -> int:",
-          "definition_candidate": false
+          "definition_candidate": true
         },
         {
           "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 381,
+          "line": 400,
           "preview": "sys.exit(main())",
           "definition_candidate": false
         },

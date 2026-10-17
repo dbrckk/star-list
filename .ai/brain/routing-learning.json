@@ -1007,6 +1007,27 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(portfolio): inspect final v3 recovery failures with safe operator diagnostics (#106)",
+      "terms": [
+        "106",
+        "diagnostics",
+        "failures",
+        "feat",
+        "final",
+        "inspect",
+        "operator",
+        "portfolio",
+        "recovery",
+        "safe",
+        "v3"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_failure_diagnostics.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1024,6 +1045,9 @@
     },
     "105": {
       "scripts/portfolio_daily.py": 4
+    },
+    "106": {
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1387,7 +1411,7 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "diagnostics": {
-      "scripts/portfolio_failure_diagnostics.py": 4
+      "scripts/portfolio_failure_diagnostics.py": 8
     },
     "discovery": {
       "scripts/portfolio_daily.py": 4
@@ -1448,12 +1472,12 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "failures": {
-      "scripts/portfolio_failure_diagnostics.py": 4
+      "scripts/portfolio_failure_diagnostics.py": 8
     },
     "feat": {
       "scripts/admit_github_stars.py": 4,
       "scripts/portfolio_daily.py": 12,
-      "scripts/portfolio_failure_diagnostics.py": 8,
+      "scripts/portfolio_failure_diagnostics.py": 12,
       "scripts/test_auto_stars_admission.py": 4
     },
     "files": {
@@ -1466,7 +1490,8 @@
       "scripts/portfolio_daily.py": 4
     },
     "final": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "forwarding": {
       "scripts/portfolio_daily.py": 4
@@ -1579,7 +1604,7 @@
       "scripts/test_recommend.py": 4
     },
     "inspect": {
-      "scripts/portfolio_failure_diagnostics.py": 4
+      "scripts/portfolio_failure_diagnostics.py": 8
     },
     "instead": {
       "scripts/portfolio_daily.py": 4,
@@ -1701,7 +1726,7 @@
     },
     "operator": {
       "scripts/portfolio_daily.py": 4,
-      "scripts/portfolio_failure_diagnostics.py": 12
+      "scripts/portfolio_failure_diagnostics.py": 16
     },
     "out": {
       "scripts/portfolio_daily.py": 4
@@ -1718,7 +1743,7 @@
     },
     "portfolio": {
       "scripts/portfolio_daily.py": 40,
-      "scripts/portfolio_failure_diagnostics.py": 24,
+      "scripts/portfolio_failure_diagnostics.py": 28,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
@@ -1790,7 +1815,8 @@
       "scripts/portfolio_daily.py": 4
     },
     "recovery": {
-      "scripts/portfolio_daily.py": 8
+      "scripts/portfolio_daily.py": 8,
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "redirects": {
       "scripts/portfolio_daily.py": 4
@@ -1889,6 +1915,9 @@
     },
     "roblox": {
       "scripts/portfolio_daily.py": 8
+    },
+    "safe": {
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "safely": {
       "scripts/portfolio_daily.py": 12,
@@ -2044,7 +2073,8 @@
       "scripts/portfolio_daily.py": 8
     },
     "v3": {
-      "scripts/portfolio_daily.py": 8
+      "scripts/portfolio_daily.py": 8,
+      "scripts/portfolio_failure_diagnostics.py": 4
     },
     "validation": {
       "scripts/validate_catalog.py": 4

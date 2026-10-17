@@ -1397,7 +1397,7 @@ known_evidence_keys = (
 ⋮----
 def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict
 ⋮----
-"""Fetch each public failed v2 project individually with operator privileges.
+"""Inspect public failed v2 and v3 projects with operator privileges.
 
     Internal project IDs are used only in the request path, never in output.
     A missing/mismatched detail makes the diagnosis incomplete, not successful.
@@ -1406,18 +1406,18 @@ def add_deep_task_diagnostics(result: dict, inbox: object, token: str) -> dict
 items = inbox.get("items")
 ⋮----
 selected = {}
-ambiguous_targets = set()
+ambiguous = set()
 ⋮----
 record = safe_public_failure(item)
 ⋮----
-target = record["target"]
+# v2 and v3 on the same target are distinct projects and must both
+# be inspected; only duplicate identities within a version are unsafe.
+identity = (record["target"], record["tracking_version"])
 ⋮----
-checked = 0
+checked_v2 = 0
+checked_v3 = 0
 ⋮----
-# Never attribute one project/task result to a different historical
-# v2 candidate merely because the repository name is the same.
-⋮----
-item = selected.get(record["target"])
+item = selected.get(identity)
 identifier = item.get("project_id") if isinstance(item, dict) else None
 ⋮----
 response = request_json(
@@ -1434,6 +1434,9 @@ expected = TRACKING.search(expected_goal)
 verified_detail = safe_public_failure(project)
 ⋮----
 deeper = task_failure_evidence(project)
+⋮----
+# Fail closed on terminal v3 evidence as well: it is the final allowed
+# recovery, and its failure must be understood before further admission.
 ⋮----
 def inventory_diagnostic_inbox(payload: object) -> dict
 ⋮----
@@ -1462,9 +1465,11 @@ rows = [record for item in items if (record := safe_public_failure(item)) is not
 # The public issue previously verified exactly these four unresolved v2 targets.
 v2_targets = [row["target"] for row in rows if row["tracking_version"] == "v2"]
 found = set(v2_targets)
-# Multiple failed v2 candidates for one repository require an explicit
-# per-candidate reconciliation, not silent attribution by target alone.
+# Multiple failures for the same target and version cannot safely be
+# attributed by repository alone. A v2 and v3 pair is expected and valid.
 unique_v2_targets = len(v2_targets) == len(found)
+v3_targets = [row["target"] for row in rows if row["tracking_version"] == "v3"]
+unique_v3_targets = len(v3_targets) == len(set(v3_targets))
 ⋮----
 def main() -> int
 ⋮----

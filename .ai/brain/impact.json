@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "dddc919539b0385a5672288351ad2189b82af43f",
-  "head": "46fde4c4efb0b876a66dd9c51699f37eda53f815",
+  "base": "46fde4c4efb0b876a66dd9c51699f37eda53f815",
+  "head": "6d895db28b002e7e80e00a997037561cf6d038d8",
   "index_mode": "incremental",
   "changed_files": [
     {
@@ -10,160 +10,21 @@
       "status": "M"
     },
     {
-      "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
+      "path": "docs/PORTFOLIO_FAILURE_DIAGNOSTICS.md",
       "status": "M"
     },
     {
-      "path": "scripts/portfolio_daily.py",
+      "path": "scripts/portfolio_failure_diagnostics.py",
       "status": "M"
     }
   ],
   "changed_source_files": [
-    "scripts/portfolio_daily.py"
+    "scripts/portfolio_failure_diagnostics.py"
   ],
   "impacted_files": [
-    "scripts/portfolio_daily.py",
     "scripts/portfolio_failure_diagnostics.py"
   ],
   "impacted_symbols": [
-    {
-      "name": "SameOriginRedirect",
-      "kind": "class",
-      "file": "scripts/portfolio_daily.py",
-      "line": 92
-    },
-    {
-      "name": "redirect_request",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 95
-    },
-    {
-      "name": "request_json",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 109
-    },
-    {
-      "name": "github_repos",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 151
-    },
-    {
-      "name": "file_text",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 171
-    },
-    {
-      "name": "project_profile",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 182
-    },
-    {
-      "name": "eligible",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 204
-    },
-    {
-      "name": "is_reference_candidate",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 218
-    },
-    {
-      "name": "recommendations",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 245
-    },
-    {
-      "name": "count_active_integrations",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 359
-    },
-    {
-      "name": "busy_integration_targets",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 369
-    },
-    {
-      "name": "unresolved_failed_v2_integrations",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 389
-    },
-    {
-      "name": "count_failed_v2_integrations",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 420
-    },
-    {
-      "name": "count_failed_v3_integrations",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 425
-    },
-    {
-      "name": "count_launches_on_utc_date",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 441
-    },
-    {
-      "name": "verified_managed_projects",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 461
-    },
-    {
-      "name": "public_integration_status",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 512
-    },
-    {
-      "name": "integration_marker",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 534
-    },
-    {
-      "name": "recoverable_failure_targets",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 541
-    },
-    {
-      "name": "launch_integration",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 577
-    },
-    {
-      "name": "confirmed_launch",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 605
-    },
-    {
-      "name": "render_markdown",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 639
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 688
-    },
     {
       "name": "safe_state",
       "kind": "function",
@@ -198,19 +59,19 @@
       "name": "inventory_diagnostic_inbox",
       "kind": "function",
       "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 269
+      "line": 279
     },
     {
       "name": "public_diagnostics",
       "kind": "function",
       "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 305
+      "line": 315
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 333
+      "line": 349
     }
   ],
   "selected_tests": []
