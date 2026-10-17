@@ -59,7 +59,8 @@
     105,
     106,
     107,
-    108
+    108,
+    111
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -81,12 +82,14 @@
     "Sanitize and separately verify v2 + v3 operator failure evidence (#106; run 39016621939; 5/5 failures capacity_exhausted)",
     "Qualify Cloudflare Workers AI and Pollinations free-tier constraints before any capacity recovery (star-list PR #108)",
     "Prevent inherited model-provider token leakage in Hermes/OpenCode/Codex subprocess evidence (AI Dev Server PR #333; 7/7 CI)",
-    "Require structured terminal receipts for Hermes and Codex instead of accepting silent exit 0 (AI Dev Server PR #334; core CI validated)"
+    "Require structured terminal receipts for Hermes and Codex instead of accepting silent exit 0 (AI Dev Server PR #334; core CI validated)",
+    "Avoid redundant same-day public portfolio re-scans without removing hourly fallback or manual trigger (star-list PR #111; CI and portfolio smoke validated)",
+    "Register Cloudflare Workers Free GLM-4.7-Flash as an opt-in AI Dev Server coding fallback with external-agent secret isolation (AI Dev Server PR #335, seven CI checks passed; model route not yet enabled or live-verified)"
   ],
   "next_priority": [
-    "Prove one genuinely free, authenticated, budget-bounded coding inference route and a qualified live worker before any new Production-OS task",
-    "Investigate all four v2 plus the final v3 capacity_exhausted results; preserve the operator-reviewed global admission stop, do not reset markers or raise budgets",
-    "Continue daily public/private discovery and GitHub Stars sync; require actual target branch/CI/runtime evidence before declaring integrations completed"
+    "Verify a Workers Free account, configure ai-dev-server Cloudflare Actions secret/variables and execute one bounded authenticated, non-mutating GLM-4.7-Flash inference probe; never assume free capacity from a code merge",
+    "Require positive usable provider quota, qualified worker and small code-editing delivery before any operator-approved recovery; terminal-v3 admission stop remains in effect",
+    "Continue daily public/private discovery, GitHub Stars reconciliation and target-side CI/runtime evidence; no integration counts as done without source delivery"
   ],
   "constraints": [
     "No automatic merge/deployment of third-party integrations",
