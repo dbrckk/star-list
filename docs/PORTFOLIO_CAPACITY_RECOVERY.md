@@ -73,6 +73,39 @@ verified and the operator has reviewed the previous attempt.
    and evidence that the new component is used. Neither an accepted
    Production-OS launch nor an improved worker status alone is completion.
 
+## Verified free inference routes to qualify (2026-10-17)
+
+These are **candidates for capacity testing**, not verified Production-OS
+workers or permission to resume failed v3 work. None has yet passed a
+live, authenticated code-editing inference preflight in this environment.
+
+| Provider | Free-plan evidence | Conditions and limits |
+| --- | --- | --- |
+| Cloudflare Workers AI | [Official pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/): 10,000 Neurons per day on Workers Free, resetting at 00:00 UTC | Free tier still fails after the allowance; neurons are **not** the same as tokens. Some high-end coding models now require Workers Paid or prepaid credits. Use a currently Free-eligible model (for example [GLM-4.7-Flash](https://developers.cloudflare.com/changelog/post/2026-07-28-models-require-workers-paid/)) for a small qualified probe, not an assumed 90k-token job. |
+| Pollinations | [Official authentication](https://gen.pollinations.ai/docs): OpenAI-compatible text API, user-scoped key required for generation | Public models have individual prices; only catalog models explicitly priced at zero can be assumed free at the Pollinations layer. A key can be valid but out of its allowance (`402 PAYMENT_REQUIRED`). Do not treat a publicly accessible model list as guaranteed free inference. |
+
+For a free alternative, the safe evaluation sequence is:
+
+1. Obtain a user-authorized, budget-constrained provider key and save it
+   **only** as a masked repository/worker secret; never commit or print it.
+   A provider's free plan is not a license to use paid models.
+2. Query the chosen provider's *authenticated* quota/budget and its live
+   eligible model list. Reject exhausted, paid-only or unknown-capacity routes.
+3. Run one bounded, non-mutating inference probe with an explicit free eligible
+   model, record only success/failure and redacted quota evidence, and confirm
+   the worker's exact implementation task can use that provider.
+4. Prefer short, verified source edits over oversized attempts. Preserve the
+   existing project budget, fleet launch cap, per-target single-flight and
+   final-v3 operator stop. Never automatically retry just because a provider
+   claims a large theoretical monthly allocation.
+5. Require target-side tested source changes and CI before reporting that any
+   integration succeeded. A positive model probe alone is not completion.
+
+Do not put Pollinations or Workers AI API keys, request URLs with credentials,
+inference prompts, private repository identities or provider traces in public
+star-list artifacts. This guide authorizes **diagnosis only**; resuming
+Production-OS mutation still requires a separate operator decision.
+
 ## Safe observability
 
 The workflow
