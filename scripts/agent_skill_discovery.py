@@ -61,6 +61,15 @@ def load_skills() -> dict:
         url = urlsplit(expected)
         if url.scheme != "https" or url.hostname != "github.com":
             raise ValueError("Invalid agent skill source domain")
+        # The exact SKILL.md path is independently confirmed on a pinned
+        # upstream revision, rather than delegating review to a mutable repo root.
+        source_commit, source_path = row.get("sourceCommit"), row.get("sourcePath")
+        if not isinstance(source_commit, str) or not re.fullmatch(r"[0-9a-f]{40}", source_commit):
+            raise ValueError("Agent skill source must pin an exact Git commit")
+        if not isinstance(source_path, str) or not re.fullmatch(
+                r"(?:[a-zA-Z0-9_.-]+/)+SKILL[.]md", source_path
+        ) or any(segment in ("", ".", "..") for segment in source_path.split("/")):
+            raise ValueError("Agent skill source must pin a safe SKILL.md path")
         domains, tags, languages = (row.get("domains"), row.get("tags"), row.get("languages"))
         if not isinstance(domains, list) or not domains or any(x not in VALID_DOMAINS for x in domains) or len(domains) != len(set(domains)):
             raise ValueError("Invalid agent skill domains")
@@ -110,6 +119,11 @@ def recommend_skills(
         "name": item["name"],
         "sourceRepository": item["sourceRepository"],
         "url": item["sourceUrl"],
+        "skillFileUrl": (
+            item["sourceUrl"] + "/blob/" + item["sourceCommit"] + "/" + item["sourcePath"]
+        ),
+        "sourceCommit": item["sourceCommit"],
+        "sourcePath": item["sourcePath"],
         "directoryUrl": SKILL_ISSUE_URL,
         "summary": item["description"],
         "selectionScore": score,
