@@ -45,6 +45,8 @@ jobs:
           audit = json.loads(Path('catalog-quality.json').read_text(encoding='utf-8'))
           markdown = Path('catalog-quality.md').read_text(encoding='utf-8')
           assert audit['repositories'] == len(catalog['repositories'])
+          assert sum(audit['identityCoverage'].values()) == audit['repositories']
+          assert 'Verified permanent GitHub IDs:' in markdown
           assert '<!-- star-list-catalog-quality -->' in markdown
           assert f"Repositories: **{audit['repositories']}**" in markdown
           PY
