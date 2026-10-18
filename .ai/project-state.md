@@ -5,7 +5,7 @@ Status: active
 ## Working
 - GitHub Stars are reconciled automatically into `catalog.json` at audit tier, preserving atomic validation and failure artifacts.
 - Public portfolio scanning and recommendation reporting work; private-repository workflows run independently without publishing private project details.
-- Catalog contains 962 entries at the verified 2026-10-18 checkpoint; the latest Stars sync confirmed 828/828 accessible public favorites, and the catalog-quality issue reports 829 permanent GitHub IDs verified.
+- Catalog contains 980 entries at the verified 2026-10-18 checkpoint; the latest real Stars sync enumerated 846 accessible public favorites (830 previously cataloged, 16 admitted), and the catalog-quality issue reports 847/980 permanent GitHub IDs verified.
 - Per-target single-flight dispatch and same-origin authenticated redirects have been merged (#80 and #81).
 - Portfolio execution remains subject to strict worker capacity, deduplication, and UTC launch caps.
 
@@ -72,6 +72,14 @@ Status: active
 - The live [public daily issue #61](https://github.com/dbrckk/star-list/issues/61) shows **41/41** public projects inspected and linked to the directory; **5** projects had **6** targeted skill recommendations; **0** new integrations launched. The two private per-repo workflows also use the shared `star-list/main` scanner, but their next runs must be observed separately before claiming live private adoption.
 - [Repo-standards PR #12](https://github.com/dbrckk/repo-standards/pull/12) merged as `f2e6a2e`: shared AGENTS and repo-excellence guidance now considers relevant Skill Issue sources with full license/code review. Consumers pinned to the prior standards commit will not automatically update.
 - Next: audit original `SKILL.md` and any invoked scripts at pinned revisions for each project before integrating or granting credentials. Neither directory listing nor working discovery guarantees installed, invoked or useful skills.
+
+## Skill Issue rollout verified on 2026-10-18 (current)
+
+- [Star-list PR #133](https://github.com/dbrckk/star-list/pull/133), merged `2e7a23a`: grew the **review-only** Skill Issue catalog from 7 to **19** curated references, each with an upstream `SKILL.md` path confirmed at a pinned commit. All exact-head catalog CI and live portfolio smoke checks passed, as did post-merge catalog validation, repository standards and public discovery.
+- [PR #134](https://github.com/dbrckk/star-list/pull/134), merged `33777af`: only allowlisted framework names in structured `package.json` dependencies enrich advisory skill matching. README/package scripts and unrelated packages do not become matching evidence. The normal catalog recommender and Production-OS integration policy are unchanged. Exact-head validation and live smoke plus post-merge catalog/standards/public portfolio runs succeeded.
+- [Actual post-merge public report #61](https://github.com/dbrckk/star-list/issues/61) generated 2026-10-18 21:32 UTC: **42/42** public repositories analyzed, Skill Issue linked for all **42**, and **8** projects with targeted pinned skill references, up from 5 immediately before manifest matching. Five native catalog-library suggestions over three projects remain merely candidate matches; **0 integration launches**, with global terminal-v3 capacity hold intact.
+- [Real Stars run #39164085442](https://github.com/dbrckk/star-list/actions/runs/39164085442) inspected **846** accessible public favorites, recognized **830** existing and admitted **16**. [Catalog quality issue #32](https://github.com/dbrckk/star-list/issues/32) reports **980 repositories**, **847** verified permanent IDs, **133** name-only/unverified and **zero** review-grade findings. Private/inaccessible favorite coverage is not inferred.
+- Only upstream file **existence and immutable source identity** were verified. The 19 SKILL.md bodies, bundled scripts, permissions and licenses have *not* been security audited or installed. Applying any skill to a target still requires independent source/terms review and target-side evidence.
 
 ## Current priority
 1. **Restore usable free AI execution capacity.** 2026-10-18 diagnosis verified 4 v2 and 1 failed final v3, all `capacity_exhausted`, with no delivered commit, reviewable PR or target CI. See `docs/PORTFOLIO_CAPACITY_RECOVERY.md`.
