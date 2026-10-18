@@ -105,6 +105,7 @@ jobs:
           assert failure_category({"summary": "check secret text"}) == "unknown"
           from portfolio_daily import (
               is_reference_candidate, count_active_integrations,
+              package_skill_signals,
               count_failed_v2_integrations, count_failed_v3_integrations,
               verified_managed_projects,
               integration_marker, recoverable_failure_targets,
