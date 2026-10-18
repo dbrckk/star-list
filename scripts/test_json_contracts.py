@@ -23,6 +23,7 @@ required_schemas={
     "health-trends.schema.json",
     "replacement-report.schema.json",
     "catalog-stats.schema.json",
+    "websites.schema.json",
 }
 
 assert VALIDATOR.exists(), "missing JSON contract validator"
