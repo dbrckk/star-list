@@ -7,10 +7,13 @@ verified package registry, an executable dependency or an assurance of
 copyright/security compliance.
 
 The catalog lists its website once in [websites.json](websites.json) and a
-small, explicit set of original GitHub source links in
-[agent-skills.json](agent-skills.json). The latter was derived from entries
-visible on the site on 2026-10-18. Each upstream repository was confirmed
-to exist; **individual SKILL.md instructions have not been audited**.
+curated set of **19** original skill source references in
+[agent-skills.json](agent-skills.json), drawn from Skill Issue's visible
+entries and verified against the upstream repositories on 2026-10-18.
+Every entry now records its **exact `SKILL.md` path and a pinned Git commit**
+where that file exists, so reviewers can inspect immutable source before any
+decision. This verifies source identity and file existence, **not** the
+safety or correctness of the SKILL.md instructions or bundled scripts.
 
 ## Make it useful throughout the portfolio
 
@@ -28,7 +31,8 @@ is suggested only if both its declared domain and at least one concrete label
 match, and language/framework evidence is compatible. Unknown projects still
 see the general directory without arbitrary skill installations.
 
-Examples of the initial curated source references:
+Examples of curated source references (all direct skill-file links returned
+by the CLI are revision-pinned):
 
 | Skill | Source repository | Example fit |
 | --- | --- | --- |
@@ -39,9 +43,19 @@ Examples of the initial curated source references:
 | Web Design Guidelines | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | Web UI quality and accessibility |
 | Remotion Best Practices | [remotion-dev/skills](https://github.com/remotion-dev/skills) | JS/TS video and animation pipelines |
 | API Design Principles | [wshobson/agents](https://github.com/wshobson/agents) | Backend REST/GraphQL APIs |
+| Design Taste Frontend | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | Frontend art direction and visual review |
+| Redesign Existing Projects | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | Existing UI refinement |
+| Image to Code | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | Image-guided frontend |
+| Design System Patterns | [wshobson/agents](https://github.com/wshobson/agents) | Reusable design tokens and component systems |
+| React Native Architecture | [wshobson/agents](https://github.com/wshobson/agents) | JavaScript/TypeScript mobile apps |
+| Accessibility Compliance | [wshobson/agents](https://github.com/wshobson/agents) | WCAG/UI quality |
+| Auth Implementation Patterns | [wshobson/agents](https://github.com/wshobson/agents) | Backend authentication |
+| OpenAPI Spec Generation | [wshobson/agents](https://github.com/wshobson/agents) | REST API documentation |
 
-The individual source links and project-domain mappings are **curated,
-non-autonomous starting points**, not certificates of correctness.
+The other curated entries cover Next.js App Router, React state,
+Tailwind design systems and responsive interfaces. Source paths are pinned
+for auditability, **not for automated execution or installation**. Read and
+audit the entire pinned instruction and scripts before considering adoption.
 
 ## Use from the repository
 

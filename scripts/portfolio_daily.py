@@ -681,8 +681,8 @@ def render_markdown(report: dict) -> str:
         lines.append("- Agent-skill directory: [Skill Issue](" + row["skill_discovery"]["directory"]
                      + ") — high-priority research only; review individual skills before installing.")
         for skill in row["skill_discovery"]["recommendations"]:
-            lines.append("- Suggested agent skill: [" + skill["name"] + "](" + skill["url"]
-                         + ") — repo-label match (" + ", ".join(skill["why"]["tags"])
+            lines.append("- Suggested agent skill: [" + skill["name"] + "](" + skill["skillFileUrl"]
+                         + ") — pinned SKILL.md, repo-label match (" + ", ".join(skill["why"]["tags"])
                          + "); requires review, no automatic installation.")
         for site in row.get("website_references", []):
             lines.append("- Web reference: [" + site["name"] + "](" + site["url"] + ")"
