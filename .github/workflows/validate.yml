@@ -23,6 +23,11 @@ jobs:
           python-version: "3.12"
       - name: Compile Python utilities
         run: python -m compileall -q scripts
+      - name: Validate and search external website resources
+        run: |
+          python scripts/web_resources.py
+          python scripts/web_resources.py 3d --json > /tmp/web-3d.json
+          python -c 'import json; x=json.load(open("/tmp/web-3d.json")); assert x["count"] >= 2'
       - name: Test star import pipeline
         run: python scripts/test_star_import_pipeline.py
       - name: Test public GitHub Stars synchronization
