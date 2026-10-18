@@ -9,7 +9,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote
-from urllib.request import Request, urlopen
+from urllib.request import Request
+
+from sync_github_stars import SAFE_GITHUB_HTTP
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog.json"
@@ -35,7 +37,9 @@ def _request_json(url, token=None, retries=2):
     req = Request(url, headers=headers)
     for attempt in range(retries + 1):
         try:
-            with urlopen(req, timeout=20) as res:
+            # The shared GitHub-only opener refuses authenticated cross-origin
+            # redirects. urllib.urlopen would forward the refresh bearer token.
+            with SAFE_GITHUB_HTTP.open(req, timeout=20) as res:
                 return json.load(res)
         except HTTPError as e:
             if e.code in (403, 429) and attempt < retries:
@@ -193,11 +197,32 @@ def main():
     if args.limit > 0: repos = repos[:args.limit]
     token = os.environ.get("GITHUB_TOKEN")
     failures, fatal_failures, changed = [], [], 0
+    known_ids = {
+        row["githubRepositoryId"]: str(row["repo"]).casefold()
+        for row in data.get("repositories", [])
+        if type(row.get("githubRepositoryId")) is int and row["githubRepositoryId"] > 0
+    }
 
     for i, r in enumerate(repos, 1):
         name = r["repo"]
         try:
             raw = fetch(name, token)
+            if not isinstance(raw, dict):
+                raise RuntimeError("GitHub metadata response was not an object: " + name)
+            stable_id = raw.get("id")
+            if stable_id is not None:
+                if type(stable_id) is not int or stable_id <= 0:
+                    raise RuntimeError("Invalid permanent GitHub repository ID: " + name)
+                previous_id = r.get("githubRepositoryId")
+                if previous_id is not None and previous_id != stable_id:
+                    raise RuntimeError(
+                        "GitHub repository identity conflict (reused name): " + name
+                    )
+                existing_name = known_ids.get(stable_id)
+                if existing_name is not None and existing_name != name.casefold():
+                    raise RuntimeError(
+                        "GitHub repository ID conflicts with another catalog entry: " + name
+                    )
             fresh = metadata(raw)
             if fresh.get("license") in (None, "", "NOASSERTION"):
                 detected = fallback_license(name, raw.get("default_branch"), token)
@@ -209,8 +234,17 @@ def main():
                     if current_license not in (None, "", "NOASSERTION"):
                         fresh["license"] = current_license
             refresh_primary_language(r, raw)
-            if r.get("github") != fresh:
+            entry_changed = r.get("github") != fresh
+            if entry_changed:
                 r["github"] = fresh
+            # No additional API calls: this is the same verified repository
+            # metadata response already used for the weekly refresh.
+            if stable_id is not None:
+                known_ids[stable_id] = name.casefold()
+                if r.get("githubRepositoryId") is None:
+                    r["githubRepositoryId"] = stable_id
+                    entry_changed = True
+            if entry_changed:
                 changed += 1
             print(f"[{i}/{len(repos)}] OK {name}", file=sys.stderr)
         except Exception as e:

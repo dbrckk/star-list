@@ -48,6 +48,7 @@ def test_missing_repo_is_recorded_but_nonfatal():
                 if repo == "gone/repo":
                     raise http_error(repo, 404, "Not Found")
                 return {
+                    "id": 424242,
                     "stargazers_count": 42,
                     "forks_count": 3,
                     "open_issues_count": 1,
@@ -67,6 +68,7 @@ def test_missing_repo_is_recorded_but_nonfatal():
         written = json.loads(catalog.read_text())
         live, gone = written["repositories"]
         assert live["github"]["stars"] == 42
+        assert live["githubRepositoryId"] == 424242
         assert live["languages"] == ["python"]
         assert gone["github"] == {"stars": 9}, "missing repos must keep their last known metadata"
         assert written["metadata"]["githubRefreshFailures"] == [
@@ -214,6 +216,68 @@ def test_server_error_remains_fatal():
                 raise AssertionError("HTTP 500 must keep the refresh command failing")
         finally:
             refresh.CATALOG, refresh.fetch = old_catalog, old_fetch
+
+    # Reusing an existing slug for a new GitHub ID must not silently change
+    # the catalog's established permanent identity.
+    with tempfile.TemporaryDirectory() as tmp:
+        catalog = Path(tmp) / "catalog.json"
+        catalog.write_text(json.dumps({
+            "metadata": {},
+            "repositories": [{
+                "repo": "recycled/repo", "githubRepositoryId": 111,
+                "github": {"stars": 7},
+            }],
+        }))
+        old_catalog, old_fetch, old_fallback = (
+            refresh.CATALOG, refresh.fetch, refresh.fallback_license,
+        )
+        try:
+            refresh.CATALOG = catalog
+            refresh.fetch = lambda repo, token=None, retries=2: {
+                "id": 222, "stargazers_count": 11, "forks_count": 1,
+                "open_issues_count": 0, "archived": False, "disabled": False,
+                "default_branch": "main", "license": {"spdx_id": "MIT"},
+                "pushed_at": "2026-10-18T00:00:00Z",
+            }
+            refresh.fallback_license = lambda *_args, **_kwargs: None
+            try:
+                run_main(["--write"])
+            except SystemExit as exc:
+                assert exc.code == 1
+            else:
+                raise AssertionError("recycled GitHub ID must fail refresh")
+        finally:
+            refresh.CATALOG, refresh.fetch, refresh.fallback_license = (
+                old_catalog, old_fetch, old_fallback,
+            )
+        unchanged = json.loads(catalog.read_text())["repositories"][0]
+        assert unchanged["githubRepositoryId"] == 111
+        assert unchanged["github"] == {"stars": 7}
+
+    # Metadata and license fallback requests must use the same authenticated
+    # GitHub-only opener as Stars synchronization, never urlopen's default
+    # unrestricted redirect handling.
+    import sync_github_stars
+    assert refresh.SAFE_GITHUB_HTTP is sync_github_stars.SAFE_GITHUB_HTTP
+    class RejectingOpener:
+        def open(self, request, timeout=20):
+            assert request.get_header("Authorization") == "Bearer masked-token"
+            assert request.full_url.startswith("https://api.github.com/")
+            raise RuntimeError("Refusing cross-origin GitHub API redirect")
+    previous_opener = refresh.SAFE_GITHUB_HTTP
+    try:
+        refresh.SAFE_GITHUB_HTTP = RejectingOpener()
+        try:
+            refresh._request_json(
+                "https://api.github.com/repos/any/repository",
+                token="masked-token", retries=0,
+            )
+        except RuntimeError as exc:
+            assert "cross-origin" in str(exc)
+        else:
+            raise AssertionError("metadata fetch bypassed safe GitHub transport")
+    finally:
+        refresh.SAFE_GITHUB_HTTP = previous_opener
 
 
 if __name__ == "__main__":
