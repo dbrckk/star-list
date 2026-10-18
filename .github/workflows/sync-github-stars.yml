@@ -48,6 +48,7 @@ jobs:
         run: |
           python scripts/admit_github_stars.py \
             --sync-report star-sync-report.json \
+            --manifest star-sync-manifest.json \
             --report-json star-admission-report.json
           python scripts/validate_catalog.py
           python scripts/test_catalog_quality.py

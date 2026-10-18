@@ -156,7 +156,47 @@ def catalog_entry(meta):
     }
 
 
-def admit(catalog, stars, fetcher):
+def manifest_stable_ids(manifest, report):
+    """Verify that all identity rows belong to the exact read-only Stars scan."""
+    if not isinstance(manifest, dict) or not isinstance(report, dict):
+        raise RuntimeError("Stars identity manifest is malformed")
+    if (manifest.get("source") != "GitHub public Stars of dbrckk"
+            or manifest.get("checkedAt") != report.get("checkedAt")):
+        raise RuntimeError("Stars identity manifest does not match the sync report")
+    names, rows = manifest.get("repositories"), manifest.get("identities")
+    summary = report.get("summary")
+    if (not isinstance(summary, dict) or type(summary.get("starred")) is not int
+            or not isinstance(names, list) or not isinstance(rows, list)
+            or len(names) != len(rows) or len(names) != summary["starred"]):
+        raise RuntimeError("Stars identity manifest does not cover the complete scan")
+    expected_new = report.get("newRepositories")
+    if (not isinstance(expected_new, list)
+            or type(summary.get("new")) is not int
+            or len(expected_new) != summary["new"]
+            or summary.get("alreadyCataloged") != len(names) - len(expected_new)):
+        raise RuntimeError("Stars identity manifest disagrees with the review counts")
+    ids = {}
+    owners = {}
+    for name, row in zip(names, rows):
+        if not isinstance(row, dict) or row.get("repo") != name:
+            raise RuntimeError("Stars identity manifest has mismatched repository rows")
+        key = normalize_repo(name)
+        rid = row.get("githubRepositoryId")
+        if key in ids or (rid is not None and (type(rid) is not int or rid <= 0)):
+            raise RuntimeError("Stars identity manifest has invalid or duplicate IDs")
+        if rid is not None and rid in owners and owners[rid] != key:
+            raise RuntimeError("Stars identity manifest maps one ID to multiple names")
+        ids[key] = rid
+        if rid is not None:
+            owners[rid] = key
+    for star in expected_new:
+        key = normalize_repo(star["repo"])
+        if key not in ids or ids[key] != star.get("githubRepositoryId"):
+            raise RuntimeError("Stars identity manifest disagrees with new repositories")
+    return ids
+
+
+def admit(catalog, stars, fetcher, known_star_ids=None):
     """Reconcile by both canonical name and permanent ID; fail on any ambiguity."""
     old = catalog.get("repositories")
     if not isinstance(old, list):
@@ -205,9 +245,44 @@ def admit(catalog, stars, fetcher):
         by_name[canonical] = entry["githubRepositoryId"]
         by_id.add(entry["githubRepositoryId"])
     result = dict(catalog)
-    result["repositories"] = old + sorted(fresh, key=lambda r: r["repo"].lower())
+    # Do not mutate the caller's loaded catalog before all checks pass.
+    entries = [dict(row) for row in old] + sorted(fresh, key=lambda r: r["repo"].lower())
+    enriched = 0
+    if known_star_ids is not None:
+        rows_by_name = {normalize_repo(row["repo"]): row for row in entries}
+        rows_by_id = {
+            row["githubRepositoryId"]: row
+            for row in entries if type(row.get("githubRepositoryId")) is int
+        }
+        if len(rows_by_name) != len(entries) or len(rows_by_id) != sum(
+            type(row.get("githubRepositoryId")) is int for row in entries
+        ):
+            raise RuntimeError("Catalog has duplicate permanent repository identities")
+        for original_name, rid in known_star_ids.items():
+            key = normalize_repo(original_name)
+            if rid is not None and (type(rid) is not int or rid <= 0):
+                raise RuntimeError("Stars manifest contains an invalid repository ID")
+            entry = rows_by_name.get(key)
+            if entry is None:
+                # An existing repository may have transferred to this new
+                # owner/name while preserving its stable ID.
+                if rid is None or rid not in rows_by_id:
+                    raise RuntimeError("Star is missing from candidate catalog: " + original_name)
+                continue
+            recorded_id = entry.get("githubRepositoryId")
+            if rid is not None and recorded_id is not None and rid != recorded_id:
+                raise RuntimeError("Star repository identity conflict: " + original_name)
+            if rid is not None and recorded_id is None:
+                occupied = rows_by_id.get(rid)
+                if occupied is not None and occupied is not entry:
+                    raise RuntimeError("Star stable ID belongs to another catalog entry: " + original_name)
+                entry["githubRepositoryId"] = rid
+                rows_by_id[rid] = entry
+                enriched += 1
+    result["repositories"] = entries
     return result, {"starred": len(stars), "alreadyCataloged": already,
-                    "admitted": len(fresh), "transfersRecognizedById": transfers,
+                    "admitted": len(fresh), "identityEnriched": enriched,
+                    "transfersRecognizedById": transfers,
                     "catalogAfter": len(result["repositories"]),
                     "admittedRepositories": [x["repo"] for x in fresh]}
 
@@ -215,6 +290,7 @@ def admit(catalog, stars, fetcher):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--sync-report", type=Path, required=True)
+    parser.add_argument("--manifest", type=Path, help="Same-run full Stars identity snapshot")
     parser.add_argument("--catalog", type=Path, default=ROOT / "catalog.json")
     parser.add_argument("--report-json", type=Path)
     parser.add_argument("--dry-run", action="store_true")
@@ -229,14 +305,21 @@ def main(argv=None):
         stars = report.get("newRepositories")
         if not isinstance(stars, list) or len(stars) != report["summary"]["new"]:
             raise RuntimeError("Stars report is incomplete")
+        known_star_ids = None
+        if args.manifest:
+            manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
+            known_star_ids = manifest_stable_ids(manifest, report)
         token = os.environ.get("GITHUB_TOKEN")
-        updated, summary = admit(catalog, stars, lambda repo: get_repo(repo, token))
+        updated, summary = admit(
+            catalog, stars, lambda repo: get_repo(repo, token),
+            known_star_ids=known_star_ids,
+        )
         summary["starred"] = report["summary"]["starred"]
         summary["alreadyCataloged"] = report["summary"]["starred"] - summary["admitted"]
         summary["checkedAt"] = datetime.now(timezone.utc).isoformat()
         if args.report_json:
             args.report_json.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-        if summary["admitted"] and not args.dry_run:
+        if (summary["admitted"] or summary["identityEnriched"]) and not args.dry_run:
             ok, output = write_catalog_if_valid(updated, args.catalog)
             if not ok:
                 raise RuntimeError("Catalog failed validation: " + output[-5000:])

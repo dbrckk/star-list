@@ -16,6 +16,11 @@ The workflow:
 2. Reconciles case-insensitive repository names and permanent GitHub IDs
    to avoid duplicates and recognize transfers.
 3. Fetches full GitHub metadata for each genuinely missing repository.
+   It also retains the complete public Stars snapshot with permanent IDs,
+   then **enriches old catalog entries from those already-fetched IDs**.
+   No additional GitHub API call is needed for the identity backfill.
+   The manifest timestamp, full list and new-Star review must agree before
+   admission writes anything.
 4. Generates a schema-compatible catalog entry with topic-based
    categorization, factual metadata and conservative defaults.
 5. Assigns **`tier: audit`**, **`score: 6.0`** and inferred guidance to
@@ -75,6 +80,7 @@ python scripts/sync_github_stars.py --user dbrckk \
 
 python scripts/admit_github_stars.py \
   --sync-report star-sync-report.json \
+  --manifest star-sync-manifest.json \
   --report-json star-admission-report.json \
   --dry-run
 ```
@@ -96,7 +102,10 @@ The GitHub Actions workflow performs that write automatically.
   retains its permanent ID is still recognized. Ambiguous duplicate IDs across
   API pages also abort the snapshot; the next scheduled sync retries.
   Historic entries without a known stable ID cannot be verified by ID until
-  separately enriched, so name-only matches remain an explicit limitation.
+  separately enriched. The hourly public Stars snapshot now enriches matching
+  legacy entries without refetching; the weekly metadata refresh can verify
+  other accessible entries. Unreachable repos remain name-only until a reliable
+  permanent ID is established.
 - GitHub's license label is only metadata; model weights, assets and commercial
   usage may have separate restrictions.
 - Auto-admitted entries retain the `audit` tier until deeper manual curation.

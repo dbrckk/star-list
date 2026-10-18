@@ -189,6 +189,124 @@ by_stable_id = mod.build_report(
 )
 assert by_stable_id["summary"]["new"] == 0
 
+# The complete same-run manifest can backfill IDs for legacy catalog
+# entries without refetching already known GitHub repositories. A real
+# transfer keeps its ID and an actually new Star still uses one metadata GET.
+known_report = {
+    "username": "dbrckk", "schemaVersion": 1,
+    "checkedAt": "2026-10-18T14:00:00Z",
+    "summary": {"starred": 3, "alreadyCataloged": 2, "new": 1},
+    "newRepositories": [{"repo": "Fresh/New", "githubRepositoryId": 303}],
+}
+known_manifest = {
+    "source": "GitHub public Stars of dbrckk",
+    "checkedAt": known_report["checkedAt"],
+    "repositories": ["Existing/Legacy", "Transferred/Repo", "Fresh/New"],
+    "identities": [
+        {"repo": "Existing/Legacy", "githubRepositoryId": 101},
+        {"repo": "Transferred/Repo", "githubRepositoryId": 202},
+        {"repo": "Fresh/New", "githubRepositoryId": 303},
+    ],
+}
+known_ids = admission.manifest_stable_ids(known_manifest, known_report)
+assert known_ids == {
+    "existing/legacy": 101, "transferred/repo": 202, "fresh/new": 303,
+}
+existing_catalog = {"repositories": [
+    {"repo": "Existing/Legacy"},
+    {"repo": "Old-Owner/Repo", "githubRepositoryId": 202},
+]}
+fetches = []
+def fresh_metadata(repo):
+    fetches.append(repo)
+    return star(
+        "Fresh/New", id=303, forks_count=0, open_issues_count=0,
+        default_branch="main", topics=[], private=False,
+    )
+filled_catalog, filled_summary = admission.admit(
+    existing_catalog, known_report["newRepositories"], fresh_metadata,
+    known_star_ids=known_ids,
+)
+assert fetches == ["Fresh/New"]
+assert filled_summary["admitted"] == 1
+assert filled_summary["identityEnriched"] == 1
+assert len(filled_catalog["repositories"]) == 3
+assert filled_catalog["repositories"][0]["githubRepositoryId"] == 101
+assert filled_catalog["repositories"][1]["githubRepositoryId"] == 202
+assert filled_catalog["repositories"][2]["githubRepositoryId"] == 303
+assert existing_catalog["repositories"][0].get("githubRepositoryId") is None
+
+# The CLI must also commit identity-only enrichment on an hourly run
+# with *zero* new Stars; no speculative metadata GET may be introduced.
+with tempfile.TemporaryDirectory() as tmp:
+    root = Path(tmp)
+    catalog_path = root / "catalog.json"
+    report_path = root / "stars-report.json"
+    manifest_path = root / "stars-manifest.json"
+    result_path = root / "admission-result.json"
+    old_catalog = {"repositories": [{"repo": "Existing/Legacy"}]}
+    catalog_path.write_text(json.dumps(old_catalog), encoding="utf-8")
+    identity_report = {
+        "username": "dbrckk", "schemaVersion": 1,
+        "checkedAt": known_report["checkedAt"],
+        "summary": {"starred": 1, "alreadyCataloged": 1, "new": 0},
+        "newRepositories": [],
+    }
+    identity_manifest = {
+        "source": "GitHub public Stars of dbrckk",
+        "checkedAt": known_report["checkedAt"],
+        "repositories": ["Existing/Legacy"],
+        "identities": [
+            {"repo": "Existing/Legacy", "githubRepositoryId": 101},
+        ],
+    }
+    report_path.write_text(json.dumps(identity_report), encoding="utf-8")
+    manifest_path.write_text(json.dumps(identity_manifest), encoding="utf-8")
+    writes = []
+    original_write = admission.write_catalog_if_valid
+    try:
+        def offline_write(data, path):
+            writes.append(data)
+            path.write_text(json.dumps(data), encoding="utf-8")
+            return True, "validated by existing offline smoke fixture"
+        admission.write_catalog_if_valid = offline_write
+        with contextlib.redirect_stdout(io.StringIO()):
+            assert admission.main([
+                "--catalog", str(catalog_path),
+                "--sync-report", str(report_path),
+                "--manifest", str(manifest_path),
+                "--report-json", str(result_path),
+            ]) == 0
+    finally:
+        admission.write_catalog_if_valid = original_write
+    assert len(writes) == 1
+    assert writes[0]["repositories"][0]["githubRepositoryId"] == 101
+    assert json.loads(result_path.read_text())["identityEnriched"] == 1
+    assert json.loads(result_path.read_text())["admitted"] == 0
+
+# The manifest and report are one atomic identity snapshot: even if counts
+# happen to match, divergent timestamps, missing rows and switched IDs must
+# fail before admitting or enriching anything.
+for bad_manifest in (
+    {**known_manifest, "checkedAt": "2026-10-17T14:00:00Z"},
+    {**known_manifest, "identities": known_manifest["identities"][:-1]},
+    {**known_manifest, "identities": [
+        known_manifest["identities"][0],
+        known_manifest["identities"][1],
+        {"repo": "Fresh/New", "githubRepositoryId": 999},
+    ]},
+    {**known_manifest, "identities": [
+        known_manifest["identities"][0],
+        known_manifest["identities"][1],
+        {"repo": "Fresh/New", "githubRepositoryId": 202},
+    ]},
+):
+    try:
+        admission.manifest_stable_ids(bad_manifest, known_report)
+        raise AssertionError("inconsistent full Stars snapshot accepted")
+    except RuntimeError:
+        pass
+
 # A deleted/recreated owner/name is a different repository even when
 # its spelling is identical. Neither the sync report nor admission may
 # silently count the new permanent ID as the old starred dependency.
@@ -299,6 +417,8 @@ with tempfile.TemporaryDirectory() as tmp:
         assert status == 0 and catalog.read_bytes() == original
         assert json.loads(report_json.read_text())["summary"]["new"] == 2
         assert len(json.loads(manifest.read_text())["repositories"]) == 3
+        assert "identities" in json.loads(manifest.read_text())
+        assert len(json.loads(manifest.read_text())["identities"]) == 3
         assert "New/Alpha" in report_md.read_text()
         report_json.unlink()
         mod.api_stars = lambda *_args, **_kwargs: (_ for _ in ()).throw(RuntimeError("offline"))
