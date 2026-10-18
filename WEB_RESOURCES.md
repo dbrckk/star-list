@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **10 websites** are curated alongside it in [`websites.json`](websites.json);
+These **11 websites** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -18,6 +18,7 @@ the ability to browse a page.
 | Three.js | [threejs.org](https://threejs.org/) | JavaScript/WebGL/WebGPU 3D rendering | Free | Open-source core; independently license models/textures |
 | Shadertoy | [shadertoy.com](https://www.shadertoy.com/) | GLSL shader experiments and visual effects | Free browsing | Creator-specific shader rights and performance review |
 | Lovable | [lovable.dev](https://lovable.dev/) | AI-generated website/application prototypes | Freemium | Hosted service; check export/data/usage plans |
+| Skill Issue | [skill-issue.in](https://skill-issue.in/) | Ranked directory of agent skills for development, design, video and automation | Free browsing | Directory only; review each source SKILL.md before use |
 
 ## Search repositories and relevant websites together
 
@@ -63,3 +64,14 @@ for visual research without matching the project's runtime.
 - Website entries are not auto-dispatched into target repositories. After
   selecting a compatible implementation, ordinary target CI, security review
   and the project's approval gates continue to apply.
+
+## Portfolio-wide agent-skill discovery
+
+The high-priority [Skill Issue](https://skill-issue.in/) portal is an
+**agent-skill directory**, not a package manager. A conservative set of
+upstream source repositories is searchable with `--skills` or
+[`scripts/agent_skill_discovery.py`](scripts/agent_skill_discovery.py).
+The public/private portfolio scans link the directory for every accessible
+repository and show at most two independently reviewable, metadata-matched
+skills. This does **not** authorize automatic installation or execution;
+see [`AGENT_SKILLS.md`](AGENT_SKILLS.md) for security and license checks.
