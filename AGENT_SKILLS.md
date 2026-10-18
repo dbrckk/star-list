@@ -52,8 +52,10 @@ by the CLI are revision-pinned):
 | Auth Implementation Patterns | [wshobson/agents](https://github.com/wshobson/agents) | Backend authentication |
 | OpenAPI Spec Generation | [wshobson/agents](https://github.com/wshobson/agents) | REST API documentation |
 
-The individual source links and project-domain mappings are **curated,
-non-autonomous starting points**, not certificates of correctness.
+The other curated entries cover Next.js App Router, React state,
+Tailwind design systems and responsive interfaces. Source paths are pinned
+for auditability, **not for automated execution or installation**. Read and
+audit the entire pinned instruction and scripts before considering adoption.
 
 ## Use from the repository
 
