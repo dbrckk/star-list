@@ -82,36 +82,36 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T17:38:41Z
+Generated: 2026-10-18T18:35:11Z
 
 ### Git
 - Branch: `main`
-- Head: `5402541d79f8`
-- Commit date: 2026-10-18T13:38:33-04:00
-- Commit: feat(websites): surface curated links in portfolio scans with strict URL validation (#130)
-- Tracked files: 286
+- Head: `24e56f279986`
+- Commit date: 2026-10-18T14:35:01-04:00
+- Commit: feat(skills): make Skill Issue a priority discovery source across the portfolio (#131)
+- Tracked files: 289
 
 ### Recently changed files
+- `.github/workflows/daily-portfolio-integration.yml`
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `.github/workflows/validate.yml`
-- `WEB_RESOURCES.md`
-- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
-- `scripts/portfolio_daily.py`
-- `scripts/test_documentation.py`
-- `scripts/test_json_contracts.py`
-- `scripts/validate_websites.py`
+- `AGENT_SKILLS.md`
 - `README.md`
-- `RECOMMENDER.md`
+- `WEB_RESOURCES.md`
+- `agent-skills.json`
 - `schemas/websites.schema.json`
+- `scripts/agent_skill_discovery.py`
+- `scripts/portfolio_daily.py`
 - `scripts/recommend.py`
+- `scripts/test_documentation.py`
 - `scripts/test_recommend.py`
 - `websites.json`
-- `.github/workflows/catalog-quality-on-change.yml`
-- `docs/GITHUB_STARS_SYNC.md`
-- `schemas/catalog-quality.schema.json`
-- `scripts/audit_catalog_quality.py`
-- `scripts/test_catalog_quality.py`
 - `catalog.json`
+- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
+- `scripts/test_json_contracts.py`
+- `scripts/validate_websites.py`
+- `RECOMMENDER.md`
+- `.github/workflows/catalog-quality-on-change.yml`
 
 ### Project signals
 - No common build descriptor detected

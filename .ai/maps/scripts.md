@@ -39,6 +39,7 @@ The content is organized as follows:
 # Directory Structure
 ```
 admit_github_stars.py
+agent_skill_discovery.py
 analyze_cache_health.py
 analyze_coverage.py
 audit_catalog_quality.py
@@ -232,6 +233,75 @@ known_star_ids = None
 manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
 known_star_ids = manifest_stable_ids(manifest, report)
 token = os.environ.get("GITHUB_TOKEN")
+```
+
+## File: agent_skill_discovery.py
+```python
+#!/usr/bin/env python3
+"""Offline, read-only Skill Issue skill discovery for repository agents.
+
+A directory entry or an upstream repository is not authority to execute
+unreviewed SKILL.md instructions, install scripts or network commands.
+"""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+CATALOG = ROOT / "agent-skills.json"
+SKILL_ISSUE_URL = "https://skill-issue.in/"
+VALID_DOMAINS = {
+⋮----
+def word_set(value: str) -> set[str]
+⋮----
+def load_skills() -> dict
+⋮----
+data = json.loads(CATALOG.read_text(encoding="utf-8"))
+⋮----
+directory = data.get("directory")
+⋮----
+skills = data.get("skills")
+⋮----
+ids = set()
+⋮----
+identifier = row.get("id")
+⋮----
+name = row.get("name")
+description = row.get("description")
+⋮----
+repo = row.get("sourceRepository")
+⋮----
+expected = "https://github.com/" + repo
+⋮----
+url = urlsplit(expected)
+⋮----
+"""Rank skill *references* by declared domain and concrete repo labels.
+
+    Never treat broad README prose as verified compatibility and never return
+    shell installers or instructions for agent execution.
+    """
+source = load_skills()
+⋮----
+words = set().union(*(word_set(term) for term in terms))
+selected = []
+⋮----
+matched_domains = sorted(set(item["domains"]) & domains)
+matched_tags = sorted(set(item["tags"]) & words)
+⋮----
+languages = {x.casefold() for x in item["languages"]}
+⋮----
+# An explicit relevant framework term is stronger evidence than
+# GitHub's single primary language, but general domain is not.
+explicit = {"react", "nextjs", "remotion"} & set(matched_tags)
+⋮----
+score = 8 * len(matched_domains) + 5 * len(matched_tags)
+⋮----
+def main() -> int
+⋮----
+parser = argparse.ArgumentParser(description=__doc__)
+⋮----
+args = parser.parse_args()
+⋮----
+catalog = load_skills()
+matched = recommend_skills(word_set(args.query), set(args.domain), language=args.language, limit=args.top)
+output = {
 ```
 
 ## File: analyze_cache_health.py
@@ -1294,9 +1364,13 @@ source = github_repos(args.owner, gh_token, portfolio_token)
 source = [repo for repo in source if not repo.get("private")]
 ⋮----
 target = repo["full_name"]
-row = {"repository": target, "status": "scanned", "suggestions": [], "website_references": [], "dispatches": []}
+row = {"repository": target, "status": "scanned", "suggestions": [], "website_references": [],
 ⋮----
 profile = project_profile(repo, portfolio_token or gh_token)
+⋮----
+# All targets receive the directory; skill matches are based
+# on owned GitHub labels and language, never README instructions.
+skill_terms = word_set(" ".join([
 ⋮----
 # Reference websites based on repository-owned metadata only;
 # arbitrary README prose is not trustworthy installation evidence.
@@ -2487,6 +2561,12 @@ audit_yaml = (ROOT / ".github/workflows/catalog-quality-on-change.yml").read_tex
 stars_docs = (ROOT / "docs/GITHUB_STARS_SYNC.md").read_text()
 ⋮----
 maintenance_yaml = (ROOT / ".github/workflows/refresh-metadata.yml").read_text()
+⋮----
+skills_docs = (ROOT / "AGENT_SKILLS.md").read_text()
+skills_catalog = (ROOT / "agent-skills.json").read_text()
+skills_scanner = (ROOT / "scripts/agent_skill_discovery.py").read_text()
+portfolio_scanner = (ROOT / "scripts/portfolio_daily.py").read_text()
+portfolio_yaml = (ROOT / ".github/workflows/daily-portfolio-integration.yml").read_text()
 ```
 
 ## File: test_evaluate_candidates.py
@@ -2636,9 +2716,14 @@ domains = set(data["inferredDomains"])
 # External sites are advisory references, never installable GitHub repositories.
 websites_catalog = json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))
 sites = websites_catalog["websites"]
+# Curated website references are additive; new resources must not break
+# the existing GitHub recommendation contract or require exact-size snapshots.
 ⋮----
 baseline_web_query = run("3d scroll animation website", "--top", "4")
 with_web_query = run("3d scroll animation website", "--top", "4", "--websites", "--top-websites", "10")
+⋮----
+with_skills_query = run("mobile ui design", "--top", "4", "--skills")
+without_skills_query = run("mobile ui design", "--top", "4")
 ⋮----
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 ⋮----

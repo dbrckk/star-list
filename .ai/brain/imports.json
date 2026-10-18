@@ -15,6 +15,14 @@
       "urllib.error",
       "urllib.request"
     ],
+    "scripts/agent_skill_discovery.py": [
+      "__future__",
+      "argparse",
+      "json",
+      "pathlib",
+      "re",
+      "urllib.parse"
+    ],
     "scripts/analyze_cache_health.py": [
       "argparse",
       "json",
@@ -103,6 +111,7 @@
     ],
     "scripts/portfolio_daily.py": [
       "__future__",
+      "agent_skill_discovery",
       "argparse",
       "base64",
       "datetime",
@@ -130,6 +139,7 @@
       "sys"
     ],
     "scripts/recommend.py": [
+      "agent_skill_discovery",
       "argparse",
       "datetime",
       "find_replacements",

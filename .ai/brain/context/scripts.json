@@ -8,20 +8,44 @@
         "changed-source",
         "dependency-neighbor",
         "impact",
+        "reverse-dependency-neighbor",
+        "symbol-indexed"
+      ],
+      "score": 500
+    },
+    {
+      "path": "scripts/recommend.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "dependency-neighbor",
+        "impact",
+        "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
       "score": 440
     },
     {
-      "path": "scripts/test_json_contracts.py",
+      "path": "scripts/test_recommend.py",
       "reasons": [
         "changed",
         "changed-source",
         "impact",
-        "reverse-dependency-neighbor",
-        "selected-test"
+        "selected-test",
+        "symbol-indexed"
       ],
-      "score": 400
+      "score": 375
+    },
+    {
+      "path": "scripts/agent_skill_discovery.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "dependency-neighbor",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 370
     },
     {
       "path": "scripts/test_documentation.py",
@@ -34,17 +58,6 @@
       "score": 370
     },
     {
-      "path": "scripts/validate_websites.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 335
-    },
-    {
       "path": "scripts/portfolio_failure_diagnostics.py",
       "reasons": [
         "impact",
@@ -54,14 +67,14 @@
       "score": 150
     },
     {
-      "path": "scripts/recommend.py",
+      "path": "scripts/find_replacements.py",
       "reasons": [
         "dependency-neighbor"
       ],
       "score": 25
     },
     {
-      "path": "scripts/validate_json_contract.py",
+      "path": "scripts/health_score.py",
       "reasons": [
         "dependency-neighbor"
       ],

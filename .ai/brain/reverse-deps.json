@@ -11,6 +11,15 @@
       "in_degree": 1,
       "out_degree": 2
     },
+    "scripts/agent_skill_discovery.py": {
+      "dependencies": [],
+      "dependents": [
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py"
+      ],
+      "in_degree": 2,
+      "out_degree": 0
+    },
     "scripts/analyze_coverage.py": {
       "dependencies": [
         "scripts/health_score.py"
@@ -57,13 +66,14 @@
     },
     "scripts/portfolio_daily.py": {
       "dependencies": [
+        "scripts/agent_skill_discovery.py",
         "scripts/recommend.py"
       ],
       "dependents": [
         "scripts/portfolio_failure_diagnostics.py"
       ],
       "in_degree": 1,
-      "out_degree": 1
+      "out_degree": 2
     },
     "scripts/portfolio_failure_diagnostics.py": {
       "dependencies": [
@@ -75,6 +85,7 @@
     },
     "scripts/recommend.py": {
       "dependencies": [
+        "scripts/agent_skill_discovery.py",
         "scripts/find_replacements.py",
         "scripts/health_score.py"
       ],
@@ -82,7 +93,7 @@
         "scripts/portfolio_daily.py"
       ],
       "in_degree": 1,
-      "out_degree": 2
+      "out_degree": 3
     },
     "scripts/refresh_github_metadata.py": {
       "dependencies": [

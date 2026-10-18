@@ -5,30 +5,31 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "130",
-      "curated",
+      "131",
+      "across",
+      "discovery",
       "feat",
-      "links",
+      "issue",
+      "make",
       "portfolio",
-      "scans",
-      "strict",
-      "surface",
-      "url",
-      "validation",
-      "websites"
+      "priority",
+      "skill",
+      "skills",
+      "source"
     ],
     "test_count": 0,
-    "useful_count": 4
+    "useful_count": 5
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(websites): surface curated links in portfolio scans with strict URL validation (#130)",
+  "task": "feat(skills): make Skill Issue a priority discovery source across the portfolio (#131)",
   "tests_selected": [],
   "useful": [
+    "scripts/agent_skill_discovery.py",
     "scripts/portfolio_daily.py",
+    "scripts/recommend.py",
     "scripts/test_documentation.py",
-    "scripts/test_json_contracts.py",
-    "scripts/validate_websites.py"
+    "scripts/test_recommend.py"
   ]
 }

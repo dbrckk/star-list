@@ -1,14 +1,14 @@
 {
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
-  "files_indexed": 54,
-  "symbol_count": 237,
-  "edge_count": 19,
+  "files_indexed": 55,
+  "symbol_count": 241,
+  "edge_count": 21,
   "languages": {
-    "python": 54
+    "python": 55
   },
   "index_mode": "incremental",
-  "reparsed_files": 4,
+  "reparsed_files": 5,
   "top_symbol_files": [
     {
       "file": "scripts/discover_candidates.py",
@@ -73,6 +73,10 @@
     {
       "file": "scripts/audit_catalog_quality.py",
       "symbols": 5
+    },
+    {
+      "file": "scripts/agent_skill_discovery.py",
+      "symbols": 4
     },
     {
       "file": "scripts/analyze_cache_health.py",

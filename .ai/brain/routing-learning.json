@@ -2,22 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "Add selection guidance to core repositories (#22)",
-      "terms": [
-        "22",
-        "add",
-        "core",
-        "guidance",
-        "repositories",
-        "selection"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/validate_catalog.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "Backfill selection guidance for recommended repositories (#23)",
       "terms": [
         "23",
@@ -1228,6 +1212,31 @@
         "scripts/test_json_contracts.py",
         "scripts/validate_websites.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(skills): make Skill Issue a priority discovery source across the portfolio (#131)",
+      "terms": [
+        "131",
+        "across",
+        "discovery",
+        "feat",
+        "issue",
+        "make",
+        "portfolio",
+        "priority",
+        "skill",
+        "skills",
+        "source"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/agent_skill_discovery.py",
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py",
+        "scripts/test_documentation.py",
+        "scripts/test_recommend.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1307,6 +1316,13 @@
       "scripts/test_documentation.py": 4,
       "scripts/test_json_contracts.py": 4,
       "scripts/validate_websites.py": 4
+    },
+    "131": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1455,6 +1471,13 @@
     },
     "accurately": {
       "scripts/portfolio_daily.py": 4
+    },
+    "across": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
@@ -1757,9 +1780,13 @@
       "scripts/portfolio_failure_diagnostics.py": 8
     },
     "discovery": {
+      "scripts/agent_skill_discovery.py": 4,
       "scripts/discover_candidates.py": 4,
-      "scripts/portfolio_daily.py": 4,
-      "scripts/test_discovery_cache.py": 4
+      "scripts/portfolio_daily.py": 8,
+      "scripts/recommend.py": 4,
+      "scripts/test_discovery_cache.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "dispatch": {
       "scripts/portfolio_daily.py": 12
@@ -1838,16 +1865,17 @@
     },
     "feat": {
       "scripts/admit_github_stars.py": 8,
+      "scripts/agent_skill_discovery.py": 4,
       "scripts/audit_catalog_quality.py": 8,
-      "scripts/portfolio_daily.py": 16,
+      "scripts/portfolio_daily.py": 20,
       "scripts/portfolio_failure_diagnostics.py": 12,
-      "scripts/recommend.py": 4,
+      "scripts/recommend.py": 8,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_catalog_quality.py": 8,
-      "scripts/test_documentation.py": 8,
+      "scripts/test_documentation.py": 12,
       "scripts/test_json_contracts.py": 8,
-      "scripts/test_recommend.py": 4,
+      "scripts/test_recommend.py": 8,
       "scripts/test_sync_github_stars.py": 4,
       "scripts/validate_websites.py": 4
     },
@@ -2026,7 +2054,11 @@
       "scripts/test_refresh_github_metadata.py": 4
     },
     "issue": {
-      "scripts/test_documentation.py": 4
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_documentation.py": 8,
+      "scripts/test_recommend.py": 4
     },
     "keep": {
       "scripts/discover_candidates.py": 4,
@@ -2075,7 +2107,11 @@
       "scripts/portfolio_daily.py": 4
     },
     "make": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 8,
+      "scripts/recommend.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "matches": {
       "scripts/portfolio_daily.py": 16
@@ -2159,11 +2195,14 @@
       "scripts/test_star_import_pipeline.py": 4
     },
     "portfolio": {
+      "scripts/agent_skill_discovery.py": 4,
       "scripts/portfolio_daily.py": 40,
       "scripts/portfolio_failure_diagnostics.py": 28,
+      "scripts/recommend.py": 4,
       "scripts/sync_github_stars.py": 4,
-      "scripts/test_documentation.py": 4,
+      "scripts/test_documentation.py": 8,
       "scripts/test_json_contracts.py": 4,
+      "scripts/test_recommend.py": 4,
       "scripts/test_sync_github_stars.py": 4,
       "scripts/validate_websites.py": 4
     },
@@ -2172,6 +2211,13 @@
     },
     "prevent": {
       "scripts/portfolio_daily.py": 4
+    },
+    "priority": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "private": {
       "scripts/portfolio_failure_diagnostics.py": 4
@@ -2422,9 +2468,30 @@
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
     },
+    "skill": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_recommend.py": 4
+    },
+    "skills": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "slow": {
       "scripts/portfolio_daily.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "source": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "specialized": {
       "scripts/recommend.py": 4,

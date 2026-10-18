@@ -518,7 +518,8 @@ websites.schema.json
               "prompt-template-library",
               "framework-docs",
               "shader-gallery",
-              "hosted-builder"
+              "hosted-builder",
+              "agent-skills-directory"
             ]
           },
           "access": {

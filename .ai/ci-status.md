@@ -1,18 +1,18 @@
 # CI status
 
-Summary: 5 success / 1 failure / 2 active
+Summary: 4 success / 2 failure / 2 active
 
-- Daily portfolio star-list integration: in_progress / pending (5402541d)
-- Validate catalog: in_progress / pending (5402541d)
-- Portfolio discovery live smoke: completed / success (383e6169)
-- Validate catalog: completed / success (383e6169)
-- Validate catalog: completed / success (383e6169)
-- Portfolio discovery live smoke: completed / failure (9f5b348e)
-- Validate catalog: completed / success (9f5b348e)
-- Validate catalog: completed / success (9f5b348e)
+- Validate catalog: in_progress / pending (24e56f27)
+- Daily portfolio star-list integration: in_progress / pending (24e56f27)
+- Portfolio discovery live smoke: completed / success (05d561c9)
+- Validate catalog: completed / success (05d561c9)
+- Validate catalog: completed / success (05d561c9)
+- Portfolio discovery live smoke: completed / success (dd850b8f)
+- Validate catalog: completed / failure (dd850b8f)
+- Validate catalog: completed / failure (dd850b8f)
 
 ## Latest failed run structure
-- Job: verify
-  - Failed step: Read-only live portfolio discovery, without integration credentials
+- Job: validate
+  - Failed step: Test v1 documentation contract
 
 > Generated summary only; inspect GitHub Actions for full logs when needed.

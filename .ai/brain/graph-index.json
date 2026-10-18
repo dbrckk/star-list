@@ -18,6 +18,19 @@
       "path": "scripts/sync_github_stars.py"
     },
     {
+      "dependencies": [
+        "scripts/agent_skill_discovery.py",
+        "scripts/find_replacements.py",
+        "scripts/health_score.py"
+      ],
+      "dependents": [
+        "scripts/portfolio_daily.py"
+      ],
+      "in_degree": 1,
+      "out_degree": 3,
+      "path": "scripts/recommend.py"
+    },
+    {
       "dependencies": [],
       "dependents": [
         "scripts/analyze_coverage.py",
@@ -54,15 +67,25 @@
     },
     {
       "dependencies": [
-        "scripts/find_replacements.py",
-        "scripts/health_score.py"
+        "scripts/agent_skill_discovery.py",
+        "scripts/recommend.py"
       ],
       "dependents": [
-        "scripts/portfolio_daily.py"
+        "scripts/portfolio_failure_diagnostics.py"
       ],
       "in_degree": 1,
       "out_degree": 2,
-      "path": "scripts/recommend.py"
+      "path": "scripts/portfolio_daily.py"
+    },
+    {
+      "dependencies": [],
+      "dependents": [
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py"
+      ],
+      "in_degree": 2,
+      "out_degree": 0,
+      "path": "scripts/agent_skill_discovery.py"
     },
     {
       "dependencies": [],
@@ -84,17 +107,6 @@
       "in_degree": 1,
       "out_degree": 1,
       "path": "scripts/find_replacements.py"
-    },
-    {
-      "dependencies": [
-        "scripts/recommend.py"
-      ],
-      "dependents": [
-        "scripts/portfolio_failure_diagnostics.py"
-      ],
-      "in_degree": 1,
-      "out_degree": 1,
-      "path": "scripts/portfolio_daily.py"
     },
     {
       "dependencies": [
@@ -200,8 +212,8 @@
       "path": "scripts/test_star_import_pipeline.py"
     }
   ],
-  "edge_count": 20,
+  "edge_count": 22,
   "generated_by": "dbrckk/repo-brain-v7-graph",
-  "node_count": 19,
+  "node_count": 20,
   "schema_version": 1
 }

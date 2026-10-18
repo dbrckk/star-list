@@ -32,12 +32,22 @@
     },
     {
       "source": "scripts/portfolio_daily.py",
+      "target": "scripts/agent_skill_discovery.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/portfolio_daily.py",
       "target": "scripts/recommend.py",
       "type": "imports"
     },
     {
       "source": "scripts/portfolio_failure_diagnostics.py",
       "target": "scripts/portfolio_daily.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/recommend.py",
+      "target": "scripts/agent_skill_discovery.py",
       "type": "imports"
     },
     {

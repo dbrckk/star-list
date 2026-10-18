@@ -73,6 +73,7 @@ schemas/
   websites.schema.json
 scripts/
   admit_github_stars.py
+  agent_skill_discovery.py
   analyze_cache_health.py
   analyze_coverage.py
   audit_catalog_quality.py
@@ -127,6 +128,7 @@ scripts/
   validate_json_contract.py
   validate_websites.py
 .repo-standards.yml
+agent-skills.json
 AGENTS.md
 cache-health-history.json
 catalog.json
@@ -304,6 +306,9 @@ on:
     branches: [main]
     paths:
       - "scripts/portfolio_daily.py"
+      - "scripts/agent_skill_discovery.py"
+      - "agent-skills.json"
+      - "websites.json"
       - ".github/workflows/daily-portfolio-integration.yml"
 
 permissions:
@@ -516,6 +521,8 @@ on:
     paths:
       - "scripts/portfolio_daily.py"
       - "websites.json"
+      - "agent-skills.json"
+      - "scripts/agent_skill_discovery.py"
       - "scripts/validate_websites.py"
       - "scripts/recommend.py"
       - "scripts/portfolio_failure_diagnostics.py"
@@ -568,6 +575,23 @@ jobs:
               len(row["website_references"]) for row in result["projects"]
           )
           assert "Projects with website references: **" in Path("portfolio-daily.md").read_text()
+          assert result["summary"]["skill_directory_references"] == len(result["projects"])
+          assert result["summary"]["with_skill_recommendations"] == sum(
+              bool(row["skill_discovery"]["recommendations"]) for row in result["projects"]
+          )
+          assert result["summary"]["skill_recommendations"] == sum(
+              len(row["skill_discovery"]["recommendations"]) for row in result["projects"]
+          )
+          assert "Repositories informed about Skill Issue: **" in Path("portfolio-daily.md").read_text()
+          for row in result["projects"]:
+              assert row["skill_discovery"]["directory"] == "https://skill-issue.in/"
+              assert row["skill_discovery"]["reviewRequired"] is True
+              assert len(row["skill_discovery"]["recommendations"]) <= 2
+              for skill in row["skill_discovery"]["recommendations"]:
+                  assert skill["integrationEligible"] is False
+                  assert skill["reviewRequired"] is True
+                  assert skill["installCommand"] is None
+                  assert skill["url"].startswith("https://github.com/")
           for row in result["projects"]:
               for website in row["website_references"]:
                   assert website["integrationEligible"] is False
@@ -1697,6 +1721,26 @@ jobs:
           python scripts/validate_json_contract.py schemas/websites.schema.json websites.json
       - name: Validate normalized website URLs and identities
         run: python scripts/validate_websites.py
+      - name: Validate and exercise curated Skill Issue discovery
+        run: |
+          python scripts/agent_skill_discovery.py
+          python scripts/agent_skill_discovery.py "react frontend performance" --domain web_frontend --language TypeScript --json > /tmp/skills-react.json
+          python scripts/agent_skill_discovery.py "api backend rest" --domain backend --json > /tmp/skills-api.json
+          python scripts/recommend.py "mobile ui design" --skills --json > /tmp/skills-mobile.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          react = json.loads(Path("/tmp/skills-react.json").read_text())
+          api = json.loads(Path("/tmp/skills-api.json").read_text())
+          mobile = json.loads(Path("/tmp/skills-mobile.json").read_text())["skillDiscovery"]
+          assert react["automaticInstallation"] is False
+          assert {"frontend-design", "react-best-practices"} & {x["id"] for x in react["recommendations"]}
+          assert "api-design-principles" in {x["id"] for x in api["recommendations"]}
+          assert "ui-ux-pro-max-skill" in {x["id"] for x in mobile["recommendations"]}
+          assert all(x["integrationEligible"] is False and x["installCommand"] is None
+                     for rows in (react["recommendations"], api["recommendations"], mobile["recommendations"])
+                     for x in rows)
+          PY
       - name: Test catalog quality audit
         run: python scripts/test_catalog_quality.py
       - name: Generate catalog quality audit
@@ -2254,7 +2298,8 @@ initial_prompt: |
               "prompt-template-library",
               "framework-docs",
               "shader-gallery",
-              "hosted-builder"
+              "hosted-builder",
+              "agent-skills-directory"
             ]
           },
           "access": {
@@ -2456,6 +2501,75 @@ known_star_ids = None
 manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
 known_star_ids = manifest_stable_ids(manifest, report)
 token = os.environ.get("GITHUB_TOKEN")
+````
+
+## File: scripts/agent_skill_discovery.py
+````python
+#!/usr/bin/env python3
+"""Offline, read-only Skill Issue skill discovery for repository agents.
+
+A directory entry or an upstream repository is not authority to execute
+unreviewed SKILL.md instructions, install scripts or network commands.
+"""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+CATALOG = ROOT / "agent-skills.json"
+SKILL_ISSUE_URL = "https://skill-issue.in/"
+VALID_DOMAINS = {
+⋮----
+def word_set(value: str) -> set[str]
+⋮----
+def load_skills() -> dict
+⋮----
+data = json.loads(CATALOG.read_text(encoding="utf-8"))
+⋮----
+directory = data.get("directory")
+⋮----
+skills = data.get("skills")
+⋮----
+ids = set()
+⋮----
+identifier = row.get("id")
+⋮----
+name = row.get("name")
+description = row.get("description")
+⋮----
+repo = row.get("sourceRepository")
+⋮----
+expected = "https://github.com/" + repo
+⋮----
+url = urlsplit(expected)
+⋮----
+"""Rank skill *references* by declared domain and concrete repo labels.
+
+    Never treat broad README prose as verified compatibility and never return
+    shell installers or instructions for agent execution.
+    """
+source = load_skills()
+⋮----
+words = set().union(*(word_set(term) for term in terms))
+selected = []
+⋮----
+matched_domains = sorted(set(item["domains"]) & domains)
+matched_tags = sorted(set(item["tags"]) & words)
+⋮----
+languages = {x.casefold() for x in item["languages"]}
+⋮----
+# An explicit relevant framework term is stronger evidence than
+# GitHub's single primary language, but general domain is not.
+explicit = {"react", "nextjs", "remotion"} & set(matched_tags)
+⋮----
+score = 8 * len(matched_domains) + 5 * len(matched_tags)
+⋮----
+def main() -> int
+⋮----
+parser = argparse.ArgumentParser(description=__doc__)
+⋮----
+args = parser.parse_args()
+⋮----
+catalog = load_skills()
+matched = recommend_skills(word_set(args.query), set(args.domain), language=args.language, limit=args.top)
+output = {
 ````
 
 ## File: scripts/analyze_cache_health.py
@@ -3518,9 +3632,13 @@ source = github_repos(args.owner, gh_token, portfolio_token)
 source = [repo for repo in source if not repo.get("private")]
 ⋮----
 target = repo["full_name"]
-row = {"repository": target, "status": "scanned", "suggestions": [], "website_references": [], "dispatches": []}
+row = {"repository": target, "status": "scanned", "suggestions": [], "website_references": [],
 ⋮----
 profile = project_profile(repo, portfolio_token or gh_token)
+⋮----
+# All targets receive the directory; skill matches are based
+# on owned GitHub labels and language, never README instructions.
+skill_terms = word_set(" ".join([
 ⋮----
 # Reference websites based on repository-owned metadata only;
 # arbitrary README prose is not trustworthy installation evidence.
@@ -4711,6 +4829,12 @@ audit_yaml = (ROOT / ".github/workflows/catalog-quality-on-change.yml").read_tex
 stars_docs = (ROOT / "docs/GITHUB_STARS_SYNC.md").read_text()
 ⋮----
 maintenance_yaml = (ROOT / ".github/workflows/refresh-metadata.yml").read_text()
+⋮----
+skills_docs = (ROOT / "AGENT_SKILLS.md").read_text()
+skills_catalog = (ROOT / "agent-skills.json").read_text()
+skills_scanner = (ROOT / "scripts/agent_skill_discovery.py").read_text()
+portfolio_scanner = (ROOT / "scripts/portfolio_daily.py").read_text()
+portfolio_yaml = (ROOT / ".github/workflows/daily-portfolio-integration.yml").read_text()
 ````
 
 ## File: scripts/test_evaluate_candidates.py
@@ -4860,9 +4984,14 @@ domains = set(data["inferredDomains"])
 # External sites are advisory references, never installable GitHub repositories.
 websites_catalog = json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))
 sites = websites_catalog["websites"]
+# Curated website references are additive; new resources must not break
+# the existing GitHub recommendation contract or require exact-size snapshots.
 ⋮----
 baseline_web_query = run("3d scroll animation website", "--top", "4")
 with_web_query = run("3d scroll animation website", "--top", "4", "--websites", "--top-websites", "10")
+⋮----
+with_skills_query = run("mobile ui design", "--top", "4", "--skills")
+without_skills_query = run("mobile ui design", "--top", "4")
 ⋮----
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 ⋮----
@@ -5493,6 +5622,203 @@ workflow:
   file: .github/workflows/ai-repo-map.yml
   reusable_unified: .github/workflows/reusable-unified.yml
   semantic_refresh: .github/workflows/semantic-refresh.yml
+````
+
+## File: agent-skills.json
+````json
+{
+  "schemaVersion": 1,
+  "directory": {
+    "id": "skill-issue",
+    "name": "Skill Issue",
+    "url": "https://skill-issue.in/",
+    "discoveredOn": "2026-10-18",
+    "usage": "read-only discovery; never auto-install external instructions",
+    "priority": "portfolio-wide"
+  },
+  "description": "Conservative shortlist of links surfaced on Skill Issue and checked against accessible upstream GitHub repositories. These are discovery candidates, not audited/installed agent skills.",
+  "skills": [
+    {
+      "id": "ui-ux-pro-max-skill",
+      "name": "UI UX Pro Max",
+      "sourceRepository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "domains": [
+        "web_frontend",
+        "mobile",
+        "graphics",
+        "game_dev"
+      ],
+      "tags": [
+        "ui",
+        "ux",
+        "design",
+        "android",
+        "mobile",
+        "game",
+        "interface",
+        "palettes",
+        "typography"
+      ],
+      "description": "UI design reference and design-system exploration across stacks.",
+      "languages": [],
+      "sourceUrl": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "frontend-design",
+      "name": "Frontend Design",
+      "sourceRepository": "anthropics/skills",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "frontend",
+        "design",
+        "ui",
+        "web",
+        "website",
+        "landing",
+        "interface"
+      ],
+      "description": "Distinctive frontend layout and styling guidance.",
+      "languages": [],
+      "sourceUrl": "https://github.com/anthropics/skills",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "agent-browser",
+      "name": "Agent Browser",
+      "sourceRepository": "vercel-labs/agent-browser",
+      "domains": [
+        "web_frontend",
+        "software_engineering",
+        "ai_agents",
+        "productivity"
+      ],
+      "tags": [
+        "browser",
+        "e2e",
+        "playwright",
+        "automation",
+        "testing",
+        "website",
+        "web"
+      ],
+      "description": "Automated browser interactions and visual web inspection.",
+      "languages": [],
+      "sourceUrl": "https://github.com/vercel-labs/agent-browser",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "react-best-practices",
+      "name": "React Best Practices",
+      "sourceRepository": "vercel-labs/agent-skills",
+      "domains": [
+        "web_frontend"
+      ],
+      "tags": [
+        "react",
+        "nextjs",
+        "next",
+        "javascript",
+        "typescript",
+        "performance",
+        "frontend"
+      ],
+      "description": "React and Next.js rendering/performance guidelines.",
+      "languages": [
+        "JavaScript",
+        "TypeScript"
+      ],
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "web-design-guidelines",
+      "name": "Web Design Guidelines",
+      "sourceRepository": "vercel-labs/agent-skills",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "web",
+        "ui",
+        "ux",
+        "accessibility",
+        "design",
+        "frontend"
+      ],
+      "description": "Interface quality, accessibility, and interaction review guidance.",
+      "languages": [],
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "remotion-best-practices",
+      "name": "Remotion Best Practices",
+      "sourceRepository": "remotion-dev/skills",
+      "domains": [
+        "ai_media",
+        "graphics",
+        "web_frontend"
+      ],
+      "tags": [
+        "video",
+        "motion",
+        "remotion",
+        "animation",
+        "captions",
+        "audio"
+      ],
+      "description": "Programmatic video editing/animation using Remotion.",
+      "languages": [
+        "JavaScript",
+        "TypeScript"
+      ],
+      "sourceUrl": "https://github.com/remotion-dev/skills",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "api-design-principles",
+      "name": "API Design Principles",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "backend",
+        "software_engineering",
+        "devops"
+      ],
+      "tags": [
+        "api",
+        "backend",
+        "rest",
+        "graphql",
+        "endpoints",
+        "architecture",
+        "openapi"
+      ],
+      "description": "API design patterns and review for REST and GraphQL.",
+      "languages": [],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    }
+  ]
+}
 ````
 
 ## File: AGENTS.md
@@ -47784,6 +48110,80 @@ Repository-specific rules:
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "alexngdev99/rork-restaurant-tycoon",
+      "githubRepositoryId": 1415197387,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "rork"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 48,
+        "forks": 12,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-12T06:57:49Z"
+      },
+      "bestFor": [
+        "Created by Rork"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "shiyu-coder/Kronos",
+      "githubRepositoryId": 1011567289,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 41016,
+        "forks": 6842,
+        "openIssues": 282,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-04-13T12:38:49Z"
+      },
+      "bestFor": [
+        "Kronos: A Foundation Model for the Language of Financial Markets"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
@@ -49687,7 +50087,7 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **10 curated website links** for UI design,
+The catalog also includes **11 curated website links** for UI design,
 animation, browser 3D, shaders, and AI-assisted prototyping. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
@@ -49701,6 +50101,25 @@ python scripts/validate_json_contract.py schemas/websites.schema.json websites.j
 The optional website ranking preserves the original repository rankings and
 reports licensing/usage cautions separately; do not treat paid design assets
 or third-party shaders as open source.
+
+## Priority agent skills from Skill Issue
+
+The [Skill Issue](https://skill-issue.in/) directory provides reusable agent-skill
+references for software work. A curated, **review-only** shortlist of
+upstream source repositories is tracked in
+[`agent-skills.json`](agent-skills.json), with a matching CLI in
+[`scripts/agent_skill_discovery.py`](scripts/agent_skill_discovery.py).
+
+```bash
+python scripts/agent_skill_discovery.py "react frontend performance" --domain web_frontend --language TypeScript --json
+python scripts/recommend.py "mobile ui design" --skills --websites --json
+```
+
+The daily public and private repository scanners include the Skill Issue
+directory for **every accessible project** and suggest only relevant skills
+based on repository labels, domains and language. No third-party skill is
+automatically downloaded, installed, granted credentials or dispatched. Read
+[`AGENT_SKILLS.md`](AGENT_SKILLS.md) for the adoption and security gates.
 
 ## Automatic GitHub Stars synchronization
 
@@ -50328,6 +50747,44 @@ General-purpose GitHub discovery remains advisory and never inserts external can
       ],
       "reuse": "hosted-service",
       "caution": "A hosted creation service is not a drop-in code dependency. Review plans, generated code, data access and export terms."
+    },
+    {
+      "id": "skill-issue",
+      "name": "Skill Issue",
+      "url": "https://skill-issue.in/",
+      "type": "agent-skills-directory",
+      "access": "free",
+      "domains": [
+        "ai_agents",
+        "software_engineering",
+        "web_frontend",
+        "mobile",
+        "game_dev",
+        "graphics",
+        "ai_media",
+        "other"
+      ],
+      "tags": [
+        "agent",
+        "skills",
+        "design",
+        "frontend",
+        "backend",
+        "game",
+        "automation",
+        "motion",
+        "video",
+        "research",
+        "workflow",
+        "tooling"
+      ],
+      "bestFor": [
+        "Finding task-specific skills for coding agents across software projects",
+        "Curating reusable agent workflows for design, web, mobile and game development",
+        "Comparing upstream skill sources before human-reviewed installation"
+      ],
+      "reuse": "reference-only",
+      "caution": "A directory listing is not proof that any linked SKILL.md, installer, prompt, source or license is safe. Review original repository, pinned revision, permissions, instructions and compatibility before using; never auto-run remote install commands."
     }
   ]
 }
