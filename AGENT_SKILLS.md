@@ -31,7 +31,8 @@ is suggested only if both its declared domain and at least one concrete label
 match, and language/framework evidence is compatible. Unknown projects still
 see the general directory without arbitrary skill installations.
 
-Examples of the initial curated source references:
+Examples of curated source references (all direct skill-file links returned
+by the CLI are revision-pinned):
 
 | Skill | Source repository | Example fit |
 | --- | --- | --- |
