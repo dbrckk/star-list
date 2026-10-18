@@ -72,13 +72,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T12:37:11Z
+Generated: 2026-10-18T14:05:06Z
 
 ### Git
 - Branch: `main`
-- Head: `541424eb32d2`
-- Commit date: 2026-10-18T08:37:02-04:00
-- Commit: docs(capacity): checkpoint exact-SHA draft PR gates and fleet recovery evidence (#119)
+- Head: `f0eb322ba0e6`
+- Commit date: 2026-10-18T10:04:56-04:00
+- Commit: docs(portfolio): require exact-SHA draft PR and target CI delivery evidence (#120)
 - Tracked files: 280
 
 ### Recently changed files
@@ -87,7 +87,6 @@ Generated: 2026-10-18T12:37:11Z
 - `docs/GITHUB_STARS_SYNC.md`
 - `scripts/test_documentation.py`
 - `.github/workflows/catalog-quality-on-change.yml`
-- `catalog.json`
 
 ### Project signals
 - No common build descriptor detected

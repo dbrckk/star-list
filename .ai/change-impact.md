@@ -1,7 +1,7 @@
 # Change impact
 
-Base: 17c8cd45e6d273d238e0d53dab32d8caeedf132e
-Head: 541424eb32d2ddb1bdccea4c76e6a4807661c08e
+Base: 5d095ebe256a1030507f536b40a3b96372766e4b
+Head: f0eb322ba0e62f48605e43648879549bc5890f10
 
 ## Changed files
 - M docs/PORTFOLIO_CAPACITY_RECOVERY.md
