@@ -90,6 +90,7 @@ for data_name,schema_name in (
     ("discovery-memory.json","discovery-memory.schema.json"),
     ("cache-health-history.json","cache-health-history.schema.json"),
     ("history.json","history.schema.json"),
+    ("websites.json","websites.schema.json"),
     ("health-snapshot.json","health-snapshot.schema.json"),
 ):
     data=json.loads((ROOT/data_name).read_text())
