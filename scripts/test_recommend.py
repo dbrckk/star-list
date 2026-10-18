@@ -23,6 +23,25 @@ for query, expected_any in cases:
     assert all("repo" in x and "selectionScore" in x and "why" in x for x in data["recommendations"])
     assert data["diagnostics"]["catalogSize"] >= data["diagnostics"]["eligible"] >= data["diagnostics"]["returned"]
 
+# External sites are advisory references, never installable GitHub repositories.
+websites_catalog = json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))
+sites = websites_catalog["websites"]
+assert len(sites) == 10
+assert len({site["id"] for site in sites}) == len(sites)
+assert len({site["url"].lower().rstrip("/") for site in sites}) == len(sites)
+assert all(site["url"].startswith("https://") for site in sites)
+assert all(site["reuse"] for site in sites)
+assert next(site for site in sites if site["id"] == "recent-design")["originalUrl"] == "https://godly.website/"
+baseline_web_query = run("3d scroll animation website", "--top", "4")
+with_web_query = run("3d scroll animation website", "--top", "4", "--websites", "--top-websites", "10")
+assert baseline_web_query["recommendations"] == with_web_query["recommendations"]
+assert "websiteRecommendations" not in baseline_web_query
+assert {row["id"] for row in with_web_query["websiteRecommendations"]} >= {"scrolltide", "threejs", "shadertoy"}
+assert all(not row["integrationEligible"] for row in with_web_query["websiteRecommendations"])
+assert all(row["url"].startswith("https://") for row in with_web_query["websiteRecommendations"])
+assert run("xauusd trading execution", "--websites")["websiteRecommendations"] == []
+assert any(row["id"] == "60fps" for row in run("mobile ui motion animation", "--websites")["websiteRecommendations"])
+
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 for item in strict["recommendations"]:
     assert "android" in item["platforms"]
