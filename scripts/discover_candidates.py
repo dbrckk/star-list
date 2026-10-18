@@ -2,9 +2,15 @@
 """Execute discovery watchlist against GitHub Search API and rank novel candidates."""
 import argparse, json, math, os, time, random
 from pathlib import Path
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
+from urllib.parse import urlencode, urlsplit
+from urllib.request import Request
 from urllib.error import HTTPError
+
+from sync_github_stars import SAFE_GITHUB_HTTP
+
+# Preserve the existing injectable transport for offline cache tests, but
+# never forward the authenticated discovery token on cross-origin redirects.
+urlopen = SAFE_GITHUB_HTTP.open
 
 API="https://api.github.com/search/repositories"
 REPO_API="https://api.github.com/repos/{}"
@@ -135,6 +141,13 @@ def _not_modified_result(cache, url, response_headers, now, return_source):
     return _api_result(data,merged_headers,"not-modified",return_source)
 
 def api_json(url, headers, attempts=4, cache=None, ttl_seconds=0, stale_max_seconds=0, now=None, return_source=False, stats=None):
+    # A future caller must not pass its GitHub bearer token to an arbitrary
+    # initial URL. The shared opener independently blocks redirected tokens.
+    if _header_value(headers, "Authorization"):
+        parsed = urlsplit(url)
+        if (parsed.scheme != "https" or parsed.hostname != "api.github.com"
+                or parsed.port is not None or parsed.username or parsed.password):
+            raise RuntimeError("Refusing authenticated discovery request outside GitHub API")
     _stat(stats,"logicalRequests")
     if cache is not None and ttl_seconds>0:
         hit=cache_get(cache,url,ttl_seconds,now)
