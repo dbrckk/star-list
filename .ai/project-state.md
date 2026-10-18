@@ -58,25 +58,26 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-17T17:23:07Z
+Generated: 2026-10-18T11:50:32Z
 
 ### Git
 - Branch: `main`
-- Head: `628a5c811485`
-- Commit date: 2026-10-17T13:22:57-04:00
-- Commit: feat(catalog): publish current quality audit after star catalog updates (#114)
+- Head: `8f9bc12a3c2a`
+- Commit date: 2026-10-18T07:50:20-04:00
+- Commit: fix(catalog): reconcile quality issue daily if bot-triggered audit is missed (#116)
 - Tracked files: 280
 
 ### Recently changed files
 - `.github/workflows/catalog-quality-on-change.yml`
+- `docs/GITHUB_STARS_SYNC.md`
+- `scripts/test_documentation.py`
+- `catalog.json`
+- `.github/workflows/sync-github-stars.yml`
 - `scripts/audit_catalog_quality.py`
 - `scripts/test_catalog_quality.py`
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/portfolio_daily.py`
-- `catalog.json`
-- `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
-- `.github/workflows/daily-portfolio-integration.yml`
 
 ### Project signals
 - No common build descriptor detected

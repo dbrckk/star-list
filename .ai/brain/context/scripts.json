@@ -2,7 +2,7 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/test_catalog_quality.py",
+      "path": "scripts/test_documentation.py",
       "reasons": [
         "changed",
         "changed-source",
@@ -14,15 +14,19 @@
     {
       "path": "scripts/audit_catalog_quality.py",
       "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "symbol-indexed"
+        "recent-project-state"
       ],
-      "score": 325
+      "score": 60
     },
     {
       "path": "scripts/portfolio_daily.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/test_catalog_quality.py",
       "reasons": [
         "recent-project-state"
       ],

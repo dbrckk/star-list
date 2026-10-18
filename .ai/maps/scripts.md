@@ -2357,6 +2357,13 @@ local=target.split("#",1)[0]
 ⋮----
 spec=importlib.util.spec_from_file_location("evaluation",ROOT/"scripts"/"evaluate_candidates.py")
 mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
+⋮----
+# The hourly Stars job pushes with GITHUB_TOKEN; GitHub deliberately
+# suppresses a second workflow's normal push trigger for that commit.
+# Keep the qualified reusable audit dependency wired to the actual push.
+sync_yaml = (ROOT / ".github/workflows/sync-github-stars.yml").read_text()
+audit_yaml = (ROOT / ".github/workflows/catalog-quality-on-change.yml").read_text()
+stars_docs = (ROOT / "docs/GITHUB_STARS_SYNC.md").read_text()
 ```
 
 ## File: test_evaluate_candidates.py

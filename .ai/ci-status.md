@@ -2,13 +2,13 @@
 
 Summary: 3 success / 0 failure / 2 active
 
-- Refresh catalog quality on catalog changes: in_progress / pending (628a5c81)
-- Validate catalog: in_progress / pending (628a5c81)
-- Validate catalog: completed / success (fbf19625)
-- Validate catalog: completed / success (fbf19625)
-- Validate catalog: completed / cancelled (e88cee1b)
-- Validate catalog: completed / cancelled (3f09b111)
-- Validate catalog: completed / cancelled (c278425a)
-- Daily portfolio star-list integration: completed / success (c278425a)
+- Refresh catalog quality on catalog changes: in_progress / pending (8f9bc12a)
+- Validate catalog: in_progress / pending (8f9bc12a)
+- Validate catalog: completed / success (b54031a3)
+- Validate catalog: completed / success (b54031a3)
+- Validate catalog: completed / cancelled (a3c8ba30)
+- Validate catalog: completed / cancelled (b487af35)
+- Validate catalog: completed / cancelled (fe1cfd11)
+- Daily portfolio star-list integration: completed / success (fe1cfd11)
 
 > Generated summary only; inspect GitHub Actions for full logs when needed.

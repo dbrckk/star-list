@@ -1,7 +1,7 @@
 {
   "files": [
     {
-      "path": "scripts/test_catalog_quality.py",
+      "path": "scripts/test_documentation.py",
       "reasons": [
         "changed",
         "changed-source",
@@ -11,14 +11,12 @@
       "score": 370
     },
     {
-      "path": "scripts/audit_catalog_quality.py",
+      "path": "catalog.json",
       "reasons": [
         "changed",
-        "changed-source",
-        "impact",
-        "symbol-indexed"
+        "recent-project-state"
       ],
-      "score": 325
+      "score": 160
     },
     {
       "path": ".github/workflows/catalog-quality-on-change.yml",
@@ -28,7 +26,21 @@
       "score": 100
     },
     {
-      "path": "catalog.json",
+      "path": ".github/workflows/sync-github-stars.yml",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "docs/GITHUB_STARS_SYNC.md",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "scripts/audit_catalog_quality.py",
       "reasons": [
         "recent-project-state"
       ],
@@ -36,6 +48,13 @@
     },
     {
       "path": "scripts/portfolio_daily.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/test_catalog_quality.py",
       "reasons": [
         "recent-project-state"
       ],

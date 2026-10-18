@@ -165,12 +165,16 @@ jobs:
 name: Refresh catalog quality on catalog changes
 
 on:
+  # Fallback reconciliation covers missed/cancelled bot-triggered audits.
+  schedule:
+    - cron: '47 3 * * *'
   push:
     branches: [main]
     paths:
       - 'catalog.json'
       - '.github/workflows/catalog-quality-on-change.yml'
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
@@ -187,6 +191,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
+          # Reusable calls run on the Star-sync event SHA, which predates its
+          # own catalog push. Always audit the newly committed default branch.
+          ref: main
           persist-credentials: false
       - uses: actions/setup-python@v7
         with:
@@ -1495,6 +1502,8 @@ concurrency:
 
 jobs:
   sync:
+    outputs:
+      catalog_changed: ${{ steps.catalog_push.outputs.catalog_changed }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -1524,6 +1533,7 @@ jobs:
           python scripts/validate_catalog.py
           python scripts/test_catalog_quality.py
       - name: Commit validated catalog changes
+        id: catalog_push
         run: |
           if ! git diff --quiet -- catalog.json; then
             git config user.name "github-actions[bot]"
@@ -1534,6 +1544,7 @@ jobs:
               git fetch origin main
               git rebase origin/main
               if git push origin HEAD:main; then
+                echo "catalog_changed=true" >> "$GITHUB_OUTPUT"
                 exit 0
               fi
               sleep "$attempt"
@@ -1571,6 +1582,16 @@ jobs:
             gh issue create --title "GitHub Stars: $COUNT repositories requiring intervention" \
               --body-file star-sync-review.md
           fi
+
+  audit-after-admission:
+    # GITHUB_TOKEN commits do not trigger ordinary push workflows. Call the
+    # existing quality auditor explicitly only after a successful catalog push.
+    if: always() && needs.sync.outputs.catalog_changed == 'true'
+    needs: sync
+    permissions:
+      contents: read
+      issues: write
+    uses: ./.github/workflows/catalog-quality-on-change.yml
 ````
 
 ## File: .github/workflows/validate.yml
@@ -4355,6 +4376,13 @@ local=target.split("#",1)[0]
 ⋮----
 spec=importlib.util.spec_from_file_location("evaluation",ROOT/"scripts"/"evaluate_candidates.py")
 mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
+⋮----
+# The hourly Stars job pushes with GITHUB_TOKEN; GitHub deliberately
+# suppresses a second workflow's normal push trigger for that commit.
+# Keep the qualified reusable audit dependency wired to the actual push.
+sync_yaml = (ROOT / ".github/workflows/sync-github-stars.yml").read_text()
+audit_yaml = (ROOT / ".github/workflows/catalog-quality-on-change.yml").read_text()
+stars_docs = (ROOT / "docs/GITHUB_STARS_SYNC.md").read_text()
 ````
 
 ## File: scripts/test_evaluate_candidates.py
@@ -46740,6 +46768,42 @@ Repository-specific rules:
       },
       "bestFor": [
         "🧬 钝核｜人机亲密实验室 · Bluntcore Intimacy Lab｜人机恋、成人 AI、Prompt、Memory、Agent、模型床测与实验记录。"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "xoreaxeaxeax/skitter-creek-bath-salts",
+      "githubRepositoryId": 1333170396,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2155,
+        "forks": 170,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-08-13T16:59:41Z"
+      },
+      "bestFor": [
+        "Unlocking _everything_ on the CPU with DRAM scrambling"
       ],
       "avoidWhen": [
         "production use before licensing and security review"

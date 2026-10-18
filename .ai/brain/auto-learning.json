@@ -2,30 +2,30 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 58,
+    "example_count": 59,
     "rejected_count": 0,
     "terms": [
-      "114",
-      "after",
+      "116",
       "audit",
+      "bot-triggered",
       "catalog",
-      "current",
-      "feat",
-      "publish",
+      "daily",
+      "if",
+      "is",
+      "issue",
+      "missed",
       "quality",
-      "star",
-      "updates"
+      "reconcile"
     ],
     "test_count": 0,
-    "useful_count": 2
+    "useful_count": 1
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(catalog): publish current quality audit after star catalog updates (#114)",
+  "task": "fix(catalog): reconcile quality issue daily if bot-triggered audit is missed (#116)",
   "tests_selected": [],
   "useful": [
-    "scripts/audit_catalog_quality.py",
-    "scripts/test_catalog_quality.py"
+    "scripts/test_documentation.py"
   ]
 }

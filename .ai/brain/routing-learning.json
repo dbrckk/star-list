@@ -1089,6 +1089,27 @@
         "scripts/audit_catalog_quality.py",
         "scripts/test_catalog_quality.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(catalog): reconcile quality issue daily if bot-triggered audit is missed (#116)",
+      "terms": [
+        "116",
+        "audit",
+        "bot-triggered",
+        "catalog",
+        "daily",
+        "if",
+        "is",
+        "issue",
+        "missed",
+        "quality",
+        "reconcile"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/test_documentation.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1121,6 +1142,9 @@
     "114": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
+    },
+    "116": {
+      "scripts/test_documentation.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1309,7 +1333,8 @@
     },
     "audit": {
       "scripts/audit_catalog_quality.py": 8,
-      "scripts/test_catalog_quality.py": 8
+      "scripts/test_catalog_quality.py": 8,
+      "scripts/test_documentation.py": 4
     },
     "audit-tier": {
       "scripts/recommend.py": 4,
@@ -1355,6 +1380,9 @@
     "blocked": {
       "scripts/portfolio_daily.py": 4
     },
+    "bot-triggered": {
+      "scripts/test_documentation.py": 4
+    },
     "bounded": {
       "scripts/portfolio_daily.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4
@@ -1390,6 +1418,7 @@
       "scripts/portfolio_daily.py": 8,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_catalog_quality.py": 8,
+      "scripts/test_documentation.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
     },
     "catalog-declared": {
@@ -1445,6 +1474,7 @@
     "daily": {
       "scripts/portfolio_daily.py": 12,
       "scripts/sync_github_stars.py": 4,
+      "scripts/test_documentation.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
     "dashboard": {
@@ -1668,6 +1698,9 @@
     "idle": {
       "scripts/portfolio_daily.py": 4
     },
+    "if": {
+      "scripts/test_documentation.py": 4
+    },
     "import": {
       "scripts/star_import_pipeline.py": 8,
       "scripts/test_star_import_pipeline.py": 8
@@ -1724,7 +1757,11 @@
     "is": {
       "scripts/portfolio_daily.py": 4,
       "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_documentation.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
+    },
+    "issue": {
+      "scripts/test_documentation.py": 4
     },
     "keep": {
       "scripts/portfolio_daily.py": 4
@@ -1793,6 +1830,9 @@
       "scripts/test_recommend.py": 4,
       "scripts/test_refresh_github_metadata.py": 8,
       "scripts/validate_catalog.py": 4
+    },
+    "missed": {
+      "scripts/test_documentation.py": 4
     },
     "native": {
       "scripts/portfolio_daily.py": 12
@@ -1879,7 +1919,8 @@
     },
     "quality": {
       "scripts/audit_catalog_quality.py": 8,
-      "scripts/test_catalog_quality.py": 8
+      "scripts/test_catalog_quality.py": 8,
+      "scripts/test_documentation.py": 4
     },
     "quarantine": {
       "scripts/portfolio_daily.py": 8
@@ -1911,6 +1952,9 @@
       "scripts/infer_selection_guidance.py": 4,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 4
+    },
+    "reconcile": {
+      "scripts/test_documentation.py": 4
     },
     "recover": {
       "scripts/portfolio_daily.py": 4

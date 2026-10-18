@@ -1,64 +1,39 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "b5ee5bdaeee3aadef4ce76406d95d5e633eb0ba5",
-  "head": "628a5c8114855fc63df2c9f6555d0388ddfc2d2f",
+  "base": "628a5c8114855fc63df2c9f6555d0388ddfc2d2f",
+  "head": "8f9bc12a3c2a2e2dc51cc4c095f3a877e1b2c8c6",
   "index_mode": "incremental",
   "changed_files": [
     {
       "path": ".github/workflows/catalog-quality-on-change.yml",
-      "status": "A"
-    },
-    {
-      "path": "scripts/audit_catalog_quality.py",
       "status": "M"
     },
     {
-      "path": "scripts/test_catalog_quality.py",
+      "path": ".github/workflows/sync-github-stars.yml",
+      "status": "M"
+    },
+    {
+      "path": "catalog.json",
+      "status": "M"
+    },
+    {
+      "path": "docs/GITHUB_STARS_SYNC.md",
+      "status": "M"
+    },
+    {
+      "path": "scripts/test_documentation.py",
       "status": "M"
     }
   ],
   "changed_source_files": [
-    "scripts/audit_catalog_quality.py",
-    "scripts/test_catalog_quality.py"
+    "scripts/test_documentation.py"
   ],
   "impacted_files": [
-    "scripts/audit_catalog_quality.py",
-    "scripts/test_catalog_quality.py"
+    "scripts/test_documentation.py"
   ],
-  "impacted_symbols": [
-    {
-      "name": "_age_days",
-      "kind": "function",
-      "file": "scripts/audit_catalog_quality.py",
-      "line": 14
-    },
-    {
-      "name": "analyze",
-      "kind": "function",
-      "file": "scripts/audit_catalog_quality.py",
-      "line": 26
-    },
-    {
-      "name": "add",
-      "kind": "function",
-      "file": "scripts/audit_catalog_quality.py",
-      "line": 33
-    },
-    {
-      "name": "render_markdown",
-      "kind": "function",
-      "file": "scripts/audit_catalog_quality.py",
-      "line": 138
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/audit_catalog_quality.py",
-      "line": 202
-    }
-  ],
+  "impacted_symbols": [],
   "selected_tests": [
-    "scripts/test_catalog_quality.py"
+    "scripts/test_documentation.py"
   ]
 }
