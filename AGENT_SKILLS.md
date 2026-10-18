@@ -1,0 +1,89 @@
+# Skill Issue: priority agent-skill discovery for every repository
+
+The public [Skill Issue](https://skill-issue.in/) directory is a **search and
+discovery reference** for reusable agent skills (design, frontend, backend,
+motion/video, automation and other domains). It is not an installed agent, a
+verified package registry, an executable dependency or an assurance of
+copyright/security compliance.
+
+The catalog lists its website once in [websites.json](websites.json) and a
+small, explicit set of original GitHub source links in
+[agent-skills.json](agent-skills.json). The latter was derived from entries
+visible on the site on 2026-10-18. Each upstream repository was confirmed
+to exist; **individual SKILL.md instructions have not been audited**.
+
+## Make it useful throughout the portfolio
+
+Every accessible repository reviewed by the existing public daily scan or
+private per-repository workflow receives the **high-priority Skill Issue
+directory** in its report, even when no individual skill qualifies. When
+metadata strongly supports a match, the scanner also proposes **up to two**
+specific skill sources. All results are advisory; neither GitHub Stars
+synchronization nor Production-OS integration dispatch installs these skills.
+
+The matching algorithm considers only GitHub-owned project metadata
+(repository name, description, topics, inferred domain and primary language),
+not untrusted README instructions or a website's install command. The skill
+is suggested only if both its declared domain and at least one concrete label
+match, and language/framework evidence is compatible. Unknown projects still
+see the general directory without arbitrary skill installations.
+
+Examples of the initial curated source references:
+
+| Skill | Source repository | Example fit |
+| --- | --- | --- |
+| UI UX Pro Max | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | Web, mobile and game UI design |
+| Frontend Design | [anthropics/skills](https://github.com/anthropics/skills) | Frontend and visual design |
+| Agent Browser | [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser) | Browser QA and automation |
+| React Best Practices | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | React/Next.js applications |
+| Web Design Guidelines | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | Web UI quality and accessibility |
+| Remotion Best Practices | [remotion-dev/skills](https://github.com/remotion-dev/skills) | JS/TS video and animation pipelines |
+| API Design Principles | [wshobson/agents](https://github.com/wshobson/agents) | Backend REST/GraphQL APIs |
+
+The individual source links and project-domain mappings are **curated,
+non-autonomous starting points**, not certificates of correctness.
+
+## Use from the repository
+
+```bash
+# Validate the local snapshot and find skill sources.
+python scripts/agent_skill_discovery.py
+
+# Select only framework-compatible, project-relevant suggestions.
+python scripts/agent_skill_discovery.py "react frontend performance" --domain web_frontend --language TypeScript --json
+python scripts/agent_skill_discovery.py "api backend rest" --domain backend --json
+
+# Search both GitHub repositories and Skill Issue references for a task.
+python scripts/recommend.py "react frontend performance" --language typescript --skills --json
+python scripts/recommend.py "mobile ui design" --skills --websites --json
+```
+
+The `--skills` flag adds `skillDiscovery` separately from GitHub
+`recommendations` and website `websiteRecommendations`. It never overrides
+hard repository filters, alters the selected stack, downloads scripts or
+contributes items to the Production-OS dispatch queue.
+
+## Required security and compatibility review
+
+1. Check that an original skill actually exists at the linked repository and
+   that the applicable license permits the intended use. Repository-level
+   license metadata alone may not cover every skill or third-party asset.
+2. Review its full `SKILL.md`, referenced scripts, update hooks,
+   dependencies and permissions at a **pinned commit**; reject prompt
+   injection, credential harvesting, unsafe shell instructions and unbounded
+   external-network access.
+3. Install selectively in a sandbox or approved development environment, not
+   blindly across all projects or on production servers. Never execute
+   remote `curl | sh`, `npx` or plugin install commands merely because they
+   are presented by the directory.
+4. Run the relevant checks in the actual target repository and establish that
+   the skill was invoked for its intended task and materially improved the
+   workflow before retaining it. Do not alter production code or grant extra
+   tokens/permissions just to satisfy a suggested skill.
+5. Treat skill updates as new code that requires review. Keep the public
+   portfolio report free of private repository source, credentials and other
+   confidential task data.
+
+The daily scanner stays **read-only for skills** and may run safely even while
+Production-OS autonomous integration dispatch is halted due to insufficient
+verified provider capacity.
