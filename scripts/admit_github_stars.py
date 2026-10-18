@@ -161,7 +161,7 @@ def admit(catalog, stars, fetcher):
     old = catalog.get("repositories")
     if not isinstance(old, list):
         raise RuntimeError("Malformed source catalog")
-    by_name = {normalize_repo(x["repo"]) for x in old}
+    by_name = {normalize_repo(x["repo"]): x.get("githubRepositoryId") for x in old}
     by_id = {x["githubRepositoryId"] for x in old if type(x.get("githubRepositoryId")) is int}
     if len(by_name) != len(old):
         raise RuntimeError("Duplicate identities in source catalog")
@@ -171,6 +171,14 @@ def admit(catalog, stars, fetcher):
     for star in stars:
         key = normalize_repo(star["repo"])
         rid = star.get("githubRepositoryId")
+        recorded_id = by_name.get(key)
+        if recorded_id is not None and rid is not None and recorded_id != rid:
+            # Re-check even when a stale read-only report reached admission:
+            # a recycled owner/name is not the same GitHub repository.
+            raise RuntimeError(
+                "Star repository identity conflict (name reused with a new GitHub ID): "
+                + star["repo"]
+            )
         if key in by_name or (rid is not None and rid in by_id):
             already += 1
             if key not in by_name:
@@ -181,13 +189,20 @@ def admit(catalog, stars, fetcher):
         if rid is None or entry["githubRepositoryId"] != rid:
             raise RuntimeError("Star identity changed while synchronizing: " + star["repo"])
         canonical = normalize_repo(entry["repo"])
+        if canonical in by_name:
+            previous_id = by_name[canonical]
+            if previous_id is not None and previous_id != entry["githubRepositoryId"]:
+                raise RuntimeError(
+                    "GitHub metadata reused a cataloged repository name with a new ID: "
+                    + entry["repo"]
+                )
         if canonical in by_name or entry["githubRepositoryId"] in by_id:
             already += 1
             continue
         if meta.get("private") is True:
             raise RuntimeError("Unexpected private repository in public Stars: " + star["repo"])
         fresh.append(entry)
-        by_name.add(canonical)
+        by_name[canonical] = entry["githubRepositoryId"]
         by_id.add(entry["githubRepositoryId"])
     result = dict(catalog)
     result["repositories"] = old + sorted(fresh, key=lambda r: r["repo"].lower())

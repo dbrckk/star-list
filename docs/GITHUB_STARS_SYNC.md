@@ -76,6 +76,14 @@ The GitHub Actions workflow performs that write automatically.
 - Previously cataloged entries remain after an unstar; the catalog is additive.
 - Renamed/transferred repositories with known stable IDs are recognized as
   already present; legacy references may require a separate canonical rename.
+- A GitHub owner/name slug may be recycled after deletion or transfer. If the
+  current public Star reports a different permanent repository ID from a
+  catalog entry with the same slug, syncing **fails visibly** instead of
+  incorrectly marking the new repository as accounted for. A transfer that
+  retains its permanent ID is still recognized. Ambiguous duplicate IDs across
+  API pages also abort the snapshot; the next scheduled sync retries.
+  Historic entries without a known stable ID cannot be verified by ID until
+  separately enriched, so name-only matches remain an explicit limitation.
 - GitHub's license label is only metadata; model weights, assets and commercial
   usage may have separate restrictions.
 - Auto-admitted entries retain the `audit` tier until deeper manual curation.
