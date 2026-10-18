@@ -41,6 +41,13 @@ The workflow:
    and rechecks it (up to three times). It refuses to overwrite the review
    issue with an older snapshot, retaining the audit artifact on failure.
 
+The weekly **Refresh GitHub metadata** workflow also uses this same
+validated audit publisher, but only after its own metadata/history push has
+succeeded. It rebases non-destructively against new Stars admissions and fails
+visibly on conflicts instead of publishing an audit from a local snapshot that
+never reached `main`. Its other health/discovery issues are independent and
+remain published by the maintenance workflow.
+
 If any repository cannot be verified, admission fails rather than committing
 a partial catalog. Subsequent scheduled runs retry. No Star is silently
 excluded because of its license, maturity, language or category.
