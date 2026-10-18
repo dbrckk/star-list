@@ -395,7 +395,7 @@ def main():
             print(f"\nSuggested stack: {st['name']}")
             print(" + ".join(st.get("repos", [])))
         if args.skills:
-            print("\\nAgent skills (Skill Issue; review sources and licenses before use):")
+            print("\nAgent skills (Skill Issue; review sources and licenses before use):")
             print(" - Directory:", SKILL_ISSUE_URL)
             for skill in result["skillDiscovery"]["recommendations"]:
                 print(" - " + skill["name"] + " | " + skill["url"] + " | review required")
