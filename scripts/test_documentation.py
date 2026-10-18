@@ -71,6 +71,10 @@ assert "uses: ./.github/workflows/catalog-quality-on-change.yml" in sync_yaml
 assert "  workflow_call:" in audit_yaml
 assert "  schedule:" in audit_yaml and "47 3 * * *" in audit_yaml
 assert "          ref: main" in audit_yaml
+assert "git ls-remote --exit-code origin refs/heads/main" in audit_yaml
+assert "main moved repeatedly" in audit_yaml
+assert "refusing stale issue publication" in audit_yaml
+assert "        if: always()" in audit_yaml
 assert "GITHUB_TOKEN" in stars_docs and "reusable workflow" in stars_docs
 
 print("OK: documentation contract tests passed")
