@@ -38,7 +38,7 @@ def check(data, schema):
     if errors:
         return errors
     ids = set()
-    urls = set()
+    urls = {}
     for item in data["resources"]:
         name = item["id"]
         if name in ids:
@@ -51,12 +51,15 @@ def check(data, schema):
             except (ValueError, TypeError) as exc:
                 errors.append(f"{name}: {exc}")
                 continue
+            # Canonical HTTPS and www/non-www aliases may resolve to the
+            # same website. Keep both human-facing URLs, but reject identity
+            # collisions between different catalog records.
             if key in seen_aliases:
-                errors.append(f"{name}: canonical/alias duplicate {key}")
+                continue
             seen_aliases.add(key)
-            if key in urls:
-                errors.append(f"{name}: URL is used by another resource: {key}")
-            urls.add(key)
+            if key in urls and urls[key] != name:
+                errors.append(f"{name}: URL belongs to {urls[key]}: {key}")
+            urls[key] = name
         if item["usagePolicy"] == "reference-only" and item["autoIntegrate"] is not False:
             errors.append(f"{name}: reference sites cannot auto-integrate")
     return errors
