@@ -746,7 +746,7 @@ def main() -> int:
                     repo["name"], str(repo.get("description") or ""),
                     " ".join(repo.get("topics") or []),
                 ]))
-                possible_sites = recommend_websites(web_terms, set(profile["domains"]), limit=10)
+                possible_sites = recommend_websites(web_terms, set(profile.get("domains") or []), limit=10)
                 # Domain-only matches are too generic for portfolio reporting.
                 # At least one concrete tag or best-for phrase must also match.
                 row["website_references"] = [
