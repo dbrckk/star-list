@@ -1,29 +1,13 @@
 # Change impact
 
-Base: f36a39698aca623aa81c32c832a12558b3819cf4
-Head: 24e56f279986a330eb79242e20729abab8aeb8eb
+Base: 5f27d115f91a135e553a340cc283b0a27754c517
+Head: 9e49386a4d1ca67e05104d1db8cc71fb083464c6
 
 ## Changed files
-- M .github/workflows/daily-portfolio-integration.yml
-- M .github/workflows/portfolio-scan-smoke.yml
-- M .github/workflows/validate.yml
-- A AGENT_SKILLS.md
-- M README.md
-- M WEB_RESOURCES.md
-- A agent-skills.json
-- M schemas/websites.schema.json
-- A scripts/agent_skill_discovery.py
-- M scripts/portfolio_daily.py
-- M scripts/recommend.py
-- M scripts/test_documentation.py
-- M scripts/test_recommend.py
-- M websites.json
+- M AGENTS.md
 
 ## Affected areas
-- .github
 - (root)
-- schemas
-- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.

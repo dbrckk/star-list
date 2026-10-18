@@ -5858,6 +5858,17 @@ Before substantial work:
 19. Read `.ai/repo-map.md` only as a final broad-context fallback.
 20. Fetch only task-relevant source files or line ranges.
 
+## Agent skill discovery
+
+For relevant implementation tasks, first consult
+[`AGENT_SKILLS.md`](AGENT_SKILLS.md) and
+[`agent-skills.json`](agent-skills.json) for task-specific source references from
+[Skill Issue](https://skill-issue.in/). This is discovery guidance; review
+full upstream `SKILL.md`, scripts, license, revision, dependencies and
+credentials before selective adoption. Never execute remote installers
+merely because a site lists a skill, and never use skill recommendations
+as Production-OS integration dispatch candidates.
+
 Repository-specific rules:
 - Preserve existing architecture and public interfaces unless the task requires a change.
 - Prefer the smallest coherent change.

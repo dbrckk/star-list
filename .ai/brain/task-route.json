@@ -4,15 +4,15 @@
     "expand_to": 12,
     "max_files": 3,
     "requested_max_files": 12,
-    "score_margin": 21,
+    "score_margin": 12,
     "tier": "narrow",
-    "top_score": 50
+    "top_score": 41
   },
   "cache": {
-    "fingerprint": "f51c1d5ab74453f361438b21b46311570652249f7ee91663f3f02061c76028aa",
+    "fingerprint": "96315078d8944dac245e5d401b1a5a237d1c0ee67322cefc8042d4c6bb2c660f",
     "hit": false
   },
-  "candidate_count": 18,
+  "candidate_count": 7,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -23,12 +23,10 @@
       ],
       "path": "scripts/portfolio_daily.py",
       "reasons": [
-        "impact",
         "learning",
-        "recently-changed",
         "search-index"
       ],
-      "score": 50,
+      "score": 41,
       "symbols": [
         "SameOriginRedirect",
         "busy_integration_targets",
@@ -78,31 +76,16 @@
       "matched_terms": [
         "game"
       ],
-      "path": "scripts/recommend.py",
+      "path": "scripts/infer_selection_guidance.py",
       "reasons": [
-        "impact",
-        "recently-changed",
         "search-index"
       ],
-      "score": 26,
+      "score": 17,
       "symbols": [
-        "activity_adjustment",
-        "choose_stack",
-        "delta",
-        "explain_repo",
-        "guidance_weight",
-        "infer_alternatives",
-        "infer_complements",
-        "infer_domains",
-        "load",
-        "main",
-        "norm",
-        "recommend_websites",
-        "resolve_relations",
-        "score_repo",
-        "tokens",
-        "trend_adjustment",
-        "usable"
+        "_humanize",
+        "enrich",
+        "infer_guidance",
+        "main"
       ]
     }
   ],

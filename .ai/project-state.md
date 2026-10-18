@@ -90,16 +90,17 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T18:35:11Z
+Generated: 2026-10-18T18:41:42Z
 
 ### Git
 - Branch: `main`
-- Head: `24e56f279986`
-- Commit date: 2026-10-18T14:35:01-04:00
-- Commit: feat(skills): make Skill Issue a priority discovery source across the portfolio (#131)
-- Tracked files: 289
+- Head: `9e49386a4d1c`
+- Commit date: 2026-10-18T14:41:33-04:00
+- Commit: docs(skills): preserve verified 41-repo Skill Issue rollout and agent adoption gates (#132)
+- Tracked files: 291
 
 ### Recently changed files
+- `AGENTS.md`
 - `.github/workflows/daily-portfolio-integration.yml`
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `.github/workflows/validate.yml`
@@ -119,7 +120,6 @@ Generated: 2026-10-18T18:35:11Z
 - `scripts/test_json_contracts.py`
 - `scripts/validate_websites.py`
 - `RECOMMENDER.md`
-- `.github/workflows/catalog-quality-on-change.yml`
 
 ### Project signals
 - No common build descriptor detected
