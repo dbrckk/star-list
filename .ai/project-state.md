@@ -81,6 +81,13 @@ Status: active
 - [Real Stars run #39164085442](https://github.com/dbrckk/star-list/actions/runs/39164085442) inspected **846** accessible public favorites, recognized **830** existing and admitted **16**. [Catalog quality issue #32](https://github.com/dbrckk/star-list/issues/32) reports **980 repositories**, **847** verified permanent IDs, **133** name-only/unverified and **zero** review-grade findings. Private/inaccessible favorite coverage is not inferred.
 - Only upstream file **existence and immutable source identity** were verified. The 19 SKILL.md bodies, bundled scripts, permissions and licenses have *not* been security audited or installed. Applying any skill to a target still requires independent source/terms review and target-side evidence.
 
+## Verified native Skill Issue extension (2026-10-18)
+
+- [Star-list PR #136](https://github.com/dbrckk/star-list/pull/136) merged as `a08aaed`: added pinned official Flutter and specialized Godot SKILL.md references. Strict root `pubspec.yaml` Flutter SDK dependency and GitHub's primary GDScript language now qualify review-only advice. Polyglot repositories can expose their separate React/Flutter frameworks without changing the existing repository integration ranker; duplicate manifest GETs are avoided. Exact-head catalog CI and read-only [portfolio smoke #39172713463](https://github.com/dbrckk/star-list/actions/runs/39172713463) passed, with **42/42** public repos inspected and **12** with targeted suggestions, up from 8.
+- [PR #137](https://github.com/dbrckk/star-list/pull/137) merged as `112eae0`: added pinned sources from Google's `android/skills` (Compose performance, Play policy) and MIT `MSayib/roblox-dev-skill`. The matcher now supports pinned safe root SKILL.md files, distinguishes Luau from Lua and requires specific Compose labels rather than treating all Android projects as Compose. Exact-head catalog and [portfolio smoke #39173189524](https://github.com/dbrckk/star-list/actions/runs/39173189524) passed.
+- All three post-merge jobs on `112eae0` succeeded: [Validate catalog #39173301348](https://github.com/dbrckk/star-list/actions/runs/39173301348), [Repository standards #39173302198](https://github.com/dbrckk/star-list/actions/runs/39173302198) and [daily portfolio #39173301377](https://github.com/dbrckk/star-list/actions/runs/39173301377). [Public issue #61](https://github.com/dbrckk/star-list/issues/61) was updated: **42/42** scanned, **42** Skill Issue directory references, **13** targets with **21** tailored skill suggestions; **zero** new Production-OS integrations. The catalog now includes **25** immutable-source-pinned skill references (19 original directory matches and six complementary platform-specific sources).
+- **All 25 SKILL.md bodies and any referenced scripts remain unreviewed and uninstalled.** GitHub file existence and commit identity are not a security audit or evidence of target-side usage. The prior 4 v2 + 1 terminal v3 capacity failures and fleet-wide autonomous dispatch hold remain unchanged.
+
 ## Current priority
 1. **Restore usable free AI execution capacity.** 2026-10-18 diagnosis verified 4 v2 and 1 failed final v3, all `capacity_exhausted`, with no delivered commit, reviewable PR or target CI. See `docs/PORTFOLIO_CAPACITY_RECOVERY.md`.
 2. Qualify one zero-cost provider/model route with authenticated quota and a successful small inference probe before any operator-approved recovery; the final-v3 fleet stop is intentionally in effect. Do not reset markers, bypass caps or raise budgets.
@@ -93,7 +100,7 @@ Status: active
 - Catalog identity uniqueness and schema remain enforced by the existing validation workflow.
 
 ## Last verified
-- 2026-10-18 (962 catalog entries; 828/828 accessible public Stars; 829 confirmed permanent GitHub IDs, 133 still name-only; 38/38 public projects and two private projects checked; v2/v3 recovery remains blocked pending true target-side delivery).
+- 2026-10-18 (980 catalog entries, 846 accessible public Stars reconciled in the latest verified admission; 847/980 permanent GitHub IDs verified and 133 name-only; 42/42 public projects scanned with 13 receiving 21 curated skill references; private-scanner success was last separately verified on October 18; zero new Production-OS integrations and terminal-v3 fleet stop remain in place).
 
 <!-- AUTO:START -->
 ## Automatic repository state
