@@ -4,21 +4,19 @@
   "repository": "dbrckk/star-list",
   "reference_branch": "main",
   "status": "active",
-  "verified_catalog_repositories": 962,
+  "verified_catalog_repositories": 980,
   "last_verified_public_portfolio_scan": {
-    "discovered": 41,
-    "inspected": 41,
+    "discovered": 42,
+    "inspected": 42,
     "with_suggestions": 16,
     "with_native_suggestions": 3,
     "native_suggestions": 5,
     "with_website_references": 3,
-    "website_references": 6,
-    "skill_directory_references": 41,
-    "with_skill_recommendations": 5,
-    "skill_recommendations": 6,
+    "skill_directory_references": 42,
+    "with_skill_recommendations": 8,
     "dispatched": 0,
     "public_report_issue": 61,
-    "verified_workflow_run": 39154817150
+    "verified_workflow_run": 39168307153
   },
   "last_verified_integration_inventory": {
     "active": 0,
@@ -84,7 +82,10 @@
     125,
     127,
     130,
-    131
+    131,
+    132,
+    133,
+    134
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -127,14 +128,16 @@
     "Public Stars sync run #39136471679 checked 828/828 accessible public favorites, 9 pages, no missing or newly admitted repos.",
     "Star-list PRs #127 and #130 established validated canonical website references and added advisory sites to public/private portfolio discovery.",
     "Star-list PR #131 merged as 24e56f2: Skill Issue is an 11th curated website and high-priority skill directory with seven reviewed-upstream source references, offline domain/language selection, opt-in CLI, and safe public/private portfolio reporting; post-merge validations and live 41/41 public scan passed.",
-    "Repo-standards PR #12 merged as f2e6a2e: shared AGENTS and repo-excellence skill recommend relevant Skill Issue sources only after full code/license/security review; consumers pinned to older policies are not silently upgraded."
+    "Repo-standards PR #12 merged as f2e6a2e: shared AGENTS and repo-excellence skill recommend relevant Skill Issue sources only after full code/license/security review; consumers pinned to older policies are not silently upgraded.",
+    "Star-list PR #133 pinned and verified exact upstream SKILL.md file paths for 19 curated Skill Issue references, while keeping instructions unreviewed and integration disabled; exact-head catalog CI and portfolio smoke plus post-merge CI passed.",
+    "Star-list PR #134 used strict known package.json dependency names (React, Next.js, Expo, Tailwind, Remotion) to qualify advisory skills; real post-merge portfolio report #61 covers 42/42 public targets and 8 projects with targeted skills, up from 5, without auto-install or Production-OS launches.",
+    "Hourly Stars sync run #39164085442 admitted 16 new accessible stars, total 980 catalog records; catalog quality issue #32 confirms 847/980 verified permanent GitHub IDs, 133 name-only records, no review findings."
   ],
   "next_priority": [
-    "Expand task-relevant, source-verified Skill Issue coverage beyond seven curated examples only after inspecting each original SKILL.md, license, scripts and runtime compatibility; never mass-install external instructions.",
-    "Verify the remaining 133 catalog records missing permanent GitHub IDs through the existing weekly metadata refresh; handle unreachable or transferred identities without guessing.",
-    "Requalify actual Star-list native candidates and deliver one small licensed, compatible source integration with exact-SHA draft PR and target CI evidence, without fake dependency-only success.",
-    "Verify a usable zero-cost coding provider with authenticated quota before operator-approved Production-OS recovery; preserve terminal-v3 fleet dispatch stop.",
-    "Continue daily public/private discovery and hourly Stars reconciliation, preserving token/credential isolation and fail-closed diagnostics."
+    "Use the 19 pinned Skill Issue sources as task-specific review references across all public and private portfolio scans; do not automatically execute unaudited SKILL.md scripts or install external instructions.",
+    "Verify the remaining 133 catalog records missing permanent GitHub IDs via authenticated metadata refresh; preserve stable identity and never infer ownership from slug alone.",
+    "Demonstrate one small licensed/compatible target-code integration and exact-SHA draft PR plus target CI, only after verified usable free provider capacity and operator review of the terminal v3 failure.",
+    "Keep daily public/private discovery, hourly Star sync, strict manifest-name skill matching and token/credential isolation; measure impact in current issue #61."
   ],
   "constraints": [
     "No automatic merge/deployment of third-party integrations",
@@ -143,21 +146,19 @@
     "Do not report a submitted Production-OS task as a completed integration"
   ],
   "last_verified_public_star_sync": {
-    "run_id": 39136471679,
+    "run_id": 39164085442,
     "checked_at_utc": "2026-10-18",
-    "public_accessible_stars": 828,
-    "already_cataloged": 828,
-    "missing": 0,
+    "public_accessible_stars": 846,
+    "already_cataloged_before_admission": 830,
+    "admitted": 16,
+    "missing_after_admission": 0,
     "pages": 9
   },
   "last_verified_identity_coverage": {
     "report_issue": 32,
-    "verified": 829,
+    "verified": 847,
     "missing": 133,
-    "total": 962,
-    "audit_workflow_run": 39136539206,
-    "checked_at_utc": "2026-10-18",
-    "identity_backfilled_from_public_stars": 572,
-    "real_admission_run": 39136146189
+    "total": 980,
+    "audit_checked_at_utc": "2026-10-18"
   }
 }
