@@ -21,6 +21,8 @@ concurrency:
 
 jobs:
   sync:
+    outputs:
+      catalog_changed: ${{ steps.catalog_push.outputs.catalog_changed }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -50,6 +52,7 @@ jobs:
           python scripts/validate_catalog.py
           python scripts/test_catalog_quality.py
       - name: Commit validated catalog changes
+        id: catalog_push
         run: |
           if ! git diff --quiet -- catalog.json; then
             git config user.name "github-actions[bot]"
@@ -60,6 +63,7 @@ jobs:
               git fetch origin main
               git rebase origin/main
               if git push origin HEAD:main; then
+                echo "catalog_changed=true" >> "$GITHUB_OUTPUT"
                 exit 0
               fi
               sleep "$attempt"
@@ -97,3 +101,13 @@ jobs:
             gh issue create --title "GitHub Stars: $COUNT repositories requiring intervention" \
               --body-file star-sync-review.md
           fi
+
+  audit-after-admission:
+    # GITHUB_TOKEN commits do not trigger ordinary push workflows. Call the
+    # existing quality auditor explicitly only after a successful catalog push.
+    if: always() && needs.sync.outputs.catalog_changed == 'true'
+    needs: sync
+    permissions:
+      contents: read
+      issues: write
+    uses: ./.github/workflows/catalog-quality-on-change.yml
