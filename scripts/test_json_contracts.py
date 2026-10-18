@@ -63,6 +63,13 @@ samples={
     "health-drift.schema.json": {"dropThreshold":10.0,"findings":0,"repositories":[]},
     "health-trends.schema.json": {"repositories":[]},
     "replacement-report.schema.json": {"threshold":55.0,"findings":0,"repositories":[]},
+    "websites.schema.json": {"schemaVersion": 1, "websites": [{
+        "id": "demo-reference", "name": "Demo Reference",
+        "url": "https://example.org/", "type": "inspiration-gallery",
+        "access": "free", "domains": ["web_frontend"],
+        "tags": ["example"], "bestFor": ["design inspiration"],
+        "reuse": "reference-only", "caution": "Verify ownership and reuse rights."
+    }]},
     "catalog-stats.schema.json": {
         "repositories":0,"averageScore":0.0,"selfHosted":0,"selfHostedPercent":0.0,
         "domains":{},"tiers":{},"topLanguages":{},"topPlatforms":{},"topCapabilities":{},"domainLeaders":{},
