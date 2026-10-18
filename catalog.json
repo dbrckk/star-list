@@ -41504,6 +41504,42 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "xoreaxeaxeax/skitter-creek-bath-salts",
+      "githubRepositoryId": 1333170396,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2155,
+        "forks": 170,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-08-13T16:59:41Z"
+      },
+      "bestFor": [
+        "Unlocking _everything_ on the CPU with DRAM scrambling"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
