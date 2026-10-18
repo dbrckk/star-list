@@ -1,8 +1,33 @@
 {
-  "schema_version": 1,
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": false,
-  "reason": "missing-task-or-source-change",
-  "task": "docs(portfolio): require exact-SHA draft PR and target CI delivery evidence (#120)",
-  "useful": []
+  "learned": true,
+  "learning_result": {
+    "example_count": 62,
+    "rejected_count": 0,
+    "terms": [
+      "121",
+      "before",
+      "coverage",
+      "declaring",
+      "detect",
+      "full",
+      "github",
+      "names",
+      "recycled",
+      "repository",
+      "stars"
+    ],
+    "test_count": 0,
+    "useful_count": 3
+  },
+  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
+  "rejected": [],
+  "schema_version": 1,
+  "task": "fix(stars): detect recycled GitHub repository names before declaring full coverage (#121)",
+  "tests_selected": [],
+  "useful": [
+    "scripts/admit_github_stars.py",
+    "scripts/sync_github_stars.py",
+    "scripts/test_sync_github_stars.py"
+  ]
 }

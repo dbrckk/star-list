@@ -72,19 +72,22 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T14:05:06Z
+Generated: 2026-10-18T14:11:29Z
 
 ### Git
 - Branch: `main`
-- Head: `f0eb322ba0e6`
-- Commit date: 2026-10-18T10:04:56-04:00
-- Commit: docs(portfolio): require exact-SHA draft PR and target CI delivery evidence (#120)
+- Head: `57d97639723b`
+- Commit date: 2026-10-18T10:11:20-04:00
+- Commit: fix(stars): detect recycled GitHub repository names before declaring full coverage (#121)
 - Tracked files: 280
 
 ### Recently changed files
+- `docs/GITHUB_STARS_SYNC.md`
+- `scripts/admit_github_stars.py`
+- `scripts/sync_github_stars.py`
+- `scripts/test_sync_github_stars.py`
 - `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
 - `.github/workflows/refresh-metadata.yml`
-- `docs/GITHUB_STARS_SYNC.md`
 - `scripts/test_documentation.py`
 - `.github/workflows/catalog-quality-on-change.yml`
 

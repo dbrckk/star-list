@@ -2216,7 +2216,7 @@ def admit(catalog, stars, fetcher)
 """Reconcile by both canonical name and permanent ID; fail on any ambiguity."""
 old = catalog.get("repositories")
 ⋮----
-by_name = {normalize_repo(x["repo"]) for x in old}
+by_name = {normalize_repo(x["repo"]): x.get("githubRepositoryId") for x in old}
 by_id = {x["githubRepositoryId"] for x in old if type(x.get("githubRepositoryId")) is int}
 ⋮----
 fresh = []
@@ -2225,11 +2225,17 @@ transfers = []
 ⋮----
 key = normalize_repo(star["repo"])
 rid = star.get("githubRepositoryId")
+recorded_id = by_name.get(key)
+⋮----
+# Re-check even when a stale read-only report reached admission:
+# a recycled owner/name is not the same GitHub repository.
 ⋮----
 meta = fetcher(star["repo"])
 entry = catalog_entry(meta)
 ⋮----
 canonical = normalize_repo(entry["repo"])
+⋮----
+previous_id = by_name[canonical]
 ⋮----
 result = dict(catalog)
 ⋮----
@@ -4026,6 +4032,7 @@ def api_stars(user, token=None, max_pages=100, opener=SAFE_GITHUB_HTTP.open, sle
 headers = {
 ⋮----
 found = {}
+names_by_stable_id = {}
 duplicate_items = 0
 pages = 0
 ⋮----
@@ -4049,14 +4056,17 @@ repo = entry.get("full_name")
 ⋮----
 key = normalize_repo(repo)
 ⋮----
+repo_id = entry.get("id")
+⋮----
+original_id = found[key]["githubRepositoryId"]
+⋮----
 license_obj = entry.get("license")
 license_name = license_obj.get("spdx_id") if isinstance(license_obj, dict) else None
-repo_id = entry.get("id")
 ⋮----
 # We generate the next URL locally; never follow an untrusted Link URL.
 has_next = bool(re.search(r'rel\s*=\s*["\x27]?next(?:["\x27]|[,;\s]|$)', link, re.IGNORECASE))
 ⋮----
-def catalog_identities(path, include_ids=False)
+def catalog_identities(path, include_ids=False, include_name_ids=False)
 ⋮----
 data = json.loads(Path(path).read_text(encoding="utf-8"))
 ⋮----
@@ -4066,9 +4076,16 @@ identity = normalize_repo(row.get("repo"))
 ⋮----
 repo_id = row.get("githubRepositoryId")
 ⋮----
-def build_report(username, stars, catalog, pages, duplicates=0, now=None, catalog_ids=None)
-⋮----
 catalog_ids = catalog_ids or set()
+catalog_name_ids = catalog_name_ids or {}
+# Owner/name values can be reused after deletion or transfer. If the
+# catalog has a trusted numeric ID for that exact name, a different live
+# ID must never be counted as already admitted.
+⋮----
+key = normalize_repo(entry["repo"])
+recorded_id = catalog_name_ids.get(key)
+observed_id = entry.get("githubRepositoryId")
+⋮----
 # A verified permanent ID remains the same across owner/name transfers.
 new = [
 ⋮----
@@ -4094,7 +4111,7 @@ parser = argparse.ArgumentParser(description="Check GitHub Stars against star-li
 ⋮----
 args = parser.parse_args(argv)
 ⋮----
-report = build_report(args.user, stars, catalog, pages, duplicates, catalog_ids=catalog_ids)
+report = build_report(
 ````
 
 ## File: scripts/test_analyze_coverage.py

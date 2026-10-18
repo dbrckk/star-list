@@ -1,16 +1,28 @@
 {
   "files": {
-    "catalog.json": {
-      "sha256": "cf86bc57ecec42d7c582828b7c67e33176ed0c3f38585a0d19853081953b2097",
-      "size": 1039072
+    "docs/GITHUB_STARS_SYNC.md": {
+      "sha256": "268d52750314f1e384a1a6c4fa7ba9450610e03c4014d654dad6fb79b7797e98",
+      "size": 4976
     },
-    "docs/PORTFOLIO_CAPACITY_RECOVERY.md": {
-      "sha256": "57aac540f6caf84b3998b4cc724d5c99609e178962a4130f635a861bbe359168",
-      "size": 13725
+    "scripts/admit_github_stars.py": {
+      "sha256": "93b206fd6741c01ddfb843b129c4a41ee119c1bb8af4ea267307153927558cab",
+      "size": 12003
+    },
+    "scripts/star_import_pipeline.py": {
+      "sha256": "0ef31e842ff42e674498f10836f984c2813a70642d2430f46b55f6a58626eb5f",
+      "size": 12719
+    },
+    "scripts/sync_github_stars.py": {
+      "sha256": "7d9beaa4f8a29ef08be8b514c816d3d30ca7953b89f91effcdcd108676d0b8af",
+      "size": 14783
     },
     "scripts/test_documentation.py": {
       "sha256": "40669232b11ce86a0a121060039980e420392bf6bef33ea111b66a18c23b984c",
       "size": 4209
+    },
+    "scripts/test_sync_github_stars.py": {
+      "sha256": "dab66282ea6c85f25c93c4286044a94863886bf279308febc04212cdca934b8b",
+      "size": 12589
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

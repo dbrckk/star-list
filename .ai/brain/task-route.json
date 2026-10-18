@@ -4,15 +4,15 @@
     "expand_to": 12,
     "max_files": 3,
     "requested_max_files": 12,
-    "score_margin": 12,
+    "score_margin": 3,
     "tier": "narrow",
     "top_score": 41
   },
   "cache": {
-    "fingerprint": "b6015bd39f08de485fa827b1ed73c15bcf32499cb13039399a2e5361b6fe7706",
+    "fingerprint": "fca381d2cb8905f93be2d45de894ee9fbd28b4c90c03a5e70dd894468f511004",
     "hit": false
   },
-  "candidate_count": 7,
+  "candidate_count": 9,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -58,9 +58,11 @@
       ],
       "path": "scripts/admit_github_stars.py",
       "reasons": [
+        "impact",
+        "recently-changed",
         "search-index"
       ],
-      "score": 29,
+      "score": 38,
       "symbols": [
         "admit",
         "catalog_entry",
