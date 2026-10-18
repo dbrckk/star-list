@@ -67,7 +67,7 @@ def load_skills() -> dict:
         if not isinstance(source_commit, str) or not re.fullmatch(r"[0-9a-f]{40}", source_commit):
             raise ValueError("Agent skill source must pin an exact Git commit")
         if not isinstance(source_path, str) or not re.fullmatch(
-                r"(?:[a-zA-Z0-9_.-]+/)+SKILL[.]md", source_path
+                r"(?:[a-zA-Z0-9_.-]+/)*SKILL[.]md", source_path
         ) or any(segment in ("", ".", "..") for segment in source_path.split("/")):
             raise ValueError("Agent skill source must pin a safe SKILL.md path")
         domains, tags, languages = (row.get("domains"), row.get("tags"), row.get("languages"))

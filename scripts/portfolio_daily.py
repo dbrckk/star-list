@@ -285,9 +285,15 @@ def project_profile(repo: dict, token: str) -> dict:
             skill_terms.update(extra_terms)
     # GitHub's own primary-language metadata is sufficient to identify
     # GDScript-specific skill references without trusting README instructions.
-    if str(repo.get("language") or "").casefold() == "gdscript":
+    primary_language = str(repo.get("language") or "").casefold()
+    if primary_language == "gdscript":
         skill_domains.add("game_dev")
         skill_terms.update({"godot", "gdscript"})
+    elif primary_language == "luau":
+        # Luau is distinct from general Lua. Do not infer Roblox merely
+        # because an arbitrary project happens to use Lua scripting.
+        skill_domains.add("game_dev")
+        skill_terms.add("luau")
     overview = " ".join([repo["name"], description, " ".join(topics), intro[:1200]])
     label_text = " ".join([repo["name"], description, " ".join(topics)]).lower()
     domains = set(infer_domains(tokens(label_text)))

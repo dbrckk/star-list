@@ -177,6 +177,28 @@ jobs:
           assert {"mobile"} <= set(flutter_profile["skill_domains"])
           assert {"web_frontend", "mobile", "game_dev"} <= set(hybrid_profile["skill_domains"])
           assert {"nextjs", "flutter", "dart", "godot", "gdscript"} <= set(hybrid_profile["skill_terms"])
+          with skill_patch("portfolio_daily.file_text", side_effect=fake_file_text):
+              luau_profile = project_profile({**hybrid, "language": "Luau"}, "")
+              lua_profile = project_profile({**hybrid, "language": "Lua"}, "")
+          assert "luau" in luau_profile["skill_terms"]
+          assert "game_dev" in luau_profile["skill_domains"]
+          assert "luau" not in lua_profile["skill_terms"]
+          assert "game_dev" not in lua_profile["skill_domains"]
+          roblox_matched = recommend_skills(
+              set(luau_profile["skill_terms"]), set(luau_profile["skill_domains"]),
+              language="Luau", limit=20,
+          )
+          assert any(row["id"] == "roblox-luau-development" and
+                     row["sourcePath"] == "SKILL.md" for row in roblox_matched)
+          assert any(row["id"] == "android-play-policy-insights" for row in
+                     recommend_skills(word_set("android play policy"), {"mobile"},
+                                      language="Kotlin", limit=20))
+          assert any(row["id"] == "android-compose-performance" for row in
+                     recommend_skills(word_set("jetpack compose"), {"mobile"},
+                                      language="Kotlin", limit=20))
+          assert not any(row["id"] == "android-compose-performance" for row in
+                         recommend_skills(word_set("android mobile"), {"mobile"},
+                                          language="Kotlin", limit=20))
           matched = recommend_skills(
               set(hybrid_profile["skill_terms"]), set(hybrid_profile["skill_domains"]),
               language="GDScript", limit=20,
