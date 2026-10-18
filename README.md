@@ -49,7 +49,7 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **10 curated website links** for UI design,
+The catalog also includes **11 curated website links** for UI design,
 animation, browser 3D, shaders, and AI-assisted prototyping. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
@@ -63,6 +63,25 @@ python scripts/validate_json_contract.py schemas/websites.schema.json websites.j
 The optional website ranking preserves the original repository rankings and
 reports licensing/usage cautions separately; do not treat paid design assets
 or third-party shaders as open source.
+
+## Priority agent skills from Skill Issue
+
+The [Skill Issue](https://skill-issue.in/) directory provides reusable agent-skill
+references for software work. A curated, **review-only** shortlist of
+upstream source repositories is tracked in
+[`agent-skills.json`](agent-skills.json), with a matching CLI in
+[`scripts/agent_skill_discovery.py`](scripts/agent_skill_discovery.py).
+
+```bash
+python scripts/agent_skill_discovery.py "react frontend performance" --domain web_frontend --language TypeScript --json
+python scripts/recommend.py "mobile ui design" --skills --websites --json
+```
+
+The daily public and private repository scanners include the Skill Issue
+directory for **every accessible project** and suggest only relevant skills
+based on repository labels, domains and language. No third-party skill is
+automatically downloaded, installed, granted credentials or dispatched. Read
+[`AGENT_SKILLS.md`](AGENT_SKILLS.md) for the adoption and security gates.
 
 ## Automatic GitHub Stars synchronization
 
