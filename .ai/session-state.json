@@ -13,10 +13,11 @@
     "native_suggestions": 5,
     "with_website_references": 3,
     "skill_directory_references": 42,
-    "with_skill_recommendations": 8,
+    "with_skill_recommendations": 13,
     "dispatched": 0,
     "public_report_issue": 61,
-    "verified_workflow_run": 39168307153
+    "verified_workflow_run": 39173301377,
+    "skill_recommendations": 21
   },
   "last_verified_integration_inventory": {
     "active": 0,
@@ -85,7 +86,10 @@
     131,
     132,
     133,
-    134
+    134,
+    135,
+    136,
+    137
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -131,10 +135,14 @@
     "Repo-standards PR #12 merged as f2e6a2e: shared AGENTS and repo-excellence skill recommend relevant Skill Issue sources only after full code/license/security review; consumers pinned to older policies are not silently upgraded.",
     "Star-list PR #133 pinned and verified exact upstream SKILL.md file paths for 19 curated Skill Issue references, while keeping instructions unreviewed and integration disabled; exact-head catalog CI and portfolio smoke plus post-merge CI passed.",
     "Star-list PR #134 used strict known package.json dependency names (React, Next.js, Expo, Tailwind, Remotion) to qualify advisory skills; real post-merge portfolio report #61 covers 42/42 public targets and 8 projects with targeted skills, up from 5, without auto-install or Production-OS launches.",
-    "Hourly Stars sync run #39164085442 admitted 16 new accessible stars, total 980 catalog records; catalog quality issue #32 confirms 847/980 verified permanent GitHub IDs, 133 name-only records, no review findings."
+    "Hourly Stars sync run #39164085442 admitted 16 new accessible stars, total 980 catalog records; catalog quality issue #32 confirms 847/980 verified permanent GitHub IDs, 133 name-only records, no review findings.",
+    "Star-list PR #136 merged a08aaed: add exact-pinned official Flutter and Godot SKILL.md references; recognize conservative root pubspec Flutter SDK and GitHub primary GDScript signals, preserve original dependency integration ranking and avoid duplicate metadata reads.",
+    "Star-list PR #137 merged 112eae0: add pinned Google Android Compose/Play policy and MIT Roblox Luau skill references; permit only safe pinned root SKILL.md paths, match Luau but not generic Lua.",
+    "Post-merge CI #39173301348 (Validate catalog), #39173302198 (Repository standards) and live portfolio #39173301377 all succeeded; public report #61 updated to 42/42 inspected, 42 Skill Issue links, 13 projects with 21 suggestions, 0 integrations dispatched.",
+    "Across PRs #136-#137 skill source references grew 19 to 25 and public targeted coverage improved 8/42 to 13/42; all references remain unreviewed code and non-installable until explicit upstream audit and target acceptance."
   ],
   "next_priority": [
-    "Use the 19 pinned Skill Issue sources as task-specific review references across all public and private portfolio scans; do not automatically execute unaudited SKILL.md scripts or install external instructions.",
+    "Use the 25 pinned Skill Issue and supplementary platform sources as task-specific review references across all public and private portfolio scans; do not automatically execute unaudited SKILL.md scripts or install external instructions.",
     "Verify the remaining 133 catalog records missing permanent GitHub IDs via authenticated metadata refresh; preserve stable identity and never infer ownership from slug alone.",
     "Demonstrate one small licensed/compatible target-code integration and exact-SHA draft PR plus target CI, only after verified usable free provider capacity and operator review of the terminal v3 failure.",
     "Keep daily public/private discovery, hourly Star sync, strict manifest-name skill matching and token/credential isolation; measure impact in current issue #61."
@@ -160,5 +168,14 @@
     "missing": 133,
     "total": 980,
     "audit_checked_at_utc": "2026-10-18"
+  },
+  "last_verified_skill_inventory": {
+    "source_references": 25,
+    "source_commits_pinned": 25,
+    "reviewed_code": 0,
+    "automatically_installed": 0,
+    "skill_directory_references": 42,
+    "verified_portfolio_run": 39173301377,
+    "source_review_required": true
   }
 }
