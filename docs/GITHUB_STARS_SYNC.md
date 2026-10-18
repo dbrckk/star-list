@@ -26,6 +26,14 @@ The workflow:
 8. Publishes synchronization and admission reports as Actions artifacts for
    14 days, including any partial diagnostic reports produced before a failed
    admission or validation run. An incomplete run is not marked successful.
+9. When the catalog was actually pushed, invokes the existing catalog-quality
+   audit as a reusable workflow. It reads the **current `main`** catalog,
+   validates the complete audit and updates the public review issue. Empty
+   hourly syncs do not run a redundant audit. The reusable job uses only
+   repository `contents: read` and `issues: write` permissions.
+
+   This explicit call is necessary because GitHub suppresses ordinary `push`
+   workflow triggers for commits made using the built-in `GITHUB_TOKEN`.
 
 If any repository cannot be verified, admission fails rather than committing
 a partial catalog. Subsequent scheduled runs retry. No Star is silently
