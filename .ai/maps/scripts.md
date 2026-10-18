@@ -153,7 +153,23 @@ guidance = [re.sub(r"\s+", " ", description).strip()[:200]] if isinstance(descri
 topics = meta.get("topics")
 capabilities = [x[:80] for x in topics if isinstance(x, str) and x.strip()][:12] if isinstance(topics, list) else []
 ⋮----
-def admit(catalog, stars, fetcher)
+def manifest_stable_ids(manifest, report)
+⋮----
+"""Verify that all identity rows belong to the exact read-only Stars scan."""
+⋮----
+summary = report.get("summary")
+⋮----
+expected_new = report.get("newRepositories")
+⋮----
+ids = {}
+owners = {}
+⋮----
+key = normalize_repo(name)
+rid = row.get("githubRepositoryId")
+⋮----
+key = normalize_repo(star["repo"])
+⋮----
+def admit(catalog, stars, fetcher, known_star_ids=None)
 ⋮----
 """Reconcile by both canonical name and permanent ID; fail on any ambiguity."""
 old = catalog.get("repositories")
@@ -165,7 +181,6 @@ fresh = []
 already = 0
 transfers = []
 ⋮----
-key = normalize_repo(star["repo"])
 rid = star.get("githubRepositoryId")
 recorded_id = by_name.get(key)
 ⋮----
@@ -180,6 +195,23 @@ canonical = normalize_repo(entry["repo"])
 previous_id = by_name[canonical]
 ⋮----
 result = dict(catalog)
+# Do not mutate the caller's loaded catalog before all checks pass.
+entries = [dict(row) for row in old] + sorted(fresh, key=lambda r: r["repo"].lower())
+enriched = 0
+⋮----
+rows_by_name = {normalize_repo(row["repo"]): row for row in entries}
+rows_by_id = {
+⋮----
+key = normalize_repo(original_name)
+⋮----
+entry = rows_by_name.get(key)
+⋮----
+# An existing repository may have transferred to this new
+# owner/name while preserving its stable ID.
+⋮----
+recorded_id = entry.get("githubRepositoryId")
+⋮----
+occupied = rows_by_id.get(rid)
 ⋮----
 def main(argv=None)
 ⋮----
@@ -194,6 +226,10 @@ catalog = json.loads(args.catalog.read_text(encoding="utf-8"))
 # snapshot, and admission operates on a report produced in the same job.
 stars = report.get("newRepositories")
 ⋮----
+known_star_ids = None
+⋮----
+manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
+known_star_ids = manifest_stable_ids(manifest, report)
 token = os.environ.get("GITHUB_TOKEN")
 ```
 
@@ -2082,6 +2118,10 @@ parser = argparse.ArgumentParser(description="Check GitHub Stars against star-li
 args = parser.parse_args(argv)
 ⋮----
 report = build_report(
+⋮----
+# This is the *same* verified Stars API response, not another
+# GitHub request. Admission uses stable IDs to enrich legacy
+# catalog entries and reject mismatched snapshots.
 ```
 
 ## File: test_analyze_coverage.py

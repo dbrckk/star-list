@@ -209,6 +209,8 @@ jobs:
           audit = json.loads(Path('catalog-quality.json').read_text(encoding='utf-8'))
           markdown = Path('catalog-quality.md').read_text(encoding='utf-8')
           assert audit['repositories'] == len(catalog['repositories'])
+          assert sum(audit['identityCoverage'].values()) == audit['repositories']
+          assert 'Verified permanent GitHub IDs:' in markdown
           assert '<!-- star-list-catalog-quality -->' in markdown
           assert f"Repositories: **{audit['repositories']}**" in markdown
           PY
@@ -1568,6 +1570,7 @@ jobs:
         run: |
           python scripts/admit_github_stars.py \
             --sync-report star-sync-report.json \
+            --manifest star-sync-manifest.json \
             --report-json star-admission-report.json
           python scripts/validate_catalog.py
           python scripts/test_catalog_quality.py
@@ -1795,6 +1798,7 @@ initial_prompt: |
     "repositories",
     "summary",
     "guidanceCoverage",
+    "identityCoverage",
     "findings"
   ],
   "properties": {
@@ -1918,6 +1922,15 @@ initial_prompt: |
           },
           "additionalProperties": false
         }
+      },
+      "additionalProperties": false
+    },
+    "identityCoverage": {
+      "type": "object",
+      "required": ["verified", "missing"],
+      "properties": {
+        "verified": {"type": "integer", "minimum": 0},
+        "missing": {"type": "integer", "minimum": 0}
       },
       "additionalProperties": false
     },
@@ -2211,7 +2224,23 @@ guidance = [re.sub(r"\s+", " ", description).strip()[:200]] if isinstance(descri
 topics = meta.get("topics")
 capabilities = [x[:80] for x in topics if isinstance(x, str) and x.strip()][:12] if isinstance(topics, list) else []
 ⋮----
-def admit(catalog, stars, fetcher)
+def manifest_stable_ids(manifest, report)
+⋮----
+"""Verify that all identity rows belong to the exact read-only Stars scan."""
+⋮----
+summary = report.get("summary")
+⋮----
+expected_new = report.get("newRepositories")
+⋮----
+ids = {}
+owners = {}
+⋮----
+key = normalize_repo(name)
+rid = row.get("githubRepositoryId")
+⋮----
+key = normalize_repo(star["repo"])
+⋮----
+def admit(catalog, stars, fetcher, known_star_ids=None)
 ⋮----
 """Reconcile by both canonical name and permanent ID; fail on any ambiguity."""
 old = catalog.get("repositories")
@@ -2223,7 +2252,6 @@ fresh = []
 already = 0
 transfers = []
 ⋮----
-key = normalize_repo(star["repo"])
 rid = star.get("githubRepositoryId")
 recorded_id = by_name.get(key)
 ⋮----
@@ -2238,6 +2266,23 @@ canonical = normalize_repo(entry["repo"])
 previous_id = by_name[canonical]
 ⋮----
 result = dict(catalog)
+# Do not mutate the caller's loaded catalog before all checks pass.
+entries = [dict(row) for row in old] + sorted(fresh, key=lambda r: r["repo"].lower())
+enriched = 0
+⋮----
+rows_by_name = {normalize_repo(row["repo"]): row for row in entries}
+rows_by_id = {
+⋮----
+key = normalize_repo(original_name)
+⋮----
+entry = rows_by_name.get(key)
+⋮----
+# An existing repository may have transferred to this new
+# owner/name while preserving its stable ID.
+⋮----
+recorded_id = entry.get("githubRepositoryId")
+⋮----
+occupied = rows_by_id.get(rid)
 ⋮----
 def main(argv=None)
 ⋮----
@@ -2252,6 +2297,10 @@ catalog = json.loads(args.catalog.read_text(encoding="utf-8"))
 # snapshot, and admission operates on a report produced in the same job.
 stars = report.get("newRepositories")
 ⋮----
+known_star_ids = None
+⋮----
+manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
+known_star_ids = manifest_stable_ids(manifest, report)
 token = os.environ.get("GITHUB_TOKEN")
 ````
 
@@ -4140,6 +4189,10 @@ parser = argparse.ArgumentParser(description="Check GitHub Stars against star-li
 args = parser.parse_args(argv)
 ⋮----
 report = build_report(
+⋮----
+# This is the *same* verified Stars API response, not another
+# GitHub request. Admission uses stable IDs to enrich legacy
+# catalog entries and reject mismatched snapshots.
 ````
 
 ## File: scripts/test_analyze_coverage.py
@@ -5424,7 +5477,8 @@ Repository-specific rules:
         "simple deterministic scripts without agent orchestration"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 643445235
     },
     {
       "repo": "harry0703/MoneyPrinterTurbo",
@@ -5465,7 +5519,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 770153867
     },
     {
       "repo": "hiyouga/LlamaFactory",
@@ -5507,7 +5562,8 @@ Repository-specific rules:
         "low-resource environments",
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 646410686
     },
     {
       "repo": "Skyvern-AI/skyvern",
@@ -5548,7 +5604,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 764723738
     },
     {
       "repo": "BasedHardware/omi",
@@ -5589,7 +5646,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 776121034
     },
     {
       "repo": "OpenHands/OpenHands",
@@ -5639,7 +5697,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-10-12T10:42:38Z"
-      }
+      },
+      "githubRepositoryId": 771302083
     },
     {
       "repo": "danielmiessler/Fabric",
@@ -5680,7 +5739,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 738733003
     },
     {
       "repo": "ollama/ollama",
@@ -5728,7 +5788,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-10-12T06:25:26Z"
-      }
+      },
+      "githubRepositoryId": 658928958
     },
     {
       "repo": "khoj-ai/khoj",
@@ -5769,7 +5830,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 396569538
     },
     {
       "repo": "modelcontextprotocol/servers",
@@ -5815,7 +5877,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-10-12T05:33:37Z"
-      }
+      },
+      "githubRepositoryId": 890668799
     },
     {
       "repo": "browser-use/browser-use",
@@ -5859,7 +5922,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 881458615
     },
     {
       "repo": "mksglu/context-mode",
@@ -5901,7 +5965,8 @@ Repository-specific rules:
         "simple deterministic scripts without agent orchestration"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 1164477708
     },
     {
       "repo": "mattpocock/skills",
@@ -5942,7 +6007,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1148788086
     },
     {
       "repo": "DietrichGebert/ponytail",
@@ -5976,7 +6042,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-10-10T04:19:53Z"
-      }
+      },
+      "githubRepositoryId": 1266797999
     },
     {
       "repo": "affaan-m/ECC",
@@ -6010,7 +6077,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-10-12T06:22:31Z"
-      }
+      },
+      "githubRepositoryId": 1136590548
     },
     {
       "repo": "THU-MAIC/OpenMAIC",
@@ -6051,7 +6119,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1178737655
     },
     {
       "repo": "diegosouzapw/OmniRoute",
@@ -6092,7 +6161,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1157102282
     },
     {
       "repo": "obra/superpowers",
@@ -6133,7 +6203,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1073224795
     },
     {
       "repo": "ayghri/i-have-adhd",
@@ -6167,7 +6238,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-10-11T16:03:54Z"
-      }
+      },
+      "githubRepositoryId": 1238120057
     },
     {
       "repo": "p-e-w/heretic",
@@ -6208,7 +6280,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1061041576
     },
     {
       "repo": "deepseek-ai/deepseek-harness",
@@ -6249,7 +6322,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1333065091
     },
     {
       "repo": "msitarzewski/agency-agents",
@@ -6290,7 +6364,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1075372545
     },
     {
       "repo": "Alishahryar1/free-claude-code",
@@ -6331,7 +6406,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1144520675
     },
     {
       "repo": "vercel-labs/agent-browser",
@@ -6375,7 +6451,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1132001614
     },
     {
       "repo": "ultraworkers/claw-code",
@@ -6416,7 +6493,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1197021090
     },
     {
       "repo": "666ghj/MiroFish",
@@ -6457,7 +6535,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1104332987
     },
     {
       "repo": "punkpeye/awesome-mcp-servers",
@@ -6498,7 +6577,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 896335270
     },
     {
       "repo": "Shubhamsaboo/awesome-llm-apps",
@@ -6539,7 +6619,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 793375104
     },
     {
       "repo": "pascalorg/editor",
@@ -6580,7 +6661,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1077819522
     },
     {
       "repo": "nashsu/llm_wiki",
@@ -6614,7 +6696,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "LGPL-3.0",
         "pushedAt": "2026-09-28T01:43:23Z"
-      }
+      },
+      "githubRepositoryId": 1204828304
     },
     {
       "repo": "milind-soni/OpenMausBot",
@@ -6655,7 +6738,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1331261687
     },
     {
       "repo": "akitaonrails/ai-memory",
@@ -6698,7 +6782,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1246148135
     },
     {
       "repo": "volcengine/OpenViking",
@@ -6739,7 +6824,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1128123594
     },
     {
       "repo": "anomalyco/opencode",
@@ -6796,7 +6882,8 @@ Repository-specific rules:
         "defaultBranch": "dev",
         "license": "MIT",
         "pushedAt": "2026-10-12T11:43:06Z"
-      }
+      },
+      "githubRepositoryId": 975734319
     },
     {
       "repo": "ruvnet/ruflo",
@@ -6837,7 +6924,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 995029641
     },
     {
       "repo": "NousResearch/hermes-agent",
@@ -6886,7 +6974,8 @@ Repository-specific rules:
         "no configured working model provider",
         "simple deterministic tasks not requiring an external agent"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1024554267
     },
     {
       "repo": "ChromeDevTools/chrome-devtools-mcp",
@@ -6927,7 +7016,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1054793726
     },
     {
       "repo": "heygen-com/hyperframes",
@@ -6968,7 +7058,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1177402105
     },
     {
       "repo": "LibreChat-AI/LibreChat",
@@ -7054,7 +7145,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 574523116
     },
     {
       "repo": "Aider-AI/aider",
@@ -7177,7 +7269,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 676672661
     },
     {
       "repo": "microsoft/autogen",
@@ -7218,7 +7311,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 680120071
     },
     {
       "repo": "crewAIInc/crewAI",
@@ -7259,7 +7353,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 710601088
     },
     {
       "repo": "google/adk-python",
@@ -7342,7 +7437,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 615510678
     },
     {
       "repo": "public-apis/public-apis",
@@ -7385,7 +7481,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 54346799
     },
     {
       "repo": "lissy93/web-check",
@@ -7427,7 +7524,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 658364446
     },
     {
       "repo": "trimstray/the-book-of-secret-knowledge",
@@ -7468,7 +7566,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 138393139
     },
     {
       "repo": "bmrf/tron",
@@ -7502,7 +7601,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-10-03T19:35:35Z"
-      }
+      },
+      "githubRepositoryId": 21585830
     },
     {
       "repo": "ReVanced/revanced-manager",
@@ -7545,7 +7645,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 471494981
     },
     {
       "repo": "sudoguy/tiktokpy",
@@ -7579,7 +7680,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-10-06T00:40:19Z"
-      }
+      },
+      "githubRepositoryId": 269694133
     },
     {
       "repo": "simonfarah/tiktok-bot",
@@ -7613,7 +7715,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-03-08T20:44:11Z"
-      }
+      },
+      "githubRepositoryId": 401301623
     },
     {
       "repo": "freeCodeCamp/freeCodeCamp",
@@ -7657,7 +7760,8 @@ Repository-specific rules:
       "avoidWhen": [
         "advanced framework-specific production reference",
         "formal accredited coursework"
-      ]
+      ],
+      "githubRepositoryId": 28457823
     },
     {
       "repo": "autoscrape-labs/pydoll",
@@ -7698,7 +7802,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 879320294
     },
     {
       "repo": "xai-org/x-algorithm",
@@ -7740,7 +7845,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1137846174
     },
     {
       "repo": "cathrynlavery/diagram-design",
@@ -7783,7 +7889,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1212769188
     },
     {
       "repo": "sdmg15/Best-websites-a-programmer-should-visit",
@@ -7830,7 +7937,8 @@ Repository-specific rules:
         "freeCodeCamp/freeCodeCamp",
         "ruanyf/weekly"
       ],
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 83999700
     },
     {
       "repo": "ChrisTitusTech/winutil",
@@ -7873,7 +7981,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 486418532
     },
     {
       "repo": "harry2141985/Google-Collab-Notebooks",
@@ -7908,7 +8017,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-04-06T10:21:50Z"
-      }
+      },
+      "githubRepositoryId": 1021029365
     },
     {
       "repo": "browserbase/stagehand",
@@ -7999,7 +8109,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "Apache-2.0",
         "pushedAt": "2026-10-12T11:53:59Z"
-      }
+      },
+      "githubRepositoryId": 268163609
     },
     {
       "repo": "chroma-core/chroma",
@@ -8171,7 +8282,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 50617428
     },
     {
       "repo": "mkdocs/mkdocs",
@@ -8800,7 +8912,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "Apache-2.0",
         "pushedAt": "2026-10-12T11:46:51Z"
-      }
+      },
+      "githubRepositoryId": 214587193
     },
     {
       "repo": "appwrite/appwrite",
@@ -8983,7 +9096,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 379865325
     },
     {
       "repo": "fastapi/fastapi",
@@ -9442,7 +9556,8 @@ Repository-specific rules:
         "defaultBranch": "canary",
         "license": "MIT",
         "pushedAt": "2026-10-12T11:39:32Z"
-      }
+      },
+      "githubRepositoryId": 70107786
     },
     {
       "repo": "vitejs/vite",
@@ -9581,7 +9696,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-10-12T09:08:25Z"
-      }
+      },
+      "githubRepositoryId": 585146387
     },
     {
       "repo": "mui/material-ui",
@@ -9975,7 +10091,8 @@ Repository-specific rules:
       "avoidWhen": [
         "web-only applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 31792824
     },
     {
       "repo": "facebook/react-native",
@@ -10285,7 +10402,8 @@ Repository-specific rules:
       "avoidWhen": [
         "very simple static CI jobs",
         "environments without container support"
-      ]
+      ],
+      "githubRepositoryId": 222824662
     },
     {
       "repo": "nektos/act",
@@ -10906,7 +11024,8 @@ Repository-specific rules:
         "local-only scripts with no deployment or operations needs"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 873328
     },
     {
       "repo": "semantic-release/semantic-release",
@@ -11038,7 +11157,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-10-12T05:35:54Z"
-      }
+      },
+      "githubRepositoryId": 14164618
     },
     {
       "repo": "semgrep/semgrep",
@@ -11087,7 +11207,8 @@ Repository-specific rules:
         "defaultBranch": "develop",
         "license": "LGPL-2.1",
         "pushedAt": "2026-10-12T00:04:11Z"
-      }
+      },
+      "githubRepositoryId": 227803815
     },
     {
       "repo": "github/codeql",
@@ -11562,7 +11683,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 37489525
     },
     {
       "repo": "astral-sh/ruff",
@@ -11648,7 +11770,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 642497346
     },
     {
       "repo": "promptfoo/promptfoo",
@@ -11689,7 +11812,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 633927609
     },
     {
       "repo": "confident-ai/deepeval",
@@ -11730,7 +11854,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 676829188
     },
     {
       "repo": "Arize-ai/phoenix",
@@ -11772,7 +11897,8 @@ Repository-specific rules:
         "non-development workflows"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 564072810
     },
     {
       "repo": "EleutherAI/lm-evaluation-harness",
@@ -11854,7 +11980,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 592489166
     },
     {
       "repo": "testcontainers/testcontainers-python",
@@ -11937,7 +12064,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 609539715
     },
     {
       "repo": "firecracker-microvm/firecracker",
@@ -11981,7 +12109,8 @@ Repository-specific rules:
         "projects requiring minimal setup and operational complexity",
         "local-only scripts with no deployment or operations needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 107505869
     },
     {
       "repo": "motion-canvas/motion-canvas",
@@ -12031,7 +12160,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-07-02T20:01:32Z"
-      }
+      },
+      "githubRepositoryId": 520955562
     },
     {
       "repo": "svgdotjs/svg.js",
@@ -12122,7 +12252,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2025-09-01T09:01:31Z"
-      }
+      },
+      "githubRepositoryId": 31085130
     },
     {
       "repo": "paperjs/paper.js",
@@ -12334,7 +12465,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 188660663
     },
     {
       "repo": "vega-org/vega-app",
@@ -12376,7 +12508,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 792165334
     },
     {
       "repo": "RVC-Project/Retrieval-based-Voice-Conversion-WebUI",
@@ -12417,7 +12550,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 619521008
     },
     {
       "repo": "camenduru/SMPLer-X-colab",
@@ -12454,7 +12588,8 @@ Repository-specific rules:
         "pushedAt": "2024-03-03T16:36:55Z"
       },
       "licenseEvidence": "no-root-license-file",
-      "licenseStatus": "external-terms"
+      "licenseStatus": "external-terms",
+      "githubRepositoryId": 699689289
     },
     {
       "repo": "deepfakes/faceswap",
@@ -12497,7 +12632,8 @@ Repository-specific rules:
         "low-resource environments",
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 114747226
     },
     {
       "repo": "Tencent-Hunyuan/HunyuanVideo",
@@ -12539,7 +12675,8 @@ Repository-specific rules:
         "low-resource environments",
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 895453957
     },
     {
       "repo": "dream80/roop_colab",
@@ -12576,7 +12713,8 @@ Repository-specific rules:
         "pushedAt": "2025-08-19T01:37:38Z"
       },
       "licenseEvidence": "no-root-license-file",
-      "licenseStatus": "not-found"
+      "licenseStatus": "not-found",
+      "githubRepositoryId": 647588832
     },
     {
       "repo": "hacksider/Deep-Live-Cam",
@@ -12619,7 +12757,8 @@ Repository-specific rules:
         "low-resource environments",
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 695864515
     },
     {
       "repo": "camenduru/dust3r-jupyter",
@@ -12664,7 +12803,8 @@ Repository-specific rules:
         "maintained notebook environments"
       ],
       "licenseEvidence": "no-root-license-file",
-      "licenseStatus": "not-found"
+      "licenseStatus": "not-found",
+      "githubRepositoryId": 766288843
     },
     {
       "repo": "RayVentura/ShortGPT",
@@ -12706,7 +12846,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 659412092
     },
     {
       "repo": "FujiwaraChoki/MoneyPrinterV2",
@@ -12748,7 +12889,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 756289095
     },
     {
       "repo": "FujiwaraChoki/MoneyPrinter",
@@ -12783,7 +12925,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-03-26T22:17:17Z"
-      }
+      },
+      "githubRepositoryId": 751008707
     },
     {
       "repo": "team-spotube/spotube",
@@ -12870,7 +13013,8 @@ Repository-specific rules:
       "avoidWhen": [
         "new production image-editing pipelines",
         "actively maintained image models"
-      ]
+      ],
+      "githubRepositoryId": 667423270
     },
     {
       "repo": "facefusion/facefusion",
@@ -12913,7 +13057,8 @@ Repository-specific rules:
         "non-generative media workflows"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 679869950
     },
     {
       "repo": "SociallyIneptWeeb/AICoverGen",
@@ -12948,7 +13093,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2025-02-15T08:09:40Z"
-      }
+      },
+      "githubRepositoryId": 670499218
     },
     {
       "repo": "debpalash/VoiceStudio",
@@ -12989,7 +13135,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1206390571
     },
     {
       "repo": "comfyanonymous/ComfyUI",
@@ -13119,7 +13266,8 @@ Repository-specific rules:
       "avoidWhen": [
         "local-only scripts with no deployment or operations needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 615869301
     },
     {
       "repo": "swisskyrepo/PayloadsAllTheThings",
@@ -13161,7 +13309,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 71220757
     },
     {
       "repo": "megadose/holehe",
@@ -13203,7 +13352,8 @@ Repository-specific rules:
       "avoidWhen": [
         "fresh provider coverage",
         "production OSINT automation"
-      ]
+      ],
+      "githubRepositoryId": 275031765
     },
     {
       "repo": "usestrix/strix",
@@ -13244,7 +13394,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1032808806
     },
     {
       "repo": "0x4m4/hexstrike-ai",
@@ -13285,7 +13436,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1017550802
     },
     {
       "repo": "CVEProject/cvelistV5",
@@ -13328,7 +13480,8 @@ Repository-specific rules:
       ],
       "guidanceSource": "inferred",
       "licenseEvidence": "no-root-license-file",
-      "licenseStatus": "not-found"
+      "licenseStatus": "not-found",
+      "githubRepositoryId": 457006774
     },
     {
       "repo": "bilawalsidhu/gods-eye-view",
@@ -13362,7 +13515,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-10-10T03:59:46Z"
-      }
+      },
+      "githubRepositoryId": 1277471539
     },
     {
       "repo": "duty1g/x64dbg-mcp-server",
@@ -13403,7 +13557,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1342886503
     },
     {
       "repo": "Narasimha1997/fake-sms",
@@ -13438,7 +13593,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "GPL-2.0",
         "pushedAt": "2023-08-01T15:34:41Z"
-      }
+      },
+      "githubRepositoryId": 340090062
     },
     {
       "repo": "massgravel/Microsoft-Activation-Scripts",
@@ -13480,7 +13636,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 233472199
     },
     {
       "repo": "friuns2/BlackFriday-GPTs-Prompts",
@@ -13514,7 +13671,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-03-18T02:09:18Z"
-      }
+      },
+      "githubRepositoryId": 722125767
     },
     {
       "repo": "charlesbel/Microsoft-Rewards-Farmer",
@@ -13556,7 +13714,8 @@ Repository-specific rules:
         "actively maintained automation",
         "account-safe production use"
       ],
-      "lifecycle": "legacy"
+      "lifecycle": "legacy",
+      "githubRepositoryId": 282502417
     },
     {
       "repo": "lllyasviel/Paints-UNDO",
@@ -13598,7 +13757,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 825429436
     },
     {
       "repo": "bleedline/aimoneyhunter",
@@ -13634,7 +13794,8 @@ Repository-specific rules:
         "pushedAt": "2025-10-20T00:24:54Z"
       },
       "licenseEvidence": "no-root-license-file",
-      "licenseStatus": "not-found"
+      "licenseStatus": "not-found",
+      "githubRepositoryId": 731450488
     },
     {
       "repo": "LargeWorldModel/LWM",
@@ -13676,7 +13837,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 754447605
     },
     {
       "repo": "teacat/chaturbate-dvr",
@@ -13718,7 +13880,8 @@ Repository-specific rules:
         "new deployments",
         "actively maintained recording tooling"
       ],
-      "lifecycle": "legacy"
+      "lifecycle": "legacy",
+      "githubRepositoryId": 240057166
     },
     {
       "repo": "GuallaGang508/SMSBotBypass",
@@ -13755,7 +13918,8 @@ Repository-specific rules:
         "pushedAt": "2024-06-27T21:58:30Z"
       },
       "licenseEvidence": "no-root-license-file",
-      "licenseStatus": "not-found"
+      "licenseStatus": "not-found",
+      "githubRepositoryId": 442255826
     },
     {
       "repo": "Cyb0r9/SocialBox",
@@ -13790,7 +13954,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2023-11-09T06:20:39Z"
-      }
+      },
+      "githubRepositoryId": 150230650
     },
     {
       "repo": "Ha3MrX/InstaBrute",
@@ -13827,7 +13992,8 @@ Repository-specific rules:
         "pushedAt": "2026-06-10T19:03:50Z"
       },
       "licenseEvidence": "no-root-license-file",
-      "licenseStatus": "not-found"
+      "licenseStatus": "not-found",
+      "githubRepositoryId": 132311545
     },
     {
       "repo": "GH05T-HUNTER5/GH05T-INSTA",
@@ -13863,7 +14029,8 @@ Repository-specific rules:
         "license": "GH05T-HUNTER5 Software License",
         "pushedAt": "2024-07-20T06:09:18Z"
       },
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 518354395
     },
     {
       "repo": "ShadowHackrs/Gmail-infinity",
@@ -13900,7 +14067,8 @@ Repository-specific rules:
         "pushedAt": "2026-09-16T21:16:57Z"
       },
       "licenseEvidence": "no-root-license-file",
-      "licenseStatus": "custom-restrictive"
+      "licenseStatus": "custom-restrictive",
+      "githubRepositoryId": 1198672152
     },
     {
       "repo": "alsk1992/CloddsBot",
@@ -13941,7 +14109,8 @@ Repository-specific rules:
         "execution",
         "portfolio",
         "risk"
-      ]
+      ],
+      "githubRepositoryId": 1142556666
     },
     {
       "repo": "BloodOnTop/Stealerium",
@@ -13975,7 +14144,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2023-08-18T14:18:01Z"
-      }
+      },
+      "githubRepositoryId": 613886603
     },
     {
       "repo": "QuantConnect/Lean",
@@ -14098,7 +14268,8 @@ Repository-specific rules:
         "defaultBranch": "develop",
         "license": "LGPL-3.0",
         "pushedAt": "2026-10-12T11:12:30Z"
-      }
+      },
+      "githubRepositoryId": 138552196
     },
     {
       "repo": "polakowo/vectorbt",
@@ -14221,7 +14392,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-10-08T10:58:43Z"
-      }
+      },
+      "githubRepositoryId": 287463830
     },
     {
       "repo": "ccxt/ccxt",
@@ -14273,7 +14445,8 @@ Repository-specific rules:
       "avoidWhen": [
         "broker-specific low-latency execution",
         "non-crypto-only trading stacks"
-      ]
+      ],
+      "githubRepositoryId": 91253698
     },
     {
       "repo": "freqtrade/freqtrade",
@@ -14328,7 +14501,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 91629816
     },
     {
       "repo": "hummingbot/hummingbot",
@@ -14434,7 +14608,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 282653872
     },
     {
       "repo": "kernc/backtesting.py",
@@ -14688,7 +14863,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 132754148
     },
     {
       "repo": "pmorissette/bt",
@@ -16527,7 +16703,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1136666433
     },
     {
       "repo": "freestylefly/awesome-gpt-image-2",
@@ -16569,7 +16746,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1220744720
     },
     {
       "repo": "cursor/plugins",
@@ -16611,7 +16789,8 @@ Repository-specific rules:
         "simple deterministic scripts without agent orchestration"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "githubRepositoryId": 1140229822
     },
     {
       "repo": "tt-a1i/archify",
@@ -16654,7 +16833,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1211139949
     },
     {
       "repo": "bluscreenofjeff/Red-Team-Infrastructure-Wiki",
@@ -16695,7 +16875,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 82987976
     },
     {
       "repo": "PurpleAILAB/Decepticon",
@@ -16778,7 +16959,8 @@ Repository-specific rules:
       "avoidWhen": [
         "current tooling discovery",
         "time-sensitive offensive-security references"
-      ]
+      ],
+      "githubRepositoryId": 104987608
     },
     {
       "repo": "A-poc/RedTeam-Tools",
@@ -16821,7 +17003,8 @@ Repository-specific rules:
       ],
       "guidanceSource": "inferred",
       "licenseEvidence": "no-root-license-file",
-      "licenseStatus": "not-found"
+      "licenseStatus": "not-found",
+      "githubRepositoryId": 538444958
     },
     {
       "repo": "infosecn1nja/Red-Teaming-Toolkit",
@@ -16862,7 +17045,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 131160647
     },
     {
       "repo": "redcanaryco/atomic-red-team",
@@ -16908,7 +17092,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-10-06T19:41:45Z"
-      }
+      },
+      "githubRepositoryId": 106586124
     },
     {
       "repo": "enaqx/awesome-pentest",
@@ -16952,7 +17137,8 @@ Repository-specific rules:
         "non-security workloads"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "githubRepositoryId": 22585805
     },
     {
       "repo": "GreyDGL/PentestGPT",
@@ -16995,7 +17181,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 607013954
     },
     {
       "repo": "vxcontrol/pentagi",
@@ -17038,7 +17225,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 913030762
     },
     {
       "repo": "SnailSploit/Claude-Red",
@@ -17081,7 +17269,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1172273835
     },
     {
       "repo": "asgeirtj/system_prompts_leaks",
@@ -17123,7 +17312,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 976921297
     },
     {
       "repo": "headroomlabs-ai/headroom",
@@ -17166,7 +17356,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1129940957
     },
     {
       "repo": "langchain-ai/langchain",
@@ -17207,7 +17398,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 552661142
     },
     {
       "repo": "microsoft/markitdown",
@@ -17249,7 +17441,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 888092115
     },
     {
       "repo": "langgenius/dify",
@@ -17291,7 +17484,8 @@ Repository-specific rules:
         "simple deterministic scripts without agent orchestration"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 626805178
     },
     {
       "repo": "firebase/flutterfire",
@@ -17332,7 +17526,8 @@ Repository-specific rules:
       "avoidWhen": [
         "web-only applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 202429703
     },
     {
       "repo": "Solido/awesome-flutter",
@@ -17374,7 +17569,8 @@ Repository-specific rules:
         "web-only applications"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "githubRepositoryId": 90528830
     },
     {
       "repo": "AgriciDaniel/claude-obsidian",
@@ -17415,7 +17611,8 @@ Repository-specific rules:
       "avoidWhen": [
         "stateless applications with no retrieval or memory needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1203670949
     },
     {
       "repo": "kepano/obsidian-skills",
@@ -17456,7 +17653,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1126947080
     },
     {
       "repo": "blaCCkHatHacEEkr/PENTESTING-BIBLE",
@@ -17499,7 +17697,8 @@ Repository-specific rules:
       "avoidWhen": [
         "current toolchains",
         "time-sensitive vulnerability research"
-      ]
+      ],
+      "githubRepositoryId": 194262275
     },
     {
       "repo": "mem0ai/mem0",
@@ -17548,7 +17747,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-10-09T06:17:43Z"
-      }
+      },
+      "githubRepositoryId": 656099147
     },
     {
       "repo": "thedotmack/claude-mem",
@@ -17591,7 +17791,8 @@ Repository-specific rules:
       "avoidWhen": [
         "stateless sessions",
         "non-Claude agent stacks"
-      ]
+      ],
+      "githubRepositoryId": 1048065319
     },
     {
       "repo": "academic/awesome-datascience",
@@ -17632,7 +17833,8 @@ Repository-specific rules:
       "avoidWhen": [
         "deterministic non-ML tasks"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 21515044
     },
     {
       "repo": "DeusData/codebase-memory-mcp",
@@ -17674,7 +17876,8 @@ Repository-specific rules:
       "avoidWhen": [
         "stateless applications with no retrieval or memory needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1166102148
     },
     {
       "repo": "usememos/memos",
@@ -17715,7 +17918,8 @@ Repository-specific rules:
       "avoidWhen": [
         "stateless applications with no retrieval or memory needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 436297812
     },
     {
       "repo": "bytedance/UI-TARS-desktop",
@@ -17757,7 +17961,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 918932603
     },
     {
       "repo": "animate-css/animate.css",
@@ -17800,7 +18005,8 @@ Repository-specific rules:
         "non-visual workloads"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 2561582
     },
     {
       "repo": "microsoft/magentic-ui",
@@ -17841,7 +18047,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 978331188
     },
     {
       "repo": "microsoft/ai-agents-for-beginners",
@@ -17884,7 +18091,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 895508656
     },
     {
       "repo": "FlowiseAI/Flowise",
@@ -17932,7 +18140,8 @@ Repository-specific rules:
         "langflow-ai/langflow",
         "langgenius/dify"
       ],
-      "lifecycle": "legacy"
+      "lifecycle": "legacy",
+      "githubRepositoryId": 621803253
     },
     {
       "repo": "BerriAI/litellm",
@@ -17983,7 +18192,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-10-12T11:30:20Z"
-      }
+      },
+      "githubRepositoryId": 671269505
     },
     {
       "repo": "bytedance/deer-flow",
@@ -18024,7 +18234,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 979115477
     },
     {
       "repo": "lettier/3d-game-shaders-for-beginners",
@@ -18069,7 +18280,8 @@ Repository-specific rules:
         "actively maintained rendering examples"
       ],
       "licenseEvidence": "no-root-license-file",
-      "licenseStatus": "partial"
+      "licenseStatus": "partial",
+      "githubRepositoryId": 186309296
     },
     {
       "repo": "Donchitos/Claude-Code-Game-Studios",
@@ -18115,7 +18327,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-game application development"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1155965274
     },
     {
       "repo": "godotengine/godot",
@@ -18164,7 +18377,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-10-09T20:18:11Z"
-      }
+      },
+      "githubRepositoryId": 15634981
     },
     {
       "repo": "libgdx/libgdx",
@@ -18205,7 +18419,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-game application development"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 5373551
     },
     {
       "repo": "google/filament",
@@ -18254,7 +18469,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-10-12T11:19:00Z"
-      }
+      },
+      "githubRepositoryId": 143455116
     },
     {
       "repo": "soxoj/maigret",
@@ -18295,7 +18511,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 275386910
     },
     {
       "repo": "sherlock-project/sherlock",
@@ -18339,7 +18556,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-10-12T05:24:49Z"
-      }
+      },
+      "githubRepositoryId": 162998479
     },
     {
       "repo": "payloadcms/payload",
@@ -18385,7 +18603,8 @@ Repository-specific rules:
       "avoidWhen": [
         "backend-only services"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 327089870
     },
     {
       "repo": "danielmiessler/SecLists",
@@ -18428,7 +18647,8 @@ Repository-specific rules:
       "avoidWhen": [
         "standalone vulnerability validation",
         "non-security workloads"
-      ]
+      ],
+      "githubRepositoryId": 3482588
     },
     {
       "repo": "infoslack/awesome-web-hacking",
@@ -18470,7 +18690,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 34994225
     },
     {
       "repo": "rapid7/metasploit-framework",
@@ -18514,7 +18735,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security automation",
         "environments where custom minimal tooling is required"
-      ]
+      ],
+      "githubRepositoryId": 2293158
     },
     {
       "repo": "huggingface/transformers",
@@ -18557,7 +18779,8 @@ Repository-specific rules:
       "avoidWhen": [
         "small dependency-light inference",
         "very low-resource deployments"
-      ]
+      ],
+      "githubRepositoryId": 155220641
     },
     {
       "repo": "jihe520/MathModelAgent",
@@ -18600,7 +18823,8 @@ Repository-specific rules:
       ],
       "guidanceSource": "inferred",
       "licenseEvidence": "no-root-license-file",
-      "licenseStatus": "custom-restrictive"
+      "licenseStatus": "custom-restrictive",
+      "githubRepositoryId": 924706399
     },
     {
       "repo": "alibaba/open-code-review",
@@ -18641,7 +18865,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1241960226
     },
     {
       "repo": "multimodal-art-projection/YuE",
@@ -18682,7 +18907,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 920995232
     },
     {
       "repo": "calesthio/OpenMontage",
@@ -18723,7 +18949,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1195360525
     },
     {
       "repo": "tech-leads-club/agent-skills",
@@ -18764,7 +18991,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1137515077
     },
     {
       "repo": "EsotericSoftware/spine-runtimes",
@@ -18809,7 +19037,8 @@ Repository-specific rules:
         "non-visual workloads"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 8302181
     },
     {
       "repo": "online-ml/river",
@@ -18851,7 +19080,8 @@ Repository-specific rules:
       "avoidWhen": [
         "deterministic non-ML tasks"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 167388434
     },
     {
       "repo": "airbnb/lottie-ios",
@@ -18898,7 +19128,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-visual workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 70198664
     },
     {
       "repo": "airbnb/lottie-android",
@@ -18945,7 +19176,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-visual workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 70198875
     },
     {
       "repo": "Calinou/awesome-godot",
@@ -18988,7 +19220,8 @@ Repository-specific rules:
         "low-resource environments",
         "non-game application development"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 33825948
     },
     {
       "repo": "heroiclabs/nakama",
@@ -19029,7 +19262,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-game application development"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 78869430
     },
     {
       "repo": "unclecode/crawl4ai",
@@ -19077,7 +19311,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-10-12T11:55:30Z"
-      }
+      },
+      "githubRepositoryId": 798201435
     },
     {
       "repo": "firecrawl/firecrawl",
@@ -19125,7 +19360,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "AGPL-3.0",
         "pushedAt": "2026-10-12T06:38:32Z"
-      }
+      },
+      "githubRepositoryId": 787076358
     },
     {
       "repo": "jo-inc/camoufox-browser",
@@ -19207,7 +19443,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1155383451
     },
     {
       "repo": "Open-LLM-VTuber/Open-LLM-VTuber",
@@ -19248,7 +19485,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 722844356
     },
     {
       "repo": "HKUDS/Vibe-Trading",
@@ -19302,7 +19540,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1198306812
     },
     {
       "repo": "The-Swarm-Corporation/AutoHedge",
@@ -19354,7 +19593,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 901529145
     },
     {
       "repo": "OpenBMB/VoxCPM",
@@ -19395,7 +19635,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1057664813
     },
     {
       "repo": "Fincept-Corporation/FinceptTerminal",
@@ -19447,7 +19688,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 849406496
     },
     {
       "repo": "TauricResearch/TradingAgents",
@@ -19502,7 +19744,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 909213664
     },
     {
       "repo": "ever-co/ever-gauzy",
@@ -19545,7 +19788,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 189829392
     },
     {
       "repo": "kyegomez/awesome-multi-agent-papers",
@@ -19587,7 +19831,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 761397238
     },
     {
       "repo": "doobidoo/mcp-memory-service",
@@ -19630,7 +19875,8 @@ Repository-specific rules:
       "avoidWhen": [
         "stateless applications with no retrieval or memory needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 908539519
     },
     {
       "repo": "alphaXiv/OpenResearch",
@@ -19672,7 +19918,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1261663145
     },
     {
       "repo": "inkscape/inkscape",
@@ -19717,7 +19964,8 @@ Repository-specific rules:
         "using GitHub as the canonical upstream"
       ],
       "licenseEvidence": "no-root-license-file",
-      "licenseStatus": "not-found"
+      "licenseStatus": "not-found",
+      "githubRepositoryId": 23163093
     },
     {
       "repo": "rive-app/rive-android",
@@ -19759,7 +20007,8 @@ Repository-specific rules:
       "avoidWhen": [
         "web-only applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 299578948
     },
     {
       "repo": "plattysoft/Leonids",
@@ -19802,7 +20051,8 @@ Repository-specific rules:
       "avoidWhen": [
         "modern Android UI stacks",
         "actively maintained graphics libraries"
-      ]
+      ],
+      "githubRepositoryId": 13803363
     },
     {
       "repo": "DanielMartinus/Konfetti",
@@ -19844,7 +20094,8 @@ Repository-specific rules:
       "avoidWhen": [
         "web-only applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 86191112
     },
     {
       "repo": "ruvnet/RuView",
@@ -19886,7 +20137,8 @@ Repository-specific rules:
       "avoidWhen": [
         "deterministic non-ML tasks"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 997737944
     },
     {
       "repo": "rlaope/oh-my-hermes",
@@ -19929,7 +20181,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1258301311
     },
     {
       "repo": "stablyai/orca",
@@ -19972,7 +20225,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1183888342
     },
     {
       "repo": "Panniantong/Agent-Reach",
@@ -20014,7 +20268,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1165277268
     },
     {
       "repo": "trailhq/Graft",
@@ -20099,7 +20354,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1118085970
     },
     {
       "repo": "jo-inc/camofox-browser",
@@ -20141,7 +20397,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1142274728
     },
     {
       "repo": "roboflow/supervision",
@@ -20183,7 +20440,8 @@ Repository-specific rules:
       "avoidWhen": [
         "deterministic non-ML tasks"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 571613891
     },
     {
       "repo": "anthropics/claude-code",
@@ -20228,7 +20486,8 @@ Repository-specific rules:
         "offline-only workflows",
         "tasks that do not need an autonomous coding agent"
       ],
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 937253475
     },
     {
       "repo": "NationalSecurityAgency/ghidra",
@@ -20270,7 +20529,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 173228436
     },
     {
       "repo": "ankitects/anki",
@@ -20313,7 +20573,8 @@ Repository-specific rules:
         "specialized low-level systems work"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 7270538
     },
     {
       "repo": "anthropics/knowledge-work-plugins",
@@ -20355,7 +20616,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1140828898
     },
     {
       "repo": "jamiepine/voicebox",
@@ -20397,7 +20659,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1141782198
     },
     {
       "repo": "JustVugg/colibri",
@@ -20439,7 +20702,8 @@ Repository-specific rules:
       "avoidWhen": [
         "deterministic non-ML tasks"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1286080397
     },
     {
       "repo": "cloudflare/security-audit-skill",
@@ -20481,7 +20745,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1273427276
     },
     {
       "repo": "CarterPerez-dev/Cybersecurity-Projects",
@@ -20523,7 +20788,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1092104931
     },
     {
       "repo": "block/buzz",
@@ -20564,7 +20830,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1174789082
     },
     {
       "repo": "Lakr233/vphone-cli",
@@ -20606,7 +20873,8 @@ Repository-specific rules:
       "avoidWhen": [
         "web-only applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1167515091
     },
     {
       "repo": "Tencent/WeKnora",
@@ -20648,7 +20916,8 @@ Repository-specific rules:
       "avoidWhen": [
         "deterministic non-ML tasks"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1024118326
     },
     {
       "repo": "Tencent/BrowserSkill",
@@ -20690,7 +20959,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1276665883
     },
     {
       "repo": "openai/codex",
@@ -20734,7 +21004,8 @@ Repository-specific rules:
       "avoidWhen": [
         "offline-only workflows",
         "tasks that do not require codebase modification"
-      ]
+      ],
+      "githubRepositoryId": 965415649
     },
     {
       "repo": "cline/cline",
@@ -20777,7 +21048,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 824874689
     },
     {
       "repo": "addyosmani/agent-skills",
@@ -20819,7 +21091,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1158722119
     },
     {
       "repo": "virattt/ai-hedge-fund",
@@ -20870,7 +21143,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 896144595
     },
     {
       "repo": "cactus-compute/needle",
@@ -20912,7 +21186,8 @@ Repository-specific rules:
       "avoidWhen": [
         "deterministic non-ML tasks"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1165361576
     },
     {
       "repo": "ruanyf/weekly",
@@ -20955,7 +21230,8 @@ Repository-specific rules:
       ],
       "guidanceSource": "inferred",
       "licenseEvidence": "no-root-license-file",
-      "licenseStatus": "not-found"
+      "licenseStatus": "not-found",
+      "githubRepositoryId": 152870372
     },
     {
       "repo": "docling-project/docling",
@@ -20997,7 +21273,8 @@ Repository-specific rules:
       "avoidWhen": [
         "deterministic non-ML tasks"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 826168160
     },
     {
       "repo": "Open-Dev-Society/OpenStock",
@@ -21046,7 +21323,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1065936302
     },
     {
       "repo": "kaiiyer/awesome-vulnerable",
@@ -21088,7 +21366,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 201734799
     },
     {
       "repo": "latent-spaces/brag",
@@ -21131,7 +21410,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1271560627
     },
     {
       "repo": "ahmedkhaleel2004/gitdiagram",
@@ -21173,7 +21453,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 903700733
     },
     {
       "repo": "tradesdontlie/tradingview-mcp",
@@ -21222,7 +21503,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1195329660
     },
     {
       "repo": "supermemoryai/supermemory",
@@ -21265,7 +21547,8 @@ Repository-specific rules:
       "avoidWhen": [
         "stateless applications with no retrieval or memory needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 764287615
     },
     {
       "repo": "Fission-AI/OpenSpec",
@@ -21307,7 +21590,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1032459340
     },
     {
       "repo": "earendil-works/pi",
@@ -21350,7 +21634,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1035029907
     },
     {
       "repo": "n8n-io/n8n",
@@ -21395,7 +21680,8 @@ Repository-specific rules:
         "hard real-time processing",
         "ultra-light embedded automation"
       ],
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 193215554
     },
     {
       "repo": "mindsdb/mindsdb",
@@ -21482,7 +21768,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 783512367
     },
     {
       "repo": "MemPalace/mempalace",
@@ -21525,7 +21812,8 @@ Repository-specific rules:
       "avoidWhen": [
         "stateless applications with no retrieval or memory needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1201656210
     },
     {
       "repo": "infiniflow/ragflow",
@@ -21569,7 +21857,8 @@ Repository-specific rules:
       "avoidWhen": [
         "deterministic non-ML tasks"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 730534580
     },
     {
       "repo": "Mafifrizi/ARES",
@@ -21612,7 +21901,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-security workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1276141044
     },
     {
       "repo": "vercel-labs/json-render",
@@ -21654,7 +21944,8 @@ Repository-specific rules:
       "avoidWhen": [
         "backend-only services"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1134411737
     },
     {
       "repo": "higgsfield-ai/higgsfield",
@@ -21698,7 +21989,8 @@ Repository-specific rules:
         "low-resource environments",
         "projects requiring minimal setup and operational complexity"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 134999697
     },
     {
       "repo": "mihail911/modern-software-dev-assignments",
@@ -21741,7 +22033,8 @@ Repository-specific rules:
       ],
       "guidanceSource": "inferred",
       "licenseEvidence": "no-root-license-file",
-      "licenseStatus": "not-found"
+      "licenseStatus": "not-found",
+      "githubRepositoryId": 1033674301
     },
     {
       "repo": "paperless-ngx/paperless-ngx",
@@ -21783,7 +22076,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 458648791
     },
     {
       "repo": "anthropics/financial-services",
@@ -21824,7 +22118,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1165056385
     },
     {
       "repo": "trycua/cua",
@@ -21869,7 +22164,8 @@ Repository-specific rules:
         "low-resource environments",
         "projects requiring minimal setup and operational complexity"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 925270205
     },
     {
       "repo": "Graphify-Labs/graphify",
@@ -21911,7 +22207,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1200597263
     },
     {
       "repo": "cookiy-ai/user-research-skill",
@@ -21952,7 +22249,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1207006614
     },
     {
       "repo": "199-biotechnologies/claude-deep-research-skill",
@@ -21995,7 +22293,8 @@ Repository-specific rules:
         "simple deterministic scripts without agent orchestration"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "no-root-license-file"
+      "licenseEvidence": "no-root-license-file",
+      "githubRepositoryId": 1089628716
     },
     {
       "repo": "mvanhorn/last30days-skill",
@@ -22037,7 +22336,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1140843380
     },
     {
       "repo": "ZeroPointRepo/youtube-skills",
@@ -22079,7 +22379,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1147294830
     },
     {
       "repo": "bevibing/tutor-skills",
@@ -22121,7 +22422,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1163855415
     },
     {
       "repo": "Paramchoudhary/ResumeSkills",
@@ -22163,7 +22465,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1145879202
     },
     {
       "repo": "career-ops-hq/career-ops",
@@ -22207,7 +22510,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1201476594
     },
     {
       "repo": "Dokploy/dokploy",
@@ -22250,7 +22554,8 @@ Repository-specific rules:
         "local-only scripts with no deployment or operations needs"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 788847937
     },
     {
       "repo": "CopilotKit/CopilotKit",
@@ -22294,7 +22599,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 655515393
     },
     {
       "repo": "unslothai/unsloth",
@@ -22338,7 +22644,8 @@ Repository-specific rules:
       "avoidWhen": [
         "CPU-only low-memory machines",
         "non-LLM machine-learning workloads"
-      ]
+      ],
+      "githubRepositoryId": 725205304
     },
     {
       "repo": "aaif-goose/goose",
@@ -22382,7 +22689,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 846698999
     },
     {
       "repo": "code-yeongyu/oh-my-openagent",
@@ -22426,7 +22734,8 @@ Repository-specific rules:
         "simple deterministic scripts without agent orchestration"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 1108837393
     },
     {
       "repo": "agno-agi/agno",
@@ -22469,7 +22778,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 488641606
     },
     {
       "repo": "mindsdb/mindshub",
@@ -22513,7 +22823,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 143328315
     },
     {
       "repo": "langflow-ai/langflow",
@@ -22721,7 +23032,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-Godot projects"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 797006583
     },
     {
       "repo": "agentverse-os/AgentVerse-OS",
@@ -22763,7 +23075,8 @@ Repository-specific rules:
       "avoidWhen": [
         "teams requiring a managed enterprise cloud"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1367577373
     },
     {
       "repo": "anmolkapil/plexo",
@@ -22804,7 +23117,8 @@ Repository-specific rules:
       "avoidWhen": [
         "applications not handling file transfers"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1371220575
     },
     {
       "repo": "Antseed/AIPs",
@@ -22843,7 +23157,8 @@ Repository-specific rules:
         "general-purpose AI deployment"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 1291163775
     },
     {
       "repo": "Antseed/antseed",
@@ -22885,7 +23200,8 @@ Repository-specific rules:
         "verified secure production inference"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 1165524806
     },
     {
       "repo": "Antseed/openclaw-channel-antseed",
@@ -22927,7 +23243,8 @@ Repository-specific rules:
         "production-critical infrastructure"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 1169151107
     },
     {
       "repo": "arnegiacomo/fugleramme",
@@ -22969,7 +23286,8 @@ Repository-specific rules:
       "avoidWhen": [
         "general-purpose image generation"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1294088656
     },
     {
       "repo": "axstin/rbxfpsunlocker",
@@ -23010,7 +23328,8 @@ Repository-specific rules:
         "modern actively maintained Roblox tooling"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "legacy"
+      "lifecycle": "legacy",
+      "githubRepositoryId": 125687069
     },
     {
       "repo": "chubbyguan/chubbyskills",
@@ -23052,7 +23371,8 @@ Repository-specific rules:
       "avoidWhen": [
         "English-only content pipelines"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1262740944
     },
     {
       "repo": "colbymchenry/codegraph",
@@ -23094,7 +23414,8 @@ Repository-specific rules:
       "avoidWhen": [
         "tiny single-file repositories"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1137078255
     },
     {
       "repo": "comet-ml/opik",
@@ -23136,7 +23457,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple applications without model tracing"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 638951438
     },
     {
       "repo": "D4Vinci/Scrapling",
@@ -23177,7 +23499,8 @@ Repository-specific rules:
       "avoidWhen": [
         "sites where collection is unauthorized"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 872119017
     },
     {
       "repo": "daytonaio/daytona",
@@ -23217,7 +23540,8 @@ Repository-specific rules:
         "new production deployments requiring active maintenance"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "legacy"
+      "lifecycle": "legacy",
+      "githubRepositoryId": 753490180
     },
     {
       "repo": "Effect-TS/effect",
@@ -23259,7 +23583,8 @@ Repository-specific rules:
       "avoidWhen": [
         "small scripts without structured effect needs"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 221458136
     },
     {
       "repo": "elliothux/open-compute",
@@ -23301,7 +23626,8 @@ Repository-specific rules:
       "avoidWhen": [
         "managed Cloudflare-only deployments"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1343371173
     },
     {
       "repo": "Epix-Incorporated/Adonis",
@@ -23342,7 +23668,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-Roblox games"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 55325103
     },
     {
       "repo": "evidentlyai/evidently",
@@ -23384,7 +23711,8 @@ Repository-specific rules:
       "avoidWhen": [
         "applications without quality or drift metrics"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 315977578
     },
     {
       "repo": "getzep/graphiti",
@@ -23426,7 +23754,8 @@ Repository-specific rules:
       "avoidWhen": [
         "stateless agents with no long-term knowledge"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 840056306
     },
     {
       "repo": "Giskard-AI/giskard-oss",
@@ -23468,7 +23797,8 @@ Repository-specific rules:
       "avoidWhen": [
         "projects without LLM evaluation requirements"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 466864356
     },
     {
       "repo": "google/skills",
@@ -23510,7 +23840,8 @@ Repository-specific rules:
       "avoidWhen": [
         "tools unrelated to Google ecosystems"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1197652028
     },
     {
       "repo": "HarrierOnChain/Prediction-Markets-Trading-Bot-Toolkits",
@@ -23555,7 +23886,8 @@ Repository-specific rules:
       "guidanceSource": "curated",
       "roles": [
         "execution"
-      ]
+      ],
+      "githubRepositoryId": 1066504944
     },
     {
       "repo": "huggingface/smolagents",
@@ -23597,7 +23929,8 @@ Repository-specific rules:
       "avoidWhen": [
         "heavy enterprise orchestration with extensive controls"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 898968194
     },
     {
       "repo": "Ignitetechnologies/Mindmap",
@@ -23634,7 +23967,8 @@ Repository-specific rules:
       "avoidWhen": [
         "runtime security scanning"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 591904676
     },
     {
       "repo": "InfinityLoop1308/PipePipe",
@@ -23675,7 +24009,8 @@ Repository-specific rules:
       "avoidWhen": [
         "browser-only applications"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 490984887
     },
     {
       "repo": "jamwithai/production-agentic-rag-course",
@@ -23715,7 +24050,8 @@ Repository-specific rules:
       "avoidWhen": [
         "projects needing maintained turnkey production software"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1033427112
     },
     {
       "repo": "JoasASantos/Offensive-Security-AI-Models",
@@ -23753,7 +24089,8 @@ Repository-specific rules:
         "unreviewed model deployment or unauthorized use"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 1391384546
     },
     {
       "repo": "JuliusBrussee/caveman",
@@ -23794,7 +24131,8 @@ Repository-specific rules:
       "avoidWhen": [
         "work requiring complete uncompressed context"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1201173969
     },
     {
       "repo": "letta-ai/letta-code",
@@ -23836,7 +24174,8 @@ Repository-specific rules:
       "avoidWhen": [
         "one-shot stateless code edits"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1082960574
     },
     {
       "repo": "lihanyu81/polymarket_lp_tool",
@@ -23880,7 +24219,8 @@ Repository-specific rules:
       "lifecycle": "reference",
       "roles": [
         "execution"
-      ]
+      ],
+      "githubRepositoryId": 1198550148
     },
     {
       "repo": "NVIDIA/OpenShell",
@@ -23922,7 +24262,8 @@ Repository-specific rules:
       "avoidWhen": [
         "tasks with no agent execution"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1166129534
     },
     {
       "repo": "OffGridPete/Fieldwatch",
@@ -23963,7 +24304,8 @@ Repository-specific rules:
       "avoidWhen": [
         "active penetration testing or packet injection"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1372164083
     },
     {
       "repo": "owncloud/android",
@@ -24004,7 +24346,8 @@ Repository-specific rules:
       "avoidWhen": [
         "projects unrelated to ownCloud"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 5550567
     },
     {
       "repo": "pizza-bot-app/pizza-bot",
@@ -24046,7 +24389,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple single-call LLM tasks"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1281682343
     },
     {
       "repo": "recogardtech/AutoPilotPM",
@@ -24092,7 +24436,8 @@ Repository-specific rules:
       "lifecycle": "reference",
       "roles": [
         "execution"
-      ]
+      ],
+      "githubRepositoryId": 1393228406
     },
     {
       "repo": "roblox-ts/roblox-ts",
@@ -24134,7 +24479,8 @@ Repository-specific rules:
       "avoidWhen": [
         "Roblox scripts written only in Lua"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 147587500
     },
     {
       "repo": "shadcn-ui/lint",
@@ -24176,7 +24522,8 @@ Repository-specific rules:
       "avoidWhen": [
         "applications without Tailwind"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1354701193
     },
     {
       "repo": "togg53192-cmd/jailbreaks",
@@ -24213,7 +24560,8 @@ Repository-specific rules:
         "production AI policy bypasses"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 1273646780
     },
     {
       "repo": "truera/trulens",
@@ -24255,7 +24603,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-LLM web analytics"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 309504885
     },
     {
       "repo": "UKGovernmentBEIS/inspect_ai",
@@ -24296,7 +24645,8 @@ Repository-specific rules:
       "avoidWhen": [
         "applications without model evaluation needs"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 718665019
     },
     {
       "repo": "vibrantlabsai/ragas",
@@ -24337,7 +24687,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-RAG or non-LLM systems"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 637924634
     },
     {
       "repo": "vinnylarouge/jevlike",
@@ -24376,7 +24727,8 @@ Repository-specific rules:
         "selection based on absent README description"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 1372867305
     },
     {
       "repo": "whaleyxbt/patchright-enhanced",
@@ -24418,7 +24770,8 @@ Repository-specific rules:
         "production use before licensing and provenance checks"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 1191951364
     },
     {
       "repo": "yejy53/Editable-Design",
@@ -24459,7 +24812,8 @@ Repository-specific rules:
       "avoidWhen": [
         "purely non-visual automation"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1344693102
     },
     {
       "repo": "1N3/Sn1per",
@@ -24499,7 +24853,8 @@ Repository-specific rules:
         "Reconnaissance non autorisée ou non cadrée"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 42008209
     },
     {
       "repo": "aarora4/Awesome-Prediction-Market-Tools",
@@ -24543,7 +24898,8 @@ Repository-specific rules:
         "backtest",
         "risk",
         "execution"
-      ]
+      ],
+      "githubRepositoryId": 1107240622
     },
     {
       "repo": "AILab-CVC/VideoCrafter",
@@ -24583,7 +24939,8 @@ Repository-specific rules:
         "Exécution sur matériel à ressources limitées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 622894885
     },
     {
       "repo": "apache/tika",
@@ -24623,7 +24980,8 @@ Repository-specific rules:
         "Documents sensibles sans contrôles de confidentialité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 206427
     },
     {
       "repo": "boykopovar/AnyPS5",
@@ -24663,7 +25021,8 @@ Repository-specific rules:
         "Distribution non autorisée de logiciels et contenus protégés"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1322250666
     },
     {
       "repo": "caddyserver/caddy",
@@ -24703,7 +25062,8 @@ Repository-specific rules:
         "Environnements sans accès aux ports ou configuration réseau"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 29207621
     },
     {
       "repo": "caiovicentino/polymarket-mcp-server",
@@ -24749,7 +25109,8 @@ Repository-specific rules:
         "backtest",
         "risk",
         "execution"
-      ]
+      ],
+      "githubRepositoryId": 1093903598
     },
     {
       "repo": "cantolab/open-source-fractal",
@@ -24791,7 +25152,8 @@ Repository-specific rules:
       "roles": [
         "alpha",
         "regime"
-      ]
+      ],
+      "githubRepositoryId": 1329276341
     },
     {
       "repo": "cloudflare/cloudflare-os",
@@ -24831,7 +25193,8 @@ Repository-specific rules:
         "Fonctionnement totalement hors ligne sans adaptation"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1211925923
     },
     {
       "repo": "ComposioHQ/composio",
@@ -24871,7 +25234,8 @@ Repository-specific rules:
         "Fonctionnement totalement hors ligne sans adaptation"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 762304524
     },
     {
       "repo": "datalab-to/marker",
@@ -24911,7 +25275,8 @@ Repository-specific rules:
         "Documents sensibles sans contrôles de confidentialité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 712111618
     },
     {
       "repo": "deepseek-ai/DeepGEMM",
@@ -24951,7 +25316,8 @@ Repository-specific rules:
         "Machines sans accélérateur compatible"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 932038801
     },
     {
       "repo": "Diolinux/PhotoGIMP",
@@ -24991,7 +25357,8 @@ Repository-specific rules:
         "Flux exigeant des logiciels propriétaires non compatibles"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 273572029
     },
     {
       "repo": "DuarteSantos8/openGym",
@@ -25031,7 +25398,8 @@ Repository-specific rules:
         "Besoin d'une application sans maintenance serveur"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1305213943
     },
     {
       "repo": "earthtojake/text-to-cad",
@@ -25071,7 +25439,8 @@ Repository-specific rules:
         "Production industrielle sans validation géométrique"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1217522067
     },
     {
       "repo": "elder-plinius/T3MP3ST",
@@ -25111,7 +25480,8 @@ Repository-specific rules:
         "Opérations offensives sans consentement explicite"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1287460663
     },
     {
       "repo": "emilk/egui",
@@ -25151,7 +25521,8 @@ Repository-specific rules:
         "Interfaces conçues exclusivement pour l'écosystème JavaScript"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 165522651
     },
     {
       "repo": "ent0n29/polybot",
@@ -25197,7 +25568,8 @@ Repository-specific rules:
         "backtest",
         "risk",
         "execution"
-      ]
+      ],
+      "githubRepositoryId": 1115780061
     },
     {
       "repo": "EpicGames/raddebugger",
@@ -25237,7 +25609,8 @@ Repository-specific rules:
         "Débogage de binaires sans accès autorisé"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 741625310
     },
     {
       "repo": "evan-kolberg/prediction-market-backtesting",
@@ -25283,7 +25656,8 @@ Repository-specific rules:
         "backtest",
         "risk",
         "execution"
-      ]
+      ],
+      "githubRepositoryId": 1156777542
     },
     {
       "repo": "fxraptor-alpha/pinescript-indicators",
@@ -25325,7 +25699,8 @@ Repository-specific rules:
       "roles": [
         "alpha",
         "regime"
-      ]
+      ],
+      "githubRepositoryId": 1301305622
     },
     {
       "repo": "genmoai/mochi",
@@ -25365,7 +25740,8 @@ Repository-specific rules:
         "Exécution sur matériel à ressources limitées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 855533850
     },
     {
       "repo": "gh1mau/masta-cve-2026-48907",
@@ -25405,7 +25781,8 @@ Repository-specific rules:
         "Utilisation en production sans validation du code et du périmètre"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1281918197
     },
     {
       "repo": "github/github-mcp-server",
@@ -25445,7 +25822,8 @@ Repository-specific rules:
         "Tokens sur-privilégiés ou actions non relues"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 942771284
     },
     {
       "repo": "go-gitea/gitea",
@@ -25485,7 +25863,8 @@ Repository-specific rules:
         "Exploitation d'un service public sans plan de sécurité et sauvegarde"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 72495579
     },
     {
       "repo": "google-deepmind/mujoco",
@@ -25525,7 +25904,8 @@ Repository-specific rules:
         "Projet sans besoins robotiques ni matériel adapté"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 400501136
     },
     {
       "repo": "guoyww/AnimateDiff",
@@ -25565,7 +25945,8 @@ Repository-specific rules:
         "Exécution sur matériel à ressources limitées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 654930782
     },
     {
       "repo": "huggingface/diffusers",
@@ -25605,7 +25986,8 @@ Repository-specific rules:
         "Applications sans inférence multimodale"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 498011141
     },
     {
       "repo": "huggingface/lerobot",
@@ -25645,7 +26027,8 @@ Repository-specific rules:
         "Projet sans besoins robotiques ni matériel adapté"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 748713144
     },
     {
       "repo": "iamlukethedev/Herald-OS",
@@ -25685,7 +26068,8 @@ Repository-specific rules:
         "Confiance implicite dans les actions d'agents non supervisés"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1407893845
     },
     {
       "repo": "ict2023trader/Indicators",
@@ -25727,7 +26111,8 @@ Repository-specific rules:
       "roles": [
         "alpha",
         "regime"
-      ]
+      ],
+      "githubRepositoryId": 1397726107
     },
     {
       "repo": "isaac-sim/IsaacLab",
@@ -25767,7 +26152,8 @@ Repository-specific rules:
         "Projet sans besoins robotiques ni matériel adapté"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 567038244
     },
     {
       "repo": "jina-ai/reader",
@@ -25807,7 +26193,8 @@ Repository-specific rules:
         "Documents sensibles sans contrôles de confidentialité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 784546140
     },
     {
       "repo": "justcallmekoko/ESP32Marauder",
@@ -25847,7 +26234,8 @@ Repository-specific rules:
         "Accès à des réseaux non autorisés"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 208325027
     },
     {
       "repo": "JustExecution/HTF_indicator",
@@ -25889,7 +26277,8 @@ Repository-specific rules:
       "roles": [
         "alpha",
         "regime"
-      ]
+      ],
+      "githubRepositoryId": 1317369916
     },
     {
       "repo": "kargulstudio/sales-crm",
@@ -25929,7 +26318,8 @@ Repository-specific rules:
         "Déploiement sans contrôle des données clients"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1404266247
     },
     {
       "repo": "LaurieWired/GhidraMCP",
@@ -25969,7 +26359,8 @@ Repository-specific rules:
         "Analyse de logiciels tiers hors cadre légal ou contractuel"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "stable"
+      "lifecycle": "stable",
+      "githubRepositoryId": 953335676
     },
     {
       "repo": "lfnovo/esperanto",
@@ -26009,7 +26400,8 @@ Repository-specific rules:
         "Usage exigeant un modèle exclusivement local"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 893198731
     },
     {
       "repo": "lfnovo/open-notebook",
@@ -26049,7 +26441,8 @@ Repository-specific rules:
         "Données sensibles sur fournisseur non maîtrisé"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 876286167
     },
     {
       "repo": "Lightricks/LTX-Video",
@@ -26089,7 +26482,8 @@ Repository-specific rules:
         "Exécution sur matériel à ressources limitées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 891705470
     },
     {
       "repo": "liquidslr/system-design-notes",
@@ -26127,7 +26521,8 @@ Repository-specific rules:
         "Utiliser une référence théorique comme preuve de performance"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 907604175
     },
     {
       "repo": "localsend/localsend",
@@ -26167,7 +26562,8 @@ Repository-specific rules:
         "Réseaux non fiables sans contrôle de sécurité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 578822531
     },
     {
       "repo": "LuxAlgo/PineTS",
@@ -26211,7 +26607,8 @@ Repository-specific rules:
       "roles": [
         "alpha",
         "regime"
-      ]
+      ],
+      "githubRepositoryId": 924426714
     },
     {
       "repo": "mastra-ai/mastra",
@@ -26251,7 +26648,8 @@ Repository-specific rules:
         "Fonctionnement totalement hors ligne sans adaptation"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 839037098
     },
     {
       "repo": "meituan-longcat/LongCat-Video",
@@ -26291,7 +26689,8 @@ Repository-specific rules:
         "Exécution sur matériel à ressources limitées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1083010192
     },
     {
       "repo": "michael-denyer/pstack-claude",
@@ -26331,7 +26730,8 @@ Repository-specific rules:
         "Intégration sans revue des changements générés"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1250276806
     },
     {
       "repo": "MISP/MISP",
@@ -26371,7 +26771,8 @@ Repository-specific rules:
         "Déploiement de règles non validées en production"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 8077402
     },
     {
       "repo": "mitmproxy/mitmproxy",
@@ -26411,7 +26812,8 @@ Repository-specific rules:
         "Interception non consentie du trafic"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 519832
     },
     {
       "repo": "mitre-attack/attack-stix-data",
@@ -26451,7 +26853,8 @@ Repository-specific rules:
         "Déploiement de règles non validées en production"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 369276896
     },
     {
       "repo": "modal-labs/modal-examples",
@@ -26491,7 +26894,8 @@ Repository-specific rules:
         "Déploiement sans suivi des coûts ni isolation"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 528328355
     },
     {
       "repo": "morluto/rea",
@@ -26531,7 +26935,8 @@ Repository-specific rules:
         "Analyse de logiciels tiers hors cadre légal ou contractuel"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1209966933
     },
     {
       "repo": "OISF/suricata",
@@ -26571,7 +26976,8 @@ Repository-specific rules:
         "Déploiement de règles non validées en production"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 5410234
     },
     {
       "repo": "open-rmf/rmf",
@@ -26611,7 +27017,8 @@ Repository-specific rules:
         "Projet sans besoins robotiques ni matériel adapté"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 342367337
     },
     {
       "repo": "openai/math",
@@ -26651,7 +27058,8 @@ Repository-specific rules:
         "Développement sans besoin de vérification formelle"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1407950271
     },
     {
       "repo": "OpenByteInc/QuantDinger",
@@ -26697,7 +27105,8 @@ Repository-specific rules:
         "backtest",
         "risk",
         "execution"
-      ]
+      ],
+      "githubRepositoryId": 1124295269
     },
     {
       "repo": "OpenCut-app/OpenCut",
@@ -26737,7 +27146,8 @@ Repository-specific rules:
         "Traitement multimédia sans vérification du rendu final"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1006414368
     },
     {
       "repo": "openvla/openvla",
@@ -26777,7 +27187,8 @@ Repository-specific rules:
         "Projet sans besoins robotiques ni matériel adapté"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "stable"
+      "lifecycle": "stable",
+      "githubRepositoryId": 814864073
     },
     {
       "repo": "oraios/serena",
@@ -26817,7 +27228,8 @@ Repository-specific rules:
         "Éditions sans tests ou revues de diff"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 953683578
     },
     {
       "repo": "osquery/osquery",
@@ -26857,7 +27269,8 @@ Repository-specific rules:
         "Collecte de télémétrie sans autorisation"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 22394357
     },
     {
       "repo": "pingdotgg/t3code",
@@ -26897,7 +27310,8 @@ Repository-specific rules:
         "Intégration sans revue des changements générés"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1153130349
     },
     {
       "repo": "Quincunx33/Ai-jailbreak",
@@ -26937,7 +27351,8 @@ Repository-specific rules:
         "Utilisation non encadrée de techniques de contournement"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1334499525
     },
     {
       "repo": "rawfilejson/awesome-osint-arsenal",
@@ -26977,7 +27392,8 @@ Repository-specific rules:
         "Reconnaissance non autorisée ou non cadrée"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1208852221
     },
     {
       "repo": "ray-project/ray",
@@ -27017,7 +27433,8 @@ Repository-specific rules:
         "Applications sans parallélisme à gérer"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 71932349
     },
     {
       "repo": "rbrus/laya-as-judge",
@@ -27097,7 +27514,8 @@ Repository-specific rules:
         "Jeux sans autorisation de modification"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1397016507
     },
     {
       "repo": "reviewdog/reviewdog",
@@ -27137,7 +27555,8 @@ Repository-specific rules:
         "Remplacer entièrement les tests fonctionnels par un linter"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 71133469
     },
     {
       "repo": "RickdeJager/stegseek",
@@ -27177,7 +27596,8 @@ Repository-specific rules:
         "Tentatives de récupération non autorisées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 308354794
     },
     {
       "repo": "ros2/ros2",
@@ -27215,7 +27635,8 @@ Repository-specific rules:
         "Projet sans besoins robotiques ni matériel adapté"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 31285942
     },
     {
       "repo": "SigmaHQ/sigma",
@@ -27255,7 +27676,8 @@ Repository-specific rules:
         "Déploiement de règles non validées en production"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 77276660
     },
     {
       "repo": "SII-WANGZJ/Polymarket_data",
@@ -27301,7 +27723,8 @@ Repository-specific rules:
         "backtest",
         "risk",
         "execution"
-      ]
+      ],
+      "githubRepositoryId": 1126217925
     },
     {
       "repo": "smicallef/spiderfoot",
@@ -27341,7 +27764,8 @@ Repository-specific rules:
         "Reconnaissance non autorisée ou non cadrée"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 4165675
     },
     {
       "repo": "storytold/artcraft",
@@ -27381,7 +27805,8 @@ Repository-specific rules:
         "Utilisation sans vérification des droits sur les médias"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 476507964
     },
     {
       "repo": "Stremio/stremio-web",
@@ -27421,7 +27846,8 @@ Repository-specific rules:
         "Usage sans respect des droits sur les contenus"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 136023747
     },
     {
       "repo": "taskflow/taskflow",
@@ -27461,7 +27887,8 @@ Repository-specific rules:
         "Applications sans parallélisme à gérer"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 130068982
     },
     {
       "repo": "tester-army/e2e",
@@ -27501,7 +27928,8 @@ Repository-specific rules:
         "Utilisation comme substitut à des tests d'intégration ciblés"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1308631234
     },
     {
       "repo": "topoteretes/cognee",
@@ -27541,7 +27969,8 @@ Repository-specific rules:
         "Traitement de données confidentielles sans contrôle d'accès"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 679343504
     },
     {
       "repo": "trufflesecurity/trufflehog",
@@ -27581,7 +28010,8 @@ Repository-specific rules:
         "Scan de ressources dont l'accès n'est pas autorisé"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 77726177
     },
     {
       "repo": "undefined-ui/second-brain-os",
@@ -27621,7 +28051,8 @@ Repository-specific rules:
         "Confiance implicite dans les actions d'agents non supervisés"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1360367824
     },
     {
       "repo": "Unstructured-IO/unstructured",
@@ -27661,7 +28092,8 @@ Repository-specific rules:
         "Documents sensibles sans contrôles de confidentialité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 541798154
     },
     {
       "repo": "Velocidex/velociraptor",
@@ -27701,7 +28133,8 @@ Repository-specific rules:
         "Collecte de télémétrie sans autorisation"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 126576769
     },
     {
       "repo": "VirusTotal/yara",
@@ -27741,7 +28174,8 @@ Repository-specific rules:
         "Déploiement de règles non validées en production"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 7037996
     },
     {
       "repo": "Wan-Video/Wan2.1",
@@ -27781,7 +28215,8 @@ Repository-specific rules:
         "Exécution sur matériel à ressources limitées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 938717878
     },
     {
       "repo": "XHToken/Spark-X2.5",
@@ -27819,7 +28254,8 @@ Repository-specific rules:
         "Appareils sans mémoire ou puissance suffisante"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1344623876
     },
     {
       "repo": "yangyuan-zhen/PolyWeather",
@@ -27865,7 +28301,8 @@ Repository-specific rules:
         "backtest",
         "risk",
         "execution"
-      ]
+      ],
+      "githubRepositoryId": 1150535773
     },
     {
       "repo": "zai-org/CogVideo",
@@ -27905,7 +28342,8 @@ Repository-specific rules:
         "Exécution sur matériel à ressources limitées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 497512032
     },
     {
       "repo": "zeek/zeek",
@@ -27945,7 +28383,8 @@ Repository-specific rules:
         "Déploiement de règles non validées en production"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 4930716
     },
     {
       "repo": "airbytehq/airbyte",
@@ -27988,7 +28427,8 @@ Repository-specific rules:
         "Supposer que toutes les fonctionnalités et licences Cloud sont ouvertes"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 283046497
     },
     {
       "repo": "apache/datafusion",
@@ -28031,7 +28471,8 @@ Repository-specific rules:
         "Rechercher une interface graphique de BI prête à utiliser"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 358917318
     },
     {
       "repo": "apache/superset",
@@ -28074,7 +28515,8 @@ Repository-specific rules:
         "Besoin d'une bibliothèque embarquée légère côté navigateur uniquement"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 39464018
     },
     {
       "repo": "Dataherald/dataherald",
@@ -28117,7 +28559,8 @@ Repository-specific rules:
         "Production sans audit de sécurité SQL ni contrôle de maintenance"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 656385153
     },
     {
       "repo": "defog-ai/sqlcoder",
@@ -28160,7 +28603,8 @@ Repository-specific rules:
         "Déployer des requêtes générées sur une base réelle sans revue ni garde-fous"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 679890936
     },
     {
       "repo": "dlt-hub/dlt",
@@ -28203,7 +28647,8 @@ Repository-specific rules:
         "Orchestration complexe non couverte sans outil complémentaire"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 452221115
     },
     {
       "repo": "duckdb/duckdb",
@@ -28246,7 +28691,8 @@ Repository-specific rules:
         "Héberger une base OLTP multi-utilisateurs avec beaucoup d'écritures concurrentes"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 138754790
     },
     {
       "repo": "eosphoros-ai/DB-GPT",
@@ -28290,7 +28736,8 @@ Repository-specific rules:
         "Permettre à un LLM d'exécuter des requêtes non contrôlées sur une base de production"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 627480054
     },
     {
       "repo": "evidence-dev/evidence",
@@ -28334,7 +28781,8 @@ Repository-specific rules:
         "Exiger une interface BI entièrement sans code"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 371239231
     },
     {
       "repo": "fivetran/great_expectations",
@@ -28377,7 +28825,8 @@ Repository-specific rules:
         "Substituer des assertions aux validations métier ou statistiques"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 103071520
     },
     {
       "repo": "Jakeschincariol/arena-skill",
@@ -28420,7 +28869,8 @@ Repository-specific rules:
         "Consommer des appels LLM coûteux sans budget et critères de jugement"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1390867091
     },
     {
       "repo": "Kanaries/pygwalker",
@@ -28463,7 +28913,8 @@ Repository-specific rules:
         "Recherche exclusive de visualisations statiques pour un pipeline headless"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 602389947
     },
     {
       "repo": "metabase/metabase",
@@ -28506,7 +28957,8 @@ Repository-specific rules:
         "Réutiliser le code sans examiner les licences communautaires et commerciales"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 30203935
     },
     {
       "repo": "open-metadata/OpenMetadata",
@@ -28549,7 +29001,8 @@ Repository-specific rules:
         "Déploiement d'une plateforme lourde pour quelques fichiers locaux"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 391740664
     },
     {
       "repo": "pola-rs/polars",
@@ -28592,7 +29045,8 @@ Repository-specific rules:
         "Avoir besoin uniquement de requêtes SQL simples sans traitement tabulaire"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 263727855
     },
     {
       "repo": "quarto-dev/quarto-cli",
@@ -28635,7 +29089,8 @@ Repository-specific rules:
         "Réutiliser des composants sans vérification de leur licence exacte"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 298579934
     },
     {
       "repo": "sinaptik-ai/pandas-ai",
@@ -28678,7 +29133,8 @@ Repository-specific rules:
         "Fournir un accès non contrôlé à des données personnelles ou confidentielles"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 631258918
     },
     {
       "repo": "sodadata/soda-core",
@@ -28721,7 +29177,8 @@ Repository-specific rules:
         "Réutiliser des composants sous licence incertaine sans vérification"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 321458274
     },
     {
       "repo": "yifanfeng97/Hyper-Extract",
@@ -28764,7 +29221,8 @@ Repository-specific rules:
         "Traitement de documents sensibles sans isoler les services d'inférence"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1129583447
     },
     {
       "repo": "0x6rss/chat-apps-osint",
@@ -28806,7 +29264,8 @@ Repository-specific rules:
         "Surveiller des personnes ou des comptes sans base légale"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1337383968
     },
     {
       "repo": "abue-ammar/tinycast",
@@ -28849,7 +29308,8 @@ Repository-specific rules:
         "Chercher une application compatible Android ou Windows"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1284153858
     },
     {
       "repo": "ahmadrosid/nakama",
@@ -28892,7 +29352,8 @@ Repository-specific rules:
         "Partager des données confidentielles sans permissions"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1247294715
     },
     {
       "repo": "anthropics/skills",
@@ -28934,7 +29395,8 @@ Repository-specific rules:
         "Installer des extensions tierces sans inspecter leur code"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1061953414
     },
     {
       "repo": "AppFlowy-IO/AppFlowy",
@@ -28977,7 +29439,8 @@ Repository-specific rules:
         "Exiger une solution sans maintenance ni sauvegardes"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 377496562
     },
     {
       "repo": "apurvsinghgautam/robin",
@@ -29019,7 +29482,8 @@ Repository-specific rules:
         "Surveiller des personnes ou des comptes sans base légale"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 962685604
     },
     {
       "repo": "awesome-selfhosted/awesome-selfhosted",
@@ -29060,7 +29524,8 @@ Repository-specific rules:
         "Supposer des tarifs et quotas gratuits permanents"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 36633370
     },
     {
       "repo": "bentoml/BentoML",
@@ -29103,7 +29568,8 @@ Repository-specific rules:
         "Serveurs sans ressources CPU/GPU ou limites de mémoire adaptées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 178976529
     },
     {
       "repo": "bradygaster/squad",
@@ -29146,7 +29612,8 @@ Repository-specific rules:
         "Accepter des modifications automatisées sans tests et code review"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1151205052
     },
     {
       "repo": "browser-use/jev-ultrafast",
@@ -29189,7 +29656,8 @@ Repository-specific rules:
         "Confier des actions sensibles à un agent sans supervision"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1373655162
     },
     {
       "repo": "browser-use/video-use",
@@ -29231,7 +29699,8 @@ Repository-specific rules:
         "Réutiliser des médias sans droits ou sans contrôle qualité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1208221543
     },
     {
       "repo": "caido/caido",
@@ -29273,7 +29742,8 @@ Repository-specific rules:
         "Scanner des cibles hors scope ou utiliser des exploits sans permission"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 420144999
     },
     {
       "repo": "caido/skills",
@@ -29315,7 +29785,8 @@ Repository-specific rules:
         "Scanner des cibles hors scope ou utiliser des exploits sans permission"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1171921154
     },
     {
       "repo": "calcom/cal.diy",
@@ -29358,7 +29829,8 @@ Repository-specific rules:
         "Utiliser des calendriers sans protections ni gestion des accès"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 350360184
     },
     {
       "repo": "charlie947/social-media-skills",
@@ -29401,7 +29873,8 @@ Repository-specific rules:
         "Automatiser une prospection intrusive ou sans validation"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1218014178
     },
     {
       "repo": "cloudflare/quiche",
@@ -29444,7 +29917,8 @@ Repository-specific rules:
         "Projet sans développement réseau de bas niveau"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 150891532
     },
     {
       "repo": "Comfy-Org/ComfyUI",
@@ -29487,7 +29961,8 @@ Repository-specific rules:
         "Lancer une génération lourde sans GPU adapté"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 589831718
     },
     {
       "repo": "coollabsio/coolify",
@@ -29530,7 +30005,8 @@ Repository-specific rules:
         "Déployer sans sauvegardes, mises à jour ni surveillance"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 332880689
     },
     {
       "repo": "coreyhaines31/marketingskills",
@@ -29573,7 +30049,8 @@ Repository-specific rules:
         "Automatiser une prospection intrusive ou sans validation"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1135212071
     },
     {
       "repo": "Crosstalk-Solutions/project-nomad",
@@ -29616,7 +30093,8 @@ Repository-specific rules:
         "Prendre des réponses d'IA non vérifiées pour des faits"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1007827531
     },
     {
       "repo": "davepoon/buildwithclaude",
@@ -29658,7 +30136,8 @@ Repository-specific rules:
         "Installer des extensions tierces sans inspecter leur code"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1025906681
     },
     {
       "repo": "davila7/claude-code-templates",
@@ -29700,7 +30179,8 @@ Repository-specific rules:
         "Installer des extensions tierces sans inspecter leur code"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1013480284
     },
     {
       "repo": "dgtlmoon/changedetection.io",
@@ -29743,7 +30223,8 @@ Repository-specific rules:
         "Surveillance abusive ou contraire aux conditions du site"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 333483116
     },
     {
       "repo": "dream-num/univer",
@@ -29786,7 +30267,8 @@ Repository-specific rules:
         "Rechercher seulement une simple API de traitement de texte"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 543101941
     },
     {
       "repo": "elder-plinius/CL4R1T4S",
@@ -29826,7 +30308,8 @@ Repository-specific rules:
         "Contourner des protections de systèmes tiers sans autorisation"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 942867788
     },
     {
       "repo": "elder-plinius/OBLITERATUS",
@@ -29868,7 +30351,8 @@ Repository-specific rules:
         "Contourner des protections de systèmes tiers sans autorisation"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1171949255
     },
     {
       "repo": "elie222/rakazo",
@@ -29911,7 +30395,8 @@ Repository-specific rules:
         "Accepter des modifications automatisées sans tests et code review"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1332781509
     },
     {
       "repo": "enjoy-digital/litex",
@@ -29954,7 +30439,8 @@ Repository-specific rules:
         "Projet sans besoins de matériel ou simulation bas niveau"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 45734719
     },
     {
       "repo": "FareedKhan-dev/kimi-k3-in-c",
@@ -29997,7 +30483,8 @@ Repository-specific rules:
         "Déployer un prototype expérimental comme serveur de production"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1319154759
     },
     {
       "repo": "federicodeponte/opendraft",
@@ -30040,7 +30527,8 @@ Repository-specific rules:
         "Publier des citations produites par IA sans vérification"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1086608189
     },
     {
       "repo": "garrytan/gstack",
@@ -30083,7 +30571,8 @@ Repository-specific rules:
         "Accepter des modifications automatisées sans tests et code review"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1179264259
     },
     {
       "repo": "ggml-org/llama.cpp",
@@ -30126,7 +30615,8 @@ Repository-specific rules:
         "Serveurs sans ressources CPU/GPU ou limites de mémoire adaptées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 612354784
     },
     {
       "repo": "google/artemis",
@@ -30169,7 +30659,8 @@ Repository-specific rules:
         "Confier des actions sensibles à un agent sans supervision"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1333399642
     },
     {
       "repo": "google/ax",
@@ -30212,7 +30703,8 @@ Repository-specific rules:
         "Ajouter des systèmes d'agents sans besoin ni métriques de qualité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1196447493
     },
     {
       "repo": "HarnessRouter/harnessrouter",
@@ -30255,7 +30747,8 @@ Repository-specific rules:
         "Autoriser toutes les opérations d'un agent sans garde-fous"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1329163060
     },
     {
       "repo": "harry7557558/spirula-studio",
@@ -30298,7 +30791,8 @@ Repository-specific rules:
         "Inférence sur matériel insuffisant ou sans validation du rendu"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 795775446
     },
     {
       "repo": "henrygd/beszel",
@@ -30340,7 +30834,8 @@ Repository-specific rules:
         "Exposer des données de supervision sans authentification"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 825470378
     },
     {
       "repo": "hesreallyhim/awesome-claude-code",
@@ -30382,7 +30877,8 @@ Repository-specific rules:
         "Installer des extensions tierces sans inspecter leur code"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 969302809
     },
     {
       "repo": "HKUDS/CLI-Anything",
@@ -30424,7 +30920,8 @@ Repository-specific rules:
         "Installer des extensions tierces sans inspecter leur code"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1176011916
     },
     {
       "repo": "HKUDS/DeepTutor",
@@ -30467,7 +30964,8 @@ Repository-specific rules:
         "Prendre des réponses d'IA non vérifiées pour des faits"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1124219907
     },
     {
       "repo": "imputnet/cobalt",
@@ -30509,7 +31007,8 @@ Repository-specific rules:
         "Télécharger du contenu protégé sans autorisation"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 511987144
     },
     {
       "repo": "isair/jarvis",
@@ -30552,7 +31051,8 @@ Repository-specific rules:
         "Exposer les sessions d'un assistant sans authentification"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1040940947
     },
     {
       "repo": "Jakubantalik/transitions.dev",
@@ -30595,7 +31095,8 @@ Repository-specific rules:
         "Considérer des règles visuelles comme preuve d'utilisabilité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1217396442
     },
     {
       "repo": "jarrodwatts/jev-trader",
@@ -30643,7 +31144,8 @@ Repository-specific rules:
         "alpha",
         "risk",
         "backtest"
-      ]
+      ],
+      "githubRepositoryId": 1373659194
     },
     {
       "repo": "koala73/worldmonitor",
@@ -30685,7 +31187,8 @@ Repository-specific rules:
         "Confondre une agrégation automatique avec une information corroborée"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1130564872
     },
     {
       "repo": "lahfir/agent-desktop",
@@ -30728,7 +31231,8 @@ Repository-specific rules:
         "Confier des actions sensibles à un agent sans supervision"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1161958643
     },
     {
       "repo": "LasCC/HackTools",
@@ -30770,7 +31274,8 @@ Repository-specific rules:
         "Scanner des cibles hors scope ou utiliser des exploits sans permission"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "stable"
+      "lifecycle": "stable",
+      "githubRepositoryId": 274248201
     },
     {
       "repo": "lastmile-ai/mcp-agent",
@@ -30813,7 +31318,8 @@ Repository-specific rules:
         "Ajouter des systèmes d'agents sans besoin ni métriques de qualité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 905016458
     },
     {
       "repo": "Leonxlnx/taste-skill",
@@ -30856,7 +31362,8 @@ Repository-specific rules:
         "Considérer des règles visuelles comme preuve d'utilisabilité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1162099055
     },
     {
       "repo": "letta-ai/letta",
@@ -30896,7 +31403,8 @@ Repository-specific rules:
         "Conserver des données personnelles sans contrôle de rétention"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 703411624
     },
     {
       "repo": "LibreTranslate/LibreTranslate",
@@ -30939,7 +31447,8 @@ Repository-specific rules:
         "Exiger une traduction certifiée ou juridiquement valide"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 322921248
     },
     {
       "repo": "maziyarpanahi/openmed",
@@ -30982,7 +31491,8 @@ Repository-specific rules:
         "Exposer des dossiers médicaux sans consentement ni protections"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1069760430
     },
     {
       "repo": "medusajs/medusa",
@@ -31025,7 +31535,8 @@ Repository-specific rules:
         "Application sans vente de produits ni parcours marchand"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 234739976
     },
     {
       "repo": "MG1937/ASC",
@@ -31067,7 +31578,8 @@ Repository-specific rules:
         "Analyser ou republier des applications protégées sans droits"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1264222628
     },
     {
       "repo": "microsoft/agent-lightning",
@@ -31110,7 +31622,8 @@ Repository-specific rules:
         "Ajouter des systèmes d'agents sans besoin ni métriques de qualité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1004147641
     },
     {
       "repo": "moorcheh-ai/memanto",
@@ -31152,7 +31665,8 @@ Repository-specific rules:
         "Conserver des données personnelles sans contrôle de rétention"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1190042495
     },
     {
       "repo": "muellerberndt/cadence",
@@ -31195,7 +31709,8 @@ Repository-specific rules:
         "Conserver des informations sensibles sans politique de rétention"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1360078054
     },
     {
       "repo": "mvt-project/mvt",
@@ -31237,7 +31752,8 @@ Repository-specific rules:
         "Accéder aux données d'un appareil tiers sans permission"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 386524895
     },
     {
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
@@ -31280,7 +31796,8 @@ Repository-specific rules:
         "Considérer des règles visuelles comme preuve d'utilisabilité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1106996539
     },
     {
       "repo": "open-webui/open-webui",
@@ -31323,7 +31840,8 @@ Repository-specific rules:
         "Exposer les sessions d'un assistant sans authentification"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 701547123
     },
     {
       "repo": "opentoonz/opentoonz",
@@ -31365,7 +31883,8 @@ Repository-specific rules:
         "Travailler sans interface graphique ni outils adaptés"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 54221232
     },
     {
       "repo": "pacifio/atlas",
@@ -31408,7 +31927,8 @@ Repository-specific rules:
         "Accepter des modifications automatisées sans tests et code review"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1238992253
     },
     {
       "repo": "pbakaus/impeccable",
@@ -31451,7 +31971,8 @@ Repository-specific rules:
         "Considérer des règles visuelles comme preuve d'utilisabilité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1097346685
     },
     {
       "repo": "plausible/analytics",
@@ -31494,7 +32015,8 @@ Repository-specific rules:
         "Besoin d'attribution marketing détaillée sans solution complémentaire"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 160427405
     },
     {
       "repo": "projectdiscovery/nuclei",
@@ -31536,7 +32058,8 @@ Repository-specific rules:
         "Scanner des cibles hors scope ou utiliser des exploits sans permission"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 252813491
     },
     {
       "repo": "projectdiscovery/nuclei-templates",
@@ -31578,7 +32101,8 @@ Repository-specific rules:
         "Scanner des cibles hors scope ou utiliser des exploits sans permission"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 253044228
     },
     {
       "repo": "pydantic/pydantic-ai",
@@ -31621,7 +32145,8 @@ Repository-specific rules:
         "Créer un agent lorsque des fonctions déterministes suffisent"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 818331198
     },
     {
       "repo": "Recurse-Labs/recurse",
@@ -31663,7 +32188,8 @@ Repository-specific rules:
         "Redistribuer des binaires ou du code sans permission"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1334869048
     },
     {
       "repo": "reddelexc/hackerone-reports",
@@ -31705,7 +32231,8 @@ Repository-specific rules:
         "Scanner des cibles hors scope ou utiliser des exploits sans permission"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 182211614
     },
     {
       "repo": "ripienaar/free-for-dev",
@@ -31748,7 +32275,8 @@ Repository-specific rules:
         "Supposer des tarifs et quotas gratuits permanents"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 32484381
     },
     {
       "repo": "Scottcjn/Rustchain",
@@ -31834,7 +32362,8 @@ Repository-specific rules:
         "Supposer une disponibilité identique de toutes les sources"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 357241735
     },
     {
       "repo": "sgl-project/sglang",
@@ -31877,7 +32406,8 @@ Repository-specific rules:
         "Serveurs sans ressources CPU/GPU ou limites de mémoire adaptées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 740303686
     },
     {
       "repo": "simular-ai/Agent-S",
@@ -31920,7 +32450,8 @@ Repository-specific rules:
         "Confier des actions sensibles à un agent sans supervision"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 870189331
     },
     {
       "repo": "strands-agents/harness-sdk",
@@ -31963,7 +32494,8 @@ Repository-specific rules:
         "Autoriser toutes les opérations d'un agent sans garde-fous"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 983715534
     },
     {
       "repo": "superdesigndev/treg",
@@ -32006,7 +32538,8 @@ Repository-specific rules:
         "Autoriser toutes les opérations d'un agent sans garde-fous"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1301657572
     },
     {
       "repo": "tamaratran/fast-jev-compaction",
@@ -32048,7 +32581,8 @@ Repository-specific rules:
         "Dépendre d'un historique incomplet sans vérification"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1374005005
     },
     {
       "repo": "TianyuCodings/NanoJev",
@@ -32091,7 +32625,8 @@ Repository-specific rules:
         "Autoriser toutes les opérations d'un agent sans garde-fous"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1374702542
     },
     {
       "repo": "triton-inference-server/server",
@@ -32134,7 +32669,8 @@ Repository-specific rules:
         "Serveurs sans ressources CPU/GPU ou limites de mémoire adaptées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 151636194
     },
     {
       "repo": "TryGhost/Ghost",
@@ -32177,7 +32713,8 @@ Repository-specific rules:
         "Développer un marketplace complexe sans composants additionnels"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 9852918
     },
     {
       "repo": "upstash/context7",
@@ -32220,7 +32757,8 @@ Repository-specific rules:
         "Utiliser des documents anciens comme preuve de comportement actuel"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 955620917
     },
     {
       "repo": "VectifyAI/PageIndex",
@@ -32262,7 +32800,8 @@ Repository-specific rules:
         "Envoyer des documents sensibles vers un fournisseur non maîtrisé"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 958531089
     },
     {
       "repo": "vllm-project/vllm",
@@ -32305,7 +32844,8 @@ Repository-specific rules:
         "Serveurs sans ressources CPU/GPU ou limites de mémoire adaptées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 599547518
     },
     {
       "repo": "xiaolai/the-craft-of-selfteaching",
@@ -32348,7 +32888,8 @@ Repository-specific rules:
         "Prendre des réponses d'IA non vérifiées pour des faits"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 175635390
     },
     {
       "repo": "yynxxxxx/Codex-X",
@@ -32391,7 +32932,8 @@ Repository-specific rules:
         "Gérer des tokens ou secrets sans protections adaptées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1288848940
     },
     {
       "repo": "zeroc00I/AllVideoPocsFromHackerOne",
@@ -32433,7 +32975,8 @@ Repository-specific rules:
         "Scanner des cibles hors scope ou utiliser des exploits sans permission"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 325143907
     },
     {
       "repo": "zhouxiaoka/autoclip",
@@ -32475,7 +33018,8 @@ Repository-specific rules:
         "Réutiliser des médias sans droits ou sans contrôle qualité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1015815983
     },
     {
       "repo": "zts212653/clowder-ai",
@@ -32518,7 +33062,8 @@ Repository-specific rules:
         "Conserver des informations sensibles sans politique de rétention"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1179679081
     },
     {
       "repo": "actions/runner-images",
@@ -32561,7 +33106,8 @@ Repository-specific rules:
         "Supposer que des paquets et versions ne changent jamais"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 190416463
     },
     {
       "repo": "androoAGI/starnet",
@@ -32603,7 +33149,8 @@ Repository-specific rules:
         "Supposer qu'un agent autonome peut agir sans garde-fous"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1269603321
     },
     {
       "repo": "anthropics/claude-code-action",
@@ -32646,7 +33193,8 @@ Repository-specific rules:
         "Accorder des permissions d'écriture excessives à un agent"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 986421638
     },
     {
       "repo": "anthropics/claude-plugins-official",
@@ -32688,7 +33236,8 @@ Repository-specific rules:
         "Installer des workflows non vérifiés comme code de confiance"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1100776768
     },
     {
       "repo": "assistant-ui/assistant-ui",
@@ -32731,7 +33280,8 @@ Repository-specific rules:
         "Déployer une interface sans contrôler l'accès aux modèles et aux conversations"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 722184017
     },
     {
       "repo": "awarexone/Agentic-Bug-Hunter",
@@ -32774,7 +33324,8 @@ Repository-specific rules:
         "Effectuer des scans ou des exploits en dehors d'un programme autorisé"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1175748759
     },
     {
       "repo": "better-auth/better-auth",
@@ -32817,7 +33368,8 @@ Repository-specific rules:
         "Mettre en production sans test des flux d'identité et de session"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 803014189
     },
     {
       "repo": "bitwarden/android",
@@ -32860,7 +33412,8 @@ Repository-specific rules:
         "Copier des données de coffres réels dans des environnements de test"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 57452143
     },
     {
       "repo": "cgwire/awesome-cg-vfx-pipeline",
@@ -32901,7 +33454,8 @@ Repository-specific rules:
         "Utiliser un catalogue de ressources comme solution intégrée"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 97915727
     },
     {
       "repo": "cloudflare/agentic-inbox",
@@ -32944,7 +33498,8 @@ Repository-specific rules:
         "Accorder un accès non contrôlé aux boîtes et messages"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1206471102
     },
     {
       "repo": "Coding-Solo/godot-mcp",
@@ -32987,7 +33542,8 @@ Repository-specific rules:
         "Utiliser une version d'extension incompatible avec le moteur du projet"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 939648665
     },
     {
       "repo": "dalathegreat/Battery-Emulator",
@@ -33030,7 +33586,8 @@ Repository-specific rules:
         "Utiliser une simulation comme validation de sécurité de matériel électrique"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 603860295
     },
     {
       "repo": "deepinsight/insightface",
@@ -33072,7 +33629,8 @@ Repository-specific rules:
         "Utiliser la reconnaissance faciale sans base légale ni consentement"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 102057483
     },
     {
       "repo": "dubinc/dub",
@@ -33115,7 +33673,8 @@ Repository-specific rules:
         "Collecter des données sans consentement ou suivi des coûts"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 529708137
     },
     {
       "repo": "Fosowl/agenticSeek",
@@ -33157,7 +33716,8 @@ Repository-specific rules:
         "Supposer qu'un agent autonome peut agir sans garde-fous"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 935604638
     },
     {
       "repo": "gdquest-demos/godot-open-rpg",
@@ -33200,7 +33760,8 @@ Repository-specific rules:
         "Copier des exemples sans adapter licence, rendu et performances"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 153856999
     },
     {
       "repo": "gdquest-demos/godot-shaders",
@@ -33243,7 +33804,8 @@ Repository-specific rules:
         "Copier des exemples sans adapter licence, rendu et performances"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 267188426
     },
     {
       "repo": "GDRETools/gdsdecomp",
@@ -33286,7 +33848,8 @@ Repository-specific rules:
         "Utiliser une version d'extension incompatible avec le moteur du projet"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 163965465
     },
     {
       "repo": "godotengine/godot-demo-projects",
@@ -33329,7 +33892,8 @@ Repository-specific rules:
         "Copier des exemples sans adapter licence, rendu et performances"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 60349380
     },
     {
       "repo": "godotengine/godot-docs",
@@ -33372,7 +33936,8 @@ Repository-specific rules:
         "Copier des exemples sans adapter licence, rendu et performances"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 47882383
     },
     {
       "repo": "GodotNuts/GodotFirebase",
@@ -33415,7 +33980,8 @@ Repository-specific rules:
         "Utiliser une version d'extension incompatible avec le moteur du projet"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 169585677
     },
     {
       "repo": "GodotSteam/GodotSteam",
@@ -33456,7 +34022,8 @@ Repository-specific rules:
         "Utiliser une version d'extension incompatible avec le moteur du projet"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 57413133
     },
     {
       "repo": "google/liquidfun",
@@ -33499,7 +34066,8 @@ Repository-specific rules:
         "Choisir un moteur abandonné pour un nouveau jeu sans maintenance"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 14725230
     },
     {
       "repo": "greensock/GSAP",
@@ -33542,7 +34110,8 @@ Repository-specific rules:
         "Multiplier les effets visuels au détriment des performances et de l'accessibilité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 5905330
     },
     {
       "repo": "jankeesvw/omarchy-meeting-recorder",
@@ -33585,7 +34154,8 @@ Repository-specific rules:
         "Enregistrer des personnes sans les informer et sans autorisation"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1385832170
     },
     {
       "repo": "JetBrains/android",
@@ -33628,7 +34198,8 @@ Repository-specific rules:
         "Installer des composants incompatibles avec la chaîne de compilation"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 60701247
     },
     {
       "repo": "JohnHeibel/PDoomVideo",
@@ -33670,7 +34241,8 @@ Repository-specific rules:
         "Réutiliser des œuvres et pistes audio protégées sans permission"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1382467199
     },
     {
       "repo": "joxeankoret/diaphora",
@@ -33712,7 +34284,8 @@ Repository-specific rules:
         "Analyser des binaires tiers en contradiction avec les autorisations"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 32557376
     },
     {
       "repo": "juliangarnier/anime",
@@ -33755,7 +34328,8 @@ Repository-specific rules:
         "Multiplier les effets visuels au détriment des performances et de l'accessibilité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 53809090
     },
     {
       "repo": "kelseyhightower/kubernetes-the-hard-way",
@@ -33796,7 +34370,8 @@ Repository-specific rules:
         "Utiliser un tutoriel d'infrastructure comme recette de production non auditée"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "stable"
+      "lifecycle": "stable",
+      "githubRepositoryId": 62812261
     },
     {
       "repo": "KenneyNL/Starter-Kit-3D-Platformer",
@@ -33839,7 +34414,8 @@ Repository-specific rules:
         "Copier des exemples sans adapter licence, rendu et performances"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 692191053
     },
     {
       "repo": "kserve/kserve",
@@ -33882,7 +34458,8 @@ Repository-specific rules:
         "Adopter Kubernetes pour une application dont l'inférence locale suffit"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 178075572
     },
     {
       "repo": "leejet/stable-diffusion.cpp",
@@ -33925,7 +34502,8 @@ Repository-specific rules:
         "Faire tourner un modèle lourd sans RAM ou GPU compatibles"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 677953180
     },
     {
       "repo": "lgvalle/Material-Animations",
@@ -33968,7 +34546,8 @@ Repository-specific rules:
         "Réutiliser des animations sans tenir compte des performances mobiles"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 31865176
     },
     {
       "repo": "liangxiegame/QFramework",
@@ -34011,7 +34590,8 @@ Repository-specific rules:
         "Combiner des architectures de moteurs incompatibles"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 51142932
     },
     {
       "repo": "LineageOS/android",
@@ -34052,7 +34632,8 @@ Repository-specific rules:
         "Utiliser des composants système hors contexte d'intégration adapté"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 75646583
     },
     {
       "repo": "llvm/llvm-project",
@@ -34095,7 +34676,8 @@ Repository-specific rules:
         "Modifier un compilateur sans suite de tests de compatibilité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 75821432
     },
     {
       "repo": "MakazhanAlpamys/Soup",
@@ -34138,7 +34720,8 @@ Repository-specific rules:
         "Déployer un modèle optimisé sans tests de précision et compatibilité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1162516847
     },
     {
       "repo": "microsoft/vscode",
@@ -34180,7 +34763,8 @@ Repository-specific rules:
         "Supposer qu'une extension est sûre sans audit de permissions"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 41881900
     },
     {
       "repo": "MisterBooo/LeetCodeAnimation",
@@ -34223,7 +34807,8 @@ Repository-specific rules:
         "Considérer un exemple animé comme implémentation de production"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 160640094
     },
     {
       "repo": "mobile-next/mobile-mcp",
@@ -34266,7 +34851,8 @@ Repository-specific rules:
         "Commander des appareils réels sans authentification ou consentement"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 956657893
     },
     {
       "repo": "mrdoob/three.js",
@@ -34309,7 +34895,8 @@ Repository-specific rules:
         "Surcharger le GPU d'appareils mobiles avec des scènes non optimisées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 576201
     },
     {
       "repo": "mvschwarz/openrig",
@@ -34351,7 +34938,8 @@ Repository-specific rules:
         "Laisser les agents modifier des dépôts sans tests ni revues"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1198124295
     },
     {
       "repo": "NandhaKishorM/laya",
@@ -34393,7 +34981,8 @@ Repository-specific rules:
         "Remplacer des tests par des décisions opaques non auditées"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1375382253
     },
     {
       "repo": "nextcloud/android",
@@ -34436,7 +35025,8 @@ Repository-specific rules:
         "Synchroniser des fichiers sensibles sans politique de confidentialité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 60561834
     },
     {
       "repo": "nibzard/awesome-agentic-patterns",
@@ -34478,7 +35068,8 @@ Repository-specific rules:
         "Installer des workflows non vérifiés comme code de confiance"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 993717808
     },
     {
       "repo": "novuhq/novu",
@@ -34521,7 +35112,8 @@ Repository-specific rules:
         "Déployer des notifications sans gestion des consentements"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 400215964
     },
     {
       "repo": "NVIDIA/Model-Optimizer",
@@ -34564,7 +35156,8 @@ Repository-specific rules:
         "Déployer un modèle optimisé sans tests de précision et compatibilité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 790916393
     },
     {
       "repo": "open-android/Android",
@@ -34605,7 +35198,8 @@ Repository-specific rules:
         "Utiliser des composants système hors contexte d'intégration adapté"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 82128465
     },
     {
       "repo": "openbao/openbao",
@@ -34648,7 +35242,8 @@ Repository-specific rules:
         "Stocker des secrets en clair ou déployer sans contrôle d'accès"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 716719284
     },
     {
       "repo": "openmeterio/openmeter",
@@ -34691,7 +35286,8 @@ Repository-specific rules:
         "Facturer sans réconciliation et tests des événements"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 650344440
     },
     {
       "repo": "paperclipai/paperclip",
@@ -34733,7 +35329,8 @@ Repository-specific rules:
         "Laisser les agents modifier des dépôts sans tests ni revues"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1170821064
     },
     {
       "repo": "PostHog/posthog",
@@ -34776,7 +35373,8 @@ Repository-specific rules:
         "Collecter des données personnelles sans garde-fous"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 235901813
     },
     {
       "repo": "PrefectHQ/fastmcp",
@@ -34819,7 +35417,8 @@ Repository-specific rules:
         "Exposer des secrets et permissions sensibles sans contrôle"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 896296825
     },
     {
       "repo": "raullenchai/Rapid-MLX",
@@ -34862,7 +35461,8 @@ Repository-specific rules:
         "Exiger un moteur MLX sur Android ou Linux sans adaptation"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1166182351
     },
     {
       "repo": "rohitg00/ai-engineering-from-scratch",
@@ -34904,7 +35504,8 @@ Repository-specific rules:
         "Considérer des tutoriels comme code sécurisé pour production"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1185590488
     },
     {
       "repo": "rynfar/meridian",
@@ -34946,7 +35547,8 @@ Repository-specific rules:
         "Laisser les agents modifier des dépôts sans tests ni revues"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1138589051
     },
     {
       "repo": "sickn33/agentic-awesome-skills",
@@ -34988,7 +35590,8 @@ Repository-specific rules:
         "Installer des workflows non vérifiés comme code de confiance"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1134426800
     },
     {
       "repo": "SigNoz/signoz",
@@ -35031,7 +35634,8 @@ Repository-specific rules:
         "Collecter des données personnelles sans garde-fous"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 326404870
     },
     {
       "repo": "slavakurilyak/awesome-ai-agents",
@@ -35073,7 +35677,8 @@ Repository-specific rules:
         "Installer des workflows non vérifiés comme code de confiance"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 743533748
     },
     {
       "repo": "superlinked/sie",
@@ -35116,7 +35721,8 @@ Repository-specific rules:
         "Stocker des informations sensibles sans cloisonnement et suppression"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 715536935
     },
     {
       "repo": "tensorflow/tensorflow",
@@ -35159,7 +35765,8 @@ Repository-specific rules:
         "Déployer un modèle optimisé sans tests de précision et compatibilité"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 45717250
     },
     {
       "repo": "tihanyin/REx-skill",
@@ -35202,7 +35809,8 @@ Repository-specific rules:
         "Effectuer des scans ou des exploits en dehors d'un programme autorisé"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1382911422
     },
     {
       "repo": "timzhang642/3D-Machine-Learning",
@@ -35243,7 +35851,8 @@ Repository-specific rules:
         "Attendre un moteur temps réel prêt à l'emploi"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 100120455
     },
     {
       "repo": "transitive-bullshit/agentic",
@@ -35286,7 +35895,8 @@ Repository-specific rules:
         "Exposer des secrets et permissions sensibles sans contrôle"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "reference"
+      "lifecycle": "reference",
+      "githubRepositoryId": 573631261
     },
     {
       "repo": "triggerdotdev/trigger.dev",
@@ -35329,7 +35939,8 @@ Repository-specific rules:
         "Supposer une tâche réussie sans idempotence et supervision"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 572570113
     },
     {
       "repo": "vectorize-io/hindsight",
@@ -35372,7 +35983,8 @@ Repository-specific rules:
         "Stocker des informations sensibles sans cloisonnement et suppression"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1086419061
     },
     {
       "repo": "vercel/ai",
@@ -35415,7 +36027,8 @@ Repository-specific rules:
         "Exposer des secrets et permissions sensibles sans contrôle"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 644461337
     },
     {
       "repo": "wgtunnel/android",
@@ -35458,7 +36071,8 @@ Repository-specific rules:
         "Présumer qu'une application mobile protège tous les flux sans audit"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 644710160
     },
     {
       "repo": "zhaoxuya520/reverse-skill",
@@ -35501,7 +36115,8 @@ Repository-specific rules:
         "Effectuer des scans ou des exploits en dehors d'un programme autorisé"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 1237819660
     },
     {
       "repo": "Zylann/godot_voxel",
@@ -35544,7 +36159,8 @@ Repository-specific rules:
         "Combiner des architectures de moteurs incompatibles"
       ],
       "guidanceSource": "curated",
-      "lifecycle": "active"
+      "lifecycle": "active",
+      "githubRepositoryId": 57851492
     },
     {
       "repo": "boshyxd/robloxstudio-mcp",
@@ -35589,7 +36205,8 @@ Repository-specific rules:
       ],
       "guidanceSource": "curated",
       "lifecycle": "reference",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 997744475
     },
     {
       "repo": "Chrrxs/robloxstudio-mcp",
@@ -35642,7 +36259,8 @@ Repository-specific rules:
       ],
       "guidanceSource": "curated",
       "lifecycle": "active",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 1247808514
     },
     {
       "repo": "MaximumADHD/Roblox-Studio-Mod-Manager",
@@ -35687,7 +36305,8 @@ Repository-specific rules:
       ],
       "guidanceSource": "curated",
       "lifecycle": "active",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 30164638
     },
     {
       "repo": "meituan-longcat/LongCat-Flash-Chat",
@@ -35731,7 +36350,8 @@ Repository-specific rules:
       ],
       "guidanceSource": "curated",
       "lifecycle": "active",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 1047523607
     },
     {
       "repo": "meituan-longcat/LongCat-Image",
@@ -35777,7 +36397,8 @@ Repository-specific rules:
       ],
       "guidanceSource": "curated",
       "lifecycle": "active",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 1108956207
     },
     {
       "repo": "Roblox/studio-rust-mcp-server",
@@ -35823,7 +36444,8 @@ Repository-specific rules:
       ],
       "guidanceSource": "curated",
       "lifecycle": "reference",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 980765506
     },
     {
       "repo": "S4US/Roqer",
@@ -35874,7 +36496,8 @@ Repository-specific rules:
       ],
       "guidanceSource": "curated",
       "lifecycle": "active",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 1387360993
     },
     {
       "repo": "TabooHarmony/roblox-brain",
@@ -35922,7 +36545,8 @@ Repository-specific rules:
       ],
       "guidanceSource": "curated",
       "lifecycle": "active",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 1251759892
     },
     {
       "repo": "vinegarhq/vinegar",
@@ -35967,7 +36591,8 @@ Repository-specific rules:
       ],
       "guidanceSource": "curated",
       "lifecycle": "active",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 590650708
     },
     {
       "repo": "alookai/alook",
@@ -46912,6 +47537,49 @@ Repository-specific rules:
       },
       "bestFor": [
         "Unlocking _everything_ on the CPU with DRAM scrambling"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "github/opensource.guide",
+      "githubRepositoryId": 61204818,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "best-practices",
+        "documentation",
+        "hacktoberfest",
+        "open-source",
+        "oss",
+        "tutorial"
+      ],
+      "languages": [
+        "html"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 15741,
+        "forks": 15552,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "CC-BY-4.0",
+        "pushedAt": "2026-10-12T13:28:01Z"
+      },
+      "bestFor": [
+        "📚 Community guides for open source creators"
       ],
       "avoidWhen": [
         "production use before licensing and security review"

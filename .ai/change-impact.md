@@ -1,15 +1,19 @@
 # Change impact
 
-Base: 06065667bac3c5cff7e34ebf1cc92dde1098883e
-Head: 0e96d40c56e41238d35055c24f22ea4841984f09
+Base: 64abbabf74acc59127138c8448e514a8192d6a05
+Head: 31ae739f96cf406047cb5b62ef6ae83c7fd7b125
 
 ## Changed files
+- M .github/workflows/catalog-quality-on-change.yml
 - M docs/GITHUB_STARS_SYNC.md
-- M scripts/discover_candidates.py
-- M scripts/test_discovery_cache.py
+- M schemas/catalog-quality.schema.json
+- M scripts/audit_catalog_quality.py
+- M scripts/test_catalog_quality.py
 
 ## Affected areas
+- .github
 - docs
+- schemas
 - scripts
 
 ## Related test candidates

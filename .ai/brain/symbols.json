@@ -32,15 +32,22 @@
       "file": "scripts/admit_github_stars.py",
       "language": "python",
       "kind": "function",
-      "name": "admit",
+      "name": "manifest_stable_ids",
       "line": 159
     },
     {
       "file": "scripts/admit_github_stars.py",
       "language": "python",
       "kind": "function",
+      "name": "admit",
+      "line": 199
+    },
+    {
+      "file": "scripts/admit_github_stars.py",
+      "language": "python",
+      "kind": "function",
       "name": "main",
-      "line": 215
+      "line": 290
     },
     {
       "file": "scripts/analyze_cache_health.py",
@@ -110,14 +117,14 @@
       "language": "python",
       "kind": "function",
       "name": "render_markdown",
-      "line": 138
+      "line": 150
     },
     {
       "file": "scripts/audit_catalog_quality.py",
       "language": "python",
       "kind": "function",
       "name": "main",
-      "line": 202
+      "line": 219
     },
     {
       "file": "scripts/backfill_licenses.py",
@@ -1399,6 +1406,20 @@
       "kind": "function",
       "name": "rate_limited",
       "line": 160
+    },
+    {
+      "file": "scripts/test_sync_github_stars.py",
+      "language": "python",
+      "kind": "function",
+      "name": "fresh_metadata",
+      "line": 220
+    },
+    {
+      "file": "scripts/test_sync_github_stars.py",
+      "language": "python",
+      "kind": "function",
+      "name": "offline_write",
+      "line": 268
     },
     {
       "file": "scripts/update_cache_health_history.py",

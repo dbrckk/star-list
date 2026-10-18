@@ -2,11 +2,11 @@
 
 - Index mode: incremental
 - Files indexed: 53
-- Files reparsed this run: 2
-- Symbols: 230
+- Files reparsed this run: 5
+- Symbols: 233
 - Internal import edges: 17
-- Impacted files: 2
-- Selected tests: 3
+- Impacted files: 9
+- Selected tests: 4
 
 ## Languages
 - python: 53 files
@@ -21,12 +21,12 @@
 - scripts/star_import_pipeline.py: 11 symbols
 - scripts/refresh_github_metadata.py: 10 symbols
 - scripts/sync_github_stars.py: 10 symbols
+- scripts/test_sync_github_stars.py: 10 symbols
 - scripts/portfolio_failure_diagnostics.py: 8 symbols
-- scripts/test_sync_github_stars.py: 8 symbols
+- scripts/admit_github_stars.py: 7 symbols
 - scripts/filter_discovery_memory.py: 7 symbols
 - scripts/test_discovery_cache_stats.py: 7 symbols
 - scripts/update_history.py: 7 symbols
-- scripts/admit_github_stars.py: 6 symbols
 - scripts/audit_catalog_quality.py: 5 symbols
 - scripts/analyze_cache_health.py: 4 symbols
 - scripts/find_replacements.py: 4 symbols
@@ -42,9 +42,9 @@
 ## ast-grep enrichment
 - ast-grep outline: available
 - AST index mode: incremental
-- AST files reparsed this run: 2
+- AST files reparsed this run: 5
 - outline files retained: 53
-- top-level items retained: 888
+- top-level items retained: 906
 - direct members retained: 10
 - symbol shards: 24
 - route named symbols via ast-routing.json, then fetch one ast-symbols/<initial>.json shard

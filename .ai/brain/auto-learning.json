@@ -5,26 +5,29 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "123",
-      "api",
-      "discovery",
-      "github",
-      "keep",
-      "origin",
-      "security",
-      "tokens",
+      "125",
+      "audit",
+      "catalog",
+      "coverage",
+      "expose",
+      "feat",
+      "quality",
+      "stable-id",
       "verified"
     ],
     "test_count": 0,
-    "useful_count": 2
+    "useful_count": 5
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(security): keep GitHub discovery tokens on the verified API origin (#123)",
+  "task": "feat(catalog): expose verified stable-ID coverage in the quality audit (#125)",
   "tests_selected": [],
   "useful": [
-    "scripts/discover_candidates.py",
-    "scripts/test_discovery_cache.py"
+    "scripts/admit_github_stars.py",
+    "scripts/audit_catalog_quality.py",
+    "scripts/sync_github_stars.py",
+    "scripts/test_catalog_quality.py",
+    "scripts/test_sync_github_stars.py"
   ]
 }

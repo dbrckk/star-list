@@ -85,6 +85,7 @@ star-sync-report.schema.json
     "repositories",
     "summary",
     "guidanceCoverage",
+    "identityCoverage",
     "findings"
   ],
   "properties": {
@@ -208,6 +209,15 @@ star-sync-report.schema.json
           },
           "additionalProperties": false
         }
+      },
+      "additionalProperties": false
+    },
+    "identityCoverage": {
+      "type": "object",
+      "required": ["verified", "missing"],
+      "properties": {
+        "verified": {"type": "integer", "minimum": 0},
+        "missing": {"type": "integer", "minimum": 0}
       },
       "additionalProperties": false
     },

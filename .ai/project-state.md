@@ -72,25 +72,30 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T14:20:53Z
+Generated: 2026-10-18T14:33:42Z
 
 ### Git
 - Branch: `main`
-- Head: `0e96d40c56e4`
-- Commit date: 2026-10-18T10:20:44-04:00
-- Commit: fix(security): keep GitHub discovery tokens on the verified API origin (#123)
+- Head: `31ae739f96cf`
+- Commit date: 2026-10-18T10:33:32-04:00
+- Commit: feat(catalog): expose verified stable-ID coverage in the quality audit (#125)
 - Tracked files: 280
 
 ### Recently changed files
+- `.github/workflows/catalog-quality-on-change.yml`
 - `docs/GITHUB_STARS_SYNC.md`
+- `schemas/catalog-quality.schema.json`
+- `scripts/audit_catalog_quality.py`
+- `scripts/test_catalog_quality.py`
+- `catalog.json`
+- `.github/workflows/sync-github-stars.yml`
+- `scripts/admit_github_stars.py`
+- `scripts/sync_github_stars.py`
+- `scripts/test_sync_github_stars.py`
 - `scripts/discover_candidates.py`
 - `scripts/test_discovery_cache.py`
 - `scripts/refresh_github_metadata.py`
 - `scripts/test_refresh_github_metadata.py`
-- `scripts/admit_github_stars.py`
-- `scripts/sync_github_stars.py`
-- `scripts/test_sync_github_stars.py`
-- `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
 
 ### Project signals
 - No common build descriptor detected
