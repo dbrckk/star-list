@@ -4,7 +4,7 @@
   "repository": "dbrckk/star-list",
   "reference_branch": "main",
   "status": "active",
-  "verified_catalog_repositories": 961,
+  "verified_catalog_repositories": 962,
   "last_verified_public_portfolio_scan": {
     "discovered": 38,
     "inspected": 38,
@@ -67,7 +67,13 @@
     115,
     116,
     117,
-    118
+    118,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -100,12 +106,20 @@
     "Prevent stale quality issues during concurrent catalog commits with exact-main SHA checks and preserved artifacts (star-list PR #117; 2/2 PR checks and post-merge CI passed)",
     "Publish weekly metadata audit only after successful non-force rebased catalog push (star-list PR #118; 2/2 PR checks and post-merge CI passed)",
     "Make autonomous direct GitHub PRs draft by default (ai-dev-server PR #345; 7/7 exact-head CI passed and merged)",
-    "Confirm exact published commit SHA is the target PR head before declaring Jumpy canary delivery (ai-dev-server PR #346; 7/7 exact-head CI passed and merged)"
+    "Confirm exact published commit SHA is the target PR head before declaring Jumpy canary delivery (ai-dev-server PR #346; 7/7 exact-head CI passed and merged)",
+    "Star-list PR #120 requires real licensed integration, verified coding capacity, exact-SHA draft PR and target CI before completion.",
+    "Star-list PR #121 rejects deleted/recreated GitHub slugs when permanent repository IDs differ (no false Star coverage).",
+    "Star-list PR #122 persists verified IDs from the existing weekly metadata GET and reuses restricted authenticated GitHub HTTPS transport.",
+    "Star-list PR #123 restricts candidate discovery bearer requests to GitHub API and blocks cross-origin auth redirects.",
+    "Star-list PR #124 backfilled 572 permanent GitHub IDs and admitted github/opensource.guide in real synchronized run #39136146189 with no extra API calls; same-run audit succeeded.",
+    "Star-list PR #125 publishes verified-ID coverage separately: 829/962 permanent IDs, 133 still name-only (public issue #32, audit run #39136539206).",
+    "Public Stars sync run #39136471679 checked 828/828 accessible public favorites, 9 pages, no missing or newly admitted repos."
   ],
   "next_priority": [
-    "Run one bounded, authorized end-to-end real source delivery with exact-SHA draft PR verification and target CI; do not count old marker-only Jumpy canaries as working catalog integrations",
-    "Verify positive free provider quota and qualified sustained coding capacity before any operator-approved fleet restart; terminal-v3 admission stop remains active",
-    "Continue public/private daily discovery, GitHub Stars reconciliation, and truthful published catalog audits without exposing private targets"
+    "Verify the remaining 133 catalog records missing permanent GitHub IDs through the existing weekly metadata refresh; handle unreachable or transferred identities without guessing.",
+    "Requalify actual Star-list native candidates and deliver one small licensed, compatible source integration with exact-SHA draft PR and target CI evidence, without fake dependency-only success.",
+    "Verify a usable zero-cost coding provider with authenticated quota before operator-approved Production-OS recovery; preserve terminal-v3 fleet dispatch stop.",
+    "Continue daily public/private discovery and hourly Stars reconciliation, preserving token/credential isolation and fail-closed diagnostics."
   ],
   "constraints": [
     "No automatic merge/deployment of third-party integrations",
@@ -114,11 +128,21 @@
     "Do not report a submitted Production-OS task as a completed integration"
   ],
   "last_verified_public_star_sync": {
-    "run_id": 39121356632,
+    "run_id": 39136471679,
     "checked_at_utc": "2026-10-18",
-    "public_accessible_stars": 827,
-    "already_cataloged": 827,
+    "public_accessible_stars": 828,
+    "already_cataloged": 828,
     "missing": 0,
     "pages": 9
+  },
+  "last_verified_identity_coverage": {
+    "report_issue": 32,
+    "verified": 829,
+    "missing": 133,
+    "total": 962,
+    "audit_workflow_run": 39136539206,
+    "checked_at_utc": "2026-10-18",
+    "identity_backfilled_from_public_stars": 572,
+    "real_admission_run": 39136146189
   }
 }

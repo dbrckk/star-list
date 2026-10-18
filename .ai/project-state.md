@@ -5,7 +5,7 @@ Status: active
 ## Working
 - GitHub Stars are reconciled automatically into `catalog.json` at audit tier, preserving atomic validation and failure artifacts.
 - Public portfolio scanning and recommendation reporting work; private-repository workflows run independently without publishing private project details.
-- Catalog contains 961 entries at the verified 2026-10-18 checkpoint; the Stars sync confirmed 827/827 accessible public favorites, and catalog validation plus repository standards passed.
+- Catalog contains 962 entries at the verified 2026-10-18 checkpoint; the latest Stars sync confirmed 828/828 accessible public favorites, and the catalog-quality issue reports 829 permanent GitHub IDs verified.
 - Per-target single-flight dispatch and same-origin authenticated redirects have been merged (#80 and #81).
 - Portfolio execution remains subject to strict worker capacity, deduplication, and UTC launch caps.
 
@@ -55,6 +55,16 @@ Status: active
 - [AI Dev Server PR #345](https://github.com/dbrckk/ai-dev-server/pull/345) (`bc046bf`) and [#346](https://github.com/dbrckk/ai-dev-server/pull/346) (`0736910`) merged: direct autonomous GitHub PR creation uses draft review state, and the Jumpy review canary requires independent exact published-SHA confirmation before declaring completion. Each passed seven required CI workflows on its exact PR head. The long-running post-merge mobile/multi-engine CI for the combined `main` remained in progress at the last check.
 - Four historical v2 and one terminal v3 portfolio integration failure remain capacity-exhausted. No **new** real target-side OSS integration with exact-SHA draft PR and matching target CI has been verified. Do not confuse previous marker-file canaries or a small provider probe with that missing acceptance evidence.
 
+## Public Stars identity backfill and security validation (2026-10-18)
+
+- [PR #121](https://github.com/dbrckk/star-list/pull/121) merged: fail closed on a recycled GitHub `owner/name` with a different permanent ID, and reject mixed-ID pagination snapshots.
+- [PR #122](https://github.com/dbrckk/star-list/pull/122) merged: weekly metadata refresh now captures numeric permanent GitHub IDs from the API responses it already makes and uses same-origin authenticated transport. This is not proof the weekly job has run since merging.
+- [PR #123](https://github.com/dbrckk/star-list/pull/123) merged: authenticated candidate-discovery requests are restricted to the GitHub API host and use the shared cross-origin redirect protection.
+- [PR #124](https://github.com/dbrckk/star-list/pull/124) merged: hourly Stars admission reuses the *full, timestamp-verified* public Stars snapshot to enrich legacy IDs without extra GitHub requests. A real [sync run #39136146189](https://github.com/dbrckk/star-list/actions/runs/39136146189) succeeded, admitted `github/opensource.guide` and populated **572 additional existing IDs**; the automatically chained issue audit succeeded.
+- [PR #125](https://github.com/dbrckk/star-list/pull/125) merged: the [catalog quality issue #32](https://github.com/dbrckk/star-list/issues/32) now separately reports **829/962 verified permanent GitHub IDs** and **133 remaining name-only entries**, with 0 review-grade and 411 informational quality findings. [Audit workflow #39136539206](https://github.com/dbrckk/star-list/actions/runs/39136539206) passed.
+- The subsequent [Stars run #39136471679](https://github.com/dbrckk/star-list/actions/runs/39136471679) checked **828/828 accessible public favorites**, 0 missing, 9 pages. This remains a public-accessible count only, not a statement about inaccessible private favorites.
+- No portfolio integration is counted as delivered from these catalog/identity changes. The earlier four terminal v2 failures and one v3 failure remain under the Production-OS global dispatch stop; positive coding-provider capacity, real target code changes, draft PR head identity and target CI remain required.
+
 ## Current priority
 1. **Restore usable free AI execution capacity.** 2026-10-18 diagnosis verified 4 v2 and 1 failed final v3, all `capacity_exhausted`, with no delivered commit, reviewable PR or target CI. See `docs/PORTFOLIO_CAPACITY_RECOVERY.md`.
 2. Qualify one zero-cost provider/model route with authenticated quota and a successful small inference probe before any operator-approved recovery; the final-v3 fleet stop is intentionally in effect. Do not reset markers, bypass caps or raise budgets.
@@ -67,7 +77,7 @@ Status: active
 - Catalog identity uniqueness and schema remain enforced by the existing validation workflow.
 
 ## Last verified
-- 2026-10-18 (961 catalog entries, 827/827 accessible public stars reconciled; 38/38 public projects and both private projects scanned; four historical v2 and one terminal v3 failures; no verified target-side source delivery).
+- 2026-10-18 (962 catalog entries; 828/828 accessible public Stars; 829 confirmed permanent GitHub IDs, 133 still name-only; 38/38 public projects and two private projects checked; v2/v3 recovery remains blocked pending true target-side delivery).
 
 <!-- AUTO:START -->
 ## Automatic repository state
