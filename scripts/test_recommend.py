@@ -26,7 +26,10 @@ for query, expected_any in cases:
 # External sites are advisory references, never installable GitHub repositories.
 websites_catalog = json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))
 sites = websites_catalog["websites"]
-assert len(sites) == 10
+# Curated website references are additive; new resources must not break
+# the existing GitHub recommendation contract or require exact-size snapshots.
+assert len(sites) >= 11
+assert any(site["id"] == "skill-issue" and site["type"] == "agent-skills-directory" for site in sites)
 assert len({site["id"] for site in sites}) == len(sites)
 assert len({site["url"].lower().rstrip("/") for site in sites}) == len(sites)
 assert all(site["url"].startswith("https://") for site in sites)
@@ -36,6 +39,14 @@ baseline_web_query = run("3d scroll animation website", "--top", "4")
 with_web_query = run("3d scroll animation website", "--top", "4", "--websites", "--top-websites", "10")
 assert baseline_web_query["recommendations"] == with_web_query["recommendations"]
 assert "websiteRecommendations" not in baseline_web_query
+assert "skillDiscovery" not in baseline_web_query
+with_skills_query = run("mobile ui design", "--top", "4", "--skills")
+without_skills_query = run("mobile ui design", "--top", "4")
+assert with_skills_query["recommendations"] == without_skills_query["recommendations"]
+assert with_skills_query["skillDiscovery"]["directory"] == "https://skill-issue.in/"
+assert with_skills_query["skillDiscovery"]["automaticInstallation"] is False
+assert all(s["reviewRequired"] and not s["integrationEligible"] and s["installCommand"] is None
+           for s in with_skills_query["skillDiscovery"]["recommendations"])
 assert {row["id"] for row in with_web_query["websiteRecommendations"]} >= {"scrolltide", "threejs", "shadertoy"}
 assert all(not row["integrationEligible"] for row in with_web_query["websiteRecommendations"])
 assert all(row["url"].startswith("https://") for row in with_web_query["websiteRecommendations"])
