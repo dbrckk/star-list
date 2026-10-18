@@ -1,6 +1,9 @@
 name: Refresh catalog quality on catalog changes
 
 on:
+  # Fallback reconciliation covers missed/cancelled bot-triggered audits.
+  schedule:
+    - cron: '47 3 * * *'
   push:
     branches: [main]
     paths:
