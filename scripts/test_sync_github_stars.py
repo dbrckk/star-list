@@ -189,6 +189,47 @@ by_stable_id = mod.build_report(
 )
 assert by_stable_id["summary"]["new"] == 0
 
+# A deleted/recreated owner/name is a different repository even when
+# its spelling is identical. Neither the sync report nor admission may
+# silently count the new permanent ID as the old starred dependency.
+recycled = [{"repo": "Known/Repo", "githubRepositoryId": 222}]
+try:
+    mod.build_report(
+        "dbrckk", recycled, {"known/repo"}, 1,
+        catalog_ids={111}, catalog_name_ids={"known/repo": 111},
+    )
+    raise AssertionError("recycled GitHub repository name treated as already cataloged")
+except RuntimeError as exc:
+    assert "identity conflict" in str(exc)
+try:
+    admission.admit(
+        {"repositories": [{"repo": "Known/Repo", "githubRepositoryId": 111}]},
+        recycled,
+        lambda _repo: (_ for _ in ()).throw(AssertionError("metadata should not be fetched")),
+    )
+    raise AssertionError("recycled name bypassed admission identity checks")
+except RuntimeError as exc:
+    assert "identity conflict" in str(exc)
+# A genuine transfer keeps the permanent ID and is still considered known.
+assert admission.admit(
+    {"repositories": [{"repo": "Known/Repo", "githubRepositoryId": 111}]},
+    [{"repo": "NEW/Repo", "githubRepositoryId": 111}],
+    lambda _repo: (_ for _ in ()).throw(AssertionError("transfer must not refetch")),
+)[1]["alreadyCataloged"] == 1
+
+# Duplicate API names/IDs that contradict each other can arise if a GitHub
+# repository transfers while pagination is in progress. Abort and retry
+# next hour rather than publishing a misleading completeness count.
+for inconsistent in (
+    [star("Known/Repo", id=111), star("known/repo", id=222)],
+    [star("Known/Repo", id=111), star("Other/Repo", id=111)],
+):
+    try:
+        mod.api_stars("dbrckk", opener=lambda _req, timeout=20: Response(inconsistent))
+        raise AssertionError("inconsistent Stars API identities were accepted")
+    except RuntimeError as exc:
+        assert "repository" in str(exc).lower() and "ID" in str(exc)
+
 for bad_id in (-1, 0, True, "12"):
     try:
         mod.api_stars("dbrckk", opener=lambda _req, timeout=20: Response(
@@ -207,6 +248,9 @@ with tempfile.TemporaryDirectory() as tmp:
     catalog.write_text('{"repositories":[{"repo":"OLD/Repo","githubRepositoryId":338719962}]}')
     assert mod.catalog_identities(catalog, include_ids=True) == (
         {"old/repo"}, {338719962}
+    )
+    assert mod.catalog_identities(catalog, include_name_ids=True) == (
+        {"old/repo"}, {338719962}, {"old/repo": 338719962}
     )
     catalog.write_text('{"repositories":[{"repo":"X/Y","githubRepositoryId":42},{"repo":"Z/W","githubRepositoryId":42}]}')
     try:
