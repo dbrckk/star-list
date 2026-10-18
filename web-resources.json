@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "description": "Curated public website references and tools, separate from GitHub repositories and autonomous integration eligibility.",
+  "resources": [
+    {
+      "id": "scrolltide",
+      "name": "Scrolltide",
+      "url": "https://www.scrolltide.co/",
+      "aliases": [
+        "https://scrolltide.co/"
+      ],
+      "category": "prompt-library",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "topics": [
+        "3d",
+        "scroll",
+        "animation",
+        "motion",
+        "react",
+        "nextjs",
+        "prompts",
+        "webgl",
+        "landing",
+        "design"
+      ],
+      "bestFor": [
+        "Cinematic scroll-driven landing pages",
+        "3D web templates and prompt-guided UI prototypes"
+      ],
+      "avoidWhen": [
+        "A fully free reusable asset is required",
+        "Redistributing paid source, prompts or preview media"
+      ],
+      "accessModel": "paid",
+      "usagePolicy": "review-license",
+      "licenseNote": "Commercial prompt/template subscriptions; review the item terms before reusing source or assets.",
+      "autoIntegrate": false
+    },
+    {
+      "id": "awwwards",
+      "name": "Awwwards",
+      "url": "https://www.awwwards.com/",
+      "aliases": [],
+      "category": "design-gallery",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "topics": [
+        "website",
+        "web",
+        "design",
+        "inspiration",
+        "awards",
+        "3d",
+        "creative",
+        "scroll",
+        "animation",
+        "ux"
+      ],
+      "bestFor": [
+        "Researching award-winning websites and visual directions",
+        "Finding interaction and layout inspiration"
+      ],
+      "avoidWhen": [
+        "Looking for redistributable source code or ready-to-install libraries"
+      ],
+      "accessModel": "freemium",
+      "usagePolicy": "reference-only",
+      "licenseNote": "Showcased websites belong to their respective creators; listing is not a code or asset license.",
+      "autoIntegrate": false
+    },
+    {
+      "id": "recent-design",
+      "name": "Recent (formerly Godly)",
+      "url": "https://recent.design/",
+      "aliases": [
+        "https://godly.website/"
+      ],
+      "category": "design-gallery",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "topics": [
+        "godly",
+        "recent",
+        "design",
+        "inspiration",
+        "web",
+        "interface",
+        "branding",
+        "motion",
+        "animation"
+      ],
+      "bestFor": [
+        "Curated web, interface and motion design references",
+        "Exploring visual styles before implementation"
+      ],
+      "avoidWhen": [
+        "Assuming examples have reusable source code or assets"
+      ],
+      "accessModel": "free",
+      "usagePolicy": "reference-only",
+      "licenseNote": "Former Godly URL now redirects to Recent; each showcased design retains its own rights.",
+      "autoIntegrate": false
+    },
+    {
+      "id": "60fps",
+      "name": "60fps",
+      "url": "https://60fps.design/",
+      "aliases": [],
+      "category": "motion-gallery",
+      "domains": [
+        "web_frontend",
+        "mobile",
+        "graphics"
+      ],
+      "topics": [
+        "motion",
+        "animation",
+        "ux",
+        "ui",
+        "mobile",
+        "microinteraction",
+        "interaction",
+        "transitions",
+        "design"
+      ],
+      "bestFor": [
+        "Studying polished app micro-interactions and motion timing",
+        "Designing native/mobile or web UI transitions"
+      ],
+      "avoidWhen": [
+        "Using reference recordings or interface assets as redistributable code"
+      ],
+      "accessModel": "free",
+      "usagePolicy": "reference-only",
+      "licenseNote": "Animation showcases are reference material; do not assume source, brand assets or recordings are licensed for reuse.",
+      "autoIntegrate": false
+    },
+    {
+      "id": "21st-dev",
+      "name": "21st.dev",
+      "url": "https://21st.dev/",
+      "aliases": [],
+      "category": "component-registry",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "topics": [
+        "react",
+        "shadcn",
+        "tailwind",
+        "components",
+        "ui",
+        "animation",
+        "landing",
+        "design",
+        "blocks",
+        "typescript"
+      ],
+      "bestFor": [
+        "Finding React/Tailwind interface components and landing-page blocks",
+        "Prototyping shadcn-compatible frontend experiences"
+      ],
+      "avoidWhen": [
+        "Using in non-React projects without a port",
+        "Installing components without checking their author-specific license and dependencies"
+      ],
+      "accessModel": "freemium",
+      "usagePolicy": "review-license",
+      "licenseNote": "Community component registry; inspect the specific component's license, author and dependencies before inclusion.",
+      "autoIntegrate": false
+    },
+    {
+      "id": "aceternity-ui",
+      "name": "Aceternity UI",
+      "url": "https://ui.aceternity.com/",
+      "aliases": [],
+      "category": "component-registry",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "topics": [
+        "react",
+        "nextjs",
+        "tailwind",
+        "components",
+        "ui",
+        "animation",
+        "effects",
+        "3d",
+        "design"
+      ],
+      "bestFor": [
+        "Animated React/Next.js components and visual backgrounds",
+        "High-impact hero sections and motion UI"
+      ],
+      "avoidWhen": [
+        "Redistributing components or templates as marketplace assets",
+        "Ignoring component-specific or Pro licensing terms"
+      ],
+      "accessModel": "freemium",
+      "usagePolicy": "review-license",
+      "licenseNote": "Pro items use the Aceternity License; review item-specific terms and third-party licenses before copying code.",
+      "autoIntegrate": false
+    },
+    {
+      "id": "magic-ui",
+      "name": "Magic UI",
+      "url": "https://magicui.design/",
+      "aliases": [],
+      "category": "component-registry",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "topics": [
+        "react",
+        "nextjs",
+        "tailwind",
+        "components",
+        "ui",
+        "animation",
+        "effects",
+        "landing",
+        "design"
+      ],
+      "bestFor": [
+        "Animated React interface components and polished landing pages",
+        "Micro-interactions and visually distinctive UI"
+      ],
+      "avoidWhen": [
+        "Assuming premium templates are freely reusable",
+        "Installing without verifying the exact item's license"
+      ],
+      "accessModel": "freemium",
+      "usagePolicy": "review-license",
+      "licenseNote": "Free and premium offerings differ; verify the selected component's licensing and dependencies.",
+      "autoIntegrate": false
+    },
+    {
+      "id": "threejs",
+      "name": "Three.js",
+      "url": "https://threejs.org/",
+      "aliases": [],
+      "category": "library-documentation",
+      "domains": [
+        "web_frontend",
+        "graphics",
+        "game_dev"
+      ],
+      "topics": [
+        "javascript",
+        "typescript",
+        "3d",
+        "webgl",
+        "webgpu",
+        "shader",
+        "rendering",
+        "animation",
+        "graphics",
+        "web"
+      ],
+      "bestFor": [
+        "Building interactive browser 3D scenes with Three.js",
+        "Consulting 3D rendering documentation and examples"
+      ],
+      "avoidWhen": [
+        "Treating the entire Three.js engine as a missing dependency in unrelated applications",
+        "Copying third-party example assets without checking their licenses"
+      ],
+      "accessModel": "free",
+      "usagePolicy": "review-license",
+      "licenseNote": "The Three.js library is MIT-licensed (mrdoob/three.js); third-party models, textures and example assets may carry separate terms.",
+      "autoIntegrate": false
+    },
+    {
+      "id": "shadertoy",
+      "name": "Shadertoy",
+      "url": "https://www.shadertoy.com/",
+      "aliases": [
+        "https://shadertoy.com/"
+      ],
+      "category": "shader-playground",
+      "domains": [
+        "web_frontend",
+        "graphics",
+        "game_dev"
+      ],
+      "topics": [
+        "shader",
+        "shaders",
+        "glsl",
+        "webgl",
+        "graphics",
+        "gpu",
+        "procedural",
+        "3d",
+        "animation",
+        "effects"
+      ],
+      "bestFor": [
+        "Exploring real-time GLSL shader techniques and visual effects",
+        "Experimenting with procedural GPU graphics"
+      ],
+      "avoidWhen": [
+        "Copying community shaders without permission or author attribution",
+        "Assuming demo GLSL ports directly to another rendering engine"
+      ],
+      "accessModel": "free",
+      "usagePolicy": "review-license",
+      "licenseNote": "User-published shader code is not automatically covered by one blanket redistribution license; verify each author's terms.",
+      "autoIntegrate": false
+    },
+    {
+      "id": "lovable",
+      "name": "Lovable",
+      "url": "https://lovable.dev/",
+      "aliases": [],
+      "category": "ai-builder",
+      "domains": [
+        "web_frontend",
+        "software_engineering"
+      ],
+      "topics": [
+        "ai",
+        "website",
+        "web",
+        "builder",
+        "prompt",
+        "app",
+        "react",
+        "prototype",
+        "frontend",
+        "design"
+      ],
+      "bestFor": [
+        "Generating and iterating on web-app prototypes from prompts",
+        "Building frontend proof-of-concepts without manual scaffolding"
+      ],
+      "avoidWhen": [
+        "Assuming its free credit allocation is unlimited",
+        "Treating a hosted builder as an open-source runtime dependency"
+      ],
+      "accessModel": "freemium",
+      "usagePolicy": "reference-only",
+      "licenseNote": "Hosted AI app builder with usage-limited free plan and paid options; generated code and third-party assets require normal review.",
+      "autoIntegrate": false
+    }
+  ]
+}
