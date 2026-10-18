@@ -57,4 +57,19 @@ assert "low-confidence-cap" in scoring
 assert "discoveryScore" in scoring
 assert "evaluationScore" in scoring
 
+# The hourly Stars job pushes with GITHUB_TOKEN; GitHub deliberately
+# suppresses a second workflow's normal push trigger for that commit.
+# Keep the qualified reusable audit dependency wired to the actual push.
+sync_yaml = (ROOT / ".github/workflows/sync-github-stars.yml").read_text()
+audit_yaml = (ROOT / ".github/workflows/catalog-quality-on-change.yml").read_text()
+stars_docs = (ROOT / "docs/GITHUB_STARS_SYNC.md").read_text()
+assert 'id: catalog_push' in sync_yaml
+assert 'catalog_changed: ${{ steps.catalog_push.outputs.catalog_changed }}' in sync_yaml
+assert 'echo "catalog_changed=true" >> "$GITHUB_OUTPUT"' in sync_yaml
+assert "needs.sync.outputs.catalog_changed == 'true'" in sync_yaml
+assert "uses: ./.github/workflows/catalog-quality-on-change.yml" in sync_yaml
+assert "  workflow_call:" in audit_yaml
+assert "          ref: main" in audit_yaml
+assert "GITHUB_TOKEN" in stars_docs and "reusable workflow" in stars_docs
+
 print("OK: documentation contract tests passed")
