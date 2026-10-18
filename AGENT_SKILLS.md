@@ -7,11 +7,12 @@ verified package registry, an executable dependency or an assurance of
 copyright/security compliance.
 
 The catalog lists its website once in [websites.json](websites.json) and a
-curated set of **22** original skill source references in
+curated set of **25** original skill source references in
 [agent-skills.json](agent-skills.json). The initial 19 entries were
-drawn from Skill Issue's visible listings; three additional specialized
-Flutter/Godot references come from the official Flutter agent repository
-and an independently verified Godot skill source. All upstream SKILL.md
+drawn from Skill Issue's visible listings; six additional specialized
+Flutter/Godot/Android/Roblox references come from the official Flutter
+and Android agent repositories and independently verified engine-specific
+skill sources. All upstream SKILL.md
 files are addressed at immutable Git commits, but their instructions and
 supporting scripts remain unaudited.
 Every entry now records its **exact `SKILL.md` path and a pinned Git commit**
@@ -68,11 +69,16 @@ by the CLI are revision-pinned):
 | Flutter Responsive Layout | [flutter/agent-plugins](https://github.com/flutter/agent-plugins) | Adaptive Flutter/Dart widget layouts |
 | Flutter Layout Diagnostics | [flutter/agent-plugins](https://github.com/flutter/agent-plugins) | Debugging Flutter overflow and layout constraints |
 | Godot GDScript 4.x | [shihabshahrier/Godot-Skill](https://github.com/shihabshahrier/Godot-Skill) | Typed scenes, signals and Godot 4 gameplay guidance |
+| Jetpack Compose Performance | [android/skills](https://github.com/android/skills) | Verified Compose-specific UI performance review |
+| Android Play Policy Insights | [android/skills](https://github.com/android/skills) | Google Play policy and data-safety review |
+| Roblox Luau Development | [MSayib/roblox-dev-skill](https://github.com/MSayib/roblox-dev-skill) | Roblox Studio/Luau development patterns |
 
 The other curated entries cover Next.js App Router, React state,
-Tailwind design systems and responsive interfaces. Flutter and Godot
-sources complement Skill Issue rather than implying those entries were
-listed by the Skill Issue directory. Source paths are pinned
+Tailwind design systems and responsive interfaces. Flutter, Godot, Android and Roblox sources complement Skill Issue rather
+than implying those entries were listed by the Skill Issue directory.
+Root-level `SKILL.md` entries are supported when pinned and validated.
+Jetpack Compose optimization is not recommended merely because a project
+uses Android; actual Compose evidence is required. Source paths are pinned
 for auditability, **not for automated execution or installation**. Read and
 audit the entire pinned instruction and scripts before considering adoption.
 
