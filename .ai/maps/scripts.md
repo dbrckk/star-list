@@ -91,6 +91,7 @@ update_cache_health_history.py
 update_history.py
 validate_catalog.py
 validate_json_contract.py
+validate_websites.py
 ```
 
 # Files
@@ -1293,9 +1294,16 @@ source = github_repos(args.owner, gh_token, portfolio_token)
 source = [repo for repo in source if not repo.get("private")]
 ⋮----
 target = repo["full_name"]
-row = {"repository": target, "status": "scanned", "suggestions": [], "dispatches": []}
+row = {"repository": target, "status": "scanned", "suggestions": [], "website_references": [], "dispatches": []}
 ⋮----
 profile = project_profile(repo, portfolio_token or gh_token)
+⋮----
+# Reference websites based on repository-owned metadata only;
+# arbitrary README prose is not trustworthy installation evidence.
+web_terms = tokens(" ".join([
+possible_sites = recommend_websites(web_terms, set(profile.get("domains") or []), limit=10)
+# Domain-only matches are too generic for portfolio reporting.
+# At least one concrete tag or best-for phrase must also match.
 ⋮----
 # Discovery must be complete before starting any potentially mutating
 # managed project. A per-repository read error is not a partial success.
@@ -2561,34 +2569,6 @@ m=h.window_metrics(pts,5); assert m["healthDelta"]==12 and m["starsPerWeek"]==14
 t=h.trends({"repositories":{"a/x":pts}})["repositories"][0]; assert t["trend"]=="improving" and t["fourWeeks"]["points"]==5 and t["week"]["points"]==2
 ```
 
-## File: test_json_contracts.py
-```python
-#!/usr/bin/env python3
-⋮----
-ROOT=Path(__file__).resolve().parents[1]
-VALIDATOR=ROOT/"scripts"/"validate_json_contract.py"
-SCHEMAS=ROOT/"schemas"
-⋮----
-required_schemas={
-⋮----
-spec=importlib.util.spec_from_file_location("contract_validator",VALIDATOR)
-validator=importlib.util.module_from_spec(spec); spec.loader.exec_module(validator)
-⋮----
-samples={
-⋮----
-schema=json.loads((SCHEMAS/schema_name).read_text())
-errors=validator.validate(data,schema)
-⋮----
-data=json.loads((ROOT/data_name).read_text())
-⋮----
-catalog_schema=json.loads((ROOT/"catalog.schema.json").read_text())
-catalog=json.loads((ROOT/"catalog.json").read_text())
-errors=validator.validate(catalog,catalog_schema)
-⋮----
-unsupported={"type":"object","unevaluatedProperties":False}
-errors=validator.validate({},unsupported)
-```
-
 ## File: test_pipeline_integration.py
 ```python
 #!/usr/bin/env python3
@@ -3178,4 +3158,42 @@ schema=json.loads(args.schema.read_text())
 document=json.loads(args.document.read_text())
 ⋮----
 errors=validate(document,schema)
+```
+
+## File: validate_websites.py
+```python
+#!/usr/bin/env python3
+"""Audit website catalog URL identity and source usage without network access.
+
+The schema checks structure. This adds security and deduplication rules that
+JSON Schema cannot express; neither stage authorizes copying third-party code.
+"""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+⋮----
+def canonical_url(value)
+⋮----
+parsed = urlsplit(value)
+⋮----
+def check_websites(data, schema)
+⋮----
+errors = list(validate(data, schema))
+⋮----
+ids = set()
+owner_by_url = {}
+⋮----
+identity = site["id"]
+⋮----
+# 'originalUrl' is a redirect alias. A redirect must remain attached
+# to the same entry, not silently create an extra website identity.
+⋮----
+normalized = canonical_url(url)
+⋮----
+prior = owner_by_url.get(normalized)
+⋮----
+def main()
+⋮----
+data = json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))
+schema = json.loads((ROOT / "schemas/websites.schema.json").read_text(encoding="utf-8"))
+errors = check_websites(data, schema)
 ```

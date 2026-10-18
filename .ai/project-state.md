@@ -82,24 +82,28 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T17:25:13Z
+Generated: 2026-10-18T17:38:41Z
 
 ### Git
 - Branch: `main`
-- Head: `956e75ee4475`
-- Commit date: 2026-10-18T13:25:03-04:00
-- Commit: feat(catalog): add 10 curated design websites alongside GitHub repositories (#127)
-- Tracked files: 283
+- Head: `5402541d79f8`
+- Commit date: 2026-10-18T13:38:33-04:00
+- Commit: feat(websites): surface curated links in portfolio scans with strict URL validation (#130)
+- Tracked files: 286
 
 ### Recently changed files
+- `.github/workflows/portfolio-scan-smoke.yml`
 - `.github/workflows/validate.yml`
-- `README.md`
-- `RECOMMENDER.md`
 - `WEB_RESOURCES.md`
-- `schemas/websites.schema.json`
-- `scripts/recommend.py`
+- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
+- `scripts/portfolio_daily.py`
 - `scripts/test_documentation.py`
 - `scripts/test_json_contracts.py`
+- `scripts/validate_websites.py`
+- `README.md`
+- `RECOMMENDER.md`
+- `schemas/websites.schema.json`
+- `scripts/recommend.py`
 - `scripts/test_recommend.py`
 - `websites.json`
 - `.github/workflows/catalog-quality-on-change.yml`
@@ -108,10 +112,6 @@ Generated: 2026-10-18T17:25:13Z
 - `scripts/audit_catalog_quality.py`
 - `scripts/test_catalog_quality.py`
 - `catalog.json`
-- `.github/workflows/sync-github-stars.yml`
-- `scripts/admit_github_stars.py`
-- `scripts/sync_github_stars.py`
-- `scripts/test_sync_github_stars.py`
 
 ### Project signals
 - No common build descriptor detected

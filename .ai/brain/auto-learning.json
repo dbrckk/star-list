@@ -5,16 +5,16 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "10",
-      "127",
-      "add",
-      "alongside",
-      "catalog",
+      "130",
       "curated",
-      "design",
       "feat",
-      "github",
-      "repositories",
+      "links",
+      "portfolio",
+      "scans",
+      "strict",
+      "surface",
+      "url",
+      "validation",
       "websites"
     ],
     "test_count": 0,
@@ -23,12 +23,12 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(catalog): add 10 curated design websites alongside GitHub repositories (#127)",
+  "task": "feat(websites): surface curated links in portfolio scans with strict URL validation (#130)",
   "tests_selected": [],
   "useful": [
-    "scripts/recommend.py",
+    "scripts/portfolio_daily.py",
     "scripts/test_documentation.py",
     "scripts/test_json_contracts.py",
-    "scripts/test_recommend.py"
+    "scripts/validate_websites.py"
   ]
 }

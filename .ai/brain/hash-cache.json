@@ -1,36 +1,24 @@
 {
   "files": {
+    ".github/workflows/portfolio-scan-smoke.yml": {
+      "sha256": "296a779b9cbfc0ff96491d9d81703dc46fc6b2f78beca3a89b1d4d11b3551caf",
+      "size": 48285
+    },
     ".github/workflows/validate.yml": {
-      "sha256": "3d98cdc06d5b84e6552ab308af5afa56b072dc2de8a6568021d7e9659deea8c3",
-      "size": 5860
-    },
-    "README.md": {
-      "sha256": "d149c7634c947df4d9b85c4d9414a44464383c0409d3401ce2fabdbcce0e6388",
-      "size": 11211
-    },
-    "RECOMMENDER.md": {
-      "sha256": "568e23e97c4cf4f27d35a470bbeb3c24adb683c5979e12e67151bf42433cc89a",
-      "size": 6824
+      "sha256": "f8eff0912c98b5fe81ca3d21975802e5b32f4b2ca43dd57c947d3350037745d3",
+      "size": 5971
     },
     "WEB_RESOURCES.md": {
-      "sha256": "2148c3dbfcd22923b9830184973d3e686ddbfd05e5b7b34d0dd3640c6d72f482",
-      "size": 4166
+      "sha256": "0d27edb3f250bfea08fafd10ebd3bde9bcea0542993189bcb5aa45c7eda302e8",
+      "size": 4733
     },
-    "schemas/websites.schema.json": {
-      "sha256": "05b4fa353812722f54d587b5f3944af53c7522b57070d79f9e1429f201ee98ad",
-      "size": 2986
-    },
-    "scripts/find_replacements.py": {
-      "sha256": "fc4e3e288abcc1b48eaf238d09357ff7d11e5f1ce8b62aa92d4a4717c20006d9",
-      "size": 3404
-    },
-    "scripts/health_score.py": {
-      "sha256": "c16d8e8ed70025692961a42a6179051a4baaee2b1d721af26554816612f9000f",
-      "size": 2456
+    "docs/DAILY_PORTFOLIO_INTEGRATION.md": {
+      "sha256": "ed8103ae16c17fdca74a7503c032fb9e10adf2ec334ad630cafd1d52f013dea7",
+      "size": 15355
     },
     "scripts/portfolio_daily.py": {
-      "sha256": "a0fa1f0db7a9081879a8ca1bd1f9e707654b8bf383cae627fa9c3163b4a76aa3",
-      "size": 49156
+      "sha256": "79343ecfa2536e158ffda4a5861b5a8e3a5c9a47235e4784178961f1360e29a3",
+      "size": 50756
     },
     "scripts/portfolio_failure_diagnostics.py": {
       "sha256": "3f6972d50b7db5c499ccb845dbe21ff4c760dac1db12c6b6d5190adea586e62b",
@@ -41,20 +29,20 @@
       "size": 18982
     },
     "scripts/test_documentation.py": {
-      "sha256": "acc1f9c1dd4a1ffb9b277949b3c014f8a7b0d7114848490c0b8b562f342a7328",
-      "size": 4631
+      "sha256": "a882db4126a6a989e1b5b5ad828ffd50b00d7dd588bfc0447f6261e2ace6c485",
+      "size": 4799
     },
     "scripts/test_json_contracts.py": {
-      "sha256": "c5b2f75ee5730c09a700e78c7fe66388392bf2797fb45c04ba701c42caf1ec3b",
-      "size": 5341
+      "sha256": "6038b92af9b3ab6e432cd9bed72abab18f12bc2c30fdcabc3bfae24136725195",
+      "size": 6564
     },
-    "scripts/test_recommend.py": {
-      "sha256": "8b26dedbb6423ff2374d0e344603f10698d36774723026fab287a2778feea7b2",
-      "size": 8937
+    "scripts/validate_json_contract.py": {
+      "sha256": "7b86d77770a52cbcc2038c177764fdc6b5ea0c198f2c347f58b45a41356ee8ff",
+      "size": 5696
     },
-    "websites.json": {
-      "sha256": "cc1aedb7e2c9bab68ce9108e699d897f21381d49d7d0b1c33a4b1fc0ffd97bfd",
-      "size": 7149
+    "scripts/validate_websites.py": {
+      "sha256": "00a40bd9f5e0f1c89d3b06d808ddd147b20a715480d221f6786ce7bcfad9d159",
+      "size": 3011
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

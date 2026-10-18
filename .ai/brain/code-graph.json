@@ -61,6 +61,11 @@
       "type": "imports"
     },
     {
+      "source": "scripts/test_json_contracts.py",
+      "target": "scripts/validate_websites.py",
+      "type": "imports"
+    },
+    {
       "source": "scripts/test_refresh_github_metadata.py",
       "target": "scripts/refresh_github_metadata.py",
       "type": "imports"
@@ -83,6 +88,11 @@
     {
       "source": "scripts/test_sync_github_stars.py",
       "target": "scripts/sync_github_stars.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/validate_websites.py",
+      "target": "scripts/validate_json_contract.py",
       "type": "imports"
     },
     {

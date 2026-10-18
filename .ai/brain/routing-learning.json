@@ -2,24 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "Triage stale repositories with lifecycle metadata (#21)",
-      "terms": [
-        "21",
-        "lifecycle",
-        "metadata",
-        "repositories",
-        "stale",
-        "triage"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/audit_catalog_quality.py",
-        "scripts/test_catalog_quality.py",
-        "scripts/validate_catalog.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "Add selection guidance to core repositories (#22)",
       "terms": [
         "22",
@@ -1222,6 +1204,30 @@
         "scripts/test_json_contracts.py",
         "scripts/test_recommend.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(websites): surface curated links in portfolio scans with strict URL validation (#130)",
+      "terms": [
+        "130",
+        "curated",
+        "feat",
+        "links",
+        "portfolio",
+        "scans",
+        "strict",
+        "surface",
+        "url",
+        "validation",
+        "websites"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py",
+        "scripts/test_documentation.py",
+        "scripts/test_json_contracts.py",
+        "scripts/validate_websites.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1295,6 +1301,12 @@
       "scripts/test_documentation.py": 4,
       "scripts/test_json_contracts.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "130": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1660,10 +1672,12 @@
       "scripts/test_sync_github_stars.py": 4
     },
     "curated": {
+      "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 8,
-      "scripts/test_documentation.py": 4,
-      "scripts/test_json_contracts.py": 4,
-      "scripts/test_recommend.py": 8
+      "scripts/test_documentation.py": 8,
+      "scripts/test_json_contracts.py": 8,
+      "scripts/test_recommend.py": 8,
+      "scripts/validate_websites.py": 4
     },
     "current": {
       "scripts/audit_catalog_quality.py": 4,
@@ -1825,16 +1839,17 @@
     "feat": {
       "scripts/admit_github_stars.py": 8,
       "scripts/audit_catalog_quality.py": 8,
-      "scripts/portfolio_daily.py": 12,
+      "scripts/portfolio_daily.py": 16,
       "scripts/portfolio_failure_diagnostics.py": 12,
       "scripts/recommend.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_catalog_quality.py": 8,
-      "scripts/test_documentation.py": 4,
-      "scripts/test_json_contracts.py": 4,
+      "scripts/test_documentation.py": 8,
+      "scripts/test_json_contracts.py": 8,
       "scripts/test_recommend.py": 4,
-      "scripts/test_sync_github_stars.py": 4
+      "scripts/test_sync_github_stars.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "files": {
       "scripts/backfill_licenses.py": 4,
@@ -2050,6 +2065,12 @@
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
     },
+    "links": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "main": {
       "scripts/portfolio_daily.py": 4
     },
@@ -2141,7 +2162,10 @@
       "scripts/portfolio_daily.py": 40,
       "scripts/portfolio_failure_diagnostics.py": 28,
       "scripts/sync_github_stars.py": 4,
-      "scripts/test_sync_github_stars.py": 4
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_sync_github_stars.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "posts": {
       "scripts/portfolio_daily.py": 4
@@ -2370,7 +2394,10 @@
       "scripts/portfolio_daily.py": 4
     },
     "scans": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "scoped": {
       "scripts/portfolio_daily.py": 4
@@ -2454,6 +2481,12 @@
     "stop": {
       "scripts/portfolio_daily.py": 8
     },
+    "strict": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "strictly": {
       "scripts/portfolio_daily.py": 4
     },
@@ -2461,7 +2494,10 @@
       "scripts/portfolio_daily.py": 4
     },
     "surface": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "sync": {
       "scripts/admit_github_stars.py": 4,
@@ -2528,6 +2564,12 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
     },
+    "url": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "using": {
       "scripts/portfolio_daily.py": 8,
       "scripts/portfolio_failure_diagnostics.py": 4
@@ -2540,7 +2582,11 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "validation": {
-      "scripts/validate_catalog.py": 4
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/validate_catalog.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "verified": {
       "scripts/admit_github_stars.py": 4,
@@ -2563,10 +2609,12 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "websites": {
+      "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 4,
-      "scripts/test_documentation.py": 4,
-      "scripts/test_json_contracts.py": 4,
-      "scripts/test_recommend.py": 4
+      "scripts/test_documentation.py": 8,
+      "scripts/test_json_contracts.py": 8,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "weight": {
       "scripts/recommend.py": 4,

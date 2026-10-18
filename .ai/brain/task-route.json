@@ -4,15 +4,15 @@
     "expand_to": 12,
     "max_files": 3,
     "requested_max_files": 12,
-    "score_margin": 18,
+    "score_margin": 21,
     "tier": "narrow",
-    "top_score": 47
+    "top_score": 50
   },
   "cache": {
-    "fingerprint": "a3e1f99ccffcf412ece0fce94c481eb4598b897bbb4c1717e4139506e3f0f028",
+    "fingerprint": "1a66d59be35619365b54e194e55ee0b28b2082173aa96ed63e9000cf95a19e85",
     "hit": false
   },
-  "candidate_count": 14,
+  "candidate_count": 13,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -25,9 +25,10 @@
       "reasons": [
         "impact",
         "learning",
+        "recently-changed",
         "search-index"
       ],
-      "score": 47,
+      "score": 50,
       "symbols": [
         "SameOriginRedirect",
         "busy_integration_targets",
@@ -77,31 +78,21 @@
       "matched_terms": [
         "game"
       ],
-      "path": "scripts/recommend.py",
+      "path": "scripts/portfolio_failure_diagnostics.py",
       "reasons": [
         "impact",
-        "recently-changed",
         "search-index"
       ],
-      "score": 26,
+      "score": 23,
       "symbols": [
-        "activity_adjustment",
-        "choose_stack",
-        "delta",
-        "explain_repo",
-        "guidance_weight",
-        "infer_alternatives",
-        "infer_complements",
-        "infer_domains",
-        "load",
+        "add_deep_task_diagnostics",
+        "failure_category",
+        "inventory_diagnostic_inbox",
         "main",
-        "norm",
-        "recommend_websites",
-        "resolve_relations",
-        "score_repo",
-        "tokens",
-        "trend_adjustment",
-        "usable"
+        "public_diagnostics",
+        "safe_public_failure",
+        "safe_state",
+        "task_failure_evidence"
       ]
     }
   ],

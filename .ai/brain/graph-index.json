@@ -98,6 +98,17 @@
     },
     {
       "dependencies": [
+        "scripts/validate_json_contract.py"
+      ],
+      "dependents": [
+        "scripts/test_json_contracts.py"
+      ],
+      "in_degree": 1,
+      "out_degree": 1,
+      "path": "scripts/validate_websites.py"
+    },
+    {
+      "dependencies": [
         "scripts/refresh_github_metadata.py",
         "scripts/sync_github_stars.py"
       ],
@@ -115,6 +126,15 @@
       "in_degree": 0,
       "out_degree": 2,
       "path": "scripts/test_sync_github_stars.py"
+    },
+    {
+      "dependencies": [],
+      "dependents": [
+        "scripts/validate_websites.py"
+      ],
+      "in_degree": 1,
+      "out_degree": 0,
+      "path": "scripts/validate_json_contract.py"
     },
     {
       "dependencies": [
@@ -163,6 +183,15 @@
     },
     {
       "dependencies": [
+        "scripts/validate_websites.py"
+      ],
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 1,
+      "path": "scripts/test_json_contracts.py"
+    },
+    {
+      "dependencies": [
         "scripts/star_import_pipeline.py"
       ],
       "dependents": [],
@@ -171,8 +200,8 @@
       "path": "scripts/test_star_import_pipeline.py"
     }
   ],
-  "edge_count": 18,
+  "edge_count": 20,
   "generated_by": "dbrckk/repo-brain-v7-graph",
-  "node_count": 16,
+  "node_count": 19,
   "schema_version": 1
 }

@@ -3,18 +3,16 @@
   "generated_by": "dbrckk/repo-brain",
   "selected_test_files": [
     "scripts/test_documentation.py",
-    "scripts/test_json_contracts.py",
-    "scripts/test_recommend.py"
+    "scripts/test_json_contracts.py"
   ],
   "commands": [
     {
-      "command": "python -m pytest scripts/test_documentation.py scripts/test_json_contracts.py scripts/test_recommend.py",
+      "command": "python -m pytest scripts/test_documentation.py scripts/test_json_contracts.py",
       "purpose": "targeted tests",
       "confidence": "high",
       "files": [
         "scripts/test_documentation.py",
-        "scripts/test_json_contracts.py",
-        "scripts/test_recommend.py"
+        "scripts/test_json_contracts.py"
       ]
     }
   ],

@@ -5,62 +5,25 @@
   "semantic": false,
   "note": "Dependencies are known symbol names lexically present inside the symbol's AST/source range.",
   "symbols": {
-    "norm": {
+    "SameOriginRedirect": {
       "source": {
-        "file": "scripts/recommend.py",
-        "start": 36,
-        "end": 37
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "tokens": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 39,
-        "end": 40
+        "file": "scripts/portfolio_daily.py",
+        "start": 92,
+        "end": 103
       },
       "symbol_dependencies": [
         {
-          "symbol": "norm",
+          "symbol": "redirect_request",
           "definitions": [
             {
-              "file": "scripts/recommend.py",
-              "line": 36,
+              "file": "scripts/portfolio_daily.py",
+              "line": 95,
               "kind": "function",
               "language": "python"
             }
           ],
           "relation": "same_file"
-        }
-      ],
-      "dependency_count": 1
-    },
-    "load": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 42,
-        "end": 45
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "infer_domains": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 47,
-        "end": 48
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "recommend_websites": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 51,
-        "end": 83
-      },
-      "symbol_dependencies": [
+        },
         {
           "symbol": "tokens",
           "definitions": [
@@ -71,33 +34,42 @@
               "language": "python"
             }
           ],
-          "relation": "same_file"
+          "relation": "imported_module"
         }
       ],
-      "dependency_count": 1
+      "dependency_count": 2
     },
-    "activity_adjustment": {
+    "redirect_request": {
       "source": {
-        "file": "scripts/recommend.py",
-        "start": 85,
-        "end": 102
+        "file": "scripts/portfolio_daily.py",
+        "start": 95,
+        "end": 103
       },
       "symbol_dependencies": [],
       "dependency_count": 0
     },
-    "trend_adjustment": {
+    "request_json": {
       "source": {
-        "file": "scripts/recommend.py",
-        "start": 104,
-        "end": 127
+        "file": "scripts/portfolio_daily.py",
+        "start": 109,
+        "end": 153
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "github_repos": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 156,
+        "end": 173
       },
       "symbol_dependencies": [
         {
-          "symbol": "delta",
+          "symbol": "request_json",
           "definitions": [
             {
-              "file": "scripts/recommend.py",
-              "line": 116,
+              "file": "scripts/portfolio_daily.py",
+              "line": 109,
               "kind": "function",
               "language": "python"
             }
@@ -107,19 +79,41 @@
       ],
       "dependency_count": 1
     },
-    "delta": {
+    "file_text": {
       "source": {
-        "file": "scripts/recommend.py",
-        "start": 116,
-        "end": 236
+        "file": "scripts/portfolio_daily.py",
+        "start": 176,
+        "end": 184
       },
       "symbol_dependencies": [
         {
-          "symbol": "activity_adjustment",
+          "symbol": "request_json",
           "definitions": [
             {
-              "file": "scripts/recommend.py",
-              "line": 85,
+              "file": "scripts/portfolio_daily.py",
+              "line": 109,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "project_profile": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 187,
+        "end": 206
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "file_text",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 176,
               "kind": "function",
               "language": "python"
             }
@@ -127,47 +121,11 @@
           "relation": "same_file"
         },
         {
-          "symbol": "choose_stack",
+          "symbol": "infer_domains",
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 190,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "explain_repo",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 167,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "guidance_weight",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 129,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "health_score",
-          "definitions": [
-            {
-              "file": "scripts/health_score.py",
-              "line": 27,
+              "line": 47,
               "kind": "function",
               "language": "python"
             }
@@ -175,40 +133,68 @@
           "relation": "imported_module"
         },
         {
-          "symbol": "infer_alternatives",
+          "symbol": "tokens",
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 203,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "infer_complements",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 224,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "replacement_score",
-          "definitions": [
-            {
-              "file": "scripts/find_replacements.py",
-              "line": 14,
+              "line": 39,
               "kind": "function",
               "language": "python"
             }
           ],
           "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 3
+    },
+    "eligible": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 209,
+        "end": 220
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "is_reference_candidate": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 223,
+        "end": 238
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "recommendations": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 250,
+        "end": 358
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "eligible",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 209,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "is_reference_candidate",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 223,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
         },
         {
           "symbol": "score_repo",
@@ -220,85 +206,6 @@
               "language": "python"
             }
           ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "tokens",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 39,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "trend_adjustment",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 104,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 11
-    },
-    "guidance_weight": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 129,
-        "end": 133
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "score_repo": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 136,
-        "end": 165
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "activity_adjustment",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 85,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "guidance_weight",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 129,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "health_score",
-          "definitions": [
-            {
-              "file": "scripts/health_score.py",
-              "line": 27,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
           "relation": "imported_module"
         },
         {
@@ -311,165 +218,7 @@
               "language": "python"
             }
           ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "trend_adjustment",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 104,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 5
-    },
-    "explain_repo": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 167,
-        "end": 188
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "activity_adjustment",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 85,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "tokens",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 39,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "trend_adjustment",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 104,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 3
-    },
-    "choose_stack": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 190,
-        "end": 200
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "tokens",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 39,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 1
-    },
-    "infer_alternatives": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 203,
-        "end": 221
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "replacement_score",
-          "definitions": [
-            {
-              "file": "scripts/find_replacements.py",
-              "line": 14,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
           "relation": "imported_module"
-        }
-      ],
-      "dependency_count": 1
-    },
-    "infer_complements": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 224,
-        "end": 246
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "health_score",
-          "definitions": [
-            {
-              "file": "scripts/health_score.py",
-              "line": 27,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        }
-      ],
-      "dependency_count": 1
-    },
-    "resolve_relations": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 249,
-        "end": 270
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "infer_alternatives",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 203,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "infer_complements",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 224,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
         },
         {
           "symbol": "usable",
@@ -481,291 +230,509 @@
               "language": "python"
             }
           ],
-          "relation": "same_file"
+          "relation": "imported_module"
         }
       ],
-      "dependency_count": 3
+      "dependency_count": 5
     },
-    "usable": {
+    "count_active_integrations": {
       "source": {
-        "file": "scripts/recommend.py",
-        "start": 251,
+        "file": "scripts/portfolio_daily.py",
+        "start": 364,
         "end": 371
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "choose_stack",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 190,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "explain_repo",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 167,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "health_score",
-          "definitions": [
-            {
-              "file": "scripts/health_score.py",
-              "line": 27,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "infer_alternatives",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 203,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "infer_complements",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 224,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "infer_domains",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 47,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "load",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 42,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "main",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 272,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "recommend_websites",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 51,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "resolve_relations",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 249,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "score_repo",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 136,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "tokens",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 39,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 12
-    },
-    "main": {
-      "source": {
-        "file": "scripts/recommend.py",
-        "start": 272,
-        "end": 388
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "choose_stack",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 190,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "explain_repo",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 167,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "health_score",
-          "definitions": [
-            {
-              "file": "scripts/health_score.py",
-              "line": 27,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "infer_domains",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 47,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "load",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 42,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "recommend_websites",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 51,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "resolve_relations",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 249,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "score_repo",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 136,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "tokens",
-          "definitions": [
-            {
-              "file": "scripts/recommend.py",
-              "line": 39,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 9
-    },
-    "run": {
-      "source": {
-        "file": "scripts/test_recommend.py",
-        "start": 9,
-        "end": 11
       },
       "symbol_dependencies": [],
       "dependency_count": 0
+    },
+    "busy_integration_targets": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 374,
+        "end": 391
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "unresolved_failed_v2_integrations": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 394,
+        "end": 422
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "count_failed_v2_integrations": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 425,
+        "end": 427
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "unresolved_failed_v2_integrations",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 394,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "count_failed_v3_integrations": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 430,
+        "end": 443
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "count_launches_on_utc_date": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 446,
+        "end": 462
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "verified_managed_projects",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 466,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "verified_managed_projects": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 466,
+        "end": 514
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "public_integration_status": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 517,
+        "end": 536
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "integration_marker": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 539,
+        "end": 543
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "recoverable_failure_targets": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 546,
+        "end": 579
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "eligible",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 209,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "integration_marker",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 539,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "launch_integration": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 582,
+        "end": 607
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "integration_marker",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 539,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "request_json",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 109,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "confirmed_launch": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 610,
+        "end": 641
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "integration_marker",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 539,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "render_markdown": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 644,
+        "end": 695
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "main": {
+      "source": {
+        "file": "scripts/portfolio_daily.py",
+        "start": 698,
+        "end": 981
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "busy_integration_targets",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 374,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "confirmed_launch",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 610,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "count_active_integrations",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 364,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "count_failed_v2_integrations",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 425,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "count_failed_v3_integrations",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 430,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "count_launches_on_utc_date",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 446,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "eligible",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 209,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "github_repos",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 156,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "integration_marker",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 539,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "launch_integration",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 582,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "project_profile",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 187,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "public_integration_status",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 517,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "recommend_websites",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 51,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "recommendations",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 250,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "recoverable_failure_targets",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 546,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "render_markdown",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 644,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "request_json",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 109,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "tokens",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 39,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "unresolved_failed_v2_integrations",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 394,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "verified_managed_projects",
+          "definitions": [
+            {
+              "file": "scripts/portfolio_daily.py",
+              "line": 466,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 20
+    },
+    "canonical_url": {
+      "source": {
+        "file": "scripts/validate_websites.py",
+        "start": 18,
+        "end": 30
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "check_websites": {
+      "source": {
+        "file": "scripts/validate_websites.py",
+        "start": 33,
+        "end": 61
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "canonical_url",
+          "definitions": [
+            {
+              "file": "scripts/validate_websites.py",
+              "line": 18,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "validate",
+          "definitions": [
+            {
+              "file": "scripts/validate_json_contract.py",
+              "line": 29,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 2
     }
   }
 }

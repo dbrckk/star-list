@@ -275,7 +275,9 @@
     "scripts/test_json_contracts.py": [
       "importlib.util",
       "json",
-      "pathlib"
+      "pathlib",
+      "sys",
+      "validate_websites"
     ],
     "scripts/test_pipeline_integration.py": [
       "datetime",
@@ -362,6 +364,14 @@
       "json",
       "pathlib",
       "re"
+    ],
+    "scripts/validate_websites.py": [
+      "json",
+      "pathlib",
+      "re",
+      "sys",
+      "urllib.parse",
+      "validate_json_contract"
     ]
   }
 }

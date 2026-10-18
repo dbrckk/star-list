@@ -125,6 +125,7 @@ scripts/
   update_history.py
   validate_catalog.py
   validate_json_contract.py
+  validate_websites.py
 .repo-standards.yml
 AGENTS.md
 cache-health-history.json
@@ -514,6 +515,9 @@ on:
   pull_request:
     paths:
       - "scripts/portfolio_daily.py"
+      - "websites.json"
+      - "scripts/validate_websites.py"
+      - "scripts/recommend.py"
       - "scripts/portfolio_failure_diagnostics.py"
       - ".github/workflows/portfolio-failure-diagnostics.yml"
       - ".github/workflows/daily-portfolio-integration.yml"
@@ -557,6 +561,19 @@ jobs:
           )
           assert result["summary"]["with_native_suggestions"] <= result["summary"]["with_suggestions"]
           assert result["summary"]["native_suggestions"] >= result["summary"]["with_native_suggestions"]
+          assert result["summary"]["with_website_references"] == sum(
+              bool(row["website_references"]) for row in result["projects"]
+          )
+          assert result["summary"]["website_references"] == sum(
+              len(row["website_references"]) for row in result["projects"]
+          )
+          assert "Projects with website references: **" in Path("portfolio-daily.md").read_text()
+          for row in result["projects"]:
+              for website in row["website_references"]:
+                  assert website["integrationEligible"] is False
+                  assert website["url"].startswith("https://")
+                  assert "repo" not in website
+                  assert website["why"]["tags"] or website["why"]["terms"]
           report_markdown = Path("portfolio-daily.md").read_text()
           assert ("Projects with native-mode candidates: **"
                   + str(result["summary"]["with_native_suggestions"]) + "**.") in report_markdown
@@ -1678,6 +1695,8 @@ jobs:
       - name: Validate curated website resources
         run: |
           python scripts/validate_json_contract.py schemas/websites.schema.json websites.json
+      - name: Validate normalized website URLs and identities
+        run: python scripts/validate_websites.py
       - name: Test catalog quality audit
         run: python scripts/test_catalog_quality.py
       - name: Generate catalog quality audit
@@ -3499,9 +3518,16 @@ source = github_repos(args.owner, gh_token, portfolio_token)
 source = [repo for repo in source if not repo.get("private")]
 ⋮----
 target = repo["full_name"]
-row = {"repository": target, "status": "scanned", "suggestions": [], "dispatches": []}
+row = {"repository": target, "status": "scanned", "suggestions": [], "website_references": [], "dispatches": []}
 ⋮----
 profile = project_profile(repo, portfolio_token or gh_token)
+⋮----
+# Reference websites based on repository-owned metadata only;
+# arbitrary README prose is not trustworthy installation evidence.
+web_terms = tokens(" ".join([
+possible_sites = recommend_websites(web_terms, set(profile.get("domains") or []), limit=10)
+# Domain-only matches are too generic for portfolio reporting.
+# At least one concrete tag or best-for phrase must also match.
 ⋮----
 # Discovery must be complete before starting any potentially mutating
 # managed project. A per-repository read error is not a partial success.
@@ -4767,34 +4793,6 @@ m=h.window_metrics(pts,5); assert m["healthDelta"]==12 and m["starsPerWeek"]==14
 t=h.trends({"repositories":{"a/x":pts}})["repositories"][0]; assert t["trend"]=="improving" and t["fourWeeks"]["points"]==5 and t["week"]["points"]==2
 ````
 
-## File: scripts/test_json_contracts.py
-````python
-#!/usr/bin/env python3
-⋮----
-ROOT=Path(__file__).resolve().parents[1]
-VALIDATOR=ROOT/"scripts"/"validate_json_contract.py"
-SCHEMAS=ROOT/"schemas"
-⋮----
-required_schemas={
-⋮----
-spec=importlib.util.spec_from_file_location("contract_validator",VALIDATOR)
-validator=importlib.util.module_from_spec(spec); spec.loader.exec_module(validator)
-⋮----
-samples={
-⋮----
-schema=json.loads((SCHEMAS/schema_name).read_text())
-errors=validator.validate(data,schema)
-⋮----
-data=json.loads((ROOT/data_name).read_text())
-⋮----
-catalog_schema=json.loads((ROOT/"catalog.schema.json").read_text())
-catalog=json.loads((ROOT/"catalog.json").read_text())
-errors=validator.validate(catalog,catalog_schema)
-⋮----
-unsupported={"type":"object","unevaluatedProperties":False}
-errors=validator.validate({},unsupported)
-````
-
 ## File: scripts/test_pipeline_integration.py
 ````python
 #!/usr/bin/env python3
@@ -5384,6 +5382,44 @@ schema=json.loads(args.schema.read_text())
 document=json.loads(args.document.read_text())
 ⋮----
 errors=validate(document,schema)
+````
+
+## File: scripts/validate_websites.py
+````python
+#!/usr/bin/env python3
+"""Audit website catalog URL identity and source usage without network access.
+
+The schema checks structure. This adds security and deduplication rules that
+JSON Schema cannot express; neither stage authorizes copying third-party code.
+"""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+⋮----
+def canonical_url(value)
+⋮----
+parsed = urlsplit(value)
+⋮----
+def check_websites(data, schema)
+⋮----
+errors = list(validate(data, schema))
+⋮----
+ids = set()
+owner_by_url = {}
+⋮----
+identity = site["id"]
+⋮----
+# 'originalUrl' is a redirect alias. A redirect must remain attached
+# to the same entry, not silently create an extra website identity.
+⋮----
+normalized = canonical_url(url)
+⋮----
+prior = owner_by_url.get(normalized)
+⋮----
+def main()
+⋮----
+data = json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))
+schema = json.loads((ROOT / "schemas/websites.schema.json").read_text(encoding="utf-8"))
+errors = check_websites(data, schema)
 ````
 
 ## File: .repo-standards.yml
