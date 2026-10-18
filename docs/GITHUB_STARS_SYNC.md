@@ -48,6 +48,16 @@ visibly on conflicts instead of publishing an audit from a local snapshot that
 never reached `main`. Its other health/discovery issues are independent and
 remain published by the maintenance workflow.
 
+That refresh also captures GitHub's **permanent numeric repository IDs** in
+existing catalog records when confirmed by the metadata response, without any
+extra API calls. The refreshed IDs make subsequent Stars reconciliation
+resistant to recycled owner/name slugs. Existing known IDs are immutable: if
+GitHub reports a different ID or two catalog entries resolve to the same ID,
+maintenance fails visibly rather than reassigning historical identities.
+Unavailable repositories keep their previously recorded IDs unchanged.
+The metadata reader shares the Stars sync's same-origin authenticated HTTPS
+transport; redirected bearer credentials never go to another site.
+
 If any repository cannot be verified, admission fails rather than committing
 a partial catalog. Subsequent scheduled runs retry. No Star is silently
 excluded because of its license, maturity, language or category.
