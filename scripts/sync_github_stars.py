@@ -69,6 +69,7 @@ def api_stars(user, token=None, max_pages=100, opener=SAFE_GITHUB_HTTP.open, sle
         headers["Authorization"] = "Bearer " + token
 
     found = {}
+    names_by_stable_id = {}
     duplicate_items = 0
     pages = 0
     for page in range(1, max_pages + 1):
@@ -114,14 +115,23 @@ def api_stars(user, token=None, max_pages=100, opener=SAFE_GITHUB_HTTP.open, sle
                 key = normalize_repo(repo)
             except ValueError as exc:
                 raise RuntimeError("Malformed repository identity in GitHub Stars response") from exc
-            if key in found:
-                duplicate_items += 1
-                continue
-            license_obj = entry.get("license")
-            license_name = license_obj.get("spdx_id") if isinstance(license_obj, dict) else None
             repo_id = entry.get("id")
             if repo_id is not None and (type(repo_id) is not int or repo_id <= 0):
                 raise RuntimeError("Invalid permanent GitHub repository ID")
+            if key in found:
+                original_id = found[key]["githubRepositoryId"]
+                if original_id is not None and repo_id is not None and original_id != repo_id:
+                    raise RuntimeError("Star repository name maps to conflicting permanent GitHub IDs: " + repo)
+                duplicate_items += 1
+                continue
+            if repo_id is not None and repo_id in names_by_stable_id:
+                raise RuntimeError(
+                    "Star repository ID appeared under multiple names during pagination: " + repo
+                )
+            if repo_id is not None:
+                names_by_stable_id[repo_id] = key
+            license_obj = entry.get("license")
+            license_name = license_obj.get("spdx_id") if isinstance(license_obj, dict) else None
             found[key] = {
                 "repo": repo,
                 "githubRepositoryId": repo_id,
@@ -144,7 +154,7 @@ def api_stars(user, token=None, max_pages=100, opener=SAFE_GITHUB_HTTP.open, sle
     )
 
 
-def catalog_identities(path, include_ids=False):
+def catalog_identities(path, include_ids=False, include_name_ids=False):
     try:
         data = json.loads(Path(path).read_text(encoding="utf-8"))
     except (OSError, ValueError) as exc:
@@ -152,7 +162,7 @@ def catalog_identities(path, include_ids=False):
     rows = data.get("repositories") if isinstance(data, dict) else None
     if not isinstance(rows, list):
         raise RuntimeError("Catalog repositories must be a list")
-    known, stable_ids = set(), set()
+    known, stable_ids, name_ids = set(), set(), {}
     for row in rows:
         if not isinstance(row, dict):
             raise RuntimeError("Malformed catalog entry")
@@ -164,17 +174,36 @@ def catalog_identities(path, include_ids=False):
             raise RuntimeError("Catalog has duplicate repository identities")
         known.add(identity)
         repo_id = row.get("githubRepositoryId")
+        name_ids[identity] = repo_id
         if repo_id is not None:
             if type(repo_id) is not int or repo_id <= 0:
                 raise RuntimeError("Catalog contains an invalid permanent repository ID")
             if repo_id in stable_ids:
                 raise RuntimeError("Catalog contains duplicate permanent repository IDs")
             stable_ids.add(repo_id)
+    if include_name_ids:
+        return known, stable_ids, name_ids
     return (known, stable_ids) if include_ids else known
 
 
-def build_report(username, stars, catalog, pages, duplicates=0, now=None, catalog_ids=None):
+def build_report(
+    username, stars, catalog, pages, duplicates=0, now=None,
+    catalog_ids=None, catalog_name_ids=None,
+):
     catalog_ids = catalog_ids or set()
+    catalog_name_ids = catalog_name_ids or {}
+    # Owner/name values can be reused after deletion or transfer. If the
+    # catalog has a trusted numeric ID for that exact name, a different live
+    # ID must never be counted as already admitted.
+    for entry in stars:
+        key = normalize_repo(entry["repo"])
+        recorded_id = catalog_name_ids.get(key)
+        observed_id = entry.get("githubRepositoryId")
+        if recorded_id is not None and observed_id is not None and recorded_id != observed_id:
+            raise RuntimeError(
+                "Star repository identity conflict (name reused with a new GitHub ID): "
+                + entry["repo"]
+            )
     # A verified permanent ID remains the same across owner/name transfers.
     new = [
         entry for entry in stars
@@ -267,11 +296,16 @@ def main(argv=None):
     if args.max_pages < 1 or args.issue_limit < 1:
         parser.error("max-pages and issue-limit must be >= 1")
     try:
-        catalog, catalog_ids = catalog_identities(args.catalog, include_ids=True)
+        catalog, catalog_ids, catalog_name_ids = catalog_identities(
+            args.catalog, include_name_ids=True
+        )
         stars, pages, duplicates = api_stars(
             args.user, token=os.environ.get("GITHUB_TOKEN"), max_pages=args.max_pages
         )
-        report = build_report(args.user, stars, catalog, pages, duplicates, catalog_ids=catalog_ids)
+        report = build_report(
+            args.user, stars, catalog, pages, duplicates,
+            catalog_ids=catalog_ids, catalog_name_ids=catalog_name_ids,
+        )
     except (RuntimeError, ValueError) as exc:
         parser.exit(2, "Star sync failed: " + str(exc) + "\n")
 
