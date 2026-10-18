@@ -382,7 +382,7 @@ def main():
         if args.websites and result["websiteRecommendations"]:
             print("\nWeb resources (references only; not GitHub repositories or automatic integrations):")
             for site in result["websiteRecommendations"]:
-                print(f" - {site[\'name\']} | {site[\'url\']} | {site[\'type\']} | {site[\'access\']}")
+                print(f" - {site['name']} | {site['url']} | {site['type']} | {site['access']}")
                 print("   use:", "; ".join(site["bestFor"][:2]))
                 print("   reuse:", site["reuse"])
         print(f"\nEligible: {len(ranked)}/{len(repos)} | returned: {len(top)}")
