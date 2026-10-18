@@ -21,7 +21,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlparse
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
-from recommend import DOMAIN_ALIASES, infer_domains, score_repo, tokens
+from recommend import DOMAIN_ALIASES, infer_domains, score_repo, tokens, recommend_web_resources
 
 ROOT = Path(__file__).resolve().parents[1]
 API = "https://api.github.com"
@@ -649,6 +649,7 @@ def render_markdown(report: dict) -> str:
              "Projects with reviewable suggestions: **" + str(summary["with_suggestions"]) + "**.",
              "Projects with native-mode candidates: **" + str(summary["with_native_suggestions"]) + "**.",
              "Native-mode candidates: **" + str(summary["native_suggestions"]) + "**.",
+             "Projects with website references: **" + str(summary["with_web_resources"]) + "**.",
              "New Production-OS integration requests: **" + str(summary["dispatched"]) + "**.",
              "Dispatch: **" + report["dispatch_status"] + "**.", ""]
     if isinstance(summary.get("active_integrations"), int):
@@ -674,6 +675,11 @@ def render_markdown(report: dict) -> str:
                          + " — fit " + str(item["score"]) + ", " + item["mode"]
                          + ", license " + str(item["license"])
                          + ", overlap: " + ", ".join(item["shared_terms"]))
+        for site in row.get("web_resources", []):
+            # Read-only design/resource references are NEVER integration jobs.
+            lines.append("- Web reference: [" + site["name"] + "](" + site["url"] + ")"
+                         + " — " + site["category"] + ", " + site["usagePolicy"]
+                         + " (license review before reuse; never auto-dispatched)")
         for item in row.get("dispatches", []):
             lines.append("- Integration queue: " + item)
         for item in row.get("integrations", []):
@@ -728,14 +734,25 @@ def main() -> int:
         source, catalog = [], []
     for repo in source:
         target = repo["full_name"]
-        row = {"repository": target, "status": "scanned", "suggestions": [], "dispatches": []}
+        row = {"repository": target, "status": "scanned", "suggestions": [], "web_resources": [], "dispatches": []}
         try:
             if repo.get("archived") or repo.get("disabled"):
                 row["status"] = "skipped-inactive"
             else:
                 profile = project_profile(repo, portfolio_token or gh_token)
                 row["suggestions"] = recommendations(repo, profile, catalog, 3)
-                row["status"] = "qualified-candidates" if row["suggestions"] else "no-qualified-candidate"
+                # Website references use trusted repository labels only; README
+                # prose alone must not generate links or trigger code dispatch.
+                web_terms = tokens(" ".join([
+                    repo["name"], str(repo.get("description") or ""),
+                    " ".join(repo.get("topics") or []),
+                ]))
+                row["web_resources"] = recommend_web_resources(
+                    web_terms, set(profile["domains"]), set(), set(), limit=2
+                )
+                row["status"] = ("qualified-candidates" if row["suggestions"]
+                                 else "web-reference-only" if row["web_resources"]
+                                 else "no-qualified-candidate")
         except (RuntimeError, ValueError, TypeError, KeyError) as exc:
             row["status"] = "scan-failed"
             report["errors"].append(target + ": " + str(exc))
@@ -941,6 +958,10 @@ def main() -> int:
         "native_suggestions": sum(
             item["mode"] == "native"
             for p in report["projects"] for item in p["suggestions"]
+        ),
+        "with_web_resources": sum(bool(p["web_resources"]) for p in report["projects"]),
+        "web_resource_suggestions": sum(
+            len(p["web_resources"]) for p in report["projects"]
         ),
         "dispatched": dispatched, "active_integrations": active_integrations,
         "failed_v2_integrations": failed_v2_integrations,
