@@ -4,15 +4,15 @@
     "expand_to": 12,
     "max_files": 3,
     "requested_max_files": 12,
-    "score_margin": 3,
+    "score_margin": 18,
     "tier": "narrow",
-    "top_score": 41
+    "top_score": 47
   },
   "cache": {
-    "fingerprint": "25d36a12401f360954ead38e40e958d2c12a4e772bdfec6d1219f7543ffddba6",
+    "fingerprint": "a3e1f99ccffcf412ece0fce94c481eb4598b897bbb4c1717e4139506e3f0f028",
     "hit": false
   },
-  "candidate_count": 19,
+  "candidate_count": 14,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -23,10 +23,11 @@
       ],
       "path": "scripts/portfolio_daily.py",
       "reasons": [
+        "impact",
         "learning",
         "search-index"
       ],
-      "score": 41,
+      "score": 47,
       "symbols": [
         "SameOriginRedirect",
         "busy_integration_targets",
@@ -58,11 +59,9 @@
       ],
       "path": "scripts/admit_github_stars.py",
       "reasons": [
-        "impact",
-        "recently-changed",
         "search-index"
       ],
-      "score": 38,
+      "score": 29,
       "symbols": [
         "admit",
         "catalog_entry",
@@ -78,16 +77,31 @@
       "matched_terms": [
         "game"
       ],
-      "path": "scripts/infer_selection_guidance.py",
+      "path": "scripts/recommend.py",
       "reasons": [
+        "impact",
+        "recently-changed",
         "search-index"
       ],
-      "score": 17,
+      "score": 26,
       "symbols": [
-        "_humanize",
-        "enrich",
-        "infer_guidance",
-        "main"
+        "activity_adjustment",
+        "choose_stack",
+        "delta",
+        "explain_repo",
+        "guidance_weight",
+        "infer_alternatives",
+        "infer_complements",
+        "infer_domains",
+        "load",
+        "main",
+        "norm",
+        "recommend_websites",
+        "resolve_relations",
+        "score_repo",
+        "tokens",
+        "trend_adjustment",
+        "usable"
       ]
     }
   ],

@@ -70,6 +70,7 @@ schemas/
   history.schema.json
   replacement-report.schema.json
   star-sync-report.schema.json
+  websites.schema.json
 scripts/
   admit_github_stars.py
   analyze_cache_health.py
@@ -132,6 +133,7 @@ catalog.schema.json
 discovery-memory.json
 README.md
 stacks.json
+websites.json
 ````
 
 # Files
@@ -1673,6 +1675,9 @@ jobs:
         run: |
           python scripts/validate_catalog.py
           python scripts/validate_json_contract.py catalog.schema.json catalog.json
+      - name: Validate curated website resources
+        run: |
+          python scripts/validate_json_contract.py schemas/websites.schema.json websites.json
       - name: Test catalog quality audit
         run: python scripts/test_catalog_quality.py
       - name: Generate catalog quality audit
@@ -2163,6 +2168,136 @@ initial_prompt: |
     }
   },
   "additionalProperties": false
+}
+````
+
+## File: schemas/websites.schema.json
+````json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Star List Curated Website Resources",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "websites"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "websites": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "url",
+          "type",
+          "access",
+          "domains",
+          "tags",
+          "bestFor",
+          "reuse",
+          "caution"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 2
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://[^/\\s?#]+/?(?:[^\\s]*)?$"
+          },
+          "originalUrl": {
+            "type": "string",
+            "pattern": "^https://[^/\\s?#]+/?(?:[^\\s]*)?$"
+          },
+          "type": {
+            "enum": [
+              "inspiration-gallery",
+              "motion-gallery",
+              "component-marketplace",
+              "component-library",
+              "prompt-template-library",
+              "framework-docs",
+              "shader-gallery",
+              "hosted-builder"
+            ]
+          },
+          "access": {
+            "enum": [
+              "free",
+              "freemium",
+              "paid",
+              "unknown"
+            ]
+          },
+          "domains": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "web_frontend",
+                "graphics",
+                "mobile",
+                "game_dev",
+                "software_engineering",
+                "ai_agents",
+                "ai_media",
+                "other"
+              ]
+            }
+          },
+          "tags": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 2
+            }
+          },
+          "bestFor": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 3
+            }
+          },
+          "reuse": {
+            "enum": [
+              "reference-only",
+              "license-per-item",
+              "licensed-material",
+              "open-source-upstream",
+              "hosted-service"
+            ]
+          },
+          "caution": {
+            "type": "string",
+            "minLength": 10
+          }
+        }
+      }
+    }
+  }
 }
 ````
 
@@ -3641,6 +3776,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog.json"
 STACKS = ROOT / "stacks.json"
 HISTORY = ROOT / "history.json"
+WEBSITES = ROOT / "websites.json"
 ⋮----
 DOMAIN_ALIASES = {
 TIER_BONUS = {"core": 1.0, "recommended": 0.6, "specialized": 0.25, "audit": -0.4}
@@ -3658,6 +3794,23 @@ data = json.loads(CATALOG.read_text())
 stacks = json.loads(STACKS.read_text()) if STACKS.exists() else {"stacks": []}
 ⋮----
 def infer_domains(qtokens)
+⋮----
+def recommend_websites(qtokens, domains, limit=5)
+⋮----
+"""Rank non-GitHub references separately from code integration candidates.
+
+    This remains advisory: no site can be auto-dispatched as a dependency.
+    Repository-specific hard filters have no meaning for inspiration pages.
+    """
+data = json.loads(WEBSITES.read_text(encoding="utf-8"))
+ranked = []
+⋮----
+site_domains = set(site["domains"])
+matched_domains = sorted(site_domains & domains)
+matched_tags = sorted(qtokens & set(site["tags"]))
+matched_text = sorted(qtokens & tokens(
+⋮----
+score = (12 * len(matched_domains) + 10 * len(matched_tags)
 ⋮----
 def activity_adjustment(r)
 ⋮----
@@ -3765,7 +3918,6 @@ repo_by_name = {r["repo"]: r for r in repos}
 qtokens = tokens(args.query)
 domains = set(args.domain) or infer_domains(qtokens)
 ⋮----
-ranked = []
 eligible_names = set()
 filtered = {"platform":0, "language":0, "selfHosted":0, "inactive":0, "audit":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
 ⋮----
@@ -4515,6 +4667,9 @@ scoring=SCORING.read_text()
 version=VERSION.read_text().strip()
 changelog=CHANGELOG.read_text()
 ⋮----
+website_guide = (ROOT / "WEB_RESOURCES.md").read_text()
+websites = __import__("json").loads((ROOT / "websites.json").read_text())
+⋮----
 # Local Markdown links from README must point to repository files/directories.
 ⋮----
 local=target.split("#",1)[0]
@@ -4703,6 +4858,13 @@ cases = [
 ⋮----
 data = run(query, "--top", "5")
 domains = set(data["inferredDomains"])
+⋮----
+# External sites are advisory references, never installable GitHub repositories.
+websites_catalog = json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))
+sites = websites_catalog["websites"]
+⋮----
+baseline_web_query = run("3d scroll animation website", "--top", "4")
+with_web_query = run("3d scroll animation website", "--top", "4", "--websites", "--top-websites", "10")
 ⋮----
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 ⋮----
@@ -49487,6 +49649,23 @@ python scripts/test_pipeline_integration.py
 
 For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
+## Website resources (in addition to GitHub repositories)
+
+The catalog also includes **10 curated website links** for UI design,
+animation, browser 3D, shaders, and AI-assisted prototyping. Explore them
+in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
+[`websites.json`](websites.json) directory. They are **not** GitHub
+repositories and are never passed to Production-OS as code dependencies.
+
+```bash
+python scripts/recommend.py "3d scroll animation website" --websites --json
+python scripts/validate_json_contract.py schemas/websites.schema.json websites.json
+```
+
+The optional website ranking preserves the original repository rankings and
+reports licensing/usage cautions separately; do not treat paid design assets
+or third-party shaders as open source.
+
 ## Automatic GitHub Stars synchronization
 
 A free, hourly GitHub Actions workflow checks **dbrckk**'s publicly accessible starred
@@ -49831,6 +50010,288 @@ General-purpose GitHub discovery remains advisory and never inserts external can
       "notes": [
         "Use only in authorized environments and keep scope controls fail-closed."
       ]
+    }
+  ]
+}
+````
+
+## File: websites.json
+````json
+{
+  "schemaVersion": 1,
+  "description": "Curated web resources complementing, but not replacing, the GitHub repository catalog.",
+  "websites": [
+    {
+      "id": "scrolltide",
+      "name": "Scrolltide",
+      "url": "https://www.scrolltide.co/",
+      "type": "prompt-template-library",
+      "access": "freemium",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "scroll",
+        "animation",
+        "3d",
+        "react",
+        "prompt",
+        "templates",
+        "webgl"
+      ],
+      "bestFor": [
+        "3D landing page prompts",
+        "scroll-driven websites",
+        "React animation inspiration"
+      ],
+      "reuse": "licensed-material",
+      "caution": "Paid template and prompt access is subject to the provider's terms; a few free examples do not make the whole library open source."
+    },
+    {
+      "id": "awwwards",
+      "name": "Awwwards",
+      "url": "https://www.awwwards.com/",
+      "type": "inspiration-gallery",
+      "access": "freemium",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "web",
+        "design",
+        "award",
+        "inspiration",
+        "typography",
+        "3d",
+        "animation"
+      ],
+      "bestFor": [
+        "award-winning website references",
+        "visual design benchmarking",
+        "creative web design"
+      ],
+      "reuse": "reference-only",
+      "caution": "Showcased websites and their images/source are third-party creations, not reusable code by default."
+    },
+    {
+      "id": "recent-design",
+      "name": "Recent (formerly Godly)",
+      "url": "https://recent.design/",
+      "originalUrl": "https://godly.website/",
+      "type": "inspiration-gallery",
+      "access": "free",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "web",
+        "ui",
+        "design",
+        "inspiration",
+        "branding",
+        "motion",
+        "3d"
+      ],
+      "bestFor": [
+        "curated website references",
+        "modern UI and branding inspiration",
+        "motion and 3D design examples"
+      ],
+      "reuse": "reference-only",
+      "caution": "The source domain redirects to Recent; examples are references, not assets licensed for copying."
+    },
+    {
+      "id": "60fps",
+      "name": "60fps",
+      "url": "https://60fps.design/",
+      "type": "motion-gallery",
+      "access": "freemium",
+      "domains": [
+        "mobile",
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "ui",
+        "ux",
+        "motion",
+        "animation",
+        "microinteraction",
+        "mobile",
+        "web"
+      ],
+      "bestFor": [
+        "mobile UI animations",
+        "interaction and motion references",
+        "micro-interaction design"
+      ],
+      "reuse": "reference-only",
+      "caution": "Animation recordings and examples are references; verify rights before copying assets."
+    },
+    {
+      "id": "21st-dev",
+      "name": "21st.dev",
+      "url": "https://21st.dev/",
+      "type": "component-marketplace",
+      "access": "freemium",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "react",
+        "ui",
+        "components",
+        "tailwind",
+        "shadcn",
+        "templates",
+        "mcp"
+      ],
+      "bestFor": [
+        "discovering React UI components",
+        "reusable interface patterns",
+        "Tailwind and shadcn component discovery"
+      ],
+      "reuse": "license-per-item",
+      "caution": "Creators retain rights to their components; verify each item's license and free-tier limits before integration."
+    },
+    {
+      "id": "aceternity-ui",
+      "name": "Aceternity UI",
+      "url": "https://ui.aceternity.com/",
+      "type": "component-library",
+      "access": "freemium",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "react",
+        "tailwind",
+        "ui",
+        "components",
+        "animation",
+        "3d"
+      ],
+      "bestFor": [
+        "animated React interfaces",
+        "high-impact landing page components",
+        "3D web UI effects"
+      ],
+      "reuse": "license-per-item",
+      "caution": "Aceternity and third-party items have license restrictions, especially redistribution of components or templates."
+    },
+    {
+      "id": "magic-ui",
+      "name": "Magic UI",
+      "url": "https://magicui.design/",
+      "type": "component-library",
+      "access": "freemium",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "react",
+        "tailwind",
+        "ui",
+        "components",
+        "animated",
+        "landing",
+        "motion"
+      ],
+      "bestFor": [
+        "animated landing pages",
+        "React UI component inspiration",
+        "interactive marketing interfaces"
+      ],
+      "reuse": "license-per-item",
+      "caution": "Check the license of the specific component and any paid templates before copying or redistributing."
+    },
+    {
+      "id": "threejs",
+      "name": "Three.js",
+      "url": "https://threejs.org/",
+      "type": "framework-docs",
+      "access": "free",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "3d",
+        "webgl",
+        "webgpu",
+        "javascript",
+        "graphics",
+        "animation",
+        "shader"
+      ],
+      "bestFor": [
+        "browser 3D rendering",
+        "WebGL and WebGPU animation",
+        "interactive JavaScript scenes"
+      ],
+      "reuse": "open-source-upstream",
+      "caution": "The core library is open source; third-party demos, models and textures may have separate licenses."
+    },
+    {
+      "id": "shadertoy",
+      "name": "Shadertoy",
+      "url": "https://www.shadertoy.com/",
+      "type": "shader-gallery",
+      "access": "free",
+      "domains": [
+        "graphics",
+        "web_frontend",
+        "game_dev"
+      ],
+      "tags": [
+        "shader",
+        "glsl",
+        "3d",
+        "vfx",
+        "graphics",
+        "procedural",
+        "webgl"
+      ],
+      "bestFor": [
+        "GLSL shader inspiration",
+        "visual effects experiments",
+        "procedural graphics"
+      ],
+      "reuse": "license-per-item",
+      "caution": "Individual shaders have creator-specific rights, potentially non-commercial, and may not be production-performant."
+    },
+    {
+      "id": "lovable",
+      "name": "Lovable",
+      "url": "https://lovable.dev/",
+      "type": "hosted-builder",
+      "access": "freemium",
+      "domains": [
+        "web_frontend",
+        "software_engineering"
+      ],
+      "tags": [
+        "ai",
+        "web",
+        "app",
+        "website",
+        "builder",
+        "react",
+        "prototype"
+      ],
+      "bestFor": [
+        "rapid web app prototypes",
+        "prompt-to-website iteration",
+        "interactive app mockups"
+      ],
+      "reuse": "hosted-service",
+      "caution": "A hosted creation service is not a drop-in code dependency. Review plans, generated code, data access and export terms."
     }
   ]
 }

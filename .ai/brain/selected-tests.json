@@ -2,21 +2,19 @@
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
   "selected_test_files": [
-    "scripts/test_catalog_quality.py",
-    "scripts/test_discovery_cache.py",
-    "scripts/test_refresh_github_metadata.py",
-    "scripts/test_sync_github_stars.py"
+    "scripts/test_documentation.py",
+    "scripts/test_json_contracts.py",
+    "scripts/test_recommend.py"
   ],
   "commands": [
     {
-      "command": "python -m pytest scripts/test_catalog_quality.py scripts/test_discovery_cache.py scripts/test_refresh_github_metadata.py scripts/test_sync_github_stars.py",
+      "command": "python -m pytest scripts/test_documentation.py scripts/test_json_contracts.py scripts/test_recommend.py",
       "purpose": "targeted tests",
       "confidence": "high",
       "files": [
-        "scripts/test_catalog_quality.py",
-        "scripts/test_discovery_cache.py",
-        "scripts/test_refresh_github_metadata.py",
-        "scripts/test_sync_github_stars.py"
+        "scripts/test_documentation.py",
+        "scripts/test_json_contracts.py",
+        "scripts/test_recommend.py"
       ]
     }
   ],

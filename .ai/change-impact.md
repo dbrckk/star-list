@@ -1,18 +1,23 @@
 # Change impact
 
-Base: 64abbabf74acc59127138c8448e514a8192d6a05
-Head: 31ae739f96cf406047cb5b62ef6ae83c7fd7b125
+Base: 1eec1c7b60420a1e1d1e65f9bafff0ec4afa3ed4
+Head: 956e75ee447599353f6adfb777f0b9520e2fb5bc
 
 ## Changed files
-- M .github/workflows/catalog-quality-on-change.yml
-- M docs/GITHUB_STARS_SYNC.md
-- M schemas/catalog-quality.schema.json
-- M scripts/audit_catalog_quality.py
-- M scripts/test_catalog_quality.py
+- M .github/workflows/validate.yml
+- M README.md
+- M RECOMMENDER.md
+- A WEB_RESOURCES.md
+- A schemas/websites.schema.json
+- M scripts/recommend.py
+- M scripts/test_documentation.py
+- M scripts/test_json_contracts.py
+- M scripts/test_recommend.py
+- A websites.json
 
 ## Affected areas
 - .github
-- docs
+- (root)
 - schemas
 - scripts
 

@@ -1570,6 +1570,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog.json"
 STACKS = ROOT / "stacks.json"
 HISTORY = ROOT / "history.json"
+WEBSITES = ROOT / "websites.json"
 ⋮----
 DOMAIN_ALIASES = {
 TIER_BONUS = {"core": 1.0, "recommended": 0.6, "specialized": 0.25, "audit": -0.4}
@@ -1587,6 +1588,23 @@ data = json.loads(CATALOG.read_text())
 stacks = json.loads(STACKS.read_text()) if STACKS.exists() else {"stacks": []}
 ⋮----
 def infer_domains(qtokens)
+⋮----
+def recommend_websites(qtokens, domains, limit=5)
+⋮----
+"""Rank non-GitHub references separately from code integration candidates.
+
+    This remains advisory: no site can be auto-dispatched as a dependency.
+    Repository-specific hard filters have no meaning for inspiration pages.
+    """
+data = json.loads(WEBSITES.read_text(encoding="utf-8"))
+ranked = []
+⋮----
+site_domains = set(site["domains"])
+matched_domains = sorted(site_domains & domains)
+matched_tags = sorted(qtokens & set(site["tags"]))
+matched_text = sorted(qtokens & tokens(
+⋮----
+score = (12 * len(matched_domains) + 10 * len(matched_tags)
 ⋮----
 def activity_adjustment(r)
 ⋮----
@@ -1694,7 +1712,6 @@ repo_by_name = {r["repo"]: r for r in repos}
 qtokens = tokens(args.query)
 domains = set(args.domain) or infer_domains(qtokens)
 ⋮----
-ranked = []
 eligible_names = set()
 filtered = {"platform":0, "language":0, "selfHosted":0, "inactive":0, "audit":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
 ⋮----
@@ -2444,6 +2461,9 @@ scoring=SCORING.read_text()
 version=VERSION.read_text().strip()
 changelog=CHANGELOG.read_text()
 ⋮----
+website_guide = (ROOT / "WEB_RESOURCES.md").read_text()
+websites = __import__("json").loads((ROOT / "websites.json").read_text())
+⋮----
 # Local Markdown links from README must point to repository files/directories.
 ⋮----
 local=target.split("#",1)[0]
@@ -2632,6 +2652,13 @@ cases = [
 ⋮----
 data = run(query, "--top", "5")
 domains = set(data["inferredDomains"])
+⋮----
+# External sites are advisory references, never installable GitHub repositories.
+websites_catalog = json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))
+sites = websites_catalog["websites"]
+⋮----
+baseline_web_query = run("3d scroll animation website", "--top", "4")
+with_web_query = run("3d scroll animation website", "--top", "4", "--websites", "--top-websites", "10")
 ⋮----
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 ⋮----

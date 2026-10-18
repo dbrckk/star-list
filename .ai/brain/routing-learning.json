@@ -2,23 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "Add automated catalog quality audit (#19)",
-      "terms": [
-        "19",
-        "add",
-        "audit",
-        "automated",
-        "catalog",
-        "quality"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/audit_catalog_quality.py",
-        "scripts/test_catalog_quality.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "Triage stale repositories with lifecycle metadata (#21)",
       "terms": [
         "21",
@@ -1215,11 +1198,41 @@
         "scripts/test_catalog_quality.py",
         "scripts/test_sync_github_stars.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(catalog): add 10 curated design websites alongside GitHub repositories (#127)",
+      "terms": [
+        "10",
+        "127",
+        "add",
+        "alongside",
+        "catalog",
+        "curated",
+        "design",
+        "feat",
+        "github",
+        "repositories",
+        "websites"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/recommend.py",
+        "scripts/test_documentation.py",
+        "scripts/test_json_contracts.py",
+        "scripts/test_recommend.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
   "schema_version": 1,
   "term_file_scores": {
+    "10": {
+      "scripts/recommend.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "100": {
       "scripts/portfolio_failure_diagnostics.py": 4
     },
@@ -1276,6 +1289,12 @@
       "scripts/sync_github_stars.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_sync_github_stars.py": 4
+    },
+    "127": {
+      "scripts/recommend.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1427,7 +1446,11 @@
     },
     "add": {
       "scripts/audit_catalog_quality.py": 4,
+      "scripts/recommend.py": 4,
       "scripts/test_catalog_quality.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_recommend.py": 4,
       "scripts/validate_catalog.py": 4
     },
     "admissions": {
@@ -1446,6 +1469,12 @@
     "all": {
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
+    },
+    "alongside": {
+      "scripts/recommend.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "already": {
       "scripts/portfolio_daily.py": 4
@@ -1568,10 +1597,13 @@
       "scripts/admit_github_stars.py": 4,
       "scripts/audit_catalog_quality.py": 12,
       "scripts/portfolio_daily.py": 8,
+      "scripts/recommend.py": 4,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_catalog_quality.py": 12,
-      "scripts/test_documentation.py": 12,
+      "scripts/test_documentation.py": 16,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_recommend.py": 4,
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
@@ -1628,8 +1660,10 @@
       "scripts/test_sync_github_stars.py": 4
     },
     "curated": {
-      "scripts/recommend.py": 4,
-      "scripts/test_recommend.py": 4
+      "scripts/recommend.py": 8,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_recommend.py": 8
     },
     "current": {
       "scripts/audit_catalog_quality.py": 4,
@@ -1673,6 +1707,12 @@
     },
     "demo": {
       "scripts/portfolio_daily.py": 4
+    },
+    "design": {
+      "scripts/recommend.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "details": {
       "scripts/portfolio_failure_diagnostics.py": 8
@@ -1787,9 +1827,13 @@
       "scripts/audit_catalog_quality.py": 8,
       "scripts/portfolio_daily.py": 12,
       "scripts/portfolio_failure_diagnostics.py": 12,
+      "scripts/recommend.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_catalog_quality.py": 8,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_recommend.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
     "files": {
@@ -1852,11 +1896,15 @@
     "github": {
       "scripts/admit_github_stars.py": 12,
       "scripts/discover_candidates.py": 4,
+      "scripts/recommend.py": 4,
       "scripts/refresh_github_metadata.py": 8,
       "scripts/star_import_pipeline.py": 8,
       "scripts/sync_github_stars.py": 12,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_discovery_cache.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_recommend.py": 4,
       "scripts/test_refresh_github_metadata.py": 8,
       "scripts/test_star_import_pipeline.py": 8,
       "scripts/test_sync_github_stars.py": 12
@@ -2234,9 +2282,11 @@
     "repositories": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/infer_selection_guidance.py": 4,
-      "scripts/recommend.py": 8,
+      "scripts/recommend.py": 12,
       "scripts/test_catalog_quality.py": 4,
-      "scripts/test_recommend.py": 8,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_recommend.py": 12,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 12
     },
@@ -2511,6 +2561,12 @@
     },
     "via": {
       "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "websites": {
+      "scripts/recommend.py": 4,
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "weight": {
       "scripts/recommend.py": 4,

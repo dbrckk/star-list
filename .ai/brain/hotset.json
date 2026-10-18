@@ -1,7 +1,7 @@
 {
   "files": [
     {
-      "path": "scripts/sync_github_stars.py",
+      "path": "scripts/recommend.py",
       "reasons": [
         "changed",
         "changed-source",
@@ -9,34 +9,21 @@
         "impact",
         "symbol-indexed"
       ],
-      "score": 520
+      "score": 410
     },
     {
-      "path": "scripts/test_sync_github_stars.py",
+      "path": "scripts/test_recommend.py",
       "reasons": [
         "changed",
         "changed-source",
         "impact",
-        "reverse-dependency-neighbor",
         "selected-test",
         "symbol-indexed"
       ],
-      "score": 510
+      "score": 375
     },
     {
-      "path": "scripts/admit_github_stars.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "reverse-dependency-neighbor",
-        "symbol-indexed"
-      ],
-      "score": 390
-    },
-    {
-      "path": "scripts/test_catalog_quality.py",
+      "path": "scripts/test_documentation.py",
       "reasons": [
         "changed",
         "changed-source",
@@ -46,27 +33,17 @@
       "score": 370
     },
     {
-      "path": "scripts/audit_catalog_quality.py",
+      "path": "scripts/test_json_contracts.py",
       "reasons": [
         "changed",
         "changed-source",
         "impact",
-        "symbol-indexed"
+        "selected-test"
       ],
-      "score": 325
+      "score": 370
     },
     {
-      "path": "scripts/test_refresh_github_metadata.py",
-      "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 280
-    },
-    {
-      "path": "scripts/discover_candidates.py",
+      "path": "scripts/portfolio_daily.py",
       "reasons": [
         "impact",
         "reverse-dependency-neighbor",
@@ -75,69 +52,63 @@
       "score": 225
     },
     {
-      "path": "scripts/test_discovery_cache.py",
-      "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 190
-    },
-    {
-      "path": "scripts/refresh_github_metadata.py",
-      "reasons": [
-        "dependency-neighbor",
-        "impact",
-        "reverse-dependency-neighbor",
-        "symbol-indexed"
-      ],
-      "score": 185
-    },
-    {
-      "path": ".github/workflows/catalog-quality-on-change.yml",
+      "path": ".github/workflows/validate.yml",
       "reasons": [
         "changed"
       ],
       "score": 100
     },
     {
-      "path": ".github/workflows/sync-github-stars.yml",
+      "path": "README.md",
       "reasons": [
         "changed"
       ],
       "score": 100
     },
     {
-      "path": "catalog.json",
+      "path": "RECOMMENDER.md",
       "reasons": [
         "changed"
       ],
       "score": 100
     },
     {
-      "path": "docs/GITHUB_STARS_SYNC.md",
+      "path": "WEB_RESOURCES.md",
       "reasons": [
         "changed"
       ],
       "score": 100
     },
     {
-      "path": "schemas/catalog-quality.schema.json",
+      "path": "schemas/websites.schema.json",
       "reasons": [
         "changed"
       ],
       "score": 100
     },
     {
-      "path": "scripts/backfill_licenses.py",
+      "path": "websites.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "scripts/portfolio_failure_diagnostics.py",
       "reasons": [
         "reverse-dependency-neighbor"
       ],
       "score": 30
     },
     {
-      "path": "scripts/star_import_pipeline.py",
+      "path": "scripts/find_replacements.py",
+      "reasons": [
+        "dependency-neighbor"
+      ],
+      "score": 25
+    },
+    {
+      "path": "scripts/health_score.py",
       "reasons": [
         "dependency-neighbor"
       ],

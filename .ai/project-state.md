@@ -82,16 +82,26 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T14:33:42Z
+Generated: 2026-10-18T17:25:13Z
 
 ### Git
 - Branch: `main`
-- Head: `31ae739f96cf`
-- Commit date: 2026-10-18T10:33:32-04:00
-- Commit: feat(catalog): expose verified stable-ID coverage in the quality audit (#125)
-- Tracked files: 280
+- Head: `956e75ee4475`
+- Commit date: 2026-10-18T13:25:03-04:00
+- Commit: feat(catalog): add 10 curated design websites alongside GitHub repositories (#127)
+- Tracked files: 283
 
 ### Recently changed files
+- `.github/workflows/validate.yml`
+- `README.md`
+- `RECOMMENDER.md`
+- `WEB_RESOURCES.md`
+- `schemas/websites.schema.json`
+- `scripts/recommend.py`
+- `scripts/test_documentation.py`
+- `scripts/test_json_contracts.py`
+- `scripts/test_recommend.py`
+- `websites.json`
 - `.github/workflows/catalog-quality-on-change.yml`
 - `docs/GITHUB_STARS_SYNC.md`
 - `schemas/catalog-quality.schema.json`
@@ -102,10 +112,6 @@ Generated: 2026-10-18T14:33:42Z
 - `scripts/admit_github_stars.py`
 - `scripts/sync_github_stars.py`
 - `scripts/test_sync_github_stars.py`
-- `scripts/discover_candidates.py`
-- `scripts/test_discovery_cache.py`
-- `scripts/refresh_github_metadata.py`
-- `scripts/test_refresh_github_metadata.py`
 
 ### Project signals
 - No common build descriptor detected

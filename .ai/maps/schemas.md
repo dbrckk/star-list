@@ -55,6 +55,7 @@ health-trends.schema.json
 history.schema.json
 replacement-report.schema.json
 star-sync-report.schema.json
+websites.schema.json
 ```
 
 # Files
@@ -450,5 +451,135 @@ star-sync-report.schema.json
     }
   },
   "additionalProperties": false
+}
+```
+
+## File: websites.schema.json
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Star List Curated Website Resources",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "websites"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "websites": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "url",
+          "type",
+          "access",
+          "domains",
+          "tags",
+          "bestFor",
+          "reuse",
+          "caution"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 2
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https://[^/\\s?#]+/?(?:[^\\s]*)?$"
+          },
+          "originalUrl": {
+            "type": "string",
+            "pattern": "^https://[^/\\s?#]+/?(?:[^\\s]*)?$"
+          },
+          "type": {
+            "enum": [
+              "inspiration-gallery",
+              "motion-gallery",
+              "component-marketplace",
+              "component-library",
+              "prompt-template-library",
+              "framework-docs",
+              "shader-gallery",
+              "hosted-builder"
+            ]
+          },
+          "access": {
+            "enum": [
+              "free",
+              "freemium",
+              "paid",
+              "unknown"
+            ]
+          },
+          "domains": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "web_frontend",
+                "graphics",
+                "mobile",
+                "game_dev",
+                "software_engineering",
+                "ai_agents",
+                "ai_media",
+                "other"
+              ]
+            }
+          },
+          "tags": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 2
+            }
+          },
+          "bestFor": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 3
+            }
+          },
+          "reuse": {
+            "enum": [
+              "reference-only",
+              "license-per-item",
+              "licensed-material",
+              "open-source-upstream",
+              "hosted-service"
+            ]
+          },
+          "caution": {
+            "type": "string",
+            "minLength": 10
+          }
+        }
+      }
+    }
+  }
 }
 ```
