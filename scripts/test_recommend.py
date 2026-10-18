@@ -48,10 +48,24 @@ assert with_skills_query["skillDiscovery"]["automaticInstallation"] is False
 assert all(s["reviewRequired"] and not s["integrationEligible"] and s["installCommand"] is None
            for s in with_skills_query["skillDiscovery"]["recommendations"])
 assert all(s["skillFileUrl"].startswith(s["url"] + "/blob/" + s["sourceCommit"] + "/")
-           and len(s["sourceCommit"]) == 40 and s["sourcePath"].endswith("/SKILL.md")
+           and len(s["sourceCommit"]) == 40
+           and (s["sourcePath"] == "SKILL.md" or s["sourcePath"].endswith("/SKILL.md"))
            for s in with_skills_query["skillDiscovery"]["recommendations"])
 # Newly verified upstream files must be selectable without changing the normal
 # GitHub recommendation contract, and no skill can be silently installed.
+from agent_skill_discovery import recommend_skills, word_set
+roblox_skills = recommend_skills(word_set("roblox luau studio"), {"game_dev"}, limit=20)
+assert any(s["id"] == "roblox-luau-development" and s["sourcePath"] == "SKILL.md"
+           and s["skillFileUrl"].endswith("/SKILL.md") for s in roblox_skills)
+compose_skills = recommend_skills(word_set("compose jetpack"), {"mobile"}, language="Kotlin", limit=20)
+assert any(s["id"] == "android-compose-performance" for s in compose_skills)
+assert not any(s["id"] == "android-compose-performance" for s in
+               recommend_skills(word_set("android mobile"), {"mobile"}, language="Kotlin", limit=20))
+assert any(s["id"] == "android-play-policy-insights" for s in
+           recommend_skills(word_set("android play policy"), {"mobile"}, language="Kotlin", limit=20))
+assert all(s["reviewRequired"] and s["integrationEligible"] is False
+           and s["installCommand"] is None
+           for s in roblox_skills + compose_skills)
 assert any(s["id"] == "react-native-architecture" for s in
            run("react native mobile", "--skills", "--language", "typescript")
            ["skillDiscovery"]["recommendations"])
