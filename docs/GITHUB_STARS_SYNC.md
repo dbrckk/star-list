@@ -60,6 +60,10 @@ resistant to recycled owner/name slugs. Existing known IDs are immutable: if
 GitHub reports a different ID or two catalog entries resolve to the same ID,
 maintenance fails visibly rather than reassigning historical identities.
 Unavailable repositories keep their previously recorded IDs unchanged.
+The catalog-quality audit publishes **verified ID coverage** and the remaining
+name-only count separately from license/maintenance findings. This makes
+identity-enrichment progress measurable without claiming that inaccessible
+or unverified repositories have been resolved.
 The metadata reader shares the Stars sync's same-origin authenticated HTTPS
 transport; redirected bearer credentials never go to another site.
 The weekly discovery-candidate scanner uses this transport as well and
