@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "updated_date_utc": "2026-10-17",
+  "updated_date_utc": "2026-10-18",
   "repository": "dbrckk/star-list",
   "reference_branch": "main",
   "status": "active",
-  "verified_catalog_repositories": 942,
+  "verified_catalog_repositories": 961,
   "last_verified_public_portfolio_scan": {
     "discovered": 38,
     "inspected": 38,
@@ -23,7 +23,7 @@
     "delivered_commits": 0,
     "reviewable_prs": 0,
     "ci_evidence": 0,
-    "diagnostic_run": 39016621939,
+    "diagnostic_run": 39113139237,
     "diagnostic_status": "complete",
     "details_checked_v2": 4,
     "details_checked_v3": 1
@@ -60,7 +60,12 @@
     106,
     107,
     108,
-    111
+    111,
+    112,
+    113,
+    114,
+    115,
+    116
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -84,7 +89,12 @@
     "Prevent inherited model-provider token leakage in Hermes/OpenCode/Codex subprocess evidence (AI Dev Server PR #333; 7/7 CI)",
     "Require structured terminal receipts for Hermes and Codex instead of accepting silent exit 0 (AI Dev Server PR #334; core CI validated)",
     "Avoid redundant same-day public portfolio re-scans without removing hourly fallback or manual trigger (star-list PR #111; CI and portfolio smoke validated)",
-    "Register Cloudflare Workers Free GLM-4.7-Flash as an opt-in AI Dev Server coding fallback with external-agent secret isolation (AI Dev Server PR #335, seven CI checks passed; model route not yet enabled or live-verified)"
+    "Register Cloudflare Workers Free GLM-4.7-Flash as an opt-in AI Dev Server coding fallback with external-agent secret isolation (AI Dev Server PR #335, seven CI checks passed; model route not yet enabled or live-verified)",
+    "Protect autonomous launches from retrying ambiguous POSTs (star-list PR #113; pull request and post-merge CI passed)",
+    "Republish catalog-quality reports when catalog changes (star-list PR #114; live issue #32 now reflects 961 entries)",
+    "Explicitly invoke reusable quality audit after GitHub-token-authored Stars admissions (star-list PR #115; actual one-new-Star run #39118687501 validated sync and audit)",
+    "Schedule daily catalog quality reconciliation after interrupted/missed admission audits (star-list PR #116; successful post-merge catalog validation)",
+    "Verify both private Finders and tube daily scans succeeded on 2026-10-18; public portfolio scan 38/38 and fleet dispatch still paused"
   ],
   "next_priority": [
     "Verify a Workers Free account, configure ai-dev-server Cloudflare Actions secret/variables and execute one bounded authenticated, non-mutating GLM-4.7-Flash inference probe; never assume free capacity from a code merge",
@@ -98,10 +108,10 @@
     "Do not report a submitted Production-OS task as a completed integration"
   ],
   "last_verified_public_star_sync": {
-    "run_id": 39002112723,
-    "checked_at_utc": "2026-10-17",
-    "public_accessible_stars": 804,
-    "already_cataloged": 804,
+    "run_id": 39121356632,
+    "checked_at_utc": "2026-10-18",
+    "public_accessible_stars": 827,
+    "already_cataloged": 827,
     "missing": 0,
     "pages": 9
   }
