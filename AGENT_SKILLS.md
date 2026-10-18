@@ -7,10 +7,13 @@ verified package registry, an executable dependency or an assurance of
 copyright/security compliance.
 
 The catalog lists its website once in [websites.json](websites.json) and a
-small, explicit set of original GitHub source links in
-[agent-skills.json](agent-skills.json). The latter was derived from entries
-visible on the site on 2026-10-18. Each upstream repository was confirmed
-to exist; **individual SKILL.md instructions have not been audited**.
+curated set of **19** original skill source references in
+[agent-skills.json](agent-skills.json), drawn from Skill Issue's visible
+entries and verified against the upstream repositories on 2026-10-18.
+Every entry now records its **exact `SKILL.md` path and a pinned Git commit**
+where that file exists, so reviewers can inspect immutable source before any
+decision. This verifies source identity and file existence, **not** the
+safety or correctness of the SKILL.md instructions or bundled scripts.
 
 ## Make it useful throughout the portfolio
 
