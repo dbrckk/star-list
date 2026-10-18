@@ -84,4 +84,17 @@ assert "git rebase origin/main" in maintenance_yaml
 assert "git push origin HEAD:main" in maintenance_yaml
 assert "      - name: Publish catalog quality audit" not in maintenance_yaml
 
+# Website references are a separate, explicitly non-dispatchable source.
+web_catalog = ROOT / "web-resources.json"
+web_schema = ROOT / "schemas/web-resources.schema.json"
+web_doc = ROOT / "docs/WEB_RESOURCES.md"
+assert web_catalog.exists() and web_schema.exists() and web_doc.exists()
+web_data = __import__("json").loads(web_catalog.read_text(encoding="utf-8"))
+assert len(web_data["resources"]) >= 10
+assert all(item["autoIntegrate"] is False for item in web_data["resources"])
+assert "webResources" in (ROOT / "scripts/recommend.py").read_text(encoding="utf-8")
+assert "web_resources" in (ROOT / "scripts/portfolio_daily.py").read_text(encoding="utf-8")
+assert "WEB_RESOURCES.md" in readme
+assert "webResources" in (ROOT / "RECOMMENDER.md").read_text(encoding="utf-8")
+
 print("OK: documentation contract tests passed")
