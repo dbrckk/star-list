@@ -13,6 +13,7 @@ now = datetime(2026, 9, 21, tzinfo=timezone.utc)
 repos = [
     {
         "repo": "x/healthy",
+        "githubRepositoryId": 101,
         "tier": "recommended",
         "lifecycle": "active",
         "selfHosted": True,
@@ -110,11 +111,15 @@ assert report["summary"]["byCode"]["license-partial"] == 1
 assert report["summary"]["byCode"]["license-external-terms"] == 1
 assert report["summary"]["byCode"]["license-not-found"] == 1
 assert report["guidanceCoverage"]["bestFor"] == {"populated": 1, "missing": 10}
+assert report["identityCoverage"] == {"verified": 1, "missing": 10}
+assert sum(report["identityCoverage"].values()) == report["repositories"]
 markdown = mod.render_markdown(report)
 assert "<!-- star-list-catalog-quality -->" in markdown
 assert "x/stable" in markdown
 assert "x/legacy-archive" in markdown
 assert "Review required" in markdown
+assert "Verified permanent GitHub IDs: **1/11**" in markdown
+assert "Name-only or unverified entries: **10**" in markdown
 # Large collections must not exceed the GitHub issue-body limit: full
 # structured evidence remains available from the workflow artifact.
 oversized = {**report, "findings": report["findings"] * 1000}
