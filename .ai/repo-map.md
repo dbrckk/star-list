@@ -2540,6 +2540,9 @@ expected = "https://github.com/" + repo
 ⋮----
 url = urlsplit(expected)
 ⋮----
+# The exact SKILL.md path is independently confirmed on a pinned
+# upstream revision, rather than delegating review to a mutable repo root.
+⋮----
 """Rank skill *references* by declared domain and concrete repo labels.
 
     Never treat broad README prose as verified compatibility and never return
@@ -4993,6 +4996,9 @@ with_web_query = run("3d scroll animation website", "--top", "4", "--websites", 
 with_skills_query = run("mobile ui design", "--top", "4", "--skills")
 without_skills_query = run("mobile ui design", "--top", "4")
 ⋮----
+# Newly verified upstream files must be selectable without changing the normal
+# GitHub recommendation contract, and no skill can be silently installed.
+⋮----
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 ⋮----
 high_threshold = run("ai agent", "--min-score", "1000")
@@ -5664,7 +5670,9 @@ workflow:
       "sourceUrl": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
-      "skillCodeReviewed": false
+      "skillCodeReviewed": false,
+      "sourceCommit": "56ea9cf174ed86786187daa9de0e6247cb0747e4",
+      "sourcePath": ".claude/skills/ui-ux-pro-max/SKILL.md"
     },
     {
       "id": "frontend-design",
@@ -5688,7 +5696,9 @@ workflow:
       "sourceUrl": "https://github.com/anthropics/skills",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
-      "skillCodeReviewed": false
+      "skillCodeReviewed": false,
+      "sourceCommit": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+      "sourcePath": "skills/frontend-design/SKILL.md"
     },
     {
       "id": "agent-browser",
@@ -5714,7 +5724,9 @@ workflow:
       "sourceUrl": "https://github.com/vercel-labs/agent-browser",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
-      "skillCodeReviewed": false
+      "skillCodeReviewed": false,
+      "sourceCommit": "dac13bb87468fe9d74a040d862720f6cc17a9565",
+      "sourcePath": "skills/agent-browser/SKILL.md"
     },
     {
       "id": "react-best-practices",
@@ -5740,7 +5752,9 @@ workflow:
       "sourceUrl": "https://github.com/vercel-labs/agent-skills",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
-      "skillCodeReviewed": false
+      "skillCodeReviewed": false,
+      "sourceCommit": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "sourcePath": "skills/react-best-practices/SKILL.md"
     },
     {
       "id": "web-design-guidelines",
@@ -5763,7 +5777,9 @@ workflow:
       "sourceUrl": "https://github.com/vercel-labs/agent-skills",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
-      "skillCodeReviewed": false
+      "skillCodeReviewed": false,
+      "sourceCommit": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "sourcePath": "skills/web-design-guidelines/SKILL.md"
     },
     {
       "id": "remotion-best-practices",
@@ -5790,7 +5806,9 @@ workflow:
       "sourceUrl": "https://github.com/remotion-dev/skills",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
-      "skillCodeReviewed": false
+      "skillCodeReviewed": false,
+      "sourceCommit": "1441a11e95db35443bd76bb318386c0d3ca00053",
+      "sourcePath": "skills/remotion-best-practices/SKILL.md"
     },
     {
       "id": "api-design-principles",
@@ -5813,6 +5831,324 @@ workflow:
       "description": "API design patterns and review for REST and GraphQL.",
       "languages": [],
       "sourceUrl": "https://github.com/wshobson/agents",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false,
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/backend-development/skills/api-design-principles/SKILL.md"
+    },
+    {
+      "id": "design-taste-frontend",
+      "name": "Design Taste Frontend",
+      "sourceRepository": "Leonxlnx/taste-skill",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "frontend",
+        "design",
+        "ui",
+        "landing",
+        "website",
+        "layout",
+        "typography",
+        "branding"
+      ],
+      "description": "Art direction and visual quality workflow for frontend work.",
+      "languages": [],
+      "sourceUrl": "https://github.com/Leonxlnx/taste-skill",
+      "sourceCommit": "f624f37a8c650b9cc550253104925efe4c8de246",
+      "sourcePath": "skills/taste-skill/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "redesign-existing-projects",
+      "name": "Redesign Existing Projects",
+      "sourceRepository": "Leonxlnx/taste-skill",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "redesign",
+        "ui",
+        "ux",
+        "layout",
+        "website",
+        "web",
+        "frontend"
+      ],
+      "description": "Existing-project interface auditing and redesign workflow.",
+      "languages": [],
+      "sourceUrl": "https://github.com/Leonxlnx/taste-skill",
+      "sourceCommit": "f624f37a8c650b9cc550253104925efe4c8de246",
+      "sourcePath": "skills/redesign-skill/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "image-to-code",
+      "name": "Image to Code",
+      "sourceRepository": "Leonxlnx/taste-skill",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "image",
+        "screenshot",
+        "ui",
+        "design",
+        "frontend",
+        "website"
+      ],
+      "description": "Reference-image analysis and frontend reconstruction workflow.",
+      "languages": [],
+      "sourceUrl": "https://github.com/Leonxlnx/taste-skill",
+      "sourceCommit": "f624f37a8c650b9cc550253104925efe4c8de246",
+      "sourcePath": "skills/image-to-code-skill/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "design-system-patterns",
+      "name": "Design System Patterns",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "web_frontend",
+        "graphics",
+        "mobile"
+      ],
+      "tags": [
+        "design",
+        "system",
+        "tokens",
+        "theming",
+        "components",
+        "ui",
+        "mobile"
+      ],
+      "description": "Design tokens and component system architecture; review original skill before use.",
+      "languages": [],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/ui-design/skills/design-system-patterns/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "nextjs-app-router-patterns",
+      "name": "Next.js App Router Patterns",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "web_frontend"
+      ],
+      "tags": [
+        "nextjs",
+        "react",
+        "app",
+        "router",
+        "frontend",
+        "typescript"
+      ],
+      "description": "Next.js App Router and server component architecture guidance.",
+      "languages": [
+        "TypeScript",
+        "JavaScript"
+      ],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/frontend-mobile-development/skills/nextjs-app-router-patterns/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "react-state-management",
+      "name": "React State Management",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "web_frontend"
+      ],
+      "tags": [
+        "react",
+        "state",
+        "zustand",
+        "jotai",
+        "query",
+        "frontend"
+      ],
+      "description": "React state-management patterns and library selection.",
+      "languages": [
+        "TypeScript",
+        "JavaScript"
+      ],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/frontend-mobile-development/skills/react-state-management/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "tailwind-design-system",
+      "name": "Tailwind Design System",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "tailwind",
+        "css",
+        "shadcn",
+        "design",
+        "components",
+        "frontend"
+      ],
+      "description": "Tailwind CSS theme and component system patterns.",
+      "languages": [
+        "TypeScript",
+        "JavaScript"
+      ],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/frontend-mobile-development/skills/tailwind-design-system/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "responsive-design",
+      "name": "Responsive Design",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "web_frontend",
+        "mobile",
+        "graphics"
+      ],
+      "tags": [
+        "responsive",
+        "layout",
+        "css",
+        "mobile",
+        "web",
+        "frontend"
+      ],
+      "description": "Adaptive layouts and interaction design for changing screen sizes.",
+      "languages": [],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/ui-design/skills/responsive-design/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "accessibility-compliance",
+      "name": "Accessibility Compliance",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "web_frontend",
+        "mobile"
+      ],
+      "tags": [
+        "accessibility",
+        "aria",
+        "wcag",
+        "ux",
+        "ui",
+        "frontend"
+      ],
+      "description": "Accessibility audits and WCAG guidance for interface projects.",
+      "languages": [],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/ui-design/skills/accessibility-compliance/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "react-native-architecture",
+      "name": "React Native Architecture",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "mobile"
+      ],
+      "tags": [
+        "react",
+        "native",
+        "expo",
+        "android",
+        "ios",
+        "mobile"
+      ],
+      "description": "React Native and Expo architecture guidance, not native Kotlin tooling.",
+      "languages": [
+        "JavaScript",
+        "TypeScript"
+      ],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/frontend-mobile-development/skills/react-native-architecture/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "auth-implementation-patterns",
+      "name": "Authentication Implementation Patterns",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "backend",
+        "web_frontend",
+        "software_engineering"
+      ],
+      "tags": [
+        "auth",
+        "authentication",
+        "oauth",
+        "jwt",
+        "security",
+        "backend"
+      ],
+      "description": "Authentication patterns across web services.",
+      "languages": [],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/developer-essentials/skills/auth-implementation-patterns/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "openapi-spec-generation",
+      "name": "OpenAPI Specification Generation",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "backend",
+        "software_engineering"
+      ],
+      "tags": [
+        "api",
+        "openapi",
+        "rest",
+        "schema",
+        "documentation",
+        "backend"
+      ],
+      "description": "API schema documentation and OpenAPI generation workflow.",
+      "languages": [],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/documentation-generation/skills/openapi-spec-generation/SKILL.md",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
       "skillCodeReviewed": false
@@ -48189,6 +48525,666 @@ Repository-specific rules:
       },
       "bestFor": [
         "Kronos: A Foundation Model for the Language of Financial Markets"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ahujasid/mcp-for-blender",
+      "githubRepositoryId": 944414751,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "3d-modeling",
+        "ai",
+        "blender",
+        "blender-addon",
+        "blender-mcp",
+        "claude",
+        "generative-ai",
+        "llm",
+        "mcp",
+        "model-context-protocol",
+        "python"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 31550,
+        "forks": 2949,
+        "openIssues": 52,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-18T15:42:25Z"
+      },
+      "bestFor": [
+        "Community plugin to control Blender 3D with any LLM of your choice. Not affiliated with the official Blender Foundation."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "BayatGames/SaveGameFree",
+      "githubRepositoryId": 80331615,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "binary-serialization",
+        "game-data",
+        "json-serialization",
+        "save",
+        "savegame",
+        "saver",
+        "saving",
+        "serialization",
+        "serialization-library",
+        "serializer",
+        "unity",
+        "unity-asset"
+      ],
+      "languages": [
+        "rich text format"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 669,
+        "forks": 65,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2025-10-06T10:52:44Z"
+      },
+      "bestFor": [
+        "Save Game Free is a free and simple but powerful solution for saving and loading game data in unity."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Cysharp/UniTask",
+      "githubRepositoryId": 187499284,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "coroutine",
+        "csharp",
+        "task",
+        "thread",
+        "unity"
+      ],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 11256,
+        "forks": 1012,
+        "openIssues": 26,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-06T11:15:15Z"
+      },
+      "bestFor": [
+        "Provides an efficient allocation free async/await integration for Unity."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "espressif/esp-emulator",
+      "githubRepositoryId": 1237876767,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 150,
+        "forks": 11,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-13T09:51:21Z"
+      },
+      "bestFor": [
+        "Emulator for ESP32 Series SoCs"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "h8man/NavMeshPlus",
+      "githubRepositoryId": 155978146,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "2d",
+        "2d-navmesh",
+        "2d-pathfinding",
+        "collider2d",
+        "navmesh",
+        "pathfinding",
+        "sprites",
+        "tilemap",
+        "unity",
+        "unity-2d-pathfinding",
+        "unity3d"
+      ],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2359,
+        "forks": 269,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-18T15:04:35Z"
+      },
+      "bestFor": [
+        "Unity NavMesh 2D Pathfinding"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "KyryloKuzyk/PrimeTween",
+      "githubRepositoryId": 641003290,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "animation",
+        "camera-shake",
+        "delay",
+        "ease",
+        "easing",
+        "game-feel",
+        "interpolation",
+        "screen-shake",
+        "sequence",
+        "tween",
+        "tweening",
+        "unity"
+      ],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2006,
+        "forks": 83,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T05:47:33Z"
+      },
+      "bestFor": [
+        "High-performance, allocation-free tween library for Unity. Create animations, delays, and sequences in one line of code."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "mikroverk/esp32sim",
+      "githubRepositoryId": 1345842700,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 326,
+        "forks": 17,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-18T19:54:14Z"
+      },
+      "bestFor": [
+        "Open-source ESP32 emulator. Run real firmware locally or in your browser — no hardware, no cloud, no subscription."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "mxgmn/WaveFunctionCollapse",
+      "githubRepositoryId": 69662720,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "algorithm",
+        "csharp",
+        "gamedev",
+        "machine-learning",
+        "procedural-generation",
+        "wfc"
+      ],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 25411,
+        "forks": 1368,
+        "openIssues": 10,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T12:21:27Z"
+      },
+      "bestFor": [
+        "Bitmap & tilemap generation from a single example with the help of ideas from quantum mechanics"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "real2nix/mineblox",
+      "githubRepositoryId": 703227360,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "luau",
+        "minecraft",
+        "minecraft-clone",
+        "roblox"
+      ],
+      "languages": [
+        "luau"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 74,
+        "forks": 5,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2025-07-06T00:59:22Z"
+      },
+      "bestFor": [
+        "A highly extensible voxel engine written in Luau for Roblox."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "scoyoc5/unity-ai-agent-rules",
+      "githubRepositoryId": 1422574462,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1,
+        "forks": 0,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-16T22:06:47Z"
+      },
+      "bestFor": [
+        "Free Cursor/Claude Code rules for Unity game dev (mini version of the Unity AI Agent Kit)"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "SentientTurtle/RBXLX2VMF",
+      "githubRepositoryId": 396110600,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "rbxlx"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 30,
+        "forks": 4,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2025-06-13T14:17:26Z"
+      },
+      "bestFor": [
+        "Roblox to Source Engine map converter"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ShiroKSH/skills",
+      "githubRepositoryId": 1296622144,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "agent-skills",
+        "claude-code",
+        "codex",
+        "luau",
+        "mcp",
+        "roblox",
+        "roblox-studio",
+        "skills"
+      ],
+      "languages": [
+        "lua"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6,
+        "forks": 1,
+        "openIssues": 12,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-29T06:28:59Z"
+      },
+      "bestFor": [
+        "Roblox Studio skill and local MCP bridge for Claude Code, Codex, and other coding agents."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "songshikang0111/awesome-REA-cases",
+      "githubRepositoryId": 1415075956,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "ai",
+        "awesome-list",
+        "rea",
+        "reverse-engineering"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 264,
+        "forks": 46,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-18T20:17:40Z"
+      },
+      "bestFor": [
+        "A curated collection of REA and AI-assisted reverse engineering cases, projects, and ideas. Updated every four hours."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "withmarbleapp/os-taxonomy",
+      "githubRepositoryId": 1293375068,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5704,
+        "forks": 959,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "ODbL-1.0",
+        "pushedAt": "2026-07-08T14:18:23Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "YarnSpinnerTool/YarnSpinner-Unity",
+      "githubRepositoryId": 269093424,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "game-development",
+        "gamedev",
+        "unity"
+      ],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 840,
+        "forks": 129,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-13T03:10:42Z"
+      },
+      "bestFor": [
+        "The official Unity integration for Yarn Spinner, the friendly dialogue tool."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "yasirkula/UnityIngameDebugConsole",
+      "githubRepositoryId": 61235116,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2746,
+        "forks": 267,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-09-06T07:51:45Z"
+      },
+      "bestFor": [
+        "A uGUI based console to see debug messages and execute commands during gameplay in Unity"
       ],
       "avoidWhen": [
         "production use before licensing and security review"

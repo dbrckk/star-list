@@ -2,24 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "Backfill selection guidance for recommended repositories (#23)",
-      "terms": [
-        "23",
-        "backfill",
-        "guidance",
-        "recommended",
-        "repositories",
-        "selection"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/infer_selection_guidance.py",
-        "scripts/test_selection_guidance.py",
-        "scripts/validate_catalog.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "Weight inferred guidance below curated metadata (#24)",
       "terms": [
         "24",
@@ -1237,6 +1219,29 @@
         "scripts/test_documentation.py",
         "scripts/test_recommend.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(skills): expand Skill Issue references with pinned, verified SKILL.md files (#133)",
+      "terms": [
+        "133",
+        "expand",
+        "feat",
+        "files",
+        "issue",
+        "pinned",
+        "references",
+        "skill",
+        "skill.md",
+        "skills",
+        "verified"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/agent_skill_discovery.py",
+        "scripts/portfolio_daily.py",
+        "scripts/test_recommend.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1322,6 +1327,11 @@
       "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 4,
       "scripts/test_documentation.py": 4,
+      "scripts/test_recommend.py": 4
+    },
+    "133": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
       "scripts/test_recommend.py": 4
     },
     "17": {
@@ -1832,6 +1842,11 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "expand": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "expose": {
       "scripts/admit_github_stars.py": 4,
       "scripts/audit_catalog_quality.py": 4,
@@ -1865,9 +1880,9 @@
     },
     "feat": {
       "scripts/admit_github_stars.py": 8,
-      "scripts/agent_skill_discovery.py": 4,
+      "scripts/agent_skill_discovery.py": 8,
       "scripts/audit_catalog_quality.py": 8,
-      "scripts/portfolio_daily.py": 20,
+      "scripts/portfolio_daily.py": 24,
       "scripts/portfolio_failure_diagnostics.py": 12,
       "scripts/recommend.py": 8,
       "scripts/sync_github_stars.py": 4,
@@ -1875,14 +1890,17 @@
       "scripts/test_catalog_quality.py": 8,
       "scripts/test_documentation.py": 12,
       "scripts/test_json_contracts.py": 8,
-      "scripts/test_recommend.py": 8,
+      "scripts/test_recommend.py": 12,
       "scripts/test_sync_github_stars.py": 4,
       "scripts/validate_websites.py": 4
     },
     "files": {
+      "scripts/agent_skill_discovery.py": 4,
       "scripts/backfill_licenses.py": 4,
+      "scripts/portfolio_daily.py": 4,
       "scripts/refresh_github_metadata.py": 8,
       "scripts/test_backfill_licenses.py": 4,
+      "scripts/test_recommend.py": 4,
       "scripts/test_refresh_github_metadata.py": 8
     },
     "filler": {
@@ -2054,11 +2072,11 @@
       "scripts/test_refresh_github_metadata.py": 4
     },
     "issue": {
-      "scripts/agent_skill_discovery.py": 4,
-      "scripts/portfolio_daily.py": 4,
+      "scripts/agent_skill_discovery.py": 8,
+      "scripts/portfolio_daily.py": 8,
       "scripts/recommend.py": 4,
       "scripts/test_documentation.py": 8,
-      "scripts/test_recommend.py": 4
+      "scripts/test_recommend.py": 8
     },
     "keep": {
       "scripts/discover_candidates.py": 4,
@@ -2190,6 +2208,11 @@
     "per-repository": {
       "scripts/portfolio_daily.py": 4
     },
+    "pinned": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "pipeline": {
       "scripts/star_import_pipeline.py": 4,
       "scripts/test_star_import_pipeline.py": 4
@@ -2318,6 +2341,11 @@
     },
     "reference-only": {
       "scripts/portfolio_daily.py": 4
+    },
+    "references": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "refresh": {
       "scripts/test_documentation.py": 4
@@ -2469,18 +2497,23 @@
       "scripts/validate_catalog.py": 4
     },
     "skill": {
-      "scripts/agent_skill_discovery.py": 4,
-      "scripts/portfolio_daily.py": 4,
+      "scripts/agent_skill_discovery.py": 8,
+      "scripts/portfolio_daily.py": 8,
       "scripts/recommend.py": 4,
       "scripts/test_documentation.py": 4,
+      "scripts/test_recommend.py": 8
+    },
+    "skill.md": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
       "scripts/test_recommend.py": 4
     },
     "skills": {
-      "scripts/agent_skill_discovery.py": 4,
-      "scripts/portfolio_daily.py": 4,
+      "scripts/agent_skill_discovery.py": 8,
+      "scripts/portfolio_daily.py": 8,
       "scripts/recommend.py": 4,
       "scripts/test_documentation.py": 4,
-      "scripts/test_recommend.py": 4
+      "scripts/test_recommend.py": 8
     },
     "slow": {
       "scripts/portfolio_daily.py": 4,
@@ -2657,12 +2690,15 @@
     },
     "verified": {
       "scripts/admit_github_stars.py": 4,
+      "scripts/agent_skill_discovery.py": 4,
       "scripts/audit_catalog_quality.py": 4,
       "scripts/discover_candidates.py": 4,
+      "scripts/portfolio_daily.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_discovery_cache.py": 4,
       "scripts/test_documentation.py": 4,
+      "scripts/test_recommend.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
     "verify": {

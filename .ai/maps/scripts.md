@@ -272,6 +272,9 @@ expected = "https://github.com/" + repo
 ⋮----
 url = urlsplit(expected)
 ⋮----
+# The exact SKILL.md path is independently confirmed on a pinned
+# upstream revision, rather than delegating review to a mutable repo root.
+⋮----
 """Rank skill *references* by declared domain and concrete repo labels.
 
     Never treat broad README prose as verified compatibility and never return
@@ -2724,6 +2727,9 @@ with_web_query = run("3d scroll animation website", "--top", "4", "--websites", 
 ⋮----
 with_skills_query = run("mobile ui design", "--top", "4", "--skills")
 without_skills_query = run("mobile ui design", "--top", "4")
+⋮----
+# Newly verified upstream files must be selectable without changing the normal
+# GitHub recommendation contract, and no skill can be silently installed.
 ⋮----
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 ⋮----

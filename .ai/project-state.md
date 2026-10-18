@@ -90,36 +90,32 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T18:41:42Z
+Generated: 2026-10-18T21:28:27Z
 
 ### Git
 - Branch: `main`
-- Head: `9e49386a4d1c`
-- Commit date: 2026-10-18T14:41:33-04:00
-- Commit: docs(skills): preserve verified 41-repo Skill Issue rollout and agent adoption gates (#132)
+- Head: `2e7a23a75765`
+- Commit date: 2026-10-18T17:28:19-04:00
+- Commit: feat(skills): expand Skill Issue references with pinned, verified SKILL.md files (#133)
 - Tracked files: 291
 
 ### Recently changed files
+- `AGENT_SKILLS.md`
+- `agent-skills.json`
+- `scripts/agent_skill_discovery.py`
+- `scripts/portfolio_daily.py`
+- `scripts/test_recommend.py`
+- `catalog.json`
 - `AGENTS.md`
 - `.github/workflows/daily-portfolio-integration.yml`
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `.github/workflows/validate.yml`
-- `AGENT_SKILLS.md`
 - `README.md`
 - `WEB_RESOURCES.md`
-- `agent-skills.json`
 - `schemas/websites.schema.json`
-- `scripts/agent_skill_discovery.py`
-- `scripts/portfolio_daily.py`
 - `scripts/recommend.py`
 - `scripts/test_documentation.py`
-- `scripts/test_recommend.py`
 - `websites.json`
-- `catalog.json`
-- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
-- `scripts/test_json_contracts.py`
-- `scripts/validate_websites.py`
-- `RECOMMENDER.md`
 
 ### Project signals
 - No common build descriptor detected
