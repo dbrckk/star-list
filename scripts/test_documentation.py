@@ -69,6 +69,7 @@ assert 'echo "catalog_changed=true" >> "$GITHUB_OUTPUT"' in sync_yaml
 assert "needs.sync.outputs.catalog_changed == 'true'" in sync_yaml
 assert "uses: ./.github/workflows/catalog-quality-on-change.yml" in sync_yaml
 assert "  workflow_call:" in audit_yaml
+assert "  schedule:" in audit_yaml and "47 3 * * *" in audit_yaml
 assert "          ref: main" in audit_yaml
 assert "GITHUB_TOKEN" in stars_docs and "reusable workflow" in stars_docs
 
