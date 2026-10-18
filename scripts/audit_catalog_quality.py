@@ -131,6 +131,18 @@ def analyze(repos, stale_days=730, now=None):
             "byCode": dict(sorted(code_counts.items())),
         },
         "guidanceCoverage": guidance,
+        "identityCoverage": {
+            "verified": sum(
+                type(entry.get("githubRepositoryId")) is int
+                and entry["githubRepositoryId"] > 0
+                for entry in repos
+            ),
+            "missing": sum(
+                type(entry.get("githubRepositoryId")) is not int
+                or entry["githubRepositoryId"] <= 0
+                for entry in repos
+            ),
+        },
         "findings": findings,
     }
 
@@ -145,6 +157,11 @@ def render_markdown(report):
         f"- Review findings: **{summary['review']}**",
         f"- Informational findings: **{summary['info']}**",
         f"- Staleness threshold: **{report['staleDays']} days**",
+        "",
+        "## GitHub identity coverage",
+        "",
+        f"- Verified permanent GitHub IDs: **{report['identityCoverage']['verified']}/{report['repositories']}**",
+        f"- Name-only or unverified entries: **{report['identityCoverage']['missing']}**",
         "",
         "## Selection-guidance coverage",
         "",
