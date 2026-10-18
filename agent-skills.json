@@ -8,7 +8,7 @@
     "usage": "read-only discovery; never auto-install external instructions",
     "priority": "portfolio-wide"
   },
-  "description": "Conservative shortlist of agent-skill upstream sources, including Skill Issue directory entries and independent official/engine-specific repositories. Source commits and exact SKILL.md files are pinned for review, not audited or installed.",
+  "description": "Conservative shortlist of agent-skill references from Skill Issue and supplementary official/engine-specific upstream sources. Every exact SKILL.md path is pinned to a Git commit for manual license, instruction and runtime review; no skill is audited or installed automatically.",
   "skills": [
     {
       "id": "ui-ux-pro-max-skill",
@@ -594,6 +594,77 @@
         "GDScript"
       ],
       "sourceUrl": "https://github.com/shihabshahrier/Godot-Skill",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "android-compose-performance",
+      "name": "Jetpack Compose Performance",
+      "sourceRepository": "android/skills",
+      "sourceCommit": "5bda39f154fb859a08d45e2392f3568e049f83fb",
+      "sourcePath": "jetpack-compose/jetpack-compose-performance/SKILL.md",
+      "domains": [
+        "mobile"
+      ],
+      "tags": [
+        "compose",
+        "jetpack",
+        "recomposition",
+        "material3"
+      ],
+      "description": "Official Android guidance for diagnosing Jetpack Compose recomposition, scrolling and rendering performance; only relevant to apps confirmed to use Compose.",
+      "languages": [
+        "Kotlin"
+      ],
+      "sourceUrl": "https://github.com/android/skills",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "android-play-policy-insights",
+      "name": "Android Play Policy Insights",
+      "sourceRepository": "android/skills",
+      "sourceCommit": "5bda39f154fb859a08d45e2392f3568e049f83fb",
+      "sourcePath": "play/play-policy-insights/SKILL.md",
+      "domains": [
+        "mobile"
+      ],
+      "tags": [
+        "android",
+        "play",
+        "store",
+        "release",
+        "publishing",
+        "policy",
+        "privacy",
+        "compliance"
+      ],
+      "description": "Official Android guidance for reviewing app permissions, data safety and policy disclosures before Google Play submission.",
+      "languages": [],
+      "sourceUrl": "https://github.com/android/skills",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "roblox-luau-development",
+      "name": "Roblox Luau Development",
+      "sourceRepository": "MSayib/roblox-dev-skill",
+      "sourceCommit": "4a35b01cb07eb237081bee705455e19db37342d8",
+      "sourcePath": "SKILL.md",
+      "domains": [
+        "game_dev"
+      ],
+      "tags": [
+        "roblox",
+        "luau",
+        "studio"
+      ],
+      "description": "MIT-licensed Roblox Studio and Luau development reference for architecture, secure remotes, performance and current engine APIs.",
+      "languages": [],
+      "sourceUrl": "https://github.com/MSayib/roblox-dev-skill",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
       "skillCodeReviewed": false
