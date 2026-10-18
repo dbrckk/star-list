@@ -52,6 +52,14 @@ for visual research without matching the project's runtime.
 - Future website additions should use canonical HTTPS URLs, stable unique IDs,
   descriptive tags, access expectations and an explicit `reuse` policy.
   Validate against [`schemas/websites.schema.json`](schemas/websites.schema.json).
+- During daily portfolio discovery, the scanner also proposes at most **two**
+  matching website references per repository, based on owned repository
+  metadata and concrete keyword overlap. These suggestions are kept in the
+  `website_references` report field, separate from GitHub integration
+  `suggestions`; the reference list is never entered into the dispatch queue.
+- The existing `scripts/validate_websites.py` semantic validator checks
+  HTTPS URLs, credential-free identity, aliases and duplicates across records.
+  No live crawling is performed during CI.
 - Website entries are not auto-dispatched into target repositories. After
   selecting a compatible implementation, ordinary target CI, security review
   and the project's approval gates continue to apply.

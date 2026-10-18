@@ -1,6 +1,7 @@
 # Daily star-list integration for the full GitHub portfolio
 
-Source of truth: `dbrckk/star-list/catalog.json`.
+Source of truth: `dbrckk/star-list/catalog.json` for repository integration
+candidates; `websites.json` supplies **read-only** website references.
 
 The workflow `.github/workflows/daily-portfolio-integration.yml` runs daily
 at **03:37 UTC** and is also available through **Actions > Daily portfolio
@@ -35,14 +36,18 @@ repositories' own daily workflows.
    smaller subset classified `native`, with separate project and candidate
    counts. `native` is preliminary evidence, **not** proof that integration
    succeeded or that the package will work at runtime.
-6. If a qualified suggestion exists and a Production-OS **operator** secret is
+6. Emits up to two relevant entries from `websites.json` per project as
+   `website_references`. These are curated visual/design and hosted-service
+   references only. They are never included in the native integration queue
+   or counted as a completed integration, and licenses remain per-item.
+7. If a qualified suggestion exists and a Production-OS **operator** secret is
    configured, submits up to **3** new tasks per scan (never more than 3 active
    portfolio integrations at once) to the existing managed-project API.
    Earlier high-budget failures reduce this to at most one launch per UTC day.
    A given target may receive at most **one** newly submitted integration per
    scanner run. Targets with existing `ACTIVE` or `REVIEW_REQUIRED` work
    receive no additional candidate until that work is resolved.
-7. Uses stable tracking IDs derived from target + upstream repo, so repeat
+8. Uses stable tracking IDs derived from target + upstream repo, so repeat
    scans cannot create duplicate projects. A failed v1 may receive one bounded
    v2 retry; a failed v2 may receive one bounded **v3** retry for the **same**
    candidate. Any prior v3 marker permanently blocks additional automatic
@@ -55,7 +60,7 @@ repositories' own daily workflows.
    already received its one v3 attempt, the target is no longer quarantined
    against *different* qualified native tools. Its historical failure remains
    visible and the global one-launch-per-UTC-day limit still applies.
-8. Production-OS / ai-dev-server must actually inspect, implement and verify
+9. Production-OS / ai-dev-server must actually inspect, implement and verify
    the integration in the target. A suggestion or queued task is NOT a
    completed integration. The managed project must produce a functional
    change and pass target CI before merge or deployment.

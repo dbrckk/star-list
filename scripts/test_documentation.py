@@ -30,6 +30,8 @@ websites = __import__("json").loads((ROOT / "websites.json").read_text())
 assert len(websites["websites"]) == 10
 assert all(site["url"] in website_guide for site in websites["websites"])
 assert "--websites" in (ROOT / "RECOMMENDER.md").read_text()
+assert "website_references" in (ROOT / "scripts/portfolio_daily.py").read_text()
+assert "validate_websites.py" in (ROOT / ".github/workflows/validate.yml").read_text()
 assert f"Current stable release: **{version}**" in readme, "README stable release marker is stale"
 
 for text in (
