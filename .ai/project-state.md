@@ -48,8 +48,15 @@ Status: active
 - Public discovery [issue #61](https://github.com/dbrckk/star-list/issues/61) covers 38/38 accessible public repositories; the separate private `Finders` and `tube` scans also passed on October 18. Four failed v2 and one terminal failed v3 integrations remain under the capacity-exhaustion safety hold. The [diagnostic workflow #39113139237](https://github.com/dbrckk/star-list/actions/runs/39113139237) checked all five failure task details.
 - AI Dev Server PRs #337-#342 improved provider capacity guards, free-model failovers, Godot implementation token preservation and model-call ceilings. A passing CI workflow is not a completed, deployed, target-side integration.
 
+## Verified post-admission and delivery improvements (2026-10-18)
+
+- [Star-list PR #117](https://github.com/dbrckk/star-list/pull/117) merged as `a47f644`: reject stale quality issue publication if `main` advanced, and preserve evidence on failure. Exact PR-head and post-merge catalog validation, audit and repository standards passed.
+- [Star-list PR #118](https://github.com/dbrckk/star-list/pull/118) merged as `ccce7e6`: weekly metadata refresh no longer publishes a pre-commit catalog snapshot. It rebases with bounded retries against concurrent Star admissions and calls the central SHA-guarded audit after a successful remote commit. Exact PR-head and post-merge catalog validation and repository standards passed; the next real weekly maintenance execution remains an independent operational check.
+- [AI Dev Server PR #345](https://github.com/dbrckk/ai-dev-server/pull/345) (`bc046bf`) and [#346](https://github.com/dbrckk/ai-dev-server/pull/346) (`0736910`) merged: direct autonomous GitHub PR creation uses draft review state, and the Jumpy review canary requires independent exact published-SHA confirmation before declaring completion. Each passed seven required CI workflows on its exact PR head. The long-running post-merge mobile/multi-engine CI for the combined `main` remained in progress at the last check.
+- Four historical v2 and one terminal v3 portfolio integration failure remain capacity-exhausted. No **new** real target-side OSS integration with exact-SHA draft PR and matching target CI has been verified. Do not confuse previous marker-file canaries or a small provider probe with that missing acceptance evidence.
+
 ## Current priority
-1. **Restore usable free AI execution capacity.** 2026-10-17 diagnosis verified 4 v2 and 1 failed final v3, all `capacity_exhausted`, with no delivered commit, reviewable PR or target CI. See `docs/PORTFOLIO_CAPACITY_RECOVERY.md`.
+1. **Restore usable free AI execution capacity.** 2026-10-18 diagnosis verified 4 v2 and 1 failed final v3, all `capacity_exhausted`, with no delivered commit, reviewable PR or target CI. See `docs/PORTFOLIO_CAPACITY_RECOVERY.md`.
 2. Qualify one zero-cost provider/model route with authenticated quota and a successful small inference probe before any operator-approved recovery; the final-v3 fleet stop is intentionally in effect. Do not reset markers, bypass caps or raise budgets.
 3. Requalify current native candidates before retries (currently Ai-trading and vibecheck-android). Require real source edits, review and target CI before counting success.
 4. Preserve daily public/private scans, Stars reconciliation, credential isolation and fail-closed diagnostics.
