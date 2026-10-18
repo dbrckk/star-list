@@ -30,7 +30,7 @@ repositories' own daily workflows.
    third-party code. For **read-only skill matching only**, it additionally
    reads the root `package.json` and `pubspec.yaml` when not already covered.
    Their exact dependency names / Flutter SDK declaration, and GitHub's primary
-   GDScript language, can qualify relevant pinned skill references without
+   GDScript or Luau languages, can qualify relevant pinned skill references without
    modifying the target or broadening integration eligibility.
 3. Compares its actual profile with all catalog candidates.
 4. Rejects audit-tier, archived, unsupported-license, paid, low-quality and
