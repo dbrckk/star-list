@@ -65,6 +65,14 @@ Status: active
 - The subsequent [Stars run #39136471679](https://github.com/dbrckk/star-list/actions/runs/39136471679) checked **828/828 accessible public favorites**, 0 missing, 9 pages. This remains a public-accessible count only, not a statement about inaccessible private favorites.
 - No portfolio integration is counted as delivered from these catalog/identity changes. The earlier four terminal v2 failures and one v3 failure remain under the Production-OS global dispatch stop; positive coding-provider capacity, real target code changes, draft PR head identity and target CI remain required.
 
+## Verified portfolio-wide Skill Issue discovery (2026-10-18)
+
+- [Star-list PR #131](https://github.com/dbrckk/star-list/pull/131) merged as `24e56f2`: add [Skill Issue](https://skill-issue.in/) as the 11th website resource, curate seven upstream GitHub skill references, match by domain and concrete repository metadata, and provide opt-in `--skills` recommendations. Skills are advisory-only and never auto-installed or sent to Production-OS.
+- Exact PR-head `Validate catalog` and `Portfolio discovery live smoke` succeeded. Post-merge [Validate catalog](https://github.com/dbrckk/star-list/actions/runs/39154817166), [Repository standards](https://github.com/dbrckk/star-list/actions/runs/39154817913) and [Daily portfolio](https://github.com/dbrckk/star-list/actions/runs/39154817150) all succeeded.
+- The live [public daily issue #61](https://github.com/dbrckk/star-list/issues/61) shows **41/41** public projects inspected and linked to the directory; **5** projects had **6** targeted skill recommendations; **0** new integrations launched. The two private per-repo workflows also use the shared `star-list/main` scanner, but their next runs must be observed separately before claiming live private adoption.
+- [Repo-standards PR #12](https://github.com/dbrckk/repo-standards/pull/12) merged as `f2e6a2e`: shared AGENTS and repo-excellence guidance now considers relevant Skill Issue sources with full license/code review. Consumers pinned to the prior standards commit will not automatically update.
+- Next: audit original `SKILL.md` and any invoked scripts at pinned revisions for each project before integrating or granting credentials. Neither directory listing nor working discovery guarantees installed, invoked or useful skills.
+
 ## Current priority
 1. **Restore usable free AI execution capacity.** 2026-10-18 diagnosis verified 4 v2 and 1 failed final v3, all `capacity_exhausted`, with no delivered commit, reviewable PR or target CI. See `docs/PORTFOLIO_CAPACITY_RECOVERY.md`.
 2. Qualify one zero-cost provider/model route with authenticated quota and a successful small inference probe before any operator-approved recovery; the final-v3 fleet stop is intentionally in effect. Do not reset markers, bypass caps or raise budgets.
