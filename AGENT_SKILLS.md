@@ -24,12 +24,16 @@ metadata strongly supports a match, the scanner also proposes **up to two**
 specific skill sources. All results are advisory; neither GitHub Stars
 synchronization nor Production-OS integration dispatch installs these skills.
 
-The matching algorithm considers only GitHub-owned project metadata
-(repository name, description, topics, inferred domain and primary language),
-not untrusted README instructions or a website's install command. The skill
-is suggested only if both its declared domain and at least one concrete label
-match, and language/framework evidence is compatible. Unknown projects still
-see the general directory without arbitrary skill installations.
+The matching algorithm considers GitHub-owned project metadata
+(repository name, description, topics, inferred domain and primary language)
+and, for repositories with `package.json`, a **strict allowlist of exact
+dependency names** (for example React, Expo, Next.js, Tailwind and Remotion).
+It does not tokenize untrusted README instructions, package install scripts or
+arbitrary manifest text. Only skill recommendations use these new framework
+hints; the existing catalog-dependency integration ranker and dispatch gate
+are unchanged. Skill suggestions still require a matching domain and a
+concrete label/framework match. Unknown projects see the general directory
+without arbitrary skill installations.
 
 Examples of curated source references (all direct skill-file links returned
 by the CLI are revision-pinned):
