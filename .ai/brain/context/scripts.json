@@ -2,36 +2,25 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/test_refresh_github_metadata.py",
+      "path": "scripts/discover_candidates.py",
       "reasons": [
         "changed",
         "changed-source",
         "impact",
-        "reverse-dependency-neighbor",
+        "symbol-indexed"
+      ],
+      "score": 415
+    },
+    {
+      "path": "scripts/test_discovery_cache.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
         "selected-test",
         "symbol-indexed"
       ],
-      "score": 470
-    },
-    {
-      "path": "scripts/refresh_github_metadata.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 400
-    },
-    {
-      "path": "scripts/backfill_licenses.py",
-      "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "symbol-indexed"
-      ],
-      "score": 120
+      "score": 380
     },
     {
       "path": "scripts/sync_github_stars.py",
@@ -42,6 +31,21 @@
       "score": 110
     },
     {
+      "path": "scripts/test_discovery_cache_stats.py",
+      "reasons": [
+        "selected-test",
+        "symbol-indexed"
+      ],
+      "score": 105
+    },
+    {
+      "path": "scripts/test_discover_candidates.py",
+      "reasons": [
+        "selected-test"
+      ],
+      "score": 70
+    },
+    {
       "path": "scripts/admit_github_stars.py",
       "reasons": [
         "recent-project-state"
@@ -49,7 +53,21 @@
       "score": 60
     },
     {
+      "path": "scripts/refresh_github_metadata.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
       "path": "scripts/test_documentation.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/test_refresh_github_metadata.py",
       "reasons": [
         "recent-project-state"
       ],

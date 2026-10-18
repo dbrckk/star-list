@@ -5,45 +5,712 @@
   "semantic": false,
   "note": "Occurrences are lexical word matches; verify source/LSP/compiler data before relying on them.",
   "symbols": {
-    "_request_json": {
+    "empty_cache": {
       "definition": {
-        "file": "scripts/refresh_github_metadata.py",
-        "line": 34,
+        "file": "scripts/discover_candidates.py",
+        "line": 24,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 34,
-          "preview": "def _request_json(url, token=None, retries=2):",
+          "file": "scripts/discover_candidates.py",
+          "line": 24,
+          "preview": "def empty_cache():",
           "definition_candidate": true
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 55,
-          "preview": "return _request_json(API.format(repo), token=token, retries=retries)",
+          "file": "scripts/discover_candidates.py",
+          "line": 50,
+          "preview": "if path is None or not path.exists(): return empty_cache()",
           "definition_candidate": false
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 63,
-          "preview": "return _request_json(url, token=token, retries=retries)",
+          "file": "scripts/discover_candidates.py",
+          "line": 54,
+          "preview": "return empty_cache()",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 271,
-          "preview": "refresh._request_json(",
+          "file": "scripts/discover_candidates.py",
+          "line": 56,
+          "preview": "return empty_cache()",
           "definition_candidate": false
         }
       ],
       "occurrence_count": 4
     },
+    "empty_cache_stats": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 27,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 27,
+          "preview": "def empty_cache_stats():",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 37,
+          "preview": "result=dict(stats or empty_cache_stats())",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 257,
+          "preview": "stats=empty_cache_stats()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 12,
+          "preview": "stats = mod.empty_cache_stats()",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 4
+    },
+    "finalize_cache_stats": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 36,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 36,
+          "preview": "def finalize_cache_stats(stats):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 291,
+          "preview": "\"cacheStats\":finalize_cache_stats(stats)}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 60,
+          "preview": "summary = mod.finalize_cache_stats(stats)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 3
+    },
+    "_stat": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 46,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 46,
+          "preview": "def _stat(stats, key):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 151,
+          "preview": "_stat(stats,\"logicalRequests\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 155,
+          "preview": "_stat(stats,\"freshCacheHits\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 166,
+          "preview": "_stat(stats,\"networkFetches\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 173,
+          "preview": "_stat(stats,\"notModifiedHits\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 181,
+          "preview": "_stat(stats,\"staleFallbacks\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 198,
+          "preview": "_stat(stats,\"staleFallbacks\")",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 7
+    },
+    "load_cache": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 49,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 49,
+          "preview": "def load_cache(path):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 308,
+          "preview": "cache=load_cache(args.cache) if args.cache else None",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 115,
+          "preview": "loaded = mod.load_cache(path)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 117,
+          "preview": "assert mod.load_cache(Path(td) / \"missing.json\") == {\"schemaVersion\": 1, \"entries\": {}}",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 4
+    },
+    "prune_cache": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 60,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 60,
+          "preview": "def prune_cache(cache, max_age_seconds, now=None):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 73,
+          "preview": "prune_cache(cache,max_age_seconds,now)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 119,
+          "preview": "removed=mod.prune_cache(old,max_age_seconds=500,now=2000)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 3
+    },
+    "save_cache": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 72,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 72,
+          "preview": "def save_cache(path, cache, max_age_seconds=DEFAULT_CACHE_RETENTION_HOURS*3600, now=None):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 315,
+          "preview": "if args.cache: save_cache(args.cache,cache)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 114,
+          "preview": "mod.save_cache(path, cache, now=2000)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 3
+    },
+    "_cache_entry": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 79,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 79,
+          "preview": "def _cache_entry(cache, url):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 99,
+          "preview": "entry=_cache_entry(cache,url)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 106,
+          "preview": "entry=_cache_entry(cache,url)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 127,
+          "preview": "entry=_cache_entry(cache,url)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 135,
+          "preview": "entry=_cache_entry(cache,url)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 5
+    },
+    "_headers_dict": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 86,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 86,
+          "preview": "def _headers_dict(headers):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 115,
+          "preview": "cache.setdefault(\"entries\",{})[url]={\"fetchedAt\":now,\"data\":data,\"headers\":_headers_dict(headers)}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 138,
+          "preview": "merged_headers.update(_headers_dict(response_headers))",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 163,
+          "preview": "response_headers=_headers_dict(res.headers)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 4
+    },
+    "_header_value": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 91,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 91,
+          "preview": "def _header_value(headers, name):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 129,
+          "preview": "etag=_header_value(entry.get(\"headers\",{}),\"etag\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 130,
+          "preview": "if etag and not _header_value(result,\"if-none-match\"):",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 146,
+          "preview": "if _header_value(headers, \"Authorization\"):",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 4
+    },
+    "cache_get": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 97,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 97,
+          "preview": "def cache_get(cache, url, ttl_seconds, now=None):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 153,
+          "preview": "hit=cache_get(cache,url,ttl_seconds,now)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 43,
+          "preview": "fresh = mod.cache_get(cache, url, ttl_seconds=60, now=1030)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 46,
+          "preview": "expired = mod.cache_get(cache, url, ttl_seconds=60, now=1061)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 48,
+          "preview": "assert mod.cache_get(cache, \"missing\", ttl_seconds=60, now=1030) is None",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 5
+    },
+    "cache_get_stale": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 103,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 103,
+          "preview": "def cache_get_stale(cache, url, max_age_seconds, now=None):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 121,
+          "preview": "stale=cache_get_stale(cache,url,stale_max_seconds,now) if cache is not None else None",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 2
+    },
+    "cache_put": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 112,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 112,
+          "preview": "def cache_put(cache, url, data, headers, now=None):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 140,
+          "preview": "cache_put(cache,url,data,merged_headers,now)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 165,
+          "preview": "cache_put(cache,url,data,response_headers,now)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 33,
+          "preview": "mod.cache_put(valid_cache, api_url, {\"ok\": True}, {}, now=1000)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 41,
+          "preview": "mod.cache_put(cache, url, {\"ok\": True}, {\"Link\": \"next\"}, now=1000)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 56,
+          "preview": "mod.cache_put(cache, stale_url, {\"stale\": True}, {\"ETag\": \"old\"}, now=1000)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 87,
+          "preview": "mod.cache_put(",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 16,
+          "preview": "mod.cache_put(cache, fresh_url, {\"ok\": \"fresh\"}, {\"ETag\": '\"fresh\"'}, now=1000)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 20,
+          "preview": "mod.cache_put(cache, etag_url, {\"ok\": \"etag\"}, {\"ETag\": '\"v1\"'}, now=1000)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 33,
+          "preview": "mod.cache_put(cache, stale_url, {\"ok\": \"stale\"}, {}, now=1000)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 10
+    },
+    "_api_result": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 117,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 117,
+          "preview": "def _api_result(data, headers, source, return_source):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 123,
+          "preview": "return _api_result(stale[0],stale[1],\"stale-cache\",return_source)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 141,
+          "preview": "return _api_result(data,merged_headers,\"not-modified\",return_source)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 156,
+          "preview": "return _api_result(hit[0],hit[1],\"fresh-cache\",return_source)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 167,
+          "preview": "return _api_result(data,response_headers,\"network\",return_source)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 5
+    },
+    "_stale_result": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 120,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 120,
+          "preview": "def _stale_result(cache, url, stale_max_seconds, now, return_source):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 179,
+          "preview": "stale=_stale_result(cache,url,stale_max_seconds,now,return_source)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 196,
+          "preview": "stale=_stale_result(cache,url,stale_max_seconds,now,return_source)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 3
+    },
+    "_conditional_headers": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 125,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 125,
+          "preview": "def _conditional_headers(headers, cache, url):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 157,
+          "preview": "request_headers=_conditional_headers(headers,cache,url) if cache is not None and ttl_seconds>0 else dict(headers or {})",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 2
+    },
+    "_not_modified_result": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 134,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 134,
+          "preview": "def _not_modified_result(cache, url, response_headers, now, return_source):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 171,
+          "preview": "not_modified=_not_modified_result(cache,url,e.headers,now,return_source)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 2
+    },
+    "api_json": {
+      "definition": {
+        "file": "scripts/discover_candidates.py",
+        "line": 143,
+        "kind": "function",
+        "language": "python"
+      },
+      "occurrences": [
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 143,
+          "preview": "def api_json(url, headers, attempts=4, cache=None, ttl_seconds=0, stale_max_seconds=0, now=None, return_source=False, stats=None):",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 208,
+          "preview": "data,_,source=api_json(",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 218,
+          "preview": "data,_,source=api_json(",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 229,
+          "preview": "payload,response_headers,source=api_json(",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 26,
+          "preview": "mod.api_json(unsafe, {\"Authorization\": \"Bearer dummy-secret\"}, attempts=1)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 34,
+          "preview": "assert mod.api_json(",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 50,
+          "preview": "cached_data, cached_headers = mod.api_json(url, {}, attempts=1, cache=cache, ttl_seconds=60, now=1030)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 64,
+          "preview": "stale_data, stale_headers, source = mod.api_json(",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 74,
+          "preview": "mod.api_json(",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 99,
+          "preview": "data, headers, source = mod.api_json(",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 17,
+          "preview": "mod.api_json(fresh_url, {}, attempts=1, cache=cache, ttl_seconds=60, now=1030, stats=stats)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 28,
+          "preview": "mod.api_json(etag_url, {}, attempts=1, cache=cache, ttl_seconds=60, now=2000, stats=stats)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 40,
+          "preview": "mod.api_json(",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 56,
+          "preview": "mod.api_json(network_url, {}, attempts=1, cache=cache, ttl_seconds=60, now=2000, stats=stats)",
+          "definition_candidate": false
+        }
+      ],
+      "occurrence_count": 14
+    },
     "fetch": {
       "definition": {
-        "file": "scripts/refresh_github_metadata.py",
-        "line": 54,
+        "file": "scripts/discover_candidates.py",
+        "line": 204,
         "kind": "function",
         "language": "python"
       },
@@ -56,13 +723,13 @@
         },
         {
           "file": "scripts/discover_candidates.py",
-          "line": 191,
+          "line": 204,
           "preview": "def fetch(query, token=None, per_page=10, cache=None, ttl_seconds=0, stale_max_seconds=0, return_source=False, stats=None):",
-          "definition_candidate": false
+          "definition_candidate": true
         },
         {
           "file": "scripts/discover_candidates.py",
-          "line": 247,
+          "line": 260,
           "preview": "data,source=fetch(",
           "definition_candidate": false
         },
@@ -76,7 +743,7 @@
           "file": "scripts/refresh_github_metadata.py",
           "line": 54,
           "preview": "def fetch(repo, token=None, retries=2):",
-          "definition_candidate": true
+          "definition_candidate": false
         },
         {
           "file": "scripts/refresh_github_metadata.py",
@@ -201,374 +868,377 @@
       ],
       "occurrence_count": 25
     },
-    "fetch_contents": {
+    "enrich": {
       "definition": {
-        "file": "scripts/refresh_github_metadata.py",
-        "line": 58,
+        "file": "scripts/discover_candidates.py",
+        "line": 214,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 58,
-          "preview": "def fetch_contents(repo, path=\"\", ref=None, token=None, retries=2):",
+          "file": "scripts/discover_candidates.py",
+          "line": 214,
+          "preview": "def enrich(repo, token=None, cache=None, ttl_seconds=0, stale_max_seconds=0, stats=None):",
           "definition_candidate": true
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 113,
-          "preview": "root = fetch_contents(repo, ref=default_branch, token=token)",
+          "file": "scripts/discover_candidates.py",
+          "line": 284,
+          "preview": "enriched=enrich(row[\"repo\"],token,cache,metadata_ttl_seconds,metadata_stale_max_seconds,stats=stats)",
           "definition_candidate": false
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 132,
-          "preview": "payload = fetch_contents(repo, path=path, ref=default_branch, token=token)",
+          "file": "scripts/infer_selection_guidance.py",
+          "line": 180,
+          "preview": "def enrich(repos, tier=\"recommended\", refresh_inferred=False):",
           "definition_candidate": false
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 154,
-          "preview": "payload = fetch_contents(repo, path=item.get(\"path\"), ref=default_branch, token=token)",
+          "file": "scripts/infer_selection_guidance.py",
+          "line": 208,
+          "preview": "changed = enrich(data.get(\"repositories\", []), tier=args.tier, refresh_inferred=args.refresh_inferred)",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 99,
-          "preview": "original = refresh.fetch_contents",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 112,
-          "preview": "refresh.fetch_contents = fake_contents",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 115,
-          "preview": "refresh.fetch_contents = original",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 119,
-          "preview": "original = refresh.fetch_contents",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 128,
-          "preview": "refresh.fetch_contents = fake_contents",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 131,
-          "preview": "refresh.fetch_contents = original",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 10
-    },
-    "detect_license_text": {
-      "definition": {
-        "file": "scripts/refresh_github_metadata.py",
-        "line": 66,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 66,
-          "preview": "def detect_license_text(text):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 138,
-          "preview": "detected = detect_license_text(text)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 160,
-          "preview": "detected = detect_license_text(text)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 81,
-          "preview": "assert refresh.detect_license_text(\"\"\"MIT License",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 84,
-          "preview": "assert refresh.detect_license_text(\"\"\"Apache License",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 87,
-          "preview": "assert refresh.detect_license_text(\"\"\"GNU GENERAL PUBLIC LICENSE",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 90,
-          "preview": "assert refresh.detect_license_text(\"\"\"Mozilla Public License Version 2.0",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
+          "file": "scripts/test_pipeline_integration.py",
           "line": 92,
-          "preview": "assert refresh.detect_license_text(\"This work is licensed under a Creative Commons Attribution 4.0 International License.\") == \"CC-BY-4.0\"",
+          "preview": "discovery.enrich=fake_enrich",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 93,
-          "preview": "assert refresh.detect_license_text(\"To the extent possible under law, Example Author has waived all copyright and related or neighboring rights to this work.\") == \"CC0-1.0\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 94,
-          "preview": "assert refresh.detect_license_text(\"## License\\nMIT\") == \"MIT\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 95,
-          "preview": "assert refresh.detect_license_text(\"custom proprietary terms\") is None",
+          "file": "scripts/test_selection_guidance.py",
+          "line": 48,
+          "preview": "changed = mod.enrich(repos)",
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 11
+      "occurrence_count": 6
     },
-    "_decode_content": {
+    "score": {
       "definition": {
-        "file": "scripts/refresh_github_metadata.py",
-        "line": 99,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 99,
-          "preview": "def _decode_content(payload):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 135,
-          "preview": "text = _decode_content(payload)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 157,
-          "preview": "text = _decode_content(payload)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "fallback_license": {
-      "definition": {
-        "file": "scripts/refresh_github_metadata.py",
-        "line": 111,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/backfill_licenses.py",
-          "line": 41,
-          "preview": "checked, changed = backfill(data.get(\"repositories\", []), refresh.fallback_license, token)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 111,
-          "preview": "def fallback_license(repo, default_branch, token=None):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 228,
-          "preview": "detected = fallback_license(name, raw.get(\"default_branch\"), token)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 113,
-          "preview": "assert refresh.fallback_license(\"x/repo\", \"main\") == \"MIT\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 129,
-          "preview": "assert refresh.fallback_license(\"x/repo\", \"main\") == \"CC-BY-4.0\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 141,
-          "preview": "old_catalog, old_fetch, old_fallback = refresh.CATALOG, refresh.fetch, refresh.fallback_license",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 155,
-          "preview": "refresh.fallback_license = lambda repo, default_branch, token=None: \"MIT\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 158,
-          "preview": "refresh.CATALOG, refresh.fetch, refresh.fallback_license = old_catalog, old_fetch, old_fallback",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 175,
-          "preview": "old_catalog, old_fetch, old_fallback = refresh.CATALOG, refresh.fetch, refresh.fallback_license",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 189,
-          "preview": "refresh.fallback_license = lambda repo, default_branch, token=None: None",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 192,
-          "preview": "refresh.CATALOG, refresh.fetch, refresh.fallback_license = old_catalog, old_fetch, old_fallback",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 232,
-          "preview": "refresh.CATALOG, refresh.fetch, refresh.fallback_license,",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 242,
-          "preview": "refresh.fallback_license = lambda *_args, **_kwargs: None",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 250,
-          "preview": "refresh.CATALOG, refresh.fetch, refresh.fallback_license = (",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 14
-    },
-    "metadata": {
-      "definition": {
-        "file": "scripts/refresh_github_metadata.py",
-        "line": 166,
+        "file": "scripts/discover_candidates.py",
+        "line": 246,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/admit_github_stars.py",
-          "line": 65,
-          "preview": "\"\"\"Fetch full repository metadata, with bounded retry and canonical ID check.\"\"\"",
+          "line": 130,
+          "preview": "\"score\": 6.0,",
           "definition_candidate": false
         },
         {
-          "file": "scripts/admit_github_stars.py",
-          "line": 80,
-          "preview": "raise RuntimeError(\"Malformed GitHub repository metadata: \" + repo)",
+          "file": "scripts/analyze_coverage.py",
+          "line": 19,
+          "preview": "usable=h[\"status\"] not in {\"inactive\",\"weak\"} if h[\"score\"] is not None else True",
           "definition_candidate": false
         },
         {
-          "file": "scripts/admit_github_stars.py",
-          "line": 91,
-          "preview": "raise RuntimeError(f\"Repository metadata unavailable: {repo} (HTTP {exc.code})\") from exc",
+          "file": "scripts/catalog_stats.py",
+          "line": 17,
+          "preview": "scores = [r.get(\"score\", 0) for r in repos if isinstance(r.get(\"score\"), (int, float))]",
           "definition_candidate": false
         },
         {
-          "file": "scripts/admit_github_stars.py",
-          "line": 96,
-          "preview": "raise RuntimeError(\"Repository metadata unavailable: \" + repo) from exc",
+          "file": "scripts/catalog_stats.py",
+          "line": 34,
+          "preview": "{\"repo\": r[\"repo\"], \"score\": r.get(\"score\"), \"tier\": r.get(\"tier\")}",
           "definition_candidate": false
         },
         {
-          "file": "scripts/admit_github_stars.py",
-          "line": 97,
-          "preview": "raise RuntimeError(\"Repository metadata retry budget exhausted: \" + repo)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 196,
-          "preview": "\"GitHub metadata reused a cataloged repository name with a new ID: \"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/audit_catalog_quality.py",
-          "line": 45,
-          "preview": "add(name, \"review\", \"missing-github-metadata\", \"GitHub metadata is missing.\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/audit_catalog_quality.py",
-          "line": 103,
-          "preview": "add(name, \"info\", \"license-unknown\", \"GitHub license metadata is unknown.\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/backfill_licenses.py",
+          "file": "scripts/catalog_stats.py",
           "line": 35,
-          "preview": "parser = argparse.ArgumentParser(description=\"Backfill unknown licenses without refreshing unrelated metadata.\")",
+          "preview": "for r in sorted(items, key=lambda x: (-x.get(\"score\", 0), x[\"repo\"]))[:5]",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/detect_health_drift.py",
+          "line": 16,
+          "preview": "a, b = before.get(\"score\"), now.get(\"score\")",
           "definition_candidate": false
         },
         {
           "file": "scripts/discover_candidates.py",
-          "line": 236,
-          "preview": "metadata=5 if item.get(\"license\") else 2",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/discover_candidates.py",
-          "line": 237,
-          "preview": "return round(min(100, 0.45*priority + popularity + ecosystem + metadata),1)",
-          "definition_candidate": false
+          "line": 246,
+          "preview": "def score(item, priority):",
+          "definition_candidate": true
         },
         {
           "file": "scripts/discover_candidates.py",
           "line": 274,
-          "preview": "stale_sources.append({\"kind\":\"metadata\",\"repo\":row[\"repo\"],\"endpoints\":enriched.get(\"staleEndpoints\",[])})",
+          "preview": "\"pushedAt\":item.get(\"pushed_at\"),\"discoveryScore\":score(item,target[\"priority\"]),",
           "definition_candidate": false
         },
         {
-          "file": "scripts/discover_candidates.py",
-          "line": 286,
-          "preview": "ap.add_argument(\"--metadata-cache-ttl-hours\",type=float,default=DEFAULT_METADATA_CACHE_TTL_HOURS)",
+          "file": "scripts/evaluate_candidates.py",
+          "line": 45,
+          "preview": "def decision_for_score(score):",
           "definition_candidate": false
         },
         {
-          "file": "scripts/discover_candidates.py",
-          "line": 288,
-          "preview": "ap.add_argument(\"--metadata-stale-max-hours\",type=float,default=DEFAULT_METADATA_STALE_MAX_HOURS)",
+          "file": "scripts/evaluate_candidates.py",
+          "line": 46,
+          "preview": "score=_number(score)",
           "definition_candidate": false
         },
         {
-          "file": "scripts/health_score.py",
-          "line": 2,
-          "preview": "\"\"\"Deterministic repository health scoring from catalog + refreshed GitHub metadata.\"\"\"",
+          "file": "scripts/evaluate_candidates.py",
+          "line": 47,
+          "preview": "if score>=ACCEPT_THRESHOLD: return \"accept\"",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 48,
+          "preview": "if score>=REVIEW_THRESHOLD: return \"review\"",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 123,
+          "preview": "score=_number(repo.get(\"discoveryScore\",0))",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 126,
+          "preview": "if days is None: score-=8; reasons.append(\"missing-activity-date\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 127,
+          "preview": "elif days<=90: score+=10; reasons.append(\"active<=90d\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 128,
+          "preview": "elif days<=365: score+=5; reasons.append(\"active<=1y\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 129,
+          "preview": "elif days>730: score-=20; reasons.append(\"stale>2y\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 130,
+          "preview": "elif days>365: score-=8; reasons.append(\"stale>1y\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 131,
+          "preview": "if repo.get(\"license\"): score+=5; reasons.append(\"licensed\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 132,
+          "preview": "else: score-=10; reasons.append(\"license-missing\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 134,
+          "preview": "if fit>=0.75: score+=8; reasons.append(\"strong-text-fit\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 135,
+          "preview": "elif fit==0: score-=6; reasons.append(\"weak-text-fit\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 137,
+          "preview": "if created_days is not None and created_days>=730: score+=4; reasons.append(\"mature>=2y\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 138,
+          "preview": "elif created_days is not None and created_days<90: score-=3; reasons.append(\"very-new<90d\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 141,
+          "preview": "if release_days is not None and release_days<=180: score+=5; reasons.append(\"recent-release\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 144,
+          "preview": "if isinstance(contributors,int) and contributors>=20: score+=4; reasons.append(\"broad-contributor-base\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 145,
+          "preview": "elif isinstance(contributors,int) and contributors<=1 and stars>=500: score-=4; reasons.append(\"single-contributor-risk\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 150,
+          "preview": "if topic_hits: score+=min(6,2*topic_hits); reasons.append(\"topic-fit\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 151,
+          "preview": "if len(matches)>=2: score+=min(10,3*(len(matches)-1)); reasons.append(\"multi-gap-fit\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 152,
+          "preview": "if stars<100: score-=10; reasons.append(\"low-adoption\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 154,
+          "preview": "if watchers>=100: score+=2; reasons.append(\"strong-watchers\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 159,
+          "preview": "if issue_ratio>0.20: score-=5; reasons.append(\"high-open-issue-load\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 160,
+          "preview": "elif issue_ratio<0.02: score+=2; reasons.append(\"controlled-issue-load\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 161,
+          "preview": "if repo.get(\"hasDiscussions\") is True: score+=1; reasons.append(\"community-discussions\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 162,
+          "preview": "if stars>=500 and forks/max(1,stars)>=0.05: score+=4; reasons.append(\"healthy-fork-ratio\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 163,
+          "preview": "elif stars>=500 and forks/max(1,stars)<0.005: score-=3; reasons.append(\"low-fork-ratio\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 164,
+          "preview": "score=round(max(0,min(100,score)),1)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 166,
+          "preview": "decision=decision_for_score(score)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/evaluate_candidates.py",
+          "line": 171,
+          "preview": "return {\"evaluationScore\":score,\"decision\":decision,\"ageDays\":days,\"repositoryAgeDays\":created_days,\"releaseAgeDays\":release_days,\"textFit\":round(fit,3),\"openIssueRatio\":round(open",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/filter_discovery_memory.py",
+          "line": 39,
+          "preview": "return {\"decision\":r.get(\"decision\"),\"score\":r.get(\"evaluationScore\"),\"stars\":r.get(\"stars\"),",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/filter_discovery_memory.py",
+          "line": 62,
+          "preview": "score_changed=abs(_number(fp.get(\"score\"))-_number(oldfp.get(\"score\")))>=score_delta",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/filter_discovery_memory.py",
+          "line": 73,
+          "preview": "ap.add_argument(\"--output\",type=Path); ap.add_argument(\"--write-memory\",action=\"store_true\"); ap.add_argument(\"--score-delta\",type=float,default=5.0)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/find_replacements.py",
+          "line": 18,
+          "preview": "if health[\"score\"] is None or health[\"status\"] in {\"inactive\",\"weak\"}:",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/find_replacements.py",
+          "line": 31,
+          "preview": "fit += 10 * (health[\"score\"] / 100.0)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/find_replacements.py",
+          "line": 38,
+          "preview": "if health[\"score\"] is None:",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/find_replacements.py",
+          "line": 40,
+          "preview": "if health[\"status\"] not in {\"inactive\",\"weak\"} and health[\"score\"] >= threshold:",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/find_replacements.py",
+          "line": 46,
+          "preview": "score, candidate_health = result",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/find_replacements.py",
+          "line": 47,
+          "preview": "if candidate_health[\"score\"] <= health[\"score\"]: continue",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/find_replacements.py",
+          "line": 49,
+          "preview": "\"repo\":candidate[\"repo\"], \"replacementScore\":score,",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/find_replacements.py",
+          "line": 50,
+          "preview": "\"health\":candidate_health, \"qualityScore\":candidate.get(\"score\"),",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/find_replacements.py",
+          "line": 53,
+          "preview": "candidates.sort(key=lambda x:(-x[\"replacementScore\"], -(x[\"health\"][\"score\"] or 0), x[\"repo\"].lower()))",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/find_replacements.py",
+          "line": 55,
+          "preview": "\"repo\":source[\"repo\"], \"health\":health, \"qualityScore\":source.get(\"score\"),",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/find_replacements.py",
+          "line": 58,
+          "preview": "findings.sort(key=lambda x:(x[\"health\"][\"score\"], x[\"repo\"].lower()))",
           "definition_candidate": false
         },
         {
@@ -579,411 +1249,454 @@
         },
         {
           "file": "scripts/health_score.py",
-          "line": 50,
-          "preview": "metadata = 5.0 if gh.get(\"license\") else 2.0",
+          "line": 32,
+          "preview": "return {\"score\":0.0,\"status\":\"inactive\",\"reasons\":[\"archived-or-disabled\"]}",
           "definition_candidate": false
         },
         {
           "file": "scripts/health_score.py",
-          "line": 51,
-          "preview": "total = round(min(100.0, freshness + adoption + ecosystem + quality + metadata), 1)",
+          "line": 49,
+          "preview": "quality = max(0.0, min(20.0, 2.0 * _number(repo.get(\"score\", 0))))",
           "definition_candidate": false
         },
         {
-          "file": "scripts/infer_selection_guidance.py",
-          "line": 2,
-          "preview": "\"\"\"Backfill conservative selection guidance from existing curated catalog metadata.\"\"\"",
+          "file": "scripts/health_score.py",
+          "line": 53,
+          "preview": "return {\"score\":total,\"status\":status,\"ageDays\":days,\"reasons\":reasons}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/health_score.py",
+          "line": 58,
+          "preview": "rows.sort(key=lambda x: (x[\"score\"] is None, -(x[\"score\"] or -1), x[\"repo\"].lower()))",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 317,
-          "preview": "# Missing language metadata is unknown compatibility, not native support.",
+          "line": 217,
+          "preview": "or float(item.get(\"score\") or 0) < 8):",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 724,
-          "preview": "# The central issue is public: never publish private target metadata there.",
+          "line": 319,
+          "preview": "score = score_repo(tool, profile[\"terms\"], domains, set(), set())",
           "definition_candidate": false
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 2,
-          "preview": "\"\"\"Refresh non-opinionated GitHub metadata for catalog repositories.",
+          "file": "scripts/portfolio_daily.py",
+          "line": 320,
+          "preview": "if score is None or score < 35:",
           "definition_candidate": false
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 35,
-          "preview": "headers = {\"Accept\":\"application/vnd.github+json\",\"User-Agent\":\"star-list-metadata-refresh\",\"X-GitHub-Api-Version\":\"2022-11-28\"}",
+          "file": "scripts/portfolio_daily.py",
+          "line": 346,
+          "preview": "matches.append({\"repository\": slug, \"score\": round(score, 2),",
           "definition_candidate": false
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 166,
-          "preview": "def metadata(raw):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 211,
-          "preview": "raise RuntimeError(\"GitHub metadata response was not an object: \" + name)",
+          "file": "scripts/portfolio_daily.py",
+          "line": 347,
+          "preview": "\"quality\": tool[\"score\"], \"domain\": tool[\"domain\"],",
           "definition_candidate": false
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 226,
-          "preview": "fresh = metadata(raw)",
+          "file": "scripts/portfolio_daily.py",
+          "line": 357,
+          "preview": "-r[\"score\"], -r[\"quality\"], r[\"repository\"].lower()))",
           "definition_candidate": false
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 241,
-          "preview": "# metadata response already used for the weekly refresh.",
+          "file": "scripts/portfolio_daily.py",
+          "line": 674,
+          "preview": "+ \" \u2014 fit \" + str(item[\"score\"]) + \", \" + item[\"mode\"]",
           "definition_candidate": false
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 258,
-          "preview": "data[\"metadata\"] = data.get(\"metadata\", {})",
+          "file": "scripts/portfolio_daily.py",
+          "line": 769,
+          "preview": "queue = sorted(((item[\"score\"], row, item) for row in report[\"projects\"]",
           "definition_candidate": false
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 259,
-          "preview": "data[\"metadata\"][\"githubRefreshedAt\"] = datetime.now(timezone.utc).isoformat().replace(\"+00:00\",\"Z\")",
+          "file": "scripts/recommend.py",
+          "line": 111,
+          "preview": "quality = max(0.0, min(1.0, r.get(\"score\", 0) / 10.0))",
           "definition_candidate": false
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 260,
-          "preview": "data[\"metadata\"][\"githubRefreshFailures\"] = failures",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 91,
-          "preview": "\"\"\"Load offline metadata snapshots. Only explicitly reviewed entries are eligible.\"\"\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 106,
-          "preview": "raise ValueError(\"repository metadata must be an object\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 114,
-          "preview": "\"repo\": item[\"repo\"], \"error\": \"conflicting metadata for repository\"})",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 120,
-          "preview": "def classify_candidate(candidate: dict, metadata: dict | None = None) -> dict:",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 123,
-          "preview": "if metadata and metadata.get(\"reviewed\") is True and isinstance(metadata.get(\"catalogEntry\"), dict):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 124,
-          "preview": "entry = copy.deepcopy(metadata[\"catalogEntry\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
+          "file": "scripts/recommend.py",
           "line": 125,
-          "preview": "raw_github = metadata.get(\"github\")",
+          "preview": "if health[\"score\"] is not None:",
           "definition_candidate": false
         },
         {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 127,
-          "preview": "verified_identity = (normalize_repo_identity(metadata.get(\"repo\"))[0] == candidate[\"key\"]",
+          "file": "scripts/recommend.py",
+          "line": 126,
+          "preview": "s += 6.0 * (health[\"score\"] / 100.0)",
           "definition_candidate": false
         },
         {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 142,
-          "preview": "metadata: dict[str, dict] | None = None, metadata_files: list[str] | None = None,",
+          "file": "scripts/recommend.py",
+          "line": 161,
+          "preview": "score = 2*len(qtokens & stoks) + (3 if st.get(\"domain\") in domains else 0)",
           "definition_candidate": false
         },
         {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 144,
-          "preview": "metadata = metadata or {}",
+          "file": "scripts/recommend.py",
+          "line": 162,
+          "preview": "if score > best_score:",
           "definition_candidate": false
         },
         {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 146,
-          "preview": "classified = [classify_candidate(c, metadata.get(c[\"key\"])) for c in partition[\"new\"]]",
+          "file": "scripts/recommend.py",
+          "line": 163,
+          "preview": "best_score, best = score, st",
           "definition_candidate": false
         },
         {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 231,
-          "preview": "parser.add_argument(\"--metadata\", type=Path, action=\"append\", default=[],",
+          "file": "scripts/recommend.py",
+          "line": 180,
+          "preview": "candidate_health.get(\"score\") or 0,",
           "definition_candidate": false
         },
         {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 232,
-          "preview": "help=\"Offline GitHub metadata snapshots with explicitly reviewed catalogEntry records\")",
+          "file": "scripts/recommend.py",
+          "line": 181,
+          "preview": "candidate.get(\"score\") or 0,",
           "definition_candidate": false
         },
         {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 241,
-          "preview": "metadata, metadata_errors = load_reviewed_metadata(args.metadata)",
+          "file": "scripts/recommend.py",
+          "line": 244,
+          "preview": "ap.add_argument(\"--min-score\", type=float, default=0.0, help=\"Minimum selection score\")",
           "definition_candidate": false
         },
         {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 243,
-          "preview": "metadata, [str(p) for p in args.metadata], metadata_errors)",
+          "file": "scripts/recommend.py",
+          "line": 257,
+          "preview": "ap.error(\"--min-score must be >= 0\")",
           "definition_candidate": false
         },
         {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 253,
-          "preview": "print(\"ERROR: invalid import or metadata input; catalog unchanged\")",
+          "file": "scripts/recommend.py",
+          "line": 297,
+          "preview": "ranked.sort(key=lambda x: (-x[0], -x[1].get(\"score\", 0), x[1][\"repo\"].lower()))",
           "definition_candidate": false
         },
         {
-          "file": "scripts/sync_github_stars.py",
+          "file": "scripts/recommend.py",
+          "line": 302,
+          "preview": "\"repo\": r[\"repo\"], \"selectionScore\": s, \"qualityScore\": r.get(\"score\"),",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/render_discovery_issue.py",
           "line": 27,
-          "preview": "Authorization. The public Stars sync and metadata admission both use",
+          "preview": "if profile: reasons=f\"{reasons}; score profile: {profile}\"",
           "definition_candidate": false
         },
         {
-          "file": "scripts/sync_github_stars.py",
-          "line": 255,
-          "preview": "\"| GitHub repository | Stars | Language | License metadata | Status |\",",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_auto_stars_admission.py",
-          "line": 19,
-          "preview": "snapshots = (read(\"reports/github-stars-review-2026-10-09-metadata-1.json\")[\"repositories\"]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_auto_stars_admission.py",
-          "line": 20,
-          "preview": "+ read(\"reports/github-stars-review-2026-10-09-metadata-2.json\")[\"repositories\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_auto_stars_admission.py",
-          "line": 88,
-          "preview": "later = read(\"reports/github-stars-followup-2026-10-09-metadata.json\")[\"repositories\"]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_catalog_quality.py",
-          "line": 104,
-          "preview": "assert report[\"summary\"][\"byCode\"][\"missing-github-metadata\"] == 1",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_degraded_inputs.py",
+          "file": "scripts/render_health_issue.py",
           "line": 26,
-          "preview": "# Malformed candidate metadata must degrade to conservative defaults, not crash.",
+          "preview": "\"| Repository | Health | Status | Best replacement | Replacement score |\",",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/render_health_issue.py",
+          "line": 31,
+          "preview": "lines.append(f\"| {row['repo']} | {h.get('score','n/a')} | {h.get('status','unknown')} | {best['repo'] if best else 'none'} | {best.get('replacementScore') if best else 'n/a'} |\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/render_health_issue.py",
+          "line": 36,
+          "preview": "lines.append(f\"- Health: **{h.get('score')}** ({h.get('status')}); reason: {reasons}.\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/render_health_issue.py",
+          "line": 38,
+          "preview": "lines.append(\"- Candidates: \" + (\"; \".join(f\"{x['repo']} (fit {x['replacementScore']}, health {x['health'].get('score')})\" for x in repl) if repl else \"none found in the current ca",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/star_import_pipeline.py",
+          "line": 131,
+          "preview": "required_fields = (\"score\", \"tier\", \"category\", \"domain\", \"resourceLevel\", \"integrationComplexity\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_analyze_coverage.py",
+          "line": 9,
+          "preview": "{\"repo\":\"a/one\",\"domain\":\"backend\",\"tier\":\"recommended\",\"capabilities\":[\"api\"],\"score\":9.2},",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_analyze_coverage.py",
+          "line": 10,
+          "preview": "{\"repo\":\"a/two\",\"domain\":\"backend\",\"tier\":\"specialized\",\"capabilities\":[\"api\"],\"score\":8.5},",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_analyze_coverage.py",
+          "line": 11,
+          "preview": "{\"repo\":\"b/one\",\"domain\":\"mobile\",\"tier\":\"specialized\",\"capabilities\":[\"mobile\"],\"score\":8.5},",
           "definition_candidate": false
         },
         {
           "file": "scripts/test_degraded_inputs.py",
-          "line": 68,
-          "preview": "# Health scoring must tolerate corrupt scalar metadata conservatively.",
+          "line": 70,
+          "preview": "\"score\":\"invalid\",",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_degraded_inputs.py",
+          "line": 74,
+          "preview": "assert 0.0<=h[\"score\"]<=100.0",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_degraded_inputs.py",
+          "line": 78,
+          "preview": "old={\"schemaVersion\":1,\"candidates\":{\"broken/memory\":{\"fingerprint\":{\"decision\":\"review\",\"score\":\"also-bad\",\"stars\":None,\"pushedAt\":None,\"targets\":[]}}}}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discover_candidates.py",
+          "line": 9,
+          "preview": "assert 0 < mod.score(item,100) <= 100",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discover_candidates.py",
+          "line": 10,
+          "preview": "assert mod.score(item,100) > mod.score({\"stargazers_count\":10,\"forks_count\":1,\"license\":None},50)",
           "definition_candidate": false
         },
         {
           "file": "scripts/test_documentation.py",
-          "line": 33,
-          "preview": "\"Refresh GitHub metadata\",",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_documentation.py",
-          "line": 79,
-          "preview": "maintenance_yaml = (ROOT / \".github/workflows/refresh-metadata.yml\").read_text()",
+          "line": 53,
+          "preview": "assert f\"`{component}`\" in scoring, f\"missing score component {component}\"",
           "definition_candidate": false
         },
         {
           "file": "scripts/test_evaluate_candidates.py",
-          "line": 36,
-          "preview": "# Low-confidence metadata can never produce automatic acceptance.",
+          "line": 13,
+          "preview": "sparse_high={\"repo\":\"c/high-score-ai\",\"description\":\"AI framework\",\"language\":\"Python\",\"discoveryScore\":100,\"stars\":100,\"matchedTargets\":[{\"target\":\"ai\"}]}",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 2,
-          "preview": "\"\"\"Regression tests for resilient GitHub metadata refresh behavior.\"\"\"",
+          "file": "scripts/test_find_replacements.py",
+          "line": 11,
+          "preview": "bad = {\"repo\":\"x/bad\",\"score\":8.0,\"domain\":\"backend\",\"capabilities\":[\"api\"],\"platforms\":[\"linux\"],\"languages\":[\"python\"],\"selfHosted\":True,",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 36,
-          "preview": "\"metadata\": {},",
+          "file": "scripts/test_find_replacements.py",
+          "line": 13,
+          "preview": "good = {\"repo\":\"x/good\",\"score\":9.5,\"domain\":\"backend\",\"capabilities\":[\"api\"],\"platforms\":[\"linux\"],\"languages\":[\"python\"],\"selfHosted\":True,",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 73,
-          "preview": "assert gone[\"github\"] == {\"stars\": 9}, \"missing repos must keep their last known metadata\"",
+          "file": "scripts/test_find_replacements.py",
+          "line": 15,
+          "preview": "other = {\"repo\":\"x/other\",\"score\":9.5,\"domain\":\"graphics\",\"capabilities\":[\"vector\"],\"platforms\":[\"linux\"],\"languages\":[\"rust\"],\"selfHosted\":True,",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_refresh_github_metadata.py",
+          "file": "scripts/test_health_drift.py",
+          "line": 8,
+          "preview": "old={\"repositories\":[{\"repo\":\"a/x\",\"score\":90,\"status\":\"healthy\"},{\"repo\":\"b/y\",\"score\":60,\"status\":\"watch\"}]}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_health_drift.py",
+          "line": 9,
+          "preview": "new={\"repositories\":[{\"repo\":\"a/x\",\"score\":78,\"status\":\"healthy\"},{\"repo\":\"b/y\",\"score\":52,\"status\":\"weak\"},{\"repo\":\"c/z\",\"score\":20,\"status\":\"weak\"}]}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_health_score.py",
+          "line": 13,
+          "preview": "active = {\"score\":9.5,\"github\":{\"stars\":10000,\"forks\":1000,\"archived\":False,\"disabled\":False,\"license\":\"MIT\",\"pushedAt\":\"2026-09-10T00:00:00Z\"}}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_health_score.py",
+          "line": 14,
+          "preview": "stale = {\"score\":9.5,\"github\":{\"stars\":10000,\"forks\":1000,\"archived\":False,\"disabled\":False,\"license\":\"MIT\",\"pushedAt\":\"2023-01-01T00:00:00Z\"}}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_health_score.py",
+          "line": 15,
+          "preview": "assert mod.health_score(active, NOW)[\"score\"] > mod.health_score(stale, NOW)[\"score\"]",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_health_score.py",
+          "line": 18,
+          "preview": "assert 0 <= mod.health_score(active, NOW)[\"score\"] <= 100",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_health_score.py",
+          "line": 19,
+          "preview": "print(\"OK: health score tests passed\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_pipeline_integration.py",
+          "line": 34,
+          "preview": "\"score\":9.4,",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_pipeline_integration.py",
+          "line": 115,
+          "preview": "assert \"score profile:\" in body",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_recommend.py",
+          "line": 31,
+          "preview": "high_threshold = run(\"ai agent\", \"--min-score\", \"1000\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_recommend.py",
+          "line": 59,
+          "preview": "\"roles\":[], \"score\":9.0, \"tier\":\"recommended\", \"bestFor\":[\"specialized phrase\"],",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_recommend.py",
+          "line": 70,
+          "preview": "\"score\":8.5, \"tier\":\"recommended\",",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_recommend.py",
+          "line": 76,
+          "preview": "\"score\":9.0, \"tier\":\"recommended\",",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_render_health_issue.py",
+          "line": 14,
+          "preview": "report={\"threshold\":55,\"repositories\":[{\"repo\":\"b/y\",\"health\":{\"score\":40,\"status\":\"weak\",\"reasons\":[]},\"suggestedReplacements\":[]}]}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_star_import_pipeline.py",
+          "line": 43,
+          "preview": "catalog = {\"repositories\": [{\"repo\": \"OPENAI/CODEX\", \"score\": 9.5}]}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_star_import_pipeline.py",
           "line": 74,
-          "preview": "assert written[\"metadata\"][\"githubRefreshFailures\"] == [",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 77,
-          "preview": "assert written[\"metadata\"][\"githubRefreshedAt\"].endswith(\"Z\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 138,
-          "preview": "\"metadata\": {},",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 168,
-          "preview": "\"metadata\": {},",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 201,
-          "preview": "\"metadata\": {},",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 225,
-          "preview": "\"metadata\": {},",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 278,
-          "preview": "raise AssertionError(\"metadata fetch bypassed safe GitHub transport\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 291,
-          "preview": "print(\"refresh metadata resilience tests passed\")",
+          "preview": "\"repo\": \"Anthropic/Claude-Code\", \"score\": 8.0, \"tier\": \"specialized\",",
           "definition_candidate": false
         },
         {
           "file": "scripts/test_star_import_pipeline.py",
-          "line": 86,
-          "preview": "review_report = build_report(partition, malformed, [\"batch\"], {candidate[\"key\"]: reviewed}, [\"metadata\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 160,
-          "preview": "root / \"stars.json\", root / \"metadata.json\", root / \"catalog.json\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 168,
-          "preview": "\"--metadata\", str(metadata_path)]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 208,
-          "preview": "lambda _repo: (_ for _ in ()).throw(AssertionError(\"metadata should not be fetched\")),",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/validate_catalog.py",
-          "line": 81,
-          "preview": "warnings.append(f\"{prefix}: selfHosted metadata is unknown or non-boolean\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/validate_catalog.py",
-          "line": 86,
-          "preview": "errors.append(f\"{prefix}: github metadata must be an object\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/validate_catalog.py",
           "line": 105,
-          "preview": "if not roles: warnings.append(f\"{prefix}: trading repo missing roles metadata\")",
+          "preview": "base = {\"schemaVersion\": 1, \"repositories\": [{\"repo\": \"z/existing\", \"score\": 8.0}]}",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_star_import_pipeline.py",
+          "line": 107,
+          "preview": "{\"repo\": \"b/new\", \"score\": 8.0, \"tier\": \"specialized\"},",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_star_import_pipeline.py",
+          "line": 108,
+          "preview": "{\"repo\": \"A/new\", \"score\": 8.0, \"tier\": \"specialized\"},",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_star_import_pipeline.py",
+          "line": 112,
+          "preview": "assert base[\"repositories\"] == [{\"repo\": \"z/existing\", \"score\": 8.0}]",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/update_cache_health_history.py",
+          "line": 72,
+          "preview": "score=round(min(1.0,max(0.0,sample_size/ADAPTIVE_MAX_SAMPLES)),3)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/update_cache_health_history.py",
+          "line": 74,
+          "preview": "return \"insufficient-data\",score",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/update_cache_health_history.py",
+          "line": 76,
+          "preview": "return \"high\",score",
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 75
+      "occurrence_count": 120
     },
-    "refresh_primary_language": {
+    "discover": {
       "definition": {
-        "file": "scripts/refresh_github_metadata.py",
-        "line": 177,
+        "file": "scripts/discover_candidates.py",
+        "line": 252,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 177,
-          "preview": "def refresh_primary_language(repo, raw):",
+          "file": "scripts/discover_candidates.py",
+          "line": 252,
+          "preview": "def discover(watchlist, known, token=None, per_query=10, cache=None, search_ttl_seconds=0, metadata_ttl_seconds=0,",
           "definition_candidate": true
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 236,
-          "preview": "refresh_primary_language(r, raw)",
+          "file": "scripts/discover_candidates.py",
+          "line": 309,
+          "preview": "result=discover(",
           "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "is_missing_repository_error": {
-      "definition": {
-        "file": "scripts/refresh_github_metadata.py",
-        "line": 184,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 184,
-          "preview": "def is_missing_repository_error(error):",
-          "definition_candidate": true
         },
         {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 253,
-          "preview": "if args.fail_fast or not is_missing_repository_error(e):",
+          "file": "scripts/test_discover_candidates.py",
+          "line": 6,
+          "preview": "spec=importlib.util.spec_from_file_location(\"discover\",SCRIPT)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 9,
+          "preview": "spec = importlib.util.spec_from_file_location(\"discover\", SCRIPT)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 8,
+          "preview": "spec = importlib.util.spec_from_file_location(\"discover\", SCRIPT)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_pipeline_integration.py",
+          "line": 95,
+          "preview": "discovered=discovery.discover(watchlist,{\"known/agent-core\"},per_query=5)",
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 2
+      "occurrence_count": 6
     },
     "main": {
       "definition": {
-        "file": "scripts/refresh_github_metadata.py",
-        "line": 188,
+        "file": "scripts/discover_candidates.py",
+        "line": 293,
         "kind": "function",
         "language": "python"
       },
@@ -1086,13 +1799,13 @@
         },
         {
           "file": "scripts/discover_candidates.py",
-          "line": 280,
+          "line": 293,
           "preview": "def main():",
-          "definition_candidate": false
+          "definition_candidate": true
         },
         {
           "file": "scripts/discover_candidates.py",
-          "line": 306,
+          "line": 319,
           "preview": "main()",
           "definition_candidate": false
         },
@@ -1196,7 +1909,7 @@
           "file": "scripts/refresh_github_metadata.py",
           "line": 188,
           "preview": "def main():",
-          "definition_candidate": true
+          "definition_candidate": false
         },
         {
           "file": "scripts/refresh_github_metadata.py",
@@ -1405,460 +2118,141 @@
       ],
       "occurrence_count": 69
     },
-    "http_error": {
+    "offline": {
       "definition": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "line": 13,
+        "file": "scripts/test_discovery_cache.py",
+        "line": 59,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 13,
-          "preview": "def http_error(repo, code, message):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 49,
-          "preview": "raise http_error(repo, 404, \"Not Found\")",
+          "file": "scripts/discover_candidates.py",
+          "line": 11,
+          "preview": "# Preserve the existing injectable transport for offline cache tests, but",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 209,
-          "preview": "http_error(repo, 500, \"Server Error\")",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "run_main": {
-      "definition": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "line": 23,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 23,
-          "preview": "def run_main(args):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 64,
-          "preview": "run_main([\"--write\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 156,
-          "preview": "run_main([\"--write\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 190,
-          "preview": "run_main([\"--write\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 212,
-          "preview": "run_main([\"--write\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 244,
-          "preview": "run_main([\"--write\"])",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 6
-    },
-    "test_missing_repo_is_recorded_but_nonfatal": {
-      "definition": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "line": 32,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 32,
-          "preview": "def test_missing_repo_is_recorded_but_nonfatal():",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 284,
-          "preview": "test_missing_repo_is_recorded_but_nonfatal()",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "fake_fetch": {
-      "definition": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "line": 47,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_pipeline_integration.py",
-          "line": 72,
-          "preview": "def fake_fetch(query,token=None,per_page=10,cache=None,ttl_seconds=0,stale_max_seconds=0,return_source=False,stats=None):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_pipeline_integration.py",
+          "file": "scripts/star_import_pipeline.py",
           "line": 91,
-          "preview": "discovery.fetch=fake_fetch",
+          "preview": "\"\"\"Load offline metadata snapshots. Only explicitly reviewed entries are eligible.\"\"\"",
           "definition_candidate": false
         },
         {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 47,
-          "preview": "def fake_fetch(repo, token=None, retries=2):",
+          "file": "scripts/test_discovery_cache.py",
+          "line": 59,
+          "preview": "def offline(*args, **kwargs):",
           "definition_candidate": true
         },
         {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 63,
-          "preview": "refresh.fetch = fake_fetch",
+          "file": "scripts/test_discovery_cache.py",
+          "line": 62,
+          "preview": "mod.urlopen = offline",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 35,
+          "preview": "def offline(*args, **kwargs):",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 36,
+          "preview": "raise OSError(\"offline\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 38,
+          "preview": "mod.urlopen = offline",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_pipeline_integration.py",
+          "line": 122,
+          "preview": "print(\"OK: offline discovery pipeline integration passed\")",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_sync_github_stars.py",
+          "line": 304,
+          "preview": "mod.api_stars = lambda *_args, **_kwargs: (_ for _ in ()).throw(RuntimeError(\"offline\"))",
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 4
+      "occurrence_count": 9
     },
-    "test_license_signature_detection": {
+    "not_modified": {
       "definition": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "line": 80,
+        "file": "scripts/test_discovery_cache.py",
+        "line": 93,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 80,
-          "preview": "def test_license_signature_detection():",
+          "file": "scripts/analyze_cache_health.py",
+          "line": 15,
+          "preview": "not_modified=max(0,int(stats.get(\"notModifiedHits\",0) or 0))",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/analyze_cache_health.py",
+          "line": 19,
+          "preview": "body_reuse=float(stats.get(\"bodyReuseRate\",_ratio(fresh+not_modified+stale,logical)) or 0.0)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/analyze_cache_health.py",
+          "line": 41,
+          "preview": "\"notModifiedHits\":not_modified,",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 171,
+          "preview": "not_modified=_not_modified_result(cache,url,e.headers,now,return_source)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 172,
+          "preview": "if not_modified is not None:",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/discover_candidates.py",
+          "line": 174,
+          "preview": "return not_modified",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache.py",
+          "line": 93,
+          "preview": "def not_modified(req, *args, **kwargs):",
           "definition_candidate": true
         },
         {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 285,
-          "preview": "test_license_signature_detection()",
+          "file": "scripts/test_discovery_cache.py",
+          "line": 97,
+          "preview": "mod.urlopen = not_modified",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 23,
+          "preview": "def not_modified(req, *args, **kwargs):",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_discovery_cache_stats.py",
+          "line": 26,
+          "preview": "mod.urlopen = not_modified",
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 2
-    },
-    "test_license_fallback_reads_root_license_file": {
-      "definition": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "line": 98,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 98,
-          "preview": "def test_license_fallback_reads_root_license_file():",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 286,
-          "preview": "test_license_fallback_reads_root_license_file()",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "fake_contents": {
-      "definition": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "line": 101,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 101,
-          "preview": "def fake_contents(repo, path=\"\", ref=None, token=None, retries=2):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 112,
-          "preview": "refresh.fetch_contents = fake_contents",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 121,
-          "preview": "def fake_contents(repo, path=\"\", ref=None, token=None, retries=2):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 128,
-          "preview": "refresh.fetch_contents = fake_contents",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 4
-    },
-    "test_license_fallback_reads_readme_when_root_license_is_absent": {
-      "definition": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "line": 118,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 118,
-          "preview": "def test_license_fallback_reads_readme_when_root_license_is_absent():",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 287,
-          "preview": "test_license_fallback_reads_readme_when_root_license_is_absent()",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "test_metadata_refresh_uses_license_fallback": {
-      "definition": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "line": 134,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 134,
-          "preview": "def test_metadata_refresh_uses_license_fallback():",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 288,
-          "preview": "test_metadata_refresh_uses_license_fallback()",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive": {
-      "definition": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "line": 164,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 164,
-          "preview": "def test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive():",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 289,
-          "preview": "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive()",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "test_server_error_remains_fatal": {
-      "definition": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "line": 197,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 197,
-          "preview": "def test_server_error_remains_fatal():",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 290,
-          "preview": "test_server_error_remains_fatal()",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "RejectingOpener": {
-      "definition": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "line": 262,
-        "kind": "class",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 262,
-          "preview": "class RejectingOpener:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 269,
-          "preview": "refresh.SAFE_GITHUB_HTTP = RejectingOpener()",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "open": {
-      "definition": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "line": 263,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 64,
-          "preview": "def get_repo(repo, token=None, opener=SAFE_GITHUB_HTTP.open, sleeper=time.sleep):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/evaluate_candidates.py",
-          "line": 159,
-          "preview": "if issue_ratio>0.20: score-=5; reasons.append(\"high-open-issue-load\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/infer_selection_guidance.py",
-          "line": 34,
-          "preview": "\"osint\": \"open-source intelligence research\",",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 44,
-          "preview": "GENERIC = {\"ai\", \"agent\", \"dev\", \"web\", \"python\", \"typescript\", \"app\", \"open\", \"tools\", \"github\", \"repo\"}",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 137,
-          "preview": "with SAFE_HTTP.open(Request(url, headers=headers, method=method, data=body),",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 215,
-          "preview": "if (item.get(\"costModel\") not in (None, \"open-source\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 431,
-          "preview": "\"\"\"A terminal v3 retry is an operator-review gate, not an open slot.",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 592,
-          "preview": "\"Integrate a genuinely useful existing open-source tool into the actual target repository. \"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 596,
-          "preview": "\"compatibility. Prefer free/open-source, smallest working integration, no copy of unsafe \"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/refresh_github_metadata.py",
-          "line": 42,
-          "preview": "with SAFE_GITHUB_HTTP.open(req, timeout=20) as res:",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 58,
-          "preview": "def api_stars(user, token=None, max_pages=100, opener=SAFE_GITHUB_HTTP.open, sleeper=time.sleep):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_cache_health_history.py",
-          "line": 109,
-          "preview": "assert mod.issue_action(cooldown_points,\"watch\",cooldown_points=2)==\"open\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_cache_health_history.py",
-          "line": 110,
-          "preview": "assert mod.issue_action(cooldown_points,\"degraded\",cooldown_points=2)==\"open\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_refresh_github_metadata.py",
-          "line": 263,
-          "preview": "def open(self, request, timeout=20):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/update_cache_health_history.py",
-          "line": 150,
-          "preview": "if current==\"degraded\": return \"open\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/update_cache_health_history.py",
-          "line": 151,
-          "preview": "if cooldown_points<1: return \"open\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/update_cache_health_history.py",
-          "line": 157,
-          "preview": "if last_close is None: return \"open\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/update_cache_health_history.py",
-          "line": 159,
-          "preview": "return \"hold\" if observations_since_close<cooldown_points else \"open\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/update_cache_health_history.py",
-          "line": 234,
-          "preview": "f\"Issue action: **{trend.get('issueAction','open')}**\",",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 19
+      "occurrence_count": 10
     }
   }
 }

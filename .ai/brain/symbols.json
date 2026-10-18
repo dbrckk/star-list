@@ -180,161 +180,161 @@
       "language": "python",
       "kind": "function",
       "name": "empty_cache",
-      "line": 18
+      "line": 24
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "empty_cache_stats",
-      "line": 21
+      "line": 27
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "finalize_cache_stats",
-      "line": 30
+      "line": 36
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "_stat",
-      "line": 40
+      "line": 46
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "load_cache",
-      "line": 43
+      "line": 49
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "prune_cache",
-      "line": 54
+      "line": 60
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "save_cache",
-      "line": 66
+      "line": 72
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "_cache_entry",
-      "line": 73
+      "line": 79
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "_headers_dict",
-      "line": 80
+      "line": 86
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "_header_value",
-      "line": 85
-    },
-    {
-      "file": "scripts/discover_candidates.py",
-      "language": "python",
-      "kind": "function",
-      "name": "cache_get",
       "line": 91
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
-      "name": "cache_get_stale",
+      "name": "cache_get",
       "line": 97
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
+      "name": "cache_get_stale",
+      "line": 103
+    },
+    {
+      "file": "scripts/discover_candidates.py",
+      "language": "python",
+      "kind": "function",
       "name": "cache_put",
-      "line": 106
+      "line": 112
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "_api_result",
-      "line": 111
+      "line": 117
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "_stale_result",
-      "line": 114
+      "line": 120
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "_conditional_headers",
-      "line": 119
+      "line": 125
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "_not_modified_result",
-      "line": 128
+      "line": 134
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "api_json",
-      "line": 137
+      "line": 143
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "fetch",
-      "line": 191
+      "line": 204
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "enrich",
-      "line": 201
+      "line": 214
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "score",
-      "line": 233
+      "line": 246
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "discover",
-      "line": 239
+      "line": 252
     },
     {
       "file": "scripts/discover_candidates.py",
       "language": "python",
       "kind": "function",
       "name": "main",
-      "line": 280
+      "line": 293
     },
     {
       "file": "scripts/evaluate_candidates.py",
@@ -1160,14 +1160,14 @@
       "language": "python",
       "kind": "function",
       "name": "offline",
-      "line": 33
+      "line": 59
     },
     {
       "file": "scripts/test_discovery_cache.py",
       "language": "python",
       "kind": "function",
       "name": "not_modified",
-      "line": 67
+      "line": 93
     },
     {
       "file": "scripts/test_discovery_cache_stats.py",

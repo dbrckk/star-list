@@ -5,19 +5,37 @@
   "semantic": false,
   "note": "Dependencies are known symbol names lexically present inside the symbol's AST/source range.",
   "symbols": {
-    "_request_json": {
+    "empty_cache": {
       "source": {
-        "file": "scripts/refresh_github_metadata.py",
-        "start": 34,
-        "end": 51
+        "file": "scripts/discover_candidates.py",
+        "start": 24,
+        "end": 25
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "empty_cache_stats": {
+      "source": {
+        "file": "scripts/discover_candidates.py",
+        "start": 27,
+        "end": 34
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "finalize_cache_stats": {
+      "source": {
+        "file": "scripts/discover_candidates.py",
+        "start": 36,
+        "end": 44
       },
       "symbol_dependencies": [
         {
-          "symbol": "metadata",
+          "symbol": "empty_cache_stats",
           "definitions": [
             {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 166,
+              "file": "scripts/discover_candidates.py",
+              "line": 27,
               "kind": "function",
               "language": "python"
             }
@@ -27,19 +45,28 @@
       ],
       "dependency_count": 1
     },
-    "fetch": {
+    "_stat": {
       "source": {
-        "file": "scripts/refresh_github_metadata.py",
-        "start": 54,
-        "end": 55
+        "file": "scripts/discover_candidates.py",
+        "start": 46,
+        "end": 47
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "load_cache": {
+      "source": {
+        "file": "scripts/discover_candidates.py",
+        "start": 49,
+        "end": 58
       },
       "symbol_dependencies": [
         {
-          "symbol": "_request_json",
+          "symbol": "empty_cache",
           "definitions": [
             {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 34,
+              "file": "scripts/discover_candidates.py",
+              "line": 24,
               "kind": "function",
               "language": "python"
             }
@@ -49,527 +76,152 @@
       ],
       "dependency_count": 1
     },
-    "fetch_contents": {
+    "prune_cache": {
       "source": {
-        "file": "scripts/refresh_github_metadata.py",
-        "start": 58,
-        "end": 63
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "_request_json",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 34,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 1
-    },
-    "detect_license_text": {
-      "source": {
-        "file": "scripts/refresh_github_metadata.py",
-        "start": 66,
-        "end": 96
+        "file": "scripts/discover_candidates.py",
+        "start": 60,
+        "end": 70
       },
       "symbol_dependencies": [],
       "dependency_count": 0
     },
-    "_decode_content": {
+    "save_cache": {
       "source": {
-        "file": "scripts/refresh_github_metadata.py",
-        "start": 99,
-        "end": 108
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "fallback_license": {
-      "source": {
-        "file": "scripts/refresh_github_metadata.py",
-        "start": 111,
-        "end": 163
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "_decode_content",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 99,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "detect_license_text",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 66,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "fetch_contents",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 58,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 3
-    },
-    "metadata": {
-      "source": {
-        "file": "scripts/refresh_github_metadata.py",
-        "start": 166,
-        "end": 174
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "refresh_primary_language": {
-      "source": {
-        "file": "scripts/refresh_github_metadata.py",
-        "start": 177,
-        "end": 182
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "is_missing_repository_error": {
-      "source": {
-        "file": "scripts/refresh_github_metadata.py",
-        "start": 184,
-        "end": 185
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "main": {
-      "source": {
-        "file": "scripts/refresh_github_metadata.py",
-        "start": 188,
-        "end": 268
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "fallback_license",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 111,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "fetch",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 54,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "is_missing_repository_error",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 184,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "metadata",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 166,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "refresh_primary_language",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 177,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 5
-    },
-    "http_error": {
-      "source": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "start": 13,
-        "end": 20
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "run_main": {
-      "source": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "start": 23,
-        "end": 29
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "main",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 188,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        }
-      ],
-      "dependency_count": 1
-    },
-    "test_missing_repo_is_recorded_but_nonfatal": {
-      "source": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "start": 32,
+        "file": "scripts/discover_candidates.py",
+        "start": 72,
         "end": 77
       },
       "symbol_dependencies": [
         {
-          "symbol": "fake_fetch",
+          "symbol": "prune_cache",
           "definitions": [
             {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 47,
+              "file": "scripts/discover_candidates.py",
+              "line": 60,
               "kind": "function",
               "language": "python"
             }
           ],
           "relation": "same_file"
-        },
-        {
-          "symbol": "fetch",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 54,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "http_error",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 13,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "main",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 188,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "metadata",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 166,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "run_main",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 23,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 6
-    },
-    "fake_fetch": {
-      "source": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "start": 47,
-        "end": 167
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "detect_license_text",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 66,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "fake_contents",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 101,
-              "kind": "function",
-              "language": "python"
-            },
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 121,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "fallback_license",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 111,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "fetch",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 54,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "fetch_contents",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 58,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "http_error",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 13,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "main",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 188,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "metadata",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 166,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "run_main",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 23,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_license_fallback_reads_readme_when_root_license_is_absent",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 118,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_license_fallback_reads_root_license_file",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 98,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_license_signature_detection",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 80,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 164,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_metadata_refresh_uses_license_fallback",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 134,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 14
-    },
-    "test_license_signature_detection": {
-      "source": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "start": 80,
-        "end": 95
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "detect_license_text",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 66,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
         }
       ],
       "dependency_count": 1
     },
-    "test_license_fallback_reads_root_license_file": {
+    "_cache_entry": {
       "source": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "start": 98,
+        "file": "scripts/discover_candidates.py",
+        "start": 79,
+        "end": 84
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "_headers_dict": {
+      "source": {
+        "file": "scripts/discover_candidates.py",
+        "start": 86,
+        "end": 89
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "_header_value": {
+      "source": {
+        "file": "scripts/discover_candidates.py",
+        "start": 91,
+        "end": 95
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "cache_get": {
+      "source": {
+        "file": "scripts/discover_candidates.py",
+        "start": 97,
+        "end": 101
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "_cache_entry",
+          "definitions": [
+            {
+              "file": "scripts/discover_candidates.py",
+              "line": 79,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "cache_get_stale": {
+      "source": {
+        "file": "scripts/discover_candidates.py",
+        "start": 103,
+        "end": 110
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "_cache_entry",
+          "definitions": [
+            {
+              "file": "scripts/discover_candidates.py",
+              "line": 79,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "cache_put": {
+      "source": {
+        "file": "scripts/discover_candidates.py",
+        "start": 112,
         "end": 115
       },
       "symbol_dependencies": [
         {
-          "symbol": "fake_contents",
+          "symbol": "_headers_dict",
           "definitions": [
             {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 101,
+              "file": "scripts/discover_candidates.py",
+              "line": 86,
               "kind": "function",
               "language": "python"
-            },
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "_api_result": {
+      "source": {
+        "file": "scripts/discover_candidates.py",
+        "start": 117,
+        "end": 118
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "_stale_result": {
+      "source": {
+        "file": "scripts/discover_candidates.py",
+        "start": 120,
+        "end": 123
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "_api_result",
+          "definitions": [
             {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 121,
+              "file": "scripts/discover_candidates.py",
+              "line": 117,
               "kind": "function",
               "language": "python"
             }
@@ -577,93 +229,125 @@
           "relation": "same_file"
         },
         {
-          "symbol": "fallback_license",
+          "symbol": "cache_get_stale",
           "definitions": [
             {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 111,
+              "file": "scripts/discover_candidates.py",
+              "line": 103,
               "kind": "function",
               "language": "python"
             }
           ],
-          "relation": "imported_module"
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "_conditional_headers": {
+      "source": {
+        "file": "scripts/discover_candidates.py",
+        "start": 125,
+        "end": 132
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "_cache_entry",
+          "definitions": [
+            {
+              "file": "scripts/discover_candidates.py",
+              "line": 79,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
         },
         {
-          "symbol": "fetch_contents",
+          "symbol": "_header_value",
           "definitions": [
             {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 58,
+              "file": "scripts/discover_candidates.py",
+              "line": 91,
               "kind": "function",
               "language": "python"
             }
           ],
-          "relation": "imported_module"
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 2
+    },
+    "_not_modified_result": {
+      "source": {
+        "file": "scripts/discover_candidates.py",
+        "start": 134,
+        "end": 141
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "_api_result",
+          "definitions": [
+            {
+              "file": "scripts/discover_candidates.py",
+              "line": 117,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
         },
         {
-          "symbol": "main",
+          "symbol": "_cache_entry",
           "definitions": [
             {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 188,
+              "file": "scripts/discover_candidates.py",
+              "line": 79,
               "kind": "function",
               "language": "python"
             }
           ],
-          "relation": "imported_module"
+          "relation": "same_file"
+        },
+        {
+          "symbol": "_headers_dict",
+          "definitions": [
+            {
+              "file": "scripts/discover_candidates.py",
+              "line": 86,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "cache_put",
+          "definitions": [
+            {
+              "file": "scripts/discover_candidates.py",
+              "line": 112,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
         }
       ],
       "dependency_count": 4
     },
-    "fake_contents": {
+    "api_json": {
       "source": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "start": 101,
-        "end": 221
+        "file": "scripts/discover_candidates.py",
+        "start": 143,
+        "end": 202
       },
       "symbol_dependencies": [
         {
-          "symbol": "fallback_license",
+          "symbol": "_api_result",
           "definitions": [
             {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 111,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "fetch",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 54,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "fetch_contents",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 58,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "http_error",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 13,
+              "file": "scripts/discover_candidates.py",
+              "line": 117,
               "kind": "function",
               "language": "python"
             }
@@ -671,35 +355,11 @@
           "relation": "same_file"
         },
         {
-          "symbol": "main",
+          "symbol": "_conditional_headers",
           "definitions": [
             {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 188,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "metadata",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 166,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "run_main",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 23,
+              "file": "scripts/discover_candidates.py",
+              "line": 125,
               "kind": "function",
               "language": "python"
             }
@@ -707,11 +367,11 @@
           "relation": "same_file"
         },
         {
-          "symbol": "test_license_fallback_reads_readme_when_root_license_is_absent",
+          "symbol": "_header_value",
           "definitions": [
             {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 118,
+              "file": "scripts/discover_candidates.py",
+              "line": 91,
               "kind": "function",
               "language": "python"
             }
@@ -719,11 +379,11 @@
           "relation": "same_file"
         },
         {
-          "symbol": "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
+          "symbol": "_headers_dict",
           "definitions": [
             {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 164,
+              "file": "scripts/discover_candidates.py",
+              "line": 86,
               "kind": "function",
               "language": "python"
             }
@@ -731,10 +391,10 @@
           "relation": "same_file"
         },
         {
-          "symbol": "test_metadata_refresh_uses_license_fallback",
+          "symbol": "_not_modified_result",
           "definitions": [
             {
-              "file": "scripts/test_refresh_github_metadata.py",
+              "file": "scripts/discover_candidates.py",
               "line": 134,
               "kind": "function",
               "language": "python"
@@ -743,39 +403,11 @@
           "relation": "same_file"
         },
         {
-          "symbol": "test_server_error_remains_fatal",
+          "symbol": "_stale_result",
           "definitions": [
             {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 197,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 11
-    },
-    "test_license_fallback_reads_readme_when_root_license_is_absent": {
-      "source": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "start": 118,
-        "end": 131
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "fake_contents",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 101,
-              "kind": "function",
-              "language": "python"
-            },
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 121,
+              "file": "scripts/discover_candidates.py",
+              "line": 120,
               "kind": "function",
               "language": "python"
             }
@@ -783,245 +415,11 @@
           "relation": "same_file"
         },
         {
-          "symbol": "fallback_license",
+          "symbol": "_stat",
           "definitions": [
             {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 111,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "fetch_contents",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 58,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "main",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 188,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        }
-      ],
-      "dependency_count": 4
-    },
-    "test_metadata_refresh_uses_license_fallback": {
-      "source": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "start": 134,
-        "end": 160
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "fallback_license",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 111,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "fetch",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 54,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "main",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 188,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "metadata",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 166,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "run_main",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 23,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 5
-    },
-    "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive": {
-      "source": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "start": 164,
-        "end": 194
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "fallback_license",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 111,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "fetch",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 54,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "main",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 188,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "metadata",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 166,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "run_main",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 23,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        }
-      ],
-      "dependency_count": 5
-    },
-    "test_server_error_remains_fatal": {
-      "source": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "start": 197,
-        "end": 280
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "RejectingOpener",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 262,
-              "kind": "class",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "_request_json",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 34,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "fallback_license",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 111,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "fetch",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 54,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "http_error",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 13,
+              "file": "scripts/discover_candidates.py",
+              "line": 46,
               "kind": "function",
               "language": "python"
             }
@@ -1029,35 +427,11 @@
           "relation": "same_file"
         },
         {
-          "symbol": "main",
+          "symbol": "cache_get",
           "definitions": [
             {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 188,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "metadata",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 166,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "open",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 263,
+              "file": "scripts/discover_candidates.py",
+              "line": 97,
               "kind": "function",
               "language": "python"
             }
@@ -1065,11 +439,11 @@
           "relation": "same_file"
         },
         {
-          "symbol": "run_main",
+          "symbol": "cache_put",
           "definitions": [
             {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 23,
+              "file": "scripts/discover_candidates.py",
+              "line": 112,
               "kind": "function",
               "language": "python"
             }
@@ -1079,139 +453,19 @@
       ],
       "dependency_count": 9
     },
-    "RejectingOpener": {
+    "fetch": {
       "source": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "start": 262,
-        "end": 382
+        "file": "scripts/discover_candidates.py",
+        "start": 204,
+        "end": 212
       },
       "symbol_dependencies": [
         {
-          "symbol": "_request_json",
+          "symbol": "api_json",
           "definitions": [
             {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 34,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "fetch",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 54,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "metadata",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 166,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "open",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 263,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_license_fallback_reads_readme_when_root_license_is_absent",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 118,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_license_fallback_reads_root_license_file",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 98,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_license_signature_detection",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 80,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 164,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_metadata_refresh_uses_license_fallback",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 134,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_missing_repo_is_recorded_but_nonfatal",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 32,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_server_error_remains_fatal",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 197,
+              "file": "scripts/discover_candidates.py",
+              "line": 143,
               "kind": "function",
               "language": "python"
             }
@@ -1219,141 +473,21 @@
           "relation": "same_file"
         }
       ],
-      "dependency_count": 11
+      "dependency_count": 1
     },
-    "open": {
+    "enrich": {
       "source": {
-        "file": "scripts/test_refresh_github_metadata.py",
-        "start": 263,
-        "end": 383
+        "file": "scripts/discover_candidates.py",
+        "start": 214,
+        "end": 244
       },
       "symbol_dependencies": [
         {
-          "symbol": "RejectingOpener",
+          "symbol": "api_json",
           "definitions": [
             {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 262,
-              "kind": "class",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "_request_json",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 34,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "fetch",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 54,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "metadata",
-          "definitions": [
-            {
-              "file": "scripts/refresh_github_metadata.py",
-              "line": 166,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        },
-        {
-          "symbol": "test_license_fallback_reads_readme_when_root_license_is_absent",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 118,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_license_fallback_reads_root_license_file",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 98,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_license_signature_detection",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 80,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 164,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_metadata_refresh_uses_license_fallback",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 134,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_missing_repo_is_recorded_but_nonfatal",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 32,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "test_server_error_remains_fatal",
-          "definitions": [
-            {
-              "file": "scripts/test_refresh_github_metadata.py",
-              "line": 197,
+              "file": "scripts/discover_candidates.py",
+              "line": 143,
               "kind": "function",
               "language": "python"
             }
@@ -1361,7 +495,150 @@
           "relation": "same_file"
         }
       ],
-      "dependency_count": 11
+      "dependency_count": 1
+    },
+    "score": {
+      "source": {
+        "file": "scripts/discover_candidates.py",
+        "start": 246,
+        "end": 250
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "discover": {
+      "source": {
+        "file": "scripts/discover_candidates.py",
+        "start": 252,
+        "end": 291
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "empty_cache_stats",
+          "definitions": [
+            {
+              "file": "scripts/discover_candidates.py",
+              "line": 27,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "enrich",
+          "definitions": [
+            {
+              "file": "scripts/discover_candidates.py",
+              "line": 214,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "fetch",
+          "definitions": [
+            {
+              "file": "scripts/discover_candidates.py",
+              "line": 204,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "finalize_cache_stats",
+          "definitions": [
+            {
+              "file": "scripts/discover_candidates.py",
+              "line": 36,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "score",
+          "definitions": [
+            {
+              "file": "scripts/discover_candidates.py",
+              "line": 246,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 5
+    },
+    "main": {
+      "source": {
+        "file": "scripts/discover_candidates.py",
+        "start": 293,
+        "end": 316
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "discover",
+          "definitions": [
+            {
+              "file": "scripts/discover_candidates.py",
+              "line": 252,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "load_cache",
+          "definitions": [
+            {
+              "file": "scripts/discover_candidates.py",
+              "line": 49,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "save_cache",
+          "definitions": [
+            {
+              "file": "scripts/discover_candidates.py",
+              "line": 72,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 3
+    },
+    "offline": {
+      "source": {
+        "file": "scripts/test_discovery_cache.py",
+        "start": 59,
+        "end": 60
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "not_modified": {
+      "source": {
+        "file": "scripts/test_discovery_cache.py",
+        "start": 93,
+        "end": 95
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
     }
   }
 }

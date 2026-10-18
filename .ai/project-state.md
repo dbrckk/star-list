@@ -72,25 +72,25 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T14:16:59Z
+Generated: 2026-10-18T14:20:53Z
 
 ### Git
 - Branch: `main`
-- Head: `9fbf98c2227e`
-- Commit date: 2026-10-18T10:16:49-04:00
-- Commit: fix(metadata): backfill stable GitHub repository IDs without extra API calls (#122)
+- Head: `0e96d40c56e4`
+- Commit date: 2026-10-18T10:20:44-04:00
+- Commit: fix(security): keep GitHub discovery tokens on the verified API origin (#123)
 - Tracked files: 280
 
 ### Recently changed files
 - `docs/GITHUB_STARS_SYNC.md`
+- `scripts/discover_candidates.py`
+- `scripts/test_discovery_cache.py`
 - `scripts/refresh_github_metadata.py`
 - `scripts/test_refresh_github_metadata.py`
 - `scripts/admit_github_stars.py`
 - `scripts/sync_github_stars.py`
 - `scripts/test_sync_github_stars.py`
 - `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
-- `.github/workflows/refresh-metadata.yml`
-- `scripts/test_documentation.py`
 
 ### Project signals
 - No common build descriptor detected

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "57d97639723b2fb85e63204beeffeb3c9b71df3a",
-  "head": "9fbf98c2227e3aa3f45fdd72b51677dd8e9210b4",
+  "base": "9fbf98c2227e3aa3f45fdd72b51677dd8e9210b4",
+  "head": "0e96d40c56e41238d35055c24f22ea4841984f09",
   "index_mode": "incremental",
   "changed_files": [
     {
@@ -10,182 +10,177 @@
       "status": "M"
     },
     {
-      "path": "scripts/refresh_github_metadata.py",
+      "path": "scripts/discover_candidates.py",
       "status": "M"
     },
     {
-      "path": "scripts/test_refresh_github_metadata.py",
+      "path": "scripts/test_discovery_cache.py",
       "status": "M"
     }
   ],
   "changed_source_files": [
-    "scripts/refresh_github_metadata.py",
-    "scripts/test_refresh_github_metadata.py"
+    "scripts/discover_candidates.py",
+    "scripts/test_discovery_cache.py"
   ],
   "impacted_files": [
-    "scripts/backfill_licenses.py",
-    "scripts/refresh_github_metadata.py",
-    "scripts/test_refresh_github_metadata.py"
+    "scripts/discover_candidates.py",
+    "scripts/test_discovery_cache.py"
   ],
   "impacted_symbols": [
     {
-      "name": "backfill",
+      "name": "empty_cache",
       "kind": "function",
-      "file": "scripts/backfill_licenses.py",
-      "line": 15
+      "file": "scripts/discover_candidates.py",
+      "line": 24
     },
     {
-      "name": "main",
+      "name": "empty_cache_stats",
       "kind": "function",
-      "file": "scripts/backfill_licenses.py",
-      "line": 34
+      "file": "scripts/discover_candidates.py",
+      "line": 27
     },
     {
-      "name": "_request_json",
+      "name": "finalize_cache_stats",
       "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 34
+      "file": "scripts/discover_candidates.py",
+      "line": 36
+    },
+    {
+      "name": "_stat",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 46
+    },
+    {
+      "name": "load_cache",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 49
+    },
+    {
+      "name": "prune_cache",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 60
+    },
+    {
+      "name": "save_cache",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 72
+    },
+    {
+      "name": "_cache_entry",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 79
+    },
+    {
+      "name": "_headers_dict",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 86
+    },
+    {
+      "name": "_header_value",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 91
+    },
+    {
+      "name": "cache_get",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 97
+    },
+    {
+      "name": "cache_get_stale",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 103
+    },
+    {
+      "name": "cache_put",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 112
+    },
+    {
+      "name": "_api_result",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 117
+    },
+    {
+      "name": "_stale_result",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 120
+    },
+    {
+      "name": "_conditional_headers",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 125
+    },
+    {
+      "name": "_not_modified_result",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 134
+    },
+    {
+      "name": "api_json",
+      "kind": "function",
+      "file": "scripts/discover_candidates.py",
+      "line": 143
     },
     {
       "name": "fetch",
       "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 54
+      "file": "scripts/discover_candidates.py",
+      "line": 204
     },
     {
-      "name": "fetch_contents",
+      "name": "enrich",
       "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 58
+      "file": "scripts/discover_candidates.py",
+      "line": 214
     },
     {
-      "name": "detect_license_text",
+      "name": "score",
       "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 66
+      "file": "scripts/discover_candidates.py",
+      "line": 246
     },
     {
-      "name": "_decode_content",
+      "name": "discover",
       "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 99
-    },
-    {
-      "name": "fallback_license",
-      "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 111
-    },
-    {
-      "name": "metadata",
-      "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 166
-    },
-    {
-      "name": "refresh_primary_language",
-      "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 177
-    },
-    {
-      "name": "is_missing_repository_error",
-      "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 184
+      "file": "scripts/discover_candidates.py",
+      "line": 252
     },
     {
       "name": "main",
       "kind": "function",
-      "file": "scripts/refresh_github_metadata.py",
-      "line": 188
+      "file": "scripts/discover_candidates.py",
+      "line": 293
     },
     {
-      "name": "http_error",
+      "name": "offline",
       "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 13
+      "file": "scripts/test_discovery_cache.py",
+      "line": 59
     },
     {
-      "name": "run_main",
+      "name": "not_modified",
       "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 23
-    },
-    {
-      "name": "test_missing_repo_is_recorded_but_nonfatal",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 32
-    },
-    {
-      "name": "fake_fetch",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 47
-    },
-    {
-      "name": "test_license_signature_detection",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 80
-    },
-    {
-      "name": "test_license_fallback_reads_root_license_file",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 98
-    },
-    {
-      "name": "fake_contents",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 101
-    },
-    {
-      "name": "test_license_fallback_reads_readme_when_root_license_is_absent",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 118
-    },
-    {
-      "name": "fake_contents",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 121
-    },
-    {
-      "name": "test_metadata_refresh_uses_license_fallback",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 134
-    },
-    {
-      "name": "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 164
-    },
-    {
-      "name": "test_server_error_remains_fatal",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 197
-    },
-    {
-      "name": "RejectingOpener",
-      "kind": "class",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 262
-    },
-    {
-      "name": "open",
-      "kind": "function",
-      "file": "scripts/test_refresh_github_metadata.py",
-      "line": 263
+      "file": "scripts/test_discovery_cache.py",
+      "line": 93
     }
   ],
   "selected_tests": [
-    "scripts/test_refresh_github_metadata.py"
+    "scripts/test_discover_candidates.py",
+    "scripts/test_discovery_cache.py",
+    "scripts/test_discovery_cache_stats.py"
   ]
 }

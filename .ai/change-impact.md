@@ -1,12 +1,12 @@
 # Change impact
 
-Base: 74b1d681695a51be32f43ae3117cffe2a3576527
-Head: 9fbf98c2227e3aa3f45fdd72b51677dd8e9210b4
+Base: 06065667bac3c5cff7e34ebf1cc92dde1098883e
+Head: 0e96d40c56e41238d35055c24f22ea4841984f09
 
 ## Changed files
 - M docs/GITHUB_STARS_SYNC.md
-- M scripts/refresh_github_metadata.py
-- M scripts/test_refresh_github_metadata.py
+- M scripts/discover_candidates.py
+- M scripts/test_discovery_cache.py
 
 ## Affected areas
 - docs

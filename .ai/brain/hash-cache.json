@@ -1,16 +1,16 @@
 {
   "files": {
     "docs/GITHUB_STARS_SYNC.md": {
-      "sha256": "b2e55643f55fb446032c6acd840d7c1c224cc0b91d690b96b540bda7aba814dd",
-      "size": 5644
+      "sha256": "fd5bc814ffde193445bb5246860cce0b8a359bce45bd1f6bedb2515a4ae8e1ee",
+      "size": 5849
     },
     "scripts/admit_github_stars.py": {
       "sha256": "93b206fd6741c01ddfb843b129c4a41ee119c1bb8af4ea267307153927558cab",
       "size": 12003
     },
-    "scripts/backfill_licenses.py": {
-      "sha256": "5ed31ece9790db453e65dfa5e01483821978a357d76a24440ddeedd554c585a1",
-      "size": 1619
+    "scripts/discover_candidates.py": {
+      "sha256": "16397287a54cc1347d8a42df7e45da35c44a944bad3e9d85f768ff831e65c64d",
+      "size": 15351
     },
     "scripts/refresh_github_metadata.py": {
       "sha256": "b2e3101378d5ebe7ad2ecb467a2522f59134d09775cdaab3ee2d65d91ac73457",
@@ -19,6 +19,18 @@
     "scripts/sync_github_stars.py": {
       "sha256": "7d9beaa4f8a29ef08be8b514c816d3d30ca7953b89f91effcdcd108676d0b8af",
       "size": 14783
+    },
+    "scripts/test_discover_candidates.py": {
+      "sha256": "fefe00ea3c0ce7067980bb456885cdb3ac9f465bdaf076822f6ea90fcc677d53",
+      "size": 562
+    },
+    "scripts/test_discovery_cache.py": {
+      "sha256": "d392debda1d5b665245b85a6693d29ba8cc6ee08871ac4eaad527caac0125ae9",
+      "size": 4864
+    },
+    "scripts/test_discovery_cache_stats.py": {
+      "sha256": "2c760da031b138ed0c07953d177ffb96196422f6a75d603622aff11e25970478",
+      "size": 2259
     },
     "scripts/test_documentation.py": {
       "sha256": "40669232b11ce86a0a121060039980e420392bf6bef33ea111b66a18c23b984c",

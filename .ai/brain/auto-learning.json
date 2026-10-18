@@ -2,20 +2,18 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 63,
+    "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "122",
+      "123",
       "api",
-      "backfill",
-      "calls",
-      "extra",
+      "discovery",
       "github",
-      "ids",
-      "metadata",
-      "repository",
-      "stable",
-      "without"
+      "keep",
+      "origin",
+      "security",
+      "tokens",
+      "verified"
     ],
     "test_count": 0,
     "useful_count": 2
@@ -23,10 +21,10 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(metadata): backfill stable GitHub repository IDs without extra API calls (#122)",
+  "task": "fix(security): keep GitHub discovery tokens on the verified API origin (#123)",
   "tests_selected": [],
   "useful": [
-    "scripts/refresh_github_metadata.py",
-    "scripts/test_refresh_github_metadata.py"
+    "scripts/discover_candidates.py",
+    "scripts/test_discovery_cache.py"
   ]
 }

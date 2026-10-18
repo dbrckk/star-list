@@ -2520,6 +2520,10 @@ findings=detect(json.loads(args.previous.read_text()), json.loads(args.current.r
 #!/usr/bin/env python3
 """Execute discovery watchlist against GitHub Search API and rank novel candidates."""
 ⋮----
+# Preserve the existing injectable transport for offline cache tests, but
+# never forward the authenticated discovery token on cross-origin redirects.
+urlopen = SAFE_GITHUB_HTTP.open
+⋮----
 API="https://api.github.com/search/repositories"
 REPO_API="https://api.github.com/repos/{}"
 CACHE_SCHEMA_VERSION=1
@@ -2598,6 +2602,11 @@ merged_headers=dict(entry.get("headers",{}) or {})
 data=entry.get("data")
 ⋮----
 def api_json(url, headers, attempts=4, cache=None, ttl_seconds=0, stale_max_seconds=0, now=None, return_source=False, stats=None)
+⋮----
+# A future caller must not pass its GitHub bearer token to an arbitrary
+# initial URL. The shared opener independently blocks redirected tokens.
+⋮----
+parsed = urlsplit(url)
 ⋮----
 hit=cache_get(cache,url,ttl_seconds,now)
 ⋮----
@@ -4370,6 +4379,14 @@ ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "discover_candidates.py"
 spec = importlib.util.spec_from_file_location("discover", SCRIPT)
 mod = importlib.util.module_from_spec(spec)
+⋮----
+# The discoverer must use the shared opener that rejects authenticated
+# cross-origin redirects, while the API entrypoint refuses hostile initial
+# URLs even before a fresh cache result could conceal them.
+⋮----
+# Nonsecret GitHub metadata requests continue to use the normal cache path.
+api_url = "https://api.github.com/search/repositories"
+valid_cache = {"schemaVersion": 1, "entries": {}}
 ⋮----
 cache = {"schemaVersion": 1, "entries": {}}
 url = "https://api.github.test/repos/a/x"
