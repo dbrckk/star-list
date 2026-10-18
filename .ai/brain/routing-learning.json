@@ -2,24 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "Weight inferred guidance below curated metadata (#24)",
-      "terms": [
-        "24",
-        "below",
-        "curated",
-        "guidance",
-        "inferred",
-        "metadata",
-        "weight"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/recommend.py",
-        "scripts/test_recommend.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "Backfill selection guidance for specialized repositories (#25)",
       "terms": [
         "25",
@@ -1242,6 +1224,27 @@
         "scripts/portfolio_daily.py",
         "scripts/test_recommend.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(skills): qualify frontend/mobile skill matches from exact package manifests (#134)",
+      "terms": [
+        "134",
+        "exact",
+        "feat",
+        "from",
+        "frontend/mobile",
+        "manifests",
+        "matches",
+        "package",
+        "qualify",
+        "skill",
+        "skills"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1333,6 +1336,9 @@
       "scripts/agent_skill_discovery.py": 4,
       "scripts/portfolio_daily.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "134": {
+      "scripts/portfolio_daily.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1837,6 +1843,9 @@
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
     },
+    "exact": {
+      "scripts/portfolio_daily.py": 4
+    },
     "exclude": {
       "scripts/portfolio_daily.py": 12,
       "scripts/recommend.py": 4,
@@ -1882,7 +1891,7 @@
       "scripts/admit_github_stars.py": 8,
       "scripts/agent_skill_discovery.py": 8,
       "scripts/audit_catalog_quality.py": 8,
-      "scripts/portfolio_daily.py": 24,
+      "scripts/portfolio_daily.py": 28,
       "scripts/portfolio_failure_diagnostics.py": 12,
       "scripts/recommend.py": 8,
       "scripts/sync_github_stars.py": 4,
@@ -1924,7 +1933,7 @@
       "scripts/backfill_licenses.py": 4,
       "scripts/discover_candidates.py": 4,
       "scripts/find_replacements.py": 4,
-      "scripts/portfolio_daily.py": 16,
+      "scripts/portfolio_daily.py": 20,
       "scripts/recommend.py": 4,
       "scripts/refresh_github_metadata.py": 12,
       "scripts/test_backfill_licenses.py": 4,
@@ -1936,6 +1945,9 @@
       "scripts/test_refresh_github_metadata.py": 12,
       "scripts/validate_catalog.py": 4,
       "scripts/validate_json_contract.py": 4
+    },
+    "frontend/mobile": {
+      "scripts/portfolio_daily.py": 4
     },
     "full": {
       "scripts/admit_github_stars.py": 4,
@@ -2131,8 +2143,11 @@
       "scripts/test_documentation.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "manifests": {
+      "scripts/portfolio_daily.py": 4
+    },
     "matches": {
-      "scripts/portfolio_daily.py": 16
+      "scripts/portfolio_daily.py": 20
     },
     "mcp": {
       "scripts/portfolio_daily.py": 4
@@ -2200,6 +2215,9 @@
       "scripts/test_discovery_cache.py": 4
     },
     "out": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "package": {
       "scripts/portfolio_daily.py": 4
     },
     "per": {
@@ -2277,7 +2295,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "qualify": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "quality": {
       "scripts/admit_github_stars.py": 4,
@@ -2498,7 +2516,7 @@
     },
     "skill": {
       "scripts/agent_skill_discovery.py": 8,
-      "scripts/portfolio_daily.py": 8,
+      "scripts/portfolio_daily.py": 12,
       "scripts/recommend.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_recommend.py": 8
@@ -2510,7 +2528,7 @@
     },
     "skills": {
       "scripts/agent_skill_discovery.py": 8,
-      "scripts/portfolio_daily.py": 8,
+      "scripts/portfolio_daily.py": 12,
       "scripts/recommend.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_recommend.py": 8

@@ -8,42 +8,10 @@
         "changed-source",
         "dependency-neighbor",
         "impact",
-        "reverse-dependency-neighbor",
+        "recent-project-state",
         "symbol-indexed"
       ],
-      "score": 500
-    },
-    {
-      "path": "scripts/test_recommend.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 375
-    },
-    {
-      "path": "scripts/agent_skill_discovery.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 370
-    },
-    {
-      "path": "scripts/recommend.py",
-      "reasons": [
-        "dependency-neighbor",
-        "impact",
-        "reverse-dependency-neighbor",
-        "symbol-indexed"
-      ],
-      "score": 220
+      "score": 505
     },
     {
       "path": "scripts/portfolio_failure_diagnostics.py",
@@ -55,18 +23,34 @@
       "score": 150
     },
     {
-      "path": "scripts/find_replacements.py",
+      "path": "scripts/agent_skill_discovery.py",
       "reasons": [
-        "dependency-neighbor"
+        "dependency-neighbor",
+        "recent-project-state"
       ],
-      "score": 25
+      "score": 85
     },
     {
-      "path": "scripts/health_score.py",
+      "path": "scripts/recommend.py",
       "reasons": [
-        "dependency-neighbor"
+        "dependency-neighbor",
+        "recent-project-state"
       ],
-      "score": 25
+      "score": 85
+    },
+    {
+      "path": "scripts/test_documentation.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/test_recommend.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

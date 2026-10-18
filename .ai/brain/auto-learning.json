@@ -5,29 +5,27 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "133",
-      "expand",
+      "134",
+      "exact",
       "feat",
-      "files",
-      "issue",
-      "pinned",
-      "references",
+      "from",
+      "frontend/mobile",
+      "manifests",
+      "matches",
+      "package",
+      "qualify",
       "skill",
-      "skill.md",
-      "skills",
-      "verified"
+      "skills"
     ],
     "test_count": 0,
-    "useful_count": 3
+    "useful_count": 1
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(skills): expand Skill Issue references with pinned, verified SKILL.md files (#133)",
+  "task": "feat(skills): qualify frontend/mobile skill matches from exact package manifests (#134)",
   "tests_selected": [],
   "useful": [
-    "scripts/agent_skill_discovery.py",
-    "scripts/portfolio_daily.py",
-    "scripts/test_recommend.py"
+    "scripts/portfolio_daily.py"
   ]
 }

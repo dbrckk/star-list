@@ -90,25 +90,25 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T21:28:27Z
+Generated: 2026-10-18T21:32:47Z
 
 ### Git
 - Branch: `main`
-- Head: `2e7a23a75765`
-- Commit date: 2026-10-18T17:28:19-04:00
-- Commit: feat(skills): expand Skill Issue references with pinned, verified SKILL.md files (#133)
+- Head: `33777afad946`
+- Commit date: 2026-10-18T17:32:38-04:00
+- Commit: feat(skills): qualify frontend/mobile skill matches from exact package manifests (#134)
 - Tracked files: 291
 
 ### Recently changed files
+- `.github/workflows/portfolio-scan-smoke.yml`
 - `AGENT_SKILLS.md`
+- `scripts/portfolio_daily.py`
 - `agent-skills.json`
 - `scripts/agent_skill_discovery.py`
-- `scripts/portfolio_daily.py`
 - `scripts/test_recommend.py`
 - `catalog.json`
 - `AGENTS.md`
 - `.github/workflows/daily-portfolio-integration.yml`
-- `.github/workflows/portfolio-scan-smoke.yml`
 - `.github/workflows/validate.yml`
 - `README.md`
 - `WEB_RESOURCES.md`

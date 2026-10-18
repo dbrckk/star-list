@@ -1,209 +1,174 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "9e49386a4d1ca67e05104d1db8cc71fb083464c6",
-  "head": "2e7a23a75765d9847a4f4e6cee1d9a09b2cd2859",
+  "base": "2e7a23a75765d9847a4f4e6cee1d9a09b2cd2859",
+  "head": "33777afad946bd1611465d0e80bf0be8ff383f75",
   "index_mode": "incremental",
   "changed_files": [
+    {
+      "path": ".github/workflows/portfolio-scan-smoke.yml",
+      "status": "M"
+    },
     {
       "path": "AGENT_SKILLS.md",
       "status": "M"
     },
     {
-      "path": "agent-skills.json",
-      "status": "M"
-    },
-    {
-      "path": "catalog.json",
-      "status": "M"
-    },
-    {
-      "path": "scripts/agent_skill_discovery.py",
-      "status": "M"
-    },
-    {
       "path": "scripts/portfolio_daily.py",
-      "status": "M"
-    },
-    {
-      "path": "scripts/test_recommend.py",
       "status": "M"
     }
   ],
   "changed_source_files": [
-    "scripts/agent_skill_discovery.py",
-    "scripts/portfolio_daily.py",
-    "scripts/test_recommend.py"
+    "scripts/portfolio_daily.py"
   ],
   "impacted_files": [
-    "scripts/agent_skill_discovery.py",
     "scripts/portfolio_daily.py",
-    "scripts/portfolio_failure_diagnostics.py",
-    "scripts/recommend.py",
-    "scripts/test_recommend.py"
+    "scripts/portfolio_failure_diagnostics.py"
   ],
   "impacted_symbols": [
     {
-      "name": "word_set",
+      "name": "package_skill_signals",
       "kind": "function",
-      "file": "scripts/agent_skill_discovery.py",
-      "line": 25
-    },
-    {
-      "name": "load_skills",
-      "kind": "function",
-      "file": "scripts/agent_skill_discovery.py",
-      "line": 29
-    },
-    {
-      "name": "recommend_skills",
-      "kind": "function",
-      "file": "scripts/agent_skill_discovery.py",
-      "line": 89
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/agent_skill_discovery.py",
-      "line": 137
+      "file": "scripts/portfolio_daily.py",
+      "line": 111
     },
     {
       "name": "SameOriginRedirect",
       "kind": "class",
       "file": "scripts/portfolio_daily.py",
-      "line": 93
+      "line": 136
     },
     {
       "name": "redirect_request",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 96
+      "line": 139
     },
     {
       "name": "request_json",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 110
+      "line": 153
     },
     {
       "name": "github_repos",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 157
+      "line": 200
     },
     {
       "name": "file_text",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 177
+      "line": 220
     },
     {
       "name": "project_profile",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 188
+      "line": 231
     },
     {
       "name": "eligible",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 210
+      "line": 259
     },
     {
       "name": "is_reference_candidate",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 224
+      "line": 273
     },
     {
       "name": "recommendations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 251
+      "line": 300
     },
     {
       "name": "count_active_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 365
+      "line": 414
     },
     {
       "name": "busy_integration_targets",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 375
+      "line": 424
     },
     {
       "name": "unresolved_failed_v2_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 395
+      "line": 444
     },
     {
       "name": "count_failed_v2_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 426
+      "line": 475
     },
     {
       "name": "count_failed_v3_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 431
+      "line": 480
     },
     {
       "name": "count_launches_on_utc_date",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 447
+      "line": 496
     },
     {
       "name": "verified_managed_projects",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 467
+      "line": 516
     },
     {
       "name": "public_integration_status",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 518
+      "line": 567
     },
     {
       "name": "integration_marker",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 540
+      "line": 589
     },
     {
       "name": "recoverable_failure_targets",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 547
+      "line": 596
     },
     {
       "name": "launch_integration",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 583
+      "line": 632
     },
     {
       "name": "confirmed_launch",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 611
+      "line": 660
     },
     {
       "name": "render_markdown",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 645
+      "line": 694
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 707
+      "line": 756
     },
     {
       "name": "safe_state",
@@ -252,117 +217,7 @@
       "kind": "function",
       "file": "scripts/portfolio_failure_diagnostics.py",
       "line": 349
-    },
-    {
-      "name": "norm",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 37
-    },
-    {
-      "name": "tokens",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 40
-    },
-    {
-      "name": "load",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 43
-    },
-    {
-      "name": "infer_domains",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 48
-    },
-    {
-      "name": "recommend_websites",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 52
-    },
-    {
-      "name": "activity_adjustment",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 86
-    },
-    {
-      "name": "trend_adjustment",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 105
-    },
-    {
-      "name": "delta",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 117
-    },
-    {
-      "name": "guidance_weight",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 130
-    },
-    {
-      "name": "score_repo",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 137
-    },
-    {
-      "name": "explain_repo",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 168
-    },
-    {
-      "name": "choose_stack",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 191
-    },
-    {
-      "name": "infer_alternatives",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 204
-    },
-    {
-      "name": "infer_complements",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 225
-    },
-    {
-      "name": "resolve_relations",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 250
-    },
-    {
-      "name": "usable",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 252
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 273
-    },
-    {
-      "name": "run",
-      "kind": "function",
-      "file": "scripts/test_recommend.py",
-      "line": 9
     }
   ],
-  "selected_tests": [
-    "scripts/test_recommend.py"
-  ]
+  "selected_tests": []
 }

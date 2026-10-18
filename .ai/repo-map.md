@@ -621,12 +621,29 @@ jobs:
           assert failure_category({"summary": "check secret text"}) == "unknown"
           from portfolio_daily import (
               is_reference_candidate, count_active_integrations,
+              package_skill_signals,
               count_failed_v2_integrations, count_failed_v3_integrations,
               verified_managed_projects,
               integration_marker, recoverable_failure_targets,
               count_launches_on_utc_date, busy_integration_targets,
           )
           assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
+          domains, terms = package_skill_signals(
+              "package.json",
+              json.dumps({"dependencies": {"react-native": "0.76.0", "expo": "*"},
+                          "scripts": {"build": "use unrelated cookies tokens browser"}}),
+          )
+          assert domains == {"mobile"}
+          assert {"react", "native", "expo"} <= terms
+          assert "cookies" not in terms and "browser" not in terms
+          assert package_skill_signals("README.md", '{"dependencies":{"react":"*"}}') == (set(), set())
+          assert package_skill_signals("package.json", '{"dependencies":') == (set(), set())
+          assert package_skill_signals(
+              "package.json", '{"dependencies":{"unrelated-browser-package":"*"}}'
+          ) == (set(), set())
+          assert package_skill_signals(
+              "package.json", '{"devDependencies":{"@playwright/test":"*"}}'
+          )[0] == {"software_engineering", "web_frontend"}
           # Functional transport smoke: an ambiguous mutating request is sent
           # once; a read-only GET retains the bounded retry policy.
           import portfolio_daily as portfolio_transport
@@ -3351,6 +3368,21 @@ EXTERNAL_CODING_AGENT_CLIS = frozenset({
 ⋮----
 MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
 ⋮----
+# Only exact, declared dependency names may contribute framework evidence to
+# skill references. Do not tokenize package scripts, README prose or arbitrary
+# package names: none is an authorization to execute an upstream skill.
+SKILL_FRAMEWORK_PACKAGES = {
+⋮----
+def package_skill_signals(filename: str, content: str) -> tuple[set[str], set[str]]
+⋮----
+"""Conservative framework hints from package names, never package scripts."""
+⋮----
+parsed = json.loads(content)
+⋮----
+dependencies = parsed.get(field)
+⋮----
+evidence = SKILL_FRAMEWORK_PACKAGES.get(name.strip().lower())
+⋮----
 class SameOriginRedirect(HTTPRedirectHandler)
 ⋮----
 """Never forward GitHub or Production-OS bearer tokens to another origin."""
@@ -3403,7 +3435,10 @@ topics = repo.get("topics") or []
 intro = file_text(name, "README.md", token, limit=2800)
 dependency_text = ""
 ⋮----
-value = file_text(name, filename, token, limit=3500)
+# Package metadata may exceed the short overview excerpt. A strict
+# JSON parser discards malformed/truncated manifests, without using
+# their scripts or arbitrary text as agent instructions.
+value = file_text(name, filename, token, limit=12000)
 ⋮----
 overview = " ".join([repo["name"], description, " ".join(topics), intro[:1200]])
 label_text = " ".join([repo["name"], description, " ".join(topics)]).lower()
@@ -3642,6 +3677,7 @@ profile = project_profile(repo, portfolio_token or gh_token)
 # All targets receive the directory; skill matches are based
 # on owned GitHub labels and language, never README instructions.
 skill_terms = word_set(" ".join([
+skill_domains = (set(profile.get("domains") or [])
 ⋮----
 # Reference websites based on repository-owned metadata only;
 # arbitrary README prose is not trustworthy installation evidence.
