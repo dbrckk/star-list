@@ -236,6 +236,54 @@ assert filled_catalog["repositories"][1]["githubRepositoryId"] == 202
 assert filled_catalog["repositories"][2]["githubRepositoryId"] == 303
 assert existing_catalog["repositories"][0].get("githubRepositoryId") is None
 
+# The CLI must also commit identity-only enrichment on an hourly run
+# with *zero* new Stars; no speculative metadata GET may be introduced.
+with tempfile.TemporaryDirectory() as tmp:
+    root = Path(tmp)
+    catalog_path = root / "catalog.json"
+    report_path = root / "stars-report.json"
+    manifest_path = root / "stars-manifest.json"
+    result_path = root / "admission-result.json"
+    old_catalog = {"repositories": [{"repo": "Existing/Legacy"}]}
+    catalog_path.write_text(json.dumps(old_catalog), encoding="utf-8")
+    identity_report = {
+        "username": "dbrckk", "schemaVersion": 1,
+        "checkedAt": known_report["checkedAt"],
+        "summary": {"starred": 1, "alreadyCataloged": 1, "new": 0},
+        "newRepositories": [],
+    }
+    identity_manifest = {
+        "source": "GitHub public Stars of dbrckk",
+        "checkedAt": known_report["checkedAt"],
+        "repositories": ["Existing/Legacy"],
+        "identities": [
+            {"repo": "Existing/Legacy", "githubRepositoryId": 101},
+        ],
+    }
+    report_path.write_text(json.dumps(identity_report), encoding="utf-8")
+    manifest_path.write_text(json.dumps(identity_manifest), encoding="utf-8")
+    writes = []
+    original_write = admission.write_catalog_if_valid
+    try:
+        def offline_write(data, path):
+            writes.append(data)
+            path.write_text(json.dumps(data), encoding="utf-8")
+            return True, "validated by existing offline smoke fixture"
+        admission.write_catalog_if_valid = offline_write
+        with contextlib.redirect_stdout(io.StringIO()):
+            assert admission.main([
+                "--catalog", str(catalog_path),
+                "--sync-report", str(report_path),
+                "--manifest", str(manifest_path),
+                "--report-json", str(result_path),
+            ]) == 0
+    finally:
+        admission.write_catalog_if_valid = original_write
+    assert len(writes) == 1
+    assert writes[0]["repositories"][0]["githubRepositoryId"] == 101
+    assert json.loads(result_path.read_text())["identityEnriched"] == 1
+    assert json.loads(result_path.read_text())["admitted"] == 0
+
 # The manifest and report are one atomic identity snapshot: even if counts
 # happen to match, divergent timestamps, missing rows and switched IDs must
 # fail before admitting or enriching anything.
