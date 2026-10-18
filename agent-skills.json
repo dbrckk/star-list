@@ -8,7 +8,7 @@
     "usage": "read-only discovery; never auto-install external instructions",
     "priority": "portfolio-wide"
   },
-  "description": "Conservative shortlist of links surfaced on Skill Issue and checked against accessible upstream GitHub repositories. These are discovery candidates, not audited/installed agent skills.",
+  "description": "Conservative shortlist of agent-skill upstream sources, including Skill Issue directory entries and independent official/engine-specific repositories. Source commits and exact SKILL.md files are pinned for review, not audited or installed.",
   "skills": [
     {
       "id": "ui-ux-pro-max-skill",
@@ -515,6 +515,85 @@
       "sourceUrl": "https://github.com/wshobson/agents",
       "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
       "sourcePath": "plugins/documentation-generation/skills/openapi-spec-generation/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "flutter-responsive-layout",
+      "name": "Flutter Responsive Layout",
+      "sourceRepository": "flutter/agent-plugins",
+      "sourceCommit": "b60d0736a33a0de7d3f4ea2a7ad740ca0daa5c94",
+      "sourcePath": "skills/flutter-build-responsive-layout/SKILL.md",
+      "domains": [
+        "mobile"
+      ],
+      "tags": [
+        "flutter",
+        "dart",
+        "responsive",
+        "mobile",
+        "layout",
+        "widgets"
+      ],
+      "description": "Official Flutter guidance for adaptive widgets, screens and layout constraints.",
+      "languages": [
+        "Dart"
+      ],
+      "sourceUrl": "https://github.com/flutter/agent-plugins",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "flutter-layout-diagnostics",
+      "name": "Flutter Layout Diagnostics",
+      "sourceRepository": "flutter/agent-plugins",
+      "sourceCommit": "b60d0736a33a0de7d3f4ea2a7ad740ca0daa5c94",
+      "sourcePath": "skills/flutter-fix-layout-issues/SKILL.md",
+      "domains": [
+        "mobile"
+      ],
+      "tags": [
+        "flutter",
+        "dart",
+        "layout",
+        "widgets",
+        "overflow",
+        "responsive"
+      ],
+      "description": "Official Flutter reference for diagnosing layout constraints and overflow errors.",
+      "languages": [
+        "Dart"
+      ],
+      "sourceUrl": "https://github.com/flutter/agent-plugins",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "godot-gdscript",
+      "name": "Godot GDScript 4.x",
+      "sourceRepository": "shihabshahrier/Godot-Skill",
+      "sourceCommit": "c8bc20f876a8da241274d48461444fab86182d83",
+      "sourcePath": "skills/godot/SKILL.md",
+      "domains": [
+        "game_dev"
+      ],
+      "tags": [
+        "godot",
+        "gdscript",
+        "game",
+        "gameplay",
+        "signals",
+        "scenes",
+        "animation"
+      ],
+      "description": "Godot 4.3+ GDScript reference for typed scenes, signals, architecture and common gameplay patterns.",
+      "languages": [
+        "GDScript"
+      ],
+      "sourceUrl": "https://github.com/shihabshahrier/Godot-Skill",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
       "skillCodeReviewed": false
