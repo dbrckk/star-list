@@ -72,9 +72,11 @@ jobs:
             exit 1
           fi
       - name: Preserve current audit evidence
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: catalog-quality-on-change
+          if-no-files-found: warn
           path: |
             catalog-quality.json
             catalog-quality.md
