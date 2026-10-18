@@ -128,6 +128,72 @@ jobs:
           assert package_skill_signals(
               "package.json", '{"devDependencies":{"@playwright/test":"*"}}'
           )[0] == {"software_engineering", "web_frontend"}
+          # Multi-manifest repositories retain their historical integration
+          # profile while exposing verified Flutter/React skills. Untrusted
+          # comments, arbitrary YAML and README strings are not SDK evidence.
+          assert package_skill_signals(
+              "pubspec.yaml", "dependencies:\n  flutter:\n    sdk: flutter\n"
+          ) == ({"mobile"}, {"flutter", "dart", "mobile"})
+          assert package_skill_signals(
+              "pubspec.yaml", "dependencies:\n  example:\n    sdk: flutter\n"
+          ) == (set(), set())
+          assert package_skill_signals(
+              "pubspec.yaml", "# dependencies:\n#   flutter:\n#     sdk: flutter\n"
+          ) == (set(), set())
+          from portfolio_daily import project_profile
+          from agent_skill_discovery import recommend_skills, word_set
+          from unittest.mock import patch as skill_patch
+          hybrid_files = {
+              "pyproject.toml": "[project]\nname = 'polyglot'\n",
+              "package.json": json.dumps({"dependencies": {"next": "15.0.0"}}),
+              "pubspec.yaml": "dependencies:\n  flutter:\n    sdk: flutter\n",
+          }
+          manifest_reads = []
+          def fake_file_text(repo, filename, token, *, limit=5500):
+              assert repo == "dbrckk/polyglot"
+              manifest_reads.append(filename)
+              return hybrid_files.get(filename, "")
+          hybrid = {
+              "full_name": "dbrckk/polyglot", "name": "polyglot",
+              "language": "GDScript", "description": "", "topics": [],
+          }
+          with skill_patch("portfolio_daily.file_text", side_effect=fake_file_text):
+              hybrid_profile = project_profile(hybrid, "")
+          assert hybrid_profile["dependencies"].strip() == hybrid_files["pyproject.toml"].strip()
+          assert manifest_reads.count("package.json") == 1
+          assert manifest_reads.count("pubspec.yaml") == 1
+          # Flutter-only manifests are already probed before the fallback
+          # skill loop; a negative package.json lookup must not be repeated.
+          flutter_reads = []
+          def flutter_file_text(repo, filename, token, *, limit=5500):
+              flutter_reads.append(filename)
+              return hybrid_files["pubspec.yaml"] if filename == "pubspec.yaml" else ""
+          with skill_patch("portfolio_daily.file_text", side_effect=flutter_file_text):
+              flutter_profile = project_profile({
+                  **hybrid, "name": "flutter-app", "language": "Dart",
+              }, "")
+          assert flutter_reads.count("package.json") == 1
+          assert flutter_reads.count("pubspec.yaml") == 1
+          assert {"mobile"} <= set(flutter_profile["skill_domains"])
+          assert {"web_frontend", "mobile", "game_dev"} <= set(hybrid_profile["skill_domains"])
+          assert {"nextjs", "flutter", "dart", "godot", "gdscript"} <= set(hybrid_profile["skill_terms"])
+          matched = recommend_skills(
+              set(hybrid_profile["skill_terms"]), set(hybrid_profile["skill_domains"]),
+              language="GDScript", limit=20,
+          )
+          assert any(row["id"] == "godot-gdscript" for row in matched)
+          flutter_matches = recommend_skills(
+              word_set("flutter dart responsive mobile"), {"mobile"},
+              language="Dart", limit=20,
+          )
+          assert {"flutter-responsive-layout", "flutter-layout-diagnostics"} <= {
+              row["id"] for row in flutter_matches
+          }
+          assert not any(row["id"].startswith("flutter-") for row in
+                         recommend_skills(word_set("flutter mobile"), {"mobile"},
+                                          language="Kotlin", limit=20))
+          assert all(row["reviewRequired"] and row["integrationEligible"] is False
+                     and row["installCommand"] is None for row in matched + flutter_matches)
           # Functional transport smoke: an ambiguous mutating request is sent
           # once; a read-only GET retains the bounded retry policy.
           import portfolio_daily as portfolio_transport

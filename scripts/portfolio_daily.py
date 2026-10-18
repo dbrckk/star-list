@@ -109,7 +109,27 @@ SKILL_FRAMEWORK_PACKAGES = {
 
 
 def package_skill_signals(filename: str, content: str) -> tuple[set[str], set[str]]:
-    """Conservative framework hints from package names, never package scripts."""
+    """Conservative framework hints from exact manifest dependencies only."""
+    if filename == "pubspec.yaml":
+        # Flutter is a real SDK dependency, not just a mention of the word
+        # "flutter" in an arbitrary description, comment or README. We only
+        # recognize the standard, indented pubspec dependency declaration.
+        section = ""
+        flutter_dependency = False
+        for raw_line in content.splitlines():
+            line = raw_line.split("#", 1)[0].rstrip()
+            if not line.strip():
+                continue
+            indentation = len(line) - len(line.lstrip(" "))
+            if indentation == 0:
+                section = line[:-1] if line.endswith(":") else ""
+                flutter_dependency = False
+            elif section == "dependencies" and indentation == 2:
+                flutter_dependency = line.strip() == "flutter:"
+            elif section == "dependencies" and indentation == 4 and flutter_dependency:
+                if line.strip() == "sdk: flutter":
+                    return {"mobile"}, {"flutter", "dart", "mobile"}
+        return set(), set()
     if filename != "package.json":
         return set(), set()
     try:
@@ -235,15 +255,39 @@ def project_profile(repo: dict, token: str) -> dict:
     intro = file_text(name, "README.md", token, limit=2800)
     dependency_text = ""
     skill_domains, skill_terms = set(), set()
+    first_manifest = ""
+    inspected_manifests = {}
     for filename in MANIFESTS:
-        # Package metadata may exceed the short overview excerpt. A strict
-        # JSON parser discards malformed/truncated manifests, without using
-        # their scripts or arbitrary text as agent instructions.
+        # Preserve the first-manifest behavior used by the existing repository
+        # integration ranker. Only skill discovery inspects more than one
+        # exact, known manifest; it never executes manifest scripts.
         value = file_text(name, filename, token, limit=12000)
+        inspected_manifests[filename] = value
         if value:
             dependency_text += "\n" + value[:3500]
             skill_domains, skill_terms = package_skill_signals(filename, value)
+            first_manifest = filename
             break
+    # Polyglot projects often have a root pyproject.toml or Cargo.toml
+    # alongside frontend/mobile source. Those first manifests must not hide
+    # a real React/Flutter dependency from advisory Skill Issue discovery.
+    for filename in ("package.json", "pubspec.yaml"):
+        if filename == first_manifest:
+            continue
+        # A missing manifest encountered before the primary one was already
+        # checked. Avoid a second GitHub GET, including duplicate 404s.
+        value = inspected_manifests.get(filename)
+        if value is None:
+            value = file_text(name, filename, token, limit=12000)
+        if value:
+            extra_domains, extra_terms = package_skill_signals(filename, value)
+            skill_domains.update(extra_domains)
+            skill_terms.update(extra_terms)
+    # GitHub's own primary-language metadata is sufficient to identify
+    # GDScript-specific skill references without trusting README instructions.
+    if str(repo.get("language") or "").casefold() == "gdscript":
+        skill_domains.add("game_dev")
+        skill_terms.update({"godot", "gdscript"})
     overview = " ".join([repo["name"], description, " ".join(topics), intro[:1200]])
     label_text = " ".join([repo["name"], description, " ".join(topics)]).lower()
     domains = set(infer_domains(tokens(label_text)))
