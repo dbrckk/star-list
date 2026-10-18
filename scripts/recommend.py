@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog.json"
 STACKS = ROOT / "stacks.json"
 HISTORY = ROOT / "history.json"
+WEBSITES = ROOT / "websites.json"
 
 DOMAIN_ALIASES = {
     "ai": "ai_agents", "agent": "ai_agents", "agents": "ai_agents",
@@ -45,6 +46,41 @@ def load():
 
 def infer_domains(qtokens):
     return {DOMAIN_ALIASES[t] for t in qtokens if t in DOMAIN_ALIASES}
+
+
+def recommend_websites(qtokens, domains, limit=5):
+    """Rank non-GitHub references separately from code integration candidates.
+
+    This remains advisory: no site can be auto-dispatched as a dependency.
+    Repository-specific hard filters have no meaning for inspiration pages.
+    """
+    data = json.loads(WEBSITES.read_text(encoding="utf-8"))
+    ranked = []
+    for site in data["websites"]:
+        site_domains = set(site["domains"])
+        matched_domains = sorted(site_domains & domains)
+        matched_tags = sorted(qtokens & set(site["tags"]))
+        matched_text = sorted(qtokens & tokens(
+            site["name"] + " " + " ".join(site["bestFor"])
+        ))
+        if not matched_domains and not matched_tags and not matched_text:
+            continue
+        score = (12 * len(matched_domains) + 10 * len(matched_tags)
+                 + 4 * len(matched_text))
+        ranked.append((score, site, matched_domains, matched_tags, matched_text))
+    ranked.sort(key=lambda row: (-row[0], row[1]["name"].lower()))
+    return [
+        {
+            "id": site["id"], "name": site["name"], "url": site["url"],
+            "type": site["type"], "access": site["access"],
+            "reuse": site["reuse"], "caution": site["caution"],
+            "bestFor": site["bestFor"],
+            "selectionScore": score,
+            "why": {"domains": domain_hits, "tags": tag_hits, "terms": text_hits},
+            "integrationEligible": False,
+        }
+        for score, site, domain_hits, tag_hits, text_hits in ranked[:limit]
+    ]
 
 def activity_adjustment(r):
     gh = r.get("github")
@@ -249,10 +285,14 @@ def main():
     ap.add_argument("--include-audit", action="store_true", help="Allow audit-tier repositories in recommendations")
     ap.add_argument("--max-resource", choices=["low","medium","high"], default="high")
     ap.add_argument("--max-complexity", choices=["low","medium","high"], default="high")
+    ap.add_argument("--websites", action="store_true", help="Include matching external web references separately from repositories")
+    ap.add_argument("--top-websites", type=int, default=5, help="Max external website references when --websites is active")
     ap.add_argument("--json", action="store_true", dest="as_json")
     args = ap.parse_args()
     if args.top < 1:
         ap.error("--top must be >= 1")
+    if args.top_websites < 1:
+        ap.error("--top-websites must be >= 1")
     if args.min_score < 0:
         ap.error("--min-score must be >= 0")
 
@@ -323,6 +363,8 @@ def main():
         "diagnostics": {"catalogSize":len(repos), "eligible":len(ranked), "returned":len(top), "filtered":filtered},
         "recommendedStack": choose_stack(stacks, qtokens, domains, eligible_names),
     }
+    if args.websites:
+        result["websiteRecommendations"] = recommend_websites(qtokens, domains, args.top_websites)
     if args.as_json:
         print(json.dumps(result, indent=2, ensure_ascii=False))
     else:
@@ -337,6 +379,12 @@ def main():
             st = result["recommendedStack"]
             print(f"\nSuggested stack: {st['name']}")
             print(" + ".join(st.get("repos", [])))
+        if args.websites and result["websiteRecommendations"]:
+            print("\nWeb resources (references only; not GitHub repositories or automatic integrations):")
+            for site in result["websiteRecommendations"]:
+                print(f" - {site['name']} | {site['url']} | {site['type']} | {site['access']}")
+                print("   use:", "; ".join(site["bestFor"][:2]))
+                print("   reuse:", site["reuse"])
         print(f"\nEligible: {len(ranked)}/{len(repos)} | returned: {len(top)}")
 
 if __name__ == "__main__":
