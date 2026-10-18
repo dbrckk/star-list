@@ -57,6 +57,9 @@ maintenance fails visibly rather than reassigning historical identities.
 Unavailable repositories keep their previously recorded IDs unchanged.
 The metadata reader shares the Stars sync's same-origin authenticated HTTPS
 transport; redirected bearer credentials never go to another site.
+The weekly discovery-candidate scanner uses this transport as well and
+rejects any initially non-GitHub URL when a bearer token is supplied, before
+consulting cached responses or issuing network requests.
 
 If any repository cannot be verified, admission fails rather than committing
 a partial catalog. Subsequent scheduled runs retry. No Star is silently

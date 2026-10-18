@@ -10,6 +10,32 @@ spec = importlib.util.spec_from_file_location("discover", SCRIPT)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
 
+# The discoverer must use the shared opener that rejects authenticated
+# cross-origin redirects, while the API entrypoint refuses hostile initial
+# URLs even before a fresh cache result could conceal them.
+import sync_github_stars
+assert mod.urlopen.__self__ is sync_github_stars.SAFE_GITHUB_HTTP
+for unsafe in (
+    "https://github.example.invalid/collect",
+    "http://api.github.com/search/repositories",
+    "https://api.github.com.attacker.invalid/search",
+    "https://api.github.com:444/search/repositories",
+    "https://name:password@api.github.com/search/repositories",
+):
+    try:
+        mod.api_json(unsafe, {"Authorization": "Bearer dummy-secret"}, attempts=1)
+        raise AssertionError("authenticated discovery escaped GitHub API")
+    except RuntimeError as exc:
+        assert "Refusing authenticated discovery" in str(exc)
+# Nonsecret GitHub metadata requests continue to use the normal cache path.
+api_url = "https://api.github.com/search/repositories"
+valid_cache = {"schemaVersion": 1, "entries": {}}
+mod.cache_put(valid_cache, api_url, {"ok": True}, {}, now=1000)
+assert mod.api_json(
+    api_url, {"Authorization": "Bearer dummy-secret"},
+    attempts=1, cache=valid_cache, ttl_seconds=60, now=1030,
+)[0] == {"ok": True}
+
 cache = {"schemaVersion": 1, "entries": {}}
 url = "https://api.github.test/repos/a/x"
 mod.cache_put(cache, url, {"ok": True}, {"Link": "next"}, now=1000)
