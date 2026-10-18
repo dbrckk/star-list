@@ -2,25 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "Exclude audit-tier repositories from recommendations by default (#26)",
-      "terms": [
-        "26",
-        "audit-tier",
-        "by",
-        "default",
-        "exclude",
-        "from",
-        "recommendations",
-        "repositories"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/recommend.py",
-        "scripts/test_recommend.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "Infer recommendation relations dynamically (#28)",
       "terms": [
         "28",
@@ -1249,6 +1230,29 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(skills): add pinned Android Play, Compose and Roblox agent references (#137)",
+      "terms": [
+        "137",
+        "add",
+        "agent",
+        "android",
+        "compose",
+        "feat",
+        "pinned",
+        "play",
+        "references",
+        "roblox",
+        "skills"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/agent_skill_discovery.py",
+        "scripts/portfolio_daily.py",
+        "scripts/test_recommend.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1346,6 +1350,11 @@
     },
     "136": {
       "scripts/portfolio_daily.py": 4
+    },
+    "137": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1503,12 +1512,14 @@
       "scripts/test_recommend.py": 4
     },
     "add": {
+      "scripts/agent_skill_discovery.py": 4,
       "scripts/audit_catalog_quality.py": 4,
+      "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_json_contracts.py": 4,
-      "scripts/test_recommend.py": 4,
+      "scripts/test_recommend.py": 8,
       "scripts/validate_catalog.py": 4
     },
     "admissions": {
@@ -1523,6 +1534,11 @@
       "scripts/portfolio_daily.py": 20,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_documentation.py": 4
+    },
+    "agent": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "all": {
       "scripts/admit_github_stars.py": 4,
@@ -1542,6 +1558,11 @@
     },
     "ambiguous": {
       "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "android": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "api": {
       "scripts/discover_candidates.py": 4,
@@ -1685,6 +1706,11 @@
     },
     "completed": {
       "scripts/portfolio_daily.py": 4
+    },
+    "compose": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "concurrent": {
       "scripts/portfolio_daily.py": 4,
@@ -1899,9 +1925,9 @@
     },
     "feat": {
       "scripts/admit_github_stars.py": 8,
-      "scripts/agent_skill_discovery.py": 8,
+      "scripts/agent_skill_discovery.py": 12,
       "scripts/audit_catalog_quality.py": 8,
-      "scripts/portfolio_daily.py": 32,
+      "scripts/portfolio_daily.py": 36,
       "scripts/portfolio_failure_diagnostics.py": 12,
       "scripts/recommend.py": 8,
       "scripts/sync_github_stars.py": 4,
@@ -1909,7 +1935,7 @@
       "scripts/test_catalog_quality.py": 8,
       "scripts/test_documentation.py": 12,
       "scripts/test_json_contracts.py": 8,
-      "scripts/test_recommend.py": 12,
+      "scripts/test_recommend.py": 16,
       "scripts/test_sync_github_stars.py": 4,
       "scripts/validate_websites.py": 4
     },
@@ -2240,13 +2266,18 @@
       "scripts/portfolio_daily.py": 4
     },
     "pinned": {
-      "scripts/agent_skill_discovery.py": 4,
-      "scripts/portfolio_daily.py": 8,
-      "scripts/test_recommend.py": 4
+      "scripts/agent_skill_discovery.py": 8,
+      "scripts/portfolio_daily.py": 12,
+      "scripts/test_recommend.py": 8
     },
     "pipeline": {
       "scripts/star_import_pipeline.py": 4,
       "scripts/test_star_import_pipeline.py": 4
+    },
+    "play": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "portfolio": {
       "scripts/agent_skill_discovery.py": 4,
@@ -2377,9 +2408,9 @@
       "scripts/portfolio_daily.py": 4
     },
     "references": {
-      "scripts/agent_skill_discovery.py": 4,
-      "scripts/portfolio_daily.py": 4,
-      "scripts/test_recommend.py": 4
+      "scripts/agent_skill_discovery.py": 8,
+      "scripts/portfolio_daily.py": 8,
+      "scripts/test_recommend.py": 8
     },
     "refresh": {
       "scripts/test_documentation.py": 4
@@ -2481,7 +2512,9 @@
       "scripts/test_star_import_pipeline.py": 4
     },
     "roblox": {
-      "scripts/portfolio_daily.py": 8
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 12,
+      "scripts/test_recommend.py": 4
     },
     "safe": {
       "scripts/portfolio_failure_diagnostics.py": 4
@@ -2543,11 +2576,11 @@
       "scripts/test_recommend.py": 4
     },
     "skills": {
-      "scripts/agent_skill_discovery.py": 8,
-      "scripts/portfolio_daily.py": 16,
+      "scripts/agent_skill_discovery.py": 12,
+      "scripts/portfolio_daily.py": 20,
       "scripts/recommend.py": 4,
       "scripts/test_documentation.py": 4,
-      "scripts/test_recommend.py": 8
+      "scripts/test_recommend.py": 12
     },
     "slow": {
       "scripts/portfolio_daily.py": 4,

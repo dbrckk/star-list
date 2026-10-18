@@ -1,7 +1,7 @@
 # Change impact
 
-Base: 2fd8ab5005f5c4912a52848538e029683976d87e
-Head: a08aaed9823064fd6dc8606c41dc73d84b8d5a94
+Base: 790e6b4a9b470f7ed24c9ba432ed92401e725fb5
+Head: 112eae046915145e6163444959a3feeba82c4333
 
 ## Changed files
 - M .github/workflows/portfolio-scan-smoke.yml
@@ -9,7 +9,9 @@ Head: a08aaed9823064fd6dc8606c41dc73d84b8d5a94
 - M README.md
 - M agent-skills.json
 - M docs/DAILY_PORTFOLIO_INTEGRATION.md
+- M scripts/agent_skill_discovery.py
 - M scripts/portfolio_daily.py
+- M scripts/test_recommend.py
 
 ## Affected areas
 - .github

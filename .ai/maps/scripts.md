@@ -1184,6 +1184,10 @@ value = inspected_manifests.get(filename)
 ⋮----
 # GitHub's own primary-language metadata is sufficient to identify
 # GDScript-specific skill references without trusting README instructions.
+primary_language = str(repo.get("language") or "").casefold()
+⋮----
+# Luau is distinct from general Lua. Do not infer Roblox merely
+# because an arbitrary project happens to use Lua scripting.
 ⋮----
 overview = " ".join([repo["name"], description, " ".join(topics), intro[:1200]])
 label_text = " ".join([repo["name"], description, " ".join(topics)]).lower()
@@ -2779,6 +2783,10 @@ without_skills_query = run("mobile ui design", "--top", "4")
 ⋮----
 # Newly verified upstream files must be selectable without changing the normal
 # GitHub recommendation contract, and no skill can be silently installed.
+⋮----
+roblox_skills = recommend_skills(word_set("roblox luau studio"), {"game_dev"}, limit=20)
+⋮----
+compose_skills = recommend_skills(word_set("compose jetpack"), {"mobile"}, language="Kotlin", limit=20)
 ⋮----
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 ⋮----

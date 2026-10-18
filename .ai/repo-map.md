@@ -693,6 +693,28 @@ jobs:
           assert {"mobile"} <= set(flutter_profile["skill_domains"])
           assert {"web_frontend", "mobile", "game_dev"} <= set(hybrid_profile["skill_domains"])
           assert {"nextjs", "flutter", "dart", "godot", "gdscript"} <= set(hybrid_profile["skill_terms"])
+          with skill_patch("portfolio_daily.file_text", side_effect=fake_file_text):
+              luau_profile = project_profile({**hybrid, "language": "Luau"}, "")
+              lua_profile = project_profile({**hybrid, "language": "Lua"}, "")
+          assert "luau" in luau_profile["skill_terms"]
+          assert "game_dev" in luau_profile["skill_domains"]
+          assert "luau" not in lua_profile["skill_terms"]
+          assert "game_dev" not in lua_profile["skill_domains"]
+          roblox_matched = recommend_skills(
+              set(luau_profile["skill_terms"]), set(luau_profile["skill_domains"]),
+              language="Luau", limit=20,
+          )
+          assert any(row["id"] == "roblox-luau-development" and
+                     row["sourcePath"] == "SKILL.md" for row in roblox_matched)
+          assert any(row["id"] == "android-play-policy-insights" for row in
+                     recommend_skills(word_set("android play policy"), {"mobile"},
+                                      language="Kotlin", limit=20))
+          assert any(row["id"] == "android-compose-performance" for row in
+                     recommend_skills(word_set("jetpack compose"), {"mobile"},
+                                      language="Kotlin", limit=20))
+          assert not any(row["id"] == "android-compose-performance" for row in
+                         recommend_skills(word_set("android mobile"), {"mobile"},
+                                          language="Kotlin", limit=20))
           matched = recommend_skills(
               set(hybrid_profile["skill_terms"]), set(hybrid_profile["skill_domains"]),
               language="GDScript", limit=20,
@@ -3535,6 +3557,10 @@ value = inspected_manifests.get(filename)
 ⋮----
 # GitHub's own primary-language metadata is sufficient to identify
 # GDScript-specific skill references without trusting README instructions.
+primary_language = str(repo.get("language") or "").casefold()
+⋮----
+# Luau is distinct from general Lua. Do not infer Roblox merely
+# because an arbitrary project happens to use Lua scripting.
 ⋮----
 overview = " ".join([repo["name"], description, " ".join(topics), intro[:1200]])
 label_text = " ".join([repo["name"], description, " ".join(topics)]).lower()
@@ -5131,6 +5157,10 @@ without_skills_query = run("mobile ui design", "--top", "4")
 # Newly verified upstream files must be selectable without changing the normal
 # GitHub recommendation contract, and no skill can be silently installed.
 ⋮----
+roblox_skills = recommend_skills(word_set("roblox luau studio"), {"game_dev"}, limit=20)
+⋮----
+compose_skills = recommend_skills(word_set("compose jetpack"), {"mobile"}, language="Kotlin", limit=20)
+⋮----
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 ⋮----
 high_threshold = run("ai agent", "--min-score", "1000")
@@ -5774,7 +5804,7 @@ workflow:
     "usage": "read-only discovery; never auto-install external instructions",
     "priority": "portfolio-wide"
   },
-  "description": "Conservative shortlist of agent-skill upstream sources, including Skill Issue directory entries and independent official/engine-specific repositories. Source commits and exact SKILL.md files are pinned for review, not audited or installed.",
+  "description": "Conservative shortlist of agent-skill references from Skill Issue and supplementary official/engine-specific upstream sources. Every exact SKILL.md path is pinned to a Git commit for manual license, instruction and runtime review; no skill is audited or installed automatically.",
   "skills": [
     {
       "id": "ui-ux-pro-max-skill",
@@ -6360,6 +6390,77 @@ workflow:
         "GDScript"
       ],
       "sourceUrl": "https://github.com/shihabshahrier/Godot-Skill",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "android-compose-performance",
+      "name": "Jetpack Compose Performance",
+      "sourceRepository": "android/skills",
+      "sourceCommit": "5bda39f154fb859a08d45e2392f3568e049f83fb",
+      "sourcePath": "jetpack-compose/jetpack-compose-performance/SKILL.md",
+      "domains": [
+        "mobile"
+      ],
+      "tags": [
+        "compose",
+        "jetpack",
+        "recomposition",
+        "material3"
+      ],
+      "description": "Official Android guidance for diagnosing Jetpack Compose recomposition, scrolling and rendering performance; only relevant to apps confirmed to use Compose.",
+      "languages": [
+        "Kotlin"
+      ],
+      "sourceUrl": "https://github.com/android/skills",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "android-play-policy-insights",
+      "name": "Android Play Policy Insights",
+      "sourceRepository": "android/skills",
+      "sourceCommit": "5bda39f154fb859a08d45e2392f3568e049f83fb",
+      "sourcePath": "play/play-policy-insights/SKILL.md",
+      "domains": [
+        "mobile"
+      ],
+      "tags": [
+        "android",
+        "play",
+        "store",
+        "release",
+        "publishing",
+        "policy",
+        "privacy",
+        "compliance"
+      ],
+      "description": "Official Android guidance for reviewing app permissions, data safety and policy disclosures before Google Play submission.",
+      "languages": [],
+      "sourceUrl": "https://github.com/android/skills",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "roblox-luau-development",
+      "name": "Roblox Luau Development",
+      "sourceRepository": "MSayib/roblox-dev-skill",
+      "sourceCommit": "4a35b01cb07eb237081bee705455e19db37342d8",
+      "sourcePath": "SKILL.md",
+      "domains": [
+        "game_dev"
+      ],
+      "tags": [
+        "roblox",
+        "luau",
+        "studio"
+      ],
+      "description": "MIT-licensed Roblox Studio and Luau development reference for architecture, secure remotes, performance and current engine APIs.",
+      "languages": [],
+      "sourceUrl": "https://github.com/MSayib/roblox-dev-skill",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
       "skillCodeReviewed": false
@@ -51336,7 +51437,7 @@ python scripts/recommend.py "mobile ui design" --skills --websites --json
 The daily public and private repository scanners include the Skill Issue
 directory for **every accessible project** and suggest only relevant skills
 based on repository labels, domains, language and narrowly recognized
-root React/Flutter dependencies. Pinned Flutter and Godot SKILL.md references
+root React/Flutter dependencies. Pinned Flutter, Godot, Android and Roblox SKILL.md references
 are also available for compatible projects. No third-party skill is
 automatically downloaded, installed, granted credentials or dispatched. Read
 [`AGENT_SKILLS.md`](AGENT_SKILLS.md) for the adoption and security gates.

@@ -7,34 +7,43 @@
         "changed-source",
         "dependency-neighbor",
         "impact",
-        "recent-project-state",
+        "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
       "score": 505
     },
     {
-      "path": "AGENT_SKILLS.md",
+      "path": "scripts/test_recommend.py",
       "reasons": [
         "changed",
-        "recent-project-state"
+        "changed-source",
+        "impact",
+        "reverse-dependency-neighbor",
+        "selected-test",
+        "symbol-indexed"
       ],
-      "score": 160
+      "score": 405
     },
     {
-      "path": "README.md",
+      "path": "scripts/agent_skill_discovery.py",
       "reasons": [
         "changed",
-        "recent-project-state"
+        "changed-source",
+        "dependency-neighbor",
+        "impact",
+        "symbol-indexed"
       ],
-      "score": 160
+      "score": 395
     },
     {
-      "path": "agent-skills.json",
+      "path": "scripts/recommend.py",
       "reasons": [
-        "changed",
-        "recent-project-state"
+        "dependency-neighbor",
+        "impact",
+        "reverse-dependency-neighbor",
+        "symbol-indexed"
       ],
-      "score": 160
+      "score": 220
     },
     {
       "path": "scripts/portfolio_failure_diagnostics.py",
@@ -53,6 +62,27 @@
       "score": 100
     },
     {
+      "path": "AGENT_SKILLS.md",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "README.md",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "agent-skills.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
       "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
       "reasons": [
         "changed"
@@ -60,69 +90,18 @@
       "score": 100
     },
     {
-      "path": "scripts/agent_skill_discovery.py",
+      "path": "scripts/find_replacements.py",
       "reasons": [
-        "dependency-neighbor",
-        "recent-project-state"
+        "dependency-neighbor"
       ],
-      "score": 85
+      "score": 25
     },
     {
-      "path": "scripts/recommend.py",
+      "path": "scripts/health_score.py",
       "reasons": [
-        "dependency-neighbor",
-        "recent-project-state"
+        "dependency-neighbor"
       ],
-      "score": 85
-    },
-    {
-      "path": "AGENTS.md",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "WEB_RESOURCES.md",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "catalog.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "schemas/websites.schema.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "scripts/test_documentation.py",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "scripts/test_recommend.py",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "websites.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
+      "score": 25
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

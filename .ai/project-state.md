@@ -98,13 +98,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T22:34:50Z
+Generated: 2026-10-18T22:41:11Z
 
 ### Git
 - Branch: `main`
-- Head: `a08aaed98230`
-- Commit date: 2026-10-18T18:34:41-04:00
-- Commit: feat(skills): extend pinned Skill Issue discovery to Flutter and Godot projects (#136)
+- Head: `112eae046915`
+- Commit date: 2026-10-18T18:41:01-04:00
+- Commit: feat(skills): add pinned Android Play, Compose and Roblox agent references (#137)
 - Tracked files: 291
 
 ### Recently changed files
@@ -113,11 +113,10 @@ Generated: 2026-10-18T22:34:50Z
 - `README.md`
 - `agent-skills.json`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
-- `scripts/portfolio_daily.py`
 - `scripts/agent_skill_discovery.py`
+- `scripts/portfolio_daily.py`
 - `scripts/test_recommend.py`
 - `catalog.json`
-- `AGENTS.md`
 
 ### Project signals
 - No common build descriptor detected
