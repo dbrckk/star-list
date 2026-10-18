@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "description": "Curated external websites and design references. Website listings are distinct from GitHub repositories; source code and reuse rights must be checked independently.",
+  "resources": [
+    {
+      "id": "scrolltide",
+      "name": "Scrolltide",
+      "url": "https://scrolltide.co",
+      "kind": "prompt-library",
+      "domain": "web_frontend",
+      "tags": [
+        "3d",
+        "scroll-animation",
+        "prompt",
+        "source-examples"
+      ],
+      "description": "Prompts and source examples for 3D and scroll-driven websites",
+      "usagePolicy": "reference-only",
+      "licenseNote": "Check individual example licenses before reusing code.",
+      "source": "user-supplied-screenshot",
+      "verification": "pending",
+      "addedOn": "2026-10-18"
+    },
+    {
+      "id": "awwwards",
+      "name": "Awwwards",
+      "url": "https://www.awwwards.com",
+      "kind": "design-gallery",
+      "domain": "web_frontend",
+      "tags": [
+        "web-design",
+        "inspiration",
+        "award-winners"
+      ],
+      "description": "Gallery of recognized web design work",
+      "usagePolicy": "reference-only",
+      "licenseNote": "Awards and showcased designs are not reusable assets.",
+      "source": "user-supplied-screenshot",
+      "verification": "pending",
+      "addedOn": "2026-10-18"
+    },
+    {
+      "id": "godly",
+      "name": "Godly",
+      "url": "https://godly.website",
+      "kind": "design-gallery",
+      "domain": "web_frontend",
+      "tags": [
+        "web-design",
+        "inspiration",
+        "layout"
+      ],
+      "description": "Curated web design inspiration",
+      "usagePolicy": "reference-only",
+      "licenseNote": "Inspect rights and terms of each showcased design.",
+      "source": "user-supplied-screenshot",
+      "verification": "pending",
+      "addedOn": "2026-10-18"
+    },
+    {
+      "id": "60fps",
+      "name": "60fps",
+      "url": "https://60fps.design",
+      "kind": "motion-gallery",
+      "domain": "web_frontend",
+      "tags": [
+        "motion",
+        "ui-animation",
+        "interaction"
+      ],
+      "description": "Motion and interface animation inspiration",
+      "usagePolicy": "reference-only",
+      "licenseNote": "Reference only; do not copy animations or assets without permission.",
+      "source": "user-supplied-screenshot",
+      "verification": "pending",
+      "addedOn": "2026-10-18"
+    },
+    {
+      "id": "21st",
+      "name": "21st.dev",
+      "url": "https://21st.dev",
+      "kind": "component-library",
+      "domain": "web_frontend",
+      "tags": [
+        "react",
+        "ui-components",
+        "copy-paste"
+      ],
+      "description": "Community-contributed interface components",
+      "usagePolicy": "per-item-license",
+      "licenseNote": "Review each component license, dependencies and provenance.",
+      "source": "user-supplied-screenshot",
+      "verification": "pending",
+      "addedOn": "2026-10-18"
+    },
+    {
+      "id": "aceternity",
+      "name": "Aceternity UI",
+      "url": "https://ui.aceternity.com",
+      "kind": "component-library",
+      "domain": "web_frontend",
+      "tags": [
+        "react",
+        "animation",
+        "ui-components"
+      ],
+      "description": "Animated interface components and examples",
+      "usagePolicy": "per-item-license",
+      "licenseNote": "Check component license and commercial-use terms.",
+      "source": "user-supplied-screenshot",
+      "verification": "pending",
+      "addedOn": "2026-10-18"
+    },
+    {
+      "id": "magicui",
+      "name": "Magic UI",
+      "url": "https://magicui.design",
+      "kind": "component-library",
+      "domain": "web_frontend",
+      "tags": [
+        "react",
+        "animation",
+        "landing-pages"
+      ],
+      "description": "Animated landing-page and UI components",
+      "usagePolicy": "per-item-license",
+      "licenseNote": "Check component license and dependency compatibility.",
+      "source": "user-supplied-screenshot",
+      "verification": "pending",
+      "addedOn": "2026-10-18"
+    },
+    {
+      "id": "threejs",
+      "name": "Three.js",
+      "url": "https://threejs.org",
+      "kind": "web-3d-engine",
+      "domain": "graphics",
+      "tags": [
+        "webgl",
+        "webgpu",
+        "3d",
+        "animation"
+      ],
+      "description": "JavaScript 3D rendering engine and documentation",
+      "usagePolicy": "verify-upstream-license",
+      "licenseNote": "Use only with compatible package versions and upstream license.",
+      "source": "user-supplied-screenshot",
+      "verification": "pending",
+      "addedOn": "2026-10-18"
+    },
+    {
+      "id": "shadertoy",
+      "name": "Shadertoy",
+      "url": "https://www.shadertoy.com",
+      "kind": "shader-gallery",
+      "domain": "graphics",
+      "tags": [
+        "glsl",
+        "shaders",
+        "graphics",
+        "inspiration"
+      ],
+      "description": "Interactive shader experiments and references",
+      "usagePolicy": "per-item-license",
+      "licenseNote": "Shader authors retain rights; inspect each shader's reuse terms.",
+      "source": "user-supplied-screenshot",
+      "verification": "pending",
+      "addedOn": "2026-10-18"
+    },
+    {
+      "id": "lovable",
+      "name": "Lovable",
+      "url": "https://lovable.dev",
+      "kind": "app-builder",
+      "domain": "software_engineering",
+      "tags": [
+        "ai",
+        "app-generation",
+        "prototyping"
+      ],
+      "description": "Prompt-driven app and website creation platform",
+      "usagePolicy": "service-terms",
+      "licenseNote": "Service pricing and generated-code rights require separate review.",
+      "source": "user-supplied-screenshot",
+      "verification": "pending",
+      "addedOn": "2026-10-18"
+    }
+  ]
+}
