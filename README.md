@@ -16,6 +16,7 @@ Current stable release: **1.0.0**. See [`CHANGELOG.md`](CHANGELOG.md) for releas
 - remembers unchanged review/reject candidates to reduce repeated noise;
 - validates generated JSON against contracts in [`schemas/`](schemas/);
 - opens or updates GitHub issues for discovery, cache health, and repository health review.
+- suggests curated design/3D/UI websites as **separate references**, never as installable GitHub repositories.
 
 ## Requirements
 
@@ -66,6 +67,24 @@ python scripts/sync_github_stars.py --user dbrckk --report-json star-sync-report
 ```
 
 See [synchronization operations and limitations](docs/GITHUB_STARS_SYNC.md).
+
+## Website references (design, 3D, animation, AI builders)
+
+The second curated catalog, [`web-resources.json`](web-resources.json), starts with
+10 websites from a user-provided screenshot: Scrolltide, Awwwards, Godly
+(now **Recent**), 60fps, 21st.dev, Aceternity UI, Magic UI, Three.js,
+Shadertoy and Lovable. Some are galleries, some supply components or code,
+and others require paid plans. **Website inclusion never authorizes source
+copying or automatic deployment.**
+
+```bash
+python scripts/recommend.py "3d web animation shader" --json
+python scripts/recommend.py "react tailwind animated components" --top-web 10 --json
+python scripts/validate_web_resources.py
+```
+
+The recommender returns `webResources` independently from GitHub
+`recommendations`. See [websites, licensing and canonical URLs](docs/WEB_RESOURCES.md).
 
 ## Import GitHub Star screenshots
 
@@ -120,7 +139,9 @@ The metadata files from prior imports are historical evidence, not automatic app
 | --- | --- |
 | `VERSION` | Current stable semantic version. |
 | `CHANGELOG.md` | Stable release notes. |
-| `catalog.json` | Curated repository catalog. |
+| `catalog.json` | Curated GitHub repository catalog. |
+| [`web-resources.json`](web-resources.json) | Curated website references (not GitHub repositories or auto-installable code). |
+| [`schemas/web-resources.schema.json`](schemas/web-resources.schema.json) | Strict website metadata contract. |
 | `catalog.schema.json` | Main catalog schema. |
 | `stacks.json` | Predefined repository stacks used by the recommender. |
 | `history.json` | Compact repository trend history. |
@@ -200,6 +221,7 @@ Useful local checks:
 ```bash
 python -m compileall -q scripts
 python scripts/validate_catalog.py
+python scripts/validate_web_resources.py
 python scripts/test_recommend.py
 python scripts/test_evaluate_candidates.py
 python scripts/test_json_contracts.py
