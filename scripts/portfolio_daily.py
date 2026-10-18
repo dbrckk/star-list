@@ -89,6 +89,49 @@ EXTERNAL_CODING_AGENT_CLIS = frozenset({
 MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
              "build.gradle.kts", "pubspec.yaml")
 
+# Only exact, declared dependency names may contribute framework evidence to
+# skill references. Do not tokenize package scripts, README prose or arbitrary
+# package names: none is an authorization to execute an upstream skill.
+SKILL_FRAMEWORK_PACKAGES = {
+    "react": ({"web_frontend"}, {"react", "frontend"}),
+    "react-dom": ({"web_frontend"}, {"react", "frontend"}),
+    "next": ({"web_frontend"}, {"react", "nextjs", "frontend"}),
+    "tailwindcss": ({"web_frontend"}, {"tailwind", "css", "frontend"}),
+    "react-native": ({"mobile"}, {"react", "native", "mobile"}),
+    "expo": ({"mobile"}, {"react", "native", "expo", "mobile"}),
+    "remotion": ({"ai_media", "graphics"}, {"remotion", "video", "animation"}),
+    "@remotion/core": ({"ai_media", "graphics"}, {"remotion", "video", "animation"}),
+    "zustand": ({"web_frontend"}, {"react", "state", "zustand"}),
+    "jotai": ({"web_frontend"}, {"react", "state", "jotai"}),
+    "@tanstack/react-query": ({"web_frontend"}, {"react", "query"}),
+    "@playwright/test": ({"software_engineering", "web_frontend"}, {"browser", "testing", "web"}),
+}
+
+
+def package_skill_signals(filename: str, content: str) -> tuple[set[str], set[str]]:
+    """Conservative framework hints from package names, never package scripts."""
+    if filename != "package.json":
+        return set(), set()
+    try:
+        parsed = json.loads(content)
+    except (ValueError, TypeError):
+        return set(), set()
+    if not isinstance(parsed, dict):
+        return set(), set()
+    domains, terms = set(), set()
+    for field in ("dependencies", "devDependencies", "peerDependencies", "optionalDependencies"):
+        dependencies = parsed.get(field)
+        if not isinstance(dependencies, dict):
+            continue
+        for name in dependencies:
+            if not isinstance(name, str):
+                continue
+            evidence = SKILL_FRAMEWORK_PACKAGES.get(name.strip().lower())
+            if evidence is not None:
+                domains.update(evidence[0])
+                terms.update(evidence[1])
+    return domains, terms
+
 
 class SameOriginRedirect(HTTPRedirectHandler):
     """Never forward GitHub or Production-OS bearer tokens to another origin."""
@@ -191,10 +234,15 @@ def project_profile(repo: dict, token: str) -> dict:
     topics = repo.get("topics") or []
     intro = file_text(name, "README.md", token, limit=2800)
     dependency_text = ""
+    skill_domains, skill_terms = set(), set()
     for filename in MANIFESTS:
-        value = file_text(name, filename, token, limit=3500)
+        # Package metadata may exceed the short overview excerpt. A strict
+        # JSON parser discards malformed/truncated manifests, without using
+        # their scripts or arbitrary text as agent instructions.
+        value = file_text(name, filename, token, limit=12000)
         if value:
-            dependency_text += "\n" + value
+            dependency_text += "\n" + value[:3500]
+            skill_domains, skill_terms = package_skill_signals(filename, value)
             break
     overview = " ".join([repo["name"], description, " ".join(topics), intro[:1200]])
     label_text = " ".join([repo["name"], description, " ".join(topics)]).lower()
@@ -204,7 +252,8 @@ def project_profile(repo: dict, token: str) -> dict:
             domains.add(domain)
     # README may refine a known project, but never invent a domain solely from README.
     return {"domains": sorted(domains), "terms": tokens(overview), "dependencies": dependency_text.lower(),
-            "overview": overview[:900], "language": str(repo.get("language") or "").lower()}
+            "overview": overview[:900], "language": str(repo.get("language") or "").lower(),
+            "skill_domains": sorted(skill_domains), "skill_terms": sorted(skill_terms)}
 
 
 def eligible(item: dict) -> bool:
@@ -757,9 +806,11 @@ def main() -> int:
                 skill_terms = word_set(" ".join([
                     repo["name"], str(repo.get("description") or ""),
                     " ".join(repo.get("topics") or []),
-                ]))
+                ])) | set(profile.get("skill_terms") or [])
+                skill_domains = (set(profile.get("domains") or [])
+                                 | set(profile.get("skill_domains") or []))
                 row["skill_discovery"]["recommendations"] = recommend_skills(
-                    skill_terms, set(profile.get("domains") or []),
+                    skill_terms, skill_domains,
                     language=profile.get("language") or "", limit=2,
                 )
                 # Reference websites based on repository-owned metadata only;
