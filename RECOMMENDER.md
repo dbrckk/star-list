@@ -35,6 +35,29 @@ These are **tool recommendations**, not runnable game templates or guarantees
 of AAA-level output. As with all predefined stacks, the engine only shows a
 stack when every member passes the requested hard constraints.
 
+## External website references (opt-in)
+
+Use [the 10-site directory](WEB_RESOURCES.md) to discover website
+inspiration, React components, motion references, 3D/shader examples or
+hosted builders alongside GitHub repositories.
+
+```bash
+python scripts/recommend.py "3d scroll animation website" --websites --top-websites 10
+python scripts/recommend.py "react ui animation" --websites --json
+```
+
+With `--websites`, JSON contains a separate `websiteRecommendations`
+array with HTTPS links, type, free/freemium access expectations,
+`reuse` guidance, and a relevance score. Every site is marked
+`integrationEligible: false`: a web gallery or paid service must not
+be dispatched as a GitHub dependency. The normal repository
+`recommendations` and `recommendedStack` are unchanged.
+
+`--top-websites N` limits the separately ranked web references (default 5).
+Repository-only technical hard filters (such as `--language`, `--platform`
+or `--self-hosted`) do not establish compatibility or code licensing
+for these external reference pages.
+
 ## Selection score
 
 The selection score is task-specific. It is different from:
