@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "directory": {
+    "id": "skill-issue",
+    "name": "Skill Issue",
+    "url": "https://skill-issue.in/",
+    "discoveredOn": "2026-10-18",
+    "usage": "read-only discovery; never auto-install external instructions",
+    "priority": "portfolio-wide"
+  },
+  "description": "Conservative shortlist of links surfaced on Skill Issue and checked against accessible upstream GitHub repositories. These are discovery candidates, not audited/installed agent skills.",
+  "skills": [
+    {
+      "id": "ui-ux-pro-max-skill",
+      "name": "UI UX Pro Max",
+      "sourceRepository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "domains": [
+        "web_frontend",
+        "mobile",
+        "graphics",
+        "game_dev"
+      ],
+      "tags": [
+        "ui",
+        "ux",
+        "design",
+        "android",
+        "mobile",
+        "game",
+        "interface",
+        "palettes",
+        "typography"
+      ],
+      "description": "UI design reference and design-system exploration across stacks.",
+      "languages": [],
+      "sourceUrl": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "frontend-design",
+      "name": "Frontend Design",
+      "sourceRepository": "anthropics/skills",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "frontend",
+        "design",
+        "ui",
+        "web",
+        "website",
+        "landing",
+        "interface"
+      ],
+      "description": "Distinctive frontend layout and styling guidance.",
+      "languages": [],
+      "sourceUrl": "https://github.com/anthropics/skills",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "agent-browser",
+      "name": "Agent Browser",
+      "sourceRepository": "vercel-labs/agent-browser",
+      "domains": [
+        "web_frontend",
+        "software_engineering",
+        "ai_agents",
+        "productivity"
+      ],
+      "tags": [
+        "browser",
+        "e2e",
+        "playwright",
+        "automation",
+        "testing",
+        "website",
+        "web"
+      ],
+      "description": "Automated browser interactions and visual web inspection.",
+      "languages": [],
+      "sourceUrl": "https://github.com/vercel-labs/agent-browser",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "react-best-practices",
+      "name": "React Best Practices",
+      "sourceRepository": "vercel-labs/agent-skills",
+      "domains": [
+        "web_frontend"
+      ],
+      "tags": [
+        "react",
+        "nextjs",
+        "next",
+        "javascript",
+        "typescript",
+        "performance",
+        "frontend"
+      ],
+      "description": "React and Next.js rendering/performance guidelines.",
+      "languages": [
+        "JavaScript",
+        "TypeScript"
+      ],
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "web-design-guidelines",
+      "name": "Web Design Guidelines",
+      "sourceRepository": "vercel-labs/agent-skills",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "web",
+        "ui",
+        "ux",
+        "accessibility",
+        "design",
+        "frontend"
+      ],
+      "description": "Interface quality, accessibility, and interaction review guidance.",
+      "languages": [],
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "remotion-best-practices",
+      "name": "Remotion Best Practices",
+      "sourceRepository": "remotion-dev/skills",
+      "domains": [
+        "ai_media",
+        "graphics",
+        "web_frontend"
+      ],
+      "tags": [
+        "video",
+        "motion",
+        "remotion",
+        "animation",
+        "captions",
+        "audio"
+      ],
+      "description": "Programmatic video editing/animation using Remotion.",
+      "languages": [
+        "JavaScript",
+        "TypeScript"
+      ],
+      "sourceUrl": "https://github.com/remotion-dev/skills",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "api-design-principles",
+      "name": "API Design Principles",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "backend",
+        "software_engineering",
+        "devops"
+      ],
+      "tags": [
+        "api",
+        "backend",
+        "rest",
+        "graphql",
+        "endpoints",
+        "architecture",
+        "openapi"
+      ],
+      "description": "API design patterns and review for REST and GraphQL.",
+      "languages": [],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    }
+  ]
+}

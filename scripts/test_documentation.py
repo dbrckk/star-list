@@ -27,7 +27,8 @@ assert "CHANGELOG.md" in readme, "README must link the changelog"
 assert "WEB_RESOURCES.md" in readme and "websites.json" in readme, "README must advertise curated website references"
 website_guide = (ROOT / "WEB_RESOURCES.md").read_text()
 websites = __import__("json").loads((ROOT / "websites.json").read_text())
-assert len(websites["websites"]) == 10
+assert len(websites["websites"]) >= 11
+assert any(site["id"] == "skill-issue" for site in websites["websites"])
 assert all(site["url"] in website_guide for site in websites["websites"])
 assert "--websites" in (ROOT / "RECOMMENDER.md").read_text()
 assert "website_references" in (ROOT / "scripts/portfolio_daily.py").read_text()
@@ -91,5 +92,15 @@ assert "    uses: ./.github/workflows/catalog-quality-on-change.yml" in maintena
 assert "git rebase origin/main" in maintenance_yaml
 assert "git push origin HEAD:main" in maintenance_yaml
 assert "      - name: Publish catalog quality audit" not in maintenance_yaml
+skills_docs = (ROOT / "AGENT_SKILLS.md").read_text()
+skills_catalog = (ROOT / "agent-skills.json").read_text()
+skills_scanner = (ROOT / "scripts/agent_skill_discovery.py").read_text()
+portfolio_scanner = (ROOT / "scripts/portfolio_daily.py").read_text()
+portfolio_yaml = (ROOT / ".github/workflows/daily-portfolio-integration.yml").read_text()
+assert "https://skill-issue.in/" in skills_docs and '"schemaVersion": 1' in skills_catalog
+assert "automaticInstallation" in skills_scanner
+assert "row[\"skill_discovery\"]" in portfolio_scanner
+assert '"agent-skills.json"' in portfolio_yaml
+assert "AGENT_SKILLS.md" in readme and "--skills" in readme
 
 print("OK: documentation contract tests passed")

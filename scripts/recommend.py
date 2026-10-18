@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from health_score import health_score
 from find_replacements import replacement_score
+from agent_skill_discovery import SKILL_ISSUE_URL, recommend_skills, word_set
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog.json"
@@ -286,6 +287,8 @@ def main():
     ap.add_argument("--max-resource", choices=["low","medium","high"], default="high")
     ap.add_argument("--max-complexity", choices=["low","medium","high"], default="high")
     ap.add_argument("--websites", action="store_true", help="Include matching external web references separately from repositories")
+    ap.add_argument("--skills", action="store_true", help="Find curated agent-skill sources from Skill Issue (review-only)")
+    ap.add_argument("--top-skills", type=int, default=3, help="Max matching agent-skill sources when --skills is active")
     ap.add_argument("--top-websites", type=int, default=5, help="Max external website references when --websites is active")
     ap.add_argument("--json", action="store_true", dest="as_json")
     args = ap.parse_args()
@@ -293,6 +296,8 @@ def main():
         ap.error("--top must be >= 1")
     if args.top_websites < 1:
         ap.error("--top-websites must be >= 1")
+    if args.top_skills < 1 or args.top_skills > 20:
+        ap.error("--top-skills must be between 1 and 20")
     if args.min_score < 0:
         ap.error("--min-score must be >= 0")
 
@@ -365,6 +370,16 @@ def main():
     }
     if args.websites:
         result["websiteRecommendations"] = recommend_websites(qtokens, domains, args.top_websites)
+    if args.skills:
+        result["skillDiscovery"] = {
+            "directory": SKILL_ISSUE_URL, "priority": "high",
+            "reviewRequired": True, "automaticInstallation": False,
+            "recommendations": recommend_skills(
+                word_set(args.query), domains,
+                language=args.language[0] if args.language else "",
+                limit=args.top_skills,
+            ),
+        }
     if args.as_json:
         print(json.dumps(result, indent=2, ensure_ascii=False))
     else:
@@ -379,6 +394,11 @@ def main():
             st = result["recommendedStack"]
             print(f"\nSuggested stack: {st['name']}")
             print(" + ".join(st.get("repos", [])))
+        if args.skills:
+            print("\nAgent skills (Skill Issue; review sources and licenses before use):")
+            print(" - Directory:", SKILL_ISSUE_URL)
+            for skill in result["skillDiscovery"]["recommendations"]:
+                print(" - " + skill["name"] + " | " + skill["url"] + " | review required")
         if args.websites and result["websiteRecommendations"]:
             print("\nWeb resources (references only; not GitHub repositories or automatic integrations):")
             for site in result["websiteRecommendations"]:

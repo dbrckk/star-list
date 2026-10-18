@@ -38,6 +38,26 @@ jobs:
           python scripts/validate_json_contract.py schemas/websites.schema.json websites.json
       - name: Validate normalized website URLs and identities
         run: python scripts/validate_websites.py
+      - name: Validate and exercise curated Skill Issue discovery
+        run: |
+          python scripts/agent_skill_discovery.py
+          python scripts/agent_skill_discovery.py "react frontend performance" --domain web_frontend --language TypeScript --json > /tmp/skills-react.json
+          python scripts/agent_skill_discovery.py "api backend rest" --domain backend --json > /tmp/skills-api.json
+          python scripts/recommend.py "mobile ui design" --skills --json > /tmp/skills-mobile.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          react = json.loads(Path("/tmp/skills-react.json").read_text())
+          api = json.loads(Path("/tmp/skills-api.json").read_text())
+          mobile = json.loads(Path("/tmp/skills-mobile.json").read_text())["skillDiscovery"]
+          assert react["automaticInstallation"] is False
+          assert {"frontend-design", "react-best-practices"} & {x["id"] for x in react["recommendations"]}
+          assert "api-design-principles" in {x["id"] for x in api["recommendations"]}
+          assert "ui-ux-pro-max-skill" in {x["id"] for x in mobile["recommendations"]}
+          assert all(x["integrationEligible"] is False and x["installCommand"] is None
+                     for rows in (react["recommendations"], api["recommendations"], mobile["recommendations"])
+                     for x in rows)
+          PY
       - name: Test catalog quality audit
         run: python scripts/test_catalog_quality.py
       - name: Generate catalog quality audit

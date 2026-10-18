@@ -22,6 +22,7 @@ from urllib.parse import quote, urlparse
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 from recommend import DOMAIN_ALIASES, infer_domains, score_repo, tokens, recommend_websites
+from agent_skill_discovery import SKILL_ISSUE_URL, recommend_skills, word_set
 
 ROOT = Path(__file__).resolve().parents[1]
 API = "https://api.github.com"
@@ -650,6 +651,8 @@ def render_markdown(report: dict) -> str:
              "Projects with native-mode candidates: **" + str(summary["with_native_suggestions"]) + "**.",
              "Native-mode candidates: **" + str(summary["native_suggestions"]) + "**.",
              "Projects with website references: **" + str(summary["with_website_references"]) + "**.",
+             "Repositories informed about Skill Issue: **" + str(summary["skill_directory_references"]) + "**.",
+             "Repositories with targeted skill suggestions: **" + str(summary["with_skill_recommendations"]) + "**.",
              "New Production-OS integration requests: **" + str(summary["dispatched"]) + "**.",
              "Dispatch: **" + report["dispatch_status"] + "**.", ""]
     if isinstance(summary.get("active_integrations"), int):
@@ -675,6 +678,12 @@ def render_markdown(report: dict) -> str:
                          + " — fit " + str(item["score"]) + ", " + item["mode"]
                          + ", license " + str(item["license"])
                          + ", overlap: " + ", ".join(item["shared_terms"]))
+        lines.append("- Agent-skill directory: [Skill Issue](" + row["skill_discovery"]["directory"]
+                     + ") — high-priority research only; review individual skills before installing.")
+        for skill in row["skill_discovery"]["recommendations"]:
+            lines.append("- Suggested agent skill: [" + skill["name"] + "](" + skill["url"]
+                         + ") — repo-label match (" + ", ".join(skill["why"]["tags"])
+                         + "); requires review, no automatic installation.")
         for site in row.get("website_references", []):
             lines.append("- Web reference: [" + site["name"] + "](" + site["url"] + ")"
                          + " — " + site["type"] + ", " + site["reuse"]
@@ -733,13 +742,26 @@ def main() -> int:
         source, catalog = [], []
     for repo in source:
         target = repo["full_name"]
-        row = {"repository": target, "status": "scanned", "suggestions": [], "website_references": [], "dispatches": []}
+        row = {"repository": target, "status": "scanned", "suggestions": [], "website_references": [],
+               "skill_discovery": {"directory": SKILL_ISSUE_URL, "priority": "high",
+                                   "reviewRequired": True, "recommendations": []},
+               "dispatches": []}
         try:
             if repo.get("archived") or repo.get("disabled"):
                 row["status"] = "skipped-inactive"
             else:
                 profile = project_profile(repo, portfolio_token or gh_token)
                 row["suggestions"] = recommendations(repo, profile, catalog, 3)
+                # All targets receive the directory; skill matches are based
+                # on owned GitHub labels and language, never README instructions.
+                skill_terms = word_set(" ".join([
+                    repo["name"], str(repo.get("description") or ""),
+                    " ".join(repo.get("topics") or []),
+                ]))
+                row["skill_discovery"]["recommendations"] = recommend_skills(
+                    skill_terms, set(profile.get("domains") or []),
+                    language=profile.get("language") or "", limit=2,
+                )
                 # Reference websites based on repository-owned metadata only;
                 # arbitrary README prose is not trustworthy installation evidence.
                 web_terms = tokens(" ".join([
@@ -751,7 +773,7 @@ def main() -> int:
                 # At least one concrete tag or best-for phrase must also match.
                 row["website_references"] = [
                     site for site in possible_sites
-                    if site["why"]["tags"] or site["why"]["terms"]
+                    if site["id"] != "skill-issue" and (site["why"]["tags"] or site["why"]["terms"])
                 ][:2]
                 row["status"] = ("qualified-candidates" if row["suggestions"]
                                  else "web-reference-only" if row["website_references"]
@@ -967,6 +989,15 @@ def main() -> int:
         ),
         "website_references": sum(
             len(p["website_references"]) for p in report["projects"]
+        ),
+        "skill_directory_references": sum(
+            p["skill_discovery"]["directory"] == SKILL_ISSUE_URL for p in report["projects"]
+        ),
+        "with_skill_recommendations": sum(
+            bool(p["skill_discovery"]["recommendations"]) for p in report["projects"]
+        ),
+        "skill_recommendations": sum(
+            len(p["skill_discovery"]["recommendations"]) for p in report["projects"]
         ),
         "dispatched": dispatched, "active_integrations": active_integrations,
         "failed_v2_integrations": failed_v2_integrations,

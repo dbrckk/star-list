@@ -13,6 +13,9 @@ on:
     branches: [main]
     paths:
       - "scripts/portfolio_daily.py"
+      - "scripts/agent_skill_discovery.py"
+      - "agent-skills.json"
+      - "websites.json"
       - ".github/workflows/daily-portfolio-integration.yml"
 
 permissions:

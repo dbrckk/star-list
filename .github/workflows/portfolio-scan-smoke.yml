@@ -5,6 +5,8 @@ on:
     paths:
       - "scripts/portfolio_daily.py"
       - "websites.json"
+      - "agent-skills.json"
+      - "scripts/agent_skill_discovery.py"
       - "scripts/validate_websites.py"
       - "scripts/recommend.py"
       - "scripts/portfolio_failure_diagnostics.py"
@@ -57,6 +59,23 @@ jobs:
               len(row["website_references"]) for row in result["projects"]
           )
           assert "Projects with website references: **" in Path("portfolio-daily.md").read_text()
+          assert result["summary"]["skill_directory_references"] == len(result["projects"])
+          assert result["summary"]["with_skill_recommendations"] == sum(
+              bool(row["skill_discovery"]["recommendations"]) for row in result["projects"]
+          )
+          assert result["summary"]["skill_recommendations"] == sum(
+              len(row["skill_discovery"]["recommendations"]) for row in result["projects"]
+          )
+          assert "Repositories informed about Skill Issue: **" in Path("portfolio-daily.md").read_text()
+          for row in result["projects"]:
+              assert row["skill_discovery"]["directory"] == "https://skill-issue.in/"
+              assert row["skill_discovery"]["reviewRequired"] is True
+              assert len(row["skill_discovery"]["recommendations"]) <= 2
+              for skill in row["skill_discovery"]["recommendations"]:
+                  assert skill["integrationEligible"] is False
+                  assert skill["reviewRequired"] is True
+                  assert skill["installCommand"] is None
+                  assert skill["url"].startswith("https://github.com/")
           for row in result["projects"]:
               for website in row["website_references"]:
                   assert website["integrationEligible"] is False
