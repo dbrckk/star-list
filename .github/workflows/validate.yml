@@ -33,6 +33,10 @@ jobs:
         run: |
           python scripts/validate_catalog.py
           python scripts/validate_json_contract.py catalog.schema.json catalog.json
+      - name: Validate independent website references
+        run: |
+          python scripts/validate_json_contract.py schemas/web-resources.schema.json web-resources.json
+          python scripts/validate_web_resources.py
       - name: Test catalog quality audit
         run: python scripts/test_catalog_quality.py
       - name: Generate catalog quality audit
