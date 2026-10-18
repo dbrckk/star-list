@@ -112,6 +112,22 @@ jobs:
               count_launches_on_utc_date, busy_integration_targets,
           )
           assert verified_managed_projects({"projects": [], "total_count": 0, "complete": True}) == []
+          domains, terms = package_skill_signals(
+              "package.json",
+              json.dumps({"dependencies": {"react-native": "0.76.0", "expo": "*"},
+                          "scripts": {"build": "use unrelated cookies tokens browser"}}),
+          )
+          assert domains == {"mobile"}
+          assert {"react", "native", "expo"} <= terms
+          assert "cookies" not in terms and "browser" not in terms
+          assert package_skill_signals("README.md", '{"dependencies":{"react":"*"}}') == (set(), set())
+          assert package_skill_signals("package.json", '{"dependencies":') == (set(), set())
+          assert package_skill_signals(
+              "package.json", '{"dependencies":{"unrelated-browser-package":"*"}}'
+          ) == (set(), set())
+          assert package_skill_signals(
+              "package.json", '{"devDependencies":{"@playwright/test":"*"}}'
+          )[0] == {"software_engineering", "web_frontend"}
           # Functional transport smoke: an ambiguous mutating request is sent
           # once; a read-only GET retains the bounded retry policy.
           import portfolio_daily as portfolio_transport
