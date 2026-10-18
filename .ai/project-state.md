@@ -72,22 +72,22 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T12:31:36Z
+Generated: 2026-10-18T12:37:11Z
 
 ### Git
 - Branch: `main`
-- Head: `ccce7e66519d`
-- Commit date: 2026-10-18T08:31:25-04:00
-- Commit: fix(metadata): publish catalog audit only after verified refresh commit (#118)
+- Head: `541424eb32d2`
+- Commit date: 2026-10-18T08:37:02-04:00
+- Commit: docs(capacity): checkpoint exact-SHA draft PR gates and fleet recovery evidence (#119)
 - Tracked files: 280
 
 ### Recently changed files
+- `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
 - `.github/workflows/refresh-metadata.yml`
 - `docs/GITHUB_STARS_SYNC.md`
 - `scripts/test_documentation.py`
 - `.github/workflows/catalog-quality-on-change.yml`
 - `catalog.json`
-- `.github/workflows/sync-github-stars.yml`
 
 ### Project signals
 - No common build descriptor detected

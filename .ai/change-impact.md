@@ -1,17 +1,13 @@
 # Change impact
 
-Base: 427c2d0fc7205a0fc5fcc1f817f56fed44b7e953
-Head: ccce7e66519d6a71d57a67779595485a8f226025
+Base: 17c8cd45e6d273d238e0d53dab32d8caeedf132e
+Head: 541424eb32d2ddb1bdccea4c76e6a4807661c08e
 
 ## Changed files
-- M .github/workflows/refresh-metadata.yml
-- M docs/GITHUB_STARS_SYNC.md
-- M scripts/test_documentation.py
+- M docs/PORTFOLIO_CAPACITY_RECOVERY.md
 
 ## Affected areas
-- .github
 - docs
-- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.

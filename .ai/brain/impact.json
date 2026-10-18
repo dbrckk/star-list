@@ -1,31 +1,17 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "a47f644b96281e1f7ebfe0110cdadba276ca3244",
-  "head": "ccce7e66519d6a71d57a67779595485a8f226025",
+  "base": "ccce7e66519d6a71d57a67779595485a8f226025",
+  "head": "541424eb32d2ddb1bdccea4c76e6a4807661c08e",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": ".github/workflows/refresh-metadata.yml",
-      "status": "M"
-    },
-    {
-      "path": "docs/GITHUB_STARS_SYNC.md",
-      "status": "M"
-    },
-    {
-      "path": "scripts/test_documentation.py",
+      "path": "docs/PORTFOLIO_CAPACITY_RECOVERY.md",
       "status": "M"
     }
   ],
-  "changed_source_files": [
-    "scripts/test_documentation.py"
-  ],
-  "impacted_files": [
-    "scripts/test_documentation.py"
-  ],
+  "changed_source_files": [],
+  "impacted_files": [],
   "impacted_symbols": [],
-  "selected_tests": [
-    "scripts/test_documentation.py"
-  ]
+  "selected_tests": []
 }
