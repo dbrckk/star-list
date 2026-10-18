@@ -34,6 +34,9 @@ The workflow:
 
    This explicit call is necessary because GitHub suppresses ordinary `push`
    workflow triggers for commits made using the built-in `GITHUB_TOKEN`.
+   The catalog-quality workflow also reconciles once daily at 03:47 UTC,
+   so a missed or interrupted admission audit cannot leave its issue stale
+   indefinitely. Both routes read the latest `main` before publishing.
 
 If any repository cannot be verified, admission fails rather than committing
 a partial catalog. Subsequent scheduled runs retry. No Star is silently
