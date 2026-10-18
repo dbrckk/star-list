@@ -79,7 +79,9 @@ python scripts/recommend.py "mobile ui design" --skills --websites --json
 
 The daily public and private repository scanners include the Skill Issue
 directory for **every accessible project** and suggest only relevant skills
-based on repository labels, domains and language. No third-party skill is
+based on repository labels, domains, language and narrowly recognized
+root React/Flutter dependencies. Pinned Flutter and Godot SKILL.md references
+are also available for compatible projects. No third-party skill is
 automatically downloaded, installed, granted credentials or dispatched. Read
 [`AGENT_SKILLS.md`](AGENT_SKILLS.md) for the adoption and security gates.
 
