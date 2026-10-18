@@ -47,6 +47,14 @@ assert with_skills_query["skillDiscovery"]["directory"] == "https://skill-issue.
 assert with_skills_query["skillDiscovery"]["automaticInstallation"] is False
 assert all(s["reviewRequired"] and not s["integrationEligible"] and s["installCommand"] is None
            for s in with_skills_query["skillDiscovery"]["recommendations"])
+assert all(s["skillFileUrl"].startswith(s["url"] + "/blob/" + s["sourceCommit"] + "/")
+           and len(s["sourceCommit"]) == 40 and s["sourcePath"].endswith("/SKILL.md")
+           for s in with_skills_query["skillDiscovery"]["recommendations"])
+# Newly verified upstream files must be selectable without changing the normal
+# GitHub recommendation contract, and no skill can be silently installed.
+assert any(s["id"] == "react-native-architecture" for s in
+           run("react native mobile", "--skills", "--language", "typescript")
+           ["skillDiscovery"]["recommendations"])
 assert {row["id"] for row in with_web_query["websiteRecommendations"]} >= {"scrolltide", "threejs", "shadertoy"}
 assert all(not row["integrationEligible"] for row in with_web_query["websiteRecommendations"])
 assert all(row["url"].startswith("https://") for row in with_web_query["websiteRecommendations"])
