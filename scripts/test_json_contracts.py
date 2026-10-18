@@ -107,4 +107,32 @@ unsupported={"type":"object","unevaluatedProperties":False}
 errors=validator.validate({},unsupported)
 assert errors and any("unsupported schema keyword" in error for error in errors), errors
 
+# Semantic website validator protects against deceptive URLs and identity
+# collisions beyond what the minimal JSON Schema dialect can express.
+import sys
+sys.path.insert(0, str(ROOT / "scripts"))
+from validate_websites import canonical_url, check_websites
+assert canonical_url("https://www.example.org/") == canonical_url("https://example.org/")
+assert canonical_url("https://godly.website/") != canonical_url("https://recent.design/")
+for bad_url in (
+    "http://example.org/", "https://user:pass@example.org/",
+    "https://example.org/?token=secret", "https://example.org/#fragment",
+    "https://example.org.evil.com@evil.com/",
+):
+    try:
+        canonical_url(bad_url)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError(f"Unsafe website URL accepted: {bad_url!r}")
+sample = samples["websites.schema.json"]
+websites_schema = json.loads((SCHEMAS / "websites.schema.json").read_text())
+assert check_websites(sample, websites_schema) == []
+collision = {**sample, "websites": [
+    sample["websites"][0],
+    {**sample["websites"][0], "id": "another-reference",
+     "url": "https://www.example.org/"},
+]}
+assert any("collides" in error for error in check_websites(collision, websites_schema))
+
 print("OK: pipeline and catalog JSON contract tests passed")
