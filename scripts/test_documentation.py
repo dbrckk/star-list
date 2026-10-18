@@ -76,5 +76,12 @@ assert "main moved repeatedly" in audit_yaml
 assert "refusing stale issue publication" in audit_yaml
 assert "        if: always()" in audit_yaml
 assert "GITHUB_TOKEN" in stars_docs and "reusable workflow" in stars_docs
+maintenance_yaml = (ROOT / ".github/workflows/refresh-metadata.yml").read_text()
+assert "  quality-after-refresh:" in maintenance_yaml
+assert "    needs: refresh" in maintenance_yaml
+assert "    uses: ./.github/workflows/catalog-quality-on-change.yml" in maintenance_yaml
+assert "git rebase origin/main" in maintenance_yaml
+assert "git push origin HEAD:main" in maintenance_yaml
+assert "      - name: Publish catalog quality audit" not in maintenance_yaml
 
 print("OK: documentation contract tests passed")
