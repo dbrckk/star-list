@@ -37,6 +37,9 @@ The workflow:
    The catalog-quality workflow also reconciles once daily at 03:47 UTC,
    so a missed or interrupted admission audit cannot leave its issue stale
    indefinitely. Both routes read the latest `main` before publishing.
+   If the default branch changes during an audit, the reporter re-fetches
+   and rechecks it (up to three times). It refuses to overwrite the review
+   issue with an older snapshot, retaining the audit artifact on failure.
 
 If any repository cannot be verified, admission fails rather than committing
 a partial catalog. Subsequent scheduled runs retry. No Star is silently
