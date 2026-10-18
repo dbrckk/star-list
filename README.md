@@ -47,6 +47,29 @@ python scripts/test_pipeline_integration.py
 
 For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
+## Website and design-resource catalog
+
+The catalog also includes **non-GitHub websites** in [`web-resources.json`](web-resources.json).
+These resources are stored separately from GitHub repositories so the existing
+Stars synchronization, repository ranking, license checks and metadata refresh
+cannot mistakenly treat websites as code repositories. The first ten entries
+come from the October 18 design/3D screenshot (Scrolltide, Awwwards, Godly,
+60fps, 21st.dev, Aceternity UI, Magic UI, Three.js, Shadertoy and Lovable).
+
+Search the website collection with the standard-library CLI:
+
+```bash
+python scripts/web_resources.py
+python scripts/web_resources.py animation
+python scripts/web_resources.py --domain graphics --json
+```
+
+Each entry records its source, category, capabilities and usage restrictions.
+All screenshot-derived links are marked **pending verification**; a website
+listing is not evidence that its designs, components or shaders can be copied,
+redistributed or used commercially. Check the specific source license and
+terms before integrating anything into a project.
+
 ## Automatic GitHub Stars synchronization
 
 A free, hourly GitHub Actions workflow checks **dbrckk**'s publicly accessible starred
