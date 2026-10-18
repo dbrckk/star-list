@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog.json"
 STACKS = ROOT / "stacks.json"
 HISTORY = ROOT / "history.json"
+WEB_RESOURCES = ROOT / "web-resources.json"
 
 DOMAIN_ALIASES = {
     "ai": "ai_agents", "agent": "ai_agents", "agents": "ai_agents",
@@ -233,6 +234,62 @@ def resolve_relations(source, repos, stacks, repo_by_name, allowed_names=None):
         "complementsSource": "curated" if explicit_complements else ("inferred" if complements else "none"),
     }
 
+def recommend_web_resources(qtokens, domains, required_caps, excluded_caps,
+                            *, require_all_caps=False, limit=5):
+    """Rank website references separately from installable GitHub repositories.
+
+    Websites are never passed to stack selection, GitHub health scoring,
+    integration dispatch or license eligibility. All links are advisory.
+    """
+    if not WEB_RESOURCES.exists() or limit <= 0:
+        return []
+    resources = json.loads(WEB_RESOURCES.read_text(encoding="utf-8"))["resources"]
+    ranked = []
+    for item in resources:
+        topics = set(item["topics"])
+        if excluded_caps & topics:
+            continue
+        if require_all_caps and not required_caps.issubset(topics):
+            continue
+        related_domains = domains & set(item["domains"])
+        searchable = tokens(" ".join([
+            item["name"], " ".join(item["topics"]),
+            " ".join(item["bestFor"]),
+        ]))
+        shared = qtokens & searchable
+        # A broad domain alone is not enough: avoid recommending every site
+        # in a domain for unrelated tasks. Two concrete terms also allow
+        # discovery when the query has no known domain alias.
+        if not shared or (not related_domains and len(shared) < 2):
+            continue
+        best_terms = tokens(" ".join(item["bestFor"]))
+        matched_caps = topics & required_caps
+        quality = (10 * len(shared) + 7 * len(related_domains)
+                   + 4 * len(qtokens & best_terms) + 4 * len(matched_caps))
+        avoid_terms = tokens(" ".join(item["avoidWhen"]))
+        if qtokens & avoid_terms:
+            quality -= 8
+        if quality <= 0:
+            continue
+        ranked.append((quality, item, shared))
+    ranked.sort(key=lambda row: (-row[0], row[1]["name"].casefold()))
+    return [{
+        "id": item["id"],
+        "name": item["name"],
+        "url": item["url"],
+        "category": item["category"],
+        "domains": item["domains"],
+        "selectionScore": score,
+        "matchedTerms": sorted(shared),
+        "bestFor": item["bestFor"],
+        "avoidWhen": item["avoidWhen"],
+        "accessModel": item["accessModel"],
+        "usagePolicy": item["usagePolicy"],
+        "licenseNote": item["licenseNote"],
+        "autoIntegrate": False,
+    } for score, item, shared in ranked[:limit]]
+
+
 def main():
     ap = argparse.ArgumentParser(description="Recommend repositories from star-list catalog.")
     ap.add_argument("query", help="Natural-language task/query")
@@ -249,12 +306,16 @@ def main():
     ap.add_argument("--include-audit", action="store_true", help="Allow audit-tier repositories in recommendations")
     ap.add_argument("--max-resource", choices=["low","medium","high"], default="high")
     ap.add_argument("--max-complexity", choices=["low","medium","high"], default="high")
+    ap.add_argument("--top-web", type=int, default=5, help="Maximum separate website references (0 disables)")
+    ap.add_argument("--no-web", action="store_true", help="Return GitHub repositories only")
     ap.add_argument("--json", action="store_true", dest="as_json")
     args = ap.parse_args()
     if args.top < 1:
         ap.error("--top must be >= 1")
     if args.min_score < 0:
         ap.error("--min-score must be >= 0")
+    if args.top_web < 0:
+        ap.error("--top-web must be >= 0")
 
     repos, stacks = load()
     repo_by_name = {r["repo"]: r for r in repos}
@@ -313,8 +374,14 @@ def main():
             "health": health_score(r),
         })
 
+    websites = recommend_web_resources(
+        qtokens, domains, required_caps, excluded_caps,
+        require_all_caps=args.require_all_caps,
+        limit=0 if args.no_web else args.top_web,
+    )
     result = {
         "query": args.query, "inferredDomains": sorted(domains),
+        "webResources": websites,
         "requiredCapabilities": sorted(required_caps), "recommendations": top,
         "constraints": {"platforms":args.platform, "languages":args.language, "selfHosted":args.self_hosted,
                         "maxResource":args.max_resource, "maxComplexity":args.max_complexity,
@@ -333,6 +400,10 @@ def main():
             if item["why"]: print("   why:", "; ".join(item["why"]))
             if item["bestFor"]: print("   bestFor:", "; ".join(item["bestFor"][:3]))
             if item["complements"]: print("   complements:", ", ".join(item["complements"][:4]))
+        if websites:
+            print("\\nWebsite references (review source and asset rights before reuse):")
+            for i, site in enumerate(websites, 1):
+                print(f"{i}. {site['name']} | {site['url']} | {site['category']} | {site['usagePolicy']}")
         if result["recommendedStack"]:
             st = result["recommendedStack"]
             print(f"\nSuggested stack: {st['name']}")
