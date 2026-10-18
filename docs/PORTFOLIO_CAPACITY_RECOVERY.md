@@ -177,6 +177,39 @@ remains active. A short model-completion smoke from the NVIDIA NIM route
 may demonstrate isolated inference availability, but it is not durable free
 capacity for the 90,000-token portfolio task envelope.
 
+## Delivery acceptance gates (2026-10-18)
+
+The Production-OS handoff must not be reported as a successful integration
+merely because GitHub accepted a write or the worker returned a task receipt.
+The merged [AI Dev Server PR #345](https://github.com/dbrckk/ai-dev-server/pull/345)
+makes agent-created code-delivery PRs **draft by default**. The merged
+[PR #346](https://github.com/dbrckk/ai-dev-server/pull/346) checks that the
+target PR head is **exactly** the commit that was pushed; an unrelated branch
+head or an out-of-date PR is not delivery evidence.
+
+Before recording any catalog-to-target integration as complete, retain
+all of the following evidence:
+
+1. A positive authenticated provider-capacity check for the *actual* coding
+   route, followed by a bounded worker execution. A short smoke probe alone
+   does not establish sustained free quota.
+2. A real source commit in the intended target repository, with an inspected
+   diff implementing the selected licensed and compatible component. A
+   generated proposal or no-op commit is insufficient.
+3. A reviewable **draft** PR whose repository, base and head SHA match the
+   intended target and the delivered source commit exactly. Do not
+   auto-approve or auto-merge third-party integrations.
+4. Passing relevant target-side tests, build and CI for the exact delivered
+   SHA, plus evidence the integrated component is actually invoked by the
+   application rather than merely declared as a dependency.
+5. A recorded operator review of the earlier terminal v3 failure before
+   any fleet-wide recovery. A successful isolated canary does not remove
+   the existing global launch stop.
+
+These gates are independent: CI on the orchestration repository is not
+substitute evidence for CI on the modified target. Preserve failed attempts
+and their original status rather than retroactively marking them DONE.
+
 ## Safe observability
 
 The workflow
