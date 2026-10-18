@@ -25,8 +25,13 @@ repositories' own daily workflows.
 
 1. Enumerates **every accessible** repository owned by `dbrckk`,
    with pagination and duplicate removal. Includes `star-list` itself.
-2. Inspects its GitHub metadata, README and one supported dependency manifest
-   without downloading/executing third-party code.
+2. Inspects its GitHub metadata, README and the first supported dependency
+   manifest for repository integration ranking, without downloading or executing
+   third-party code. For **read-only skill matching only**, it additionally
+   reads the root `package.json` and `pubspec.yaml` when not already covered.
+   Their exact dependency names / Flutter SDK declaration, and GitHub's primary
+   GDScript language, can qualify relevant pinned skill references without
+   modifying the target or broadening integration eligibility.
 3. Compares its actual profile with all catalog candidates.
 4. Rejects audit-tier, archived, unsupported-license, paid, low-quality and
    high-complexity candidates before deciding that an integration is eligible.
