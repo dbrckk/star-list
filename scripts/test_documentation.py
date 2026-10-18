@@ -24,6 +24,12 @@ assert re.fullmatch(r"\d+\.\d+\.\d+",version), f"invalid semantic version: {vers
 assert version=="1.0.0", f"expected v1 release version 1.0.0, got {version!r}"
 assert f"## {version} - 2026-09-16" in changelog, "CHANGELOG missing current release entry"
 assert "CHANGELOG.md" in readme, "README must link the changelog"
+assert "WEB_RESOURCES.md" in readme and "websites.json" in readme, "README must advertise curated website references"
+website_guide = (ROOT / "WEB_RESOURCES.md").read_text()
+websites = __import__("json").loads((ROOT / "websites.json").read_text())
+assert len(websites["websites"]) == 10
+assert all(site["url"] in website_guide for site in websites["websites"])
+assert "--websites" in (ROOT / "RECOMMENDER.md").read_text()
 assert f"Current stable release: **{version}**" in readme, "README stable release marker is stale"
 
 for text in (
