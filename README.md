@@ -47,6 +47,23 @@ python scripts/test_pipeline_integration.py
 
 For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
+## Website resources (in addition to GitHub repositories)
+
+The catalog also includes **10 curated website links** for UI design,
+animation, browser 3D, shaders, and AI-assisted prototyping. Explore them
+in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
+[`websites.json`](websites.json) directory. They are **not** GitHub
+repositories and are never passed to Production-OS as code dependencies.
+
+```bash
+python scripts/recommend.py "3d scroll animation website" --websites --json
+python scripts/validate_json_contract.py schemas/websites.schema.json websites.json
+```
+
+The optional website ranking preserves the original repository rankings and
+reports licensing/usage cautions separately; do not treat paid design assets
+or third-party shaders as open source.
+
 ## Automatic GitHub Stars synchronization
 
 A free, hourly GitHub Actions workflow checks **dbrckk**'s publicly accessible starred
