@@ -1090,7 +1090,21 @@ SKILL_FRAMEWORK_PACKAGES = {
 ⋮----
 def package_skill_signals(filename: str, content: str) -> tuple[set[str], set[str]]
 ⋮----
-"""Conservative framework hints from package names, never package scripts."""
+"""Conservative framework hints from exact manifest dependencies only."""
+⋮----
+# Flutter is a real SDK dependency, not just a mention of the word
+# "flutter" in an arbitrary description, comment or README. We only
+# recognize the standard, indented pubspec dependency declaration.
+section = ""
+flutter_dependency = False
+⋮----
+line = raw_line.split("#", 1)[0].rstrip()
+⋮----
+indentation = len(line) - len(line.lstrip(" "))
+⋮----
+section = line[:-1] if line.endswith(":") else ""
+⋮----
+flutter_dependency = line.strip() == "flutter:"
 ⋮----
 parsed = json.loads(content)
 ⋮----
@@ -1150,10 +1164,26 @@ topics = repo.get("topics") or []
 intro = file_text(name, "README.md", token, limit=2800)
 dependency_text = ""
 ⋮----
-# Package metadata may exceed the short overview excerpt. A strict
-# JSON parser discards malformed/truncated manifests, without using
-# their scripts or arbitrary text as agent instructions.
+first_manifest = ""
+inspected_manifests = {}
+⋮----
+# Preserve the first-manifest behavior used by the existing repository
+# integration ranker. Only skill discovery inspects more than one
+# exact, known manifest; it never executes manifest scripts.
 value = file_text(name, filename, token, limit=12000)
+⋮----
+first_manifest = filename
+⋮----
+# Polyglot projects often have a root pyproject.toml or Cargo.toml
+# alongside frontend/mobile source. Those first manifests must not hide
+# a real React/Flutter dependency from advisory Skill Issue discovery.
+⋮----
+# A missing manifest encountered before the primary one was already
+# checked. Avoid a second GitHub GET, including duplicate 404s.
+value = inspected_manifests.get(filename)
+⋮----
+# GitHub's own primary-language metadata is sufficient to identify
+# GDScript-specific skill references without trusting README instructions.
 ⋮----
 overview = " ".join([repo["name"], description, " ".join(topics), intro[:1200]])
 label_text = " ".join([repo["name"], description, " ".join(topics)]).lower()

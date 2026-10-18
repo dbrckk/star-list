@@ -644,6 +644,72 @@ jobs:
           assert package_skill_signals(
               "package.json", '{"devDependencies":{"@playwright/test":"*"}}'
           )[0] == {"software_engineering", "web_frontend"}
+          # Multi-manifest repositories retain their historical integration
+          # profile while exposing verified Flutter/React skills. Untrusted
+          # comments, arbitrary YAML and README strings are not SDK evidence.
+          assert package_skill_signals(
+              "pubspec.yaml", "dependencies:\n  flutter:\n    sdk: flutter\n"
+          ) == ({"mobile"}, {"flutter", "dart", "mobile"})
+          assert package_skill_signals(
+              "pubspec.yaml", "dependencies:\n  example:\n    sdk: flutter\n"
+          ) == (set(), set())
+          assert package_skill_signals(
+              "pubspec.yaml", "# dependencies:\n#   flutter:\n#     sdk: flutter\n"
+          ) == (set(), set())
+          from portfolio_daily import project_profile
+          from agent_skill_discovery import recommend_skills, word_set
+          from unittest.mock import patch as skill_patch
+          hybrid_files = {
+              "pyproject.toml": "[project]\nname = 'polyglot'\n",
+              "package.json": json.dumps({"dependencies": {"next": "15.0.0"}}),
+              "pubspec.yaml": "dependencies:\n  flutter:\n    sdk: flutter\n",
+          }
+          manifest_reads = []
+          def fake_file_text(repo, filename, token, *, limit=5500):
+              assert repo == "dbrckk/polyglot"
+              manifest_reads.append(filename)
+              return hybrid_files.get(filename, "")
+          hybrid = {
+              "full_name": "dbrckk/polyglot", "name": "polyglot",
+              "language": "GDScript", "description": "", "topics": [],
+          }
+          with skill_patch("portfolio_daily.file_text", side_effect=fake_file_text):
+              hybrid_profile = project_profile(hybrid, "")
+          assert hybrid_profile["dependencies"].strip() == hybrid_files["pyproject.toml"].strip()
+          assert manifest_reads.count("package.json") == 1
+          assert manifest_reads.count("pubspec.yaml") == 1
+          # Flutter-only manifests are already probed before the fallback
+          # skill loop; a negative package.json lookup must not be repeated.
+          flutter_reads = []
+          def flutter_file_text(repo, filename, token, *, limit=5500):
+              flutter_reads.append(filename)
+              return hybrid_files["pubspec.yaml"] if filename == "pubspec.yaml" else ""
+          with skill_patch("portfolio_daily.file_text", side_effect=flutter_file_text):
+              flutter_profile = project_profile({
+                  **hybrid, "name": "flutter-app", "language": "Dart",
+              }, "")
+          assert flutter_reads.count("package.json") == 1
+          assert flutter_reads.count("pubspec.yaml") == 1
+          assert {"mobile"} <= set(flutter_profile["skill_domains"])
+          assert {"web_frontend", "mobile", "game_dev"} <= set(hybrid_profile["skill_domains"])
+          assert {"nextjs", "flutter", "dart", "godot", "gdscript"} <= set(hybrid_profile["skill_terms"])
+          matched = recommend_skills(
+              set(hybrid_profile["skill_terms"]), set(hybrid_profile["skill_domains"]),
+              language="GDScript", limit=20,
+          )
+          assert any(row["id"] == "godot-gdscript" for row in matched)
+          flutter_matches = recommend_skills(
+              word_set("flutter dart responsive mobile"), {"mobile"},
+              language="Dart", limit=20,
+          )
+          assert {"flutter-responsive-layout", "flutter-layout-diagnostics"} <= {
+              row["id"] for row in flutter_matches
+          }
+          assert not any(row["id"].startswith("flutter-") for row in
+                         recommend_skills(word_set("flutter mobile"), {"mobile"},
+                                          language="Kotlin", limit=20))
+          assert all(row["reviewRequired"] and row["integrationEligible"] is False
+                     and row["installCommand"] is None for row in matched + flutter_matches)
           # Functional transport smoke: an ambiguous mutating request is sent
           # once; a read-only GET retains the bounded retry policy.
           import portfolio_daily as portfolio_transport
@@ -3375,7 +3441,21 @@ SKILL_FRAMEWORK_PACKAGES = {
 ⋮----
 def package_skill_signals(filename: str, content: str) -> tuple[set[str], set[str]]
 ⋮----
-"""Conservative framework hints from package names, never package scripts."""
+"""Conservative framework hints from exact manifest dependencies only."""
+⋮----
+# Flutter is a real SDK dependency, not just a mention of the word
+# "flutter" in an arbitrary description, comment or README. We only
+# recognize the standard, indented pubspec dependency declaration.
+section = ""
+flutter_dependency = False
+⋮----
+line = raw_line.split("#", 1)[0].rstrip()
+⋮----
+indentation = len(line) - len(line.lstrip(" "))
+⋮----
+section = line[:-1] if line.endswith(":") else ""
+⋮----
+flutter_dependency = line.strip() == "flutter:"
 ⋮----
 parsed = json.loads(content)
 ⋮----
@@ -3435,10 +3515,26 @@ topics = repo.get("topics") or []
 intro = file_text(name, "README.md", token, limit=2800)
 dependency_text = ""
 ⋮----
-# Package metadata may exceed the short overview excerpt. A strict
-# JSON parser discards malformed/truncated manifests, without using
-# their scripts or arbitrary text as agent instructions.
+first_manifest = ""
+inspected_manifests = {}
+⋮----
+# Preserve the first-manifest behavior used by the existing repository
+# integration ranker. Only skill discovery inspects more than one
+# exact, known manifest; it never executes manifest scripts.
 value = file_text(name, filename, token, limit=12000)
+⋮----
+first_manifest = filename
+⋮----
+# Polyglot projects often have a root pyproject.toml or Cargo.toml
+# alongside frontend/mobile source. Those first manifests must not hide
+# a real React/Flutter dependency from advisory Skill Issue discovery.
+⋮----
+# A missing manifest encountered before the primary one was already
+# checked. Avoid a second GitHub GET, including duplicate 404s.
+value = inspected_manifests.get(filename)
+⋮----
+# GitHub's own primary-language metadata is sufficient to identify
+# GDScript-specific skill references without trusting README instructions.
 ⋮----
 overview = " ".join([repo["name"], description, " ".join(topics), intro[:1200]])
 label_text = " ".join([repo["name"], description, " ".join(topics)]).lower()
@@ -5678,7 +5774,7 @@ workflow:
     "usage": "read-only discovery; never auto-install external instructions",
     "priority": "portfolio-wide"
   },
-  "description": "Conservative shortlist of links surfaced on Skill Issue and checked against accessible upstream GitHub repositories. These are discovery candidates, not audited/installed agent skills.",
+  "description": "Conservative shortlist of agent-skill upstream sources, including Skill Issue directory entries and independent official/engine-specific repositories. Source commits and exact SKILL.md files are pinned for review, not audited or installed.",
   "skills": [
     {
       "id": "ui-ux-pro-max-skill",
@@ -6185,6 +6281,85 @@ workflow:
       "sourceUrl": "https://github.com/wshobson/agents",
       "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
       "sourcePath": "plugins/documentation-generation/skills/openapi-spec-generation/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "flutter-responsive-layout",
+      "name": "Flutter Responsive Layout",
+      "sourceRepository": "flutter/agent-plugins",
+      "sourceCommit": "b60d0736a33a0de7d3f4ea2a7ad740ca0daa5c94",
+      "sourcePath": "skills/flutter-build-responsive-layout/SKILL.md",
+      "domains": [
+        "mobile"
+      ],
+      "tags": [
+        "flutter",
+        "dart",
+        "responsive",
+        "mobile",
+        "layout",
+        "widgets"
+      ],
+      "description": "Official Flutter guidance for adaptive widgets, screens and layout constraints.",
+      "languages": [
+        "Dart"
+      ],
+      "sourceUrl": "https://github.com/flutter/agent-plugins",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "flutter-layout-diagnostics",
+      "name": "Flutter Layout Diagnostics",
+      "sourceRepository": "flutter/agent-plugins",
+      "sourceCommit": "b60d0736a33a0de7d3f4ea2a7ad740ca0daa5c94",
+      "sourcePath": "skills/flutter-fix-layout-issues/SKILL.md",
+      "domains": [
+        "mobile"
+      ],
+      "tags": [
+        "flutter",
+        "dart",
+        "layout",
+        "widgets",
+        "overflow",
+        "responsive"
+      ],
+      "description": "Official Flutter reference for diagnosing layout constraints and overflow errors.",
+      "languages": [
+        "Dart"
+      ],
+      "sourceUrl": "https://github.com/flutter/agent-plugins",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "godot-gdscript",
+      "name": "Godot GDScript 4.x",
+      "sourceRepository": "shihabshahrier/Godot-Skill",
+      "sourceCommit": "c8bc20f876a8da241274d48461444fab86182d83",
+      "sourcePath": "skills/godot/SKILL.md",
+      "domains": [
+        "game_dev"
+      ],
+      "tags": [
+        "godot",
+        "gdscript",
+        "game",
+        "gameplay",
+        "signals",
+        "scenes",
+        "animation"
+      ],
+      "description": "Godot 4.3+ GDScript reference for typed scenes, signals, architecture and common gameplay patterns.",
+      "languages": [
+        "GDScript"
+      ],
+      "sourceUrl": "https://github.com/shihabshahrier/Godot-Skill",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
       "skillCodeReviewed": false
@@ -51160,7 +51335,9 @@ python scripts/recommend.py "mobile ui design" --skills --websites --json
 
 The daily public and private repository scanners include the Skill Issue
 directory for **every accessible project** and suggest only relevant skills
-based on repository labels, domains and language. No third-party skill is
+based on repository labels, domains, language and narrowly recognized
+root React/Flutter dependencies. Pinned Flutter and Godot SKILL.md references
+are also available for compatible projects. No third-party skill is
 automatically downloaded, installed, granted credentials or dispatched. Read
 [`AGENT_SKILLS.md`](AGENT_SKILLS.md) for the adoption and security gates.
 

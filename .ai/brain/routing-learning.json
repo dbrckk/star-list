@@ -2,23 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "Backfill selection guidance for specialized repositories (#25)",
-      "terms": [
-        "25",
-        "backfill",
-        "guidance",
-        "repositories",
-        "selection",
-        "specialized"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/recommend.py",
-        "scripts/test_recommend.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "Exclude audit-tier repositories from recommendations by default (#26)",
       "terms": [
         "26",
@@ -1245,6 +1228,27 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(skills): extend pinned Skill Issue discovery to Flutter and Godot projects (#136)",
+      "terms": [
+        "136",
+        "discovery",
+        "extend",
+        "feat",
+        "flutter",
+        "godot",
+        "issue",
+        "pinned",
+        "projects",
+        "skill",
+        "skills"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1338,6 +1342,9 @@
       "scripts/test_recommend.py": 4
     },
     "134": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "136": {
       "scripts/portfolio_daily.py": 4
     },
     "17": {
@@ -1798,7 +1805,7 @@
     "discovery": {
       "scripts/agent_skill_discovery.py": 4,
       "scripts/discover_candidates.py": 4,
-      "scripts/portfolio_daily.py": 8,
+      "scripts/portfolio_daily.py": 12,
       "scripts/recommend.py": 4,
       "scripts/test_discovery_cache.py": 4,
       "scripts/test_documentation.py": 4,
@@ -1866,6 +1873,9 @@
     "exposing": {
       "scripts/portfolio_failure_diagnostics.py": 4
     },
+    "extend": {
+      "scripts/portfolio_daily.py": 4
+    },
     "extra": {
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
@@ -1891,7 +1901,7 @@
       "scripts/admit_github_stars.py": 8,
       "scripts/agent_skill_discovery.py": 8,
       "scripts/audit_catalog_quality.py": 8,
-      "scripts/portfolio_daily.py": 28,
+      "scripts/portfolio_daily.py": 32,
       "scripts/portfolio_failure_diagnostics.py": 12,
       "scripts/recommend.py": 8,
       "scripts/sync_github_stars.py": 4,
@@ -1918,6 +1928,9 @@
     "final": {
       "scripts/portfolio_daily.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "flutter": {
+      "scripts/portfolio_daily.py": 4
     },
     "forwarding": {
       "scripts/portfolio_daily.py": 4
@@ -1983,7 +1996,7 @@
       "scripts/test_sync_github_stars.py": 12
     },
     "godot": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "guidance": {
       "scripts/infer_selection_guidance.py": 4,
@@ -2085,7 +2098,7 @@
     },
     "issue": {
       "scripts/agent_skill_discovery.py": 8,
-      "scripts/portfolio_daily.py": 8,
+      "scripts/portfolio_daily.py": 12,
       "scripts/recommend.py": 4,
       "scripts/test_documentation.py": 8,
       "scripts/test_recommend.py": 8
@@ -2228,7 +2241,7 @@
     },
     "pinned": {
       "scripts/agent_skill_discovery.py": 4,
-      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_daily.py": 8,
       "scripts/test_recommend.py": 4
     },
     "pipeline": {
@@ -2267,6 +2280,9 @@
       "scripts/portfolio_daily.py": 24
     },
     "project": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "projects": {
       "scripts/portfolio_daily.py": 4
     },
     "public": {
@@ -2516,7 +2532,7 @@
     },
     "skill": {
       "scripts/agent_skill_discovery.py": 8,
-      "scripts/portfolio_daily.py": 12,
+      "scripts/portfolio_daily.py": 16,
       "scripts/recommend.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_recommend.py": 8
@@ -2528,7 +2544,7 @@
     },
     "skills": {
       "scripts/agent_skill_discovery.py": 8,
-      "scripts/portfolio_daily.py": 12,
+      "scripts/portfolio_daily.py": 16,
       "scripts/recommend.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_recommend.py": 8

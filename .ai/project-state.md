@@ -98,32 +98,26 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T21:32:47Z
+Generated: 2026-10-18T22:34:50Z
 
 ### Git
 - Branch: `main`
-- Head: `33777afad946`
-- Commit date: 2026-10-18T17:32:38-04:00
-- Commit: feat(skills): qualify frontend/mobile skill matches from exact package manifests (#134)
+- Head: `a08aaed98230`
+- Commit date: 2026-10-18T18:34:41-04:00
+- Commit: feat(skills): extend pinned Skill Issue discovery to Flutter and Godot projects (#136)
 - Tracked files: 291
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `AGENT_SKILLS.md`
-- `scripts/portfolio_daily.py`
+- `README.md`
 - `agent-skills.json`
+- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
+- `scripts/portfolio_daily.py`
 - `scripts/agent_skill_discovery.py`
 - `scripts/test_recommend.py`
 - `catalog.json`
 - `AGENTS.md`
-- `.github/workflows/daily-portfolio-integration.yml`
-- `.github/workflows/validate.yml`
-- `README.md`
-- `WEB_RESOURCES.md`
-- `schemas/websites.schema.json`
-- `scripts/recommend.py`
-- `scripts/test_documentation.py`
-- `websites.json`
 
 ### Project signals
 - No common build descriptor detected
