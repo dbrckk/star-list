@@ -1368,22 +1368,6 @@ jobs:
         run: |
           python scripts/audit_catalog_quality.py --markdown-output catalog-quality.md > catalog-quality.json
           python scripts/validate_json_contract.py schemas/catalog-quality.schema.json catalog-quality.json
-      - name: Publish catalog quality audit
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          REVIEW=$(python -c "import json; print(json.load(open('catalog-quality.json'))['summary']['review'])")
-          INFO=$(python -c "import json; print(json.load(open('catalog-quality.json'))['summary']['info'])")
-          TOTAL=$(python -c "import json; print(json.load(open('catalog-quality.json'))['summary']['findings'])")
-          MARKER='<!-- star-list-catalog-quality -->'
-          EXISTING=$(gh issue list --state open --search "$MARKER in:body" --json number --jq '.[0].number // empty')
-          if [ "$TOTAL" = "0" ]; then
-            if [ -n "$EXISTING" ]; then gh issue close "$EXISTING" --comment "Catalog quality audit is clean."; fi
-          elif [ -n "$EXISTING" ]; then
-            gh issue edit "$EXISTING" --title "Catalog quality: $REVIEW review / $INFO info" --body-file catalog-quality.md
-          else
-            gh issue create --title "Catalog quality: $REVIEW review / $INFO info" --body-file catalog-quality.md --label maintenance || gh issue create --title "Catalog quality: $REVIEW review / $INFO info" --body-file catalog-quality.md
-          fi
       - name: Build current health snapshot and drift report
         run: |
           python scripts/health_score.py > health-snapshot-current.json
@@ -1485,7 +1469,28 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add catalog.json health-snapshot.json discovery-memory.json history.json discovery-cache.json cache-health-history.json
           git commit -m "chore: refresh GitHub metadata and discovery cache"
-          git push
+          # Stars admission and metadata refresh can overlap. Never overwrite a
+          # newer catalog or force-push; first rebase on the latest remote.
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep "$attempt"
+          done
+          echo "::error::Could not publish validated metadata after four non-destructive retries"
+          exit 1
+
+  quality-after-refresh:
+    # GitHub suppresses normal push triggers for GITHUB_TOKEN commits.
+    # Publish only after the validated catalog/history push succeeded, and
+    # audit the actual remote main rather than a pre-commit local snapshot.
+    needs: refresh
+    permissions:
+      contents: read
+      issues: write
+    uses: ./.github/workflows/catalog-quality-on-change.yml
 ````
 
 ## File: .github/workflows/semantic-refresh.yml
@@ -4417,6 +4422,8 @@ mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 sync_yaml = (ROOT / ".github/workflows/sync-github-stars.yml").read_text()
 audit_yaml = (ROOT / ".github/workflows/catalog-quality-on-change.yml").read_text()
 stars_docs = (ROOT / "docs/GITHUB_STARS_SYNC.md").read_text()
+⋮----
+maintenance_yaml = (ROOT / ".github/workflows/refresh-metadata.yml").read_text()
 ````
 
 ## File: scripts/test_evaluate_candidates.py

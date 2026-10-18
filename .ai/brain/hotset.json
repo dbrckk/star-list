@@ -12,7 +12,7 @@
       "score": 430
     },
     {
-      "path": ".github/workflows/catalog-quality-on-change.yml",
+      "path": ".github/workflows/refresh-metadata.yml",
       "reasons": [
         "changed"
       ],
@@ -34,13 +34,6 @@
     },
     {
       "path": "scripts/audit_catalog_quality.py",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "scripts/portfolio_daily.py",
       "reasons": [
         "recent-project-state"
       ],

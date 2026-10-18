@@ -2364,6 +2364,8 @@ mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 sync_yaml = (ROOT / ".github/workflows/sync-github-stars.yml").read_text()
 audit_yaml = (ROOT / ".github/workflows/catalog-quality-on-change.yml").read_text()
 stars_docs = (ROOT / "docs/GITHUB_STARS_SYNC.md").read_text()
+⋮----
+maintenance_yaml = (ROOT / ".github/workflows/refresh-metadata.yml").read_text()
 ```
 
 ## File: test_evaluate_candidates.py

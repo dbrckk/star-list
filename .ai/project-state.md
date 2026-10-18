@@ -65,23 +65,22 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T11:56:40Z
+Generated: 2026-10-18T12:31:36Z
 
 ### Git
 - Branch: `main`
-- Head: `a47f644b9628`
-- Commit date: 2026-10-18T07:56:29-04:00
-- Commit: fix(catalog): reject stale audit publications during concurrent star admissions (#117)
+- Head: `ccce7e66519d`
+- Commit date: 2026-10-18T08:31:25-04:00
+- Commit: fix(metadata): publish catalog audit only after verified refresh commit (#118)
 - Tracked files: 280
 
 ### Recently changed files
-- `.github/workflows/catalog-quality-on-change.yml`
+- `.github/workflows/refresh-metadata.yml`
 - `docs/GITHUB_STARS_SYNC.md`
 - `scripts/test_documentation.py`
+- `.github/workflows/catalog-quality-on-change.yml`
 - `catalog.json`
 - `.github/workflows/sync-github-stars.yml`
-- `scripts/audit_catalog_quality.py`
-- `scripts/test_catalog_quality.py`
 
 ### Project signals
 - No common build descriptor detected

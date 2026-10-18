@@ -2,19 +2,19 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 60,
+    "example_count": 61,
     "rejected_count": 0,
     "terms": [
-      "117",
-      "admissions",
+      "118",
+      "after",
       "audit",
       "catalog",
-      "concurrent",
-      "during",
-      "publications",
-      "reject",
-      "stale",
-      "star"
+      "commit",
+      "metadata",
+      "only",
+      "publish",
+      "refresh",
+      "verified"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -22,7 +22,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(catalog): reject stale audit publications during concurrent star admissions (#117)",
+  "task": "fix(metadata): publish catalog audit only after verified refresh commit (#118)",
   "tests_selected": [],
   "useful": [
     "scripts/test_documentation.py"

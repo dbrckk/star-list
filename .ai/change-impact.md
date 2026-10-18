@@ -1,10 +1,10 @@
 # Change impact
 
-Base: 0b824995880c6f298ded915320b674340f630d03
-Head: a47f644b96281e1f7ebfe0110cdadba276ca3244
+Base: 427c2d0fc7205a0fc5fcc1f817f56fed44b7e953
+Head: ccce7e66519d6a71d57a67779595485a8f226025
 
 ## Changed files
-- M .github/workflows/catalog-quality-on-change.yml
+- M .github/workflows/refresh-metadata.yml
 - M docs/GITHUB_STARS_SYNC.md
 - M scripts/test_documentation.py
 

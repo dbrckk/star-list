@@ -1,32 +1,28 @@
 {
   "files": {
-    ".github/workflows/catalog-quality-on-change.yml": {
-      "sha256": "fb93f3d1fc9733b94b517416c0bceec363d4982e144781ef463fa49fe0678a93",
-      "size": 5079
+    ".github/workflows/refresh-metadata.yml": {
+      "sha256": "3ecbe0750eb64218f8766fdec5a6690b66313e4b0e4fb428c18c4bfaa9b82c38",
+      "size": 9788
     },
     "catalog.json": {
       "sha256": "cf86bc57ecec42d7c582828b7c67e33176ed0c3f38585a0d19853081953b2097",
       "size": 1039072
     },
     "docs/GITHUB_STARS_SYNC.md": {
-      "sha256": "4b285a4fb8b5c3272421875a4d161dcc0da5ef0ec9ec06e240207a1e4639cc11",
-      "size": 3952
+      "sha256": "39d1d6c01c6b81153f992a6551d8bedec8797fbda35ba40cc96cfca1ee99b087",
+      "size": 4377
     },
     "scripts/audit_catalog_quality.py": {
       "sha256": "a75662f5ed2c7c2ca34167b8bb755a4d77888bd0fbf8ff03680b4dec0ba7b1a0",
       "size": 8773
-    },
-    "scripts/portfolio_daily.py": {
-      "sha256": "a0fa1f0db7a9081879a8ca1bd1f9e707654b8bf383cae627fa9c3163b4a76aa3",
-      "size": 49156
     },
     "scripts/test_catalog_quality.py": {
       "sha256": "5d937ce7da35cf1cff7749a6a2f7d4618afd5a8b9bcf0ed074fb4cda4465b252",
       "size": 4916
     },
     "scripts/test_documentation.py": {
-      "sha256": "d1f1fcb05dbd3faad154ed88adb4f982f638b54499fcf819504fb47d3ea62718",
-      "size": 3753
+      "sha256": "40669232b11ce86a0a121060039980e420392bf6bef33ea111b66a18c23b984c",
+      "size": 4209
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

@@ -1130,6 +1130,26 @@
       "useful": [
         "scripts/test_documentation.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(metadata): publish catalog audit only after verified refresh commit (#118)",
+      "terms": [
+        "118",
+        "after",
+        "audit",
+        "catalog",
+        "commit",
+        "metadata",
+        "only",
+        "publish",
+        "refresh",
+        "verified"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/test_documentation.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1167,6 +1187,9 @@
       "scripts/test_documentation.py": 4
     },
     "117": {
+      "scripts/test_documentation.py": 4
+    },
+    "118": {
       "scripts/test_documentation.py": 4
     },
     "17": {
@@ -1332,7 +1355,8 @@
     "after": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/portfolio_daily.py": 20,
-      "scripts/test_catalog_quality.py": 4
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/test_documentation.py": 4
     },
     "all": {
       "scripts/admit_github_stars.py": 4,
@@ -1360,7 +1384,7 @@
     "audit": {
       "scripts/audit_catalog_quality.py": 8,
       "scripts/test_catalog_quality.py": 8,
-      "scripts/test_documentation.py": 8
+      "scripts/test_documentation.py": 12
     },
     "audit-tier": {
       "scripts/recommend.py": 4,
@@ -1444,7 +1468,7 @@
       "scripts/portfolio_daily.py": 8,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_catalog_quality.py": 8,
-      "scripts/test_documentation.py": 8,
+      "scripts/test_documentation.py": 12,
       "scripts/test_refresh_github_metadata.py": 4
     },
     "catalog-declared": {
@@ -1458,6 +1482,9 @@
     "closed": {
       "scripts/portfolio_daily.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "commit": {
+      "scripts/test_documentation.py": 4
     },
     "complete": {
       "scripts/portfolio_daily.py": 4
@@ -1857,6 +1884,7 @@
       "scripts/refresh_github_metadata.py": 8,
       "scripts/test_backfill_licenses.py": 4,
       "scripts/test_catalog_quality.py": 4,
+      "scripts/test_documentation.py": 4,
       "scripts/test_recommend.py": 4,
       "scripts/test_refresh_github_metadata.py": 8,
       "scripts/validate_catalog.py": 4
@@ -1881,6 +1909,9 @@
     },
     "one": {
       "scripts/portfolio_daily.py": 8
+    },
+    "only": {
+      "scripts/test_documentation.py": 4
     },
     "opencode": {
       "scripts/portfolio_daily.py": 4
@@ -1932,7 +1963,8 @@
     },
     "publish": {
       "scripts/audit_catalog_quality.py": 4,
-      "scripts/test_catalog_quality.py": 4
+      "scripts/test_catalog_quality.py": 4,
+      "scripts/test_documentation.py": 4
     },
     "pull": {
       "scripts/discover_candidates.py": 4,
@@ -2004,6 +2036,9 @@
     },
     "reference-only": {
       "scripts/portfolio_daily.py": 4
+    },
+    "refresh": {
+      "scripts/test_documentation.py": 4
     },
     "refuse": {
       "scripts/portfolio_daily.py": 4
@@ -2276,6 +2311,9 @@
     },
     "validation": {
       "scripts/validate_catalog.py": 4
+    },
+    "verified": {
+      "scripts/test_documentation.py": 4
     },
     "verify": {
       "scripts/backfill_licenses.py": 4,
