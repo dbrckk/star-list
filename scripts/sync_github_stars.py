@@ -319,6 +319,13 @@ def main(argv=None):
             "source": "GitHub public Stars of " + args.user,
             "checkedAt": report["checkedAt"],
             "repositories": [entry["repo"] for entry in stars],
+            # This is the *same* verified Stars API response, not another
+            # GitHub request. Admission uses stable IDs to enrich legacy
+            # catalog entries and reject mismatched snapshots.
+            "identities": [
+                {"repo": entry["repo"], "githubRepositoryId": entry["githubRepositoryId"]}
+                for entry in stars
+            ],
         })
     print("GitHub stars checked: {} | cataloged: {} | new: {} | pages: {}".format(
         report["summary"]["starred"],
