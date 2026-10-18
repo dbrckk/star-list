@@ -1110,6 +1110,26 @@
       "useful": [
         "scripts/test_documentation.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(catalog): reject stale audit publications during concurrent star admissions (#117)",
+      "terms": [
+        "117",
+        "admissions",
+        "audit",
+        "catalog",
+        "concurrent",
+        "during",
+        "publications",
+        "reject",
+        "stale",
+        "star"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/test_documentation.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1144,6 +1164,9 @@
       "scripts/test_catalog_quality.py": 4
     },
     "116": {
+      "scripts/test_documentation.py": 4
+    },
+    "117": {
       "scripts/test_documentation.py": 4
     },
     "17": {
@@ -1299,6 +1322,9 @@
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
     },
+    "admissions": {
+      "scripts/test_documentation.py": 4
+    },
     "admit": {
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
@@ -1334,7 +1360,7 @@
     "audit": {
       "scripts/audit_catalog_quality.py": 8,
       "scripts/test_catalog_quality.py": 8,
-      "scripts/test_documentation.py": 4
+      "scripts/test_documentation.py": 8
     },
     "audit-tier": {
       "scripts/recommend.py": 4,
@@ -1418,7 +1444,7 @@
       "scripts/portfolio_daily.py": 8,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_catalog_quality.py": 8,
-      "scripts/test_documentation.py": 4,
+      "scripts/test_documentation.py": 8,
       "scripts/test_refresh_github_metadata.py": 4
     },
     "catalog-declared": {
@@ -1442,6 +1468,7 @@
     "concurrent": {
       "scripts/portfolio_daily.py": 4,
       "scripts/sync_github_stars.py": 4,
+      "scripts/test_documentation.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
     "constraints": {
@@ -1547,6 +1574,9 @@
     },
     "duplicate": {
       "scripts/portfolio_daily.py": 4
+    },
+    "during": {
+      "scripts/test_documentation.py": 4
     },
     "dynamically": {
       "scripts/recommend.py": 4,
@@ -1897,6 +1927,9 @@
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
     },
+    "publications": {
+      "scripts/test_documentation.py": 4
+    },
     "publish": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
@@ -1976,7 +2009,8 @@
       "scripts/portfolio_daily.py": 4
     },
     "reject": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_documentation.py": 4
     },
     "relations": {
       "scripts/recommend.py": 8,
@@ -2124,12 +2158,14 @@
     "stale": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
+      "scripts/test_documentation.py": 4,
       "scripts/validate_catalog.py": 4
     },
     "star": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/star_import_pipeline.py": 8,
       "scripts/test_catalog_quality.py": 4,
+      "scripts/test_documentation.py": 4,
       "scripts/test_star_import_pipeline.py": 8
     },
     "star-list": {

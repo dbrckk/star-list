@@ -2,20 +2,19 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 59,
+    "example_count": 60,
     "rejected_count": 0,
     "terms": [
-      "116",
+      "117",
+      "admissions",
       "audit",
-      "bot-triggered",
       "catalog",
-      "daily",
-      "if",
-      "is",
-      "issue",
-      "missed",
-      "quality",
-      "reconcile"
+      "concurrent",
+      "during",
+      "publications",
+      "reject",
+      "stale",
+      "star"
     ],
     "test_count": 0,
     "useful_count": 1
@@ -23,7 +22,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(catalog): reconcile quality issue daily if bot-triggered audit is missed (#116)",
+  "task": "fix(catalog): reject stale audit publications during concurrent star admissions (#117)",
   "tests_selected": [],
   "useful": [
     "scripts/test_documentation.py"

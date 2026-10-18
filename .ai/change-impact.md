@@ -1,7 +1,7 @@
 # Change impact
 
-Base: fe1cfd11e8ebbdc8cb26b9e4b51c2c872eddb02d
-Head: 8f9bc12a3c2a2e2dc51cc4c095f3a877e1b2c8c6
+Base: 0b824995880c6f298ded915320b674340f630d03
+Head: a47f644b96281e1f7ebfe0110cdadba276ca3244
 
 ## Changed files
 - M .github/workflows/catalog-quality-on-change.yml

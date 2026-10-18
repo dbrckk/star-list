@@ -65,13 +65,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T11:50:32Z
+Generated: 2026-10-18T11:56:40Z
 
 ### Git
 - Branch: `main`
-- Head: `8f9bc12a3c2a`
-- Commit date: 2026-10-18T07:50:20-04:00
-- Commit: fix(catalog): reconcile quality issue daily if bot-triggered audit is missed (#116)
+- Head: `a47f644b9628`
+- Commit date: 2026-10-18T07:56:29-04:00
+- Commit: fix(catalog): reject stale audit publications during concurrent star admissions (#117)
 - Tracked files: 280
 
 ### Recently changed files
@@ -82,9 +82,6 @@ Generated: 2026-10-18T11:50:32Z
 - `.github/workflows/sync-github-stars.yml`
 - `scripts/audit_catalog_quality.py`
 - `scripts/test_catalog_quality.py`
-- `.github/workflows/portfolio-scan-smoke.yml`
-- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
-- `scripts/portfolio_daily.py`
 
 ### Project signals
 - No common build descriptor detected

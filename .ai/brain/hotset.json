@@ -6,27 +6,13 @@
         "changed",
         "changed-source",
         "impact",
+        "recent-project-state",
         "selected-test"
       ],
-      "score": 370
-    },
-    {
-      "path": "catalog.json",
-      "reasons": [
-        "changed",
-        "recent-project-state"
-      ],
-      "score": 160
+      "score": 430
     },
     {
       "path": ".github/workflows/catalog-quality-on-change.yml",
-      "reasons": [
-        "changed"
-      ],
-      "score": 100
-    },
-    {
-      "path": ".github/workflows/sync-github-stars.yml",
       "reasons": [
         "changed"
       ],
@@ -38,6 +24,13 @@
         "changed"
       ],
       "score": 100
+    },
+    {
+      "path": "catalog.json",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     },
     {
       "path": "scripts/audit_catalog_quality.py",
