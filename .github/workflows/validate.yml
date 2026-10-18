@@ -33,6 +33,9 @@ jobs:
         run: |
           python scripts/validate_catalog.py
           python scripts/validate_json_contract.py catalog.schema.json catalog.json
+      - name: Validate curated website resources
+        run: |
+          python scripts/validate_json_contract.py schemas/websites.schema.json websites.json
       - name: Test catalog quality audit
         run: python scripts/test_catalog_quality.py
       - name: Generate catalog quality audit
