@@ -7,6 +7,7 @@ on:
       - 'catalog.json'
       - '.github/workflows/catalog-quality-on-change.yml'
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
@@ -23,6 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
+          # Reusable calls run on the Star-sync event SHA, which predates its
+          # own catalog push. Always audit the newly committed default branch.
+          ref: main
           persist-credentials: false
       - uses: actions/setup-python@v7
         with:
