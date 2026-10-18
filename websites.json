@@ -273,6 +273,44 @@
       ],
       "reuse": "hosted-service",
       "caution": "A hosted creation service is not a drop-in code dependency. Review plans, generated code, data access and export terms."
+    },
+    {
+      "id": "skill-issue",
+      "name": "Skill Issue",
+      "url": "https://skill-issue.in/",
+      "type": "agent-skills-directory",
+      "access": "free",
+      "domains": [
+        "ai_agents",
+        "software_engineering",
+        "web_frontend",
+        "mobile",
+        "game_dev",
+        "graphics",
+        "ai_media",
+        "other"
+      ],
+      "tags": [
+        "agent",
+        "skills",
+        "design",
+        "frontend",
+        "backend",
+        "game",
+        "automation",
+        "motion",
+        "video",
+        "research",
+        "workflow",
+        "tooling"
+      ],
+      "bestFor": [
+        "Finding task-specific skills for coding agents across software projects",
+        "Curating reusable agent workflows for design, web, mobile and game development",
+        "Comparing upstream skill sources before human-reviewed installation"
+      ],
+      "reuse": "reference-only",
+      "caution": "A directory listing is not proof that any linked SKILL.md, installer, prompt, source or license is safe. Review original repository, pinned revision, permissions, instructions and compatibility before using; never auto-run remote install commands."
     }
   ]
 }
