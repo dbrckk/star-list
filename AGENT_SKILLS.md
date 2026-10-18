@@ -7,9 +7,13 @@ verified package registry, an executable dependency or an assurance of
 copyright/security compliance.
 
 The catalog lists its website once in [websites.json](websites.json) and a
-curated set of **19** original skill source references in
-[agent-skills.json](agent-skills.json), drawn from Skill Issue's visible
-entries and verified against the upstream repositories on 2026-10-18.
+curated set of **22** original skill source references in
+[agent-skills.json](agent-skills.json). The initial 19 entries were
+drawn from Skill Issue's visible listings; three additional specialized
+Flutter/Godot references come from the official Flutter agent repository
+and an independently verified Godot skill source. All upstream SKILL.md
+files are addressed at immutable Git commits, but their instructions and
+supporting scripts remain unaudited.
 Every entry now records its **exact `SKILL.md` path and a pinned Git commit**
 where that file exists, so reviewers can inspect immutable source before any
 decision. This verifies source identity and file existence, **not** the
@@ -28,6 +32,12 @@ The matching algorithm considers GitHub-owned project metadata
 (repository name, description, topics, inferred domain and primary language)
 and, for repositories with `package.json`, a **strict allowlist of exact
 dependency names** (for example React, Expo, Next.js, Tailwind and Remotion).
+Flutter guidance requires the exact `dependencies.flutter.sdk: flutter`
+declaration in the root `pubspec.yaml` or matching project-owned Flutter
+labels with the Dart language. GDScript skills can be qualified by GitHub's
+primary GDScript language metadata. For mixed projects, the scanner checks
+both root package manifests independently of the first detected project
+manifest, without changing the existing integration-dependency ranking.
 It does not tokenize untrusted README instructions, package install scripts or
 arbitrary manifest text. Only skill recommendations use these new framework
 hints; the existing catalog-dependency integration ranker and dispatch gate
@@ -55,9 +65,14 @@ by the CLI are revision-pinned):
 | Accessibility Compliance | [wshobson/agents](https://github.com/wshobson/agents) | WCAG/UI quality |
 | Auth Implementation Patterns | [wshobson/agents](https://github.com/wshobson/agents) | Backend authentication |
 | OpenAPI Spec Generation | [wshobson/agents](https://github.com/wshobson/agents) | REST API documentation |
+| Flutter Responsive Layout | [flutter/agent-plugins](https://github.com/flutter/agent-plugins) | Adaptive Flutter/Dart widget layouts |
+| Flutter Layout Diagnostics | [flutter/agent-plugins](https://github.com/flutter/agent-plugins) | Debugging Flutter overflow and layout constraints |
+| Godot GDScript 4.x | [shihabshahrier/Godot-Skill](https://github.com/shihabshahrier/Godot-Skill) | Typed scenes, signals and Godot 4 gameplay guidance |
 
 The other curated entries cover Next.js App Router, React state,
-Tailwind design systems and responsive interfaces. Source paths are pinned
+Tailwind design systems and responsive interfaces. Flutter and Godot
+sources complement Skill Issue rather than implying those entries were
+listed by the Skill Issue directory. Source paths are pinned
 for auditability, **not for automated execution or installation**. Read and
 audit the entire pinned instruction and scripts before considering adoption.
 
