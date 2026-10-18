@@ -4,6 +4,9 @@ on:
   pull_request:
     paths:
       - "scripts/portfolio_daily.py"
+      - "websites.json"
+      - "scripts/validate_websites.py"
+      - "scripts/recommend.py"
       - "scripts/portfolio_failure_diagnostics.py"
       - ".github/workflows/portfolio-failure-diagnostics.yml"
       - ".github/workflows/daily-portfolio-integration.yml"
@@ -47,6 +50,19 @@ jobs:
           )
           assert result["summary"]["with_native_suggestions"] <= result["summary"]["with_suggestions"]
           assert result["summary"]["native_suggestions"] >= result["summary"]["with_native_suggestions"]
+          assert result["summary"]["with_website_references"] == sum(
+              bool(row["website_references"]) for row in result["projects"]
+          )
+          assert result["summary"]["website_references"] == sum(
+              len(row["website_references"]) for row in result["projects"]
+          )
+          assert "Projects with website references: **" in Path("portfolio-daily.md").read_text()
+          for row in result["projects"]:
+              for website in row["website_references"]:
+                  assert website["integrationEligible"] is False
+                  assert website["url"].startswith("https://")
+                  assert "repo" not in website
+                  assert website["why"]["tags"] or website["why"]["terms"]
           report_markdown = Path("portfolio-daily.md").read_text()
           assert ("Projects with native-mode candidates: **"
                   + str(result["summary"]["with_native_suggestions"]) + "**.") in report_markdown
