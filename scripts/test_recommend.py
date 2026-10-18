@@ -141,4 +141,27 @@ for results in (
             assert all(p in linked.get("platforms", []) for p in constraints["platforms"])
             assert all(lang in linked.get("languages", []) for lang in constraints["languages"])
 
+# End-to-end website recommendations are separate from GitHub repository
+# recommendations; a reference cannot silently enter a deployable stack.
+web_3d = run("3d graphics shader glsl animation", "--top-web", "10")
+web_ids = {item["id"] for item in web_3d["webResources"]}
+assert {"threejs", "shadertoy"} <= web_ids, web_ids
+assert all(item["autoIntegrate"] is False for item in web_3d["webResources"])
+assert all(item["usagePolicy"] in {"reference-only", "review-license"}
+           for item in web_3d["webResources"])
+assert all("repo" not in item for item in web_3d["webResources"])
+assert web_3d["diagnostics"]["catalogSize"] == len(mod.load()[0])
+
+ui_sources = run("react tailwind animation components", "--top-web", "10")
+assert {"21st-dev", "aceternity-ui", "magic-ui"} <= {
+    item["id"] for item in ui_sources["webResources"]
+}
+renamed_site = run("godly interface branding", "--top-web", "10")
+assert "recent-design" in {item["id"] for item in renamed_site["webResources"]}
+mobile_motion = run("mobile ui motion animation", "--top-web", "10")
+assert "60fps" in {item["id"] for item in mobile_motion["webResources"]}
+assert run("3d graphics shader", "--no-web")["webResources"] == []
+assert run("3d graphics shader", "--top-web", "0")["webResources"] == []
+assert run("xauusd backtesting risk execution")["webResources"] == []
+
 print("OK: recommendation engine smoke tests passed")
