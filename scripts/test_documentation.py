@@ -91,5 +91,15 @@ assert "    uses: ./.github/workflows/catalog-quality-on-change.yml" in maintena
 assert "git rebase origin/main" in maintenance_yaml
 assert "git push origin HEAD:main" in maintenance_yaml
 assert "      - name: Publish catalog quality audit" not in maintenance_yaml
+skills_docs = (ROOT / "AGENT_SKILLS.md").read_text()
+skills_catalog = (ROOT / "agent-skills.json").read_text()
+skills_scanner = (ROOT / "scripts/agent_skill_discovery.py").read_text()
+portfolio_scanner = (ROOT / "scripts/portfolio_daily.py").read_text()
+portfolio_yaml = (ROOT / ".github/workflows/daily-portfolio-integration.yml").read_text()
+assert "https://skill-issue.in/" in skills_docs and '"schemaVersion": 1' in skills_catalog
+assert "automaticInstallation" in skills_scanner
+assert "row[\"skill_discovery\"]" in portfolio_scanner
+assert '"agent-skills.json"' in portfolio_yaml
+assert "AGENT_SKILLS.md" in readme and "--skills" in readme
 
 print("OK: documentation contract tests passed")
