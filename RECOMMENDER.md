@@ -35,6 +35,27 @@ These are **tool recommendations**, not runnable game templates or guarantees
 of AAA-level output. As with all predefined stacks, the engine only shows a
 stack when every member passes the requested hard constraints.
 
+## Curated website references
+
+The independent [website catalog](docs/WEB_RESOURCES.md) supplies visual
+inspiration, components, shader examples and hosted app builders alongside
+GitHub results. The JSON output has a separate `webResources` list; its
+`usagePolicy`, `licenseNote` and `autoIntegrate: false` prevent it from
+being mistaken for a vetted open-source dependency. These sites are never
+eligible for GitHub health scores, stack assembly or Production-OS dispatch.
+
+```bash
+python scripts/recommend.py "3d graphics shader glsl animation" --top-web 10 --json
+python scripts/recommend.py "react tailwind animation components" --json
+python scripts/recommend.py "mobile ui motion animation" --json
+python scripts/recommend.py "web design" --no-web --json
+```
+
+By default the recommender returns at most five task-relevant website
+references; use `--top-web N` to change the limit, `--no-web` or
+`--top-web 0` to disable them. Repository constraints continue to apply
+to repositories; website entries are **references**, not native dependencies.
+
 ## Selection score
 
 The selection score is task-specific. It is different from:
