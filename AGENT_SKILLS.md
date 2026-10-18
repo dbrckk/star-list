@@ -43,6 +43,14 @@ by the CLI are revision-pinned):
 | Web Design Guidelines | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) | Web UI quality and accessibility |
 | Remotion Best Practices | [remotion-dev/skills](https://github.com/remotion-dev/skills) | JS/TS video and animation pipelines |
 | API Design Principles | [wshobson/agents](https://github.com/wshobson/agents) | Backend REST/GraphQL APIs |
+| Design Taste Frontend | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | Frontend art direction and visual review |
+| Redesign Existing Projects | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | Existing UI refinement |
+| Image to Code | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | Image-guided frontend |
+| Design System Patterns | [wshobson/agents](https://github.com/wshobson/agents) | Reusable design tokens and component systems |
+| React Native Architecture | [wshobson/agents](https://github.com/wshobson/agents) | JavaScript/TypeScript mobile apps |
+| Accessibility Compliance | [wshobson/agents](https://github.com/wshobson/agents) | WCAG/UI quality |
+| Auth Implementation Patterns | [wshobson/agents](https://github.com/wshobson/agents) | Backend authentication |
+| OpenAPI Spec Generation | [wshobson/agents](https://github.com/wshobson/agents) | REST API documentation |
 
 The individual source links and project-domain mappings are **curated,
 non-autonomous starting points**, not certificates of correctness.
