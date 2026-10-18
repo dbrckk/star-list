@@ -48,6 +48,29 @@ jobs:
           assert '<!-- star-list-catalog-quality -->' in markdown
           assert f"Repositories: **{audit['repositories']}**" in markdown
           PY
+      - name: Reconcile concurrent changes before creating the audit artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            checked_sha="$(git rev-parse HEAD)"
+            remote_sha="$(git ls-remote --exit-code origin refs/heads/main | awk '{print $1}')"
+            if [[ "$checked_sha" == "$remote_sha" ]]; then
+              echo "Validated audit matches current main: $checked_sha"
+              exit 0
+            fi
+            echo "main advanced during the audit; recomputing on the latest catalog ($attempt/3)"
+            git fetch --depth=1 origin main
+            git -c advice.detachedHead=false checkout --detach FETCH_HEAD
+            python scripts/audit_catalog_quality.py --markdown-output catalog-quality.md > catalog-quality.json
+            python scripts/validate_json_contract.py schemas/catalog-quality.schema.json catalog-quality.json
+          done
+          checked_sha="$(git rev-parse HEAD)"
+          remote_sha="$(git ls-remote --exit-code origin refs/heads/main | awk '{print $1}')"
+          if [[ "$checked_sha" != "$remote_sha" ]]; then
+            echo "::error::main moved repeatedly; keeping audit artifact and refusing stale publication"
+            exit 1
+          fi
       - name: Preserve current audit evidence
         uses: actions/upload-artifact@v4
         with:
@@ -63,6 +86,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # An additional change after artifact creation must not overwrite
+          # the live issue with an older catalog snapshot. A later bot-triggered
+          # or daily scheduled audit will reconcile if this race occurs.
+          checked_sha="$(git rev-parse HEAD)"
+          remote_sha="$(git ls-remote --exit-code origin refs/heads/main | awk '{print $1}')"
+          if [[ "$checked_sha" != "$remote_sha" ]]; then
+            echo "::error::Catalog changed after audit; refusing stale issue publication"
+            exit 1
+          fi
           read -r REVIEW INFO TOTAL < <(python - <<'PY'
           import json
           summary = json.load(open('catalog-quality.json', encoding='utf-8'))['summary']
