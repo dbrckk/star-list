@@ -36,7 +36,9 @@
       "sourceUrl": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
-      "skillCodeReviewed": false
+      "skillCodeReviewed": false,
+      "sourceCommit": "56ea9cf174ed86786187daa9de0e6247cb0747e4",
+      "sourcePath": ".claude/skills/ui-ux-pro-max/SKILL.md"
     },
     {
       "id": "frontend-design",
@@ -60,7 +62,9 @@
       "sourceUrl": "https://github.com/anthropics/skills",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
-      "skillCodeReviewed": false
+      "skillCodeReviewed": false,
+      "sourceCommit": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+      "sourcePath": "skills/frontend-design/SKILL.md"
     },
     {
       "id": "agent-browser",
@@ -86,7 +90,9 @@
       "sourceUrl": "https://github.com/vercel-labs/agent-browser",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
-      "skillCodeReviewed": false
+      "skillCodeReviewed": false,
+      "sourceCommit": "dac13bb87468fe9d74a040d862720f6cc17a9565",
+      "sourcePath": "skills/agent-browser/SKILL.md"
     },
     {
       "id": "react-best-practices",
@@ -112,7 +118,9 @@
       "sourceUrl": "https://github.com/vercel-labs/agent-skills",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
-      "skillCodeReviewed": false
+      "skillCodeReviewed": false,
+      "sourceCommit": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "sourcePath": "skills/react-best-practices/SKILL.md"
     },
     {
       "id": "web-design-guidelines",
@@ -135,7 +143,9 @@
       "sourceUrl": "https://github.com/vercel-labs/agent-skills",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
-      "skillCodeReviewed": false
+      "skillCodeReviewed": false,
+      "sourceCommit": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "sourcePath": "skills/web-design-guidelines/SKILL.md"
     },
     {
       "id": "remotion-best-practices",
@@ -162,7 +172,9 @@
       "sourceUrl": "https://github.com/remotion-dev/skills",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
-      "skillCodeReviewed": false
+      "skillCodeReviewed": false,
+      "sourceCommit": "1441a11e95db35443bd76bb318386c0d3ca00053",
+      "sourcePath": "skills/remotion-best-practices/SKILL.md"
     },
     {
       "id": "api-design-principles",
@@ -185,6 +197,324 @@
       "description": "API design patterns and review for REST and GraphQL.",
       "languages": [],
       "sourceUrl": "https://github.com/wshobson/agents",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false,
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/backend-development/skills/api-design-principles/SKILL.md"
+    },
+    {
+      "id": "design-taste-frontend",
+      "name": "Design Taste Frontend",
+      "sourceRepository": "Leonxlnx/taste-skill",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "frontend",
+        "design",
+        "ui",
+        "landing",
+        "website",
+        "layout",
+        "typography",
+        "branding"
+      ],
+      "description": "Art direction and visual quality workflow for frontend work.",
+      "languages": [],
+      "sourceUrl": "https://github.com/Leonxlnx/taste-skill",
+      "sourceCommit": "f624f37a8c650b9cc550253104925efe4c8de246",
+      "sourcePath": "skills/taste-skill/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "redesign-existing-projects",
+      "name": "Redesign Existing Projects",
+      "sourceRepository": "Leonxlnx/taste-skill",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "redesign",
+        "ui",
+        "ux",
+        "layout",
+        "website",
+        "web",
+        "frontend"
+      ],
+      "description": "Existing-project interface auditing and redesign workflow.",
+      "languages": [],
+      "sourceUrl": "https://github.com/Leonxlnx/taste-skill",
+      "sourceCommit": "f624f37a8c650b9cc550253104925efe4c8de246",
+      "sourcePath": "skills/redesign-skill/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "image-to-code",
+      "name": "Image to Code",
+      "sourceRepository": "Leonxlnx/taste-skill",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "image",
+        "screenshot",
+        "ui",
+        "design",
+        "frontend",
+        "website"
+      ],
+      "description": "Reference-image analysis and frontend reconstruction workflow.",
+      "languages": [],
+      "sourceUrl": "https://github.com/Leonxlnx/taste-skill",
+      "sourceCommit": "f624f37a8c650b9cc550253104925efe4c8de246",
+      "sourcePath": "skills/image-to-code-skill/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "design-system-patterns",
+      "name": "Design System Patterns",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "web_frontend",
+        "graphics",
+        "mobile"
+      ],
+      "tags": [
+        "design",
+        "system",
+        "tokens",
+        "theming",
+        "components",
+        "ui",
+        "mobile"
+      ],
+      "description": "Design tokens and component system architecture; review original skill before use.",
+      "languages": [],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/ui-design/skills/design-system-patterns/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "nextjs-app-router-patterns",
+      "name": "Next.js App Router Patterns",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "web_frontend"
+      ],
+      "tags": [
+        "nextjs",
+        "react",
+        "app",
+        "router",
+        "frontend",
+        "typescript"
+      ],
+      "description": "Next.js App Router and server component architecture guidance.",
+      "languages": [
+        "TypeScript",
+        "JavaScript"
+      ],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/frontend-mobile-development/skills/nextjs-app-router-patterns/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "react-state-management",
+      "name": "React State Management",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "web_frontend"
+      ],
+      "tags": [
+        "react",
+        "state",
+        "zustand",
+        "jotai",
+        "query",
+        "frontend"
+      ],
+      "description": "React state-management patterns and library selection.",
+      "languages": [
+        "TypeScript",
+        "JavaScript"
+      ],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/frontend-mobile-development/skills/react-state-management/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "tailwind-design-system",
+      "name": "Tailwind Design System",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "web_frontend",
+        "graphics"
+      ],
+      "tags": [
+        "tailwind",
+        "css",
+        "shadcn",
+        "design",
+        "components",
+        "frontend"
+      ],
+      "description": "Tailwind CSS theme and component system patterns.",
+      "languages": [
+        "TypeScript",
+        "JavaScript"
+      ],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/frontend-mobile-development/skills/tailwind-design-system/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "responsive-design",
+      "name": "Responsive Design",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "web_frontend",
+        "mobile",
+        "graphics"
+      ],
+      "tags": [
+        "responsive",
+        "layout",
+        "css",
+        "mobile",
+        "web",
+        "frontend"
+      ],
+      "description": "Adaptive layouts and interaction design for changing screen sizes.",
+      "languages": [],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/ui-design/skills/responsive-design/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "accessibility-compliance",
+      "name": "Accessibility Compliance",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "web_frontend",
+        "mobile"
+      ],
+      "tags": [
+        "accessibility",
+        "aria",
+        "wcag",
+        "ux",
+        "ui",
+        "frontend"
+      ],
+      "description": "Accessibility audits and WCAG guidance for interface projects.",
+      "languages": [],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/ui-design/skills/accessibility-compliance/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "react-native-architecture",
+      "name": "React Native Architecture",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "mobile"
+      ],
+      "tags": [
+        "react",
+        "native",
+        "expo",
+        "android",
+        "ios",
+        "mobile"
+      ],
+      "description": "React Native and Expo architecture guidance, not native Kotlin tooling.",
+      "languages": [
+        "JavaScript",
+        "TypeScript"
+      ],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/frontend-mobile-development/skills/react-native-architecture/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "auth-implementation-patterns",
+      "name": "Authentication Implementation Patterns",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "backend",
+        "web_frontend",
+        "software_engineering"
+      ],
+      "tags": [
+        "auth",
+        "authentication",
+        "oauth",
+        "jwt",
+        "security",
+        "backend"
+      ],
+      "description": "Authentication patterns across web services.",
+      "languages": [],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/developer-essentials/skills/auth-implementation-patterns/SKILL.md",
+      "verification": "upstream-repository-exists",
+      "integrationEligible": false,
+      "skillCodeReviewed": false
+    },
+    {
+      "id": "openapi-spec-generation",
+      "name": "OpenAPI Specification Generation",
+      "sourceRepository": "wshobson/agents",
+      "domains": [
+        "backend",
+        "software_engineering"
+      ],
+      "tags": [
+        "api",
+        "openapi",
+        "rest",
+        "schema",
+        "documentation",
+        "backend"
+      ],
+      "description": "API schema documentation and OpenAPI generation workflow.",
+      "languages": [],
+      "sourceUrl": "https://github.com/wshobson/agents",
+      "sourceCommit": "0874a27b17a22e2b7c2e2bcd725768e0803cad06",
+      "sourcePath": "plugins/documentation-generation/skills/openapi-spec-generation/SKILL.md",
       "verification": "upstream-repository-exists",
       "integrationEligible": false,
       "skillCodeReviewed": false
