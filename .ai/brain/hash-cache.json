@@ -1,16 +1,20 @@
 {
   "files": {
     "docs/GITHUB_STARS_SYNC.md": {
-      "sha256": "268d52750314f1e384a1a6c4fa7ba9450610e03c4014d654dad6fb79b7797e98",
-      "size": 4976
+      "sha256": "b2e55643f55fb446032c6acd840d7c1c224cc0b91d690b96b540bda7aba814dd",
+      "size": 5644
     },
     "scripts/admit_github_stars.py": {
       "sha256": "93b206fd6741c01ddfb843b129c4a41ee119c1bb8af4ea267307153927558cab",
       "size": 12003
     },
-    "scripts/star_import_pipeline.py": {
-      "sha256": "0ef31e842ff42e674498f10836f984c2813a70642d2430f46b55f6a58626eb5f",
-      "size": 12719
+    "scripts/backfill_licenses.py": {
+      "sha256": "5ed31ece9790db453e65dfa5e01483821978a357d76a24440ddeedd554c585a1",
+      "size": 1619
+    },
+    "scripts/refresh_github_metadata.py": {
+      "sha256": "b2e3101378d5ebe7ad2ecb467a2522f59134d09775cdaab3ee2d65d91ac73457",
+      "size": 11152
     },
     "scripts/sync_github_stars.py": {
       "sha256": "7d9beaa4f8a29ef08be8b514c816d3d30ca7953b89f91effcdcd108676d0b8af",
@@ -19,6 +23,10 @@
     "scripts/test_documentation.py": {
       "sha256": "40669232b11ce86a0a121060039980e420392bf6bef33ea111b66a18c23b984c",
       "size": 4209
+    },
+    "scripts/test_refresh_github_metadata.py": {
+      "sha256": "795dce2e6bae775840d16f6e0d70229774608a69788d9d0563cd15a349c676c4",
+      "size": 11893
     },
     "scripts/test_sync_github_stars.py": {
       "sha256": "dab66282ea6c85f25c93c4286044a94863886bf279308febc04212cdca934b8b",

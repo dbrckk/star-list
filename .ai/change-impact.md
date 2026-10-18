@@ -1,13 +1,12 @@
 # Change impact
 
-Base: b5318fe4cd2baa3f9b726cc2f3f2becdc4765bef
-Head: 57d97639723b2fb85e63204beeffeb3c9b71df3a
+Base: 74b1d681695a51be32f43ae3117cffe2a3576527
+Head: 9fbf98c2227e3aa3f45fdd72b51677dd8e9210b4
 
 ## Changed files
 - M docs/GITHUB_STARS_SYNC.md
-- M scripts/admit_github_stars.py
-- M scripts/sync_github_stars.py
-- M scripts/test_sync_github_stars.py
+- M scripts/refresh_github_metadata.py
+- M scripts/test_refresh_github_metadata.py
 
 ## Affected areas
 - docs

@@ -6,6 +6,18 @@
     {
       "dependencies": [],
       "dependents": [
+        "scripts/admit_github_stars.py",
+        "scripts/refresh_github_metadata.py",
+        "scripts/test_refresh_github_metadata.py",
+        "scripts/test_sync_github_stars.py"
+      ],
+      "in_degree": 4,
+      "out_degree": 0,
+      "path": "scripts/sync_github_stars.py"
+    },
+    {
+      "dependencies": [],
+      "dependents": [
         "scripts/analyze_coverage.py",
         "scripts/find_replacements.py",
         "scripts/recommend.py"
@@ -13,6 +25,18 @@
       "in_degree": 3,
       "out_degree": 0,
       "path": "scripts/health_score.py"
+    },
+    {
+      "dependencies": [
+        "scripts/sync_github_stars.py"
+      ],
+      "dependents": [
+        "scripts/backfill_licenses.py",
+        "scripts/test_refresh_github_metadata.py"
+      ],
+      "in_degree": 2,
+      "out_degree": 1,
+      "path": "scripts/refresh_github_metadata.py"
     },
     {
       "dependencies": [
@@ -41,32 +65,12 @@
     {
       "dependencies": [],
       "dependents": [
-        "scripts/backfill_licenses.py",
-        "scripts/test_refresh_github_metadata.py"
-      ],
-      "in_degree": 2,
-      "out_degree": 0,
-      "path": "scripts/refresh_github_metadata.py"
-    },
-    {
-      "dependencies": [],
-      "dependents": [
         "scripts/admit_github_stars.py",
         "scripts/test_star_import_pipeline.py"
       ],
       "in_degree": 2,
       "out_degree": 0,
       "path": "scripts/star_import_pipeline.py"
-    },
-    {
-      "dependencies": [],
-      "dependents": [
-        "scripts/admit_github_stars.py",
-        "scripts/test_sync_github_stars.py"
-      ],
-      "in_degree": 2,
-      "out_degree": 0,
-      "path": "scripts/sync_github_stars.py"
     },
     {
       "dependencies": [
@@ -89,6 +93,16 @@
       "in_degree": 1,
       "out_degree": 1,
       "path": "scripts/portfolio_daily.py"
+    },
+    {
+      "dependencies": [
+        "scripts/refresh_github_metadata.py",
+        "scripts/sync_github_stars.py"
+      ],
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 2,
+      "path": "scripts/test_refresh_github_metadata.py"
     },
     {
       "dependencies": [
@@ -129,15 +143,6 @@
     },
     {
       "dependencies": [
-        "scripts/refresh_github_metadata.py"
-      ],
-      "dependents": [],
-      "in_degree": 0,
-      "out_degree": 1,
-      "path": "scripts/test_refresh_github_metadata.py"
-    },
-    {
-      "dependencies": [
         "scripts/star_import_pipeline.py"
       ],
       "dependents": [],
@@ -146,7 +151,7 @@
       "path": "scripts/test_star_import_pipeline.py"
     }
   ],
-  "edge_count": 14,
+  "edge_count": 16,
   "generated_by": "dbrckk/repo-brain-v7-graph",
   "node_count": 14,
   "schema_version": 1

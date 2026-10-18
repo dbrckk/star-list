@@ -46,8 +46,18 @@
       "type": "imports"
     },
     {
+      "source": "scripts/refresh_github_metadata.py",
+      "target": "scripts/sync_github_stars.py",
+      "type": "imports"
+    },
+    {
       "source": "scripts/test_refresh_github_metadata.py",
       "target": "scripts/refresh_github_metadata.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_refresh_github_metadata.py",
+      "target": "scripts/sync_github_stars.py",
       "type": "imports"
     },
     {

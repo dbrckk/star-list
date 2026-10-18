@@ -1173,6 +1173,28 @@
         "scripts/sync_github_stars.py",
         "scripts/test_sync_github_stars.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(metadata): backfill stable GitHub repository IDs without extra API calls (#122)",
+      "terms": [
+        "122",
+        "api",
+        "backfill",
+        "calls",
+        "extra",
+        "github",
+        "ids",
+        "metadata",
+        "repository",
+        "stable",
+        "without"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/refresh_github_metadata.py",
+        "scripts/test_refresh_github_metadata.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1219,6 +1241,10 @@
       "scripts/admit_github_stars.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
+    },
+    "122": {
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1401,7 +1427,9 @@
     },
     "api": {
       "scripts/portfolio_daily.py": 8,
-      "scripts/portfolio_failure_diagnostics.py": 4
+      "scripts/portfolio_failure_diagnostics.py": 4,
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4
     },
     "are": {
       "scripts/portfolio_failure_diagnostics.py": 4
@@ -1435,7 +1463,9 @@
     "backfill": {
       "scripts/infer_selection_guidance.py": 4,
       "scripts/recommend.py": 4,
+      "scripts/refresh_github_metadata.py": 4,
       "scripts/test_recommend.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 4
     },
@@ -1481,6 +1511,10 @@
     "by": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "calls": {
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4
     },
     "candidate": {
       "scripts/portfolio_daily.py": 4
@@ -1677,6 +1711,10 @@
     "exposing": {
       "scripts/portfolio_failure_diagnostics.py": 4
     },
+    "extra": {
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4
+    },
     "fail": {
       "scripts/portfolio_daily.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4
@@ -1761,11 +1799,11 @@
     },
     "github": {
       "scripts/admit_github_stars.py": 12,
-      "scripts/refresh_github_metadata.py": 4,
+      "scripts/refresh_github_metadata.py": 8,
       "scripts/star_import_pipeline.py": 8,
       "scripts/sync_github_stars.py": 12,
       "scripts/test_auto_stars_admission.py": 4,
-      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 8,
       "scripts/test_star_import_pipeline.py": 8,
       "scripts/test_sync_github_stars.py": 12
     },
@@ -1803,6 +1841,10 @@
     },
     "idle": {
       "scripts/portfolio_daily.py": 4
+    },
+    "ids": {
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4
     },
     "if": {
       "scripts/test_documentation.py": 4
@@ -1930,12 +1972,12 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/backfill_licenses.py": 4,
       "scripts/recommend.py": 4,
-      "scripts/refresh_github_metadata.py": 8,
+      "scripts/refresh_github_metadata.py": 12,
       "scripts/test_backfill_licenses.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_recommend.py": 4,
-      "scripts/test_refresh_github_metadata.py": 8,
+      "scripts/test_refresh_github_metadata.py": 12,
       "scripts/validate_catalog.py": 4
     },
     "missed": {
@@ -2140,11 +2182,11 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/backfill_licenses.py": 4,
       "scripts/portfolio_daily.py": 8,
-      "scripts/refresh_github_metadata.py": 8,
+      "scripts/refresh_github_metadata.py": 12,
       "scripts/sync_github_stars.py": 8,
       "scripts/test_backfill_licenses.py": 4,
       "scripts/test_catalog_quality.py": 4,
-      "scripts/test_refresh_github_metadata.py": 8,
+      "scripts/test_refresh_github_metadata.py": 12,
       "scripts/test_sync_github_stars.py": 8
     },
     "request": {
@@ -2245,6 +2287,10 @@
     "specialized": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "stable": {
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4
     },
     "stacks": {
       "scripts/recommend.py": 4,
@@ -2397,7 +2443,9 @@
     },
     "without": {
       "scripts/portfolio_daily.py": 8,
-      "scripts/portfolio_failure_diagnostics.py": 4
+      "scripts/portfolio_failure_diagnostics.py": 4,
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4
     },
     "worker": {
       "scripts/portfolio_failure_diagnostics.py": 12

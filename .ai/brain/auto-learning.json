@@ -2,32 +2,31 @@
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
   "learned": true,
   "learning_result": {
-    "example_count": 62,
+    "example_count": 63,
     "rejected_count": 0,
     "terms": [
-      "121",
-      "before",
-      "coverage",
-      "declaring",
-      "detect",
-      "full",
+      "122",
+      "api",
+      "backfill",
+      "calls",
+      "extra",
       "github",
-      "names",
-      "recycled",
+      "ids",
+      "metadata",
       "repository",
-      "stars"
+      "stable",
+      "without"
     ],
     "test_count": 0,
-    "useful_count": 3
+    "useful_count": 2
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(stars): detect recycled GitHub repository names before declaring full coverage (#121)",
+  "task": "fix(metadata): backfill stable GitHub repository IDs without extra API calls (#122)",
   "tests_selected": [],
   "useful": [
-    "scripts/admit_github_stars.py",
-    "scripts/sync_github_stars.py",
-    "scripts/test_sync_github_stars.py"
+    "scripts/refresh_github_metadata.py",
+    "scripts/test_refresh_github_metadata.py"
   ]
 }

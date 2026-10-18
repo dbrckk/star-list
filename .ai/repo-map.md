@@ -3749,6 +3749,9 @@ headers = {"Accept":"application/vnd.github+json","User-Agent":"star-list-metada
 ⋮----
 req = Request(url, headers=headers)
 ⋮----
+# The shared GitHub-only opener refuses authenticated cross-origin
+# redirects. urllib.urlopen would forward the refresh bearer token.
+⋮----
 def fetch(repo, token=None, retries=2)
 ⋮----
 def fetch_contents(repo, path="", ref=None, token=None, retries=2)
@@ -3813,15 +3816,31 @@ repos = data.get("repositories", [])
 if args.limit > 0: repos = repos[:args.limit]
 token = os.environ.get("GITHUB_TOKEN")
 ⋮----
+known_ids = {
+⋮----
 name = r["repo"]
 ⋮----
 raw = fetch(name, token)
+⋮----
+stable_id = raw.get("id")
+⋮----
+previous_id = r.get("githubRepositoryId")
+⋮----
+existing_name = known_ids.get(stable_id)
+⋮----
 fresh = metadata(raw)
 ⋮----
 detected = fallback_license(name, raw.get("default_branch"), token)
 ⋮----
 current_github = r.get("github")
 current_license = current_github.get("license") if isinstance(current_github, dict) else None
+⋮----
+entry_changed = r.get("github") != fresh
+⋮----
+# No additional API calls: this is the same verified repository
+# metadata response already used for the weekly refresh.
+⋮----
+entry_changed = True
 ⋮----
 failure = {"repo":name,"error":str(e)}
 ````
@@ -4694,6 +4713,20 @@ def test_metadata_refresh_uses_license_fallback()
 def test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive()
 ⋮----
 def test_server_error_remains_fatal()
+⋮----
+# Reusing an existing slug for a new GitHub ID must not silently change
+# the catalog's established permanent identity.
+⋮----
+unchanged = json.loads(catalog.read_text())["repositories"][0]
+⋮----
+# Metadata and license fallback requests must use the same authenticated
+# GitHub-only opener as Stars synchronization, never urlopen's default
+# unrestricted redirect handling.
+⋮----
+class RejectingOpener
+⋮----
+def open(self, request, timeout=20)
+previous_opener = refresh.SAFE_GITHUB_HTTP
 ````
 
 ## File: scripts/test_render_discovery_issue.py

@@ -72,24 +72,25 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-18T14:11:29Z
+Generated: 2026-10-18T14:16:59Z
 
 ### Git
 - Branch: `main`
-- Head: `57d97639723b`
-- Commit date: 2026-10-18T10:11:20-04:00
-- Commit: fix(stars): detect recycled GitHub repository names before declaring full coverage (#121)
+- Head: `9fbf98c2227e`
+- Commit date: 2026-10-18T10:16:49-04:00
+- Commit: fix(metadata): backfill stable GitHub repository IDs without extra API calls (#122)
 - Tracked files: 280
 
 ### Recently changed files
 - `docs/GITHUB_STARS_SYNC.md`
+- `scripts/refresh_github_metadata.py`
+- `scripts/test_refresh_github_metadata.py`
 - `scripts/admit_github_stars.py`
 - `scripts/sync_github_stars.py`
 - `scripts/test_sync_github_stars.py`
 - `docs/PORTFOLIO_CAPACITY_RECOVERY.md`
 - `.github/workflows/refresh-metadata.yml`
 - `scripts/test_documentation.py`
-- `.github/workflows/catalog-quality-on-change.yml`
 
 ### Project signals
 - No common build descriptor detected

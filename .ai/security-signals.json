@@ -5,6 +5,13 @@
   "potential_secret_locations": [
     {
       "category": "generic_secret_assignment",
+      "path": "scripts/test_refresh_github_metadata.py",
+      "line": 273,
+      "context": "test_fixture_candidate",
+      "severity": "low"
+    },
+    {
+      "category": "generic_secret_assignment",
       "path": "scripts/test_sync_github_stars.py",
       "line": 101,
       "context": "test_fixture_candidate",
@@ -12,9 +19,9 @@
     }
   ],
   "risky_tracked_filenames": [],
-  "finding_count": 1,
+  "finding_count": 2,
   "high_severity_count": 0,
   "medium_severity_count": 0,
-  "low_severity_count": 1,
+  "low_severity_count": 2,
   "risky_filename_count": 0
 }

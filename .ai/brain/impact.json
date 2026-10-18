@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "f0eb322ba0e62f48605e43648879549bc5890f10",
-  "head": "57d97639723b2fb85e63204beeffeb3c9b71df3a",
+  "base": "57d97639723b2fb85e63204beeffeb3c9b71df3a",
+  "head": "9fbf98c2227e3aa3f45fdd72b51677dd8e9210b4",
   "index_mode": "incremental",
   "changed_files": [
     {
@@ -10,175 +10,182 @@
       "status": "M"
     },
     {
-      "path": "scripts/admit_github_stars.py",
+      "path": "scripts/refresh_github_metadata.py",
       "status": "M"
     },
     {
-      "path": "scripts/sync_github_stars.py",
-      "status": "M"
-    },
-    {
-      "path": "scripts/test_sync_github_stars.py",
+      "path": "scripts/test_refresh_github_metadata.py",
       "status": "M"
     }
   ],
   "changed_source_files": [
-    "scripts/admit_github_stars.py",
-    "scripts/sync_github_stars.py",
-    "scripts/test_sync_github_stars.py"
+    "scripts/refresh_github_metadata.py",
+    "scripts/test_refresh_github_metadata.py"
   ],
   "impacted_files": [
-    "scripts/admit_github_stars.py",
-    "scripts/sync_github_stars.py",
-    "scripts/test_sync_github_stars.py"
+    "scripts/backfill_licenses.py",
+    "scripts/refresh_github_metadata.py",
+    "scripts/test_refresh_github_metadata.py"
   ],
   "impacted_symbols": [
     {
-      "name": "classify",
+      "name": "backfill",
       "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 52
-    },
-    {
-      "name": "get_repo",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 64
-    },
-    {
-      "name": "catalog_entry",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 100
-    },
-    {
-      "name": "count",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 111
-    },
-    {
-      "name": "admit",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 159
+      "file": "scripts/backfill_licenses.py",
+      "line": 15
     },
     {
       "name": "main",
       "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 215
+      "file": "scripts/backfill_licenses.py",
+      "line": 34
     },
     {
-      "name": "SameOriginGitHubRedirect",
-      "kind": "class",
-      "file": "scripts/sync_github_stars.py",
-      "line": 23
-    },
-    {
-      "name": "redirect_request",
+      "name": "_request_json",
       "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 31
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 34
     },
     {
-      "name": "validate_user",
+      "name": "fetch",
       "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 46
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 54
     },
     {
-      "name": "normalize_repo",
+      "name": "fetch_contents",
       "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 52
-    },
-    {
-      "name": "api_stars",
-      "kind": "function",
-      "file": "scripts/sync_github_stars.py",
+      "file": "scripts/refresh_github_metadata.py",
       "line": 58
     },
     {
-      "name": "catalog_identities",
+      "name": "detect_license_text",
       "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 157
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 66
     },
     {
-      "name": "build_report",
+      "name": "_decode_content",
       "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 189
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 99
     },
     {
-      "name": "render_issue",
+      "name": "fallback_license",
       "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 230
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 111
     },
     {
-      "name": "write_json",
+      "name": "metadata",
       "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 280
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 166
+    },
+    {
+      "name": "refresh_primary_language",
+      "kind": "function",
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 177
+    },
+    {
+      "name": "is_missing_repository_error",
+      "kind": "function",
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 184
     },
     {
       "name": "main",
       "kind": "function",
-      "file": "scripts/sync_github_stars.py",
-      "line": 286
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 188
     },
     {
-      "name": "star",
+      "name": "http_error",
       "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 21
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 13
     },
     {
-      "name": "Response",
+      "name": "run_main",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 23
+    },
+    {
+      "name": "test_missing_repo_is_recorded_but_nonfatal",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 32
+    },
+    {
+      "name": "fake_fetch",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 47
+    },
+    {
+      "name": "test_license_signature_detection",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 80
+    },
+    {
+      "name": "test_license_fallback_reads_root_license_file",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 98
+    },
+    {
+      "name": "fake_contents",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 101
+    },
+    {
+      "name": "test_license_fallback_reads_readme_when_root_license_is_absent",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 118
+    },
+    {
+      "name": "fake_contents",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 121
+    },
+    {
+      "name": "test_metadata_refresh_uses_license_fallback",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 134
+    },
+    {
+      "name": "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 164
+    },
+    {
+      "name": "test_server_error_remains_fatal",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 197
+    },
+    {
+      "name": "RejectingOpener",
       "kind": "class",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 35
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 262
     },
     {
-      "name": "__init__",
+      "name": "open",
       "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 36
-    },
-    {
-      "name": "__enter__",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 40
-    },
-    {
-      "name": "__exit__",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 43
-    },
-    {
-      "name": "read",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 46
-    },
-    {
-      "name": "two_page_opener",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 51
-    },
-    {
-      "name": "rate_limited",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 160
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 263
     }
   ],
   "selected_tests": [
-    "scripts/test_sync_github_stars.py"
+    "scripts/test_refresh_github_metadata.py"
   ]
 }

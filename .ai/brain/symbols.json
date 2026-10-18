@@ -887,70 +887,70 @@
       "language": "python",
       "kind": "function",
       "name": "_request_json",
-      "line": 32
+      "line": 34
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "fetch",
-      "line": 50
-    },
-    {
-      "file": "scripts/refresh_github_metadata.py",
-      "language": "python",
-      "kind": "function",
-      "name": "fetch_contents",
       "line": 54
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
+      "name": "fetch_contents",
+      "line": 58
+    },
+    {
+      "file": "scripts/refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
       "name": "detect_license_text",
-      "line": 62
+      "line": 66
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "_decode_content",
-      "line": 95
+      "line": 99
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "fallback_license",
-      "line": 107
+      "line": 111
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "metadata",
-      "line": 162
+      "line": 166
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "refresh_primary_language",
-      "line": 173
+      "line": 177
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "is_missing_repository_error",
-      "line": 180
+      "line": 184
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "main",
-      "line": 184
+      "line": 188
     },
     {
       "file": "scripts/render_discovery_issue.py",
@@ -1279,56 +1279,70 @@
       "language": "python",
       "kind": "function",
       "name": "test_license_signature_detection",
-      "line": 78
+      "line": 80
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "test_license_fallback_reads_root_license_file",
-      "line": 96
+      "line": 98
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "fake_contents",
-      "line": 99
+      "line": 101
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "test_license_fallback_reads_readme_when_root_license_is_absent",
-      "line": 116
+      "line": 118
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "fake_contents",
-      "line": 119
+      "line": 121
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "test_metadata_refresh_uses_license_fallback",
-      "line": 132
+      "line": 134
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
-      "line": 162
+      "line": 164
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "test_server_error_remains_fatal",
-      "line": 195
+      "line": 197
+    },
+    {
+      "file": "scripts/test_refresh_github_metadata.py",
+      "language": "python",
+      "kind": "class",
+      "name": "RejectingOpener",
+      "line": 262
+    },
+    {
+      "file": "scripts/test_refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "open",
+      "line": 263
     },
     {
       "file": "scripts/test_sync_github_stars.py",
