@@ -21,7 +21,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlparse
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
-from recommend import DOMAIN_ALIASES, infer_domains, score_repo, tokens
+from recommend import DOMAIN_ALIASES, infer_domains, score_repo, tokens, recommend_websites
 
 ROOT = Path(__file__).resolve().parents[1]
 API = "https://api.github.com"
@@ -649,6 +649,7 @@ def render_markdown(report: dict) -> str:
              "Projects with reviewable suggestions: **" + str(summary["with_suggestions"]) + "**.",
              "Projects with native-mode candidates: **" + str(summary["with_native_suggestions"]) + "**.",
              "Native-mode candidates: **" + str(summary["native_suggestions"]) + "**.",
+             "Projects with website references: **" + str(summary["with_website_references"]) + "**.",
              "New Production-OS integration requests: **" + str(summary["dispatched"]) + "**.",
              "Dispatch: **" + report["dispatch_status"] + "**.", ""]
     if isinstance(summary.get("active_integrations"), int):
@@ -674,6 +675,10 @@ def render_markdown(report: dict) -> str:
                          + " — fit " + str(item["score"]) + ", " + item["mode"]
                          + ", license " + str(item["license"])
                          + ", overlap: " + ", ".join(item["shared_terms"]))
+        for site in row.get("website_references", []):
+            lines.append("- Web reference: [" + site["name"] + "](" + site["url"] + ")"
+                         + " — " + site["type"] + ", " + site["reuse"]
+                         + " (advisory only; inspect reuse rights)")
         for item in row.get("dispatches", []):
             lines.append("- Integration queue: " + item)
         for item in row.get("integrations", []):
@@ -728,14 +733,29 @@ def main() -> int:
         source, catalog = [], []
     for repo in source:
         target = repo["full_name"]
-        row = {"repository": target, "status": "scanned", "suggestions": [], "dispatches": []}
+        row = {"repository": target, "status": "scanned", "suggestions": [], "website_references": [], "dispatches": []}
         try:
             if repo.get("archived") or repo.get("disabled"):
                 row["status"] = "skipped-inactive"
             else:
                 profile = project_profile(repo, portfolio_token or gh_token)
                 row["suggestions"] = recommendations(repo, profile, catalog, 3)
-                row["status"] = "qualified-candidates" if row["suggestions"] else "no-qualified-candidate"
+                # Reference websites based on repository-owned metadata only;
+                # arbitrary README prose is not trustworthy installation evidence.
+                web_terms = tokens(" ".join([
+                    repo["name"], str(repo.get("description") or ""),
+                    " ".join(repo.get("topics") or []),
+                ]))
+                possible_sites = recommend_websites(web_terms, set(profile["domains"]), limit=10)
+                # Domain-only matches are too generic for portfolio reporting.
+                # At least one concrete tag or best-for phrase must also match.
+                row["website_references"] = [
+                    site for site in possible_sites
+                    if site["why"]["tags"] or site["why"]["terms"]
+                ][:2]
+                row["status"] = ("qualified-candidates" if row["suggestions"]
+                                 else "web-reference-only" if row["website_references"]
+                                 else "no-qualified-candidate")
         except (RuntimeError, ValueError, TypeError, KeyError) as exc:
             row["status"] = "scan-failed"
             report["errors"].append(target + ": " + str(exc))
@@ -941,6 +961,12 @@ def main() -> int:
         "native_suggestions": sum(
             item["mode"] == "native"
             for p in report["projects"] for item in p["suggestions"]
+        ),
+        "with_website_references": sum(
+            bool(p["website_references"]) for p in report["projects"]
+        ),
+        "website_references": sum(
+            len(p["website_references"]) for p in report["projects"]
         ),
         "dispatched": dispatched, "active_integrations": active_integrations,
         "failed_v2_integrations": failed_v2_integrations,
