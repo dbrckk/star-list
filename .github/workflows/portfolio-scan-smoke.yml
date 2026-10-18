@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - "scripts/portfolio_daily.py"
+      - "scripts/recommend.py"
+      - "web-resources.json"
       - "scripts/portfolio_failure_diagnostics.py"
       - ".github/workflows/portfolio-failure-diagnostics.yml"
       - ".github/workflows/daily-portfolio-integration.yml"
@@ -47,9 +49,22 @@ jobs:
           )
           assert result["summary"]["with_native_suggestions"] <= result["summary"]["with_suggestions"]
           assert result["summary"]["native_suggestions"] >= result["summary"]["with_native_suggestions"]
+          assert result["summary"]["with_web_resources"] == sum(
+              bool(row["web_resources"]) for row in result["projects"]
+          )
+          assert result["summary"]["web_resource_suggestions"] == sum(
+              len(row["web_resources"]) for row in result["projects"]
+          )
+          for row in result["projects"]:
+              for site in row["web_resources"]:
+                  assert site["autoIntegrate"] is False
+                  assert site["usagePolicy"] in {"reference-only", "review-license"}
+                  assert site["url"].startswith("https://")
+                  assert "repo" not in site
           report_markdown = Path("portfolio-daily.md").read_text()
           assert ("Projects with native-mode candidates: **"
                   + str(result["summary"]["with_native_suggestions"]) + "**.") in report_markdown
+          assert "Projects with website references: **" in report_markdown
           for project in result["projects"]:
               for candidate in project["suggestions"]:
                   if "roblox" in project["repository"].lower():
