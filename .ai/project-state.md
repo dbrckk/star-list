@@ -5,7 +5,7 @@ Status: active
 ## Working
 - GitHub Stars are reconciled automatically into `catalog.json` at audit tier, preserving atomic validation and failure artifacts.
 - Public portfolio scanning and recommendation reporting work; private-repository workflows run independently without publishing private project details.
-- Catalog contains 942 entries at the 2026-10-17 checkpoint; GitHub Stars sync, Validate catalog and Repository standards have successful verified runs.
+- Catalog contains 961 entries at the verified 2026-10-18 checkpoint; the Stars sync confirmed 827/827 accessible public favorites, and catalog validation plus repository standards passed.
 - Per-target single-flight dispatch and same-origin authenticated redirects have been merged (#80 and #81).
 - Portfolio execution remains subject to strict worker capacity, deduplication, and UTC launch caps.
 
@@ -41,6 +41,13 @@ Status: active
 - [AI Dev Server PR #335](https://github.com/dbrckk/ai-dev-server/pull/335) merged as `b0cd423`: optional, opt-in Workers Free `@cf/zai-org/glm-4.7-flash` code-model fallback, with GitHub secret isolation from external coding agents. All seven exact-PR-head checks passed, including mobile and multi-engine CI. Fallback remains **disabled until a verified Workers Free account, scoped key and variables are configured**. No authenticated Cloudflare inference or sustained model capacity has been verified and terminal-v3 fleet stop remains active.
 - [GitHub Stars run 39002112723](https://github.com/dbrckk/star-list/actions/runs/39002112723) on October 17 checked **804/804 accessible public favorites** (9 pages; no uncataloged stars). This does not verify inaccessible private stars. Public discovery continues at 38/38 with 14 projects showing suggestions; no integration is counted complete.
 
+## Verified operational checkpoint (2026-10-18)
+- [Star-list PR #113](https://github.com/dbrckk/star-list/pull/113): Production-OS integration-launch POSTs are never retried after ambiguous transport failure. The complete catalog CI and portfolio smoke passed.
+- [PR #114](https://github.com/dbrckk/star-list/pull/114), [PR #115](https://github.com/dbrckk/star-list/pull/115) and [PR #116](https://github.com/dbrckk/star-list/pull/116) published automatic catalog quality audits on catalog changes, fixed the built-in GitHub-token event suppression with a reusable workflow, and added daily reconciliation. A real [Stars sync run #39118687501](https://github.com/dbrckk/star-list/actions/runs/39118687501) admitted one new favorite and completed its audit job; the issue then reported 961 catalog entries and zero review-grade findings.
+- [Stars sync run #39121356632](https://github.com/dbrckk/star-list/actions/runs/39121356632) confirmed 827 accessible public stars, 827 cataloged, zero missing. This cannot attest inaccessible private favorites.
+- Public discovery [issue #61](https://github.com/dbrckk/star-list/issues/61) covers 38/38 accessible public repositories; the separate private `Finders` and `tube` scans also passed on October 18. Four failed v2 and one terminal failed v3 integrations remain under the capacity-exhaustion safety hold. The [diagnostic workflow #39113139237](https://github.com/dbrckk/star-list/actions/runs/39113139237) checked all five failure task details.
+- AI Dev Server PRs #337-#342 improved provider capacity guards, free-model failovers, Godot implementation token preservation and model-call ceilings. A passing CI workflow is not a completed, deployed, target-side integration.
+
 ## Current priority
 1. **Restore usable free AI execution capacity.** 2026-10-17 diagnosis verified 4 v2 and 1 failed final v3, all `capacity_exhausted`, with no delivered commit, reviewable PR or target CI. See `docs/PORTFOLIO_CAPACITY_RECOVERY.md`.
 2. Qualify one zero-cost provider/model route with authenticated quota and a successful small inference probe before any operator-approved recovery; the final-v3 fleet stop is intentionally in effect. Do not reset markers, bypass caps or raise budgets.
@@ -53,7 +60,7 @@ Status: active
 - Catalog identity uniqueness and schema remain enforced by the existing validation workflow.
 
 ## Last verified
-- 2026-10-17 (942 catalog entries at the last checkpoint; 38/38 public repos inspected; four historical v2 and one final v3 integration failure; no target source delivery verified).
+- 2026-10-18 (961 catalog entries, 827/827 accessible public stars reconciled; 38/38 public projects and both private projects scanned; four historical v2 and one terminal v3 failures; no verified target-side source delivery).
 
 <!-- AUTO:START -->
 ## Automatic repository state
