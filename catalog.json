@@ -42229,6 +42229,666 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "ahujasid/mcp-for-blender",
+      "githubRepositoryId": 944414751,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "3d-modeling",
+        "ai",
+        "blender",
+        "blender-addon",
+        "blender-mcp",
+        "claude",
+        "generative-ai",
+        "llm",
+        "mcp",
+        "model-context-protocol",
+        "python"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 31550,
+        "forks": 2949,
+        "openIssues": 52,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-18T15:42:25Z"
+      },
+      "bestFor": [
+        "Community plugin to control Blender 3D with any LLM of your choice. Not affiliated with the official Blender Foundation."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "BayatGames/SaveGameFree",
+      "githubRepositoryId": 80331615,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "binary-serialization",
+        "game-data",
+        "json-serialization",
+        "save",
+        "savegame",
+        "saver",
+        "saving",
+        "serialization",
+        "serialization-library",
+        "serializer",
+        "unity",
+        "unity-asset"
+      ],
+      "languages": [
+        "rich text format"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 669,
+        "forks": 65,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2025-10-06T10:52:44Z"
+      },
+      "bestFor": [
+        "Save Game Free is a free and simple but powerful solution for saving and loading game data in unity."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Cysharp/UniTask",
+      "githubRepositoryId": 187499284,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "coroutine",
+        "csharp",
+        "task",
+        "thread",
+        "unity"
+      ],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 11256,
+        "forks": 1012,
+        "openIssues": 26,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-06T11:15:15Z"
+      },
+      "bestFor": [
+        "Provides an efficient allocation free async/await integration for Unity."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "espressif/esp-emulator",
+      "githubRepositoryId": 1237876767,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 150,
+        "forks": 11,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-13T09:51:21Z"
+      },
+      "bestFor": [
+        "Emulator for ESP32 Series SoCs"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "h8man/NavMeshPlus",
+      "githubRepositoryId": 155978146,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "2d",
+        "2d-navmesh",
+        "2d-pathfinding",
+        "collider2d",
+        "navmesh",
+        "pathfinding",
+        "sprites",
+        "tilemap",
+        "unity",
+        "unity-2d-pathfinding",
+        "unity3d"
+      ],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2359,
+        "forks": 269,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-18T15:04:35Z"
+      },
+      "bestFor": [
+        "Unity NavMesh 2D Pathfinding"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "KyryloKuzyk/PrimeTween",
+      "githubRepositoryId": 641003290,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "animation",
+        "camera-shake",
+        "delay",
+        "ease",
+        "easing",
+        "game-feel",
+        "interpolation",
+        "screen-shake",
+        "sequence",
+        "tween",
+        "tweening",
+        "unity"
+      ],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2006,
+        "forks": 83,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T05:47:33Z"
+      },
+      "bestFor": [
+        "High-performance, allocation-free tween library for Unity. Create animations, delays, and sequences in one line of code."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "mikroverk/esp32sim",
+      "githubRepositoryId": 1345842700,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 326,
+        "forks": 17,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-18T19:54:14Z"
+      },
+      "bestFor": [
+        "Open-source ESP32 emulator. Run real firmware locally or in your browser — no hardware, no cloud, no subscription."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "mxgmn/WaveFunctionCollapse",
+      "githubRepositoryId": 69662720,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "algorithm",
+        "csharp",
+        "gamedev",
+        "machine-learning",
+        "procedural-generation",
+        "wfc"
+      ],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 25411,
+        "forks": 1368,
+        "openIssues": 10,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-15T12:21:27Z"
+      },
+      "bestFor": [
+        "Bitmap & tilemap generation from a single example with the help of ideas from quantum mechanics"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "real2nix/mineblox",
+      "githubRepositoryId": 703227360,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "luau",
+        "minecraft",
+        "minecraft-clone",
+        "roblox"
+      ],
+      "languages": [
+        "luau"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 74,
+        "forks": 5,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2025-07-06T00:59:22Z"
+      },
+      "bestFor": [
+        "A highly extensible voxel engine written in Luau for Roblox."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "scoyoc5/unity-ai-agent-rules",
+      "githubRepositoryId": 1422574462,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1,
+        "forks": 0,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-16T22:06:47Z"
+      },
+      "bestFor": [
+        "Free Cursor/Claude Code rules for Unity game dev (mini version of the Unity AI Agent Kit)"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "SentientTurtle/RBXLX2VMF",
+      "githubRepositoryId": 396110600,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "rbxlx"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 30,
+        "forks": 4,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2025-06-13T14:17:26Z"
+      },
+      "bestFor": [
+        "Roblox to Source Engine map converter"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ShiroKSH/skills",
+      "githubRepositoryId": 1296622144,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "agent-skills",
+        "claude-code",
+        "codex",
+        "luau",
+        "mcp",
+        "roblox",
+        "roblox-studio",
+        "skills"
+      ],
+      "languages": [
+        "lua"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6,
+        "forks": 1,
+        "openIssues": 12,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-29T06:28:59Z"
+      },
+      "bestFor": [
+        "Roblox Studio skill and local MCP bridge for Claude Code, Codex, and other coding agents."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "songshikang0111/awesome-REA-cases",
+      "githubRepositoryId": 1415075956,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "ai",
+        "awesome-list",
+        "rea",
+        "reverse-engineering"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 264,
+        "forks": 46,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-18T20:17:40Z"
+      },
+      "bestFor": [
+        "A curated collection of REA and AI-assisted reverse engineering cases, projects, and ideas. Updated every four hours."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "withmarbleapp/os-taxonomy",
+      "githubRepositoryId": 1293375068,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5704,
+        "forks": 959,
+        "openIssues": 21,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "ODbL-1.0",
+        "pushedAt": "2026-07-08T14:18:23Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "YarnSpinnerTool/YarnSpinner-Unity",
+      "githubRepositoryId": 269093424,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "game-development",
+        "gamedev",
+        "unity"
+      ],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 840,
+        "forks": 129,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-13T03:10:42Z"
+      },
+      "bestFor": [
+        "The official Unity integration for Yarn Spinner, the friendly dialogue tool."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "yasirkula/UnityIngameDebugConsole",
+      "githubRepositoryId": 61235116,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2746,
+        "forks": 267,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-09-06T07:51:45Z"
+      },
+      "bestFor": [
+        "A uGUI based console to see debug messages and execute commands during gameplay in Unity"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
