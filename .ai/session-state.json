@@ -6,11 +6,19 @@
   "status": "active",
   "verified_catalog_repositories": 962,
   "last_verified_public_portfolio_scan": {
-    "discovered": 38,
-    "inspected": 38,
-    "with_suggestions": 14,
-    "with_native_suggestions": 2,
-    "native_suggestions": 4
+    "discovered": 41,
+    "inspected": 41,
+    "with_suggestions": 16,
+    "with_native_suggestions": 3,
+    "native_suggestions": 5,
+    "with_website_references": 3,
+    "website_references": 6,
+    "skill_directory_references": 41,
+    "with_skill_recommendations": 5,
+    "skill_recommendations": 6,
+    "dispatched": 0,
+    "public_report_issue": 61,
+    "verified_workflow_run": 39154817150
   },
   "last_verified_integration_inventory": {
     "active": 0,
@@ -73,7 +81,10 @@
     122,
     123,
     124,
-    125
+    125,
+    127,
+    130,
+    131
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -113,9 +124,13 @@
     "Star-list PR #123 restricts candidate discovery bearer requests to GitHub API and blocks cross-origin auth redirects.",
     "Star-list PR #124 backfilled 572 permanent GitHub IDs and admitted github/opensource.guide in real synchronized run #39136146189 with no extra API calls; same-run audit succeeded.",
     "Star-list PR #125 publishes verified-ID coverage separately: 829/962 permanent IDs, 133 still name-only (public issue #32, audit run #39136539206).",
-    "Public Stars sync run #39136471679 checked 828/828 accessible public favorites, 9 pages, no missing or newly admitted repos."
+    "Public Stars sync run #39136471679 checked 828/828 accessible public favorites, 9 pages, no missing or newly admitted repos.",
+    "Star-list PRs #127 and #130 established validated canonical website references and added advisory sites to public/private portfolio discovery.",
+    "Star-list PR #131 merged as 24e56f2: Skill Issue is an 11th curated website and high-priority skill directory with seven reviewed-upstream source references, offline domain/language selection, opt-in CLI, and safe public/private portfolio reporting; post-merge validations and live 41/41 public scan passed.",
+    "Repo-standards PR #12 merged as f2e6a2e: shared AGENTS and repo-excellence skill recommend relevant Skill Issue sources only after full code/license/security review; consumers pinned to older policies are not silently upgraded."
   ],
   "next_priority": [
+    "Expand task-relevant, source-verified Skill Issue coverage beyond seven curated examples only after inspecting each original SKILL.md, license, scripts and runtime compatibility; never mass-install external instructions.",
     "Verify the remaining 133 catalog records missing permanent GitHub IDs through the existing weekly metadata refresh; handle unreachable or transferred identities without guessing.",
     "Requalify actual Star-list native candidates and deliver one small licensed, compatible source integration with exact-SHA draft PR and target CI evidence, without fake dependency-only success.",
     "Verify a usable zero-cost coding provider with authenticated quota before operator-approved Production-OS recovery; preserve terminal-v3 fleet dispatch stop.",
