@@ -256,11 +256,13 @@ def project_profile(repo: dict, token: str) -> dict:
     dependency_text = ""
     skill_domains, skill_terms = set(), set()
     first_manifest = ""
+    inspected_manifests = {}
     for filename in MANIFESTS:
         # Preserve the first-manifest behavior used by the existing repository
         # integration ranker. Only skill discovery inspects more than one
         # exact, known manifest; it never executes manifest scripts.
         value = file_text(name, filename, token, limit=12000)
+        inspected_manifests[filename] = value
         if value:
             dependency_text += "\n" + value[:3500]
             skill_domains, skill_terms = package_skill_signals(filename, value)
@@ -272,7 +274,11 @@ def project_profile(repo: dict, token: str) -> dict:
     for filename in ("package.json", "pubspec.yaml"):
         if filename == first_manifest:
             continue
-        value = file_text(name, filename, token, limit=12000)
+        # A missing manifest encountered before the primary one was already
+        # checked. Avoid a second GitHub GET, including duplicate 404s.
+        value = inspected_manifests.get(filename)
+        if value is None:
+            value = file_text(name, filename, token, limit=12000)
         if value:
             extra_domains, extra_terms = package_skill_signals(filename, value)
             skill_domains.update(extra_domains)
