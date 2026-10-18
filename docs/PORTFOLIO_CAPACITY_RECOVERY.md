@@ -137,6 +137,46 @@ inference prompts, private repository identities or provider traces in public
 star-list artifacts. This guide authorizes **diagnosis only**; resuming
 Production-OS mutation still requires a separate operator decision.
 
+## Verified delivery guards, not yet a recovered integration (2026-10-18)
+
+Two AI Dev Server safety improvements have now merged independently:
+
+- [PR #345](https://github.com/dbrckk/ai-dev-server/pull/345):
+  directly created autonomous GitHub pull requests are **draft** by default,
+  matching the existing trusted target-side handoff.
+- [PR #346](https://github.com/dbrckk/ai-dev-server/pull/346):
+  the Jumpy canary only reports delivery when GitHub confirms that the
+  exact open target pull request points to the **published 40-character SHA**.
+  A previously opened PR on the same branch or an accepted dispatch is not
+  delivery proof.
+
+Both PRs passed their seven required exact-head CI workflows before merge,
+including Production-OS worker integration, multi-engine Godot and
+mobile/Flutter checks. They do not reset historical failures, prove usable
+provider quota, or certify an end-to-end **new** target source integration.
+
+A successful **portfolio integration** must now have *all* of the following
+independent evidence:
+
+1. A scoped, open-source upstream candidate with verified license and
+   runtime compatibility, not merely a high heuristic catalog score.
+2. A target branch containing real source changes that actually use the
+   component, not only a marker file, documentation or queued managed task.
+3. A draft review PR whose target repository, branch and head SHA match the
+   published source checkpoint; if confirmation fails, retain the checkpoint
+   and report `blocked`, never `complete`.
+4. Successful applicable target-side tests, build and runtime checks against
+   that exact SHA, with artifacts or CI links for independent review.
+5. Explicit review before merge or deployment. Source publication and
+   a passing synthetic canary do not alone authorize fleet-wide resumption.
+
+The [2026-10-18 operator diagnosis](https://github.com/dbrckk/star-list/actions/runs/39113139237)
+still covered all **four historical v2 and one terminal v3** failures with
+no verified target-side integration delivery. The automatic v3 fleet stop
+remains active. A short model-completion smoke from the NVIDIA NIM route
+may demonstrate isolated inference availability, but it is not durable free
+capacity for the 90,000-token portfolio task envelope.
+
 ## Safe observability
 
 The workflow
