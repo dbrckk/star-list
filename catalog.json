@@ -43120,6 +43120,360 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "ali-vilab/MangaNinjia",
+      "githubRepositoryId": 907251846,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 748,
+        "forks": 61,
+        "openIssues": 19,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2025-03-02T07:20:37Z"
+      },
+      "bestFor": [
+        "[CVPR 2025 Highlight] Official implementation of \"MangaNinja: Line Art Colorization with Precise Reference Following\""
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "AskAillex/comic-maker",
+      "githubRepositoryId": 1303321172,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6,
+        "forks": 0,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-07-21T01:12:57Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "CallmeTruong/Comic_Studio",
+      "githubRepositoryId": 1356110174,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Génération de médias / IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "ai-agents",
+        "ai-agents-automation",
+        "comic-generator",
+        "stable-diffusion"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 8,
+        "forks": 3,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-09-14T05:34:33Z"
+      },
+      "bestFor": [
+        "An autonomous AI agent acting as a complete virtual comic studio. Powered by LangGraph and local Stable Diffusion 1.5 to generate short comic books from a single idea."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Dapeng960208/AI-Comic-Generator",
+      "githubRepositoryId": 1136167732,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 21,
+        "forks": 4,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-01-28T13:08:44Z"
+      },
+      "bestFor": [
+        "An open-source AI-powered manga creation tool that transforms text stories into fully illustrated comics using Google Gemini models. Features include automatic storyboard generation, character consist"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Flow-Tube/Flow",
+      "githubRepositoryId": 1079329832,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [
+        "android",
+        "flow",
+        "innertube",
+        "kotlin",
+        "music-player",
+        "newpipe-extractor",
+        "open-source",
+        "video-player",
+        "youtube",
+        "youtube-client"
+      ],
+      "languages": [
+        "kotlin"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2812,
+        "forks": 146,
+        "openIssues": 51,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-19T14:22:41Z"
+      },
+      "bestFor": [
+        "A modern, feature-rich YouTube and YouTube Music client with local recommendation for Android built with Jetpack Compose"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "HVision-NKU/StoryDiffusion",
+      "githubRepositoryId": 789712717,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "jupyter notebook"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6482,
+        "forks": 651,
+        "openIssues": 119,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2024-09-26T02:17:52Z"
+      },
+      "bestFor": [
+        "Accepted as [NeurIPS 2024] Spotlight Presentation Paper"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "nicocha30/ligolo-ng",
+      "githubRepositoryId": 390351016,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "golang",
+        "offensive-security",
+        "pentest-tool",
+        "pentesting",
+        "pivoting",
+        "post-exploitation",
+        "redteam",
+        "security",
+        "tunneling"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5097,
+        "forks": 493,
+        "openIssues": 18,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-09-26T08:02:50Z"
+      },
+      "bestFor": [
+        "An advanced, yet simple, tunneling/pivoting tool that uses a TUN interface."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "nv-tlabs/lyra",
+      "githubRepositoryId": 1053508243,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "3d",
+        "diffusion",
+        "gaussians",
+        "video",
+        "world-model"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2734,
+        "forks": 279,
+        "openIssues": 28,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-07-20T17:07:42Z"
+      },
+      "bestFor": [
+        "Project Lyra: Open Generative 3D World Models"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Unity-Technologies/unity-agent-plugin",
+      "githubRepositoryId": 1325377922,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 488,
+        "forks": 49,
+        "openIssues": 4,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-19T15:29:42Z"
+      },
+      "bestFor": [
+        "Unity plugin for third-party agent platforms"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
