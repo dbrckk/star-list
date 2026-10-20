@@ -811,7 +811,11 @@ def website_references_for_project(repo: dict, profile: dict, limit: int = 2) ->
     """
     domains = set(profile.get("domains") or [])
     metadata_terms = tokens(" ".join([
-        str(repo.get("name") or ""), str(repo.get("description") or ""),
+        # GitHub repository names often encode the engine in kebab/snake
+        # case while descriptions/topics are empty. Split only the metadata
+        # labels here; do not alter the global repository tokenization.
+        re.sub(r"[-_]", " ", str(repo.get("name") or "")),
+        str(repo.get("description") or ""),
         " ".join(repo.get("topics") or []),
     ]))
     candidates = recommend_websites(metadata_terms, domains, limit=30)
