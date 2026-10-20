@@ -41,7 +41,8 @@ def check_websites(data, schema):
         if identity in ids:
             errors.append(f"duplicate website ID: {identity}")
         ids.add(identity)
-        # 'originalUrl' is a redirect alias. A redirect must remain attached
+        # 'originalUrl' records an old URL or user-supplied alternate link.
+        # Each such alias must remain attached
         # to the same entry, not silently create an extra website identity.
         for url in [site["url"], *([site["originalUrl"]] if site.get("originalUrl") else [])]:
             try:
@@ -53,6 +54,27 @@ def check_websites(data, schema):
             if prior is not None and prior != identity:
                 errors.append(f"{identity}: URL collides with {prior}: {normalized}")
             owner_by_url[normalized] = identity
+        # An MCP endpoint is an authenticated remote service, not a harmless
+        # website link. Require a bounded HTTPS /mcp URL owned by the
+        # documented provider; no credentials, foreign hosts or auto-install.
+        endpoint = site.get("mcpEndpoint")
+        is_mcp = site["type"] == "mcp-service"
+        if is_mcp and not endpoint:
+            errors.append(f"{identity}: MCP service is missing mcpEndpoint")
+        if endpoint is not None and not is_mcp:
+            errors.append(f"{identity}: only MCP services may declare mcpEndpoint")
+        if endpoint is not None:
+            try:
+                canonical_url(endpoint)
+                service = urlsplit(endpoint)
+                website = urlsplit(site["url"])
+                host = service.hostname.lower()
+                root = website.hostname.lower()
+                if (service.path != "/mcp" or
+                        not (host == root or host.endswith("." + root))):
+                    errors.append(f"{identity}: MCP endpoint must be /mcp on a provider-owned subdomain")
+            except (ValueError, TypeError, AttributeError) as exc:
+                errors.append(f"{identity}: invalid MCP endpoint: {exc}")
         if site["reuse"] not in {
             "reference-only", "license-per-item", "licensed-material",
             "open-source-upstream", "hosted-service",

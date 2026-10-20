@@ -827,6 +827,17 @@ def website_references_for_project(repo: dict, profile: dict, limit: int = 2) ->
             # Give real game projects the visual atlas without letting generic
             # wording rank it above relevant websites for unrelated projects.
             chosen = [game_art] + [site for site in chosen if site["id"] != "game-art-style"]
+    # 3D motion/rigging tools need concrete project metadata evidence, not
+    # simply a generic game label; game-art-style retains top priority.
+    motion_signals = {"mocap", "rigging", "rigged", "skeletal", "blender",
+                      "cutscene", "npc", "fbx", "glb", "3d"}
+    character_animation = {"character", "characters"} & metadata_terms and "animation" in metadata_terms
+    if domains & {"game_dev", "graphics", "ai_media"} and (metadata_terms & motion_signals or character_animation):
+        pinoc = next((site for site in candidates if site["id"] == "viggle-pinoc-mcp"), None)
+        if pinoc is not None:
+            position = 1 if chosen and chosen[0]["id"] == "game-art-style" else 0
+            chosen = [site for site in chosen if site["id"] != "viggle-pinoc-mcp"]
+            chosen.insert(position, pinoc)
     return chosen[:limit]
 
 

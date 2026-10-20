@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **12 websites** are curated alongside it in [`websites.json`](websites.json);
+These **13 websites** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -20,6 +20,7 @@ the ability to browse a page.
 | Lovable | [lovable.dev](https://lovable.dev/) | AI-generated website/application prototypes | Freemium | Hosted service; check export/data/usage plans |
 | Skill Issue | [skill-issue.in](https://skill-issue.in/) | Ranked directory of agent skills for development, design, video and automation | Free browsing | Directory only; review each source SKILL.md before use |
 | Game Art Style | [gameartstyle.loopyhop.com](https://gameartstyle.loopyhop.com/) | Visual atlas of 37 game art styles, game references and coherent art-direction prompts | Free browsing | Inspiration only; screenshots remain owned by their respective creators |
+| PINOC MCP by Viggle | [viggle.ai/pinoc/mcp](https://viggle.ai/pinoc/mcp) ([user link](https://viggle.ai/pinoc/app/mcp)) | Agent-accessible preset 3D motions, video mocap, text-to-motion and rigged characters | Freemium; read-only lookups/preset motions free; generation uses credits | Login and approval required; check asset rights, supported rigs, model formats and each charge |
 
 ## Search repositories and relevant websites together
 
@@ -43,6 +44,49 @@ repository `--platform`, `--language`, `--self-hosted`, license and similar
 hard filters **do not certify web inspiration pages**. A site may be useful
 for visual research without matching the project's runtime.
 
+## PINOC MCP — optional 3D animation tool for agents
+
+The user's [PINOC app MCP link](https://viggle.ai/pinoc/app/mcp)
+corresponds to the provider's
+[PINOC MCP documentation](https://viggle.ai/pinoc/mcp). Its published
+remote Model Context Protocol endpoint is:
+
+```text
+https://pinoc.mcp.viggle.ai/mcp
+```
+
+The website recommender includes the endpoint as **reference metadata**
+(`mcpEndpoint`) but does not connect to it, write an MCP config, request
+authorization or spend credits automatically. Before an agent can use PINOC,
+a person must connect a compatible MCP client and complete the provider's
+browser sign-in.
+
+**Free operations:** browse or retrieve preset motion clips, inspect your
+assets and check your credit balance. **Credit-consuming operations:**
+generate a new motion from text or video (the provider documents
+1 credit/second), or generate a 3D character (6–10 credits depending on
+refinement). Start with the **read-only** scope. The generation scope must
+be enabled explicitly by the user, only after reviewing the per-task cost.
+Do not silently enable generation, upload photos or videos, or authorize
+credits as part of a portfolio scan.
+
+Animation clips can be exported as GLB/FBX (and USDZ where supported);
+splat characters require the provider's compatible rendering integration
+and are **not** standard mesh assets. For Blender, Unity, Unreal, Godot or
+Roblox projects, validate the specific model/rig/format support in the actual
+target engine before promising compatibility. Upstream terms and rights for
+generated or preset assets require an independent check.
+
+```bash
+# Review relevant tools and the official endpoint; no network writes:
+python scripts/recommend.py "3d character rigging mocap blender" --websites --json
+```
+
+The daily portfolio scanner suggests PINOC only when game, graphics or
+media metadata supplies concrete 3D/motion/rigging evidence. It retains
+Game Art Style as the main art-direction reference in game projects.
+Neither site is an autonomous Production-OS integration candidate.
+
 ## Operating policy
 
 - A link is not an open-source license. Verify individual component/shader
@@ -61,11 +105,15 @@ for visual research without matching the project's runtime.
   **Game Art Style** as a prioritized art-direction reference when their
   GitHub description contains no design terms; unrelated domains are excluded
   and generic prose words (such as `and` or `for`) never qualify a match.
+  When explicit 3D motion/rigging cues exist, PINOC MCP can appear as the
+  second reference after Game Art Style for game projects. No MCP request,
+  authorization or credit spend occurs during scanning.
   These suggestions are kept in the
   `website_references` report field, separate from GitHub integration
   `suggestions`; the reference list is never entered into the dispatch queue.
 - The existing `scripts/validate_websites.py` semantic validator checks
-  HTTPS URLs, credential-free identity, aliases and duplicates across records.
+  HTTPS URLs, credential-free identity, aliases, duplicates and MCP endpoint
+  host/path restrictions across records.
   No live crawling is performed during CI.
 - Website entries are not auto-dispatched into target repositories. After
   selecting a compatible implementation, ordinary target CI, security review
