@@ -1,14 +1,14 @@
 # CI status
 
-Summary: 2 success / 0 failure / 2 active
+Summary: 4 success / 0 failure / 3 active
 
-- Validate catalog: in_progress / pending (5a86e5d3)
-- Backfill permanent GitHub repository IDs: in_progress / pending (5a86e5d3)
-- Validate catalog: completed / success (218e710b)
-- Validate catalog: completed / success (218e710b)
-- Validate catalog: completed / cancelled (0aa06f2f)
-- Validate catalog: completed / cancelled (2a041ff9)
-- Validate catalog: completed / cancelled (39de0d77)
-- Validate catalog: completed / cancelled (a280a60d)
+- Sync GitHub Stars: in_progress / pending (883ccf04)
+- Validate catalog: in_progress / pending (883ccf04)
+- Refresh catalog quality on catalog changes: in_progress / pending (883ccf04)
+- Validate catalog: completed / success (7a88a375)
+- Validate catalog: completed / success (7a88a375)
+- Validate catalog: completed / cancelled (4a3a1809)
+- Validate catalog: completed / success (b6227480)
+- Build Freebuff Mobile Android APK: completed / success (b6227480)
 
 > Generated summary only; inspect GitHub Actions for full logs when needed.

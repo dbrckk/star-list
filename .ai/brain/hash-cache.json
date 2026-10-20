@@ -1,13 +1,5 @@
 {
   "files": {
-    ".github/workflows/backfill-github-ids.yml": {
-      "sha256": "dbee89f4cc7e8257b52ac439049739575b4509338942bd1f00636190d4db56a3",
-      "size": 3038
-    },
-    ".github/workflows/validate.yml": {
-      "sha256": "ee7a6c7e50b344ac983a922039266a91102e4d23df10edd848ba85fdd1cfd67e",
-      "size": 9389
-    },
     "AGENT_SKILLS.md": {
       "sha256": "1109e5df9849026ed39b6f9e9a610e62fb0384b98afc86a3575120d5f5b71e59",
       "size": 10007
@@ -20,9 +12,9 @@
       "sha256": "43fd96c14c53150a7c0ad434b6a8f84dad22cd8ce3d4802e6917f9e447f473c9",
       "size": 9084
     },
-    "docs/GITHUB_STARS_SYNC.md": {
-      "sha256": "3664f5ddd950f452b80780fa04a2fb4566ead0c20eec5dce7a28beb7efdd7fbd",
-      "size": 7980
+    "catalog.json": {
+      "sha256": "3691488338a02b4a473180d1ea8cfc25943265ea5e3c7a7a4f09e8bdc8a533e5",
+      "size": 1122684
     },
     "schemas/agent-skill-source-audit.schema.json": {
       "sha256": "3bd67d5ce3fefe17f8984bc3f74ec27d96476b1405c5ced25e43b661a4de3337",
@@ -51,10 +43,6 @@
     "scripts/recommend.py": {
       "sha256": "5fb3863d49267f460ec629b1d737a0b4618c2d488b3aba642178048473350b16",
       "size": 20761
-    },
-    "scripts/sync_github_stars.py": {
-      "sha256": "662a5c6213c75b0569445f208dc1ea17891102d3333ee7cf9963ed9a2b0fcdc7",
-      "size": 15162
     },
     "scripts/test_documentation.py": {
       "sha256": "0dabaea2a0998522a130ab8faa8c57feeba72b3ba0c107551c8cfca96c2bcbf6",

@@ -105,16 +105,17 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-20T16:56:08Z
+Generated: 2026-10-20T19:24:21Z
 
 ### Git
 - Branch: `main`
-- Head: `5a86e5d32986`
-- Commit date: 2026-10-20T12:55:58-04:00
-- Commit: feat(stars): reconcile missing immutable GitHub repo IDs without touching curation (#145)
+- Head: `883ccf04bbdf`
+- Commit date: 2026-10-20T15:24:10-04:00
+- Commit: fix(catalog): migrate verified GitHub transfers (#148)
 - Tracked files: 297
 
 ### Recently changed files
+- `catalog.json`
 - `.github/workflows/backfill-github-ids.yml`
 - `.github/workflows/validate.yml`
 - `docs/GITHUB_STARS_SYNC.md`
@@ -126,13 +127,6 @@ Generated: 2026-10-20T16:56:08Z
 - `README.md`
 - `schemas/agent-skill-source-audit.schema.json`
 - `scripts/audit_agent_skill_sources.py`
-- `scripts/portfolio_daily.py`
-- `scripts/test_recommend.py`
-- `websites.json`
-- `WEB_RESOURCES.md`
-- `schemas/websites.schema.json`
-- `scripts/recommend.py`
-- `scripts/validate_websites.py`
 
 ### Project signals
 - No common build descriptor detected

@@ -1,64 +1,17 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "395c0a70c5680dbf83fe0b846c0d6c8d80dfb7da",
-  "head": "5a86e5d329866c811c49674005bc3831b17e2482",
+  "base": "5a86e5d329866c811c49674005bc3831b17e2482",
+  "head": "883ccf04bbdf9527673886e63240456bdf097dd8",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": ".github/workflows/backfill-github-ids.yml",
-      "status": "A"
-    },
-    {
-      "path": ".github/workflows/validate.yml",
-      "status": "M"
-    },
-    {
-      "path": "docs/GITHUB_STARS_SYNC.md",
-      "status": "M"
-    },
-    {
-      "path": "schemas/github-id-backfill-report.schema.json",
-      "status": "A"
-    },
-    {
-      "path": "scripts/backfill_github_ids.py",
-      "status": "A"
-    },
-    {
-      "path": "scripts/test_documentation.py",
+      "path": "catalog.json",
       "status": "M"
     }
   ],
-  "changed_source_files": [
-    "scripts/backfill_github_ids.py",
-    "scripts/test_documentation.py"
-  ],
-  "impacted_files": [
-    "scripts/backfill_github_ids.py",
-    "scripts/test_documentation.py"
-  ],
-  "impacted_symbols": [
-    {
-      "name": "github_metadata",
-      "kind": "function",
-      "file": "scripts/backfill_github_ids.py",
-      "line": 29
-    },
-    {
-      "name": "reconcile",
-      "kind": "function",
-      "file": "scripts/backfill_github_ids.py",
-      "line": 64
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/backfill_github_ids.py",
-      "line": 130
-    }
-  ],
-  "selected_tests": [
-    "scripts/test_documentation.py"
-  ]
+  "changed_source_files": [],
+  "impacted_files": [],
+  "impacted_symbols": [],
+  "selected_tests": []
 }

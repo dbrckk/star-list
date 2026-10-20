@@ -1,21 +1,13 @@
 # Change impact
 
-Base: 0dac1d0cefcc734495b7af7fbe97b907570c5769
-Head: 5a86e5d329866c811c49674005bc3831b17e2482
+Base: 4a3a18092e1dfe8732ab3811c02419b75499cfdc
+Head: 883ccf04bbdf9527673886e63240456bdf097dd8
 
 ## Changed files
-- A .github/workflows/backfill-github-ids.yml
-- M .github/workflows/validate.yml
-- M docs/GITHUB_STARS_SYNC.md
-- A schemas/github-id-backfill-report.schema.json
-- A scripts/backfill_github_ids.py
-- M scripts/test_documentation.py
+- M catalog.json
 
 ## Affected areas
-- .github
-- docs
-- schemas
-- scripts
+- (root)
 
 ## Related test candidates
 - No direct filename-based test match detected.

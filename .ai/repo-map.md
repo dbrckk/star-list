@@ -9038,7 +9038,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 638629097
     },
     {
       "repo": "plandex-ai/plandex",
@@ -9079,7 +9080,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 709538270
     },
     {
       "repo": "langchain-ai/langgraph",
@@ -9247,7 +9249,8 @@ Repository-specific rules:
       "avoidWhen": [
         "simple deterministic scripts without agent orchestration"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 958830659
     },
     {
       "repo": "camel-ai/camel",
@@ -9910,7 +9913,8 @@ Repository-specific rules:
       "avoidWhen": [
         "specialized low-level systems work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 776908852
     },
     {
       "repo": "qdrant/qdrant",
@@ -10004,7 +10008,8 @@ Repository-specific rules:
       "avoidWhen": [
         "stateless applications with no retrieval or memory needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 546206616
     },
     {
       "repo": "milvus-io/milvus",
@@ -10047,7 +10052,8 @@ Repository-specific rules:
       "avoidWhen": [
         "stateless applications with no retrieval or memory needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 208728772
     },
     {
       "repo": "deepset-ai/haystack",
@@ -10090,7 +10096,8 @@ Repository-specific rules:
       "avoidWhen": [
         "stateless applications with no retrieval or memory needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 221654678
     },
     {
       "repo": "squidfunk/mkdocs-material",
@@ -10177,7 +10184,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 15830664
     },
     {
       "repo": "facebook/docusaurus",
@@ -10221,7 +10229,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 94911145
     },
     {
       "repo": "withastro/starlight",
@@ -10264,7 +10273,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 614933136
     },
     {
       "repo": "swagger-api/swagger-ui",
@@ -10307,7 +10317,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 2055965
     },
     {
       "repo": "Redocly/redoc",
@@ -10350,7 +10361,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 45250726
     },
     {
       "repo": "mermaid-js/mermaid",
@@ -10395,7 +10407,8 @@ Repository-specific rules:
       "avoidWhen": [
         "pixel-perfect illustration",
         "interactive CAD-style editing"
-      ]
+      ],
+      "githubRepositoryId": 26066727
     },
     {
       "repo": "plantuml/plantuml",
@@ -10440,7 +10453,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 1051476
     },
     {
       "repo": "plantuml-stdlib/C4-PlantUML",
@@ -10485,7 +10499,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "curated"
+      "guidanceSource": "curated",
+      "githubRepositoryId": 147545986
     },
     {
       "repo": "thomvaill/log4brains",
@@ -10529,7 +10544,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 295764802
     },
     {
       "repo": "orhun/git-cliff",
@@ -10572,7 +10588,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 372193147
     },
     {
       "repo": "conventional-changelog/conventional-changelog",
@@ -10615,7 +10632,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 15639771
     },
     {
       "repo": "postgres/postgres",
@@ -10631,7 +10649,7 @@ Repository-specific rules:
       "alternatives": [],
       "complements": [
         "redis/redis",
-        "prisma/prisma",
+        "prisma/orm",
         "drizzle-team/drizzle-orm"
       ],
       "bestFor": [
@@ -10665,7 +10683,8 @@ Repository-specific rules:
         "license": "PostgreSQL",
         "pushedAt": "2026-10-12T10:06:10Z"
       },
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 927442
     },
     {
       "repo": "redis/redis",
@@ -10711,7 +10730,8 @@ Repository-specific rules:
         "frontend-only UI work"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 156018
     },
     {
       "repo": "supabase/supabase",
@@ -10810,7 +10830,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 180190854
     },
     {
       "repo": "pocketbase/pocketbase",
@@ -10855,10 +10876,12 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 510607652
     },
     {
-      "repo": "prisma/prisma",
+      "repo": "prisma/orm",
+      "githubRepositoryId": 192925833,
       "score": 9.5,
       "tier": "recommended",
       "category": "Backend / API / données",
@@ -10999,7 +11022,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "MIT",
         "pushedAt": "2026-10-08T12:29:28Z"
-      }
+      },
+      "githubRepositoryId": 160919119
     },
     {
       "repo": "nestjs/nest",
@@ -11044,7 +11068,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 80945428
     },
     {
       "repo": "trpc/trpc",
@@ -11088,7 +11113,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 280557054
     },
     {
       "repo": "graphql/graphql-js",
@@ -11130,7 +11156,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 38307428
     },
     {
       "repo": "apollographql/apollo-server",
@@ -11174,7 +11201,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 56760633
     },
     {
       "repo": "keycloak/keycloak",
@@ -11218,7 +11246,8 @@ Repository-specific rules:
         "projects requiring minimal setup and operational complexity",
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 11125589
     },
     {
       "repo": "ory/kratos",
@@ -11260,7 +11289,8 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 135321861
     },
     {
       "repo": "seaweedfs/seaweedfs",
@@ -11303,10 +11333,12 @@ Repository-specific rules:
       "avoidWhen": [
         "frontend-only UI work"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 21827146
     },
     {
-      "repo": "facebook/react",
+      "repo": "react/react",
+      "githubRepositoryId": 10270250,
       "score": 9.8,
       "tier": "core",
       "category": "Frontend / UI / design systems",
@@ -11372,7 +11404,7 @@ Repository-specific rules:
         "vitejs/vite"
       ],
       "complements": [
-        "facebook/react",
+        "react/react",
         "shadcn-ui/ui",
         "supabase/supabase"
       ],
@@ -11452,7 +11484,8 @@ Repository-specific rules:
       "avoidWhen": [
         "backend-only services"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 257485422
     },
     {
       "repo": "tailwindlabs/tailwindcss",
@@ -11496,7 +11529,8 @@ Repository-specific rules:
       "avoidWhen": [
         "backend-only services"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 106017343
     },
     {
       "repo": "shadcn-ui/ui",
@@ -11515,7 +11549,7 @@ Repository-specific rules:
       ],
       "complements": [
         "tailwindlabs/tailwindcss",
-        "facebook/react"
+        "react/react"
       ],
       "bestFor": [
         "customizable React UI systems"
@@ -11591,7 +11625,8 @@ Repository-specific rules:
       "avoidWhen": [
         "backend-only services"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 23083156
     },
     {
       "repo": "chakra-ui/chakra-ui",
@@ -11636,7 +11671,8 @@ Repository-specific rules:
       "avoidWhen": [
         "backend-only services"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 202890778
     },
     {
       "repo": "microsoft/fluentui",
@@ -11679,7 +11715,8 @@ Repository-specific rules:
       "avoidWhen": [
         "backend-only services"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 60537144
     },
     {
       "repo": "storybookjs/storybook",
@@ -11724,7 +11761,8 @@ Repository-specific rules:
       "avoidWhen": [
         "backend-only services"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 54173593
     },
     {
       "repo": "motiondivision/motion",
@@ -11767,7 +11805,8 @@ Repository-specific rules:
       "avoidWhen": [
         "backend-only services"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 157846876
     },
     {
       "repo": "pmndrs/react-three-fiber",
@@ -11813,7 +11852,8 @@ Repository-specific rules:
       "avoidWhen": [
         "backend-only services"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 172521926
     },
     {
       "repo": "android/nowinandroid",
@@ -11857,7 +11897,8 @@ Repository-specific rules:
       "avoidWhen": [
         "small production dependency needs",
         "cross-platform application development"
-      ]
+      ],
+      "githubRepositoryId": 483402734
     },
     {
       "repo": "JetBrains/compose-multiplatform",
@@ -11899,7 +11940,8 @@ Repository-specific rules:
       "avoidWhen": [
         "web-only applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 293498508
     },
     {
       "repo": "flutter/flutter",
@@ -11946,7 +11988,8 @@ Repository-specific rules:
       "githubRepositoryId": 31792824
     },
     {
-      "repo": "facebook/react-native",
+      "repo": "react/react-native",
+      "githubRepositoryId": 29028775,
       "score": 9.7,
       "tier": "core",
       "category": "Mobile / Android / multiplateforme",
@@ -12036,7 +12079,8 @@ Repository-specific rules:
       "avoidWhen": [
         "fully native-only mobile architecture",
         "minimal runtime dependency footprints"
-      ]
+      ],
+      "githubRepositoryId": 65750241
     },
     {
       "repo": "appium/appium",
@@ -12078,7 +12122,8 @@ Repository-specific rules:
       "avoidWhen": [
         "web-only applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 7530570
     },
     {
       "repo": "wix/Detox",
@@ -12120,7 +12165,8 @@ Repository-specific rules:
       "avoidWhen": [
         "web-only applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 61204547
     },
     {
       "repo": "GoogleChrome/lighthouse",
@@ -12165,7 +12211,8 @@ Repository-specific rules:
       "avoidWhen": [
         "native mobile profiling",
         "deep backend performance analysis"
-      ]
+      ],
+      "githubRepositoryId": 53370988
     },
     {
       "repo": "dequelabs/axe-core",
@@ -12208,7 +12255,8 @@ Repository-specific rules:
       "avoidWhen": [
         "backend-only services"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 37205440
     },
     {
       "repo": "dagger/dagger",
@@ -12297,7 +12345,8 @@ Repository-specific rules:
       "avoidWhen": [
         "local-only scripts with no deployment or operations needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 163883279
     },
     {
       "repo": "earthly/earthly",
@@ -12342,7 +12391,8 @@ Repository-specific rules:
       "avoidWhen": [
         "local-only scripts with no deployment or operations needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 246903803
     },
     {
       "repo": "docker/compose",
@@ -12390,7 +12440,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-10-12T10:03:29Z"
-      }
+      },
+      "githubRepositoryId": 15045751
     },
     {
       "repo": "podman-container-tools/podman",
@@ -12433,7 +12484,8 @@ Repository-specific rules:
       "avoidWhen": [
         "local-only scripts with no deployment or operations needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 109145553
     },
     {
       "repo": "kubernetes/kubernetes",
@@ -12481,7 +12533,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "Apache-2.0",
         "pushedAt": "2026-10-12T11:45:43Z"
-      }
+      },
+      "githubRepositoryId": 20580498
     },
     {
       "repo": "helm/helm",
@@ -12524,7 +12577,8 @@ Repository-specific rules:
         "low-resource environments",
         "projects requiring minimal setup and operational complexity"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 43723161
     },
     {
       "repo": "opentofu/opentofu",
@@ -12568,7 +12622,8 @@ Repository-specific rules:
         "projects requiring minimal setup and operational complexity",
         "local-only scripts with no deployment or operations needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 679421146
     },
     {
       "repo": "hashicorp/terraform",
@@ -12612,7 +12667,8 @@ Repository-specific rules:
         "projects requiring minimal setup and operational complexity",
         "local-only scripts with no deployment or operations needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 17728164
     },
     {
       "repo": "ansible/ansible",
@@ -12654,7 +12710,8 @@ Repository-specific rules:
       "avoidWhen": [
         "local-only scripts with no deployment or operations needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 3638964
     },
     {
       "repo": "argoproj/argo-cd",
@@ -12699,7 +12756,8 @@ Repository-specific rules:
         "low-resource environments",
         "projects requiring minimal setup and operational complexity"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 120896210
     },
     {
       "repo": "fluxcd/flux2",
@@ -12744,7 +12802,8 @@ Repository-specific rules:
         "low-resource environments",
         "projects requiring minimal setup and operational complexity"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 258469100
     },
     {
       "repo": "prometheus/prometheus",
@@ -12787,7 +12846,8 @@ Repository-specific rules:
       "avoidWhen": [
         "log storage",
         "full distributed tracing without complementary tooling"
-      ]
+      ],
+      "githubRepositoryId": 6838921
     },
     {
       "repo": "grafana/grafana",
@@ -12833,7 +12893,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "AGPL-3.0",
         "pushedAt": "2026-10-12T11:54:50Z"
-      }
+      },
+      "githubRepositoryId": 15111821
     },
     {
       "repo": "getsentry/sentry",
@@ -12917,7 +12978,8 @@ Repository-specific rules:
       "avoidWhen": [
         "local-only scripts with no deployment or operations needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 24063576
     },
     {
       "repo": "release-it/release-it",
@@ -12958,7 +13020,8 @@ Repository-specific rules:
       "avoidWhen": [
         "local-only scripts with no deployment or operations needs"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 15921313
     },
     {
       "repo": "tree-sitter/tree-sitter",
@@ -13102,7 +13165,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 143040428
     },
     {
       "repo": "ast-grep/ast-grep",
@@ -13147,7 +13211,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 509566212
     },
     {
       "repo": "sourcegraph/zoekt",
@@ -13189,7 +13254,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 151158582
     },
     {
       "repo": "comby-tools/comby",
@@ -13231,7 +13297,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 180236648
     },
     {
       "repo": "astral-sh/uv",
@@ -13277,7 +13344,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-Python package management",
         "Conda-specific environment workflows"
-      ]
+      ],
+      "githubRepositoryId": 699532645
     },
     {
       "repo": "benfred/py-spy",
@@ -13320,7 +13388,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 143092994
     },
     {
       "repo": "HypothesisWorks/hypothesis",
@@ -13362,7 +13431,8 @@ Repository-specific rules:
         "non-development workflows"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 8685799
     },
     {
       "repo": "google/oss-fuzz",
@@ -13403,7 +13473,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 63809205
     },
     {
       "repo": "boxed/mutmut",
@@ -13444,7 +13515,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 73606074
     },
     {
       "repo": "microsoft/playwright",
@@ -13493,7 +13565,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-10-11T22:43:51Z"
-      }
+      },
+      "githubRepositoryId": 221981891
     },
     {
       "repo": "pytest-dev/pytest",
@@ -13578,7 +13651,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-Python codebases",
         "semantic type checking"
-      ]
+      ],
+      "githubRepositoryId": 523043277
     },
     {
       "repo": "langfuse/langfuse",
@@ -13790,7 +13864,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 290909192
     },
     {
       "repo": "openai/evals",
@@ -13873,7 +13948,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-development workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 85802819
     },
     {
       "repo": "e2b-dev/E2B",
@@ -14054,7 +14130,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-visual workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 7178155
     },
     {
       "repo": "airbnb/lottie-web",
@@ -14147,7 +14224,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-visual workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1338813
     },
     {
       "repo": "jonobr1/two.js",
@@ -14189,7 +14267,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-visual workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 5694937
     },
     {
       "repo": "rough-stuff/rough",
@@ -14232,7 +14311,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-visual workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 76342242
     },
     {
       "repo": "maxwellito/vivus",
@@ -14275,7 +14355,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-visual workloads"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 19757917
     },
     {
       "repo": "CorentinJ/Real-Time-Voice-Cloning",
@@ -15075,7 +15156,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-generative media workflows"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 525592995
     },
     {
       "repo": "mudler/LocalAI",
@@ -16060,7 +16142,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "Apache-2.0",
         "pushedAt": "2026-10-09T21:00:25Z"
-      }
+      },
+      "githubRepositoryId": 27251463
     },
     {
       "repo": "nautechsystems/nautilus_trader",
@@ -16183,7 +16266,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "Apache-2.0",
         "pushedAt": "2026-10-09T20:04:03Z"
-      }
+      },
+      "githubRepositoryId": 110684325
     },
     {
       "repo": "microsoft/qlib",
@@ -16404,7 +16488,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 179163124
     },
     {
       "repo": "AI4Finance-Foundation/FinRL",
@@ -16508,7 +16593,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 163788469
     },
     {
       "repo": "vnpy/vnpy",
@@ -16559,7 +16645,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 31522041
     },
     {
       "repo": "TA-Lib/ta-lib-python",
@@ -16608,7 +16695,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 3810626
     },
     {
       "repo": "ranaroussi/yfinance",
@@ -16660,7 +16748,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 91948540
     },
     {
       "repo": "stefan-jansen/machine-learning-for-trading",
@@ -16767,7 +16856,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 21006723
     },
     {
       "repo": "mementum/backtrader",
@@ -16821,7 +16911,8 @@ Repository-specific rules:
         "kernc/backtesting.py",
         "polakowo/vectorbt",
         "QuantConnect/Lean"
-      ]
+      ],
+      "githubRepositoryId": 29050338
     },
     {
       "repo": "quantopian/zipline",
@@ -16875,7 +16966,8 @@ Repository-specific rules:
         "stefan-jansen/zipline-reloaded",
         "QuantConnect/Lean",
         "kernc/backtesting.py"
-      ]
+      ],
+      "githubRepositoryId": 6297520
     },
     {
       "repo": "hudson-and-thames/mlfinlab",
@@ -16934,7 +17026,8 @@ Repository-specific rules:
         "skfolio/skfolio",
         "polakowo/vectorbt"
       ],
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 170544934
     },
     {
       "repo": "skfolio/skfolio",
@@ -16987,7 +17080,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 731792488
     },
     {
       "repo": "PyPortfolio/PyPortfolioOpt",
@@ -17035,7 +17129,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 135300551
     },
     {
       "repo": "dcajasn/Riskfolio-Lib",
@@ -17089,7 +17184,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "BSD-3-Clause",
         "pushedAt": "2026-10-04T20:35:18Z"
-      }
+      },
+      "githubRepositoryId": 244460835
     },
     {
       "repo": "ranaroussi/quantstats",
@@ -17136,7 +17232,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 184420323
     },
     {
       "repo": "statsmodels/statsmodels",
@@ -17187,7 +17284,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 1885237
     },
     {
       "repo": "bashtage/arch",
@@ -17237,7 +17335,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 23468876
     },
     {
       "repo": "optuna/optuna",
@@ -17289,7 +17388,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 122299416
     },
     {
       "repo": "hyperopt/hyperopt",
@@ -17341,7 +17441,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 2337852
     },
     {
       "repo": "stefan-jansen/alphalens-reloaded",
@@ -17388,7 +17489,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 341661949
     },
     {
       "repo": "quantopian/pyfolio",
@@ -17442,7 +17544,8 @@ Repository-specific rules:
         "stefan-jansen/pyfolio-reloaded",
         "ranaroussi/quantstats",
         "skfolio/skfolio"
-      ]
+      ],
+      "githubRepositoryId": 36670205
     },
     {
       "repo": "unit8co/darts",
@@ -17494,7 +17597,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 148657183
     },
     {
       "repo": "sktime/sktime",
@@ -17546,7 +17650,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 156401841
     },
     {
       "repo": "Nixtla/neuralforecast",
@@ -17598,7 +17703,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 361568869
     },
     {
       "repo": "facebookresearch/Kats",
@@ -17646,7 +17752,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 342388745
     },
     {
       "repo": "blue-yonder/tsfresh",
@@ -17698,7 +17805,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 71996613
     },
     {
       "repo": "akfamily/akshare",
@@ -17748,7 +17856,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 212037775
     },
     {
       "repo": "vollib/py_vollib",
@@ -17795,7 +17904,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 87398184
     },
     {
       "repo": "openbq-org/OpenBB",
@@ -17903,7 +18013,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 14579099
     },
     {
       "repo": "matplotlib/mplfinance",
@@ -17953,7 +18064,8 @@ Repository-specific rules:
         "non-financial applications"
       ],
       "guidanceSource": "inferred",
-      "licenseEvidence": "verified-file"
+      "licenseEvidence": "verified-file",
+      "githubRepositoryId": 226144726
     },
     {
       "repo": "scikit-learn/scikit-learn",
@@ -18005,7 +18117,8 @@ Repository-specific rules:
       "avoidWhen": [
         "deep neural-network training",
         "distributed GPU-first workloads"
-      ]
+      ],
+      "githubRepositoryId": 843222
     },
     {
       "repo": "dmlc/xgboost",
@@ -18060,7 +18173,8 @@ Repository-specific rules:
         "defaultBranch": "master",
         "license": "Apache-2.0",
         "pushedAt": "2026-10-12T10:12:36Z"
-      }
+      },
+      "githubRepositoryId": 16587283
     },
     {
       "repo": "catboost/catboost",
@@ -18110,7 +18224,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 97556265
     },
     {
       "repo": "shap/shap",
@@ -18162,7 +18277,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 74505259
     },
     {
       "repo": "anyoptimization/pymoo",
@@ -18214,7 +18330,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 104132965
     },
     {
       "repo": "DEAP/deap",
@@ -18264,7 +18381,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 20035587
     },
     {
       "repo": "tslearn-team/tslearn",
@@ -18314,7 +18432,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 90264407
     },
     {
       "repo": "hmmlearn/hmmlearn",
@@ -18364,7 +18483,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 18031064
     },
     {
       "repo": "feature-engine/feature_engine",
@@ -18413,7 +18533,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 163630824
     },
     {
       "repo": "scikit-learn-contrib/imbalanced-learn",
@@ -18463,7 +18584,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 23011147
     },
     {
       "repo": "pykalman/pykalman",
@@ -18513,7 +18635,8 @@ Repository-specific rules:
       "avoidWhen": [
         "non-financial applications"
       ],
-      "guidanceSource": "inferred"
+      "guidanceSource": "inferred",
+      "githubRepositoryId": 5310588
     },
     {
       "repo": "blader/humanizer",
@@ -24728,7 +24851,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "MIT",
         "pushedAt": "2026-10-12T06:37:15Z"
-      }
+      },
+      "githubRepositoryId": 599320067
     },
     {
       "repo": "stefan-jansen/zipline-reloaded",
@@ -24785,7 +24909,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-10-10T09:25:00Z"
-      }
+      },
+      "githubRepositoryId": 342145253
     },
     {
       "repo": "stefan-jansen/pyfolio-reloaded",
@@ -24842,7 +24967,8 @@ Repository-specific rules:
         "defaultBranch": "main",
         "license": "Apache-2.0",
         "pushedAt": "2026-10-10T09:41:42Z"
-      }
+      },
+      "githubRepositoryId": 341360629
     },
     {
       "repo": "2Retr0/GodotOceanWaves",
@@ -50920,6 +51046,601 @@ Repository-specific rules:
       },
       "bestFor": [
         "Free, Open Source, Self-Hosted WhatsApp API Gateway"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "6abd/horus",
+      "githubRepositoryId": 746412385,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "api",
+        "crypto",
+        "cryptocurrency",
+        "cybersecurity",
+        "decryption",
+        "digital-forensics",
+        "encryption",
+        "forensics",
+        "hacktoberfest",
+        "investigation",
+        "investigations",
+        "location"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1062,
+        "forks": 98,
+        "openIssues": 3,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-07-29T18:06:35Z"
+      },
+      "bestFor": [
+        "An OSINT / digital forensics tool built in Python"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Ahmad0Dev/MiniChat-ios-FakeCam",
+      "githubRepositoryId": 1426345969,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "objective-c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 7,
+        "forks": 2,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-20T01:03:28Z"
+      },
+      "bestFor": [
+        "اداه الكام الوهمي لتطبيق MiniChat ios"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "amontlabs/lcu",
+      "githubRepositoryId": 1381783784,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Productivité",
+      "domain": "productivity",
+      "capabilities": [
+        "accessibility",
+        "agent-skills",
+        "browser-automation",
+        "claude-code",
+        "codex-cli",
+        "computer-use",
+        "desktop-automation",
+        "linux",
+        "macos",
+        "mcp",
+        "pi-agent",
+        "x11"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1868,
+        "forks": 106,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-20T14:50:27Z"
+      },
+      "bestFor": [
+        "Codex computer use, decoupled from the app, for usage inside any harness."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "blender/blender",
+      "githubRepositoryId": 213916896,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Graphisme / 3D",
+      "domain": "graphics",
+      "capabilities": [
+        "3d",
+        "animation",
+        "b3d",
+        "computer-graphics",
+        "modeling",
+        "rendering"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 21094,
+        "forks": 3415,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-20T16:45:50Z"
+      },
+      "bestFor": [
+        "Official mirror of Blender"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "deepseek-ai/DeepInfer",
+      "githubRepositoryId": 1421825221,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 10409,
+        "forks": 912,
+        "openIssues": 107,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-20T11:03:36Z"
+      },
+      "bestFor": [
+        "DeepInfer: High-performance, large-scale inference framework for DeepSeek models"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "domlysz/BlenderGIS",
+      "githubRepositoryId": 19577136,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "3d",
+        "3d-map",
+        "3dgis",
+        "addon",
+        "basemap",
+        "blender",
+        "delaunay-triangulation",
+        "dem",
+        "geodata",
+        "georeferencing",
+        "geospatial",
+        "gis"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 9508,
+        "forks": 1534,
+        "openIssues": 333,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-3.0",
+        "pushedAt": "2025-12-20T18:19:10Z"
+      },
+      "bestFor": [
+        "Blender addons to make the bridge between Blender and geographic data"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Ebony-Vinyl/dsh-our-free-model",
+      "githubRepositoryId": 1385896447,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai-agents",
+        "deepseek",
+        "deepseek-harness",
+        "developer-tools",
+        "dsh",
+        "dsh-plugin",
+        "free-model",
+        "llm",
+        "model-provider",
+        "openai-compatible"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 30636,
+        "forks": 647,
+        "openIssues": 278,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-20T15:47:03Z"
+      },
+      "bestFor": [
+        "在 dsh 里装上这个插件即可，无需登录、注册或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在内的前沿模型——完全免费，不限量。 All you do is install this plugin in dsh: no login, no sign-up, no API key — the frontier models are just there,"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "EpicGames/BlenderTools",
+      "githubRepositoryId": 274552814,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "blender",
+        "blender-addon",
+        "pipeline",
+        "python",
+        "unreal"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3355,
+        "forks": 173,
+        "openIssues": 98,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-09T11:07:47Z"
+      },
+      "bestFor": [
+        "Blender addons that improve the game development workflow between Blender and Unreal."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "i5xx/SnapKM-openSource",
+      "githubRepositoryId": 1423870523,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "objective-c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 17,
+        "forks": 12,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-20T10:19:15Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "JoasASantos/REA-Prompts",
+      "githubRepositoryId": 1426240325,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "prompt-engineering",
+        "rea",
+        "reverse-enginnering"
+      ],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 720,
+        "forks": 96,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-20T16:29:15Z"
+      },
+      "bestFor": [
+        "Prompts for you to use REA (Reverse Engineer Anything), get the most out of it, and clone or break down any program"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "thesysdev/openui",
+      "githubRepositoryId": 897268988,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ag-ui",
+        "agent",
+        "agents",
+        "ai",
+        "generative-ui",
+        "javascript",
+        "langchain",
+        "llm",
+        "mastra",
+        "react"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 12541,
+        "forks": 847,
+        "openIssues": 169,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-19T10:14:13Z"
+      },
+      "bestFor": [
+        "The Open Standard for Generative UI"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "tursodatabase/agentfs",
+      "githubRepositoryId": 1082722503,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "agents",
+        "filesystem",
+        "sqlite",
+        "turso"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3476,
+        "forks": 204,
+        "openIssues": 76,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-14T06:50:23Z"
+      },
+      "bestFor": [
+        "The filesystem for agents."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "tursodatabase/libsql",
+      "githubRepositoryId": 543276238,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "database",
+        "embedded-database",
+        "rust",
+        "sqlite",
+        "webassembly"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 17278,
+        "forks": 547,
+        "openIssues": 466,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-17T08:02:28Z"
+      },
+      "bestFor": [
+        "libSQL is a fork of SQLite that is both Open Source, and Open Contributions."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "tursodatabase/turso",
+      "githubRepositoryId": 683347556,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "database",
+        "embedded-database",
+        "sql",
+        "sqlite3",
+        "webassembly"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 24878,
+        "forks": 1470,
+        "openIssues": 1314,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-20T16:47:53Z"
+      },
+      "bestFor": [
+        "A SQL database in Rust: SQLite-compatible, now also speaking Postgres (experimental). The LLVM of databases."
       ],
       "avoidWhen": [
         "production use before licensing and security review"
