@@ -4,7 +4,7 @@
 set -Eeuo pipefail
 
 APP_NAME='Freebuff Android'
-APP_VERSION='1.1.0'
+APP_VERSION='1.2.0'
 APP_HOME="${HOME}/.freebuff-android"
 APP_BIN="${HOME}/.local/bin/freebuff-android"
 UBUNTU='ubuntu'
@@ -212,7 +212,9 @@ menu() {
     printf ' 3. Connexion à Freebuff\n'
     printf ' 4. Connexion GitHub (dépôts privés)\n'
     printf ' 5. Mise à jour Freebuff\n'
-    printf ' 6. Diagnostic\n'\n    printf ' 7. Réparer (sans perte des projets)\n'\n    printf ' 8. Statut Git des projets\n'
+    printf ' 6. Diagnostic\n'
+    printf ' 7. Réparer (sans perte des projets)\n'
+    printf ' 8. Statut Git des projets\n'
     printf ' 0. Quitter\n\n'
     local choice
     read -r -p 'Ton choix : ' choice || break
@@ -222,7 +224,9 @@ menu() {
       3) login_freebuff; paused ;;
       4) login_github; paused ;;
       5) update_freebuff; paused ;;
-      6) diagnostics; paused ;;\n      7) setup; paused ;;\n      8) git_status_all; paused ;;
+      6) diagnostics; paused ;;
+      7) setup; paused ;;
+      8) git_status_all; paused ;;
       0) break ;;
       *) warn 'Choix non reconnu.' ;;
     esac
@@ -232,7 +236,8 @@ menu() {
 main() {
   case "${1:-}" in
     --help|-h) printf 'Freebuff Android %s\nUtilisation : bash Freebuff-Android.sh [--install|--repair|--menu|--diagnostic]\n' "$APP_VERSION" ;;
-    --install) setup; menu ;;\n    --repair) setup ;;
+    --install) setup; menu ;;
+    --repair) setup ;;
     --menu) menu ;;
     --diagnostic) check_termux; require_setup; diagnostics ;;
     *)
