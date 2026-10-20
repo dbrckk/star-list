@@ -4,7 +4,7 @@
 set -Eeuo pipefail
 
 APP_NAME='Freebuff Android'
-APP_VERSION='1.2.0'
+APP_VERSION='1.3.0'
 APP_HOME="${HOME}/.freebuff-android"
 APP_BIN="${HOME}/.local/bin/freebuff-android"
 UBUNTU='ubuntu'
@@ -28,6 +28,23 @@ ubuntu_exists() {
 
 inside_ubuntu() {
   proot-distro login "$UBUNTU" -- /bin/bash -lc "$1"
+}
+
+# Confirm adequate phone storage before allocating an Ubuntu rootfs.
+check_storage() {
+  local free_kb
+  free_kb="$(df -Pk "$HOME" 2>/dev/null | awk 'NR==2 {print $4}')"
+  if [[ "$free_kb" =~ ^[0-9]+$ ]]; then
+    printf 'Espace disponible : %s MiB\n' "$((free_kb / 1024))"
+    if ! ubuntu_exists && (( free_kb < 1572864 )); then
+      die 'Espace insuffisant pour la première installation : libère au moins 1,5 Go puis réessaie.'
+    fi
+    if (( free_kb < 524288 )); then
+      warn 'Moins de 512 Mo disponibles. Les mises à jour peuvent échouer.'
+    fi
+  else
+    warn 'Espace libre impossible à mesurer : poursuite sans ce contrôle.'
+  fi
 }
 
 install_ubuntu_dependencies() {
@@ -94,6 +111,7 @@ setup() {
   check_termux
   mkdir -p "$APP_HOME"
   say 'Préparation de Freebuff sur ton téléphone Android (aucun PC nécessaire).'
+  check_storage
   pkg update -y
   pkg install -y proot-distro git curl
   if ! ubuntu_exists; then
@@ -190,6 +208,29 @@ diagnostics() {
   inside_ubuntu 'printf "Architecture Linux : "; uname -m; printf "Node : "; node --version; printf "npm : "; npm --version; printf "Git : "; git --version; printf "Freebuff : "; freebuff --version; printf "GitHub : "; if gh auth status >/dev/null 2>&1; then echo "connecté"; else echo "non connecté"; fi' || warn 'Certains composants ne sont pas prêts.'
 }
 
+# Safe diagnosis: no credentials, environment, private URLs or file contents.
+doctor() {
+  check_termux
+  say 'Diagnostic local (aucune donnée envoyée, aucun projet modifié).'
+  printf 'Installateur : %s\n' "$APP_VERSION"
+  printf 'Android : %s\n' "$(uname -m)"
+  printf 'PRoot-Distro : '
+  if command -v proot-distro >/dev/null 2>&1; then echo 'installé'; else echo 'absent'; return 1; fi
+  printf 'Ubuntu : '
+  if ubuntu_exists; then echo 'installé'; else echo 'absent'; return 1; fi
+  inside_ubuntu '
+    set +e
+    printf "Linux : "; uname -m
+    printf "Node : "; node --version
+    printf "npm : "; npm --version
+    printf "Freebuff : "; freebuff --version
+    printf "CLI aide (30 s max) : "
+    if timeout 30s freebuff --help >/dev/null 2>&1; then echo OK; else echo ECHEC; fi
+    printf "Git : "; git --version
+    printf "Nombre de projets : "; find /root/projects -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l
+  ' || { warn 'Diagnostic Linux incomplet'; return 1; }
+}
+
 git_status_all() {
   say 'Etat Git des projets (aucune modification, aucun push).'
   proot-distro login "$UBUNTU" -- /bin/bash -lc '
@@ -215,6 +256,7 @@ menu() {
     printf ' 6. Diagnostic\n'
     printf ' 7. Réparer (sans perte des projets)\n'
     printf ' 8. Statut Git des projets\n'
+    printf ' 9. Diagnostic approfondi sans partage de données\n'
     printf ' 0. Quitter\n\n'
     local choice
     read -r -p 'Ton choix : ' choice || break
@@ -227,6 +269,7 @@ menu() {
       6) diagnostics; paused ;;
       7) setup; paused ;;
       8) git_status_all; paused ;;
+      9) doctor; paused ;;
       0) break ;;
       *) warn 'Choix non reconnu.' ;;
     esac
@@ -235,11 +278,12 @@ menu() {
 
 main() {
   case "${1:-}" in
-    --help|-h) printf 'Freebuff Android %s\nUtilisation : bash Freebuff-Android.sh [--install|--repair|--menu|--diagnostic]\n' "$APP_VERSION" ;;
+    --help|-h) printf 'Freebuff Android %s\nUtilisation : bash Freebuff-Android.sh [--install|--repair|--menu|--diagnostic|--doctor]\n' "$APP_VERSION" ;;
     --install) setup; menu ;;
     --repair) setup ;;
     --menu) menu ;;
     --diagnostic) check_termux; require_setup; diagnostics ;;
+    --doctor) doctor ;;
     *)
       if ubuntu_exists && [[ -f "$APP_HOME/installed" ]]; then menu
       else setup; menu
