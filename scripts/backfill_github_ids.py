@@ -93,7 +93,7 @@ def reconcile(data: dict, token: str | None = None, *, max_requests: int = 250) 
         "assigned": 0,
         "missingAfter": len(missing),
         "unresolved": [],
-        "complete": not bool(token) or len(missing) <= max_requests,
+        "complete": bool(token) and len(missing) <= max_requests,
     }
     if token:
         for row in missing[:max_requests]:
