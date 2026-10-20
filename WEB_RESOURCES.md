@@ -57,7 +57,11 @@ for visual research without matching the project's runtime.
   Validate against [`schemas/websites.schema.json`](schemas/websites.schema.json).
 - During daily portfolio discovery, the scanner also proposes at most **two**
   matching website references per repository, based on owned repository
-  metadata and concrete keyword overlap. These suggestions are kept in the
+  metadata and concrete keyword overlap. Game projects also receive
+  **Game Art Style** as a prioritized art-direction reference when their
+  GitHub description contains no design terms; unrelated domains are excluded
+  and generic prose words (such as `and` or `for`) never qualify a match.
+  These suggestions are kept in the
   `website_references` report field, separate from GitHub integration
   `suggestions`; the reference list is never entered into the dispatch queue.
 - The existing `scripts/validate_websites.py` semantic validator checks
