@@ -1,15 +1,51 @@
 {
   "files": [
     {
-      "path": "catalog.json",
+      "path": "scripts/portfolio_daily.py",
       "reasons": [
         "changed",
-        "recent-project-state"
+        "changed-source",
+        "dependency-neighbor",
+        "impact",
+        "reverse-dependency-neighbor",
+        "symbol-indexed"
       ],
-      "score": 160
+      "score": 505
     },
     {
-      "path": ".github/workflows/validate.yml",
+      "path": "scripts/recommend.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "dependency-neighbor",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 435
+    },
+    {
+      "path": "scripts/test_recommend.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "reverse-dependency-neighbor",
+        "selected-test",
+        "symbol-indexed"
+      ],
+      "score": 435
+    },
+    {
+      "path": "scripts/portfolio_failure_diagnostics.py",
+      "reasons": [
+        "impact",
+        "reverse-dependency-neighbor",
+        "symbol-indexed"
+      ],
+      "score": 150
+    },
+    {
+      "path": ".github/workflows/portfolio-scan-smoke.yml",
       "reasons": [
         "changed"
       ],
@@ -23,53 +59,25 @@
       "score": 100
     },
     {
-      "path": "websites.json",
-      "reasons": [
-        "changed"
-      ],
-      "score": 100
-    },
-    {
-      "path": "AGENT_SKILLS.md",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "README.md",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "agent-skills.json",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
       "path": "scripts/agent_skill_discovery.py",
       "reasons": [
-        "recent-project-state"
+        "dependency-neighbor"
       ],
-      "score": 60
+      "score": 75
     },
     {
-      "path": "scripts/portfolio_daily.py",
+      "path": "scripts/find_replacements.py",
       "reasons": [
-        "recent-project-state"
+        "dependency-neighbor"
       ],
-      "score": 60
+      "score": 25
     },
     {
-      "path": "scripts/test_recommend.py",
+      "path": "scripts/health_score.py",
       "reasons": [
-        "recent-project-state"
+        "dependency-neighbor"
       ],
-      "score": 60
+      "score": 25
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

@@ -597,7 +597,20 @@ jobs:
                   assert website["integrationEligible"] is False
                   assert website["url"].startswith("https://")
                   assert "repo" not in website
-                  assert website["why"]["tags"] or website["why"]["terms"]
+                  assert website["why"]["domains"], website
+                  assert (website["why"]["tags"] or website["why"]["terms"]
+                          or (website["id"] == "game-art-style"
+                              and "game_dev" in website["why"]["domains"])), website
+          tts = next((row for row in result["projects"]
+                      if row["repository"].lower() == "dbrckk/tts"), None)
+          if tts is not None:
+              assert all(site["id"] != "game-art-style"
+                         for site in tts["website_references"]), tts
+          jumpy = next((row for row in result["projects"]
+                        if row["repository"].lower() == "dbrckk/jumpy"), None)
+          if jumpy is not None and jumpy["status"] != "skipped-inactive":
+              assert any(site["id"] == "game-art-style"
+                         for site in jumpy["website_references"]), jumpy
           report_markdown = Path("portfolio-daily.md").read_text()
           assert ("Projects with native-mode candidates: **"
                   + str(result["summary"]["with_native_suggestions"]) + "**.") in report_markdown
@@ -3773,6 +3786,24 @@ def render_markdown(report: dict) -> str
 summary = report["summary"]
 lines = ["<!-- star-list-portfolio-daily -->", "# Daily star-list portfolio discovery", "",
 ⋮----
+def website_references_for_project(repo: dict, profile: dict, limit: int = 2) -> list[dict]
+⋮----
+"""Suggest websites only for applicable project domains, never as code.
+
+    Game projects benefit from an art-direction atlas even if their GitHub
+    metadata says only "Jumpy" or "Roblox" and has no explicit art keywords.
+    """
+domains = set(profile.get("domains") or [])
+metadata_terms = tokens(" ".join([
+candidates = recommend_websites(metadata_terms, domains, limit=30)
+chosen = [
+⋮----
+game_art = next((site for site in candidates if site["id"] == "game-art-style"), None)
+⋮----
+# Give real game projects the visual atlas without letting generic
+# wording rank it above relevant websites for unrelated projects.
+chosen = [game_art] + [site for site in chosen if site["id"] != "game-art-style"]
+⋮----
 def main() -> int
 ⋮----
 ap = argparse.ArgumentParser()
@@ -3805,12 +3836,8 @@ profile = project_profile(repo, portfolio_token or gh_token)
 skill_terms = word_set(" ".join([
 skill_domains = (set(profile.get("domains") or [])
 ⋮----
-# Reference websites based on repository-owned metadata only;
-# arbitrary README prose is not trustworthy installation evidence.
-web_terms = tokens(" ".join([
-possible_sites = recommend_websites(web_terms, set(profile.get("domains") or []), limit=10)
-# Domain-only matches are too generic for portfolio reporting.
-# At least one concrete tag or best-for phrase must also match.
+# Owned GitHub metadata only: reference sites never become
+# installable tools, and unrelated domain/prose matches are out.
 ⋮----
 # Discovery must be complete before starting any potentially mutating
 # managed project. A per-repository read error is not a partial success.
@@ -4104,6 +4131,10 @@ stacks = json.loads(STACKS.read_text()) if STACKS.exists() else {"stacks": []}
 ⋮----
 def infer_domains(qtokens)
 ⋮----
+# Generic connective words in curator prose are not evidence that a website
+# applies to a project (e.g. "and" in both a TTS description and art guidance).
+WEBSITE_MATCH_STOPWORDS = frozenset(
+⋮----
 def recommend_websites(qtokens, domains, limit=5)
 ⋮----
 """Rank non-GitHub references separately from code integration candidates.
@@ -4117,7 +4148,7 @@ ranked = []
 site_domains = set(site["domains"])
 matched_domains = sorted(site_domains & domains)
 matched_tags = sorted(qtokens & set(site["tags"]))
-matched_text = sorted(qtokens & tokens(
+matched_text = sorted((qtokens & tokens(
 ⋮----
 score = (12 * len(matched_domains) + 10 * len(matched_tags)
 ⋮----
@@ -5164,6 +5195,18 @@ without_skills_query = run("mobile ui design", "--top", "4")
 roblox_skills = recommend_skills(word_set("roblox luau studio"), {"game_dev"}, limit=20)
 ⋮----
 compose_skills = recommend_skills(word_set("compose jetpack"), {"mobile"}, language="Kotlin", limit=20)
+⋮----
+# Real regression: TTS was being shown game-art-style due to generic words
+# such as "and" in both project metadata and curator descriptions.
+tts_labels = "TTS a deep learning toolkit for Text-to-Speech battle-tested in research and production"
+⋮----
+tts_sites = recommend_websites(tokens(tts_labels), {"ai_media"}, limit=30)
+⋮----
+tts_portfolio_sites = website_references_for_project(
+⋮----
+# Game repositories often have sparse GitHub descriptions. Their actual
+# game-development domain is sufficient to recommend art-direction research.
+game_sites = website_references_for_project(
 ⋮----
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 ⋮----

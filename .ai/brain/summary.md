@@ -2,17 +2,17 @@
 
 - Index mode: incremental
 - Files indexed: 55
-- Files reparsed this run: 0
-- Symbols: 242
-- Internal import edges: 22
-- Impacted files: 0
-- Selected tests: 0
+- Files reparsed this run: 3
+- Symbols: 243
+- Internal import edges: 24
+- Impacted files: 4
+- Selected tests: 1
 
 ## Languages
 - python: 55 files
 
 ## Highest-density symbol files
-- scripts/portfolio_daily.py: 24 symbols
+- scripts/portfolio_daily.py: 25 symbols
 - scripts/discover_candidates.py: 23 symbols
 - scripts/update_cache_health_history.py: 19 symbols
 - scripts/recommend.py: 17 symbols
@@ -42,9 +42,9 @@
 ## ast-grep enrichment
 - ast-grep outline: available
 - AST index mode: incremental
-- AST files reparsed this run: 0
+- AST files reparsed this run: 3
 - outline files retained: 55
-- top-level items retained: 956
+- top-level items retained: 964
 - direct members retained: 10
 - symbol shards: 24
 - route named symbols via ast-routing.json, then fetch one ast-symbols/<initial>.json shard

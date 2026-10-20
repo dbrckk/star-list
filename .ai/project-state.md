@@ -105,18 +105,22 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-20T08:38:21Z
+Generated: 2026-10-20T10:37:58Z
 
 ### Git
 - Branch: `main`
-- Head: `7109c2cf64f8`
-- Commit date: 2026-10-20T04:38:11-04:00
-- Commit: feat(websites): add Game Art Style atlas to game visual research (#139)
+- Head: `6a555c936b01`
+- Commit date: 2026-10-20T06:37:49-04:00
+- Commit: fix(websites): recommend Game Art Style to game projects, not unrelated TTS (#140)
 - Tracked files: 291
 
 ### Recently changed files
-- `.github/workflows/validate.yml`
+- `.github/workflows/portfolio-scan-smoke.yml`
 - `WEB_RESOURCES.md`
+- `scripts/portfolio_daily.py`
+- `scripts/recommend.py`
+- `scripts/test_recommend.py`
+- `.github/workflows/validate.yml`
 - `websites.json`
 - `catalog.json`
 

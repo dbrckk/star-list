@@ -1,16 +1,19 @@
 # Change impact
 
-Base: b3e9aef6247e3bf5af0bdd0e0e6c37d46c35a396
-Head: 7109c2cf64f8d5283fac50c793dfc37191cafcaf
+Base: 49942626e4da80c8bfba49284ee422c9321999ab
+Head: 6a555c936b01abadd63f4c8960c91f55304ab787
 
 ## Changed files
-- M .github/workflows/validate.yml
+- M .github/workflows/portfolio-scan-smoke.yml
 - M WEB_RESOURCES.md
-- M websites.json
+- M scripts/portfolio_daily.py
+- M scripts/recommend.py
+- M scripts/test_recommend.py
 
 ## Affected areas
 - .github
 - (root)
+- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.

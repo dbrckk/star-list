@@ -6,27 +6,29 @@
     "requested_max_files": 12,
     "score_margin": 12,
     "tier": "narrow",
-    "top_score": 41
+    "top_score": 54
   },
   "cache": {
-    "fingerprint": "4d4db72eef3362ef8d1609aa35e9035363c36e33f5b3e0b3d96c69b627915267",
+    "fingerprint": "7e3f28eec6a79bba43b978d275e55154e92b1309cece9abf174bc8de6ac3259a",
     "hit": false
   },
-  "candidate_count": 10,
+  "candidate_count": 8,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
-      "learning_score": 12,
+      "learning_score": 16,
       "matched_terms": [
         "engine",
         "game"
       ],
       "path": "scripts/portfolio_daily.py",
       "reasons": [
+        "impact",
         "learning",
+        "recently-changed",
         "search-index"
       ],
-      "score": 41,
+      "score": 54,
       "symbols": [
         "SameOriginRedirect",
         "busy_integration_targets",
@@ -51,41 +53,54 @@
       ]
     },
     {
-      "learning_score": 0,
+      "learning_score": 4,
       "matched_terms": [
         "engine",
         "game"
       ],
-      "path": "scripts/admit_github_stars.py",
+      "path": "scripts/test_recommend.py",
       "reasons": [
+        "impact",
+        "learning",
+        "recently-changed",
         "search-index"
       ],
-      "score": 29,
+      "score": 42,
       "symbols": [
-        "admit",
-        "catalog_entry",
-        "classify",
-        "count",
-        "get_repo",
-        "main",
-        "manifest_stable_ids"
+        "run"
       ]
     },
     {
-      "learning_score": 0,
+      "learning_score": 4,
       "matched_terms": [
         "game"
       ],
-      "path": "scripts/infer_selection_guidance.py",
+      "path": "scripts/recommend.py",
       "reasons": [
+        "impact",
+        "learning",
+        "recently-changed",
         "search-index"
       ],
-      "score": 17,
+      "score": 30,
       "symbols": [
-        "_humanize",
-        "enrich",
-        "infer_guidance",
-        "main"
+        "activity_adjustment",
+        "choose_stack",
+        "delta",
+        "explain_repo",
+        "guidance_weight",
+        "infer_alternatives",
+        "infer_complements",
+        "infer_domains",
+        "load",
+        "main",
+        "norm",
+        "recommend_websites",
+        "resolve_relations",
+        "score_repo",
+        "tokens",
+        "trend_adjustment",
+        "usable"
       ]
     }
   ],

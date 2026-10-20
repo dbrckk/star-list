@@ -2,22 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "Infer recommendation relations dynamically (#28)",
-      "terms": [
-        "28",
-        "dynamically",
-        "infer",
-        "recommendation",
-        "relations"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/recommend.py",
-        "scripts/test_recommend.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "Detect licenses from repository files when GitHub is inconclusive (#29)",
       "terms": [
         "29",
@@ -1253,6 +1237,28 @@
         "scripts/portfolio_daily.py",
         "scripts/test_recommend.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(websites): recommend Game Art Style to game projects, not unrelated TTS (#140)",
+      "terms": [
+        "140",
+        "art",
+        "game",
+        "not",
+        "projects",
+        "recommend",
+        "style",
+        "tts",
+        "unrelated",
+        "websites"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py",
+        "scripts/test_recommend.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1354,6 +1360,11 @@
     "137": {
       "scripts/agent_skill_discovery.py": 4,
       "scripts/portfolio_daily.py": 4,
+      "scripts/test_recommend.py": 4
+    },
+    "140": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
     "17": {
@@ -1574,6 +1585,11 @@
     },
     "are": {
       "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "art": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "attempts": {
       "scripts/portfolio_daily.py": 4
@@ -1997,7 +2013,9 @@
       "scripts/portfolio_daily.py": 4
     },
     "game": {
-      "scripts/portfolio_daily.py": 8
+      "scripts/portfolio_daily.py": 12,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "games": {
       "scripts/portfolio_daily.py": 4
@@ -2228,7 +2246,9 @@
       "scripts/portfolio_daily.py": 4
     },
     "not": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "observe": {
       "scripts/portfolio_failure_diagnostics.py": 4
@@ -2314,7 +2334,9 @@
       "scripts/portfolio_daily.py": 4
     },
     "projects": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "public": {
       "scripts/admit_github_stars.py": 4,
@@ -2368,7 +2390,9 @@
       "scripts/portfolio_daily.py": 4
     },
     "recommend": {
-      "scripts/portfolio_daily.py": 8
+      "scripts/portfolio_daily.py": 12,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "recommendation": {
       "scripts/recommend.py": 8,
@@ -2660,6 +2684,11 @@
     "studio": {
       "scripts/portfolio_daily.py": 4
     },
+    "style": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "surface": {
       "scripts/portfolio_daily.py": 8,
       "scripts/test_documentation.py": 4,
@@ -2713,11 +2742,21 @@
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
     },
+    "tts": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "unavailable": {
       "scripts/portfolio_daily.py": 4
     },
     "uncertain": {
       "scripts/portfolio_daily.py": 8
+    },
+    "unrelated": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "unresolved": {
       "scripts/audit_catalog_quality.py": 4,
@@ -2779,11 +2818,11 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "websites": {
-      "scripts/portfolio_daily.py": 4,
-      "scripts/recommend.py": 4,
+      "scripts/portfolio_daily.py": 8,
+      "scripts/recommend.py": 8,
       "scripts/test_documentation.py": 8,
       "scripts/test_json_contracts.py": 8,
-      "scripts/test_recommend.py": 4,
+      "scripts/test_recommend.py": 8,
       "scripts/validate_websites.py": 4
     },
     "weight": {

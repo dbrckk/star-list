@@ -81,6 +81,16 @@
       "type": "imports"
     },
     {
+      "source": "scripts/test_recommend.py",
+      "target": "scripts/portfolio_daily.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_recommend.py",
+      "target": "scripts/recommend.py",
+      "type": "imports"
+    },
+    {
       "source": "scripts/test_refresh_github_metadata.py",
       "target": "scripts/refresh_github_metadata.py",
       "type": "imports"
