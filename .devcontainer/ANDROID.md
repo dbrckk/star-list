@@ -1,6 +1,6 @@
 # Freebuff Android — installation mobile
 
-**Version 1.2.0.** Deux possibilités :
+**Version 1.3.0.** Deux possibilités :
 
 - **Android local sans PC** : télécharge [Freebuff-Android.sh](Freebuff-Android.sh) dans le dossier Téléchargements de ton téléphone. Installe [Termux (F-Droid)](https://f-droid.org/packages/com.termux/) puis exécute :
   ```bash
@@ -24,3 +24,14 @@ Exécute `bash .devcontainer/tests/test-shell.sh` à la racine du dépôt ; les 
 - Pour diagnostiquer une panne sur Android : `~/.local/bin/freebuff-android --diagnostic`.
 - Les tests Linux ARM64 **ne remplacent pas** un test Android 15 dans PRoot ; ne pas annoncer que l’application fonctionne sur le téléphone tant que cela n’a pas été vérifié.
 - L’installateur reste accessible directement ici : [Freebuff-Android.sh](Freebuff-Android.sh).
+
+## Nouveautés 1.3.0
+
+- Avant la première installation, vérification d'au moins 1,5 Gio disponibles (le besoin réel peut varier).
+- `bash Freebuff-Android.sh --doctor` effectue un diagnostic local sans envoyer de logs, clés, identifiants ni contenu de dépôt.
+- Test CI supplémentaire du **démarrage interactif** de Freebuff CLI avec un pseudo-terminal, sur Linux x64 et ARM64. Ce test détecte les régressions de démarrage qui passent `--version` mais n'ouvrent pas Freebuff.
+- La réussite du CI Linux ne prouve pas encore le fonctionnement sur Android 15/PRoot.
+
+**Mise à niveau sur Termux :** télécharger le nouvel installateur puis exécuter
+`bash ~/storage/downloads/Freebuff-Android.sh --repair`.
+Ne pas supprimer Ubuntu/PRoot : les fichiers et identifiants de session existants sont conservés lors de la réparation.
