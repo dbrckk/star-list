@@ -1,6 +1,6 @@
 # Freebuff Android — installation mobile
 
-**Version 1.1.0.** Deux possibilités :
+**Version 1.2.0.** Deux possibilités :
 
 - **Android local sans PC** : télécharge [Freebuff-Android.sh](Freebuff-Android.sh) dans le dossier Téléchargements de ton téléphone. Installe [Termux (F-Droid)](https://f-droid.org/packages/com.termux/) puis exécute :
   ```bash
@@ -17,3 +17,10 @@ Le code ne stocke pas de secrets et n'effectue aucun push automatique vers tes d
 ## Vérifications
 
 Exécute `bash .devcontainer/tests/test-shell.sh` à la racine du dépôt ; les tests utilisent des simulateurs locaux pour éviter d'utiliser des tokens. Le workflow CI tente aussi une installation effective de la CLI sur Ubuntu. Les tests simulés ne prouvent pas la compatibilité sur Android.
+
+## Corrections 1.2
+- Script Termux : corrections des sauts de ligne et répertoires `owner__repo`, pour ne pas confondre deux dépôts portant le même nom.
+- GitHub Actions : tests de syntaxe et simulation Termux, plus installation CLI sur Linux ARM64 natif (`ubuntu-24.04-arm`) et x86-64. Voir l’onglet Actions pour leur résultat.
+- Pour diagnostiquer une panne sur Android : `~/.local/bin/freebuff-android --diagnostic`.
+- Les tests Linux ARM64 **ne remplacent pas** un test Android 15 dans PRoot ; ne pas annoncer que l’application fonctionne sur le téléphone tant que cela n’a pas été vérifié.
+- L’installateur reste accessible directement ici : [Freebuff-Android.sh](Freebuff-Android.sh).
