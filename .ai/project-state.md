@@ -105,27 +105,26 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-20T11:26:14Z
+Generated: 2026-10-20T11:30:32Z
 
 ### Git
 - Branch: `main`
-- Head: `885599b72394`
-- Commit date: 2026-10-20T07:26:03-04:00
-- Commit: fix(web): surface PINOC MCP to Roblox and explicit 3D engine projects (#142)
+- Head: `a105d2b06713`
+- Commit date: 2026-10-20T07:30:22-04:00
+- Commit: fix(web): detect PINOC in real Roblox repositories with sparse metadata (#143)
 - Tracked files: 291
 
 ### Recently changed files
-- `WEB_RESOURCES.md`
 - `scripts/portfolio_daily.py`
 - `scripts/test_recommend.py`
+- `websites.json`
+- `WEB_RESOURCES.md`
 - `README.md`
 - `schemas/websites.schema.json`
 - `scripts/recommend.py`
 - `scripts/validate_websites.py`
-- `websites.json`
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `.github/workflows/validate.yml`
-- `catalog.json`
 
 ### Project signals
 - No common build descriptor detected

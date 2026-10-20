@@ -1,20 +1,20 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "adf82c80e04bfc125fd3c81dcdcb5e87eaf8ae69",
-  "head": "885599b723946c4af5db0e8b02f8cc50b99ef6f0",
+  "base": "885599b723946c4af5db0e8b02f8cc50b99ef6f0",
+  "head": "a105d2b06713c27151a7eeb08ba9c5cf8ef134ff",
   "index_mode": "incremental",
   "changed_files": [
-    {
-      "path": "WEB_RESOURCES.md",
-      "status": "M"
-    },
     {
       "path": "scripts/portfolio_daily.py",
       "status": "M"
     },
     {
       "path": "scripts/test_recommend.py",
+      "status": "M"
+    },
+    {
+      "path": "websites.json",
       "status": "M"
     }
   ],
@@ -176,7 +176,7 @@
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 847
+      "line": 851
     },
     {
       "name": "safe_state",

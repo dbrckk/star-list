@@ -1,16 +1,16 @@
 # Change impact
 
-Base: 27676491c7c8cf2e2f84ced6a2672973ced14c45
-Head: 885599b723946c4af5db0e8b02f8cc50b99ef6f0
+Base: de4411858781c276b3270eee89427d79e75c30a9
+Head: a105d2b06713c27151a7eeb08ba9c5cf8ef134ff
 
 ## Changed files
-- M WEB_RESOURCES.md
 - M scripts/portfolio_daily.py
 - M scripts/test_recommend.py
+- M websites.json
 
 ## Affected areas
-- (root)
 - scripts
+- (root)
 
 ## Related test candidates
 - No direct filename-based test match detected.

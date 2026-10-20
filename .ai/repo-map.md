@@ -3800,6 +3800,11 @@ def website_references_for_project(repo: dict, profile: dict, limit: int = 2) ->
     """
 domains = set(profile.get("domains") or [])
 metadata_terms = tokens(" ".join([
+⋮----
+# GitHub repository names often encode the engine in kebab/snake
+# case while descriptions/topics are empty. Split only the metadata
+# labels here; do not alter the global repository tokenization.
+⋮----
 candidates = recommend_websites(metadata_terms, domains, limit=30)
 chosen = [
 ⋮----
@@ -5237,6 +5242,8 @@ motion_sites = website_references_for_project(
 # Roblox is a named engine with possible 3D skeletal animations; the
 # advisory PINOC reference must be discoverable without guessing from README.
 roblox_sites = website_references_for_project(
+⋮----
+# Actual public GitHub metadata: no description, no topics, Lua language.
 ⋮----
 website_schema = json.loads((ROOT / "schemas/websites.schema.json").read_text(encoding="utf-8"))
 ⋮----
@@ -53030,7 +53037,8 @@ General-purpose GitHub discovery remains advisory and never inserts external can
         "npc",
         "cutscene",
         "video-to-motion",
-        "text-to-motion"
+        "text-to-motion",
+        "roblox"
       ],
       "bestFor": [
         "Finding and importing free preset 3D motion clips into compatible games and animation tools",
