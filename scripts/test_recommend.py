@@ -78,7 +78,8 @@ assert any(row["id"] == "60fps" for row in run("mobile ui motion animation", "--
 # Real regression: TTS was being shown game-art-style due to generic words
 # such as "and" in both project metadata and curator descriptions.
 tts_labels = "TTS a deep learning toolkit for Text-to-Speech battle-tested in research and production"
-tts_sites = mod.recommend_websites(mod.tokens(tts_labels), {"ai_media"}, limit=30)
+from recommend import recommend_websites, tokens
+tts_sites = recommend_websites(tokens(tts_labels), {"ai_media"}, limit=30)
 assert not any(s["id"] == "game-art-style" for s in tts_sites)
 from portfolio_daily import website_references_for_project
 tts_portfolio_sites = website_references_for_project(
