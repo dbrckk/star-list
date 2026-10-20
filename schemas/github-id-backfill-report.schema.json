@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Permanent GitHub Repository ID Backfill Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mode",
+    "catalogSize",
+    "previouslyVerified",
+    "missingBefore",
+    "checked",
+    "assigned",
+    "missingAfter",
+    "complete",
+    "unresolved"
+  ],
+  "properties": {
+    "mode": {
+      "enum": [
+        "online",
+        "offline"
+      ]
+    },
+    "catalogSize": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "previouslyVerified": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "missingBefore": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "checked": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "assigned": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "missingAfter": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "complete": {
+      "type": "boolean"
+    },
+    "unresolved": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "repo",
+          "reason"
+        ],
+        "properties": {
+          "repo": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+          },
+          "reason": {
+            "enum": [
+              "not-found",
+              "renamed-or-transferred",
+              "invalid-or-private",
+              "identity-conflict"
+            ]
+          }
+        }
+      }
+    },
+    "error": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

@@ -92,6 +92,33 @@ python scripts/admit_github_stars.py \
 Remove `--dry-run` to validate and update the local catalog atomically.
 The GitHub Actions workflow performs that write automatically.
 
+## Permanent GitHub repository identity reconciliation
+
+Legacy catalog entries can predate stable `githubRepositoryId` tracking.
+A separate [weekly backfill workflow](../.github/workflows/backfill-github-ids.yml)
+checks only missing identities against the public GitHub metadata API. On
+October 20, 2026 the quality report showed **133 name-only entries** out
+of **999**. The latest full metadata refresh recorded in `catalog.json`
+was October 12, so the hourly Stars check alone cannot fill unrelated
+curated repository IDs.
+
+The backfill refuses to replace an existing ID, assign the same ID to two
+catalog entries, or silently resolve an old slug into a transferred or
+renamed repository. Missing/replaced names remain in the diagnostic artifact
+for manual review. API outages fail before any catalog write. After a
+validated non-force push, the same centralized quality audit is invoked
+explicitly; this handles GitHub's suppression of bot-triggered push events.
+
+Local offline inventory (no GitHub calls and no catalog changes):
+
+```bash
+python scripts/backfill_github_ids.py
+```
+
+To reconcile live metadata, run **Actions → Backfill permanent GitHub
+repository IDs → Run workflow**. This process does not alter repo quality
+scores, tiers, licenses, source code or project integration approvals.
+
 ## Limitations
 
 - The built-in `GITHUB_TOKEN` reads public Stars, not necessarily private

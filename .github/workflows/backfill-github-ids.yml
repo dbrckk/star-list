@@ -1,0 +1,87 @@
+name: Backfill permanent GitHub repository IDs
+
+on:
+  schedule:
+    - cron: '06 4 * * 2'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/backfill_github_ids.py'
+      - '.github/workflows/backfill-github-ids.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: star-list-github-identity-backfill
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      catalog_changed: ${{ steps.catalog_push.outputs.catalog_changed }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Resolve missing stable GitHub IDs with verified repository metadata
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/backfill_github_ids.py --write \
+            --max-requests 250 --report-json github-id-backfill-report.json
+          python scripts/validate_catalog.py
+          python scripts/validate_json_contract.py catalog.schema.json catalog.json
+          python scripts/validate_json_contract.py \
+            schemas/github-id-backfill-report.schema.json github-id-backfill-report.json
+      - name: Preserve reconciliation evidence on success or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: permanent-github-id-backfill
+          path: github-id-backfill-report.json
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Publish only a validated non-force catalog update
+        id: catalog_push
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- catalog.json; then
+            echo "No permanent GitHub IDs to update"
+            echo "catalog_changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add catalog.json
+          git commit -m "chore: reconcile missing permanent GitHub repository IDs"
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            # A conflict is a visible failure, never a reason to overwrite
+            # concurrent Stars admissions or identity changes.
+            git rebase origin/main
+            python scripts/validate_catalog.py
+            python scripts/validate_json_contract.py catalog.schema.json catalog.json
+            if git push origin HEAD:main; then
+              echo "catalog_changed=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            sleep "$attempt"
+          done
+          echo "::error::Could not publish validated catalog after four attempts"
+          exit 1
+
+  audit-after-backfill:
+    needs: backfill
+    if: needs.backfill.outputs.catalog_changed == 'true'
+    permissions:
+      contents: read
+      issues: write
+    uses: ./.github/workflows/catalog-quality-on-change.yml
