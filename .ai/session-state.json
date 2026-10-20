@@ -1,22 +1,22 @@
 {
   "schema_version": 1,
-  "updated_date_utc": "2026-10-18",
+  "updated_date_utc": "2026-10-20",
   "repository": "dbrckk/star-list",
   "reference_branch": "main",
   "status": "active",
-  "verified_catalog_repositories": 980,
+  "verified_catalog_repositories": 1013,
   "last_verified_public_portfolio_scan": {
     "discovered": 42,
     "inspected": 42,
     "with_suggestions": 16,
     "with_native_suggestions": 3,
     "native_suggestions": 5,
-    "with_website_references": 3,
+    "with_website_references": 11,
     "skill_directory_references": 42,
     "with_skill_recommendations": 13,
     "dispatched": 0,
     "public_report_issue": 61,
-    "verified_workflow_run": 39173301377,
+    "verified_workflow_run": 39462107469,
     "skill_recommendations": 21
   },
   "last_verified_integration_inventory": {
@@ -89,7 +89,12 @@
     134,
     135,
     136,
-    137
+    137,
+    143,
+    144,
+    145,
+    148,
+    149
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -139,11 +144,15 @@
     "Star-list PR #136 merged a08aaed: add exact-pinned official Flutter and Godot SKILL.md references; recognize conservative root pubspec Flutter SDK and GitHub primary GDScript signals, preserve original dependency integration ranking and avoid duplicate metadata reads.",
     "Star-list PR #137 merged 112eae0: add pinned Google Android Compose/Play policy and MIT Roblox Luau skill references; permit only safe pinned root SKILL.md paths, match Luau but not generic Lua.",
     "Post-merge CI #39173301348 (Validate catalog), #39173302198 (Repository standards) and live portfolio #39173301377 all succeeded; public report #61 updated to 42/42 inspected, 42 Skill Issue links, 13 projects with 21 suggestions, 0 integrations dispatched.",
-    "Across PRs #136-#137 skill source references grew 19 to 25 and public targeted coverage improved 8/42 to 13/42; all references remain unreviewed code and non-installable until explicit upstream audit and target acceptance."
+    "Across PRs #136-#137 skill source references grew 19 to 25 and public targeted coverage improved 8/42 to 13/42; all references remain unreviewed code and non-installable until explicit upstream audit and target acceptance.",
+    "Star-list PR #143 recognized PINOC references in Roblox repositories with minimal metadata; PR #144 audited all 25 exact-pinned agent SKILL.md sources daily without remote execution; PR #145 reconciled 123 legacy permanent GitHub IDs, leaving 10 for manual alias resolution.",
+    "Star-list PR #148 merged as 883ccf0 on 2026-10-20: canonicalized prisma/orm, react/react, react/react-native by exact immutable GitHub ID, preserved curation and three catalog relationship references; exact-head PR CI, main Validate catalog, quality refresh, public Stars sync and standards all passed.",
+    "Star-list PR #149 merged as 42f59c5 on 2026-10-20: retained six historical observations each for the three renamed repos and preserved health snapshot baseline without changing metrics; exact-head PR CI and post-merge Validate catalog and Repository standards passed.",
+    "Live post-#148 Stars sync #39483152255 enumerated 879/879 accessible public favorites, nine pages, 0 new or missed. Catalog quality #32 confirmed 1006/1013 immutable IDs, seven unresolved: six duplicate historical aliases and one inaccessible Rustchain slug. Production-OS autonomous dispatch remains paused."
   ],
   "next_priority": [
     "Use the 25 pinned Skill Issue and supplementary platform sources as task-specific review references across all public and private portfolio scans; do not automatically execute unaudited SKILL.md scripts or install external instructions.",
-    "Verify the remaining 133 catalog records missing permanent GitHub IDs via authenticated metadata refresh; preserve stable identity and never infer ownership from slug alone.",
+    "Review six duplicate legacy aliases against canonical ID-bearing catalog entries, preserving curated guidance and cross-references; investigate Scottcjn/Rustchain without inventing an identity or deleting it. Seven unverified catalog IDs remain.",
     "Demonstrate one small licensed/compatible target-code integration and exact-SHA draft PR plus target CI, only after verified usable free provider capacity and operator review of the terminal v3 failure.",
     "Keep daily public/private discovery, hourly Star sync, strict manifest-name skill matching and token/credential isolation; measure impact in current issue #61."
   ],
@@ -154,20 +163,21 @@
     "Do not report a submitted Production-OS task as a completed integration"
   ],
   "last_verified_public_star_sync": {
-    "run_id": 39164085442,
-    "checked_at_utc": "2026-10-18",
-    "public_accessible_stars": 846,
-    "already_cataloged_before_admission": 830,
-    "admitted": 16,
+    "run_id": 39483152255,
+    "checked_at_utc": "2026-10-20",
+    "public_accessible_stars": 879,
+    "already_cataloged_before_admission": 879,
+    "admitted": 0,
     "missing_after_admission": 0,
     "pages": 9
   },
   "last_verified_identity_coverage": {
     "report_issue": 32,
-    "verified": 847,
-    "missing": 133,
-    "total": 980,
-    "audit_checked_at_utc": "2026-10-18"
+    "verified": 1006,
+    "missing": 7,
+    "total": 1013,
+    "audit_checked_at_utc": "2026-10-20",
+    "audit_run": 39483152219
   },
   "last_verified_skill_inventory": {
     "source_references": 25,
@@ -175,7 +185,8 @@
     "reviewed_code": 0,
     "automatically_installed": 0,
     "skill_directory_references": 42,
-    "verified_portfolio_run": 39173301377,
-    "source_review_required": true
+    "verified_portfolio_run": 39462107469,
+    "source_review_required": true,
+    "source_audit_run": 39460419322
   }
 }
