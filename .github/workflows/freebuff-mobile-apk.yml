@@ -1,4 +1,7 @@
 name: Build Freebuff Mobile Android APK
+concurrency:
+  group: freebuff-mobile-${{ github.ref }}
+  cancel-in-progress: true
 on:
   push:
     branches: [freebuff-android]
@@ -36,7 +39,12 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - uses: android-actions/setup-android@v3
+      - name: Verify installed Android SDK
+        run: |
+          test -d "$ANDROID_HOME"
+          test -x "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" || command -v sdkmanager
+          echo "Using Android SDK: $ANDROID_HOME"
+          sdkmanager --install "platforms;android-35" "build-tools;35.0.0" >/dev/null
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
