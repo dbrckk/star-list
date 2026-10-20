@@ -18,7 +18,11 @@ test('Validation des identifiants GitHub et absence de traversée',()=>{
  assert.equal(idFor('alice/project'),'alice__project');assert.equal(safeId('alice__project'),true);assert.equal(safeId('../etc'),false);assert.equal(session('a__b'),session('a__b'));assert.notEqual(session('a__b'),session('b__a'));
 });
 test('Serveur local : appairage, API auth, validation et protection origine',async()=>{
- port=await getPort();serverProcess=spawn(process.execPath,[path.join(__dirname,'../server.js')],{env:{...process.env,FREEBUFF_MOBILE_PORT:String(port)},stdio:['ignore','pipe','pipe']});pin=await waitFor('PIN',serverProcess);
+ port=await getPort();
+ const fakeBin=path.join(temp,'bin');fs.mkdirSync(fakeBin);
+ const fakeFreebuff=path.join(fakeBin,'freebuff');
+ fs.writeFileSync(fakeFreebuff, '#!/bin/sh\nprintf invoked > '+JSON.stringify(path.join(temp,'unexpected-execution'))+'\n', {mode:0o755});
+ serverProcess=spawn(process.execPath,[path.join(__dirname,'../server.js')],{env:{...process.env,FREEBUFF_MOBILE_PORT:String(port),PATH:fakeBin+path.delimiter+process.env.PATH},stdio:['ignore','pipe','pipe']});pin=await waitFor('PIN',serverProcess);
  let page=await req('/');assert.equal(page.status,200);assert.match(await page.text(),/Freebuff Mobile/);
  let manifest=await req('/manifest.webmanifest');assert.equal(manifest.status,200);
  let unauthorized=await req('/api/status');assert.equal(unauthorized.status,401);
@@ -26,9 +30,18 @@ test('Serveur local : appairage, API auth, validation et protection origine',asy
  let bad=await req('/api/pair',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({code:'123450'})});assert.equal(bad.status,401);
  let pair=await req('/api/pair',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({code:pin})});assert.equal(pair.status,200);token=(await pair.json()).token;assert.equal(token.length,64);
  let replay=await req('/api/pair',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({code:pin})});assert.equal(replay.status,429);
- let status=await req('/api/status',{headers:{Authorization:'Bearer '+token}});assert.equal(status.status,200);let info=await status.json();assert(Array.isArray(info.projects));
+ let status=await req('/api/status',{headers:{Authorization:'Bearer '+token}});assert.equal(status.status,200);let info=await status.json();assert(Array.isArray(info.projects));assert.equal(info.freebuff,true);assert.equal(fs.existsSync(path.join(temp,'unexpected-execution')),false,'A dashboard refresh must not launch the Freebuff binary');
  let inj=await req('/api/projects',{method:'POST',headers:{Authorization:'Bearer '+token,'content-type':'application/json'},body:JSON.stringify({repo:'a/../../../etc'})});assert.equal(inj.status,400);
  let invalid=await req('/api/open',{method:'POST',headers:{Authorization:'Bearer '+token,'content-type':'application/json'},body:JSON.stringify({id:'../../tmp'})});assert.equal(invalid.status,400);
  let secret=await req('/token');assert.equal(secret.status,404);
  assert.equal(fs.statSync(path.join(temp,'profile','token')).mode&0o777,0o600);
+});
+
+test('Interface: every DOM identifier referenced in JavaScript exists in HTML',()=>{
+ const script=fs.readFileSync(path.join(__dirname,'../www/app.js'),'utf8');
+ const html=fs.readFileSync(path.join(__dirname,'../www/index.html'),'utf8');
+ const ids=new Set([...script.matchAll(/\$\('([A-Za-z0-9_-]+)'\)/g)].map(m=>m[1]));
+ for(const id of ids)assert(html.includes('id="'+id+'"'), 'Missing HTML id: '+id);
+ assert.match(html,/id="autoResume"/);
+ assert.match(script,/pendingClone/);
 });

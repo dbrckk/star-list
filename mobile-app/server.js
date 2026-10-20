@@ -19,7 +19,12 @@ let PIN = String(crypto.randomInt(100000,999999));
 let expires = Date.now()+20*60*1000;
 let pairFailures=0;
 const tasks = new Map();
-const has = c => spawnSync(c,['--version'],{encoding:'utf8',timeout:5000}).status === 0;
+// Checking `freebuff --version` on every dashboard poll can trigger the
+// Android wrapper's network/update path. Test executable presence instead.
+const has = c => (process.env.PATH||'').split(path.delimiter).some(dir => {
+  if(!dir)return false;
+  try{const file=path.join(dir,c);const st=fs.statSync(file);return st.isFile()&&Boolean(st.mode&0o111)}catch{return false}
+});
 const output = (command,args,opts={})=>{
   const r=spawnSync(command,args,{encoding:'utf8',timeout:opts.timeout||8000,maxBuffer:1024*1024,...opts});
   return {ok:r.status===0, stdout:(r.stdout||'').slice(-22000),stderr:(r.stderr||'').slice(-3000),code:r.status};
@@ -52,7 +57,7 @@ const app = http.createServer(async(req,res)=>{
  const body=req.method==='POST'?await readBody(req):{};
  let result;
  switch(`${req.method} ${url.pathname}`){
- case 'GET /api/status':result={node:process.version,git:has('git'),tmux:has('tmux'),freebuff:has('freebuff'),version:has('freebuff')?output('freebuff',['--version'],{timeout:5000}).stdout.trim():'',projects:listProjects(),tasks:tasksFor()};break;
+ case 'GET /api/status':result={node:process.version,git:has('git'),tmux:has('tmux'),freebuff:has('freebuff'),version:'',projects:listProjects(),tasks:tasksFor()};break;
  case 'POST /api/projects':if(!safeRepo(body.repo))throw Error('Format attendu : propriétaire/dépôt');result=createClone(body.repo);break;
  case 'POST /api/open':result=ensureSession(body.id);break;
  case 'GET /api/screen':result=terminalOutput(url.searchParams.get('id'));break;

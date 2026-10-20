@@ -20,6 +20,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: JavaScript and installer syntax checks
+        run: |
+          node --check mobile-app/server.js
+          node --check mobile-app/www/app.js
+          bash -n mobile-app/install-termux.sh
       - run: node --test mobile-app/tests/server.test.js
   apk:
     needs: node-tests
@@ -31,14 +36,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - name: Prepare installed Android SDK
-        run: |
-          export ANDROID_HOME="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
-          echo "ANDROID_HOME=$ANDROID_HOME" >> "$GITHUB_ENV"
-          SDKMANAGER="$(find "$ANDROID_HOME/cmdline-tools" -type f -name sdkmanager | head -n 1)"
-          test -x "$SDKMANAGER" || { echo "Android sdkmanager unavailable"; exit 1; }
-          yes | "$SDKMANAGER" --licenses >/dev/null || true
-          "$SDKMANAGER" --install "platforms;android-35" "build-tools;35.0.0"
+      - uses: android-actions/setup-android@v3
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
