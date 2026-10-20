@@ -96,6 +96,32 @@ game_sites = website_references_for_project(
 assert game_sites[0]["id"] == "game-art-style", game_sites
 assert game_sites[0]["reuse"] == "reference-only"
 assert game_sites[0]["integrationEligible"] is False
+# PINOC is a user-authorized external MCP reference, not an automatically
+# installed game dependency or a free unlimited generation provider.
+pinoc_rows = run("3d rigging mocap animation blender", "--websites", "--top-websites", "20")["websiteRecommendations"]
+pinoc = next(site for site in pinoc_rows if site["id"] == "viggle-pinoc-mcp")
+assert pinoc["mcpEndpoint"] == "https://pinoc.mcp.viggle.ai/mcp"
+assert pinoc["integrationEligible"] is False
+assert pinoc["reuse"] == "hosted-service" and pinoc["access"] == "freemium"
+assert next(site for site in sites if site["id"] == "viggle-pinoc-mcp")["originalUrl"] == "https://viggle.ai/pinoc/app/mcp"
+motion_sites = website_references_for_project(
+    {"name": "NPC Animation", "description": "3D mocap and rigged NPCs in Blender",
+     "topics": ["rigging"]},
+    {"domains": ["game_dev", "graphics"]},
+)
+assert [row["id"] for row in motion_sites] == ["game-art-style", "viggle-pinoc-mcp"], motion_sites
+assert all(site["id"] != "viggle-pinoc-mcp" for site in game_sites), game_sites
+assert all(site["id"] != "viggle-pinoc-mcp" for site in tts_portfolio_sites), tts_portfolio_sites
+from validate_websites import check_websites
+import copy
+website_schema = json.loads((ROOT / "schemas/websites.schema.json").read_text(encoding="utf-8"))
+assert not check_websites(websites_catalog, website_schema)
+unsafe_websites = copy.deepcopy(websites_catalog)
+bad_pinoc = next(site for site in unsafe_websites["websites"] if site["id"] == "viggle-pinoc-mcp")
+bad_pinoc["mcpEndpoint"] = "https://attacker.example/mcp"
+assert check_websites(unsafe_websites, website_schema)
+bad_pinoc["mcpEndpoint"] = "https://pinoc.mcp.viggle.ai/other"
+assert check_websites(unsafe_websites, website_schema)
 
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 for item in strict["recommendations"]:
