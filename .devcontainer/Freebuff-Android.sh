@@ -220,14 +220,17 @@ doctor() {
   if ubuntu_exists; then echo 'installé'; else echo 'absent'; return 1; fi
   inside_ubuntu '
     set +e
+    health=0
     printf "Linux : "; uname -m
     printf "Node : "; node --version
     printf "npm : "; npm --version
     printf "Freebuff : "; freebuff --version
     printf "CLI aide (30 s max) : "
-    if timeout 30s freebuff --help >/dev/null 2>&1; then echo OK; else echo ECHEC; fi
+    if timeout 30s freebuff --help >/dev/null 2>&1; then echo OK; else echo ECHEC; health=1; fi
     printf "Git : "; git --version
     printf "Nombre de projets : "; find /root/projects -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l
+    printf "Interface interactive : non validée par ce diagnostic\n"
+    exit "$health"
   ' || { warn 'Diagnostic Linux incomplet'; return 1; }
 }
 
