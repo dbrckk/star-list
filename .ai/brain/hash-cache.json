@@ -8,13 +8,17 @@
       "sha256": "5d0a0ee29a62ba12e2fd78f3e57eefaa1ae58bf905901e400e3c89cac4f6f0a1",
       "size": 12949
     },
-    "WEB_RESOURCES.md": {
-      "sha256": "43fd96c14c53150a7c0ad434b6a8f84dad22cd8ce3d4802e6917f9e447f473c9",
-      "size": 9084
-    },
     "catalog.json": {
       "sha256": "3691488338a02b4a473180d1ea8cfc25943265ea5e3c7a7a4f09e8bdc8a533e5",
       "size": 1122684
+    },
+    "health-snapshot.json": {
+      "sha256": "9df9ef99f8903ea51c4597237aacbe0cae68a0791f4749666abf435115af75f9",
+      "size": 103307
+    },
+    "history.json": {
+      "sha256": "5bbe36849e44ef359ac9a7a24d0f479facb77d410fa11bf7e34be7493e0e7bee",
+      "size": 406316
     },
     "schemas/agent-skill-source-audit.schema.json": {
       "sha256": "3bd67d5ce3fefe17f8984bc3f74ec27d96476b1405c5ced25e43b661a4de3337",
@@ -24,10 +28,6 @@
       "sha256": "86d0060f53de018ddc6fc0b7f54df3d010124705b9c04b37dc87696129263dfc",
       "size": 1588
     },
-    "schemas/websites.schema.json": {
-      "sha256": "56aeb978d57d72174ffa6e3409a8aa05995bf1a40d0dad77f3e9a96413f15e60",
-      "size": 3175
-    },
     "scripts/audit_agent_skill_sources.py": {
       "sha256": "08741c472e41b46adaabe2cb9f1d2ccc148e9a29e2d526543bed43a18e0d647f",
       "size": 6970
@@ -36,29 +36,9 @@
       "sha256": "118f26f77fc0566a03b4e7695e5e5c30c00a1630c071058cbcf136417f648d98",
       "size": 7080
     },
-    "scripts/portfolio_daily.py": {
-      "sha256": "ae1d14b9fa9846a0237fa7b7ed8b118003c2516e8be213e7a9b67f21f320a2d0",
-      "size": 60046
-    },
-    "scripts/recommend.py": {
-      "sha256": "5fb3863d49267f460ec629b1d737a0b4618c2d488b3aba642178048473350b16",
-      "size": 20761
-    },
     "scripts/test_documentation.py": {
       "sha256": "0dabaea2a0998522a130ab8faa8c57feeba72b3ba0c107551c8cfca96c2bcbf6",
       "size": 6827
-    },
-    "scripts/test_recommend.py": {
-      "sha256": "d4fbebbd9b1d0bdb03dcd55c6bc8c06764d833271a7c0f91b91d767fb29f71a0",
-      "size": 14857
-    },
-    "scripts/validate_websites.py": {
-      "sha256": "acccce1bd5345760d1fa1ea3b575b3a4d72e38ac5f66c2dd48e372d3b23db2aa",
-      "size": 4263
-    },
-    "websites.json": {
-      "sha256": "cc80b15d31222ad6401c7e40a03e2ae909899fb7ff43ed2d68d9b915f0d07c21",
-      "size": 11139
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

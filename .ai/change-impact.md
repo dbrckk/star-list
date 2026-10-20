@@ -1,10 +1,11 @@
 # Change impact
 
-Base: 4a3a18092e1dfe8732ab3811c02419b75499cfdc
-Head: 883ccf04bbdf9527673886e63240456bdf097dd8
+Base: eba57112d7198ba9a5e1db1e93941dead14dd7ba
+Head: 42f59c5ec5be88998719296b5d706e3431479482
 
 ## Changed files
-- M catalog.json
+- M health-snapshot.json
+- M history.json
 
 ## Affected areas
 - (root)

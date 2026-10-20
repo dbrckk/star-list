@@ -105,16 +105,18 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-20T19:24:21Z
+Generated: 2026-10-20T19:28:13Z
 
 ### Git
 - Branch: `main`
-- Head: `883ccf04bbdf`
-- Commit date: 2026-10-20T15:24:10-04:00
-- Commit: fix(catalog): migrate verified GitHub transfers (#148)
+- Head: `42f59c5ec5be`
+- Commit date: 2026-10-20T15:28:03-04:00
+- Commit: fix(history): preserve metrics through GitHub transfers (#149)
 - Tracked files: 297
 
 ### Recently changed files
+- `health-snapshot.json`
+- `history.json`
 - `catalog.json`
 - `.github/workflows/backfill-github-ids.yml`
 - `.github/workflows/validate.yml`
@@ -122,11 +124,6 @@ Generated: 2026-10-20T19:24:21Z
 - `schemas/github-id-backfill-report.schema.json`
 - `scripts/backfill_github_ids.py`
 - `scripts/test_documentation.py`
-- `.github/workflows/audit-agent-skill-sources.yml`
-- `AGENT_SKILLS.md`
-- `README.md`
-- `schemas/agent-skill-source-audit.schema.json`
-- `scripts/audit_agent_skill_sources.py`
 
 ### Project signals
 - No common build descriptor detected
