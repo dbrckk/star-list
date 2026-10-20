@@ -139,7 +139,7 @@ clone_project() {
   read -r -p 'Dépôt GitHub (owner/repository), par ex. dbrckk/star-list : ' repo || return
   # Do not accept URLs, shell expansions, credentials, path traversal, or ref fragments.
   [[ "$repo" =~ ^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ ]] || { warn 'Format attendu : propriétaire/depot (pas une URL).'; return; }
-  folder="${repo#*/}"
+  folder="${repo//\//__}"
   [[ "$folder" != '.' && "$folder" != '..' && "${repo%%/*}" != '.' && "${repo%%/*}" != '..' ]] || { warn 'Nom interdit.'; return; }
   say "Clonage de $repo dans /root/projects/$folder"
   if ! proot-distro login "$UBUNTU" -- /bin/bash -lc '
