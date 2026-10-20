@@ -49,6 +49,14 @@ def infer_domains(qtokens):
     return {DOMAIN_ALIASES[t] for t in qtokens if t in DOMAIN_ALIASES}
 
 
+# Generic connective words in curator prose are not evidence that a website
+# applies to a project (e.g. "and" in both a TTS description and art guidance).
+WEBSITE_MATCH_STOPWORDS = frozenset(
+    "a an and are as at be by for from in into is its of on or our the their "
+    "these this to using via was were with your".split()
+)
+
+
 def recommend_websites(qtokens, domains, limit=5):
     """Rank non-GitHub references separately from code integration candidates.
 
@@ -61,9 +69,9 @@ def recommend_websites(qtokens, domains, limit=5):
         site_domains = set(site["domains"])
         matched_domains = sorted(site_domains & domains)
         matched_tags = sorted(qtokens & set(site["tags"]))
-        matched_text = sorted(qtokens & tokens(
+        matched_text = sorted((qtokens & tokens(
             site["name"] + " " + " ".join(site["bestFor"])
-        ))
+        )) - WEBSITE_MATCH_STOPWORDS)
         if not matched_domains and not matched_tags and not matched_text:
             continue
         score = (12 * len(matched_domains) + 10 * len(matched_tags)

@@ -75,6 +75,28 @@ assert all(row["url"].startswith("https://") for row in with_web_query["websiteR
 assert run("xauusd trading execution", "--websites")["websiteRecommendations"] == []
 assert any(row["id"] == "60fps" for row in run("mobile ui motion animation", "--websites")["websiteRecommendations"])
 
+# Real regression: TTS was being shown game-art-style due to generic words
+# such as "and" in both project metadata and curator descriptions.
+tts_labels = "TTS a deep learning toolkit for Text-to-Speech battle-tested in research and production"
+from recommend import recommend_websites, tokens
+tts_sites = recommend_websites(tokens(tts_labels), {"ai_media"}, limit=30)
+assert not any(s["id"] == "game-art-style" for s in tts_sites)
+from portfolio_daily import website_references_for_project
+tts_portfolio_sites = website_references_for_project(
+    {"name": "TTS", "description": tts_labels, "topics": []},
+    {"domains": ["ai_media"]},
+)
+assert not any(s["id"] == "game-art-style" for s in tts_portfolio_sites)
+# Game repositories often have sparse GitHub descriptions. Their actual
+# game-development domain is sufficient to recommend art-direction research.
+game_sites = website_references_for_project(
+    {"name": "Jumpy", "description": None, "topics": []},
+    {"domains": ["game_dev"]},
+)
+assert game_sites[0]["id"] == "game-art-style", game_sites
+assert game_sites[0]["reuse"] == "reference-only"
+assert game_sites[0]["integrationEligible"] is False
+
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 for item in strict["recommendations"]:
     assert "android" in item["platforms"]
