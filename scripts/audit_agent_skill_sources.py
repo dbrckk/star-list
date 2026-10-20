@@ -138,7 +138,7 @@ def markdown(report: dict) -> str:
                       "| --- | --- | --- | --- |"])
         for item in failures:
             lines.append(
-                f"| \`{item['id']}\` | [pinned file]({item['sourceUrl']})"
+                f"| `{item['id']}` | [pinned file]({item['sourceUrl']})"
                 f" | {item['status']} | {item['reason']} |"
             )
     else:
