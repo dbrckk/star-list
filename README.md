@@ -49,14 +49,15 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **11 curated website links** for UI design,
-animation, browser 3D, shaders, and AI-assisted prototyping. Explore them
+The catalog also includes **13 curated website links** for UI design,
+animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, and AI-assisted prototyping. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
 repositories and are never passed to Production-OS as code dependencies.
 
 ```bash
 python scripts/recommend.py "3d scroll animation website" --websites --json
+python scripts/recommend.py "3d character mocap blender" --websites --json
 python scripts/validate_json_contract.py schemas/websites.schema.json websites.json
 ```
 
