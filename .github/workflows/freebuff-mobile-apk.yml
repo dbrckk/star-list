@@ -44,7 +44,7 @@ jobs:
           test -d "$ANDROID_HOME"
           test -x "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" || command -v sdkmanager
           echo "Using Android SDK: $ANDROID_HOME"
-          sdkmanager --install "platforms;android-35" "build-tools;35.0.0" >/dev/null
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "platforms;android-35" "build-tools;35.0.0" >/dev/null
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
