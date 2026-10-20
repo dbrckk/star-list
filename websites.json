@@ -350,6 +350,50 @@
       ],
       "reuse": "reference-only",
       "caution": "Screenshots and reference images belong to their respective owners; this gallery does not license artwork for copying or redistribution. Use it to guide original art direction, and check rights before reusing any media."
+    },
+    {
+      "id": "viggle-pinoc-mcp",
+      "name": "Viggle PINOC MCP",
+      "url": "https://viggle.ai/pinoc/mcp",
+      "originalUrl": "https://viggle.ai/pinoc/app/mcp",
+      "mcpEndpoint": "https://pinoc.mcp.viggle.ai/mcp",
+      "type": "mcp-service",
+      "access": "freemium",
+      "domains": [
+        "game_dev",
+        "graphics",
+        "ai_media",
+        "software_engineering"
+      ],
+      "tags": [
+        "mcp",
+        "game-animation",
+        "3d",
+        "character",
+        "characters",
+        "rigging",
+        "rig",
+        "mocap",
+        "motion",
+        "animation",
+        "skeletal",
+        "glb",
+        "fbx",
+        "blender",
+        "unity",
+        "unreal",
+        "npc",
+        "cutscene",
+        "video-to-motion",
+        "text-to-motion"
+      ],
+      "bestFor": [
+        "Finding and importing free preset 3D motion clips into compatible games and animation tools",
+        "Agent-assisted motion capture from video and text-to-motion character animation",
+        "Connecting reviewed MCP clients to rigged character and motion assets for Blender, Unity, Unreal and web 3D"
+      ],
+      "reuse": "hosted-service",
+      "caution": "PINOC MCP requires interactive user login and authorization. Connect read-only first. Preset motion browsing and retrieval are free; generating characters or motion consumes credits (text/video motion 1 credit per second, character 6–10 credits). Never grant write/generate scopes or spend credits automatically; verify asset licenses, privacy and engine/rig compatibility."
     }
   ]
 }
