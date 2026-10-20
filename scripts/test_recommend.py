@@ -114,8 +114,8 @@ assert all(site["id"] != "viggle-pinoc-mcp" for site in game_sites), game_sites
 # Roblox is a named engine with possible 3D skeletal animations; the
 # advisory PINOC reference must be discoverable without guessing from README.
 roblox_sites = website_references_for_project(
-    {"name": "chaos-survival-roblox", "description": "Roblox survival game",
-     "topics": ["roblox", "luau"]},
+    # Actual public GitHub metadata: no description, no topics, Lua language.
+    {"name": "chaos-survival-roblox", "description": None, "topics": []},
     {"domains": ["game_dev"]},
 )
 assert [item["id"] for item in roblox_sites] == ["game-art-style", "viggle-pinoc-mcp"], roblox_sites
