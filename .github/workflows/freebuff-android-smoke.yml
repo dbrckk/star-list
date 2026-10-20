@@ -1,4 +1,4 @@
-name: Freebuff Android launcher smoke test
+name: Freebuff Android checks
 on:
   push:
     branches: [freebuff-android]
@@ -8,7 +8,14 @@ permissions:
   contents: read
 
 jobs:
-  cli-and-launcher:
+  offline-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Shell and simulated Termux tests
+        run: bash .devcontainer/tests/test-shell.sh
+  official-cli-install:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -16,15 +23,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Verify scripts and devcontainer config
-        run: |
-          set -e
-          bash -n .devcontainer/setup.sh .devcontainer/freebuff-mobile
-          python3 -m json.tool .devcontainer/devcontainer.json >/dev/null
-      - name: Install official CLI and verify binary
+      - name: Install official Freebuff CLI and execute version check
         run: bash .devcontainer/setup.sh
-      - name: Verify menu can launch and reject malicious repo names
-        run: |
-          set -e
-          printf '0\n' | "$HOME/.local/bin/freebuff-mobile" >/dev/null
-          printf '2\nowner/../../unsafe\n0\n' | "$HOME/.local/bin/freebuff-mobile" | grep -q 'Format invalide'
+      - name: Menu smoke check
+        run: printf '0\n' | "$HOME/.local/bin/freebuff-mobile" >/dev/null
