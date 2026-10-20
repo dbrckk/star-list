@@ -8,7 +8,7 @@ clone_repo() {
   local repo dir
   read -r -p 'Dépôt propriétaire/nom : ' repo || return
   [[ "$repo" =~ ^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ ]] || { echo 'Format invalide.'; return; }
-  dir="${repo#*/}"
+  dir="${repo//\//__}"
   [[ "$dir" != '.' && "$dir" != '..' && "${repo%%/*}" != '.' && "${repo%%/*}" != '..' ]] || { echo 'Nom invalide.'; return; }
   [[ ! -e "$base/$dir" ]] || { echo 'Dossier déjà présent, aucun fichier écrasé.'; return; }
   if command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; then
@@ -16,6 +16,16 @@ clone_repo() {
   else
     git clone "https://github.com/$repo.git" "$base/$dir" || echo 'Dépôt privé ? Lance la connexion GitHub (choix 4).'
   fi
+}
+
+git_status_projects() {
+  local dirs=() d
+  mapfile -t dirs < <(find "$base" -mindepth 1 -maxdepth 1 -type d -print | LC_ALL=C sort)
+  for d in "${dirs[@]}"; do
+    [[ -d "$d/.git" || -f "$d/.git" ]] || continue
+    printf '\n--- %s ---\n' "${d##*/}"
+    git -C "$d" status --short --branch || true
+  done
 }
 
 open_project() {
@@ -44,6 +54,8 @@ while :; do
     4) gh auth login -h github.com -p https -w && gh auth setup-git ;;
     5) freebuff ;;
     6) npm install -g --prefix "$HOME/.local" freebuff && freebuff --version ;;
+    7) git_status_projects ;;
+    8) node --version; freebuff --version; gh auth status || true ;;
     0) break ;;
     *) echo 'Choix inconnu.' ;;
   esac
