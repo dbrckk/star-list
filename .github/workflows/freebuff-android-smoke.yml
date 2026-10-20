@@ -16,8 +16,13 @@ jobs:
       - name: Shell and simulated Termux tests
         run: bash .devcontainer/tests/test-shell.sh
   official-cli-install:
-    runs-on: ubuntu-latest
-    timeout-minutes: 12
+    name: CLI native ${{ matrix.runner }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,5 +30,9 @@ jobs:
           node-version: '22'
       - name: Install official Freebuff CLI and execute version check
         run: bash .devcontainer/setup.sh
+      - name: Verify native client can print help
+        run: |
+          uname -m
+          timeout 45s "$HOME/.local/bin/freebuff" --help >/dev/null
       - name: Menu smoke check
         run: printf '0\n' | "$HOME/.local/bin/freebuff-mobile" >/dev/null
