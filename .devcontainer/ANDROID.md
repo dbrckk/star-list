@@ -35,3 +35,19 @@ Exécute `bash .devcontainer/tests/test-shell.sh` à la racine du dépôt ; les 
 **Mise à niveau sur Termux :** télécharger le nouvel installateur puis exécuter
 `bash ~/storage/downloads/Freebuff-Android.sh --repair`.
 Ne pas supprimer Ubuntu/PRoot : les fichiers et identifiants de session existants sont conservés lors de la réparation.
+
+## Autre voie Android : port natif expérimental
+
+Le port communautaire MIT [LostSleepy/freebuff-android](https://github.com/LostSleepy/freebuff-android) affirme avoir été exécuté sur Android ARM64 réel, y compris le lancement TUI et les commandes de l’agent. Il ne nécessite pas Ubuntu/PRoot, mais **il n'est ni officiel ni audité par ce projet** ; il existe une limitation signalée sur certains arrêts SIGSYS. Il ne remplace pas automatiquement l'installateur ci-dessus.
+
+Installation **sur décision explicite de l'utilisateur, après revue du dépôt tiers** dans Termux :
+```bash
+pkg update
+pkg install -y nodejs git glibc-repo glibc-runner
+git clone https://github.com/LostSleepy/freebuff-android.git ~/freebuff-android-native
+cd ~/freebuff-android-native
+npm install -g .
+freebuff android-doctor
+```
+
+Les téléchargements et exécutions de code tiers sont à évaluer avant usage avec des identifiants GitHub ou des dépôts privés.
