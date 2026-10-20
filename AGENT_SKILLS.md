@@ -82,6 +82,35 @@ uses Android; actual Compose evidence is required. Source paths are pinned
 for auditability, **not for automated execution or installation**. Read and
 audit the entire pinned instruction and scripts before considering adoption.
 
+## Continuous verification of pinned sources
+
+On 2026-10-20, all **25** source links currently in
+[`agent-skills.json`](agent-skills.json) were directly retrieved at their
+recorded immutable Git commits. This proves those files existed and were
+accessible at that point, **not** that any instruction is safe, reviewed,
+compatible or legally reusable.
+
+The [daily metadata audit](.github/workflows/audit-agent-skill-sources.yml)
+now rechecks each exact pinned `SKILL.md` path without executing or trusting
+any remote instruction. It verifies only GitHub file metadata and preserves a
+structured artifact. A missing/invalid reference opens or updates a GitHub
+review issue; recovered links close it. Rate-limit, network and access failures
+keep the scan explicitly **incomplete** and fail the workflow rather than
+publishing a false clean report.
+
+To validate the local contract without network access:
+
+```bash
+python scripts/audit_agent_skill_sources.py \
+  --json-output /tmp/skill-sources.json
+python scripts/validate_json_contract.py \
+  schemas/agent-skill-source-audit.schema.json /tmp/skill-sources.json
+```
+
+To actually recheck upstream files, run
+**Actions → Audit pinned Skill Issue sources → Run workflow**.
+Source access evidence does not authorize auto-installation.
+
 ## Use from the repository
 
 ```bash

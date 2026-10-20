@@ -85,6 +85,14 @@ assert "main moved repeatedly" in audit_yaml
 assert "refusing stale issue publication" in audit_yaml
 assert "        if: always()" in audit_yaml
 assert "GITHUB_TOKEN" in stars_docs and "reusable workflow" in stars_docs
+skills_workflow = (ROOT / ".github/workflows/audit-agent-skill-sources.yml").read_text()
+skills_validator = (ROOT / "scripts/audit_agent_skill_sources.py").read_text()
+assert "python scripts/audit_agent_skill_sources.py --online" in skills_workflow
+assert "        if: always()" in skills_workflow
+assert "if [[ \"$COMPLETE\" != true ]]" in skills_workflow
+assert "agent-skill-source-audit.schema.json" in skills_workflow
+assert "class RejectRedirect(HTTPRedirectHandler)" in skills_validator
+assert "sourceContentReviewed" in skills_validator and "automaticInstallation" in skills_validator
 maintenance_yaml = (ROOT / ".github/workflows/refresh-metadata.yml").read_text()
 assert "  quality-after-refresh:" in maintenance_yaml
 assert "    needs: refresh" in maintenance_yaml

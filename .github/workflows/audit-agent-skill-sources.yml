@@ -1,0 +1,85 @@
+name: Audit pinned Skill Issue sources
+
+on:
+  schedule:
+    - cron: '23 5 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'agent-skills.json'
+      - 'scripts/agent_skill_discovery.py'
+      - 'scripts/audit_agent_skill_sources.py'
+      - '.github/workflows/audit-agent-skill-sources.yml'
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: star-list-agent-skill-source-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Verify pinned SKILL.md source metadata only
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/audit_agent_skill_sources.py --online \
+            --json-output agent-skill-source-audit.json \
+            --markdown-output agent-skill-source-audit.md
+          python scripts/validate_json_contract.py \
+            schemas/agent-skill-source-audit.schema.json agent-skill-source-audit.json
+      - name: Preserve audit evidence even when upstream verification fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pinned-agent-skill-source-audit
+          path: |
+            agent-skill-source-audit.json
+            agent-skill-source-audit.md
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Maintain actionable broken-source review issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Incomplete API scans fail before this step. Never publish a false
+          # clean result after GitHub rate-limiting or transient failures.
+          read -r COMPLETE FINDINGS < <(python - <<'PY'
+          import json
+          d = json.load(open("agent-skill-source-audit.json", encoding="utf-8"))
+          print(str(d["coverageComplete"]).lower(), d["findings"])
+          PY
+          )
+          if [[ "$COMPLETE" != true ]]; then
+            echo "::error::Incomplete source verification; refusing issue update"
+            exit 1
+          fi
+          existing="$(gh issue list --state open --limit 100 --json number,body \
+            --jq '[.[] | select(.body != null and (.body | contains("<!-- star-list-agent-skill-source-audit -->")))] | .[0].number // empty')"
+          if [[ "$FINDINGS" == 0 ]]; then
+            if [[ -n "$existing" ]]; then
+              gh issue close "$existing" --comment "All pinned agent skill source files are accessible again."
+            fi
+          elif [[ -n "$existing" ]]; then
+            gh issue edit "$existing" --title "Review broken pinned Skill Issue source links ($FINDINGS)" \
+              --body-file agent-skill-source-audit.md
+          else
+            gh issue create --title "Review broken pinned Skill Issue source links ($FINDINGS)" \
+              --body-file agent-skill-source-audit.md
+          fi
