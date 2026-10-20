@@ -1415,6 +1415,8 @@ game_art = next((site for site in candidates if site["id"] == "game-art-style"),
 chosen = [game_art] + [site for site in chosen if site["id"] != "game-art-style"]
 # 3D motion/rigging tools need concrete project metadata evidence, not
 # simply a generic game label; game-art-style retains top priority.
+# Explicit 3D engine names qualify for an advisory motion library review.
+# They do NOT establish FBX rig compatibility or grant MCP credentials.
 motion_signals = {"mocap", "rigging", "rigged", "skeletal", "blender",
 character_animation = {"character", "characters"} & metadata_terms and "animation" in metadata_terms
 ⋮----
@@ -2836,6 +2838,10 @@ pinoc_rows = run("3d rigging mocap animation blender", "--websites", "--top-webs
 pinoc = next(site for site in pinoc_rows if site["id"] == "viggle-pinoc-mcp")
 ⋮----
 motion_sites = website_references_for_project(
+⋮----
+# Roblox is a named engine with possible 3D skeletal animations; the
+# advisory PINOC reference must be discoverable without guessing from README.
+roblox_sites = website_references_for_project(
 ⋮----
 website_schema = json.loads((ROOT / "schemas/websites.schema.json").read_text(encoding="utf-8"))
 ⋮----

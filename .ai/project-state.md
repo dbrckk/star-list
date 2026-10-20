@@ -105,22 +105,22 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-20T11:21:43Z
+Generated: 2026-10-20T11:26:14Z
 
 ### Git
 - Branch: `main`
-- Head: `adf82c80e04b`
-- Commit date: 2026-10-20T07:21:32-04:00
-- Commit: feat(web): add PINOC MCP to 3D animation and game resource discovery (#141)
+- Head: `885599b72394`
+- Commit date: 2026-10-20T07:26:03-04:00
+- Commit: fix(web): surface PINOC MCP to Roblox and explicit 3D engine projects (#142)
 - Tracked files: 291
 
 ### Recently changed files
-- `README.md`
 - `WEB_RESOURCES.md`
-- `schemas/websites.schema.json`
 - `scripts/portfolio_daily.py`
-- `scripts/recommend.py`
 - `scripts/test_recommend.py`
+- `README.md`
+- `schemas/websites.schema.json`
+- `scripts/recommend.py`
 - `scripts/validate_websites.py`
 - `websites.json`
 - `.github/workflows/portfolio-scan-smoke.yml`

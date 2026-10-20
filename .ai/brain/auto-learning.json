@@ -5,30 +5,27 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "141",
+      "142",
       "3d",
-      "add",
-      "animation",
-      "discovery",
-      "feat",
-      "game",
+      "engine",
+      "explicit",
       "mcp",
       "pinoc",
-      "resource",
+      "projects",
+      "roblox",
+      "surface",
       "web"
     ],
     "test_count": 0,
-    "useful_count": 4
+    "useful_count": 2
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(web): add PINOC MCP to 3D animation and game resource discovery (#141)",
+  "task": "fix(web): surface PINOC MCP to Roblox and explicit 3D engine projects (#142)",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py",
-    "scripts/recommend.py",
-    "scripts/test_recommend.py",
-    "scripts/validate_websites.py"
+    "scripts/test_recommend.py"
   ]
 }

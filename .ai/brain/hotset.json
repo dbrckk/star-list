@@ -7,10 +7,10 @@
         "changed-source",
         "dependency-neighbor",
         "impact",
-        "reverse-dependency-neighbor",
+        "recent-project-state",
         "symbol-indexed"
       ],
-      "score": 505
+      "score": 535
     },
     {
       "path": "scripts/test_recommend.py",
@@ -18,6 +18,7 @@
         "changed",
         "changed-source",
         "impact",
+        "recent-project-state",
         "reverse-dependency-neighbor",
         "selected-test",
         "symbol-indexed"
@@ -25,35 +26,12 @@
       "score": 465
     },
     {
-      "path": "scripts/recommend.py",
+      "path": "WEB_RESOURCES.md",
       "reasons": [
         "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
+        "recent-project-state"
       ],
-      "score": 435
-    },
-    {
-      "path": "scripts/validate_websites.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 360
-    },
-    {
-      "path": "scripts/test_json_contracts.py",
-      "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test"
-      ],
-      "score": 180
+      "score": 160
     },
     {
       "path": "scripts/portfolio_failure_diagnostics.py",
@@ -65,60 +43,55 @@
       "score": 150
     },
     {
-      "path": "README.md",
+      "path": "scripts/recommend.py",
       "reasons": [
-        "changed"
+        "dependency-neighbor",
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 110
     },
     {
-      "path": "WEB_RESOURCES.md",
+      "path": "scripts/validate_websites.py",
       "reasons": [
-        "changed"
+        "dependency-neighbor",
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 85
+    },
+    {
+      "path": "README.md",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "catalog.json",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     },
     {
       "path": "schemas/websites.schema.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
     },
     {
       "path": "websites.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
     },
     {
       "path": "scripts/agent_skill_discovery.py",
       "reasons": [
         "dependency-neighbor"
       ],
-      "score": 75
-    },
-    {
-      "path": "scripts/find_replacements.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
-    },
-    {
-      "path": "scripts/health_score.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
-    },
-    {
-      "path": "scripts/validate_json_contract.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
+      "score": 50
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",
