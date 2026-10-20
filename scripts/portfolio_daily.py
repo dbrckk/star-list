@@ -829,8 +829,11 @@ def website_references_for_project(repo: dict, profile: dict, limit: int = 2) ->
             chosen = [game_art] + [site for site in chosen if site["id"] != "game-art-style"]
     # 3D motion/rigging tools need concrete project metadata evidence, not
     # simply a generic game label; game-art-style retains top priority.
+    # Explicit 3D engine names qualify for an advisory motion library review.
+    # They do NOT establish FBX rig compatibility or grant MCP credentials.
     motion_signals = {"mocap", "rigging", "rigged", "skeletal", "blender",
-                      "cutscene", "npc", "fbx", "glb", "3d"}
+                      "cutscene", "npc", "fbx", "glb", "3d", "roblox",
+                      "unity", "unreal"}
     character_animation = {"character", "characters"} & metadata_terms and "animation" in metadata_terms
     if domains & {"game_dev", "graphics", "ai_media"} and (metadata_terms & motion_signals or character_animation):
         pinoc = next((site for site in candidates if site["id"] == "viggle-pinoc-mcp"), None)

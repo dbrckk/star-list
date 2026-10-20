@@ -111,6 +111,15 @@ motion_sites = website_references_for_project(
 )
 assert [row["id"] for row in motion_sites] == ["game-art-style", "viggle-pinoc-mcp"], motion_sites
 assert all(site["id"] != "viggle-pinoc-mcp" for site in game_sites), game_sites
+# Roblox is a named engine with possible 3D skeletal animations; the
+# advisory PINOC reference must be discoverable without guessing from README.
+roblox_sites = website_references_for_project(
+    {"name": "chaos-survival-roblox", "description": "Roblox survival game",
+     "topics": ["roblox", "luau"]},
+    {"domains": ["game_dev"]},
+)
+assert [item["id"] for item in roblox_sites] == ["game-art-style", "viggle-pinoc-mcp"], roblox_sites
+assert all(item["integrationEligible"] is False for item in roblox_sites)
 assert all(site["id"] != "viggle-pinoc-mcp" for site in tts_portfolio_sites), tts_portfolio_sites
 from validate_websites import check_websites
 import copy
