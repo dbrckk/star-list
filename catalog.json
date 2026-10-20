@@ -43559,6 +43559,91 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "genex-games/genex-desktop",
+      "githubRepositoryId": 1402121018,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 668,
+        "forks": 84,
+        "openIssues": 41,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "dev",
+        "license": "MIT",
+        "pushedAt": "2026-10-20T00:16:41Z"
+      },
+      "bestFor": [
+        "Desktop app for game dev with AI. macOS, Windows and Linux."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "rmyndharis/OpenWA",
+      "githubRepositoryId": 1147961398,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Productivité",
+      "domain": "productivity",
+      "capabilities": [
+        "api",
+        "bot",
+        "gateway",
+        "self-hosted",
+        "whatsapp",
+        "whatsapp-api",
+        "whatsapp-automation",
+        "whatsapp-bot",
+        "whatsapp-gateway",
+        "whatsapp-gateway-api",
+        "whatsapp-web",
+        "whatsapp-web-api"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 15691,
+        "forks": 3671,
+        "openIssues": 23,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-19T09:32:38Z"
+      },
+      "bestFor": [
+        "Free, Open Source, Self-Hosted WhatsApp API Gateway"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
