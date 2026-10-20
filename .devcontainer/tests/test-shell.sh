@@ -3,7 +3,17 @@ set -Eeuo pipefail
 d="$(cd "$(dirname "$0")/.." && pwd)"
 bash -n "$d/Freebuff-Android.sh" "$d/setup.sh" "$d/freebuff-mobile"
 python3 -m json.tool "$d/devcontainer.json" >/dev/null
-"$d/Freebuff-Android.sh" --help | grep -q '1.1.0'
+# Check Linux installation heredoc syntax, not only the outer wrapper.
+python3 - "$d/Freebuff-Android.sh" <<'PY'
+import re, subprocess, sys
+s = open(sys.argv[1], encoding="utf-8").read()
+m = re.search(r"<<'INNER_INSTALL'\n(.*?)\nINNER_INSTALL", s, re.S)
+assert m, "Ubuntu provisioning heredoc missing"
+subprocess.run(["bash", "-n"], input=m.group(1), text=True, check=True)
+assert r";;\n    --repair)" not in s
+assert r"';\n    printf" not in s
+PY
+"$d/Freebuff-Android.sh" --help | grep -q '1.2.0'
 tmp="$(mktemp -d)"; trap 'rm -rf "$tmp"' EXIT
 export HOME="$tmp/home" TEST_LOG="$tmp/log" PREFIX="$tmp/termux" PD_TEST="$tmp/present"
 mkdir -p "$HOME" "$tmp/bin" "$PREFIX"
