@@ -81,7 +81,20 @@ jobs:
                   assert website["integrationEligible"] is False
                   assert website["url"].startswith("https://")
                   assert "repo" not in website
-                  assert website["why"]["tags"] or website["why"]["terms"]
+                  assert website["why"]["domains"], website
+                  assert (website["why"]["tags"] or website["why"]["terms"]
+                          or (website["id"] == "game-art-style"
+                              and "game_dev" in website["why"]["domains"])), website
+          tts = next((row for row in result["projects"]
+                      if row["repository"].lower() == "dbrckk/tts"), None)
+          if tts is not None:
+              assert all(site["id"] != "game-art-style"
+                         for site in tts["website_references"]), tts
+          jumpy = next((row for row in result["projects"]
+                        if row["repository"].lower() == "dbrckk/jumpy"), None)
+          if jumpy is not None and jumpy["status"] != "skipped-inactive":
+              assert any(site["id"] == "game-art-style"
+                         for site in jumpy["website_references"]), jumpy
           report_markdown = Path("portfolio-daily.md").read_text()
           assert ("Projects with native-mode candidates: **"
                   + str(result["summary"]["with_native_suggestions"]) + "**.") in report_markdown
