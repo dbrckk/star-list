@@ -13,7 +13,7 @@ subprocess.run(["bash", "-n"], input=m.group(1), text=True, check=True)
 assert r";;\n    --repair)" not in s
 assert r"';\n    printf" not in s
 PY
-"$d/Freebuff-Android.sh" --help | grep -q '1.2.0'
+"$d/Freebuff-Android.sh" --help | grep -q '1.3.0'
 tmp="$(mktemp -d)"; trap 'rm -rf "$tmp"' EXIT
 export HOME="$tmp/home" TEST_LOG="$tmp/log" PREFIX="$tmp/termux" PD_TEST="$tmp/present"
 mkdir -p "$HOME" "$tmp/bin" "$PREFIX"
@@ -52,4 +52,6 @@ PATH="$tmp/bin:$PATH" bash "$d/Freebuff-Android.sh" --repair > "$tmp/repair"
 # Menu must reject traversal (without touching network).
 printf '2\nowner/../../invalid\n0\n' | bash "$d/freebuff-mobile" > "$tmp/menu"
 grep -q 'Format invalide' "$tmp/menu"
+PATH="$tmp/bin:$PATH" bash "$d/Freebuff-Android.sh" --doctor > "$tmp/doctor"
+grep -q 'Diagnostic local' "$tmp/doctor"
 printf 'Offline tests OK\n'
