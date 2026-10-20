@@ -803,6 +803,33 @@ def render_markdown(report: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
+def website_references_for_project(repo: dict, profile: dict, limit: int = 2) -> list[dict]:
+    """Suggest websites only for applicable project domains, never as code.
+
+    Game projects benefit from an art-direction atlas even if their GitHub
+    metadata says only "Jumpy" or "Roblox" and has no explicit art keywords.
+    """
+    domains = set(profile.get("domains") or [])
+    metadata_terms = tokens(" ".join([
+        str(repo.get("name") or ""), str(repo.get("description") or ""),
+        " ".join(repo.get("topics") or []),
+    ]))
+    candidates = recommend_websites(metadata_terms, domains, limit=30)
+    chosen = [
+        site for site in candidates
+        if site["id"] != "skill-issue"
+        and site["why"]["domains"]
+        and (site["why"]["tags"] or site["why"]["terms"])
+    ]
+    if "game_dev" in domains:
+        game_art = next((site for site in candidates if site["id"] == "game-art-style"), None)
+        if game_art is not None:
+            # Give real game projects the visual atlas without letting generic
+            # wording rank it above relevant websites for unrelated projects.
+            chosen = [game_art] + [site for site in chosen if site["id"] != "game-art-style"]
+    return chosen[:limit]
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--owner", default="dbrckk")
@@ -863,19 +890,9 @@ def main() -> int:
                     skill_terms, skill_domains,
                     language=profile.get("language") or "", limit=2,
                 )
-                # Reference websites based on repository-owned metadata only;
-                # arbitrary README prose is not trustworthy installation evidence.
-                web_terms = tokens(" ".join([
-                    repo["name"], str(repo.get("description") or ""),
-                    " ".join(repo.get("topics") or []),
-                ]))
-                possible_sites = recommend_websites(web_terms, set(profile.get("domains") or []), limit=10)
-                # Domain-only matches are too generic for portfolio reporting.
-                # At least one concrete tag or best-for phrase must also match.
-                row["website_references"] = [
-                    site for site in possible_sites
-                    if site["id"] != "skill-issue" and (site["why"]["tags"] or site["why"]["terms"])
-                ][:2]
+                # Owned GitHub metadata only: reference sites never become
+                # installable tools, and unrelated domain/prose matches are out.
+                row["website_references"] = website_references_for_project(repo, profile)
                 row["status"] = ("qualified-candidates" if row["suggestions"]
                                  else "web-reference-only" if row["website_references"]
                                  else "no-qualified-candidate")
