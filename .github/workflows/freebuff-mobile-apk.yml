@@ -5,6 +5,10 @@ on:
     paths:
       - 'mobile-app/**'
       - '.github/workflows/freebuff-mobile-apk.yml'
+  pull_request:
+    paths:
+      - 'mobile-app/**'
+      - '.github/workflows/freebuff-mobile-apk.yml'
   workflow_dispatch:
 permissions:
   contents: read
