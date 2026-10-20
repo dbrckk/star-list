@@ -38,6 +38,8 @@ jobs:
             --max-requests 250 --report-json github-id-backfill-report.json
           python scripts/validate_catalog.py
           python scripts/validate_json_contract.py catalog.schema.json catalog.json
+          python scripts/validate_json_contract.py \
+            schemas/github-id-backfill-report.schema.json github-id-backfill-report.json
       - name: Preserve reconciliation evidence on success or failure
         if: always()
         uses: actions/upload-artifact@v4
