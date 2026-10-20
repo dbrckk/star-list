@@ -44365,6 +44365,55 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "LudwigKienle/ai-video-production-editor",
+      "githubRepositoryId": 1228090585,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Génération de médias / IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "ai-filmmaking",
+        "ai-video",
+        "aifilmmaking",
+        "creative-coding",
+        "creative-tools",
+        "desktop-app",
+        "electron",
+        "filmmaking",
+        "generative-ai",
+        "image-generation",
+        "llm",
+        "node-editor"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 98,
+        "forks": 21,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-19T23:59:11Z"
+      },
+      "bestFor": [
+        "Open-source AI video production editor for filmmakers and AI artists. React + Electron app with node pipelines, image/video generation, storyboarding, previs, editing and creative production workflows"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
