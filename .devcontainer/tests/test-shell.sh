@@ -54,4 +54,17 @@ printf '2\nowner/../../invalid\n0\n' | bash "$d/freebuff-mobile" > "$tmp/menu"
 grep -q 'Format invalide' "$tmp/menu"
 PATH="$tmp/bin:$PATH" bash "$d/Freebuff-Android.sh" --doctor > "$tmp/doctor"
 grep -q 'Diagnostic local' "$tmp/doctor"
+# Insufficient storage must stop before downloading the rootfs.
+cat > "$tmp/bin/df" <<'DISKSTUB'
+#!/usr/bin/env bash
+printf 'Filesystem 1024-blocks Used Available Capacity Mounted on\n'
+printf 'mock 200000 100000 100000 50%% /\n'
+DISKSTUB
+chmod +x "$tmp/bin/df"
+rm -f "$PD_TEST"
+if PATH="$tmp/bin:$PATH" bash "$d/Freebuff-Android.sh" --repair > "$tmp/low-storage" 2>&1; then
+  echo 'Low-disk preflight did not fail' >&2
+  exit 1
+fi
+grep -q 'Espace insuffisant' "$tmp/low-storage"
 printf 'Offline tests OK\n'
