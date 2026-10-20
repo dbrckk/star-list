@@ -44414,6 +44414,42 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "aradhyas8/Plume_Launcher",
+      "githubRepositoryId": 1424720667,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [],
+      "languages": [
+        "kotlin"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 65,
+        "forks": 7,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-20T14:02:39Z"
+      },
+      "bestFor": [
+        "🪶 A lightweight, ad-free launcher for Android TV and Google TV. 0.4 MB, no tracking, no ads. Downloader code: 2125356"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
