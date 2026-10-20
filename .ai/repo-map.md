@@ -2421,7 +2421,8 @@ initial_prompt: |
               "framework-docs",
               "shader-gallery",
               "hosted-builder",
-              "agent-skills-directory"
+              "agent-skills-directory",
+              "mcp-service"
             ]
           },
           "access": {
@@ -2479,6 +2480,10 @@ initial_prompt: |
           "caution": {
             "type": "string",
             "minLength": 10
+          },
+          "mcpEndpoint": {
+            "type": "string",
+            "pattern": "^https://[^/\\s?#]+/mcp$"
           }
         }
       }
@@ -3803,6 +3808,15 @@ game_art = next((site for site in candidates if site["id"] == "game-art-style"),
 # Give real game projects the visual atlas without letting generic
 # wording rank it above relevant websites for unrelated projects.
 chosen = [game_art] + [site for site in chosen if site["id"] != "game-art-style"]
+# 3D motion/rigging tools need concrete project metadata evidence, not
+# simply a generic game label; game-art-style retains top priority.
+motion_signals = {"mocap", "rigging", "rigged", "skeletal", "blender",
+character_animation = {"character", "characters"} & metadata_terms and "animation" in metadata_terms
+⋮----
+pinoc = next((site for site in candidates if site["id"] == "viggle-pinoc-mcp"), None)
+⋮----
+position = 1 if chosen and chosen[0]["id"] == "game-art-style" else 0
+chosen = [site for site in chosen if site["id"] != "viggle-pinoc-mcp"]
 ⋮----
 def main() -> int
 ⋮----
@@ -4151,6 +4165,9 @@ matched_tags = sorted(qtokens & set(site["tags"]))
 matched_text = sorted((qtokens & tokens(
 ⋮----
 score = (12 * len(matched_domains) + 10 * len(matched_tags)
+⋮----
+# A verified documentation endpoint is reference metadata only;
+# the recommender never connects or authorizes paid MCP tools.
 ⋮----
 def activity_adjustment(r)
 ⋮----
@@ -5208,6 +5225,18 @@ tts_portfolio_sites = website_references_for_project(
 # game-development domain is sufficient to recommend art-direction research.
 game_sites = website_references_for_project(
 ⋮----
+# PINOC is a user-authorized external MCP reference, not an automatically
+# installed game dependency or a free unlimited generation provider.
+pinoc_rows = run("3d rigging mocap animation blender", "--websites", "--top-websites", "20")["websiteRecommendations"]
+pinoc = next(site for site in pinoc_rows if site["id"] == "viggle-pinoc-mcp")
+⋮----
+motion_sites = website_references_for_project(
+⋮----
+website_schema = json.loads((ROOT / "schemas/websites.schema.json").read_text(encoding="utf-8"))
+⋮----
+unsafe_websites = copy.deepcopy(websites_catalog)
+bad_pinoc = next(site for site in unsafe_websites["websites"] if site["id"] == "viggle-pinoc-mcp")
+⋮----
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 ⋮----
 high_threshold = run("ai agent", "--min-score", "1000")
@@ -5752,12 +5781,24 @@ owner_by_url = {}
 ⋮----
 identity = site["id"]
 ⋮----
-# 'originalUrl' is a redirect alias. A redirect must remain attached
+# 'originalUrl' records an old URL or user-supplied alternate link.
+# Each such alias must remain attached
 # to the same entry, not silently create an extra website identity.
 ⋮----
 normalized = canonical_url(url)
 ⋮----
 prior = owner_by_url.get(normalized)
+⋮----
+# An MCP endpoint is an authenticated remote service, not a harmless
+# website link. Require a bounded HTTPS /mcp URL owned by the
+# documented provider; no credentials, foreign hosts or auto-install.
+endpoint = site.get("mcpEndpoint")
+is_mcp = site["type"] == "mcp-service"
+⋮----
+service = urlsplit(endpoint)
+website = urlsplit(site["url"])
+host = service.hostname.lower()
+root = website.hostname.lower()
 ⋮----
 def main()
 ⋮----
@@ -52208,14 +52249,15 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **11 curated website links** for UI design,
-animation, browser 3D, shaders, and AI-assisted prototyping. Explore them
+The catalog also includes **13 curated website links** for UI design,
+animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, and AI-assisted prototyping. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
 repositories and are never passed to Production-OS as code dependencies.
 
 ```bash
 python scripts/recommend.py "3d scroll animation website" --websites --json
+python scripts/recommend.py "3d character mocap blender" --websites --json
 python scripts/validate_json_contract.py schemas/websites.schema.json websites.json
 ```
 
@@ -52947,6 +52989,50 @@ General-purpose GitHub discovery remains advisory and never inserts external can
       ],
       "reuse": "reference-only",
       "caution": "Screenshots and reference images belong to their respective owners; this gallery does not license artwork for copying or redistribution. Use it to guide original art direction, and check rights before reusing any media."
+    },
+    {
+      "id": "viggle-pinoc-mcp",
+      "name": "Viggle PINOC MCP",
+      "url": "https://viggle.ai/pinoc/mcp",
+      "originalUrl": "https://viggle.ai/pinoc/app/mcp",
+      "mcpEndpoint": "https://pinoc.mcp.viggle.ai/mcp",
+      "type": "mcp-service",
+      "access": "freemium",
+      "domains": [
+        "game_dev",
+        "graphics",
+        "ai_media",
+        "software_engineering"
+      ],
+      "tags": [
+        "mcp",
+        "game-animation",
+        "3d",
+        "character",
+        "characters",
+        "rigging",
+        "rig",
+        "mocap",
+        "motion",
+        "animation",
+        "skeletal",
+        "glb",
+        "fbx",
+        "blender",
+        "unity",
+        "unreal",
+        "npc",
+        "cutscene",
+        "video-to-motion",
+        "text-to-motion"
+      ],
+      "bestFor": [
+        "Finding and importing free preset 3D motion clips into compatible games and animation tools",
+        "Agent-assisted motion capture from video and text-to-motion character animation",
+        "Connecting reviewed MCP clients to rigged character and motion assets for Blender, Unity, Unreal and web 3D"
+      ],
+      "reuse": "hosted-service",
+      "caution": "PINOC MCP requires interactive user login and authorization. Connect read-only first. Preset motion browsing and retrieval are free; generating characters or motion consumes credits (text/video motion 1 credit per second, character 6–10 credits). Never grant write/generate scopes or spend credits automatically; verify asset licenses, privacy and engine/rig compatibility."
     }
   ]
 }

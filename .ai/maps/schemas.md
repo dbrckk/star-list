@@ -519,7 +519,8 @@ websites.schema.json
               "framework-docs",
               "shader-gallery",
               "hosted-builder",
-              "agent-skills-directory"
+              "agent-skills-directory",
+              "mcp-service"
             ]
           },
           "access": {
@@ -577,6 +578,10 @@ websites.schema.json
           "caution": {
             "type": "string",
             "minLength": 10
+          },
+          "mcpEndpoint": {
+            "type": "string",
+            "pattern": "^https://[^/\\s?#]+/mcp$"
           }
         }
       }

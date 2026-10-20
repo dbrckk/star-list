@@ -297,13 +297,15 @@
     ],
     "scripts/test_recommend.py": [
       "agent_skill_discovery",
+      "copy",
       "importlib.util",
       "json",
       "pathlib",
       "portfolio_daily",
       "recommend",
       "subprocess",
-      "sys"
+      "sys",
+      "validate_websites"
     ],
     "scripts/test_refresh_github_metadata.py": [
       "base64",

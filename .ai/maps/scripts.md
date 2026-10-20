@@ -1413,6 +1413,15 @@ game_art = next((site for site in candidates if site["id"] == "game-art-style"),
 # Give real game projects the visual atlas without letting generic
 # wording rank it above relevant websites for unrelated projects.
 chosen = [game_art] + [site for site in chosen if site["id"] != "game-art-style"]
+# 3D motion/rigging tools need concrete project metadata evidence, not
+# simply a generic game label; game-art-style retains top priority.
+motion_signals = {"mocap", "rigging", "rigged", "skeletal", "blender",
+character_animation = {"character", "characters"} & metadata_terms and "animation" in metadata_terms
+⋮----
+pinoc = next((site for site in candidates if site["id"] == "viggle-pinoc-mcp"), None)
+⋮----
+position = 1 if chosen and chosen[0]["id"] == "game-art-style" else 0
+chosen = [site for site in chosen if site["id"] != "viggle-pinoc-mcp"]
 ⋮----
 def main() -> int
 ⋮----
@@ -1761,6 +1770,9 @@ matched_tags = sorted(qtokens & set(site["tags"]))
 matched_text = sorted((qtokens & tokens(
 ⋮----
 score = (12 * len(matched_domains) + 10 * len(matched_tags)
+⋮----
+# A verified documentation endpoint is reference metadata only;
+# the recommender never connects or authorizes paid MCP tools.
 ⋮----
 def activity_adjustment(r)
 ⋮----
@@ -2818,6 +2830,18 @@ tts_portfolio_sites = website_references_for_project(
 # game-development domain is sufficient to recommend art-direction research.
 game_sites = website_references_for_project(
 ⋮----
+# PINOC is a user-authorized external MCP reference, not an automatically
+# installed game dependency or a free unlimited generation provider.
+pinoc_rows = run("3d rigging mocap animation blender", "--websites", "--top-websites", "20")["websiteRecommendations"]
+pinoc = next(site for site in pinoc_rows if site["id"] == "viggle-pinoc-mcp")
+⋮----
+motion_sites = website_references_for_project(
+⋮----
+website_schema = json.loads((ROOT / "schemas/websites.schema.json").read_text(encoding="utf-8"))
+⋮----
+unsafe_websites = copy.deepcopy(websites_catalog)
+bad_pinoc = next(site for site in unsafe_websites["websites"] if site["id"] == "viggle-pinoc-mcp")
+⋮----
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 ⋮----
 high_threshold = run("ai agent", "--min-score", "1000")
@@ -3362,12 +3386,24 @@ owner_by_url = {}
 ⋮----
 identity = site["id"]
 ⋮----
-# 'originalUrl' is a redirect alias. A redirect must remain attached
+# 'originalUrl' records an old URL or user-supplied alternate link.
+# Each such alias must remain attached
 # to the same entry, not silently create an extra website identity.
 ⋮----
 normalized = canonical_url(url)
 ⋮----
 prior = owner_by_url.get(normalized)
+⋮----
+# An MCP endpoint is an authenticated remote service, not a harmless
+# website link. Require a bounded HTTPS /mcp URL owned by the
+# documented provider; no credentials, foreign hosts or auto-install.
+endpoint = site.get("mcpEndpoint")
+is_mcp = site["type"] == "mcp-service"
+⋮----
+service = urlsplit(endpoint)
+website = urlsplit(site["url"])
+host = service.hostname.lower()
+root = website.hostname.lower()
 ⋮----
 def main()
 ⋮----

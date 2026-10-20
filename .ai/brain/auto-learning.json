@@ -5,28 +5,30 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "140",
-      "art",
+      "141",
+      "3d",
+      "add",
+      "animation",
+      "discovery",
+      "feat",
       "game",
-      "not",
-      "projects",
-      "recommend",
-      "style",
-      "tts",
-      "unrelated",
-      "websites"
+      "mcp",
+      "pinoc",
+      "resource",
+      "web"
     ],
     "test_count": 0,
-    "useful_count": 3
+    "useful_count": 4
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(websites): recommend Game Art Style to game projects, not unrelated TTS (#140)",
+  "task": "feat(web): add PINOC MCP to 3D animation and game resource discovery (#141)",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py",
     "scripts/recommend.py",
-    "scripts/test_recommend.py"
+    "scripts/test_recommend.py",
+    "scripts/validate_websites.py"
   ]
 }

@@ -2,14 +2,16 @@
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
   "selected_test_files": [
+    "scripts/test_json_contracts.py",
     "scripts/test_recommend.py"
   ],
   "commands": [
     {
-      "command": "python -m pytest scripts/test_recommend.py",
+      "command": "python -m pytest scripts/test_json_contracts.py scripts/test_recommend.py",
       "purpose": "targeted tests",
       "confidence": "high",
       "files": [
+        "scripts/test_json_contracts.py",
         "scripts/test_recommend.py"
       ]
     }

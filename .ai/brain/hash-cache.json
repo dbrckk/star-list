@@ -1,12 +1,16 @@
 {
   "files": {
-    ".github/workflows/portfolio-scan-smoke.yml": {
-      "sha256": "c817ee71f5b7953a14503e89674cde43f6b7600adb39514fc8049e0408117c3d",
-      "size": 56701
+    "README.md": {
+      "sha256": "395abbe17b9d5ca6cefc0cc0d1f537465ed25c7571e21006bca307e265dbb80f",
+      "size": 12457
     },
     "WEB_RESOURCES.md": {
-      "sha256": "06e50d652d9b5d9b27878da1b95275c56eb705b77588ee80c4063737e8ee3ad5",
-      "size": 6176
+      "sha256": "e4ea63b55f4682e49a4f026bb18730d27410eff79ad9d6659dc3934c56109871",
+      "size": 8850
+    },
+    "schemas/websites.schema.json": {
+      "sha256": "56aeb978d57d72174ffa6e3409a8aa05995bf1a40d0dad77f3e9a96413f15e60",
+      "size": 3175
     },
     "scripts/agent_skill_discovery.py": {
       "sha256": "4a866a62976e5e39f3500daa4de7deb49af8e95d46ccd60a3da56a12046225f2",
@@ -21,20 +25,36 @@
       "size": 2456
     },
     "scripts/portfolio_daily.py": {
-      "sha256": "385ed463c76cc37dd25c359aa4925f372910b3879d0a02ffa5c648356c1e798a",
-      "size": 58754
+      "sha256": "c282c6ce0adfbb6212a44fe8dd8e58fe7b6a109e9e6de098f75fdee9c43490c4",
+      "size": 59590
     },
     "scripts/portfolio_failure_diagnostics.py": {
       "sha256": "3f6972d50b7db5c499ccb845dbe21ff4c760dac1db12c6b6d5190adea586e62b",
       "size": 19022
     },
     "scripts/recommend.py": {
-      "sha256": "a5d8852a07afdef9df2bf85edafac94aadea2ffa122882c8f7fe43227ff29a14",
-      "size": 20521
+      "sha256": "5fb3863d49267f460ec629b1d737a0b4618c2d488b3aba642178048473350b16",
+      "size": 20761
+    },
+    "scripts/test_json_contracts.py": {
+      "sha256": "6038b92af9b3ab6e432cd9bed72abab18f12bc2c30fdcabc3bfae24136725195",
+      "size": 6564
     },
     "scripts/test_recommend.py": {
-      "sha256": "b3b79d7f407fdae615ebfdbb53175955a9da41db01285257babbcee90d5db95c",
-      "size": 12577
+      "sha256": "7c190a3ca93803021ffda193d0850d5e106cf94249f7e544a940733a45268e9c",
+      "size": 14303
+    },
+    "scripts/validate_json_contract.py": {
+      "sha256": "7b86d77770a52cbcc2038c177764fdc6b5ea0c198f2c347f58b45a41356ee8ff",
+      "size": 5696
+    },
+    "scripts/validate_websites.py": {
+      "sha256": "acccce1bd5345760d1fa1ea3b575b3a4d72e38ac5f66c2dd48e372d3b23db2aa",
+      "size": 4263
+    },
+    "websites.json": {
+      "sha256": "748b2a7a2938a3d3b2bef4cbed4a8104bf0d8ccc3c267b49a129e26f86785917",
+      "size": 11121
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

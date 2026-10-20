@@ -105,23 +105,26 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-20T10:37:58Z
+Generated: 2026-10-20T11:21:43Z
 
 ### Git
 - Branch: `main`
-- Head: `6a555c936b01`
-- Commit date: 2026-10-20T06:37:49-04:00
-- Commit: fix(websites): recommend Game Art Style to game projects, not unrelated TTS (#140)
+- Head: `adf82c80e04b`
+- Commit date: 2026-10-20T07:21:32-04:00
+- Commit: feat(web): add PINOC MCP to 3D animation and game resource discovery (#141)
 - Tracked files: 291
 
 ### Recently changed files
-- `.github/workflows/portfolio-scan-smoke.yml`
+- `README.md`
 - `WEB_RESOURCES.md`
+- `schemas/websites.schema.json`
 - `scripts/portfolio_daily.py`
 - `scripts/recommend.py`
 - `scripts/test_recommend.py`
-- `.github/workflows/validate.yml`
+- `scripts/validate_websites.py`
 - `websites.json`
+- `.github/workflows/portfolio-scan-smoke.yml`
+- `.github/workflows/validate.yml`
 - `catalog.json`
 
 ### Project signals

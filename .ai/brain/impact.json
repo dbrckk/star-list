@@ -1,16 +1,20 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "7109c2cf64f8d5283fac50c793dfc37191cafcaf",
-  "head": "6a555c936b01abadd63f4c8960c91f55304ab787",
+  "base": "6a555c936b01abadd63f4c8960c91f55304ab787",
+  "head": "adf82c80e04bfc125fd3c81dcdcb5e87eaf8ae69",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": ".github/workflows/portfolio-scan-smoke.yml",
+      "path": "README.md",
       "status": "M"
     },
     {
       "path": "WEB_RESOURCES.md",
+      "status": "M"
+    },
+    {
+      "path": "schemas/websites.schema.json",
       "status": "M"
     },
     {
@@ -24,18 +28,29 @@
     {
       "path": "scripts/test_recommend.py",
       "status": "M"
+    },
+    {
+      "path": "scripts/validate_websites.py",
+      "status": "M"
+    },
+    {
+      "path": "websites.json",
+      "status": "M"
     }
   ],
   "changed_source_files": [
     "scripts/portfolio_daily.py",
     "scripts/recommend.py",
-    "scripts/test_recommend.py"
+    "scripts/test_recommend.py",
+    "scripts/validate_websites.py"
   ],
   "impacted_files": [
     "scripts/portfolio_daily.py",
     "scripts/portfolio_failure_diagnostics.py",
     "scripts/recommend.py",
-    "scripts/test_recommend.py"
+    "scripts/test_json_contracts.py",
+    "scripts/test_recommend.py",
+    "scripts/validate_websites.py"
   ],
   "impacted_symbols": [
     {
@@ -186,7 +201,7 @@
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 833
+      "line": 844
     },
     {
       "name": "safe_state",
@@ -270,82 +285,101 @@
       "name": "activity_adjustment",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 94
+      "line": 97
     },
     {
       "name": "trend_adjustment",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 113
+      "line": 116
     },
     {
       "name": "delta",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 125
+      "line": 128
     },
     {
       "name": "guidance_weight",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 138
+      "line": 141
     },
     {
       "name": "score_repo",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 145
+      "line": 148
     },
     {
       "name": "explain_repo",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 176
+      "line": 179
     },
     {
       "name": "choose_stack",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 199
+      "line": 202
     },
     {
       "name": "infer_alternatives",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 212
+      "line": 215
     },
     {
       "name": "infer_complements",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 233
+      "line": 236
     },
     {
       "name": "resolve_relations",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 258
+      "line": 261
     },
     {
       "name": "usable",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 260
+      "line": 263
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 281
+      "line": 284
     },
     {
       "name": "run",
       "kind": "function",
       "file": "scripts/test_recommend.py",
       "line": 9
+    },
+    {
+      "name": "canonical_url",
+      "kind": "function",
+      "file": "scripts/validate_websites.py",
+      "line": 18
+    },
+    {
+      "name": "check_websites",
+      "kind": "function",
+      "file": "scripts/validate_websites.py",
+      "line": 33
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/validate_websites.py",
+      "line": 86
     }
   ],
   "selected_tests": [
+    "scripts/test_json_contracts.py",
     "scripts/test_recommend.py"
   ]
 }
