@@ -3367,7 +3367,7 @@
       "alternatives": [],
       "complements": [
         "redis/redis",
-        "prisma/prisma",
+        "prisma/orm",
         "drizzle-team/drizzle-orm"
       ],
       "bestFor": [
@@ -3598,7 +3598,8 @@
       "githubRepositoryId": 510607652
     },
     {
-      "repo": "prisma/prisma",
+      "repo": "prisma/orm",
+      "githubRepositoryId": 192925833,
       "score": 9.5,
       "tier": "recommended",
       "category": "Backend / API / données",
@@ -4054,7 +4055,8 @@
       "githubRepositoryId": 21827146
     },
     {
-      "repo": "facebook/react",
+      "repo": "react/react",
+      "githubRepositoryId": 10270250,
       "score": 9.8,
       "tier": "core",
       "category": "Frontend / UI / design systems",
@@ -4120,7 +4122,7 @@
         "vitejs/vite"
       ],
       "complements": [
-        "facebook/react",
+        "react/react",
         "shadcn-ui/ui",
         "supabase/supabase"
       ],
@@ -4265,7 +4267,7 @@
       ],
       "complements": [
         "tailwindlabs/tailwindcss",
-        "facebook/react"
+        "react/react"
       ],
       "bestFor": [
         "customizable React UI systems"
@@ -4704,7 +4706,8 @@
       "githubRepositoryId": 31792824
     },
     {
-      "repo": "facebook/react-native",
+      "repo": "react/react-native",
+      "githubRepositoryId": 29028775,
       "score": 9.7,
       "tier": "core",
       "category": "Mobile / Android / multiplateforme",
