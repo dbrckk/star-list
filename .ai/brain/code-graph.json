@@ -16,6 +16,11 @@
       "type": "imports"
     },
     {
+      "source": "scripts/audit_agent_skill_sources.py",
+      "target": "scripts/agent_skill_discovery.py",
+      "type": "imports"
+    },
+    {
       "source": "scripts/backfill_licenses.py",
       "target": "scripts/refresh_github_metadata.py",
       "type": "imports"

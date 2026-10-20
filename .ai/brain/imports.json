@@ -35,6 +35,22 @@
       "json",
       "pathlib"
     ],
+    "scripts/audit_agent_skill_sources.py": [
+      "__future__",
+      "agent_skill_discovery",
+      "argparse",
+      "datetime",
+      "http.client",
+      "json",
+      "os",
+      "pathlib",
+      "re",
+      "sys",
+      "time",
+      "urllib.error",
+      "urllib.parse",
+      "urllib.request"
+    ],
     "scripts/audit_catalog_quality.py": [
       "argparse",
       "collections",

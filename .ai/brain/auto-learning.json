@@ -5,15 +5,17 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "143",
-      "detect",
-      "metadata",
-      "pinoc",
-      "real",
-      "repositories",
-      "roblox",
-      "sparse",
-      "web"
+      "144",
+      "audit",
+      "daily",
+      "every",
+      "feat",
+      "issue",
+      "pinned",
+      "skill",
+      "skill.md",
+      "skills",
+      "source"
     ],
     "test_count": 0,
     "useful_count": 2
@@ -21,10 +23,10 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(web): detect PINOC in real Roblox repositories with sparse metadata (#143)",
+  "task": "feat(skills): audit every pinned Skill Issue SKILL.md source daily (#144)",
   "tests_selected": [],
   "useful": [
-    "scripts/portfolio_daily.py",
-    "scripts/test_recommend.py"
+    "scripts/audit_agent_skill_sources.py",
+    "scripts/test_documentation.py"
   ]
 }

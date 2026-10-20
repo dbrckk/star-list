@@ -1,32 +1,27 @@
 {
   "files": [
     {
-      "path": "scripts/portfolio_daily.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "recent-project-state",
-        "symbol-indexed"
-      ],
-      "score": 535
-    },
-    {
-      "path": "scripts/test_recommend.py",
+      "path": "scripts/test_documentation.py",
       "reasons": [
         "changed",
         "changed-source",
         "impact",
-        "recent-project-state",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
+        "selected-test"
       ],
-      "score": 465
+      "score": 370
     },
     {
-      "path": "websites.json",
+      "path": "scripts/audit_agent_skill_sources.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 330
+    },
+    {
+      "path": "README.md",
       "reasons": [
         "changed",
         "recent-project-state"
@@ -34,46 +29,35 @@
       "score": 160
     },
     {
-      "path": "scripts/portfolio_failure_diagnostics.py",
+      "path": ".github/workflows/audit-agent-skill-sources.yml",
       "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "symbol-indexed"
+        "changed"
       ],
-      "score": 150
+      "score": 100
     },
     {
-      "path": "scripts/recommend.py",
+      "path": ".github/workflows/validate.yml",
       "reasons": [
-        "dependency-neighbor",
-        "recent-project-state"
+        "changed"
       ],
-      "score": 110
+      "score": 100
     },
     {
-      "path": "scripts/validate_websites.py",
+      "path": "AGENT_SKILLS.md",
       "reasons": [
-        "dependency-neighbor",
-        "recent-project-state"
+        "changed"
       ],
-      "score": 85
+      "score": 100
     },
     {
-      "path": "README.md",
+      "path": "schemas/agent-skill-source-audit.schema.json",
       "reasons": [
-        "recent-project-state"
+        "changed"
       ],
-      "score": 60
+      "score": 100
     },
     {
       "path": "WEB_RESOURCES.md",
-      "reasons": [
-        "recent-project-state"
-      ],
-      "score": 60
-    },
-    {
-      "path": "catalog.json",
       "reasons": [
         "recent-project-state"
       ],
@@ -87,11 +71,46 @@
       "score": 60
     },
     {
+      "path": "scripts/portfolio_daily.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/recommend.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/test_recommend.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/validate_websites.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "websites.json",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
       "path": "scripts/agent_skill_discovery.py",
       "reasons": [
         "dependency-neighbor"
       ],
-      "score": 50
+      "score": 25
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

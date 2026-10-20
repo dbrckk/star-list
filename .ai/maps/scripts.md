@@ -42,6 +42,7 @@ admit_github_stars.py
 agent_skill_discovery.py
 analyze_cache_health.py
 analyze_coverage.py
+audit_agent_skill_sources.py
 audit_catalog_quality.py
 backfill_licenses.py
 build_discovery_watchlist.py
@@ -386,6 +387,62 @@ ap=argparse.ArgumentParser()
 args=ap.parse_args()
 ⋮----
 repos=json.loads(CATALOG.read_text()).get("repositories",[])
+```
+
+## File: audit_agent_skill_sources.py
+```python
+#!/usr/bin/env python3
+"""Check immutable upstream SKILL.md links without executing remote instructions.
+
+Offline mode validates local pinned-source contracts only. Online mode checks
+GitHub API *file metadata*, never imports, executes or trusts remote SKILL.md.
+"""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+USER_AGENT = "star-list-pinned-skill-source-audit/1.0"
+MAX_RESPONSE = 500_000
+⋮----
+class RejectRedirect(HTTPRedirectHandler)
+⋮----
+"""Never forward a GitHub bearer token to a redirected URL."""
+⋮----
+def redirect_request(self, req, fp, code, msg, headers, newurl)
+⋮----
+HTTP = build_opener(RejectRedirect())
+⋮----
+def inspect_source(row: dict, token: str) -> tuple[str, str]
+⋮----
+"""Check the pinned SKILL.md file metadata; never read/parse its instructions."""
+⋮----
+path = "/".join(quote(part, safe="") for part in row["sourcePath"].split("/"))
+url = ("https://api.github.com/repos/" + quote(owner, safe="")
+headers = {
+⋮----
+payload = response.read(MAX_RESPONSE + 1)
+⋮----
+value = json.loads(payload.decode("utf-8"))
+⋮----
+def make_report(*, online: bool, token: str) -> dict
+⋮----
+rows = load_skills()["skills"]
+entries = []
+⋮----
+counts = {status: sum(item["status"] == status for item in entries)
+complete = online and counts["unavailable"] == 0 and counts["unchecked"] == 0
+⋮----
+def markdown(report: dict) -> str
+⋮----
+counts = report["counts"]
+lines = [
+failures = [e for e in report["entries"] if e["status"] in ("missing", "invalid", "unavailable")]
+⋮----
+def main() -> int
+⋮----
+parser = argparse.ArgumentParser(description=__doc__)
+⋮----
+args = parser.parse_args()
+report = make_report(online=args.online, token=os.environ.get("GITHUB_TOKEN", ""))
+data = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
 ```
 
 ## File: audit_catalog_quality.py
@@ -2652,6 +2709,9 @@ mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 sync_yaml = (ROOT / ".github/workflows/sync-github-stars.yml").read_text()
 audit_yaml = (ROOT / ".github/workflows/catalog-quality-on-change.yml").read_text()
 stars_docs = (ROOT / "docs/GITHUB_STARS_SYNC.md").read_text()
+⋮----
+skills_workflow = (ROOT / ".github/workflows/audit-agent-skill-sources.yml").read_text()
+skills_validator = (ROOT / "scripts/audit_agent_skill_sources.py").read_text()
 ⋮----
 maintenance_yaml = (ROOT / ".github/workflows/refresh-metadata.yml").read_text()
 ⋮----

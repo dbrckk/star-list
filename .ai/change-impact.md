@@ -1,16 +1,22 @@
 # Change impact
 
-Base: de4411858781c276b3270eee89427d79e75c30a9
-Head: a105d2b06713c27151a7eeb08ba9c5cf8ef134ff
+Base: 68ca68f6121e4bcce8a33af0293a4294e5658219
+Head: 395c0a70c5680dbf83fe0b846c0d6c8d80dfb7da
 
 ## Changed files
-- M scripts/portfolio_daily.py
-- M scripts/test_recommend.py
-- M websites.json
+- A .github/workflows/audit-agent-skill-sources.yml
+- M .github/workflows/validate.yml
+- M AGENT_SKILLS.md
+- M README.md
+- A schemas/agent-skill-source-audit.schema.json
+- A scripts/audit_agent_skill_sources.py
+- M scripts/test_documentation.py
 
 ## Affected areas
-- scripts
+- .github
 - (root)
+- schemas
+- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.

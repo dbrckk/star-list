@@ -41,6 +41,7 @@ The content is organized as follows:
 .github/
   workflows/
     ai-repo-map.yml
+    audit-agent-skill-sources.yml
     catalog-quality-on-change.yml
     daily-portfolio-integration.yml
     license-backfill.yml
@@ -53,6 +54,7 @@ The content is organized as follows:
 .serena/
   project.yml
 schemas/
+  agent-skill-source-audit.schema.json
   cache-health-history.schema.json
   cache-health-trend.schema.json
   cache-health.schema.json
@@ -76,6 +78,7 @@ scripts/
   agent_skill_discovery.py
   analyze_cache_health.py
   analyze_coverage.py
+  audit_agent_skill_sources.py
   audit_catalog_quality.py
   backfill_licenses.py
   build_discovery_watchlist.py
@@ -163,6 +166,95 @@ concurrency:
 jobs:
   repository-standards:
     uses: dbrckk/repo-standards/.github/workflows/reusable-unified.yml@main
+````
+
+## File: .github/workflows/audit-agent-skill-sources.yml
+````yaml
+name: Audit pinned Skill Issue sources
+
+on:
+  schedule:
+    - cron: '23 5 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'agent-skills.json'
+      - 'scripts/agent_skill_discovery.py'
+      - 'scripts/audit_agent_skill_sources.py'
+      - '.github/workflows/audit-agent-skill-sources.yml'
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: star-list-agent-skill-source-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Verify pinned SKILL.md source metadata only
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/audit_agent_skill_sources.py --online \
+            --json-output agent-skill-source-audit.json \
+            --markdown-output agent-skill-source-audit.md
+          python scripts/validate_json_contract.py \
+            schemas/agent-skill-source-audit.schema.json agent-skill-source-audit.json
+      - name: Preserve audit evidence even when upstream verification fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pinned-agent-skill-source-audit
+          path: |
+            agent-skill-source-audit.json
+            agent-skill-source-audit.md
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Maintain actionable broken-source review issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Incomplete API scans fail before this step. Never publish a false
+          # clean result after GitHub rate-limiting or transient failures.
+          read -r COMPLETE FINDINGS < <(python - <<'PY'
+          import json
+          d = json.load(open("agent-skill-source-audit.json", encoding="utf-8"))
+          print(str(d["coverageComplete"]).lower(), d["findings"])
+          PY
+          )
+          if [[ "$COMPLETE" != true ]]; then
+            echo "::error::Incomplete source verification; refusing issue update"
+            exit 1
+          fi
+          existing="$(gh issue list --state open --limit 100 --json number,body \
+            --jq '[.[] | select(.body != null and (.body | contains("<!-- star-list-agent-skill-source-audit -->")))] | .[0].number // empty')"
+          if [[ "$FINDINGS" == 0 ]]; then
+            if [[ -n "$existing" ]]; then
+              gh issue close "$existing" --comment "All pinned agent skill source files are accessible again."
+            fi
+          elif [[ -n "$existing" ]]; then
+            gh issue edit "$existing" --title "Review broken pinned Skill Issue source links ($FINDINGS)" \
+              --body-file agent-skill-source-audit.md
+          else
+            gh issue create --title "Review broken pinned Skill Issue source links ($FINDINGS)" \
+              --body-file agent-skill-source-audit.md
+          fi
 ````
 
 ## File: .github/workflows/catalog-quality-on-change.yml
@@ -1843,6 +1935,22 @@ jobs:
         run: |
           python scripts/recommend.py "game art style pixel voxel 3d" --websites --top-websites 12 --json > /tmp/game-art-websites.json
           python -c 'import json; d=json.load(open("/tmp/game-art-websites.json")); assert any(s["id"] == "game-art-style" and s["integrationEligible"] is False and s["reuse"] == "reference-only" for s in d["websiteRecommendations"])'
+      - name: Validate pinned agent-skill source audit offline
+        run: |
+          python scripts/audit_agent_skill_sources.py \
+            --json-output /tmp/skill-source-offline.json \
+            --markdown-output /tmp/skill-source-offline.md
+          python scripts/validate_json_contract.py \
+            schemas/agent-skill-source-audit.schema.json /tmp/skill-source-offline.json
+          python - <<'PY'
+          import json
+          report = json.load(open('/tmp/skill-source-offline.json', encoding='utf-8'))
+          assert report['total'] >= 20
+          assert report['coverageComplete'] is False
+          assert report['counts']['unchecked'] == report['total']
+          assert report['sourceContentReviewed'] is False
+          assert report['automaticInstallation'] is False
+          PY
       - name: Validate and exercise curated Skill Issue discovery
         run: |
           python scripts/agent_skill_discovery.py
@@ -1960,6 +2068,145 @@ encoding: utf-8
 symbol_info_budget: 8
 initial_prompt: |
   Use Serena's symbol and reference tools before reading whole files. Start with symbol overviews, find_symbol and find_referencing_symbols; fetch full file bodies only when required for the task. Prefer targeted edits and preserve the existing architecture.
+````
+
+## File: schemas/agent-skill-source-audit.schema.json
+````json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pinned Skill Source Metadata Audit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "checkedAt",
+    "mode",
+    "total",
+    "coverageComplete",
+    "counts",
+    "findings",
+    "sourceContentReviewed",
+    "automaticInstallation",
+    "entries"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "checkedAt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "enum": [
+        "online",
+        "offline"
+      ]
+    },
+    "total": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "coverageComplete": {
+      "type": "boolean"
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verified",
+        "missing",
+        "invalid",
+        "unavailable",
+        "unchecked"
+      ],
+      "properties": {
+        "verified": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "missing": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "invalid": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unavailable": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "unchecked": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "findings": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "sourceContentReviewed": {
+      "const": false
+    },
+    "automaticInstallation": {
+      "const": false
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "sourceRepository",
+          "sourceCommit",
+          "sourcePath",
+          "sourceUrl",
+          "status",
+          "reason"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "sourceRepository": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+          },
+          "sourceCommit": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "sourcePath": {
+            "type": "string",
+            "pattern": "^(?:[A-Za-z0-9_.-]+/)*SKILL[.]md$"
+          },
+          "sourceUrl": {
+            "type": "string",
+            "pattern": "^https://github[.]com/"
+          },
+          "status": {
+            "enum": [
+              "verified",
+              "missing",
+              "invalid",
+              "unavailable",
+              "unchecked"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}
 ````
 
 ## File: schemas/cache-health-history.schema.json
@@ -2781,6 +3028,62 @@ ap=argparse.ArgumentParser()
 args=ap.parse_args()
 ⋮----
 repos=json.loads(CATALOG.read_text()).get("repositories",[])
+````
+
+## File: scripts/audit_agent_skill_sources.py
+````python
+#!/usr/bin/env python3
+"""Check immutable upstream SKILL.md links without executing remote instructions.
+
+Offline mode validates local pinned-source contracts only. Online mode checks
+GitHub API *file metadata*, never imports, executes or trusts remote SKILL.md.
+"""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+USER_AGENT = "star-list-pinned-skill-source-audit/1.0"
+MAX_RESPONSE = 500_000
+⋮----
+class RejectRedirect(HTTPRedirectHandler)
+⋮----
+"""Never forward a GitHub bearer token to a redirected URL."""
+⋮----
+def redirect_request(self, req, fp, code, msg, headers, newurl)
+⋮----
+HTTP = build_opener(RejectRedirect())
+⋮----
+def inspect_source(row: dict, token: str) -> tuple[str, str]
+⋮----
+"""Check the pinned SKILL.md file metadata; never read/parse its instructions."""
+⋮----
+path = "/".join(quote(part, safe="") for part in row["sourcePath"].split("/"))
+url = ("https://api.github.com/repos/" + quote(owner, safe="")
+headers = {
+⋮----
+payload = response.read(MAX_RESPONSE + 1)
+⋮----
+value = json.loads(payload.decode("utf-8"))
+⋮----
+def make_report(*, online: bool, token: str) -> dict
+⋮----
+rows = load_skills()["skills"]
+entries = []
+⋮----
+counts = {status: sum(item["status"] == status for item in entries)
+complete = online and counts["unavailable"] == 0 and counts["unchecked"] == 0
+⋮----
+def markdown(report: dict) -> str
+⋮----
+counts = report["counts"]
+lines = [
+failures = [e for e in report["entries"] if e["status"] in ("missing", "invalid", "unavailable")]
+⋮----
+def main() -> int
+⋮----
+parser = argparse.ArgumentParser(description=__doc__)
+⋮----
+args = parser.parse_args()
+report = make_report(online=args.online, token=os.environ.get("GITHUB_TOKEN", ""))
+data = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
 ````
 
 ## File: scripts/audit_catalog_quality.py
@@ -5047,6 +5350,9 @@ mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 sync_yaml = (ROOT / ".github/workflows/sync-github-stars.yml").read_text()
 audit_yaml = (ROOT / ".github/workflows/catalog-quality-on-change.yml").read_text()
 stars_docs = (ROOT / "docs/GITHUB_STARS_SYNC.md").read_text()
+⋮----
+skills_workflow = (ROOT / ".github/workflows/audit-agent-skill-sources.yml").read_text()
+skills_validator = (ROOT / "scripts/audit_agent_skill_sources.py").read_text()
 ⋮----
 maintenance_yaml = (ROOT / ".github/workflows/refresh-metadata.yml").read_text()
 ⋮----
@@ -52298,6 +52604,16 @@ root React/Flutter dependencies. Pinned Flutter, Godot, Android and Roblox SKILL
 are also available for compatible projects. No third-party skill is
 automatically downloaded, installed, granted credentials or dispatched. Read
 [`AGENT_SKILLS.md`](AGENT_SKILLS.md) for the adoption and security gates.
+
+## Verified pinned Skill Issue source links
+
+Skill Issue and its curated agent-skill source references are documented in
+[`AGENT_SKILLS.md`](AGENT_SKILLS.md). A daily read-only
+[source metadata audit](.github/workflows/audit-agent-skill-sources.yml)
+rechecks exact revision-pinned `SKILL.md` files, reports missing links,
+and preserves failed-scan evidence. It never imports or executes the remote
+instructions. A valid link is not proof that a skill is safe or licensed for
+unattended use.
 
 ## Automatic GitHub Stars synchronization
 

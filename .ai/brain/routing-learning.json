@@ -2,23 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "Improve license detection for catalog metadata (#35)",
-      "terms": [
-        "35",
-        "catalog",
-        "detection",
-        "improve",
-        "license",
-        "metadata"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/refresh_github_metadata.py",
-        "scripts/test_refresh_github_metadata.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "Classify unresolved repository licenses (#36)",
       "terms": [
         "36",
@@ -1264,6 +1247,28 @@
         "scripts/portfolio_daily.py",
         "scripts/test_recommend.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(skills): audit every pinned Skill Issue SKILL.md source daily (#144)",
+      "terms": [
+        "144",
+        "audit",
+        "daily",
+        "every",
+        "feat",
+        "issue",
+        "pinned",
+        "skill",
+        "skill.md",
+        "skills",
+        "source"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/audit_agent_skill_sources.py",
+        "scripts/test_documentation.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1385,6 +1390,10 @@
     "143": {
       "scripts/portfolio_daily.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "144": {
+      "scripts/audit_agent_skill_sources.py": 4,
+      "scripts/test_documentation.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1628,10 +1637,11 @@
     },
     "audit": {
       "scripts/admit_github_stars.py": 4,
+      "scripts/audit_agent_skill_sources.py": 4,
       "scripts/audit_catalog_quality.py": 12,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_catalog_quality.py": 12,
-      "scripts/test_documentation.py": 12,
+      "scripts/test_documentation.py": 16,
       "scripts/test_sync_github_stars.py": 4
     },
     "audit-tier": {
@@ -1805,9 +1815,10 @@
       "scripts/test_catalog_quality.py": 4
     },
     "daily": {
+      "scripts/audit_agent_skill_sources.py": 4,
       "scripts/portfolio_daily.py": 12,
       "scripts/sync_github_stars.py": 4,
-      "scripts/test_documentation.py": 4,
+      "scripts/test_documentation.py": 8,
       "scripts/test_sync_github_stars.py": 4
     },
     "dashboard": {
@@ -1922,6 +1933,10 @@
     "engines": {
       "scripts/portfolio_daily.py": 4
     },
+    "every": {
+      "scripts/audit_agent_skill_sources.py": 4,
+      "scripts/test_documentation.py": 4
+    },
     "evidence": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4,
@@ -1982,6 +1997,7 @@
     "feat": {
       "scripts/admit_github_stars.py": 8,
       "scripts/agent_skill_discovery.py": 12,
+      "scripts/audit_agent_skill_sources.py": 4,
       "scripts/audit_catalog_quality.py": 8,
       "scripts/portfolio_daily.py": 40,
       "scripts/portfolio_failure_diagnostics.py": 12,
@@ -1989,7 +2005,7 @@
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_catalog_quality.py": 8,
-      "scripts/test_documentation.py": 12,
+      "scripts/test_documentation.py": 16,
       "scripts/test_json_contracts.py": 8,
       "scripts/test_recommend.py": 20,
       "scripts/test_sync_github_stars.py": 4,
@@ -2183,9 +2199,10 @@
     },
     "issue": {
       "scripts/agent_skill_discovery.py": 8,
+      "scripts/audit_agent_skill_sources.py": 4,
       "scripts/portfolio_daily.py": 12,
       "scripts/recommend.py": 4,
-      "scripts/test_documentation.py": 8,
+      "scripts/test_documentation.py": 12,
       "scripts/test_recommend.py": 8
     },
     "keep": {
@@ -2332,7 +2349,9 @@
     },
     "pinned": {
       "scripts/agent_skill_discovery.py": 8,
+      "scripts/audit_agent_skill_sources.py": 4,
       "scripts/portfolio_daily.py": 12,
+      "scripts/test_documentation.py": 4,
       "scripts/test_recommend.py": 8
     },
     "pinoc": {
@@ -2651,21 +2670,25 @@
     },
     "skill": {
       "scripts/agent_skill_discovery.py": 8,
+      "scripts/audit_agent_skill_sources.py": 4,
       "scripts/portfolio_daily.py": 16,
       "scripts/recommend.py": 4,
-      "scripts/test_documentation.py": 4,
+      "scripts/test_documentation.py": 8,
       "scripts/test_recommend.py": 8
     },
     "skill.md": {
       "scripts/agent_skill_discovery.py": 4,
+      "scripts/audit_agent_skill_sources.py": 4,
       "scripts/portfolio_daily.py": 4,
+      "scripts/test_documentation.py": 4,
       "scripts/test_recommend.py": 4
     },
     "skills": {
       "scripts/agent_skill_discovery.py": 12,
+      "scripts/audit_agent_skill_sources.py": 4,
       "scripts/portfolio_daily.py": 20,
       "scripts/recommend.py": 4,
-      "scripts/test_documentation.py": 4,
+      "scripts/test_documentation.py": 8,
       "scripts/test_recommend.py": 12
     },
     "slow": {
@@ -2674,9 +2697,10 @@
     },
     "source": {
       "scripts/agent_skill_discovery.py": 4,
+      "scripts/audit_agent_skill_sources.py": 4,
       "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 4,
-      "scripts/test_documentation.py": 4,
+      "scripts/test_documentation.py": 8,
       "scripts/test_recommend.py": 4
     },
     "sparse": {

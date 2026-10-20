@@ -2,7 +2,14 @@
   "area": "github",
   "files": [
     {
-      "path": ".github/workflows/portfolio-scan-smoke.yml",
+      "path": ".github/workflows/audit-agent-skill-sources.yml",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": ".github/workflows/validate.yml",
       "reasons": [
         "changed"
       ],

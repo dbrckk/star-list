@@ -5,71 +5,54 @@
   "semantic": false,
   "note": "Occurrences are lexical word matches; verify source/LSP/compiler data before relying on them.",
   "symbols": {
-    "package_skill_signals": {
+    "RejectRedirect": {
       "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 111,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 111,
-          "preview": "def package_skill_signals(filename: str, content: str) -> tuple[set[str], set[str]]:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 268,
-          "preview": "skill_domains, skill_terms = package_skill_signals(filename, value)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 283,
-          "preview": "extra_domains, extra_terms = package_skill_signals(filename, value)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "SameOriginRedirect": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 156,
+        "file": "scripts/audit_agent_skill_sources.py",
+        "line": 29,
         "kind": "class",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/portfolio_daily.py",
-          "line": 156,
-          "preview": "class SameOriginRedirect(HTTPRedirectHandler):",
+          "file": "scripts/audit_agent_skill_sources.py",
+          "line": 29,
+          "preview": "class RejectRedirect(HTTPRedirectHandler):",
           "definition_candidate": true
         },
         {
-          "file": "scripts/portfolio_daily.py",
-          "line": 170,
-          "preview": "SAFE_HTTP = build_opener(SameOriginRedirect())",
+          "file": "scripts/audit_agent_skill_sources.py",
+          "line": 36,
+          "preview": "HTTP = build_opener(RejectRedirect())",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_documentation.py",
+          "line": 94,
+          "preview": "assert \"class RejectRedirect(HTTPRedirectHandler)\" in skills_validator",
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 2
+      "occurrence_count": 3
     },
     "redirect_request": {
       "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 159,
+        "file": "scripts/audit_agent_skill_sources.py",
+        "line": 32,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
+          "file": "scripts/audit_agent_skill_sources.py",
+          "line": 32,
+          "preview": "def redirect_request(self, req, fp, code, msg, headers, newurl):",
+          "definition_candidate": true
+        },
+        {
           "file": "scripts/portfolio_daily.py",
           "line": 159,
           "preview": "def redirect_request(self, req, fp, code, msg, headers, newurl):",
-          "definition_candidate": true
+          "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
@@ -102,805 +85,102 @@
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 6
-    },
-    "request_json": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 173,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 173,
-          "preview": "def request_json(url: str, token: str = \"\", *, method: str = \"GET\", data: dict | None = None,",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 227,
-          "preview": "rows = request_json(base + separator + \"page=\" + str(page), portfolio_token or token)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 242,
-          "preview": "payload = request_json(endpoint, token)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 703,
-          "preview": "return request_json(url.rstrip(\"/\") + \"/v1/dashboard/launch\", token, method=\"POST\",",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 876,
-          "preview": "target = request_json(API + \"/repos/\" + args.repository, portfolio_token or gh_token)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 951,
-          "preview": "existing = request_json(service.rstrip(\"/\") + \"/v1/managed-projects/integration-inventory\", operator_token)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 17,
-          "preview": "from portfolio_daily import request_json",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 220,
-          "preview": "response = request_json(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_failure_diagnostics.py",
-          "line": 376,
-          "preview": "request_json(ENDPOINT, token, max_attempts=1)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 9
-    },
-    "github_repos": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 220,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 220,
-          "preview": "def github_repos(owner: str, token: str, portfolio_token: str) -> list[dict]:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 881,
-          "preview": "source = github_repos(args.owner, gh_token, portfolio_token)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "file_text": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 240,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 240,
-          "preview": "def file_text(full_name: str, path: str, token: str, *, limit: int = 5500) -> str:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 255,
-          "preview": "intro = file_text(name, \"README.md\", token, limit=2800)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 264,
-          "preview": "value = file_text(name, filename, token, limit=12000)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 281,
-          "preview": "value = file_text(name, filename, token, limit=12000)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 4
-    },
-    "project_profile": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 251,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 251,
-          "preview": "def project_profile(repo: dict, token: str) -> dict:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 897,
-          "preview": "profile = project_profile(repo, portfolio_token or gh_token)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "eligible": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 309,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 309,
-          "preview": "def eligible(item: dict) -> bool:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 388,
-          "preview": "if slug.lower() == name or not eligible(tool):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 649,
-          "preview": "\"\"\"Quarantine only targets with an *eligible* v3 retry still available.",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 1111,
-          "preview": "report[\"dispatch_status\"] = \"idle (no new eligible integration)\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 379,
-          "preview": "\"diagnostics\": {\"catalogSize\":len(repos), \"eligible\":len(ranked), \"returned\":len(top), \"filtered\":filtered},",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 91,
-          "preview": "\"\"\"Load offline metadata snapshots. Only explicitly reviewed entries are eligible.\"\"\"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 24,
-          "preview": "assert data[\"diagnostics\"][\"catalogSize\"] >= data[\"diagnostics\"][\"eligible\"] >= data[\"diagnostics\"][\"returned\"]",
-          "definition_candidate": false
-        }
-      ],
       "occurrence_count": 7
     },
-    "is_reference_candidate": {
+    "inspect_source": {
       "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 323,
+        "file": "scripts/audit_agent_skill_sources.py",
+        "line": 39,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/portfolio_daily.py",
-          "line": 323,
-          "preview": "def is_reference_candidate(tool: dict) -> bool:",
+          "file": "scripts/audit_agent_skill_sources.py",
+          "line": 39,
+          "preview": "def inspect_source(row: dict, token: str) -> tuple[str, str]:",
           "definition_candidate": true
         },
         {
-          "file": "scripts/portfolio_daily.py",
-          "line": 441,
-          "preview": "\"reference-review\" if is_reference_candidate(tool) else",
+          "file": "scripts/audit_agent_skill_sources.py",
+          "line": 91,
+          "preview": "status, reason = inspect_source(row, token) if online else (\"unchecked\", \"offline-validation-only\")",
           "definition_candidate": false
         }
       ],
       "occurrence_count": 2
     },
-    "recommendations": {
+    "make_report": {
       "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 350,
+        "file": "scripts/audit_agent_skill_sources.py",
+        "line": 87,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/agent_skill_discovery.py",
-          "line": 151,
-          "preview": "\"totalCuratedSkills\": len(catalog[\"skills\"]), \"recommendations\": matched,",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 350,
-          "preview": "def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) -> list[dict]:",
+          "file": "scripts/audit_agent_skill_sources.py",
+          "line": 87,
+          "preview": "def make_report(*, online: bool, token: str) -> dict:",
           "definition_candidate": true
         },
         {
-          "file": "scripts/portfolio_daily.py",
-          "line": 782,
-          "preview": "for skill in row[\"skill_discovery\"][\"recommendations\"]:",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 891,
-          "preview": "\"reviewRequired\": True, \"recommendations\": []},",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 898,
-          "preview": "row[\"suggestions\"] = recommendations(repo, profile, catalog, 3)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 907,
-          "preview": "row[\"skill_discovery\"][\"recommendations\"] = recommend_skills(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 1133,
-          "preview": "bool(p[\"skill_discovery\"][\"recommendations\"]) for p in report[\"projects\"]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 1136,
-          "preview": "len(p[\"skill_discovery\"][\"recommendations\"]) for p in report[\"projects\"]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 297,
-          "preview": "ap.add_argument(\"--include-audit\", action=\"store_true\", help=\"Allow audit-tier repositories in recommendations\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 374,
-          "preview": "\"requiredCapabilities\": sorted(required_caps), \"recommendations\": top,",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 388,
-          "preview": "\"recommendations\": recommend_skills(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/recommend.py",
-          "line": 411,
-          "preview": "for skill in result[\"skillDiscovery\"][\"recommendations\"]:",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 22,
-          "preview": "assert data[\"recommendations\"], query",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 23,
-          "preview": "assert all(\"repo\" in x and \"selectionScore\" in x and \"why\" in x for x in data[\"recommendations\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 40,
-          "preview": "assert baseline_web_query[\"recommendations\"] == with_web_query[\"recommendations\"]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 45,
-          "preview": "assert with_skills_query[\"recommendations\"] == without_skills_query[\"recommendations\"]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 49,
-          "preview": "for s in with_skills_query[\"skillDiscovery\"][\"recommendations\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 53,
-          "preview": "for s in with_skills_query[\"skillDiscovery\"][\"recommendations\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 71,
-          "preview": "[\"skillDiscovery\"][\"recommendations\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 136,
-          "preview": "for item in strict[\"recommendations\"]:",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 141,
-          "preview": "assert high_threshold[\"recommendations\"] == []",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 145,
-          "preview": "assert all(item[\"tier\"] != \"audit\" for item in default_audit[\"recommendations\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 150,
-          "preview": "assert any(item[\"repo\"] == \"DietrichGebert/ponytail\" for item in with_audit[\"recommendations\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 231,
-          "preview": "# Integration: returned relations must obey the same hard CLI filters as primary recommendations.",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 238,
-          "preview": "for item in results[\"recommendations\"]:",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 25
-    },
-    "count_active_integrations": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 464,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 464,
-          "preview": "def count_active_integrations(projects: list[dict]) -> int:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 966,
-          "preview": "active_integrations = count_active_integrations(already)",
+          "file": "scripts/audit_agent_skill_sources.py",
+          "line": 155,
+          "preview": "report = make_report(online=args.online, token=os.environ.get(\"GITHUB_TOKEN\", \"\"))",
           "definition_candidate": false
         }
       ],
       "occurrence_count": 2
     },
-    "busy_integration_targets": {
+    "markdown": {
       "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 474,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 474,
-          "preview": "def busy_integration_targets(projects: list[dict]) -> set[str]:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 969,
-          "preview": "busy_targets = busy_integration_targets(already)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "unresolved_failed_v2_integrations": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 494,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 494,
-          "preview": "def unresolved_failed_v2_integrations(projects: list[dict]) -> list[dict]:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 527,
-          "preview": "return len(unresolved_failed_v2_integrations(projects))",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 975,
-          "preview": "unresolved_failures = unresolved_failed_v2_integrations(already)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "count_failed_v2_integrations": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 525,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 525,
-          "preview": "def count_failed_v2_integrations(projects: list[dict]) -> int:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 967,
-          "preview": "failed_v2_integrations = count_failed_v2_integrations(already)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "count_failed_v3_integrations": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 530,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 530,
-          "preview": "def count_failed_v3_integrations(projects: list[dict]) -> int:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 968,
-          "preview": "failed_v3_integrations = count_failed_v3_integrations(already)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "count_launches_on_utc_date": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 546,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 546,
-          "preview": "def count_launches_on_utc_date(projects: list[dict], utc_day: str) -> int:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 985,
-          "preview": "launches_today = count_launches_on_utc_date(already, current_day)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "verified_managed_projects": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 566,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 549,
-          "preview": "Call only after verified_managed_projects has validated timezone-aware",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 566,
-          "preview": "def verified_managed_projects(payload: object) -> list[dict]:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 952,
-          "preview": "already = verified_managed_projects(existing)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "public_integration_status": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 617,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 617,
-          "preview": "def public_integration_status(target: str, projects: list[dict]) -> list[dict]:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 961,
-          "preview": "public_row[\"integrations\"] = public_integration_status(",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "integration_marker": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 639,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 639,
-          "preview": "def integration_marker(target: str, candidate: dict, version: int = 2) -> str:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 662,
-          "preview": "integration_marker(target, candidate)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 690,
-          "preview": "marker = integration_marker(target, candidate, version=version)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 725,
-          "preview": "marker = integration_marker(target, candidate, version=version)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 1007,
-          "preview": "integration_marker(entry[1][\"repository\"], entry[2])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 1022,
-          "preview": "failed_marker = integration_marker(row[\"repository\"], item)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 1023,
-          "preview": "recovery_marker = integration_marker(row[\"repository\"], item, version=3)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 1059,
-          "preview": "marker = integration_marker(row[\"repository\"], item)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 1060,
-          "preview": "previous = integration_marker(row[\"repository\"], item, version=1)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 9
-    },
-    "recoverable_failure_targets": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 646,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 646,
-          "preview": "def recoverable_failure_targets(",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 976,
-          "preview": "failed_targets = recoverable_failure_targets(",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 2
-    },
-    "launch_integration": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 682,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 682,
-          "preview": "def launch_integration(url: str, token: str, target: str, candidate: dict, *, version: int = 2):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 1044,
-          "preview": "result = launch_integration(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 1080,
-          "preview": "result = launch_integration(service, operator_token, row[\"repository\"], item)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "confirmed_launch": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 710,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 710,
-          "preview": "def confirmed_launch(result: object, target: str, candidate: dict, *, version: int = 2) -> bool:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 1047,
-          "preview": "if not confirmed_launch(result, row[\"repository\"], item, version=3):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 1081,
-          "preview": "if not confirmed_launch(result, row[\"repository\"], item):",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "render_markdown": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 744,
+        "file": "scripts/audit_agent_skill_sources.py",
+        "line": 118,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
           "file": "scripts/analyze_cache_health.py",
-          "line": 52,
-          "preview": "def render_markdown(report):",
+          "line": 78,
+          "preview": "ap.add_argument(\"--markdown-output\",type=Path)",
           "definition_candidate": false
         },
         {
-          "file": "scripts/analyze_cache_health.py",
-          "line": 83,
-          "preview": "args.markdown_output.write_text(render_markdown(report))",
+          "file": "scripts/audit_agent_skill_sources.py",
+          "line": 118,
+          "preview": "def markdown(report: dict) -> str:",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/audit_agent_skill_sources.py",
+          "line": 153,
+          "preview": "parser.add_argument(\"--markdown-output\", type=Path, default=None)",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/audit_agent_skill_sources.py",
+          "line": 162,
+          "preview": "args.markdown_output.write_text(markdown(report), encoding=\"utf-8\")",
           "definition_candidate": false
         },
         {
           "file": "scripts/audit_catalog_quality.py",
-          "line": 150,
-          "preview": "def render_markdown(report):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/audit_catalog_quality.py",
-          "line": 232,
-          "preview": "args.markdown_output.write_text(render_markdown(report))",
+          "line": 222,
+          "preview": "parser.add_argument(\"--markdown-output\", type=Path)",
           "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
-          "line": 744,
-          "preview": "def render_markdown(report: dict) -> str:",
-          "definition_candidate": true
+          "line": 857,
+          "preview": "ap.add_argument(\"--markdown\", type=Path, default=Path(\"portfolio-daily.md\"))",
+          "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
           "line": 1146,
           "preview": "args.markdown.write_text(render_markdown(report), encoding=\"utf-8\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 172,
-          "preview": "def render_markdown(report: dict) -> str:",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 250,
-          "preview": "args.report_md.write_text(render_markdown(report), encoding=\"utf-8\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_cache_health_history.py",
-          "line": 61,
-          "preview": "assert \"Baseline confidence: **low** (62.5%)\" in mod.render_markdown(baseline_trend)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_cache_health_history.py",
-          "line": 77,
-          "preview": "assert \"Adaptive severity: **degraded**\" in mod.render_markdown(high_trend)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_cache_health_history.py",
-          "line": 98,
-          "preview": "assert \"Alert state: **healthy**\" in mod.render_markdown(recovery_2)",
           "definition_candidate": false
         },
         {
@@ -911,82 +191,53 @@
         },
         {
           "file": "scripts/test_catalog_quality.py",
-          "line": 126,
-          "preview": "oversized_markdown = mod.render_markdown(oversized)",
+          "line": 117,
+          "preview": "assert \"<!-- star-list-catalog-quality -->\" in markdown",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_catalog_quality.py",
+          "line": 118,
+          "preview": "assert \"x/stable\" in markdown",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_catalog_quality.py",
+          "line": 119,
+          "preview": "assert \"x/legacy-archive\" in markdown",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_catalog_quality.py",
+          "line": 120,
+          "preview": "assert \"Review required\" in markdown",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_catalog_quality.py",
+          "line": 121,
+          "preview": "assert \"Verified permanent GitHub IDs: **1/11**\" in markdown",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_catalog_quality.py",
+          "line": 122,
+          "preview": "assert \"Name-only or unverified entries: **10**\" in markdown",
           "definition_candidate": false
         },
         {
           "file": "scripts/update_cache_health_history.py",
-          "line": 227,
-          "preview": "def render_markdown(trend):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/update_cache_health_history.py",
-          "line": 276,
-          "preview": "if args.markdown_output: args.markdown_output.write_text(render_markdown(trend))",
+          "line": 268,
+          "preview": "ap.add_argument(\"--markdown-output\",type=Path)",
           "definition_candidate": false
         }
       ],
       "occurrence_count": 15
     },
-    "website_references_for_project": {
-      "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 806,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 806,
-          "preview": "def website_references_for_project(repo: dict, profile: dict, limit: int = 2) -> list[dict]:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 913,
-          "preview": "row[\"website_references\"] = website_references_for_project(repo, profile)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 84,
-          "preview": "from portfolio_daily import website_references_for_project",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 85,
-          "preview": "tts_portfolio_sites = website_references_for_project(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 92,
-          "preview": "game_sites = website_references_for_project(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 107,
-          "preview": "motion_sites = website_references_for_project(",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 116,
-          "preview": "roblox_sites = website_references_for_project(",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 7
-    },
     "main": {
       "definition": {
-        "file": "scripts/portfolio_daily.py",
-        "line": 851,
+        "file": "scripts/audit_agent_skill_sources.py",
+        "line": 149,
         "kind": "function",
         "language": "python"
       },
@@ -1037,6 +288,18 @@
           "file": "scripts/analyze_coverage.py",
           "line": 58,
           "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/audit_agent_skill_sources.py",
+          "line": 149,
+          "preview": "def main() -> int:",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/audit_agent_skill_sources.py",
+          "line": 170,
+          "preview": "raise SystemExit(main())",
           "definition_candidate": false
         },
         {
@@ -1175,7 +438,7 @@
           "file": "scripts/portfolio_daily.py",
           "line": 851,
           "preview": "def main() -> int:",
-          "definition_candidate": true
+          "definition_candidate": false
         },
         {
           "file": "scripts/portfolio_daily.py",
@@ -1311,13 +574,13 @@
         },
         {
           "file": "scripts/test_documentation.py",
-          "line": 92,
+          "line": 100,
           "preview": "assert \"git rebase origin/main\" in maintenance_yaml",
           "definition_candidate": false
         },
         {
           "file": "scripts/test_documentation.py",
-          "line": 93,
+          "line": 101,
           "preview": "assert \"git push origin HEAD:main\" in maintenance_yaml",
           "definition_candidate": false
         },
@@ -1442,210 +705,7 @@
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 75
-    },
-    "run": {
-      "definition": {
-        "file": "scripts/test_recommend.py",
-        "line": 9,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 293,
-          "preview": "parser.add_argument(\"--manifest\", type=Path, help=\"Same-run full Stars identity snapshot\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/admit_github_stars.py",
-          "line": 296,
-          "preview": "parser.add_argument(\"--dry-run\", action=\"store_true\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 698,
-          "preview": "\"run the relevant lint, tests, builds and smoke checks. Never merge or deploy without \"",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 928,
-          "preview": "# candidates until the next run reconciles a fresh managed-project inventory.",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 965,
-          "preview": "# not merely the number of launches in this one workflow run.",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 1017,
-          "preview": "# run must not modify one target repository concurrently.",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/star_import_pipeline.py",
-          "line": 201,
-          "preview": "proc = subprocess.run(command, cwd=sandbox, text=True, capture_output=True)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 9,
-          "preview": "def run(*args):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 19,
-          "preview": "data = run(query, \"--top\", \"5\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 38,
-          "preview": "baseline_web_query = run(\"3d scroll animation website\", \"--top\", \"4\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 39,
-          "preview": "with_web_query = run(\"3d scroll animation website\", \"--top\", \"4\", \"--websites\", \"--top-websites\", \"10\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 43,
-          "preview": "with_skills_query = run(\"mobile ui design\", \"--top\", \"4\", \"--skills\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 44,
-          "preview": "without_skills_query = run(\"mobile ui design\", \"--top\", \"4\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 70,
-          "preview": "run(\"react native mobile\", \"--skills\", \"--language\", \"typescript\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 75,
-          "preview": "assert run(\"xauusd trading execution\", \"--websites\")[\"websiteRecommendations\"] == []",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 76,
-          "preview": "assert any(row[\"id\"] == \"60fps\" for row in run(\"mobile ui motion animation\", \"--websites\")[\"websiteRecommendations\"])",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 101,
-          "preview": "pinoc_rows = run(\"3d rigging mocap animation blender\", \"--websites\", \"--top-websites\", \"20\")[\"websiteRecommendations\"]",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 135,
-          "preview": "strict = run(\"android mobile\", \"--platform\", \"android\", \"--require-all-caps\", \"--cap\", \"mobile\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 140,
-          "preview": "high_threshold = run(\"ai agent\", \"--min-score\", \"1000\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 144,
-          "preview": "default_audit = run(\"ponytail agent\", \"--top\", \"20\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 149,
-          "preview": "with_audit = run(\"ponytail agent\", \"--top\", \"20\", \"--include-audit\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 233,
-          "preview": "run(\"android vector animation\", \"--platform\", \"android\", \"--max-resource\", \"medium\", \"--top\", \"15\"),",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_recommend.py",
-          "line": 234,
-          "preview": "run(\"python data\", \"--language\", \"python\", \"--max-complexity\", \"low\", \"--top\", \"15\"),",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 127,
-          "preview": "# CLI is dry-run by default, emits requested reports, and leaves catalog unchanged.",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 138,
-          "preview": "proc = subprocess.run([",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 170,
-          "preview": "raw = subprocess.run(args + [\"--write\"], text=True, capture_output=True)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 176,
-          "preview": "success = subprocess.run(args + [\"--write\"], text=True, capture_output=True)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 181,
-          "preview": "repeat = subprocess.run(args + [\"--write\"], text=True, capture_output=True)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_star_import_pipeline.py",
-          "line": 184,
-          "preview": "bad = subprocess.run(args + [\"--write\"], text=True, capture_output=True)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 192,
-          "preview": "# The complete same-run manifest can backfill IDs for legacy catalog",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 239,
-          "preview": "# The CLI must also commit identity-only enrichment on an hourly run",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 428,
-          "preview": "raise AssertionError(\"failed API run returned success\")",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 32
+      "occurrence_count": 77
     }
   }
 }
