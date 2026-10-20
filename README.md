@@ -86,6 +86,16 @@ are also available for compatible projects. No third-party skill is
 automatically downloaded, installed, granted credentials or dispatched. Read
 [`AGENT_SKILLS.md`](AGENT_SKILLS.md) for the adoption and security gates.
 
+## Verified pinned Skill Issue source links
+
+Skill Issue and its curated agent-skill source references are documented in
+[`AGENT_SKILLS.md`](AGENT_SKILLS.md). A daily read-only
+[source metadata audit](.github/workflows/audit-agent-skill-sources.yml)
+rechecks exact revision-pinned `SKILL.md` files, reports missing links,
+and preserves failed-scan evidence. It never imports or executes the remote
+instructions. A valid link is not proof that a skill is safe or licensed for
+unattended use.
+
 ## Automatic GitHub Stars synchronization
 
 A free, hourly GitHub Actions workflow checks **dbrckk**'s publicly accessible starred
