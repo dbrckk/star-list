@@ -1,33 +1,8 @@
 {
-  "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": true,
-  "learning_result": {
-    "example_count": 64,
-    "rejected_count": 0,
-    "terms": [
-      "137",
-      "add",
-      "agent",
-      "android",
-      "compose",
-      "feat",
-      "pinned",
-      "play",
-      "references",
-      "roblox",
-      "skills"
-    ],
-    "test_count": 0,
-    "useful_count": 3
-  },
-  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
-  "rejected": [],
   "schema_version": 1,
-  "task": "feat(skills): add pinned Android Play, Compose and Roblox agent references (#137)",
-  "tests_selected": [],
-  "useful": [
-    "scripts/agent_skill_discovery.py",
-    "scripts/portfolio_daily.py",
-    "scripts/test_recommend.py"
-  ]
+  "generated_by": "dbrckk/repo-brain-auto-learning-v1",
+  "learned": false,
+  "reason": "missing-task-or-source-change",
+  "task": "feat(websites): add Game Art Style atlas to game visual research (#139)",
+  "useful": []
 }

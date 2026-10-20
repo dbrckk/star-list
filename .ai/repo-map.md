@@ -1826,6 +1826,10 @@ jobs:
           python scripts/validate_json_contract.py schemas/websites.schema.json websites.json
       - name: Validate normalized website URLs and identities
         run: python scripts/validate_websites.py
+      - name: Verify game art atlas appears in website recommendations
+        run: |
+          python scripts/recommend.py "game art style pixel voxel 3d" --websites --top-websites 12 --json > /tmp/game-art-websites.json
+          python -c 'import json; d=json.load(open("/tmp/game-art-websites.json")); assert any(s["id"] == "game-art-style" and s["integrationEligible"] is False and s["reuse"] == "reference-only" for s in d["websiteRecommendations"])'
       - name: Validate and exercise curated Skill Issue discovery
         run: |
           python scripts/agent_skill_discovery.py
@@ -49503,6 +49507,761 @@ Repository-specific rules:
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "bobeff/open-source-games",
+      "githubRepositoryId": 406930975,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "awesome-list",
+        "games",
+        "open-source"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 16161,
+        "forks": 1400,
+        "openIssues": 38,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "CC0-1.0",
+        "pushedAt": "2026-02-25T20:22:58Z"
+      },
+      "bestFor": [
+        "A list of open source games."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "myshell-ai/OpenVoice",
+      "githubRepositoryId": 725089041,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "text-to-speech",
+        "tts",
+        "voice-clone",
+        "zero-shot-tts"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 37976,
+        "forks": 4278,
+        "openIssues": 314,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2025-04-19T16:00:00Z"
+      },
+      "bestFor": [
+        "Instant voice cloning by MIT and MyShell. Audio foundation model."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "RegeneratusLabs/physical-hermes",
+      "githubRepositoryId": 1424195755,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 23,
+        "forks": 2,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-18T09:31:16Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "wheresryan22/anatomy",
+      "githubRepositoryId": 1410124849,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Graphisme / 3D",
+      "domain": "graphics",
+      "capabilities": [
+        "agent-skill",
+        "open-source",
+        "svg",
+        "vizualization"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 15967,
+        "forks": 1230,
+        "openIssues": 50,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-18T20:20:24Z"
+      },
+      "bestFor": [
+        "An agent skill for creating detailed, interactive isometric illustrations of real-world machines and complex systems. Generates polished SVGs with optional WebGL shaders and 3D effects."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Xittered/xitter",
+      "githubRepositoryId": 1418075921,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 41,
+        "forks": 7,
+        "openIssues": 2,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-18T22:02:06Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "yetone/magpie",
+      "githubRepositoryId": 1383809012,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "claude-code",
+        "codex",
+        "deepseek",
+        "gemini-cli",
+        "llm",
+        "macos"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 15909,
+        "forks": 1147,
+        "openIssues": 1109,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-18T20:50:46Z"
+      },
+      "bestFor": [
+        "Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ali-vilab/MangaNinjia",
+      "githubRepositoryId": 907251846,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 748,
+        "forks": 61,
+        "openIssues": 19,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2025-03-02T07:20:37Z"
+      },
+      "bestFor": [
+        "[CVPR 2025 Highlight] Official implementation of \"MangaNinja: Line Art Colorization with Precise Reference Following\""
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "AskAillex/comic-maker",
+      "githubRepositoryId": 1303321172,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6,
+        "forks": 0,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-07-21T01:12:57Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "CallmeTruong/Comic_Studio",
+      "githubRepositoryId": 1356110174,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Génération de médias / IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "ai-agents",
+        "ai-agents-automation",
+        "comic-generator",
+        "stable-diffusion"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 8,
+        "forks": 3,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-09-14T05:34:33Z"
+      },
+      "bestFor": [
+        "An autonomous AI agent acting as a complete virtual comic studio. Powered by LangGraph and local Stable Diffusion 1.5 to generate short comic books from a single idea."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Dapeng960208/AI-Comic-Generator",
+      "githubRepositoryId": 1136167732,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 21,
+        "forks": 4,
+        "openIssues": 1,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-01-28T13:08:44Z"
+      },
+      "bestFor": [
+        "An open-source AI-powered manga creation tool that transforms text stories into fully illustrated comics using Google Gemini models. Features include automatic storyboard generation, character consist"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Flow-Tube/Flow",
+      "githubRepositoryId": 1079329832,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [
+        "android",
+        "flow",
+        "innertube",
+        "kotlin",
+        "music-player",
+        "newpipe-extractor",
+        "open-source",
+        "video-player",
+        "youtube",
+        "youtube-client"
+      ],
+      "languages": [
+        "kotlin"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2812,
+        "forks": 146,
+        "openIssues": 51,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-10-19T14:22:41Z"
+      },
+      "bestFor": [
+        "A modern, feature-rich YouTube and YouTube Music client with local recommendation for Android built with Jetpack Compose"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "HVision-NKU/StoryDiffusion",
+      "githubRepositoryId": 789712717,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "jupyter notebook"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6482,
+        "forks": 651,
+        "openIssues": 119,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2024-09-26T02:17:52Z"
+      },
+      "bestFor": [
+        "Accepted as [NeurIPS 2024] Spotlight Presentation Paper"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "nicocha30/ligolo-ng",
+      "githubRepositoryId": 390351016,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "golang",
+        "offensive-security",
+        "pentest-tool",
+        "pentesting",
+        "pivoting",
+        "post-exploitation",
+        "redteam",
+        "security",
+        "tunneling"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5097,
+        "forks": 493,
+        "openIssues": 18,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-09-26T08:02:50Z"
+      },
+      "bestFor": [
+        "An advanced, yet simple, tunneling/pivoting tool that uses a TUN interface."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "nv-tlabs/lyra",
+      "githubRepositoryId": 1053508243,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "3d",
+        "diffusion",
+        "gaussians",
+        "video",
+        "world-model"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2734,
+        "forks": 279,
+        "openIssues": 28,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-07-20T17:07:42Z"
+      },
+      "bestFor": [
+        "Project Lyra: Open Generative 3D World Models"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Unity-Technologies/unity-agent-plugin",
+      "githubRepositoryId": 1325377922,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 488,
+        "forks": 49,
+        "openIssues": 4,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-19T15:29:42Z"
+      },
+      "bestFor": [
+        "Unity plugin for third-party agent platforms"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Kruk2/jasna",
+      "githubRepositoryId": 1137066830,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2850,
+        "forks": 212,
+        "openIssues": 63,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-18T11:43:28Z"
+      },
+      "bestFor": [
+        "Video restoration tool"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "MadsLorentzen/ai-job-search",
+      "githubRepositoryId": 1185389803,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "ai",
+        "ai-agents",
+        "career",
+        "claude-code",
+        "cover-letter",
+        "cv",
+        "interview-preparation",
+        "job-application",
+        "job-hunting",
+        "job-search",
+        "latex",
+        "resume"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 56836,
+        "forks": 18095,
+        "openIssues": 25,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-19T19:46:48Z"
+      },
+      "bestFor": [
+        "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep interviews. Fork it and own it."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "genex-games/genex-desktop",
+      "githubRepositoryId": 1402121018,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 668,
+        "forks": 84,
+        "openIssues": 41,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "dev",
+        "license": "MIT",
+        "pushedAt": "2026-10-20T00:16:41Z"
+      },
+      "bestFor": [
+        "Desktop app for game dev with AI. macOS, Windows and Linux."
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "rmyndharis/OpenWA",
+      "githubRepositoryId": 1147961398,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Productivité",
+      "domain": "productivity",
+      "capabilities": [
+        "api",
+        "bot",
+        "gateway",
+        "self-hosted",
+        "whatsapp",
+        "whatsapp-api",
+        "whatsapp-automation",
+        "whatsapp-bot",
+        "whatsapp-gateway",
+        "whatsapp-gateway-api",
+        "whatsapp-web",
+        "whatsapp-web-api"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 15691,
+        "forks": 3671,
+        "openIssues": 23,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-19T09:32:38Z"
+      },
+      "bestFor": [
+        "Free, Open Source, Self-Hosted WhatsApp API Gateway"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
@@ -52106,6 +52865,45 @@ General-purpose GitHub discovery remains advisory and never inserts external can
       ],
       "reuse": "reference-only",
       "caution": "A directory listing is not proof that any linked SKILL.md, installer, prompt, source or license is safe. Review original repository, pinned revision, permissions, instructions and compatibility before using; never auto-run remote install commands."
+    },
+    {
+      "id": "game-art-style",
+      "name": "Game Art Style",
+      "url": "https://gameartstyle.loopyhop.com/",
+      "type": "inspiration-gallery",
+      "access": "free",
+      "domains": [
+        "game_dev",
+        "graphics",
+        "mobile"
+      ],
+      "tags": [
+        "game",
+        "art",
+        "style",
+        "visual",
+        "design",
+        "art-direction",
+        "pixel",
+        "retro",
+        "2d",
+        "3d",
+        "low-poly",
+        "voxel",
+        "painting",
+        "cel-shading",
+        "characters",
+        "environments",
+        "ui",
+        "vfx"
+      ],
+      "bestFor": [
+        "Comparing original game visual styles across pixel art, illustration and 3D",
+        "Defining consistent art direction for characters, environments, UI, effects and animation",
+        "Finding real-game visual references and art-direction prompt examples"
+      ],
+      "reuse": "reference-only",
+      "caution": "Screenshots and reference images belong to their respective owners; this gallery does not license artwork for copying or redistribution. Use it to guide original art direction, and check rights before reusing any media."
     }
   ]
 }
