@@ -42,6 +42,22 @@ jobs:
         run: |
           python scripts/recommend.py "game art style pixel voxel 3d" --websites --top-websites 12 --json > /tmp/game-art-websites.json
           python -c 'import json; d=json.load(open("/tmp/game-art-websites.json")); assert any(s["id"] == "game-art-style" and s["integrationEligible"] is False and s["reuse"] == "reference-only" for s in d["websiteRecommendations"])'
+      - name: Validate pinned agent-skill source audit offline
+        run: |
+          python scripts/audit_agent_skill_sources.py \
+            --json-output /tmp/skill-source-offline.json \
+            --markdown-output /tmp/skill-source-offline.md
+          python scripts/validate_json_contract.py \
+            schemas/agent-skill-source-audit.schema.json /tmp/skill-source-offline.json
+          python - <<'PY'
+          import json
+          report = json.load(open('/tmp/skill-source-offline.json', encoding='utf-8'))
+          assert report['total'] >= 20
+          assert report['coverageComplete'] is False
+          assert report['counts']['unchecked'] == report['total']
+          assert report['sourceContentReviewed'] is False
+          assert report['automaticInstallation'] is False
+          PY
       - name: Validate and exercise curated Skill Issue discovery
         run: |
           python scripts/agent_skill_discovery.py
