@@ -25,6 +25,19 @@ jobs:
         run: python -m compileall -q scripts
       - name: Test star import pipeline
         run: python scripts/test_star_import_pipeline.py
+      - name: Validate permanent GitHub ID inventory without network
+        run: |
+          python scripts/backfill_github_ids.py --report-json /tmp/github-id-inventory.json
+          python scripts/validate_json_contract.py \
+            schemas/github-id-backfill-report.schema.json /tmp/github-id-inventory.json
+          python - <<'PY'
+          import json
+          row = json.load(open('/tmp/github-id-inventory.json', encoding='utf-8'))
+          assert row['mode'] == 'offline' and row['checked'] == 0
+          assert row['assigned'] == 0 and row['complete'] is False
+          assert row['catalogSize'] == row['previouslyVerified'] + row['missingBefore']
+          assert row['missingBefore'] == row['missingAfter']
+          PY
       - name: Test public GitHub Stars synchronization
         run: python scripts/test_sync_github_stars.py
       - name: Test reviewed Stars admission and repository transfers
