@@ -83,7 +83,10 @@ python scripts/recommend.py "3d character rigging mocap blender" --websites --js
 ```
 
 The daily portfolio scanner suggests PINOC only when game, graphics or
-media metadata supplies concrete 3D/motion/rigging evidence. It retains
+media metadata supplies concrete 3D/motion/rigging evidence or an explicit
+3D engine identifier such as Roblox, Unity or Unreal. This is an **advisory
+research hint**; matching the engine name alone does not prove that a motion
+clip can be retargeted to its rig or imported without conversions. It retains
 Game Art Style as the main art-direction reference in game projects.
 Neither site is an autonomous Production-OS integration candidate.
 
