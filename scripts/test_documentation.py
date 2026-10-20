@@ -85,6 +85,15 @@ assert "main moved repeatedly" in audit_yaml
 assert "refusing stale issue publication" in audit_yaml
 assert "        if: always()" in audit_yaml
 assert "GITHUB_TOKEN" in stars_docs and "reusable workflow" in stars_docs
+identity_yaml = (ROOT / ".github/workflows/backfill-github-ids.yml").read_text()
+identity_code = (ROOT / "scripts/backfill_github_ids.py").read_text()
+assert "python scripts/backfill_github_ids.py --write" in identity_yaml
+assert "schemas/github-id-backfill-report.schema.json" in identity_yaml
+assert "needs.backfill.outputs.catalog_changed == 'true'" in identity_yaml
+assert "uses: ./.github/workflows/catalog-quality-on-change.yml" in identity_yaml
+assert "git rebase origin/main" in identity_yaml and "git push origin HEAD:main" in identity_yaml
+assert "from sync_github_stars import SAFE_GITHUB_HTTP" in identity_code
+assert "not isinstance(actual, str) or actual.casefold() != repo.casefold()" in identity_code
 skills_workflow = (ROOT / ".github/workflows/audit-agent-skill-sources.yml").read_text()
 skills_validator = (ROOT / "scripts/audit_agent_skill_sources.py").read_text()
 assert "python scripts/audit_agent_skill_sources.py --online" in skills_workflow
