@@ -5,239 +5,56 @@
   "semantic": false,
   "note": "Occurrences are lexical word matches; verify source/LSP/compiler data before relying on them.",
   "symbols": {
-    "RejectRedirect": {
+    "github_metadata": {
       "definition": {
-        "file": "scripts/audit_agent_skill_sources.py",
+        "file": "scripts/backfill_github_ids.py",
         "line": 29,
-        "kind": "class",
+        "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/audit_agent_skill_sources.py",
+          "file": "scripts/backfill_github_ids.py",
           "line": 29,
-          "preview": "class RejectRedirect(HTTPRedirectHandler):",
+          "preview": "def github_metadata(repo: str, token: str) -> dict | None:",
           "definition_candidate": true
         },
         {
-          "file": "scripts/audit_agent_skill_sources.py",
-          "line": 36,
-          "preview": "HTTP = build_opener(RejectRedirect())",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_documentation.py",
-          "line": 94,
-          "preview": "assert \"class RejectRedirect(HTTPRedirectHandler)\" in skills_validator",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 3
-    },
-    "redirect_request": {
-      "definition": {
-        "file": "scripts/audit_agent_skill_sources.py",
-        "line": 32,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/audit_agent_skill_sources.py",
-          "line": 32,
-          "preview": "def redirect_request(self, req, fp, code, msg, headers, newurl):",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 159,
-          "preview": "def redirect_request(self, req, fp, code, msg, headers, newurl):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 167,
-          "preview": "return super().redirect_request(req, fp, code, msg, headers, newurl)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 31,
-          "preview": "def redirect_request(self, req, fp, code, msg, headers, newurl):",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/sync_github_stars.py",
-          "line": 40,
-          "preview": "return super().redirect_request(req, fp, code, msg, headers, newurl)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 82,
-          "preview": "redirect.redirect_request(auth, None, 302, \"Found\", {}, unsafe)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_sync_github_stars.py",
-          "line": 87,
-          "preview": "same_origin = redirect.redirect_request(",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 7
-    },
-    "inspect_source": {
-      "definition": {
-        "file": "scripts/audit_agent_skill_sources.py",
-        "line": 39,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/audit_agent_skill_sources.py",
-          "line": 39,
-          "preview": "def inspect_source(row: dict, token: str) -> tuple[str, str]:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/audit_agent_skill_sources.py",
-          "line": 91,
-          "preview": "status, reason = inspect_source(row, token) if online else (\"unchecked\", \"offline-validation-only\")",
+          "file": "scripts/backfill_github_ids.py",
+          "line": 102,
+          "preview": "response = github_metadata(repo, token)",
           "definition_candidate": false
         }
       ],
       "occurrence_count": 2
     },
-    "make_report": {
+    "reconcile": {
       "definition": {
-        "file": "scripts/audit_agent_skill_sources.py",
-        "line": 87,
+        "file": "scripts/backfill_github_ids.py",
+        "line": 64,
         "kind": "function",
         "language": "python"
       },
       "occurrences": [
         {
-          "file": "scripts/audit_agent_skill_sources.py",
-          "line": 87,
-          "preview": "def make_report(*, online: bool, token: str) -> dict:",
+          "file": "scripts/backfill_github_ids.py",
+          "line": 64,
+          "preview": "def reconcile(data: dict, token: str | None = None, *, max_requests: int = 250) -> tuple[dict, dict]:",
           "definition_candidate": true
         },
         {
-          "file": "scripts/audit_agent_skill_sources.py",
-          "line": 155,
-          "preview": "report = make_report(online=args.online, token=os.environ.get(\"GITHUB_TOKEN\", \"\"))",
+          "file": "scripts/backfill_github_ids.py",
+          "line": 143,
+          "preview": "data, report = reconcile(data, token, max_requests=args.max_requests)",
           "definition_candidate": false
         }
       ],
       "occurrence_count": 2
-    },
-    "markdown": {
-      "definition": {
-        "file": "scripts/audit_agent_skill_sources.py",
-        "line": 118,
-        "kind": "function",
-        "language": "python"
-      },
-      "occurrences": [
-        {
-          "file": "scripts/analyze_cache_health.py",
-          "line": 78,
-          "preview": "ap.add_argument(\"--markdown-output\",type=Path)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/audit_agent_skill_sources.py",
-          "line": 118,
-          "preview": "def markdown(report: dict) -> str:",
-          "definition_candidate": true
-        },
-        {
-          "file": "scripts/audit_agent_skill_sources.py",
-          "line": 153,
-          "preview": "parser.add_argument(\"--markdown-output\", type=Path, default=None)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/audit_agent_skill_sources.py",
-          "line": 162,
-          "preview": "args.markdown_output.write_text(markdown(report), encoding=\"utf-8\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/audit_catalog_quality.py",
-          "line": 222,
-          "preview": "parser.add_argument(\"--markdown-output\", type=Path)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 857,
-          "preview": "ap.add_argument(\"--markdown\", type=Path, default=Path(\"portfolio-daily.md\"))",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/portfolio_daily.py",
-          "line": 1146,
-          "preview": "args.markdown.write_text(render_markdown(report), encoding=\"utf-8\")",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_catalog_quality.py",
-          "line": 116,
-          "preview": "markdown = mod.render_markdown(report)",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_catalog_quality.py",
-          "line": 117,
-          "preview": "assert \"<!-- star-list-catalog-quality -->\" in markdown",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_catalog_quality.py",
-          "line": 118,
-          "preview": "assert \"x/stable\" in markdown",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_catalog_quality.py",
-          "line": 119,
-          "preview": "assert \"x/legacy-archive\" in markdown",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_catalog_quality.py",
-          "line": 120,
-          "preview": "assert \"Review required\" in markdown",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_catalog_quality.py",
-          "line": 121,
-          "preview": "assert \"Verified permanent GitHub IDs: **1/11**\" in markdown",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/test_catalog_quality.py",
-          "line": 122,
-          "preview": "assert \"Name-only or unverified entries: **10**\" in markdown",
-          "definition_candidate": false
-        },
-        {
-          "file": "scripts/update_cache_health_history.py",
-          "line": 268,
-          "preview": "ap.add_argument(\"--markdown-output\",type=Path)",
-          "definition_candidate": false
-        }
-      ],
-      "occurrence_count": 15
     },
     "main": {
       "definition": {
-        "file": "scripts/audit_agent_skill_sources.py",
-        "line": 149,
+        "file": "scripts/backfill_github_ids.py",
+        "line": 130,
         "kind": "function",
         "language": "python"
       },
@@ -294,7 +111,7 @@
           "file": "scripts/audit_agent_skill_sources.py",
           "line": 149,
           "preview": "def main() -> int:",
-          "definition_candidate": true
+          "definition_candidate": false
         },
         {
           "file": "scripts/audit_agent_skill_sources.py",
@@ -312,6 +129,18 @@
           "file": "scripts/audit_catalog_quality.py",
           "line": 238,
           "preview": "main()",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/backfill_github_ids.py",
+          "line": 130,
+          "preview": "def main() -> int:",
+          "definition_candidate": true
+        },
+        {
+          "file": "scripts/backfill_github_ids.py",
+          "line": 166,
+          "preview": "raise SystemExit(main())",
           "definition_candidate": false
         },
         {
@@ -574,13 +403,19 @@
         },
         {
           "file": "scripts/test_documentation.py",
-          "line": 100,
+          "line": 94,
+          "preview": "assert \"git rebase origin/main\" in identity_yaml and \"git push origin HEAD:main\" in identity_yaml",
+          "definition_candidate": false
+        },
+        {
+          "file": "scripts/test_documentation.py",
+          "line": 109,
           "preview": "assert \"git rebase origin/main\" in maintenance_yaml",
           "definition_candidate": false
         },
         {
           "file": "scripts/test_documentation.py",
-          "line": 101,
+          "line": 110,
           "preview": "assert \"git push origin HEAD:main\" in maintenance_yaml",
           "definition_candidate": false
         },
@@ -705,7 +540,7 @@
           "definition_candidate": false
         }
       ],
-      "occurrence_count": 77
+      "occurrence_count": 80
     }
   }
 }

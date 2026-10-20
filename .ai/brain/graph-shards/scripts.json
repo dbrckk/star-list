@@ -22,6 +22,11 @@
       "type": "imports"
     },
     {
+      "source": "scripts/backfill_github_ids.py",
+      "target": "scripts/sync_github_stars.py",
+      "type": "imports"
+    },
+    {
       "source": "scripts/backfill_licenses.py",
       "target": "scripts/refresh_github_metadata.py",
       "type": "imports"

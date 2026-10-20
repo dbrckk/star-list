@@ -44,6 +44,7 @@ analyze_cache_health.py
 analyze_coverage.py
 audit_agent_skill_sources.py
 audit_catalog_quality.py
+backfill_github_ids.py
 backfill_licenses.py
 build_discovery_watchlist.py
 catalog_stats.py
@@ -514,6 +515,72 @@ args = parser.parse_args()
 ⋮----
 repos = json.loads(CATALOG.read_text()).get("repositories", [])
 report = analyze(repos, stale_days=args.stale_days)
+```
+
+## File: backfill_github_ids.py
+```python
+#!/usr/bin/env python3
+"""Reconcile missing permanent GitHub repository IDs, without changing curation.
+
+Read-only by default. --write needs an authenticated GitHub token, validates
+current canonical names and existing IDs, and writes catalog.json atomically.
+404/renamed repositories remain unresolved; an API outage blocks all writes.
+"""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+CATALOG = ROOT / "catalog.json"
+NAME = re.compile(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+\Z")
+⋮----
+def github_metadata(repo: str, token: str) -> dict | None
+⋮----
+"""One bounded GitHub metadata lookup for an already curated repository."""
+⋮----
+url = "https://api.github.com/repos/" + quote(owner, safe="") + "/" + quote(name, safe="")
+headers = {
+⋮----
+raw = res.read(150_001)
+⋮----
+value = json.loads(raw.decode("utf-8"))
+⋮----
+def reconcile(data: dict, token: str | None = None, *, max_requests: int = 250) -> tuple[dict, dict]
+⋮----
+rows = data.get("repositories")
+⋮----
+owner_by_id = {}
+names = set()
+missing = []
+⋮----
+canonical = row["repo"].casefold()
+⋮----
+rid = row.get("githubRepositoryId")
+⋮----
+report = {
+⋮----
+repo = row["repo"]
+⋮----
+response = github_metadata(repo, token)
+⋮----
+actual = response.get("full_name")
+stable_id = response.get("id")
+⋮----
+previous = owner_by_id.get(stable_id)
+⋮----
+def main() -> int
+⋮----
+ap = argparse.ArgumentParser(description=__doc__)
+⋮----
+args = ap.parse_args()
+⋮----
+token = (os.environ.get("GITHUB_TOKEN") or "").strip() if args.write else None
+⋮----
+data = json.loads(CATALOG.read_text(encoding="utf-8"))
+⋮----
+output = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
+⋮----
+# Do not publish a partially serialized catalog; preserve all other
+# repository fields, order, selection policy and metadata unchanged.
+⋮----
+temporary = Path(tmp.name)
 ```
 
 ## File: backfill_licenses.py
@@ -2709,6 +2776,9 @@ mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 sync_yaml = (ROOT / ".github/workflows/sync-github-stars.yml").read_text()
 audit_yaml = (ROOT / ".github/workflows/catalog-quality-on-change.yml").read_text()
 stars_docs = (ROOT / "docs/GITHUB_STARS_SYNC.md").read_text()
+⋮----
+identity_yaml = (ROOT / ".github/workflows/backfill-github-ids.yml").read_text()
+identity_code = (ROOT / "scripts/backfill_github_ids.py").read_text()
 ⋮----
 skills_workflow = (ROOT / ".github/workflows/audit-agent-skill-sources.yml").read_text()
 skills_validator = (ROOT / "scripts/audit_agent_skill_sources.py").read_text()

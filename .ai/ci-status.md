@@ -2,13 +2,13 @@
 
 Summary: 2 success / 0 failure / 2 active
 
-- Audit pinned Skill Issue sources: in_progress / pending (395c0a70)
-- Validate catalog: in_progress / pending (395c0a70)
-- Validate catalog: completed / success (7c3c3aa8)
-- Validate catalog: completed / success (7c3c3aa8)
-- Validate catalog: completed / cancelled (f7ca2491)
-- Validate catalog: completed / cancelled (3844072d)
-- Validate catalog: completed / cancelled (cfd4df8e)
-- Validate catalog: completed / cancelled (937d571f)
+- Validate catalog: in_progress / pending (5a86e5d3)
+- Backfill permanent GitHub repository IDs: in_progress / pending (5a86e5d3)
+- Validate catalog: completed / success (218e710b)
+- Validate catalog: completed / success (218e710b)
+- Validate catalog: completed / cancelled (0aa06f2f)
+- Validate catalog: completed / cancelled (2a041ff9)
+- Validate catalog: completed / cancelled (39de0d77)
+- Validate catalog: completed / cancelled (a280a60d)
 
 > Generated summary only; inspect GitHub Actions for full logs when needed.

@@ -2,11 +2,18 @@
   "area": "schemas",
   "files": [
     {
-      "path": "schemas/agent-skill-source-audit.schema.json",
+      "path": "schemas/github-id-backfill-report.schema.json",
       "reasons": [
         "changed"
       ],
       "score": 100
+    },
+    {
+      "path": "schemas/agent-skill-source-audit.schema.json",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     },
     {
       "path": "schemas/websites.schema.json",

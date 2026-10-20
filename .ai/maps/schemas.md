@@ -50,6 +50,7 @@ discovery-candidates.schema.json
 discovery-evaluated.schema.json
 discovery-memory.schema.json
 discovery-watchlist.schema.json
+github-id-backfill-report.schema.json
 health-drift.schema.json
 health-snapshot.schema.json
 health-trends.schema.json
@@ -433,6 +434,91 @@ websites.schema.json
 ## File: discovery-watchlist.schema.json
 ```json
 {"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Discovery Watchlist","type":"object","required":["items","watchlist"],"properties":{"items":{"type":"integer","minimum":0},"watchlist":{"type":"array","items":{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Discovery Watch Item","type":"object","required":["kind","target","priority","query","reason"],"properties":{"kind":{"enum":["domain","capability","quality"]},"target":{"type":"string","minLength":1},"priority":{"type":"number","minimum":0},"query":{"type":"string","minLength":1},"reason":{"type":"string","minLength":1}},"additionalProperties":false}}},"additionalProperties":false}
+```
+
+## File: github-id-backfill-report.schema.json
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Permanent GitHub Repository ID Backfill Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mode",
+    "catalogSize",
+    "previouslyVerified",
+    "missingBefore",
+    "checked",
+    "assigned",
+    "missingAfter",
+    "complete",
+    "unresolved"
+  ],
+  "properties": {
+    "mode": {
+      "enum": [
+        "online",
+        "offline"
+      ]
+    },
+    "catalogSize": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "previouslyVerified": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "missingBefore": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "checked": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "assigned": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "missingAfter": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "complete": {
+      "type": "boolean"
+    },
+    "unresolved": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "repo",
+          "reason"
+        ],
+        "properties": {
+          "repo": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+          },
+          "reason": {
+            "enum": [
+              "not-found",
+              "renamed-or-transferred",
+              "invalid-or-private",
+              "identity-conflict"
+            ]
+          }
+        }
+      }
+    },
+    "error": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
 ```
 
 ## File: health-drift.schema.json

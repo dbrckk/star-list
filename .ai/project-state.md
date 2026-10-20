@@ -105,23 +105,27 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-20T16:46:52Z
+Generated: 2026-10-20T16:56:08Z
 
 ### Git
 - Branch: `main`
-- Head: `395c0a70c568`
-- Commit date: 2026-10-20T12:46:41-04:00
-- Commit: feat(skills): audit every pinned Skill Issue SKILL.md source daily (#144)
-- Tracked files: 294
+- Head: `5a86e5d32986`
+- Commit date: 2026-10-20T12:55:58-04:00
+- Commit: feat(stars): reconcile missing immutable GitHub repo IDs without touching curation (#145)
+- Tracked files: 297
 
 ### Recently changed files
-- `.github/workflows/audit-agent-skill-sources.yml`
+- `.github/workflows/backfill-github-ids.yml`
 - `.github/workflows/validate.yml`
+- `docs/GITHUB_STARS_SYNC.md`
+- `schemas/github-id-backfill-report.schema.json`
+- `scripts/backfill_github_ids.py`
+- `scripts/test_documentation.py`
+- `.github/workflows/audit-agent-skill-sources.yml`
 - `AGENT_SKILLS.md`
 - `README.md`
 - `schemas/agent-skill-source-audit.schema.json`
 - `scripts/audit_agent_skill_sources.py`
-- `scripts/test_documentation.py`
 - `scripts/portfolio_daily.py`
 - `scripts/test_recommend.py`
 - `websites.json`
@@ -129,7 +133,6 @@ Generated: 2026-10-20T16:46:52Z
 - `schemas/websites.schema.json`
 - `scripts/recommend.py`
 - `scripts/validate_websites.py`
-- `.github/workflows/portfolio-scan-smoke.yml`
 
 ### Project signals
 - No common build descriptor detected

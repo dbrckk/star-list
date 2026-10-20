@@ -58,6 +58,21 @@
       "json",
       "pathlib"
     ],
+    "scripts/backfill_github_ids.py": [
+      "__future__",
+      "argparse",
+      "json",
+      "os",
+      "pathlib",
+      "re",
+      "sync_github_stars",
+      "sys",
+      "tempfile",
+      "time",
+      "urllib.error",
+      "urllib.parse",
+      "urllib.request"
+    ],
     "scripts/backfill_licenses.py": [
       "argparse",
       "json",

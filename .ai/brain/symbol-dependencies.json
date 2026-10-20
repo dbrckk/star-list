@@ -5,19 +5,28 @@
   "semantic": false,
   "note": "Dependencies are known symbol names lexically present inside the symbol's AST/source range.",
   "symbols": {
-    "RejectRedirect": {
+    "github_metadata": {
       "source": {
-        "file": "scripts/audit_agent_skill_sources.py",
+        "file": "scripts/backfill_github_ids.py",
         "start": 29,
-        "end": 33
+        "end": 61
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "reconcile": {
+      "source": {
+        "file": "scripts/backfill_github_ids.py",
+        "start": 64,
+        "end": 127
       },
       "symbol_dependencies": [
         {
-          "symbol": "redirect_request",
+          "symbol": "github_metadata",
           "definitions": [
             {
-              "file": "scripts/audit_agent_skill_sources.py",
-              "line": 32,
+              "file": "scripts/backfill_github_ids.py",
+              "line": 29,
               "kind": "function",
               "language": "python"
             }
@@ -27,92 +36,19 @@
       ],
       "dependency_count": 1
     },
-    "redirect_request": {
-      "source": {
-        "file": "scripts/audit_agent_skill_sources.py",
-        "start": 32,
-        "end": 33
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "inspect_source": {
-      "source": {
-        "file": "scripts/audit_agent_skill_sources.py",
-        "start": 39,
-        "end": 84
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
-    "make_report": {
-      "source": {
-        "file": "scripts/audit_agent_skill_sources.py",
-        "start": 87,
-        "end": 115
-      },
-      "symbol_dependencies": [
-        {
-          "symbol": "inspect_source",
-          "definitions": [
-            {
-              "file": "scripts/audit_agent_skill_sources.py",
-              "line": 39,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "load_skills",
-          "definitions": [
-            {
-              "file": "scripts/agent_skill_discovery.py",
-              "line": 29,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "imported_module"
-        }
-      ],
-      "dependency_count": 2
-    },
-    "markdown": {
-      "source": {
-        "file": "scripts/audit_agent_skill_sources.py",
-        "start": 118,
-        "end": 146
-      },
-      "symbol_dependencies": [],
-      "dependency_count": 0
-    },
     "main": {
       "source": {
-        "file": "scripts/audit_agent_skill_sources.py",
-        "start": 149,
-        "end": 166
+        "file": "scripts/backfill_github_ids.py",
+        "start": 130,
+        "end": 162
       },
       "symbol_dependencies": [
         {
-          "symbol": "make_report",
+          "symbol": "reconcile",
           "definitions": [
             {
-              "file": "scripts/audit_agent_skill_sources.py",
-              "line": 87,
-              "kind": "function",
-              "language": "python"
-            }
-          ],
-          "relation": "same_file"
-        },
-        {
-          "symbol": "markdown",
-          "definitions": [
-            {
-              "file": "scripts/audit_agent_skill_sources.py",
-              "line": 118,
+              "file": "scripts/backfill_github_ids.py",
+              "line": 64,
               "kind": "function",
               "language": "python"
             }
@@ -120,7 +56,7 @@
           "relation": "same_file"
         }
       ],
-      "dependency_count": 2
+      "dependency_count": 1
     }
   }
 }

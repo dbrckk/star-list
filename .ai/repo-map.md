@@ -42,6 +42,7 @@ The content is organized as follows:
   workflows/
     ai-repo-map.yml
     audit-agent-skill-sources.yml
+    backfill-github-ids.yml
     catalog-quality-on-change.yml
     daily-portfolio-integration.yml
     license-backfill.yml
@@ -66,6 +67,7 @@ schemas/
   discovery-evaluated.schema.json
   discovery-memory.schema.json
   discovery-watchlist.schema.json
+  github-id-backfill-report.schema.json
   health-drift.schema.json
   health-snapshot.schema.json
   health-trends.schema.json
@@ -80,6 +82,7 @@ scripts/
   analyze_coverage.py
   audit_agent_skill_sources.py
   audit_catalog_quality.py
+  backfill_github_ids.py
   backfill_licenses.py
   build_discovery_watchlist.py
   catalog_stats.py
@@ -255,6 +258,97 @@ jobs:
             gh issue create --title "Review broken pinned Skill Issue source links ($FINDINGS)" \
               --body-file agent-skill-source-audit.md
           fi
+````
+
+## File: .github/workflows/backfill-github-ids.yml
+````yaml
+name: Backfill permanent GitHub repository IDs
+
+on:
+  schedule:
+    - cron: '06 4 * * 2'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/backfill_github_ids.py'
+      - '.github/workflows/backfill-github-ids.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: star-list-github-identity-backfill
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      catalog_changed: ${{ steps.catalog_push.outputs.catalog_changed }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Resolve missing stable GitHub IDs with verified repository metadata
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/backfill_github_ids.py --write \
+            --max-requests 250 --report-json github-id-backfill-report.json
+          python scripts/validate_catalog.py
+          python scripts/validate_json_contract.py catalog.schema.json catalog.json
+          python scripts/validate_json_contract.py \
+            schemas/github-id-backfill-report.schema.json github-id-backfill-report.json
+      - name: Preserve reconciliation evidence on success or failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: permanent-github-id-backfill
+          path: github-id-backfill-report.json
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Publish only a validated non-force catalog update
+        id: catalog_push
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- catalog.json; then
+            echo "No permanent GitHub IDs to update"
+            echo "catalog_changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add catalog.json
+          git commit -m "chore: reconcile missing permanent GitHub repository IDs"
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            # A conflict is a visible failure, never a reason to overwrite
+            # concurrent Stars admissions or identity changes.
+            git rebase origin/main
+            python scripts/validate_catalog.py
+            python scripts/validate_json_contract.py catalog.schema.json catalog.json
+            if git push origin HEAD:main; then
+              echo "catalog_changed=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            sleep "$attempt"
+          done
+          echo "::error::Could not publish validated catalog after four attempts"
+          exit 1
+
+  audit-after-backfill:
+    needs: backfill
+    if: needs.backfill.outputs.catalog_changed == 'true'
+    permissions:
+      contents: read
+      issues: write
+    uses: ./.github/workflows/catalog-quality-on-change.yml
 ````
 
 ## File: .github/workflows/catalog-quality-on-change.yml
@@ -1918,6 +2012,19 @@ jobs:
         run: python -m compileall -q scripts
       - name: Test star import pipeline
         run: python scripts/test_star_import_pipeline.py
+      - name: Validate permanent GitHub ID inventory without network
+        run: |
+          python scripts/backfill_github_ids.py --report-json /tmp/github-id-inventory.json
+          python scripts/validate_json_contract.py \
+            schemas/github-id-backfill-report.schema.json /tmp/github-id-inventory.json
+          python - <<'PY'
+          import json
+          row = json.load(open('/tmp/github-id-inventory.json', encoding='utf-8'))
+          assert row['mode'] == 'offline' and row['checked'] == 0
+          assert row['assigned'] == 0 and row['complete'] is False
+          assert row['catalogSize'] == row['previouslyVerified'] + row['missingBefore']
+          assert row['missingBefore'] == row['missingAfter']
+          PY
       - name: Test public GitHub Stars synchronization
         run: python scripts/test_sync_github_stars.py
       - name: Test reviewed Stars admission and repository transfers
@@ -2442,6 +2549,91 @@ initial_prompt: |
 ## File: schemas/discovery-watchlist.schema.json
 ````json
 {"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Discovery Watchlist","type":"object","required":["items","watchlist"],"properties":{"items":{"type":"integer","minimum":0},"watchlist":{"type":"array","items":{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Discovery Watch Item","type":"object","required":["kind","target","priority","query","reason"],"properties":{"kind":{"enum":["domain","capability","quality"]},"target":{"type":"string","minLength":1},"priority":{"type":"number","minimum":0},"query":{"type":"string","minLength":1},"reason":{"type":"string","minLength":1}},"additionalProperties":false}}},"additionalProperties":false}
+````
+
+## File: schemas/github-id-backfill-report.schema.json
+````json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Permanent GitHub Repository ID Backfill Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mode",
+    "catalogSize",
+    "previouslyVerified",
+    "missingBefore",
+    "checked",
+    "assigned",
+    "missingAfter",
+    "complete",
+    "unresolved"
+  ],
+  "properties": {
+    "mode": {
+      "enum": [
+        "online",
+        "offline"
+      ]
+    },
+    "catalogSize": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "previouslyVerified": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "missingBefore": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "checked": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "assigned": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "missingAfter": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "complete": {
+      "type": "boolean"
+    },
+    "unresolved": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "repo",
+          "reason"
+        ],
+        "properties": {
+          "repo": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+          },
+          "reason": {
+            "enum": [
+              "not-found",
+              "renamed-or-transferred",
+              "invalid-or-private",
+              "identity-conflict"
+            ]
+          }
+        }
+      }
+    },
+    "error": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}
 ````
 
 ## File: schemas/health-drift.schema.json
@@ -3155,6 +3347,72 @@ args = parser.parse_args()
 ⋮----
 repos = json.loads(CATALOG.read_text()).get("repositories", [])
 report = analyze(repos, stale_days=args.stale_days)
+````
+
+## File: scripts/backfill_github_ids.py
+````python
+#!/usr/bin/env python3
+"""Reconcile missing permanent GitHub repository IDs, without changing curation.
+
+Read-only by default. --write needs an authenticated GitHub token, validates
+current canonical names and existing IDs, and writes catalog.json atomically.
+404/renamed repositories remain unresolved; an API outage blocks all writes.
+"""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+CATALOG = ROOT / "catalog.json"
+NAME = re.compile(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+\Z")
+⋮----
+def github_metadata(repo: str, token: str) -> dict | None
+⋮----
+"""One bounded GitHub metadata lookup for an already curated repository."""
+⋮----
+url = "https://api.github.com/repos/" + quote(owner, safe="") + "/" + quote(name, safe="")
+headers = {
+⋮----
+raw = res.read(150_001)
+⋮----
+value = json.loads(raw.decode("utf-8"))
+⋮----
+def reconcile(data: dict, token: str | None = None, *, max_requests: int = 250) -> tuple[dict, dict]
+⋮----
+rows = data.get("repositories")
+⋮----
+owner_by_id = {}
+names = set()
+missing = []
+⋮----
+canonical = row["repo"].casefold()
+⋮----
+rid = row.get("githubRepositoryId")
+⋮----
+report = {
+⋮----
+repo = row["repo"]
+⋮----
+response = github_metadata(repo, token)
+⋮----
+actual = response.get("full_name")
+stable_id = response.get("id")
+⋮----
+previous = owner_by_id.get(stable_id)
+⋮----
+def main() -> int
+⋮----
+ap = argparse.ArgumentParser(description=__doc__)
+⋮----
+args = ap.parse_args()
+⋮----
+token = (os.environ.get("GITHUB_TOKEN") or "").strip() if args.write else None
+⋮----
+data = json.loads(CATALOG.read_text(encoding="utf-8"))
+⋮----
+output = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
+⋮----
+# Do not publish a partially serialized catalog; preserve all other
+# repository fields, order, selection policy and metadata unchanged.
+⋮----
+temporary = Path(tmp.name)
 ````
 
 ## File: scripts/backfill_licenses.py
@@ -5350,6 +5608,9 @@ mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
 sync_yaml = (ROOT / ".github/workflows/sync-github-stars.yml").read_text()
 audit_yaml = (ROOT / ".github/workflows/catalog-quality-on-change.yml").read_text()
 stars_docs = (ROOT / "docs/GITHUB_STARS_SYNC.md").read_text()
+⋮----
+identity_yaml = (ROOT / ".github/workflows/backfill-github-ids.yml").read_text()
+identity_code = (ROOT / "scripts/backfill_github_ids.py").read_text()
 ⋮----
 skills_workflow = (ROOT / ".github/workflows/audit-agent-skill-sources.yml").read_text()
 skills_validator = (ROOT / "scripts/audit_agent_skill_sources.py").read_text()

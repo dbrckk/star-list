@@ -1,20 +1,19 @@
 # Change impact
 
-Base: 68ca68f6121e4bcce8a33af0293a4294e5658219
-Head: 395c0a70c5680dbf83fe0b846c0d6c8d80dfb7da
+Base: 0dac1d0cefcc734495b7af7fbe97b907570c5769
+Head: 5a86e5d329866c811c49674005bc3831b17e2482
 
 ## Changed files
-- A .github/workflows/audit-agent-skill-sources.yml
+- A .github/workflows/backfill-github-ids.yml
 - M .github/workflows/validate.yml
-- M AGENT_SKILLS.md
-- M README.md
-- A schemas/agent-skill-source-audit.schema.json
-- A scripts/audit_agent_skill_sources.py
+- M docs/GITHUB_STARS_SYNC.md
+- A schemas/github-id-backfill-report.schema.json
+- A scripts/backfill_github_ids.py
 - M scripts/test_documentation.py
 
 ## Affected areas
 - .github
-- (root)
+- docs
 - schemas
 - scripts
 

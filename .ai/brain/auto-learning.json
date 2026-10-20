@@ -5,17 +5,18 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "144",
-      "audit",
-      "daily",
-      "every",
+      "145",
+      "curation",
       "feat",
-      "issue",
-      "pinned",
-      "skill",
-      "skill.md",
-      "skills",
-      "source"
+      "github",
+      "ids",
+      "immutable",
+      "missing",
+      "reconcile",
+      "repo",
+      "stars",
+      "touching",
+      "without"
     ],
     "test_count": 0,
     "useful_count": 2
@@ -23,10 +24,10 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(skills): audit every pinned Skill Issue SKILL.md source daily (#144)",
+  "task": "feat(stars): reconcile missing immutable GitHub repo IDs without touching curation (#145)",
   "tests_selected": [],
   "useful": [
-    "scripts/audit_agent_skill_sources.py",
+    "scripts/backfill_github_ids.py",
     "scripts/test_documentation.py"
   ]
 }

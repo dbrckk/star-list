@@ -1,12 +1,12 @@
 {
   "files": {
-    ".github/workflows/audit-agent-skill-sources.yml": {
-      "sha256": "8b151595bfdb4515e17721637babadcd44cd1994af2ca713a71722e46a011ef2",
-      "size": 3153
+    ".github/workflows/backfill-github-ids.yml": {
+      "sha256": "dbee89f4cc7e8257b52ac439049739575b4509338942bd1f00636190d4db56a3",
+      "size": 3038
     },
     ".github/workflows/validate.yml": {
-      "sha256": "8c65cba514c2f9d34ee76a785013e8112f27ba65adb70d604b27eeea4e13ba84",
-      "size": 8646
+      "sha256": "ee7a6c7e50b344ac983a922039266a91102e4d23df10edd848ba85fdd1cfd67e",
+      "size": 9389
     },
     "AGENT_SKILLS.md": {
       "sha256": "1109e5df9849026ed39b6f9e9a610e62fb0384b98afc86a3575120d5f5b71e59",
@@ -20,21 +20,29 @@
       "sha256": "43fd96c14c53150a7c0ad434b6a8f84dad22cd8ce3d4802e6917f9e447f473c9",
       "size": 9084
     },
+    "docs/GITHUB_STARS_SYNC.md": {
+      "sha256": "3664f5ddd950f452b80780fa04a2fb4566ead0c20eec5dce7a28beb7efdd7fbd",
+      "size": 7980
+    },
     "schemas/agent-skill-source-audit.schema.json": {
       "sha256": "3bd67d5ce3fefe17f8984bc3f74ec27d96476b1405c5ced25e43b661a4de3337",
       "size": 2855
+    },
+    "schemas/github-id-backfill-report.schema.json": {
+      "sha256": "86d0060f53de018ddc6fc0b7f54df3d010124705b9c04b37dc87696129263dfc",
+      "size": 1588
     },
     "schemas/websites.schema.json": {
       "sha256": "56aeb978d57d72174ffa6e3409a8aa05995bf1a40d0dad77f3e9a96413f15e60",
       "size": 3175
     },
-    "scripts/agent_skill_discovery.py": {
-      "sha256": "4a866a62976e5e39f3500daa4de7deb49af8e95d46ccd60a3da56a12046225f2",
-      "size": 7932
-    },
     "scripts/audit_agent_skill_sources.py": {
       "sha256": "08741c472e41b46adaabe2cb9f1d2ccc148e9a29e2d526543bed43a18e0d647f",
       "size": 6970
+    },
+    "scripts/backfill_github_ids.py": {
+      "sha256": "118f26f77fc0566a03b4e7695e5e5c30c00a1630c071058cbcf136417f648d98",
+      "size": 7080
     },
     "scripts/portfolio_daily.py": {
       "sha256": "ae1d14b9fa9846a0237fa7b7ed8b118003c2516e8be213e7a9b67f21f320a2d0",
@@ -44,9 +52,13 @@
       "sha256": "5fb3863d49267f460ec629b1d737a0b4618c2d488b3aba642178048473350b16",
       "size": 20761
     },
+    "scripts/sync_github_stars.py": {
+      "sha256": "662a5c6213c75b0569445f208dc1ea17891102d3333ee7cf9963ed9a2b0fcdc7",
+      "size": 15162
+    },
     "scripts/test_documentation.py": {
-      "sha256": "410f495ec8b95d331261638f7b4a65c3217ba41eee1a1c077651fc8ef180f328",
-      "size": 6110
+      "sha256": "0dabaea2a0998522a130ab8faa8c57feeba72b3ba0c107551c8cfca96c2bcbf6",
+      "size": 6827
     },
     "scripts/test_recommend.py": {
       "sha256": "d4fbebbd9b1d0bdb03dcd55c6bc8c06764d833271a7c0f91b91d767fb29f71a0",

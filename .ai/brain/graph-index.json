@@ -7,13 +7,14 @@
       "dependencies": [],
       "dependents": [
         "scripts/admit_github_stars.py",
+        "scripts/backfill_github_ids.py",
         "scripts/discover_candidates.py",
         "scripts/refresh_github_metadata.py",
         "scripts/test_discovery_cache.py",
         "scripts/test_refresh_github_metadata.py",
         "scripts/test_sync_github_stars.py"
       ],
-      "in_degree": 6,
+      "in_degree": 7,
       "out_degree": 0,
       "path": "scripts/sync_github_stars.py"
     },
@@ -185,6 +186,15 @@
     },
     {
       "dependencies": [
+        "scripts/sync_github_stars.py"
+      ],
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 1,
+      "path": "scripts/backfill_github_ids.py"
+    },
+    {
+      "dependencies": [
         "scripts/refresh_github_metadata.py"
       ],
       "dependents": [],
@@ -238,8 +248,8 @@
       "path": "scripts/test_star_import_pipeline.py"
     }
   ],
-  "edge_count": 27,
+  "edge_count": 28,
   "generated_by": "dbrckk/repo-brain-v7-graph",
-  "node_count": 22,
+  "node_count": 23,
   "schema_version": 1
 }

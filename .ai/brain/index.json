@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
-  "files_indexed": 56,
-  "symbol_count": 249,
-  "edge_count": 26,
+  "files_indexed": 57,
+  "symbol_count": 252,
+  "edge_count": 27,
   "languages": {
-    "python": 56
+    "python": 57
   },
   "index_mode": "incremental",
   "reparsed_files": 2,
@@ -101,6 +101,10 @@
     {
       "file": "scripts/validate_json_contract.py",
       "symbols": 4
+    },
+    {
+      "file": "scripts/backfill_github_ids.py",
+      "symbols": 3
     },
     {
       "file": "scripts/detect_health_drift.py",

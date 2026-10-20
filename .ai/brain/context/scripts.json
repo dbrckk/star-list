@@ -7,19 +7,27 @@
         "changed",
         "changed-source",
         "impact",
+        "recent-project-state",
         "selected-test"
       ],
-      "score": 370
+      "score": 430
     },
     {
-      "path": "scripts/audit_agent_skill_sources.py",
+      "path": "scripts/backfill_github_ids.py",
       "reasons": [
         "changed",
         "changed-source",
         "impact",
         "symbol-indexed"
       ],
-      "score": 330
+      "score": 315
+    },
+    {
+      "path": "scripts/audit_agent_skill_sources.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     },
     {
       "path": "scripts/portfolio_daily.py",
@@ -50,7 +58,7 @@
       "score": 60
     },
     {
-      "path": "scripts/agent_skill_discovery.py",
+      "path": "scripts/sync_github_stars.py",
       "reasons": [
         "dependency-neighbor"
       ],

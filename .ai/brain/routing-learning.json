@@ -2,22 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "Classify unresolved repository licenses (#36)",
-      "terms": [
-        "36",
-        "classify",
-        "licenses",
-        "repository",
-        "unresolved"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/audit_catalog_quality.py",
-        "scripts/test_catalog_quality.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "Enforce unresolved license status validation (#37)",
       "terms": [
         "37",
@@ -1269,6 +1253,29 @@
         "scripts/audit_agent_skill_sources.py",
         "scripts/test_documentation.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(stars): reconcile missing immutable GitHub repo IDs without touching curation (#145)",
+      "terms": [
+        "145",
+        "curation",
+        "feat",
+        "github",
+        "ids",
+        "immutable",
+        "missing",
+        "reconcile",
+        "repo",
+        "stars",
+        "touching",
+        "without"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/backfill_github_ids.py",
+        "scripts/test_documentation.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1393,6 +1400,10 @@
     },
     "144": {
       "scripts/audit_agent_skill_sources.py": 4,
+      "scripts/test_documentation.py": 4
+    },
+    "145": {
+      "scripts/backfill_github_ids.py": 4,
       "scripts/test_documentation.py": 4
     },
     "17": {
@@ -1809,6 +1820,10 @@
       "scripts/test_recommend.py": 8,
       "scripts/validate_websites.py": 4
     },
+    "curation": {
+      "scripts/backfill_github_ids.py": 4,
+      "scripts/test_documentation.py": 4
+    },
     "current": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/portfolio_daily.py": 4,
@@ -1999,13 +2014,14 @@
       "scripts/agent_skill_discovery.py": 12,
       "scripts/audit_agent_skill_sources.py": 4,
       "scripts/audit_catalog_quality.py": 8,
+      "scripts/backfill_github_ids.py": 4,
       "scripts/portfolio_daily.py": 40,
       "scripts/portfolio_failure_diagnostics.py": 12,
       "scripts/recommend.py": 12,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_catalog_quality.py": 8,
-      "scripts/test_documentation.py": 16,
+      "scripts/test_documentation.py": 20,
       "scripts/test_json_contracts.py": 8,
       "scripts/test_recommend.py": 20,
       "scripts/test_sync_github_stars.py": 4,
@@ -2082,6 +2098,7 @@
     },
     "github": {
       "scripts/admit_github_stars.py": 12,
+      "scripts/backfill_github_ids.py": 4,
       "scripts/discover_candidates.py": 4,
       "scripts/recommend.py": 4,
       "scripts/refresh_github_metadata.py": 8,
@@ -2089,7 +2106,7 @@
       "scripts/sync_github_stars.py": 12,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_discovery_cache.py": 4,
-      "scripts/test_documentation.py": 4,
+      "scripts/test_documentation.py": 8,
       "scripts/test_json_contracts.py": 4,
       "scripts/test_recommend.py": 4,
       "scripts/test_refresh_github_metadata.py": 8,
@@ -2132,10 +2149,16 @@
       "scripts/portfolio_daily.py": 4
     },
     "ids": {
+      "scripts/backfill_github_ids.py": 4,
       "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_documentation.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
     },
     "if": {
+      "scripts/test_documentation.py": 4
+    },
+    "immutable": {
+      "scripts/backfill_github_ids.py": 4,
       "scripts/test_documentation.py": 4
     },
     "import": {
@@ -2294,6 +2317,10 @@
       "scripts/validate_catalog.py": 4
     },
     "missed": {
+      "scripts/test_documentation.py": 4
+    },
+    "missing": {
+      "scripts/backfill_github_ids.py": 4,
       "scripts/test_documentation.py": 4
     },
     "names": {
@@ -2482,7 +2509,8 @@
       "scripts/validate_catalog.py": 4
     },
     "reconcile": {
-      "scripts/test_documentation.py": 4
+      "scripts/backfill_github_ids.py": 4,
+      "scripts/test_documentation.py": 8
     },
     "recover": {
       "scripts/portfolio_daily.py": 4
@@ -2533,6 +2561,10 @@
     },
     "replacing": {
       "scripts/portfolio_daily.py": 4
+    },
+    "repo": {
+      "scripts/backfill_github_ids.py": 4,
+      "scripts/test_documentation.py": 4
     },
     "report": {
       "scripts/portfolio_daily.py": 8
@@ -2746,8 +2778,10 @@
     },
     "stars": {
       "scripts/admit_github_stars.py": 12,
+      "scripts/backfill_github_ids.py": 4,
       "scripts/sync_github_stars.py": 12,
       "scripts/test_auto_stars_admission.py": 4,
+      "scripts/test_documentation.py": 4,
       "scripts/test_sync_github_stars.py": 12
     },
     "state": {
@@ -2822,6 +2856,10 @@
     },
     "tools": {
       "scripts/portfolio_daily.py": 4
+    },
+    "touching": {
+      "scripts/backfill_github_ids.py": 4,
+      "scripts/test_documentation.py": 4
     },
     "track": {
       "scripts/audit_catalog_quality.py": 4,
@@ -2933,9 +2971,11 @@
       "scripts/test_refresh_github_metadata.py": 4
     },
     "without": {
+      "scripts/backfill_github_ids.py": 4,
       "scripts/portfolio_daily.py": 8,
       "scripts/portfolio_failure_diagnostics.py": 4,
       "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_documentation.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
     },
     "worker": {

@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "a105d2b06713c27151a7eeb08ba9c5cf8ef134ff",
-  "head": "395c0a70c5680dbf83fe0b846c0d6c8d80dfb7da",
+  "base": "395c0a70c5680dbf83fe0b846c0d6c8d80dfb7da",
+  "head": "5a86e5d329866c811c49674005bc3831b17e2482",
   "index_mode": "incremental",
   "changed_files": [
     {
-      "path": ".github/workflows/audit-agent-skill-sources.yml",
+      "path": ".github/workflows/backfill-github-ids.yml",
       "status": "A"
     },
     {
@@ -14,19 +14,15 @@
       "status": "M"
     },
     {
-      "path": "AGENT_SKILLS.md",
+      "path": "docs/GITHUB_STARS_SYNC.md",
       "status": "M"
     },
     {
-      "path": "README.md",
-      "status": "M"
-    },
-    {
-      "path": "schemas/agent-skill-source-audit.schema.json",
+      "path": "schemas/github-id-backfill-report.schema.json",
       "status": "A"
     },
     {
-      "path": "scripts/audit_agent_skill_sources.py",
+      "path": "scripts/backfill_github_ids.py",
       "status": "A"
     },
     {
@@ -35,49 +31,31 @@
     }
   ],
   "changed_source_files": [
-    "scripts/audit_agent_skill_sources.py",
+    "scripts/backfill_github_ids.py",
     "scripts/test_documentation.py"
   ],
   "impacted_files": [
-    "scripts/audit_agent_skill_sources.py",
+    "scripts/backfill_github_ids.py",
     "scripts/test_documentation.py"
   ],
   "impacted_symbols": [
     {
-      "name": "RejectRedirect",
-      "kind": "class",
-      "file": "scripts/audit_agent_skill_sources.py",
+      "name": "github_metadata",
+      "kind": "function",
+      "file": "scripts/backfill_github_ids.py",
       "line": 29
     },
     {
-      "name": "redirect_request",
+      "name": "reconcile",
       "kind": "function",
-      "file": "scripts/audit_agent_skill_sources.py",
-      "line": 32
-    },
-    {
-      "name": "inspect_source",
-      "kind": "function",
-      "file": "scripts/audit_agent_skill_sources.py",
-      "line": 39
-    },
-    {
-      "name": "make_report",
-      "kind": "function",
-      "file": "scripts/audit_agent_skill_sources.py",
-      "line": 87
-    },
-    {
-      "name": "markdown",
-      "kind": "function",
-      "file": "scripts/audit_agent_skill_sources.py",
-      "line": 118
+      "file": "scripts/backfill_github_ids.py",
+      "line": 64
     },
     {
       "name": "main",
       "kind": "function",
-      "file": "scripts/audit_agent_skill_sources.py",
-      "line": 149
+      "file": "scripts/backfill_github_ids.py",
+      "line": 130
     }
   ],
   "selected_tests": [
