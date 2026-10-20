@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **11 websites** are curated alongside it in [`websites.json`](websites.json);
+These **12 websites** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -19,6 +19,7 @@ the ability to browse a page.
 | Shadertoy | [shadertoy.com](https://www.shadertoy.com/) | GLSL shader experiments and visual effects | Free browsing | Creator-specific shader rights and performance review |
 | Lovable | [lovable.dev](https://lovable.dev/) | AI-generated website/application prototypes | Freemium | Hosted service; check export/data/usage plans |
 | Skill Issue | [skill-issue.in](https://skill-issue.in/) | Ranked directory of agent skills for development, design, video and automation | Free browsing | Directory only; review each source SKILL.md before use |
+| Game Art Style | [gameartstyle.loopyhop.com](https://gameartstyle.loopyhop.com/) | Visual atlas of 37 game art styles, game references and coherent art-direction prompts | Free browsing | Inspiration only; screenshots remain owned by their respective creators |
 
 ## Search repositories and relevant websites together
 
@@ -26,6 +27,7 @@ the ability to browse a page.
 python scripts/recommend.py "3d scroll animation website" --websites --top-websites 10
 python scripts/recommend.py "react animated ui components" --websites --json
 python scripts/recommend.py "mobile ui motion animation" --websites --json
+python scripts/recommend.py "game art style pixel voxel 3d" --websites --top-websites 12 --json
 python scripts/validate_json_contract.py schemas/websites.schema.json websites.json
 ```
 
