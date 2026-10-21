@@ -653,6 +653,7 @@ jobs:
           ]
           def suggestion(slug, score):
               return {"repository": slug, "score": score, "mode": "native",
+                      "integrationEligible": True, "policyReview": [],
                       "url": "https://github.com/" + slug, "license": "MIT",
                       "shared_terms": ["integration"]}
           offers = {
