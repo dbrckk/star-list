@@ -834,6 +834,8 @@ def website_references_for_project(repo: dict, profile: dict, limit: int | None 
         and site["why"]["domains"]
         and (site["why"]["tags"] or site["why"]["terms"]
              or site["why"].get("portfolioBaselineDomains"))
+        and (not site.get("portfolioRequiredSignals")
+             or set(site["portfolioRequiredSignals"]) & metadata_terms)
     ]
     if "game_dev" in domains:
         game_art = next((site for site in candidates if site["id"] == "game-art-style"), None)
