@@ -113,24 +113,24 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-21T17:47:14Z
+Generated: 2026-10-21T18:25:11Z
 
 ### Git
 - Branch: `main`
-- Head: `49a685323941`
-- Commit date: 2026-10-21T13:47:04-04:00
-- Commit: fix(portfolio): surface relevant image/video models in sparse repositories (#166)
+- Head: `038c130a252f`
+- Commit date: 2026-10-21T14:25:00-04:00
+- Commit: feat(web): add Hugging Face Hub and safely review MiniCPM Heretic (#167)
 - Tracked files: 294
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
-- `scripts/portfolio_daily.py`
-- `scripts/test_recommend.py`
 - `README.md`
 - `RECOMMENDER.md`
 - `WEB_RESOURCES.md`
 - `schemas/websites.schema.json`
+- `scripts/portfolio_daily.py`
 - `scripts/recommend.py`
+- `scripts/test_recommend.py`
 - `scripts/validate_websites.py`
 - `websites.json`
 

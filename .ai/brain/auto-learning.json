@@ -5,25 +5,30 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "166",
-      "image/video",
-      "models",
-      "portfolio",
-      "relevant",
-      "repositories",
-      "sparse",
-      "surface"
+      "167",
+      "add",
+      "face",
+      "feat",
+      "heretic",
+      "hub",
+      "hugging",
+      "minicpm",
+      "review",
+      "safely",
+      "web"
     ],
     "test_count": 0,
-    "useful_count": 2
+    "useful_count": 4
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(portfolio): surface relevant image/video models in sparse repositories (#166)",
+  "task": "feat(web): add Hugging Face Hub and safely review MiniCPM Heretic (#167)",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py",
-    "scripts/test_recommend.py"
+    "scripts/recommend.py",
+    "scripts/test_recommend.py",
+    "scripts/validate_websites.py"
   ]
 }

@@ -9,10 +9,10 @@
     "top_score": 66
   },
   "cache": {
-    "fingerprint": "f5bbb4cc326e743a6d2ad19345385d0f47ddc9ad49e287e18bdaf29f662e36cb",
+    "fingerprint": "11bc82096010f6472e9c08cc10cb04ac746392b25b054edf7f5a7d57777971ea",
     "hit": false
   },
-  "candidate_count": 8,
+  "candidate_count": 14,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -71,24 +71,36 @@
       ]
     },
     {
-      "learning_score": 0,
+      "learning_score": 12,
       "matched_terms": [
-        "engine",
         "game"
       ],
-      "path": "scripts/admit_github_stars.py",
+      "path": "scripts/recommend.py",
       "reasons": [
+        "impact",
+        "learning",
+        "recently-changed",
         "search-index"
       ],
-      "score": 29,
+      "score": 38,
       "symbols": [
-        "admit",
-        "catalog_entry",
-        "classify",
-        "count",
-        "get_repo",
+        "activity_adjustment",
+        "choose_stack",
+        "delta",
+        "explain_repo",
+        "guidance_weight",
+        "infer_alternatives",
+        "infer_complements",
+        "infer_domains",
+        "load",
         "main",
-        "manifest_stable_ids"
+        "norm",
+        "recommend_websites",
+        "resolve_relations",
+        "score_repo",
+        "tokens",
+        "trend_adjustment",
+        "usable"
       ]
     }
   ],

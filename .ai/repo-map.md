@@ -756,6 +756,7 @@ jobs:
           assert len(website_ids) == result["summary"]["catalog_websites"]
           assert "fasth3-omni-collection" in website_ids
           assert "atomicchat-flux3-image-klein-gguf" in website_ids
+          assert {"hugging-face-hub", "minicpm-v-4-7-1b-heretic"} <= website_ids
           fully_scanned = [row for row in result["projects"]
                            if row["status"] != "skipped-inactive"]
           assert result["summary"]["fully_assessed_projects"] == len(fully_scanned)
@@ -779,6 +780,7 @@ jobs:
           if tts_audit is not None and tts_audit["source_coverage"]["complete"]:
               assert tts_audit["source_assessment"]["websites"]["fasth3-omni-collection"]["decision"] != "matched"
               assert tts_audit["source_assessment"]["websites"]["atomicchat-flux3-image-klein-gguf"]["decision"] != "matched"
+              assert tts_audit["source_assessment"]["websites"]["minicpm-v-4-7-1b-heretic"]["decision"] != "matched"
           for full_name, expected_source in (
               ("dbrckk/asset-forge", "atomicchat-flux3-image-klein-gguf"),
               ("dbrckk/monteur-video", "fasth3-omni-collection"),
@@ -3082,7 +3084,8 @@ initial_prompt: |
               "asset-generator",
               "game-testing-service",
               "model-collection",
-              "model-checkpoint"
+              "model-checkpoint",
+              "model-hub"
             ]
           },
           "access": {
@@ -3178,6 +3181,13 @@ initial_prompt: |
           "upstreamModel": {
             "type": "string",
             "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+          },
+          "safetyRisk": {
+            "enum": [
+              "reduced-refusal",
+              "unknown",
+              "standard"
+            ]
           }
         }
       }
@@ -4643,6 +4653,10 @@ metadata_terms = tokens(" ".join([
 # Use explicit repository *labels* to recover domains for reference-only
 # sources, without modifying the stricter native-code integration profile.
 ⋮----
+# Vision-language research is not necessarily marketed with the word
+# "AI": OCR/screenshot/vision labels still qualify for *advisory* model
+# discovery. No domain promotion reaches native-code integration.
+⋮----
 # A pipeline called "asset-forge" can be truly graphical while its sparse
 # GitHub description and language do not disclose that. Require the asset
 # name plus specific README capability evidence (not generic prose)
@@ -6067,145 +6081,6 @@ state={"schemaVersion":1,"candidates":{}}
 body=renderer.render(visible)
 ````
 
-## File: scripts/test_recommend.py
-````python
-#!/usr/bin/env python3
-⋮----
-ROOT = Path(__file__).resolve().parents[1]
-SCRIPT = ROOT / "scripts" / "recommend.py"
-⋮----
-def run(*args)
-⋮----
-out = subprocess.check_output([sys.executable, str(SCRIPT), *args, "--json"], text=True)
-⋮----
-cases = [
-⋮----
-data = run(query, "--top", "5")
-domains = set(data["inferredDomains"])
-⋮----
-# External sites are advisory references, never installable GitHub repositories.
-websites_catalog = json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))
-sites = websites_catalog["websites"]
-# Curated website references are additive; new resources must not break
-# the existing GitHub recommendation contract or require exact-size snapshots.
-⋮----
-baseline_web_query = run("3d scroll animation website", "--top", "4")
-with_web_query = run("3d scroll animation website", "--top", "4", "--websites", "--top-websites", "30")
-⋮----
-with_skills_query = run("mobile ui design", "--top", "4", "--skills")
-without_skills_query = run("mobile ui design", "--top", "4")
-⋮----
-# Newly verified upstream files must be selectable without changing the normal
-# GitHub recommendation contract, and no skill can be silently installed.
-⋮----
-roblox_skills = recommend_skills(word_set("roblox luau studio"), {"game_dev"}, limit=20)
-⋮----
-compose_skills = recommend_skills(word_set("compose jetpack"), {"mobile"}, language="Kotlin", limit=20)
-⋮----
-# Real regression: TTS was being shown game-art-style due to generic words
-# such as "and" in both project metadata and curator descriptions.
-tts_labels = "TTS a deep learning toolkit for Text-to-Speech battle-tested in research and production"
-⋮----
-tts_sites = recommend_websites(tokens(tts_labels), {"ai_media"}, limit=30)
-⋮----
-tts_portfolio_sites = website_references_for_project(
-⋮----
-# Quantized checkpoints must be discoverable for visual projects, but a
-# generic AI/media project (including speech) must not get an image generator.
-gguf_id = "atomicchat-flux3-image-klein-gguf"
-⋮----
-gguf = next(x for x in sites if x["id"] == gguf_id)
-⋮----
-image_project = {"name": "asset-forge", "description": "Image-to-image sprite texture assets",
-image_profile = {"domains": ["ai_media", "graphics"]}
-image_references = website_references_for_project(image_project, image_profile)
-gguf_result = next(x for x in image_references if x["id"] == gguf_id)
-⋮----
-quiet_game = website_references_for_project(
-⋮----
-# Metadata decisions must cover the model even when it is rejected.
-image_audit = {}
-⋮----
-speech_audit = {}
-⋮----
-# Advisory matching must work on real sparse repository identities.
-# The native-code recommender still uses its stricter engine/domain profile.
-sparse_assets = {"name": "asset-forge", "description": None, "topics": []}
-sparse_asset_profile = {
-sparse_asset_refs = website_references_for_project(sparse_assets, sparse_asset_profile)
-⋮----
-sparse_video_refs = website_references_for_project(
-⋮----
-finance_asset_refs = website_references_for_project(
-⋮----
-# Game repositories often have sparse GitHub descriptions. Their actual
-# game-development domain is sufficient to recommend art-direction research.
-game_sites = website_references_for_project(
-⋮----
-# PINOC is a user-authorized external MCP reference, not an automatically
-# installed game dependency or a free unlimited generation provider.
-pinoc_rows = run("3d rigging mocap animation blender", "--websites", "--top-websites", "20")["websiteRecommendations"]
-pinoc = next(site for site in pinoc_rows if site["id"] == "viggle-pinoc-mcp")
-⋮----
-motion_sites = website_references_for_project(
-⋮----
-# Roblox is a named engine with possible 3D skeletal animations; the
-# advisory PINOC reference must be discoverable without guessing from README.
-roblox_sites = website_references_for_project(
-⋮----
-# Actual public GitHub metadata: no description, no topics, Lua language.
-⋮----
-website_schema = json.loads((ROOT / "schemas/websites.schema.json").read_text(encoding="utf-8"))
-⋮----
-unsafe_websites = copy.deepcopy(websites_catalog)
-bad_pinoc = next(site for site in unsafe_websites["websites"] if site["id"] == "viggle-pinoc-mcp")
-⋮----
-bad_model = copy.deepcopy(websites_catalog)
-model_data = next(x for x in bad_model["websites"] if x["id"] == gguf_id)
-⋮----
-strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
-⋮----
-high_threshold = run("ai agent", "--min-score", "1000")
-⋮----
-default_audit = run("ponytail agent", "--top", "20")
-⋮----
-with_audit = run("ponytail agent", "--top", "20", "--include-audit")
-⋮----
-spec = importlib.util.spec_from_file_location("recommend", SCRIPT)
-mod = importlib.util.module_from_spec(spec)
-⋮----
-base = {
-qtokens = mod.tokens("specialized phrase")
-curated = dict(base, guidanceSource="curated")
-inferred = dict(base, guidanceSource="inferred")
-⋮----
-source = {
-candidate = {
-audit_candidate = dict(candidate, repo="x/audit", tier="audit")
-⋮----
-stack_repo = dict(candidate, repo="x/stack-tool", capabilities=["cache"])
-repo_by_name = {r["repo"]: r for r in [source, stack_repo]}
-stacks = [{"name":"Backend Stack","repos":["x/source","x/stack-tool"]}]
-⋮----
-curated_rel = dict(source, alternatives=["x/manual"], complements=["x/manual-comp"])
-resolved = mod.resolve_relations(curated_rel, [curated_rel, candidate], stacks, repo_by_name)
-⋮----
-# Hard constraints must also apply to curated/inferred relations and suggested stacks.
-⋮----
-limited_rel = mod.resolve_relations(
-⋮----
-fallback = mod.resolve_relations(
-⋮----
-# Integration: returned relations must obey the same hard CLI filters as primary recommendations.
-⋮----
-catalog_index = {entry["repo"]: entry for entry in mod.load()[0]}
-constraints = results["constraints"]
-⋮----
-linked = catalog_index[name]
-⋮----
-linked = catalog_index[member]
-````
-
 ## File: scripts/test_refresh_github_metadata.py
 ````python
 #!/usr/bin/env python3
@@ -6724,6 +6599,11 @@ required_signals = site.get("portfolioRequiredSignals", [])
 # Converted HF weights inherit upstream usage restrictions. The
 # 'other' hub tag is unknown permission, never an approval to install
 # or use images commercially; checkpoint provenance is mandatory.
+⋮----
+# Safety-modified multimodal checkpoints must carry an explicit
+# reduced-refusal flag, not hide behind an open source licence.
+⋮----
+lowered_tags = {str(t).lower() for t in site["tags"]}
 ⋮----
 # An MCP endpoint is an authenticated remote service, not a harmless
 # website link. Require a bounded HTTPS /mcp URL owned by the
@@ -7916,8 +7796,8 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **23 curated website links** for UI design,
-animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, AI game prototyping, NPC/voice platforms, 3D assets, narrative design, gameplay QA and licensed reference-to-video/audio model collections and quantized image-generation checkpoints. Explore them
+The catalog also includes **25 curated website links** for UI design,
+animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, AI game prototyping, NPC/voice platforms, 3D assets, narrative design, gameplay QA and licensed reference-to-video/audio model collections quantized image-generation checkpoints, Hugging Face model discovery and locally reviewed vision-language checkpoints. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
 repositories and are never passed to Production-OS as code dependencies.
@@ -9145,6 +9025,126 @@ General-purpose GitHub discovery remains advisory and never inserts external can
       "sourceLicenseTag": "other",
       "upstreamModel": "black-forest-labs/flux-3-image-klein",
       "caution": "AtomicChat currently labels this Hugging Face GGUF quantization as license:other (not an automatically approved licence). Upstream FLUX.3 Image Klein uses the FLUX Kommunity License, which restricts commercial and redistribution uses unless its specific conditions are met; verify both upstream and converted-weight rights. GGUF is a transformer checkpoint, not a complete image-generation service: compatible loader, separately licensed Qwen3-VL text encoder, VAE and sufficient CPU/GPU memory may be required. GGUF quantizations and stable-diffusion.cpp loaders are not interchangeable with every Diffusers or ComfyUI build. Never auto-download weights, assume Android-local feasibility, run inference, or use outputs commercially without independent review."
+    },
+    {
+      "id": "hugging-face-hub",
+      "name": "Hugging Face — Model, Dataset and Space Hub",
+      "url": "https://huggingface.co/",
+      "type": "model-hub",
+      "access": "freemium",
+      "domains": [
+        "ai_agents",
+        "ai_media",
+        "graphics",
+        "game_dev",
+        "mobile",
+        "software_engineering"
+      ],
+      "tags": [
+        "huggingface",
+        "hugging-face",
+        "hf",
+        "model",
+        "models",
+        "multimodal",
+        "machine-learning",
+        "vision",
+        "ocr",
+        "video",
+        "audio",
+        "image",
+        "generation",
+        "dataset",
+        "datasets",
+        "spaces",
+        "inference",
+        "transformers",
+        "diffusers",
+        "model-discovery",
+        "model-comparison"
+      ],
+      "bestFor": [
+        "Discovering and comparing AI models, datasets, applications and demo Spaces for supported project capabilities",
+        "Checking each model's model card, license, lineage, benchmark evidence and required inference hardware before considering adoption",
+        "Exploring hosted inference providers and free public resources separately from usage-based GPU and paid endpoints"
+      ],
+      "reuse": "reference-only",
+      "portfolioBaselineDomains": [
+        "ai_agents",
+        "ai_media"
+      ],
+      "caution": "Hugging Face is a catalog and hosted community platform, not a single uniformly licensed model or an unlimited free inference endpoint. A public page or open model card does not grant every model's commercial rights. Review each selected repository's exact license, usage restrictions, model quality, token access, provider billing and deployment constraints before use. Do not auto-download checkpoints, run untrusted Spaces, spend credits or upload private files."
+    },
+    {
+      "id": "minicpm-v-4-7-1b-heretic",
+      "name": "MiniCPM-V 4.7 1B Heretic — vision-language checkpoint",
+      "url": "https://huggingface.co/saidutta69/MiniCPM-V-4.7-1B-heretic",
+      "type": "model-checkpoint",
+      "access": "free",
+      "domains": [
+        "ai_media",
+        "ai_agents",
+        "graphics",
+        "mobile",
+        "software_engineering"
+      ],
+      "tags": [
+        "vision-language",
+        "vlm",
+        "minicpm",
+        "minicpm-v",
+        "multimodal",
+        "image-understanding",
+        "image-text-to-text",
+        "ocr",
+        "document",
+        "documents",
+        "screenshot",
+        "screenshots",
+        "visual-question-answering",
+        "captioning",
+        "image-analysis",
+        "video-understanding",
+        "on-device",
+        "gguf",
+        "llama.cpp",
+        "transformers",
+        "vision-projector",
+        "heretic",
+        "abliterated"
+      ],
+      "bestFor": [
+        "Reviewing local multimodal visual comprehension, OCR and screenshot or document analysis on supported devices",
+        "Comparing image question answering, video frame interpretation and visual-agent reasoning with the base MiniCPM-V 4.7 model",
+        "Evaluating on-device deployment costs and quality with compatible transformers or llama.cpp multimodal model plus the separate GGUF vision projector"
+      ],
+      "reuse": "licensed-material",
+      "portfolioRequiredSignals": [
+        "ocr",
+        "vision",
+        "vlm",
+        "multimodal",
+        "screenshot",
+        "screenshots",
+        "document",
+        "documents",
+        "captioning",
+        "caption",
+        "recognition",
+        "visual-question-answering",
+        "image-analysis",
+        "video-analysis",
+        "image-understanding",
+        "video-understanding",
+        "image-to-text",
+        "scene-understanding",
+        "scene-analysis",
+        "image-captioning"
+      ],
+      "sourceLicenseTag": "apache-2.0",
+      "upstreamModel": "openbmb/MiniCPM-V-4.7-1B",
+      "safetyRisk": "reduced-refusal",
+      "caution": "Community-edited 'heretic' / abliterated variant deliberately suppresses refusal behavior and ships without an additional safety layer. Do not deploy it to unmoderated public-facing or user-content endpoints: use human review, abuse prevention and data controls. The Hugging Face card lists Apache-2.0 inherited from the base, but reports no LICENSE file in either model repository; verify actual licensing and attribution before distribution. Approximately 1.55B parameters total (about 1.01B language plus 0.55B vision). Vision-enabled GGUF requires the separate ~1.11GB mmproj file in addition to compatible main weights and llama.cpp runtime. Neither standalone model nor on-device feasibility is proven by this catalog entry. No automatic weight downloads or inference."
     }
   ]
 }

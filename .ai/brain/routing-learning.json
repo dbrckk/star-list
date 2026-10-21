@@ -2,22 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "fix: qualify portfolio matches before Production-OS handoff",
-      "terms": [
-        "before",
-        "handoff",
-        "matches",
-        "portfolio",
-        "production-os",
-        "qualify"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/portfolio_daily.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "fix: recover failed portfolio integrations with bounded budgets",
       "terms": [
         "bounded",
@@ -1298,6 +1282,30 @@
         "scripts/portfolio_daily.py",
         "scripts/test_recommend.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(web): add Hugging Face Hub and safely review MiniCPM Heretic (#167)",
+      "terms": [
+        "167",
+        "add",
+        "face",
+        "feat",
+        "heretic",
+        "hub",
+        "hugging",
+        "minicpm",
+        "review",
+        "safely",
+        "web"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py",
+        "scripts/test_recommend.py",
+        "scripts/validate_websites.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1460,6 +1468,12 @@
     "166": {
       "scripts/portfolio_daily.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "167": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1625,14 +1639,14 @@
     "add": {
       "scripts/agent_skill_discovery.py": 4,
       "scripts/audit_catalog_quality.py": 4,
-      "scripts/portfolio_daily.py": 16,
-      "scripts/recommend.py": 12,
+      "scripts/portfolio_daily.py": 20,
+      "scripts/recommend.py": 16,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_json_contracts.py": 4,
-      "scripts/test_recommend.py": 16,
+      "scripts/test_recommend.py": 20,
       "scripts/validate_catalog.py": 4,
-      "scripts/validate_websites.py": 8
+      "scripts/validate_websites.py": 12
     },
     "admissions": {
       "scripts/test_documentation.py": 4
@@ -2079,6 +2093,12 @@
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_refresh_github_metadata.py": 4
     },
+    "face": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "fail": {
       "scripts/portfolio_daily.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4
@@ -2107,15 +2127,15 @@
       "scripts/backfill_github_ids.py": 4,
       "scripts/portfolio_daily.py": 40,
       "scripts/portfolio_failure_diagnostics.py": 12,
-      "scripts/recommend.py": 20,
+      "scripts/recommend.py": 24,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_catalog_quality.py": 8,
       "scripts/test_documentation.py": 20,
       "scripts/test_json_contracts.py": 8,
-      "scripts/test_recommend.py": 28,
+      "scripts/test_recommend.py": 32,
       "scripts/test_sync_github_stars.py": 4,
-      "scripts/validate_websites.py": 16
+      "scripts/validate_websites.py": 20
     },
     "files": {
       "scripts/agent_skill_discovery.py": 4,
@@ -2243,8 +2263,26 @@
     "healthy": {
       "scripts/portfolio_daily.py": 4
     },
+    "heretic": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "hermes": {
       "scripts/portfolio_daily.py": 4
+    },
+    "hub": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
+    "hugging": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "human": {
       "scripts/sync_github_stars.py": 4,
@@ -2436,6 +2474,12 @@
       "scripts/test_recommend.py": 8,
       "scripts/test_refresh_github_metadata.py": 12,
       "scripts/validate_catalog.py": 4
+    },
+    "minicpm": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "missed": {
       "scripts/test_documentation.py": 4
@@ -2801,12 +2845,12 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "review": {
-      "scripts/portfolio_daily.py": 12,
-      "scripts/recommend.py": 12,
+      "scripts/portfolio_daily.py": 16,
+      "scripts/recommend.py": 16,
       "scripts/sync_github_stars.py": 4,
-      "scripts/test_recommend.py": 8,
+      "scripts/test_recommend.py": 12,
       "scripts/test_sync_github_stars.py": 4,
-      "scripts/validate_websites.py": 8
+      "scripts/validate_websites.py": 12
     },
     "reviewable": {
       "scripts/portfolio_daily.py": 8
@@ -2826,8 +2870,11 @@
       "scripts/recommend.py": 4
     },
     "safely": {
-      "scripts/portfolio_daily.py": 12,
-      "scripts/portfolio_failure_diagnostics.py": 4
+      "scripts/portfolio_daily.py": 16,
+      "scripts/portfolio_failure_diagnostics.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "safer": {
       "scripts/portfolio_daily.py": 4,
@@ -3150,10 +3197,10 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "web": {
-      "scripts/portfolio_daily.py": 16,
-      "scripts/recommend.py": 8,
-      "scripts/test_recommend.py": 16,
-      "scripts/validate_websites.py": 8
+      "scripts/portfolio_daily.py": 20,
+      "scripts/recommend.py": 12,
+      "scripts/test_recommend.py": 20,
+      "scripts/validate_websites.py": 12
     },
     "websites": {
       "scripts/portfolio_daily.py": 8,
