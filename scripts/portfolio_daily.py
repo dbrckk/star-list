@@ -306,18 +306,37 @@ def project_profile(repo: dict, token: str) -> dict:
             "skill_domains": sorted(skill_domains), "skill_terms": sorted(skill_terms)}
 
 
-def eligible(item: dict) -> bool:
+def review_blockers(item: dict) -> list[str]:
+    """Explain why a relevant catalog entry is advisory, never auto-dispatchable.
+
+    A curated catalog row deserves task-relevance evaluation even when its
+    licensing, maintenance or deployment maturity does not qualify it for
+    autonomous code changes. This function preserves the existing strict
+    integration policy and exposes its decisions instead of silently dropping
+    most of the catalog before matching.
+    """
     gh = item.get("github") or {}
-    if (item.get("tier") not in {"core", "recommended", "specialized"}
-            or item.get("lifecycle") in {"legacy", "reference"}
-            or gh.get("archived") or gh.get("disabled")):
-        return False
-    if (item.get("costModel") not in (None, "open-source")
-            or item.get("integrationComplexity") == "high"
-            or float(item.get("score") or 0) < 8):
-        return False
-    license_key = str(gh.get("license") or "").strip().lower()
-    return license_key in ALLOWED_LICENSES
+    blockers = []
+    if item.get("tier") not in {"core", "recommended", "specialized"}:
+        blockers.append("tier-not-approved")
+    if item.get("lifecycle") in {"legacy", "reference"}:
+        blockers.append("reference-or-legacy")
+    if gh.get("archived") or gh.get("disabled"):
+        blockers.append("github-inactive")
+    if item.get("costModel") not in (None, "open-source"):
+        blockers.append("non-open-source-cost-model")
+    if item.get("integrationComplexity") == "high":
+        blockers.append("high-integration-complexity")
+    if float(item.get("score") or 0) < 8:
+        blockers.append("quality-not-approved")
+    if str(gh.get("license") or "").strip().lower() not in ALLOWED_LICENSES:
+        blockers.append("license-not-approved")
+    return blockers
+
+
+def eligible(item: dict) -> bool:
+    """Strict integration admission: do not widen with discovery coverage."""
+    return not review_blockers(item)
 
 
 def is_reference_candidate(tool: dict) -> bool:
@@ -385,8 +404,9 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
     matches = []
     for tool in catalog:
         slug = str(tool.get("repo") or "")
-        if slug.lower() == name or not eligible(tool):
+        if slug.lower() == name:
             continue
+        blockers = review_blockers(tool)
         if tool.get("domain") not in domains:
             continue
         terms = (tokens(slug) | tokens(" ".join(tool.get("capabilities") or []))
@@ -439,6 +459,7 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
         # with only prose overlap remain discoverable but require review.
         mode = (
             "reference-review" if is_reference_candidate(tool) else
+            "policy-review" if blockers else
             "adapter-review" if external_studio_bridge or slug.lower() in EXTERNAL_CODING_AGENT_CLIS
             or not languages_match else
             "native" if capability_overlap else "capability-review"
@@ -447,12 +468,15 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
                         "quality": tool["score"], "domain": tool["domain"],
                         "shared_terms": shared[:5],
                         "mode": mode,
+                        "integrationEligible": mode == "native" and not blockers,
+                        "policyReview": blockers,
                         "license": tool.get("github", {}).get("license"),
                         "url": "https://github.com/" + slug})
     # A native library gets precedence over example applications and adapters.
     # Otherwise a reference app can fill the three slots before a usable SDK.
     priority = {"native": 0, "capability-review": 1,
-                "adapter-review": 2, "reference-review": 3}
+                "adapter-review": 2, "reference-review": 3,
+                "policy-review": 4}
     matches.sort(key=lambda r: (priority.get(r["mode"], 3),
                                 -r["score"], -r["quality"], r["repository"].lower()))
     return matches if count is None else matches[:count]
@@ -961,7 +985,8 @@ def main() -> int:
     if operator_token and scan_complete and not report["errors"]:
         # Always prioritize highest-confidence matches, irrespective of repository order.
         queue = sorted(((item["score"], row, item) for row in report["projects"]
-                        for item in row["suggestions"] if item["mode"] == "native"),
+                        for item in row["suggestions"]
+                        if item["mode"] == "native" and item["integrationEligible"]),
                         key=lambda p: (-p[0], p[1]["repository"]))
         try:
             existing = request_json(service.rstrip("/") + "/v1/managed-projects/integration-inventory", operator_token)
