@@ -58,10 +58,11 @@ def check_websites(data, schema):
         baseline = set(site.get("portfolioBaselineDomains", []))
         if baseline - set(site["domains"]):
             errors.append(f"{identity}: baseline domains must be included in website domains")
-        # Specialist gating needs meaningful project labels rather than all games.
+        # Specialist triggers must be explicit canonical labels, not prose.
         required_signals = site.get("portfolioRequiredSignals", [])
-        if required_signals and not set(required_signals):
-            errors.append(f"{identity}: empty specialist project-fit signals")
+        if any(not re.fullmatch(r"[a-z0-9][a-z0-9-]*", signal)
+               for signal in required_signals):
+            errors.append(f"{identity}: invalid specialist project-fit token")
         # An MCP endpoint is an authenticated remote service, not a harmless
         # website link. Require a bounded HTTPS /mcp URL owned by the
         # documented provider; no credentials, foreign hosts or auto-install.
