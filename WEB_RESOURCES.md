@@ -32,6 +32,26 @@ the ability to browse a page.
 
 | FastVideo — FastH3 Omni | [Hugging Face collection](https://huggingface.co/collections/FastVideo/fasth3-omni) | Reference-guided video generation with synchronized audio; BF16, INT8, FP8 and NVFP4 variants | Free model browsing; expensive local inference | MiniMax-H3 Community License Agreement applies to weights; review each model and GPU/VRAM/encoder/VAE requirements; never auto-download or invoke |
 
+## Complete per-project catalog decisions
+
+The daily portfolio scan now evaluates **every catalogued GitHub repository and website**
+for each active, accessible project and writes a per-entry decision to
+`source_assessment.repositories` or `source_assessment.websites` in the
+`portfolio-daily.json` Actions artifact. Each entry has `decision`,
+`reason` and `integrationEligible`. The report enforces exact coverage of
+the current curated catalogs before any model-worker dispatch and records the
+total number of assessments in its summary. A rejected or review-only resource
+is still assessed, not silently omitted. Archived target projects are explicitly
+skipped; inaccessible/private targets require their own authorized credentials.
+
+This is a **local, metadata-based relevance scan**, not thousands of fresh
+network fetches, model inference requests or installations. A matching website
+or hosted model is always reference-only and may require licensed weights,
+hardware, payments or source review before practical use. The brief GitHub
+issue displays top matches; the workflow's full JSON artifact preserves all
+catalog entries, including nonmatching ones. Re-scans pick up the next catalog
+version automatically.
+
 ## How specialist game platforms are selected
 
 The daily portfolio scan inspects **all 22 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
