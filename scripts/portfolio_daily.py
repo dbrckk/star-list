@@ -904,13 +904,32 @@ def website_references_for_project(repo: dict, profile: dict, limit: int | None 
     """
     domains = set(profile.get("domains") or [])
     metadata_terms = tokens(" ".join([
-        # GitHub repository names often encode the engine in kebab/snake
-        # case while descriptions/topics are empty. Split only the metadata
-        # labels here; do not alter the global repository tokenization.
+        # GitHub labels often contain hyphens and have no description/topics;
+        # split names for advisory website matching, not native integration.
         re.sub(r"[-_]", " ", str(repo.get("name") or "")),
         re.sub(r"[-_]", " ", str(repo.get("description") or "")),
         re.sub(r"[-_]", " ", " ".join(repo.get("topics") or [])),
     ]))
+    # Use explicit repository *labels* to recover domains for reference-only
+    # sources, without modifying the stricter native-code integration profile.
+    domains.update(infer_domains(metadata_terms) & {
+        "ai_media", "graphics", "game_dev", "web_frontend",
+        "mobile", "software_engineering", "ai_agents",
+    })
+    # A pipeline called "asset-forge" can be truly graphical while its sparse
+    # GitHub description and language do not disclose that. Require the asset
+    # name plus specific README capability evidence (not generic prose)
+    # before considering graphics/media model references. README text is
+    # untrusted and may influence advisory relevance only, never dispatch.
+    visual_terms = {
+        "image", "images", "sprite", "sprites", "texture", "textures",
+        "illustration", "illustrations", "graphics", "visual", "thumbnail",
+        "thumbnails", "pixel", "artwork",
+    }
+    if (metadata_terms & {"asset", "assets"}
+            and set(profile.get("terms") or []) & visual_terms):
+        domains.update({"graphics", "ai_media"})
+        metadata_terms.update(set(profile["terms"]) & visual_terms)
     candidates = recommend_websites(metadata_terms, domains, limit=None)
     chosen = [
         site for site in candidates
