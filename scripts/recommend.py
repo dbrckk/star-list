@@ -58,6 +58,33 @@ WEBSITE_MATCH_STOPWORDS = frozenset(
 )
 
 
+def website_review_gates(site):
+    """Stable, auditable reasons a curated web resource needs separate review.
+
+    These are discovery metadata only, not install instructions or a grant of
+    commercial image/model rights. All web resources remain non-executable.
+    """
+    gates = []
+    resource_type = site.get("type")
+    reuse = site.get("reuse")
+    if resource_type == "model-checkpoint":
+        gates.append("model-runtime-and-device-review")
+        gates.append("model-license-and-attribution-review")
+    elif resource_type == "model-collection":
+        gates.append("per-model-license-and-compute-review")
+    elif resource_type == "model-hub":
+        gates.append("per-item-license-and-provider-review")
+    if site.get("sourceLicenseTag") in {"other", "unknown"}:
+        gates.append("unverified-hub-license-tag")
+    if site.get("safetyRisk") == "reduced-refusal":
+        gates.append("reduced-refusal-public-safety-review")
+    if reuse == "hosted-service":
+        gates.append("hosted-terms-privacy-and-cost-review")
+    elif reuse in {"licensed-material", "license-per-item", "reference-only"}:
+        gates.append("third-party-reuse-rights-review")
+    return gates
+
+
 def recommend_websites(qtokens, domains, limit=5):
     """Rank non-GitHub references separately from code integration candidates.
 
@@ -87,6 +114,7 @@ def recommend_websites(qtokens, domains, limit=5):
             "reuse": site["reuse"], "caution": site["caution"],
             "bestFor": site["bestFor"],
             "portfolioRequiredSignals": site.get("portfolioRequiredSignals", []),
+            "reviewGates": website_review_gates(site),
             **({"sourceLicenseTag": site["sourceLicenseTag"]}
                if site.get("sourceLicenseTag") else {}),
             **({"upstreamModel": site["upstreamModel"]}
