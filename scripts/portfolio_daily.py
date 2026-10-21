@@ -918,8 +918,11 @@ def website_references_for_project(repo: dict, profile: dict, limit: int | None 
     # sources, without modifying the stricter native-code integration profile.
     domains.update(infer_domains(metadata_terms) & {
         "ai_media", "graphics", "game_dev", "web_frontend",
-        "mobile", "software_engineering", "ai_agents",
+        "mobile", "software_engineering", "ai_agents", "marketing",
     })
+    # Hosted social-marketing suggestions require explicit GitHub label
+    # evidence (not README prose, a generic 'promo' name, or an AI label).
+    # This does not affect the stricter GitHub native-code dispatch domains.
     # Vision-language research is not necessarily marketed with the word
     # "AI": OCR/screenshot/vision labels still qualify for *advisory* model
     # discovery. No domain promotion reaches native-code integration.
