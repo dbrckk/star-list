@@ -104,6 +104,8 @@ image_references = website_references_for_project(image_project, image_profile)
 gguf_result = next(x for x in image_references if x["id"] == gguf_id)
 assert gguf_result["integrationEligible"] is False
 assert gguf_result["sourceLicenseTag"] == "other"
+assert {"model-runtime-and-device-review", "model-license-and-attribution-review",
+        "unverified-hub-license-tag"} <= set(gguf_result["reviewGates"])
 assert gguf_result["upstreamModel"] == gguf["upstreamModel"]
 assert gguf_id in {x["id"] for x in recommend_websites(
     tokens("flux gguf image generation editing"), {"ai_media"}, limit=None
@@ -174,6 +176,8 @@ vision_ref = website_references_for_project(
 )
 vlm_ref = next(x for x in vision_ref if x["id"] == minicpm_id)
 assert vlm_ref["safetyRisk"] == "reduced-refusal"
+assert "reduced-refusal-public-safety-review" in vlm_ref["reviewGates"]
+assert "model-runtime-and-device-review" in vlm_ref["reviewGates"]
 assert vlm_ref["sourceLicenseTag"] == "apache-2.0"
 assert vlm_ref["integrationEligible"] is False
 assert vlm_ref["upstreamModel"] == vlm["upstreamModel"]
@@ -185,6 +189,9 @@ agent_refs = website_references_for_project(
     {"domains": ["ai_agents"], "terms": set()}
 )
 assert hf_hub_id in {x["id"] for x in agent_refs}
+assert "per-item-license-and-provider-review" in next(
+    x for x in agent_refs if x["id"] == hf_hub_id
+)["reviewGates"]
 assert minicpm_id not in {x["id"] for x in agent_refs}
 assert minicpm_id not in {x["id"] for x in tts_portfolio_sites}
 assert minicpm_id not in {x["id"] for x in sparse_asset_refs}
@@ -195,6 +202,7 @@ website_references_for_project(
     {"domains": [], "terms": set()}, assessment=vision_decisions
 )
 assert vision_decisions[minicpm_id]["decision"] == "matched"
+assert "reduced-refusal-public-safety-review" in vision_decisions[minicpm_id]["reviewGates"]
 assert vision_decisions[minicpm_id]["integrationEligible"] is False
 # Game repositories often have sparse GitHub descriptions. Their actual
 # game-development domain is sufficient to recommend art-direction research.
