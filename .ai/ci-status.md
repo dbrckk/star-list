@@ -1,18 +1,14 @@
 # CI status
 
-Summary: 4 success / 2 failure / 1 active
+Summary: 3 success / 0 failure / 2 active
 
-- Validate catalog: in_progress / pending (923f310e)
-- Validate catalog: completed / success (eb267092)
-- Validate catalog: completed / success (eb267092)
-- Validate catalog: completed / cancelled (925f9f5d)
-- Daily portfolio star-list integration: completed / success (925f9f5d)
-- Sync GitHub Stars: completed / success (8fc44271)
-- Trusted Production-OS PR Handoff: completed / failure (8fc44271)
-- Validate catalog: completed / failure (d68ad95f)
-
-## Latest failed run structure
-- Job: create-review
-  - Failed step: Verify published checkpoint and open a review PR
+- Daily portfolio star-list integration: in_progress / pending (df9ed268)
+- Validate catalog: in_progress / pending (df9ed268)
+- Validate catalog: completed / success (fd384ae8)
+- Portfolio discovery live smoke: completed / success (fd384ae8)
+- Validate catalog: completed / success (fd384ae8)
+- Validate catalog: completed / cancelled (774ef309)
+- Validate catalog: completed / cancelled (dce76fe8)
+- Validate catalog: completed / cancelled (bed2a143)
 
 > Generated summary only; inspect GitHub Actions for full logs when needed.

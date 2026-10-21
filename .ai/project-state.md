@@ -113,18 +113,16 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-21T22:37:50Z
+Generated: 2026-10-21T23:58:36Z
 
 ### Git
 - Branch: `main`
-- Head: `923f310e80e4`
-- Commit date: 2026-10-21T18:37:41-04:00
-- Commit: fix(handoff): enforce exact one-line model diff and recheck branch SHA before PR (#172)
+- Head: `df9ed26847b2`
+- Commit date: 2026-10-21T19:58:25-04:00
+- Commit: feat(web): audit Humanizer 12B for factual editorial rewriting (#173)
 - Tracked files: 294
 
 ### Recently changed files
-- `.github/workflows/production-os-review-handoff.yml`
-- `catalog.json`
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `README.md`
 - `RECOMMENDER.md`
@@ -135,6 +133,8 @@ Generated: 2026-10-21T22:37:50Z
 - `scripts/test_recommend.py`
 - `scripts/validate_websites.py`
 - `websites.json`
+- `catalog.json`
+- `.github/workflows/production-os-review-handoff.yml`
 
 ### Project signals
 - No common build descriptor detected

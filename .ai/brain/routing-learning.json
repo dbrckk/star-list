@@ -2,22 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "fix: exclude French filler from catalog matches",
-      "terms": [
-        "catalog",
-        "exclude",
-        "filler",
-        "french",
-        "from",
-        "matches"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/portfolio_daily.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "fix: surface safely scoped per-repository integration state",
       "terms": [
         "integration",
@@ -1316,6 +1300,28 @@
         "scripts/test_recommend.py",
         "scripts/validate_websites.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(web): audit Humanizer 12B for factual editorial rewriting (#173)",
+      "terms": [
+        "12b",
+        "173",
+        "audit",
+        "editorial",
+        "factual",
+        "feat",
+        "humanizer",
+        "rewriting",
+        "web"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py",
+        "scripts/test_recommend.py",
+        "scripts/validate_websites.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1389,6 +1395,12 @@
       "scripts/test_documentation.py": 4,
       "scripts/test_json_contracts.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "12b": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "130": {
       "scripts/portfolio_daily.py": 4,
@@ -1501,6 +1513,12 @@
       "scripts/validate_json_contract.py": 4
     },
     "170": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
+    "173": {
       "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4,
@@ -1761,11 +1779,14 @@
       "scripts/admit_github_stars.py": 4,
       "scripts/audit_agent_skill_sources.py": 4,
       "scripts/audit_catalog_quality.py": 12,
-      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_daily.py": 8,
+      "scripts/recommend.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_catalog_quality.py": 12,
       "scripts/test_documentation.py": 16,
-      "scripts/test_sync_github_stars.py": 4
+      "scripts/test_recommend.py": 4,
+      "scripts/test_sync_github_stars.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "audit-tier": {
       "scripts/recommend.py": 4,
@@ -2063,6 +2084,12 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "editorial": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "enforce": {
       "scripts/portfolio_daily.py": 4,
       "scripts/validate_catalog.py": 4
@@ -2129,6 +2156,12 @@
       "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
     },
+    "factual": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "fail": {
       "scripts/portfolio_daily.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4
@@ -2157,7 +2190,7 @@
       "scripts/backfill_github_ids.py": 4,
       "scripts/portfolio_daily.py": 40,
       "scripts/portfolio_failure_diagnostics.py": 12,
-      "scripts/recommend.py": 32,
+      "scripts/recommend.py": 36,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_catalog_quality.py": 8,
@@ -2165,7 +2198,7 @@
       "scripts/test_json_contracts.py": 8,
       "scripts/test_recommend.py": 40,
       "scripts/test_sync_github_stars.py": 4,
-      "scripts/validate_websites.py": 24
+      "scripts/validate_websites.py": 28
     },
     "files": {
       "scripts/agent_skill_discovery.py": 4,
@@ -2322,6 +2355,12 @@
     "human": {
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
+    },
+    "humanizer": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "identity": {
       "scripts/audit_catalog_quality.py": 4,
@@ -2903,6 +2942,12 @@
       "scripts/star_import_pipeline.py": 4,
       "scripts/test_star_import_pipeline.py": 4
     },
+    "rewriting": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "roblox": {
       "scripts/agent_skill_discovery.py": 4,
       "scripts/portfolio_daily.py": 20,
@@ -3264,10 +3309,10 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "web": {
-      "scripts/portfolio_daily.py": 24,
-      "scripts/recommend.py": 16,
-      "scripts/test_recommend.py": 24,
-      "scripts/validate_websites.py": 16
+      "scripts/portfolio_daily.py": 28,
+      "scripts/recommend.py": 20,
+      "scripts/test_recommend.py": 28,
+      "scripts/validate_websites.py": 20
     },
     "websites": {
       "scripts/portfolio_daily.py": 8,

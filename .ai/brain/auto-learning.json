@@ -1,8 +1,32 @@
 {
-  "schema_version": 1,
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": false,
-  "reason": "missing-task-or-source-change",
-  "task": "fix(handoff): enforce exact one-line model diff and recheck branch SHA before PR (#172)",
-  "useful": []
+  "learned": true,
+  "learning_result": {
+    "example_count": 64,
+    "rejected_count": 0,
+    "terms": [
+      "12b",
+      "173",
+      "audit",
+      "editorial",
+      "factual",
+      "feat",
+      "humanizer",
+      "rewriting",
+      "web"
+    ],
+    "test_count": 0,
+    "useful_count": 4
+  },
+  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
+  "rejected": [],
+  "schema_version": 1,
+  "task": "feat(web): audit Humanizer 12B for factual editorial rewriting (#173)",
+  "tests_selected": [],
+  "useful": [
+    "scripts/portfolio_daily.py",
+    "scripts/recommend.py",
+    "scripts/test_recommend.py",
+    "scripts/validate_websites.py"
+  ]
 }

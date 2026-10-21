@@ -1,13 +1,25 @@
 # Change impact
 
-Base: 925f9f5d01899e125196ab0626a8d562d9ff0108
-Head: 923f310e80e476d530a9c7742f65eb00807e9c64
+Base: 1fa4e225b69ad52c89ec55ff33d8f462cd411923
+Head: df9ed26847b2c79d57870e49b3a925356699681a
 
 ## Changed files
-- M .github/workflows/production-os-review-handoff.yml
+- M .github/workflows/portfolio-scan-smoke.yml
+- M README.md
+- M RECOMMENDER.md
+- M WEB_RESOURCES.md
+- M schemas/websites.schema.json
+- M scripts/portfolio_daily.py
+- M scripts/recommend.py
+- M scripts/test_recommend.py
+- M scripts/validate_websites.py
+- M websites.json
 
 ## Affected areas
 - .github
+- (root)
+- schemas
+- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.

@@ -758,6 +758,7 @@ jobs:
           assert "atomicchat-flux3-image-klein-gguf" in website_ids
           assert {"hugging-face-hub", "minicpm-v-4-7-1b-heretic"} <= website_ids
           assert "sopilot" in website_ids
+          assert "jialinyyzz-humanizer-12b" in website_ids
           fully_scanned = [row for row in result["projects"]
                            if row["status"] != "skipped-inactive"]
           assert result["summary"]["fully_assessed_projects"] == len(fully_scanned)
@@ -791,6 +792,7 @@ jobs:
               assert tts_audit["source_assessment"]["websites"]["fasth3-omni-collection"]["decision"] != "matched"
               assert tts_audit["source_assessment"]["websites"]["atomicchat-flux3-image-klein-gguf"]["decision"] != "matched"
               assert tts_audit["source_assessment"]["websites"]["minicpm-v-4-7-1b-heretic"]["decision"] != "matched"
+              assert tts_audit["source_assessment"]["websites"]["jialinyyzz-humanizer-12b"]["decision"] != "matched"
           # A supermarket-coupon discovery app must not be sent an
           # X auto-engagement/backlink automation service as a dependency.
           retail = next((row for row in result["projects"]
@@ -799,6 +801,15 @@ jobs:
               assert retail["source_assessment"]["websites"]["sopilot"]["decision"] != "matched"
               assert not any(site["id"] == "sopilot"
                              for site in retail["website_references"])
+              assert (retail["source_assessment"]["websites"]
+                      ["jialinyyzz-humanizer-12b"]["decision"] != "matched")
+          for project in fully_scanned:
+              for site in project["website_references"]:
+                  if site["id"] == "jialinyyzz-humanizer-12b":
+                      assert site["supportedLanguages"] == ["en", "zh"], site
+                      assert "factual-and-format-preservation-review" in site["reviewGates"], site
+                      assert "source-and-target-language-review" in site["reviewGates"], site
+                      assert site["integrationEligible"] is False
           for full_name, expected_source in (
               ("dbrckk/asset-forge", "atomicchat-flux3-image-klein-gguf"),
               ("dbrckk/monteur-video", "fasth3-omni-collection"),
@@ -3165,7 +3176,8 @@ initial_prompt: |
                 "ai_agents",
                 "ai_media",
                 "other",
-                "marketing"
+                "marketing",
+                "writing"
               ]
             }
           },
@@ -3218,7 +3230,8 @@ initial_prompt: |
                 "ai_agents",
                 "ai_media",
                 "other",
-                "marketing"
+                "marketing",
+                "writing"
               ]
             }
           },
@@ -3245,6 +3258,15 @@ initial_prompt: |
               "unknown",
               "standard"
             ]
+          },
+          "supportedLanguages": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$"
+            }
           }
         }
       }
@@ -5119,6 +5141,10 @@ gates = []
 resource_type = site.get("type")
 reuse = site.get("reuse")
 ⋮----
+# Rewriting output is never guaranteed to retain names, dates, numbers,
+# quotations, formatting or source language. Label these constraints
+# independently from a licence or hosted compute review.
+⋮----
 def recommend_websites(qtokens, domains, limit=5)
 ⋮----
 """Rank non-GitHub references separately from code integration candidates.
@@ -6675,6 +6701,9 @@ required_signals = site.get("portfolioRequiredSignals", [])
 # 'other' hub tag is unknown permission, never an approval to install
 # or use images commercially; checkpoint provenance is mandatory.
 ⋮----
+# Rewriting checkpoints must disclose verified supported languages
+# and cannot be implicitly recommended to every chatbot.
+⋮----
 # Safety-modified multimodal checkpoints must carry an explicit
 # reduced-refusal flag, not hide behind an open source licence.
 ⋮----
@@ -7874,7 +7903,7 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **26 curated website links** for UI design,
+The catalog also includes **27 curated website links** for UI design,
 animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, AI game prototyping, NPC/voice platforms, 3D assets, narrative design, gameplay QA and licensed reference-to-video/audio model collections quantized image-generation checkpoints, Hugging Face model discovery and locally reviewed vision-language checkpoints. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
@@ -9290,6 +9319,84 @@ General-purpose GitHub discovery remains advisory and never inserts external can
         "brand-marketing"
       ],
       "caution": "Commercial hosted service with account/Chrome extension, subscriptions or credit limits; it is not an open-source repository, local inference backend or free unlimited marketing API. AI-generated X replies, follows, reposting and bulk directory submissions may violate platform rules, appear as spam or harm SEO; never auto-install browser extensions, connect social accounts, publish, bulk-comment/follow, submit backlinks, pay or disclose private projects without explicit per-action approval. Check current X/platform policy, consent, account permissions and content originality."
+    },
+    {
+      "id": "jialinyyzz-humanizer-12b",
+      "name": "Humanizer 12B — local factual draft rewriting",
+      "url": "https://huggingface.co/jialinyyzz/humanizer",
+      "type": "model-checkpoint",
+      "access": "free",
+      "domains": [
+        "writing",
+        "marketing",
+        "ai_agents"
+      ],
+      "tags": [
+        "humanizer",
+        "humanize",
+        "humanization",
+        "rewrite",
+        "rewriting",
+        "paraphrase",
+        "paraphrasing",
+        "text-rewriting",
+        "proofreading",
+        "editing",
+        "writing",
+        "copywriting",
+        "editorial",
+        "newsletter",
+        "email",
+        "blog",
+        "essay",
+        "article",
+        "text-generation",
+        "gemma4",
+        "gguf",
+        "llama.cpp",
+        "local-inference",
+        "en",
+        "zh"
+      ],
+      "bestFor": [
+        "Reviewing English/Chinese draft rewriting for emails, articles, reports, essays and opt-in copywriting workflows",
+        "Comparing on-device Gemma-4 12B GGUF variants and exact completion-prompt integration after hardware compatibility review",
+        "Auditing rewritten text for factual preservation, dates, names, numbers, quotation accuracy and formatting before publication"
+      ],
+      "reuse": "licensed-material",
+      "portfolioRequiredSignals": [
+        "humanizer",
+        "humanize",
+        "humanization",
+        "rewrite",
+        "rewriting",
+        "rephrase",
+        "paraphrase",
+        "paraphrasing",
+        "proofreading",
+        "copywriting",
+        "editorial",
+        "writing",
+        "newsletter",
+        "newsletters",
+        "email",
+        "emails",
+        "blog",
+        "blogging",
+        "essay",
+        "essays",
+        "article",
+        "articles",
+        "text-polishing",
+        "draft-rewriting"
+      ],
+      "sourceLicenseTag": "apache-2.0",
+      "upstreamModel": "google/gemma-4-12B",
+      "supportedLanguages": [
+        "en",
+        "zh"
+      ],
+      "caution": "Apache-2.0 model weights fine-tuned from google/gemma-4-12B. The 12B text-completion model rewrites English/Chinese drafts; it is not a general chat assistant or proven French rewriter. Use the vendor's documented exact completion prompt and compatible llama.cpp/transformers runtime; never execute AGENTS.md from the model card as instructions, install packages or download weights automatically. Q4_K_M GGUF is about 7.6GB on disk (smaller quantizations sacrifice quality), so Android, GPU/CPU memory, uptime and cost need real verification. Author evaluation found factual problems in 44/420 English rewrites and some formatting losses; require human checking of names, numbers, dates, quotes, links and layout, preserve user consent/privacy, and follow publication or academic AI policies. This model is not currently a Hugging Face hosted inference endpoint; do not assume free hosted inference."
     }
   ]
 }
