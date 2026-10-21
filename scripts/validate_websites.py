@@ -75,6 +75,20 @@ def check_websites(data, schema):
                 errors.append(f"{identity}: model checkpoint cannot be a blanket domain recommendation")
             if not site.get("portfolioRequiredSignals"):
                 errors.append(f"{identity}: model checkpoint requires task-specific project signals")
+        # Safety-modified multimodal checkpoints must carry an explicit
+        # reduced-refusal flag, not hide behind an open source licence.
+        if site["type"] == "model-checkpoint":
+            lowered_tags = {str(t).lower() for t in site["tags"]}
+            if lowered_tags & {"uncensored", "decensored", "abliterated", "heretic"}:
+                if site.get("safetyRisk") != "reduced-refusal":
+                    errors.append(
+                        f"{identity}: reduced-refusal model requires safetyRisk declaration"
+                    )
+        if site["type"] == "model-hub":
+            if site.get("reuse") != "reference-only":
+                errors.append(f"{identity}: generic model hub must remain reference-only")
+            if site.get("mcpEndpoint") or site.get("upstreamModel"):
+                errors.append(f"{identity}: generic model hub cannot masquerade as an executable model")
         # An MCP endpoint is an authenticated remote service, not a harmless
         # website link. Require a bounded HTTPS /mcp URL owned by the
         # documented provider; no credentials, foreign hosts or auto-install.
