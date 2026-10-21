@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **23 websites** are curated alongside it in [`websites.json`](websites.json);
+These **25 websites** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -31,6 +31,8 @@ the ability to browse a page.
 | modl.ai | [modl.ai](https://modl.ai/) | AI gameplay QA, crashes, visual bugs and regression playtests | Access to verify | Hosted build upload; inspect current cost, supported platforms and build privacy |
 | FastVideo — FastH3 Omni | [Hugging Face collection](https://huggingface.co/collections/FastVideo/fasth3-omni) | Reference-guided video generation with synchronized audio; BF16, INT8, FP8 and NVFP4 variants | Free model browsing; expensive local inference | MiniMax-H3 Community License Agreement applies to weights; review each model and GPU/VRAM/encoder/VAE requirements; never auto-download or invoke |
 | AtomicChat — FLUX.3 Image Klein GGUF | [Hugging Face checkpoint](https://huggingface.co/AtomicChat/FLUX-3-Image-Klein-GGUF) | Quantized image-generation/editing transformer for licensed art assets and imagery | Model metadata accessible; compute and rights require review | Hugging Face `license: other`; upstream FLUX Kommunity License. Verify converted-weight redistribution, commercial output terms, compatible GGUF runtime, separate encoder/VAE and CPU/GPU memory before use. No automatic model downloads |
+| Hugging Face — Model, Dataset and Space Hub | [huggingface.co](https://huggingface.co/) | Discover AI checkpoints, datasets, demos and inference providers for relevant projects | Freemium | Each model/Space has independent rights, risks, compute and pricing; model discovery is not installation or free GPU inference |
+| MiniCPM-V 4.7 1B Heretic | [Hugging Face model](https://huggingface.co/saidutta69/MiniCPM-V-4.7-1B-heretic) | Local image Q&A, OCR, screenshot understanding and lightweight multimodal research | Model browser access free; runtime separate | Tagged Apache-2.0, but no bundled licence file per card; community-abliterated and reduced-refusal, no safety filter. Vision GGUF needs separate ~1.11GB projector; do not deploy to unmoderated public endpoints |
 
 ## Quantized image checkpoints are references, not plug-and-play dependencies
 
@@ -49,6 +51,34 @@ visual or asset-generation needs, including hyphenated description/topic
 labels. It is excluded from generic AI and speech project recommendations.
 It remains `integrationEligible: false` even if relevant. The daily scan
 records its provenance and explicit non-selection reasons for other projects.
+
+## Hugging Face discovery and MiniCPM safety
+
+The Hugging Face homepage is a **model/dataset/Spaces discovery directory**.
+It can be reviewed for AI-agent and AI-media repositories, without assuming
+that each hosted model is free, open-licensed, safe or actually served by an
+Inference Provider. Each candidate's license, hardware, hosted costs and
+privacy requirements must be reviewed individually.
+
+`saidutta69/MiniCPM-V-4.7-1B-heretic` is an `image-text-to-text`
+vision-language model derived from `openbmb/MiniCPM-V-4.7-1B`. Its
+Hugging Face card labels it Apache-2.0 and approximately **1.55B total
+parameters**, 1.01B for language and 0.55B for the vision encoder.
+**Its "heretic" modification deliberately reduces refusals and supplies
+no additional moderation/safety filter**. Never use it as an autonomous,
+unmoderated public-facing agent. Independently verify rights, document
+handling/privacy, on-device performance and any safeguards.
+
+For llama.cpp vision inference the model card states that GGUF use needs
+**both** the quantized main model and its approximately **1.11GB vision
+projector** (`mmproj`). CPU/GPU memory, supported formats and device
+compatibility require actual testing; 1B in the title is not the complete
+multimodal parameter count. This is a review-only resource, **not an
+automatic dependency or a known working Android integration**. The
+selection engine prefers projects with explicit OCR, screenshot, image
+understanding, captioning or multimodal objectives; generic speech projects
+and asset-generation apps do not receive this VLM simply because they
+work with AI or images.
 
 ## Complete per-project catalog decisions
 
@@ -72,7 +102,7 @@ version automatically.
 
 ## How specialist game platforms are selected
 
-The daily portfolio scan inspects **all 23 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
+The daily portfolio scan inspects **all 25 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
 
 ## Search repositories and relevant websites together
 
