@@ -4,23 +4,25 @@
   "repository": "dbrckk/star-list",
   "reference_branch": "main",
   "status": "active",
-  "verified_catalog_repositories": 1013,
+  "verified_catalog_repositories": 1023,
   "last_verified_public_portfolio_scan": {
     "discovered": 42,
     "inspected": 42,
-    "with_suggestions": 16,
-    "with_native_suggestions": 3,
-    "native_suggestions": 14,
-    "with_website_references": 13,
+    "with_suggestions": 24,
+    "with_native_suggestions": 9,
+    "native_suggestions": 24,
+    "with_website_references": 15,
     "skill_directory_references": 42,
     "with_skill_recommendations": 13,
     "dispatched": 0,
     "public_report_issue": 61,
-    "verified_workflow_run": 39636049312,
-    "skill_recommendations": 21,
-    "website_references": 42,
-    "qualifying_repositories": 106,
-    "curated_websites": 21
+    "verified_workflow_run": 39643135868,
+    "skill_recommendations": 60,
+    "website_references": 49,
+    "qualifying_repositories": 216,
+    "curated_websites": 21,
+    "policy_review_suggestions": 80,
+    "catalog_repositories": 1023
   },
   "last_verified_integration_inventory": {
     "active": 0,
@@ -102,7 +104,10 @@
     153,
     155,
     156,
-    158
+    158,
+    159,
+    160,
+    161
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -162,13 +167,15 @@
     "Star-list PR #153 merged as 2e0ff4a: recovered genuine model-authored production-os source fix of MCP www host guard by restoring accidentally changed executable mode on unchanged second file; verified exact one-file diff and exact-head catalog/portfolio CI passed. Manual recovery does not prove automatic handoff repeatability.",
     "Ai-dev-server PR #370 merged as bc82897 after exact-head 7/7 CI job successes: generic Git publication preserves 100755 and 100644 from exact base tree, avoiding chmod-only spurious files; postmerge and another actual live handoff still need verification.",
     "Star-list PR #155 merged as b42c4de: Repomix excludes large structured data snapshots from monolithic AI context only, reducing repo-map from 1,506,885 to 335,601 bytes. Exact-head catalog validations and live postmerge Repository standards plus Validate catalog passed.",
-    "Star-list PR #158 merged as 9776e9d on 2026-10-21: verified official Rosebud AI, Convai, Inworld AI, Ludo.ai, Sloyd AI, Charisma AI and modl.ai website references were added as strictly review-only services (21 total websites). Explicit domain-baseline referrals and specialist task-signal gates fixed missing low-metadata game QA/prototype/design suggestions without auto installing or spending credits. Exact-head catalog and live portfolio smoke passed; post-merge Validate catalog and Repository standards succeeded."
+    "Star-list PR #158 merged as 9776e9d on 2026-10-21: verified official Rosebud AI, Convai, Inworld AI, Ludo.ai, Sloyd AI, Charisma AI and modl.ai website references were added as strictly review-only services (21 total websites). Explicit domain-baseline referrals and specialist task-signal gates fixed missing low-metadata game QA/prototype/design suggestions without auto installing or spending credits. Exact-head catalog and live portfolio smoke passed; post-merge Validate catalog and Repository standards succeeded.",
+    "Star-list PR #160 merged as aba361d (2026-10-21): decoupled exhaustive project relevance from strict native dispatch admission. All 1,023 GitHub catalogue rows are considered, previously skipped audit/complex/licence/low-score matches remain advisory and tagged policyReview, cannot dispatch. Per-source momentum cached for scan performance. Exact-head Validate catalog and real read-only smoke passed; postmerge Validate catalog, Repository standards and daily portfolio scan succeeded. Verified public report rose 106 to 164 task matches while preserving 14 native candidates, 58 policy-review references.",
+    "Star-list PR #161 merged as 91a61ac (2026-10-21): promoted only verified exact root framework manifest packages plus GitHub Luau/GDScript primary-language evidence to project selection domains/terms; secondary React/Next.js/Flutter/Expo/Remotion projects no longer hidden behind generic README labels or a first Python manifest. Existing smoke proves polyglot and Lua/Luau distinctions. Exact-head Validate catalog and portfolio smoke plus postmerge catalog, standards and actual daily scan succeeded. Public issue #61 (run 39643135868): 42/42 inspected, 1,023 catalogue sources, 21 websites, 216 qualified GitHub matches, 80 policy-review, 24 native across nine public projects, 49 website references, 0 dispatched (4 historical v2 and 1 terminal v3 holds)."
   ],
   "next_priority": [
-    "Prove sustainable authenticated Production-OS AI inference/worker capacity with a bounded nonmutating probe and review four failed v2 plus terminal failed v3 historical tasks. Do not bypass the global fleet hold merely because controller Render is deployed or a one-off worker canary succeeded.",
-    "Then deliver exactly one licensed, compatible native catalog integration to a real target repository as a draft PR, validate exact published commit and target CI. Continue measuring actual integrations rather than counting submitted requests or review-only hosted websites.",
-    "Keep daily exhaustive GitHub catalog (1,013 entries) and curated website (21 sources) matching for all accessible public/private projects. Only task-relevant specialist services appear; domain-baseline game prototype/design/QA providers are reference-only and not executable without opt-in and terms review.",
-    "Review seven unresolved historical GitHub identities; preserve safe Stars reconciliation, source-rights review and private-target confidentiality."
+    "Restore sustainable, authenticated Production-OS inference capacity with a bounded read-only provider probe and operator-reviewed resolution of four failed v2 and one terminal v3 historical integrations; do not bypass the fleet safety stop.",
+    "After safe capacity verification, deliver and verify one actual licensed, compatible native catalog candidate as a real source diff and draft PR with exact-head target CI, measured usage and no model-run retry loops. Do not claim completed integrations from discovery totals.",
+    "Daily scan now reviews all 1,023 GitHub catalog rows and 21 curated websites for each project, promoting only credible technology evidence from known root manifests/GitHub primary language. Monitor 24 native candidates across nine projects for false positives and policy-review source compliance; never dispatch unlicensed review entries.",
+    "Continue exact public/private Stars reconciliation and review seven unresolved historical GitHub identities; preserve public/private boundaries."
   ],
   "constraints": [
     "No automatic merge/deployment of third-party integrations",
