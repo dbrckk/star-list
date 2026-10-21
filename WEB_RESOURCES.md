@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **14 websites** are curated alongside it in [`websites.json`](websites.json);
+These **21 websites** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -22,6 +22,17 @@ the ability to browse a page.
 | Game Art Style | [gameartstyle.loopyhop.com](https://gameartstyle.loopyhop.com/) | Visual atlas of 37 game art styles, game references and coherent art-direction prompts | Free browsing | Inspiration only; screenshots remain owned by their respective creators |
 | Jupiter the Warlock — Game Art Style | [jupiterthewarlock.com/gameartstyle](https://jupiterthewarlock.com/gameartstyle/) | Additional user-supplied game art direction reference; content not independently retrieved | Availability unverified | Reference only; independently confirm page and all image/asset rights before use |
 | PINOC MCP by Viggle | [viggle.ai/pinoc/mcp](https://viggle.ai/pinoc/mcp) ([user link](https://viggle.ai/pinoc/app/mcp)) | Agent-accessible preset 3D motions, video mocap, text-to-motion and rigged characters | Freemium; read-only lookups/preset motions free; generation uses credits | Login and approval required; check asset rights, supported rigs, model formats and each charge |
+| Rosebud AI | [rosebud.ai](https://rosebud.ai/) | Playable browser-game prototyping and gameplay iteration | Freemium | Hosted generator; commercial generation/export rights can require a paid plan |
+| Convai | [convai.com](https://convai.com/) | Real-time, context-aware conversational NPCs and reviewed SDKs | Freemium | Hosted, account/API required; inspect supported engines, privacy and runtime cost |
+| Inworld AI | [inworld.ai](https://inworld.ai/) | Real-time voice and dialogue APIs for games and companions | Freemium | Verify current speech/inference products rather than assuming old NPC engine capabilities |
+| Ludo.ai | [ludo.ai](https://ludo.ai/) | Game design documents, concept iteration and optional asset generation | Freemium | Hosted credits; CLI/MCP/API must not run or spend without opt-in |
+| Sloyd AI | [sloyd.ai](https://sloyd.ai/) | Generated 3D meshes, props and topology review | Freemium | Check export, performance and generated-model commercial rights |
+| Charisma AI | [charisma.ai](https://charisma.ai/) | Branching storytelling, interactive dialogue and narrative SDKs | Access to verify | Licence, pricing and compatible engine integration require review |
+| modl.ai | [modl.ai](https://modl.ai/) | AI gameplay QA, crashes, visual bugs and regression playtests | Access to verify | Hosted build upload; inspect current cost, supported platforms and build privacy |
+
+## How specialist game platforms are selected
+
+The daily portfolio scan inspects **all 21 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
 
 ## Search repositories and relevant websites together
 
