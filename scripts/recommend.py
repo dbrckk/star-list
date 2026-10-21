@@ -68,6 +68,7 @@ def recommend_websites(qtokens, domains, limit=5):
     for site in data["websites"]:
         site_domains = set(site["domains"])
         matched_domains = sorted(site_domains & domains)
+        baseline_domains = sorted(set(site.get("portfolioBaselineDomains", [])) & domains)
         matched_tags = sorted(qtokens & set(site["tags"]))
         matched_text = sorted((qtokens & tokens(
             site["name"] + " " + " ".join(site["bestFor"])
@@ -76,7 +77,7 @@ def recommend_websites(qtokens, domains, limit=5):
             continue
         score = (12 * len(matched_domains) + 10 * len(matched_tags)
                  + 4 * len(matched_text))
-        ranked.append((score, site, matched_domains, matched_tags, matched_text))
+        ranked.append((score, site, matched_domains, matched_tags, matched_text, baseline_domains))
     ranked.sort(key=lambda row: (-row[0], row[1]["name"].lower()))
     return [
         {
@@ -88,10 +89,11 @@ def recommend_websites(qtokens, domains, limit=5):
             # the recommender never connects or authorizes paid MCP tools.
             **({"mcpEndpoint": site["mcpEndpoint"]} if site.get("mcpEndpoint") else {}),
             "selectionScore": score,
-            "why": {"domains": domain_hits, "tags": tag_hits, "terms": text_hits},
+            "why": {"domains": domain_hits, "tags": tag_hits, "terms": text_hits,
+                    "portfolioBaselineDomains": baseline_hits},
             "integrationEligible": False,
         }
-        for score, site, domain_hits, tag_hits, text_hits in (ranked if limit is None else ranked[:limit])
+        for score, site, domain_hits, tag_hits, text_hits, baseline_hits in (ranked if limit is None else ranked[:limit])
     ]
 
 def activity_adjustment(r):
