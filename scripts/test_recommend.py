@@ -149,6 +149,53 @@ finance_asset_refs = website_references_for_project(
     {"domains": [], "terms": tokens("portfolio finance trades balance")},
 )
 assert gguf_id not in {x["id"] for x in finance_asset_refs}
+# The general Hugging Face hub is an advisory discovery *directory*, not a
+# blanket licence or a source of free unrestricted inference.
+hf_hub_id = "hugging-face-hub"
+minicpm_id = "minicpm-v-4-7-1b-heretic"
+assert sum(site["id"] == hf_hub_id for site in sites) == 1
+assert sum(site["id"] == minicpm_id for site in sites) == 1
+hf_hub = next(site for site in sites if site["id"] == hf_hub_id)
+assert hf_hub["type"] == "model-hub" and hf_hub["reuse"] == "reference-only"
+assert hf_hub["url"] == "https://huggingface.co/"
+assert not hf_hub.get("upstreamModel")
+vlm = next(site for site in sites if site["id"] == minicpm_id)
+assert vlm["sourceLicenseTag"] == "apache-2.0"
+assert vlm["upstreamModel"] == "openbmb/MiniCPM-V-4.7-1B"
+assert vlm["safetyRisk"] == "reduced-refusal"
+assert "uncensored" not in str(vlm.get("bestFor", [])).lower()
+assert vlm["type"] == "model-checkpoint"
+assert not vlm.get("portfolioBaselineDomains")
+# An OCR/vision project may lack GitHub topics or primary AI language; this
+# case must NOT promote a model to a native code dependency.
+vision_ref = website_references_for_project(
+    {"name": "ocr-screenshot-reader", "description": None, "topics": []},
+    {"domains": [], "terms": set()}
+)
+vlm_ref = next(x for x in vision_ref if x["id"] == minicpm_id)
+assert vlm_ref["safetyRisk"] == "reduced-refusal"
+assert vlm_ref["sourceLicenseTag"] == "apache-2.0"
+assert vlm_ref["integrationEligible"] is False
+assert vlm_ref["upstreamModel"] == vlm["upstreamModel"]
+assert hf_hub_id in {x["id"] for x in vision_ref}
+# An AI agent can discover Hugging Face even without a particular model
+# family or action signal; the exact abliterated checkpoint stays gated.
+agent_refs = website_references_for_project(
+    {"name": "ai-agent", "description": None, "topics": []},
+    {"domains": ["ai_agents"], "terms": set()}
+)
+assert hf_hub_id in {x["id"] for x in agent_refs}
+assert minicpm_id not in {x["id"] for x in agent_refs}
+assert minicpm_id not in {x["id"] for x in tts_portfolio_sites}
+assert minicpm_id not in {x["id"] for x in sparse_asset_refs}
+assert minicpm_id not in {x["id"] for x in quiet_game}
+vision_decisions = {}
+website_references_for_project(
+    {"name": "ocr-screenshot-reader", "description": None, "topics": []},
+    {"domains": [], "terms": set()}, assessment=vision_decisions
+)
+assert vision_decisions[minicpm_id]["decision"] == "matched"
+assert vision_decisions[minicpm_id]["integrationEligible"] is False
 # Game repositories often have sparse GitHub descriptions. Their actual
 # game-development domain is sufficient to recommend art-direction research.
 game_sites = website_references_for_project(
@@ -202,6 +249,37 @@ assert check_websites(bad_model, website_schema)
 model_data["sourceLicenseTag"] = "other"
 model_data["portfolioBaselineDomains"] = ["ai_media"]
 assert check_websites(bad_model, website_schema)
+unsafe_vlm = copy.deepcopy(websites_catalog)
+vlm_row = next(x for x in unsafe_vlm["websites"] if x["id"] == minicpm_id)
+vlm_row.pop("safetyRisk")
+assert check_websites(unsafe_vlm, website_schema)
+vlm_row["safetyRisk"] = "reduced-refusal"
+vlm_row["portfolioBaselineDomains"] = ["ai_media"]
+assert check_websites(unsafe_vlm, website_schema)
+unsafe_hf = copy.deepcopy(websites_catalog)
+hf_row = next(x for x in unsafe_hf["websites"] if x["id"] == hf_hub_id)
+hf_row["reuse"] = "open-source-upstream"
+assert check_websites(unsafe_hf, website_schema)
+# HF model IDs commonly contain dots (MiniCPM-V-4.7), while
+# dot-segment path traversal, queries and embedded credentials stay blocked.
+from validate_websites import canonical_url
+assert canonical_url("https://huggingface.co/saidutta69/MiniCPM-V-4.7-1B-heretic") == (
+    "huggingface.co/saidutta69/MiniCPM-V-4.7-1B-heretic"
+)
+for unsafe_url in (
+    "https://huggingface.co/../secret",
+    "https://huggingface.co/a/./b",
+    "https://huggingface.co/a..b",
+    "https://huggingface.co/a//b",
+    "https://huggingface.co/?download=1",
+    "https://user:secret@huggingface.co/model",
+):
+    try:
+        canonical_url(unsafe_url)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("unsafe URL accepted: " + unsafe_url)
 
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 for item in strict["recommendations"]:
