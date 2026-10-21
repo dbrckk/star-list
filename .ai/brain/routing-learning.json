@@ -2,24 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "Build deterministic GitHub star import pipeline (#42)",
-      "terms": [
-        "42",
-        "build",
-        "deterministic",
-        "github",
-        "import",
-        "pipeline",
-        "star"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/star_import_pipeline.py",
-        "scripts/test_star_import_pipeline.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "Fix reviewed GitHub star import workflow (#44)",
       "terms": [
         "44",
@@ -1282,6 +1264,30 @@
         "scripts/test_recommend.py",
         "scripts/validate_websites.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(web): add seven game AI services and safer project-fit review (#158)",
+      "terms": [
+        "158",
+        "add",
+        "ai",
+        "feat",
+        "game",
+        "project-fit",
+        "review",
+        "safer",
+        "services",
+        "seven",
+        "web"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py",
+        "scripts/test_recommend.py",
+        "scripts/validate_websites.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1414,6 +1420,12 @@
     },
     "155": {
       "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
+    "158": {
       "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4,
@@ -1583,14 +1595,14 @@
     "add": {
       "scripts/agent_skill_discovery.py": 4,
       "scripts/audit_catalog_quality.py": 4,
-      "scripts/portfolio_daily.py": 8,
-      "scripts/recommend.py": 8,
+      "scripts/portfolio_daily.py": 12,
+      "scripts/recommend.py": 12,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_json_contracts.py": 4,
-      "scripts/test_recommend.py": 12,
+      "scripts/test_recommend.py": 16,
       "scripts/validate_catalog.py": 4,
-      "scripts/validate_websites.py": 4
+      "scripts/validate_websites.py": 8
     },
     "admissions": {
       "scripts/test_documentation.py": 4
@@ -1609,6 +1621,12 @@
       "scripts/agent_skill_discovery.py": 4,
       "scripts/portfolio_daily.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "ai": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "ai-map": {
       "scripts/agent_skill_discovery.py": 4,
@@ -2046,15 +2064,15 @@
       "scripts/backfill_github_ids.py": 4,
       "scripts/portfolio_daily.py": 40,
       "scripts/portfolio_failure_diagnostics.py": 12,
-      "scripts/recommend.py": 12,
+      "scripts/recommend.py": 16,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_catalog_quality.py": 8,
       "scripts/test_documentation.py": 20,
       "scripts/test_json_contracts.py": 8,
-      "scripts/test_recommend.py": 20,
+      "scripts/test_recommend.py": 24,
       "scripts/test_sync_github_stars.py": 4,
-      "scripts/validate_websites.py": 8
+      "scripts/validate_websites.py": 12
     },
     "files": {
       "scripts/agent_skill_discovery.py": 4,
@@ -2116,10 +2134,10 @@
       "scripts/portfolio_daily.py": 4
     },
     "game": {
-      "scripts/portfolio_daily.py": 16,
-      "scripts/recommend.py": 8,
-      "scripts/test_recommend.py": 8,
-      "scripts/validate_websites.py": 4
+      "scripts/portfolio_daily.py": 20,
+      "scripts/recommend.py": 12,
+      "scripts/test_recommend.py": 12,
+      "scripts/validate_websites.py": 8
     },
     "games": {
       "scripts/portfolio_daily.py": 4
@@ -2468,6 +2486,12 @@
     "project": {
       "scripts/portfolio_daily.py": 4
     },
+    "project-fit": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "projects": {
       "scripts/portfolio_daily.py": 12,
       "scripts/recommend.py": 4,
@@ -2683,8 +2707,12 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "review": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
       "scripts/sync_github_stars.py": 4,
-      "scripts/test_sync_github_stars.py": 4
+      "scripts/test_recommend.py": 4,
+      "scripts/test_sync_github_stars.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "reviewable": {
       "scripts/portfolio_daily.py": 8
@@ -2704,6 +2732,12 @@
     "safely": {
       "scripts/portfolio_daily.py": 12,
       "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "safer": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "same": {
       "scripts/portfolio_daily.py": 4,
@@ -2744,6 +2778,18 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
+    },
+    "services": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
+    "seven": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "skill": {
       "scripts/agent_skill_discovery.py": 8,
@@ -2999,10 +3045,10 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "web": {
-      "scripts/portfolio_daily.py": 12,
-      "scripts/recommend.py": 4,
-      "scripts/test_recommend.py": 12,
-      "scripts/validate_websites.py": 4
+      "scripts/portfolio_daily.py": 16,
+      "scripts/recommend.py": 8,
+      "scripts/test_recommend.py": 16,
+      "scripts/validate_websites.py": 8
     },
     "websites": {
       "scripts/portfolio_daily.py": 8,

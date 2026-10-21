@@ -1,13 +1,25 @@
 # Change impact
 
-Base: 2e0ff4a410a62da9a2d20a5091dfa28989a1d7b5
-Head: b42c4deb9cd1d1ebfcd1c09baa17fa55edec4066
+Base: 78f7685919975eed3944a10c32a9cc8016bbd01d
+Head: 9776e9d90b8aabe233d817eb786e874f9b3be27b
 
 ## Changed files
-- M .repomixignore
+- M .github/workflows/portfolio-scan-smoke.yml
+- M README.md
+- M RECOMMENDER.md
+- M WEB_RESOURCES.md
+- M schemas/websites.schema.json
+- M scripts/portfolio_daily.py
+- M scripts/recommend.py
+- M scripts/test_recommend.py
+- M scripts/validate_websites.py
+- M websites.json
 
 ## Affected areas
+- .github
 - (root)
+- schemas
+- scripts
 
 ## Related test candidates
 - No direct filename-based test match detected.

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "42f59c5ec5be88998719296b5d706e3431479482",
-  "head": "b42c4deb9cd1d1ebfcd1c09baa17fa55edec4066",
+  "base": "b42c4deb9cd1d1ebfcd1c09baa17fa55edec4066",
+  "head": "9776e9d90b8aabe233d817eb786e874f9b3be27b",
   "index_mode": "incremental",
   "changed_files": [
     {
@@ -10,11 +10,11 @@
       "status": "M"
     },
     {
-      "path": ".github/workflows/production-os-review-handoff.yml",
-      "status": "A"
+      "path": "README.md",
+      "status": "M"
     },
     {
-      "path": ".repomixignore",
+      "path": "RECOMMENDER.md",
       "status": "M"
     },
     {
@@ -22,15 +22,7 @@
       "status": "M"
     },
     {
-      "path": "catalog.json",
-      "status": "M"
-    },
-    {
-      "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
-      "status": "M"
-    },
-    {
-      "path": "scripts/agent_skill_discovery.py",
+      "path": "schemas/websites.schema.json",
       "status": "M"
     },
     {
@@ -55,15 +47,12 @@
     }
   ],
   "changed_source_files": [
-    "scripts/agent_skill_discovery.py",
     "scripts/portfolio_daily.py",
     "scripts/recommend.py",
     "scripts/test_recommend.py",
     "scripts/validate_websites.py"
   ],
   "impacted_files": [
-    "scripts/agent_skill_discovery.py",
-    "scripts/audit_agent_skill_sources.py",
     "scripts/portfolio_daily.py",
     "scripts/portfolio_failure_diagnostics.py",
     "scripts/recommend.py",
@@ -72,66 +61,6 @@
     "scripts/validate_websites.py"
   ],
   "impacted_symbols": [
-    {
-      "name": "word_set",
-      "kind": "function",
-      "file": "scripts/agent_skill_discovery.py",
-      "line": 25
-    },
-    {
-      "name": "load_skills",
-      "kind": "function",
-      "file": "scripts/agent_skill_discovery.py",
-      "line": 29
-    },
-    {
-      "name": "recommend_skills",
-      "kind": "function",
-      "file": "scripts/agent_skill_discovery.py",
-      "line": 89
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/agent_skill_discovery.py",
-      "line": 137
-    },
-    {
-      "name": "RejectRedirect",
-      "kind": "class",
-      "file": "scripts/audit_agent_skill_sources.py",
-      "line": 29
-    },
-    {
-      "name": "redirect_request",
-      "kind": "function",
-      "file": "scripts/audit_agent_skill_sources.py",
-      "line": 32
-    },
-    {
-      "name": "inspect_source",
-      "kind": "function",
-      "file": "scripts/audit_agent_skill_sources.py",
-      "line": 39
-    },
-    {
-      "name": "make_report",
-      "kind": "function",
-      "file": "scripts/audit_agent_skill_sources.py",
-      "line": 87
-    },
-    {
-      "name": "markdown",
-      "kind": "function",
-      "file": "scripts/audit_agent_skill_sources.py",
-      "line": 118
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/audit_agent_skill_sources.py",
-      "line": 149
-    },
     {
       "name": "package_skill_signals",
       "kind": "function",
@@ -280,7 +209,7 @@
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 863
+      "line": 867
     },
     {
       "name": "safe_state",
@@ -364,73 +293,73 @@
       "name": "activity_adjustment",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 97
+      "line": 100
     },
     {
       "name": "trend_adjustment",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 116
+      "line": 119
     },
     {
       "name": "delta",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 128
+      "line": 131
     },
     {
       "name": "guidance_weight",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 141
+      "line": 144
     },
     {
       "name": "score_repo",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 148
+      "line": 151
     },
     {
       "name": "explain_repo",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 179
+      "line": 182
     },
     {
       "name": "choose_stack",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 202
+      "line": 205
     },
     {
       "name": "infer_alternatives",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 215
+      "line": 218
     },
     {
       "name": "infer_complements",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 236
+      "line": 239
     },
     {
       "name": "resolve_relations",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 261
+      "line": 264
     },
     {
       "name": "usable",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 263
+      "line": 266
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 284
+      "line": 287
     },
     {
       "name": "run",
@@ -454,7 +383,7 @@
       "name": "main",
       "kind": "function",
       "file": "scripts/validate_websites.py",
-      "line": 86
+      "line": 95
     }
   ],
   "selected_tests": [

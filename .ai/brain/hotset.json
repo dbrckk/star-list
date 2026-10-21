@@ -10,7 +10,7 @@
         "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
-      "score": 535
+      "score": 505
     },
     {
       "path": "scripts/test_recommend.py",
@@ -22,7 +22,7 @@
         "selected-test",
         "symbol-indexed"
       ],
-      "score": 495
+      "score": 465
     },
     {
       "path": "scripts/recommend.py",
@@ -31,21 +31,9 @@
         "changed-source",
         "dependency-neighbor",
         "impact",
-        "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
-      "score": 465
-    },
-    {
-      "path": "scripts/agent_skill_discovery.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 420
+      "score": 435
     },
     {
       "path": "scripts/validate_websites.py",
@@ -77,15 +65,6 @@
       "score": 150
     },
     {
-      "path": "scripts/audit_agent_skill_sources.py",
-      "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "symbol-indexed"
-      ],
-      "score": 140
-    },
-    {
       "path": ".github/workflows/portfolio-scan-smoke.yml",
       "reasons": [
         "changed"
@@ -93,14 +72,14 @@
       "score": 100
     },
     {
-      "path": ".github/workflows/production-os-review-handoff.yml",
+      "path": "README.md",
       "reasons": [
         "changed"
       ],
       "score": 100
     },
     {
-      "path": ".repomixignore",
+      "path": "RECOMMENDER.md",
       "reasons": [
         "changed"
       ],
@@ -114,14 +93,7 @@
       "score": 100
     },
     {
-      "path": "catalog.json",
-      "reasons": [
-        "changed"
-      ],
-      "score": 100
-    },
-    {
-      "path": "docs/DAILY_PORTFOLIO_INTEGRATION.md",
+      "path": "schemas/websites.schema.json",
       "reasons": [
         "changed"
       ],
@@ -133,6 +105,13 @@
         "changed"
       ],
       "score": 100
+    },
+    {
+      "path": "scripts/agent_skill_discovery.py",
+      "reasons": [
+        "dependency-neighbor"
+      ],
+      "score": 75
     },
     {
       "path": "scripts/find_replacements.py",

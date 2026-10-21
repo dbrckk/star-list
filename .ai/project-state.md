@@ -105,28 +105,30 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-21T15:49:18Z
+Generated: 2026-10-21T16:35:03Z
 
 ### Git
 - Branch: `main`
-- Head: `b42c4deb9cd1`
-- Commit date: 2026-10-21T11:49:07-04:00
-- Commit: ci(ai-map): exclude non-code snapshots from Repomix (#155)
-- Tracked files: 298
+- Head: `9776e9d90b8a`
+- Commit date: 2026-10-21T12:34:51-04:00
+- Commit: feat(web): add seven game AI services and safer project-fit review (#158)
+- Tracked files: 294
 
 ### Recently changed files
-- `.repomixignore`
-- `scripts/validate_websites.py`
 - `.github/workflows/portfolio-scan-smoke.yml`
+- `README.md`
+- `RECOMMENDER.md`
 - `WEB_RESOURCES.md`
-- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
-- `scripts/agent_skill_discovery.py`
+- `schemas/websites.schema.json`
 - `scripts/portfolio_daily.py`
 - `scripts/recommend.py`
 - `scripts/test_recommend.py`
+- `scripts/validate_websites.py`
 - `websites.json`
+- `.repomixignore`
+- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
+- `scripts/agent_skill_discovery.py`
 - `.github/workflows/production-os-review-handoff.yml`
-- `catalog.json`
 
 ### Project signals
 - No common build descriptor detected

@@ -788,6 +788,7 @@ jobs:
                   assert "repo" not in website
                   assert website["why"]["domains"], website
                   assert (website["why"]["tags"] or website["why"]["terms"]
+                          or website["why"].get("portfolioBaselineDomains")
                           or (website["id"] in {"game-art-style", "jupiter-game-art-style"}
                               and "game_dev" in website["why"]["domains"])), website
           tts = next((row for row in result["projects"]
@@ -798,7 +799,8 @@ jobs:
           jumpy = next((row for row in result["projects"]
                         if row["repository"].lower() == "dbrckk/jumpy"), None)
           if jumpy is not None and jumpy["status"] != "skipped-inactive":
-              assert {"game-art-style", "jupiter-game-art-style"} <= {
+              assert {"game-art-style", "jupiter-game-art-style",
+                      "rosebud-ai", "ludo-ai", "modl-ai"} <= {
                   site["id"] for site in jumpy["website_references"]
               }, jumpy
           report_markdown = Path("portfolio-daily.md").read_text()
@@ -2997,7 +2999,12 @@ initial_prompt: |
               "shader-gallery",
               "hosted-builder",
               "agent-skills-directory",
-              "mcp-service"
+              "mcp-service",
+              "npc-platform",
+              "narrative-platform",
+              "game-design-service",
+              "asset-generator",
+              "game-testing-service"
             ]
           },
           "access": {
@@ -3059,6 +3066,32 @@ initial_prompt: |
           "mcpEndpoint": {
             "type": "string",
             "pattern": "^https://[^/\\s?#]+/mcp$"
+          },
+          "portfolioBaselineDomains": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "web_frontend",
+                "graphics",
+                "mobile",
+                "game_dev",
+                "software_engineering",
+                "ai_agents",
+                "ai_media",
+                "other"
+              ]
+            }
+          },
+          "portfolioRequiredSignals": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 2
+            }
           }
         }
       }
@@ -4492,8 +4525,9 @@ def website_references_for_project(repo: dict, profile: dict, limit: int | None 
 ⋮----
 """Suggest websites only for applicable project domains, never as code.
 
-    Game projects benefit from an art-direction atlas even if their GitHub
-    metadata says only "Jumpy" or "Roblox" and has no explicit art keywords.
+    Game projects benefit from an art-direction atlas and reviewed baseline
+    planning/QA/prototyping sources even when their GitHub metadata is sparse.
+    Hosted services remain references: no credentials, installs or spending.
     """
 domains = set(profile.get("domains") or [])
 metadata_terms = tokens(" ".join([
@@ -4869,6 +4903,7 @@ ranked = []
 ⋮----
 site_domains = set(site["domains"])
 matched_domains = sorted(site_domains & domains)
+baseline_domains = sorted(set(site.get("portfolioBaselineDomains", [])) & domains)
 matched_tags = sorted(qtokens & set(site["tags"]))
 matched_text = sorted((qtokens & tokens(
 ⋮----
@@ -5915,7 +5950,7 @@ sites = websites_catalog["websites"]
 # the existing GitHub recommendation contract or require exact-size snapshots.
 ⋮----
 baseline_web_query = run("3d scroll animation website", "--top", "4")
-with_web_query = run("3d scroll animation website", "--top", "4", "--websites", "--top-websites", "10")
+with_web_query = run("3d scroll animation website", "--top", "4", "--websites", "--top-websites", "30")
 ⋮----
 with_skills_query = run("mobile ui design", "--top", "4", "--skills")
 without_skills_query = run("mobile ui design", "--top", "4")
@@ -6508,6 +6543,12 @@ identity = site["id"]
 normalized = canonical_url(url)
 ⋮----
 prior = owner_by_url.get(normalized)
+⋮----
+# Always-review declarations must not escape a website\'s stated domain.
+baseline = set(site.get("portfolioBaselineDomains", []))
+⋮----
+# Specialist triggers must be explicit canonical labels, not prose.
+required_signals = site.get("portfolioRequiredSignals", [])
 ⋮----
 # An MCP endpoint is an authenticated remote service, not a harmless
 # website link. Require a bounded HTTPS /mcp URL owned by the
@@ -7700,8 +7741,8 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **13 curated website links** for UI design,
-animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, and AI-assisted prototyping. Explore them
+The catalog also includes **21 curated website links** for UI design,
+animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, AI game prototyping, NPC/voice platforms, 3D assets, narrative design and gameplay QA. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
 repositories and are never passed to Production-OS as code dependencies.
@@ -8528,6 +8569,270 @@ General-purpose GitHub discovery remains advisory and never inserts external can
       ],
       "reuse": "hosted-service",
       "caution": "PINOC MCP requires interactive user login and authorization. Connect read-only first. Preset motion browsing and retrieval are free; generating characters or motion consumes credits (text/video motion 1 credit per second, character 6–10 credits). Never grant write/generate scopes or spend credits automatically; verify asset licenses, privacy and engine/rig compatibility."
+    },
+    {
+      "id": "rosebud-ai",
+      "name": "Rosebud AI",
+      "url": "https://rosebud.ai/",
+      "type": "hosted-builder",
+      "access": "freemium",
+      "domains": [
+        "game_dev",
+        "graphics",
+        "web_frontend"
+      ],
+      "tags": [
+        "game",
+        "gameplay",
+        "prototype",
+        "prototyping",
+        "browser",
+        "2d",
+        "3d",
+        "interactive",
+        "threejs",
+        "webgl"
+      ],
+      "bestFor": [
+        "Generating playable browser game prototypes",
+        "Exploring game mechanics and rapid visual iterations"
+      ],
+      "reuse": "hosted-service",
+      "portfolioBaselineDomains": [
+        "game_dev"
+      ],
+      "caution": "Free game creation does not establish commercial-use rights: check plans and export terms. A hosted game generator is not a drop-in engine library; do not upload private code or auto-publish."
+    },
+    {
+      "id": "convai",
+      "name": "Convai",
+      "url": "https://convai.com/",
+      "type": "npc-platform",
+      "access": "freemium",
+      "domains": [
+        "game_dev",
+        "ai_agents",
+        "ai_media"
+      ],
+      "tags": [
+        "npc",
+        "dialogue",
+        "character",
+        "voice",
+        "conversational",
+        "embodied",
+        "unity",
+        "unreal",
+        "3d",
+        "spatial"
+      ],
+      "bestFor": [
+        "Evaluating context-aware real-time conversational NPCs",
+        "Reviewing Unity, Unreal or web character SDK integrations"
+      ],
+      "reuse": "hosted-service",
+      "caution": "Requires a hosted account and API configuration. Check engine compatibility, latency, privacy, commercial plans and SDK terms; do not grant keys or capture player audio automatically.",
+      "portfolioRequiredSignals": [
+        "npc",
+        "dialogue",
+        "character",
+        "voice",
+        "conversational",
+        "rpg"
+      ]
+    },
+    {
+      "id": "inworld-ai",
+      "name": "Inworld AI",
+      "url": "https://inworld.ai/",
+      "type": "npc-platform",
+      "access": "freemium",
+      "domains": [
+        "game_dev",
+        "ai_media",
+        "ai_agents"
+      ],
+      "tags": [
+        "npc",
+        "dialogue",
+        "voice",
+        "speech",
+        "tts",
+        "stt",
+        "realtime",
+        "audio",
+        "character",
+        "inference"
+      ],
+      "bestFor": [
+        "Evaluating real-time speech and game dialogue APIs",
+        "Comparing voice infrastructure for interactive characters"
+      ],
+      "reuse": "hosted-service",
+      "caution": "Current offerings emphasize low-latency speech and inference, not necessarily legacy NPC integrations. Verify supported engines, pricing, privacy and API terms before use.",
+      "portfolioRequiredSignals": [
+        "npc",
+        "dialogue",
+        "voice",
+        "speech",
+        "tts",
+        "stt",
+        "audio"
+      ]
+    },
+    {
+      "id": "ludo-ai",
+      "name": "Ludo.ai",
+      "url": "https://ludo.ai/",
+      "type": "game-design-service",
+      "access": "freemium",
+      "domains": [
+        "game_dev",
+        "graphics",
+        "ai_media"
+      ],
+      "tags": [
+        "game",
+        "gameplay",
+        "game-design",
+        "gdd",
+        "ideation",
+        "prototype",
+        "prototyping",
+        "sprites",
+        "art",
+        "3d",
+        "assets",
+        "planning"
+      ],
+      "bestFor": [
+        "Brainstorming gameplay mechanics and retention loops",
+        "Drafting game design documents and art direction",
+        "Reviewing optional asset generation through CLI, MCP or API"
+      ],
+      "reuse": "hosted-service",
+      "portfolioBaselineDomains": [
+        "game_dev"
+      ],
+      "caution": "Hosted and credit-based: generation, CLI, REST API and MCP may require an account or consume credits. Check export/commercial rights; never install agents or spend credits automatically."
+    },
+    {
+      "id": "sloyd-ai",
+      "name": "Sloyd AI",
+      "url": "https://sloyd.ai/",
+      "type": "asset-generator",
+      "access": "freemium",
+      "domains": [
+        "game_dev",
+        "graphics",
+        "ai_media"
+      ],
+      "tags": [
+        "3d",
+        "models",
+        "mesh",
+        "modeling",
+        "props",
+        "environment",
+        "characters",
+        "roblox",
+        "blender",
+        "unity",
+        "low-poly",
+        "glb",
+        "game-assets"
+      ],
+      "bestFor": [
+        "Exploring generated game-ready 3D meshes and props",
+        "Reviewing topology, textures and polygon counts before asset import"
+      ],
+      "reuse": "hosted-service",
+      "caution": "Generated assets are not automatically licensed or optimized for production. Check export formats, commercial terms, rig suitability and performance before importing into a game.",
+      "portfolioRequiredSignals": [
+        "3d",
+        "model",
+        "models",
+        "mesh",
+        "props",
+        "roblox",
+        "blender"
+      ]
+    },
+    {
+      "id": "charisma-ai",
+      "name": "Charisma AI",
+      "url": "https://charisma.ai/",
+      "type": "narrative-platform",
+      "access": "unknown",
+      "domains": [
+        "game_dev",
+        "ai_agents",
+        "ai_media"
+      ],
+      "tags": [
+        "narrative",
+        "dialogue",
+        "story",
+        "stories",
+        "branching",
+        "rpg",
+        "npc",
+        "character",
+        "interactive",
+        "unity",
+        "unreal",
+        "conversation"
+      ],
+      "bestFor": [
+        "Designing branching interactive dialogue and plot triggers",
+        "Reviewing character-driven narrative SDKs for Unity or Unreal"
+      ],
+      "reuse": "hosted-service",
+      "caution": "Creation may require an account, trial licence or commercial agreement. SDKs and narrative workflows are not compatible with every engine; check pricing, privacy and rights.",
+      "portfolioRequiredSignals": [
+        "narrative",
+        "dialogue",
+        "story",
+        "stories",
+        "branching",
+        "rpg",
+        "npc",
+        "quest",
+        "cutscene"
+      ]
+    },
+    {
+      "id": "modl-ai",
+      "name": "modl.ai",
+      "url": "https://modl.ai/",
+      "type": "game-testing-service",
+      "access": "unknown",
+      "domains": [
+        "game_dev",
+        "software_engineering"
+      ],
+      "tags": [
+        "game",
+        "gameplay",
+        "qa",
+        "testing",
+        "playtesting",
+        "bugs",
+        "regression",
+        "crash",
+        "performance",
+        "automation",
+        "ci"
+      ],
+      "bestFor": [
+        "Planning automated gameplay, exploratory and regression tests",
+        "Evaluating AI agents that report crashes, softlocks and visual bugs"
+      ],
+      "reuse": "hosted-service",
+      "portfolioBaselineDomains": [
+        "game_dev"
+      ],
+      "caution": "Provider currently advertises build-upload testing without SDK integration; older docs describe Unity plugins. Check current platform support, costs, build privacy and test reproducibility before uploading."
     }
   ]
 }
