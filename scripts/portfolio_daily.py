@@ -773,6 +773,7 @@ def render_markdown(report: dict) -> str:
              "Projects with reviewable suggestions: **" + str(summary["with_suggestions"]) + "**.",
              "Projects with native-mode candidates: **" + str(summary["with_native_suggestions"]) + "**.",
              "All qualifying GitHub matches (uncapped artifact): **" + str(summary["qualifying_repositories"]) + "**.",
+             "Catalog matches requiring policy review only: **" + str(summary["policy_review_suggestions"]) + "**.",
              "All relevant website references (uncapped artifact): **" + str(summary["website_references"]) + "**.",
              "Native-mode candidates: **" + str(summary["native_suggestions"]) + "**.",
              "Projects with website references: **" + str(summary["with_website_references"]) + "**.",
@@ -827,6 +828,10 @@ def render_markdown(report: dict) -> str:
     if report["errors"]:
         lines.extend(["## Errors", ""])
         lines.extend("- " + error for error in report["errors"])
+    lines.extend(["", "A policy-review match is a relevant catalog reference with "
+                  "unapproved licence, maintenance, quality, cost or integration "
+                  "policy; it is never an automatic dependency or authorization "
+                  "to execute third-party code."])
     lines.extend(["", "Native-mode means a preliminary language/capability match, "
                   "not verified installability. Review-only suggestions cannot be "
                   "dispatched automatically. A queued request is not a completed "
@@ -1155,6 +1160,10 @@ def main() -> int:
         "with_suggestions": sum(bool(p["suggestions"]) for p in report["projects"]),
         "qualifying_repositories": sum(len(p["suggestions"]) for p in report["projects"]),
         "catalog_repositories": len(catalog),
+        "policy_review_suggestions": sum(
+            bool(item["policyReview"])
+            for row in report["projects"] for item in row["suggestions"]
+        ),
         "with_native_suggestions": sum(
             any(item["mode"] == "native" for item in p["suggestions"])
             for p in report["projects"]
