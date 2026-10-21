@@ -88,7 +88,7 @@ jobs:
                   assert "repo" not in website
                   assert website["why"]["domains"], website
                   assert (website["why"]["tags"] or website["why"]["terms"]
-                          or (website["id"] == "game-art-style"
+                          or (website["id"] in {"game-art-style", "jupiter-game-art-style"}
                               and "game_dev" in website["why"]["domains"])), website
           tts = next((row for row in result["projects"]
                       if row["repository"].lower() == "dbrckk/tts"), None)
