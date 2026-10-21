@@ -29,6 +29,9 @@ DOMAIN_ALIASES = {
     "ml": "data_ml", "data": "data_ml",
     "devops": "devops", "infra": "devops", "ci": "devops",
     "automation": "productivity", "productivity": "productivity",
+    "marketing": "marketing", "seo": "marketing", "outreach": "marketing",
+    "campaign": "marketing", "campaigns": "marketing", "social": "marketing",
+    "social-media": "marketing",
 }
 TIER_BONUS = {"core": 1.0, "recommended": 0.6, "specialized": 0.25, "audit": -0.4}
 LEVEL = {"low": 0, "medium": 1, "high": 2}
@@ -78,6 +81,9 @@ def website_review_gates(site):
         gates.append("unverified-hub-license-tag")
     if site.get("safetyRisk") == "reduced-refusal":
         gates.append("reduced-refusal-public-safety-review")
+    if resource_type == "marketing-automation-service":
+        gates.append("platform-anti-spam-and-account-policy-review")
+        gates.append("manual-publication-and-consent-required")
     if reuse == "hosted-service":
         gates.append("hosted-terms-privacy-and-cost-review")
     elif reuse in {"licensed-material", "license-per-item", "reference-only"}:
