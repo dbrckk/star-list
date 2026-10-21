@@ -57,6 +57,7 @@ jobs:
           assert "fasth3-omni-collection" in website_ids
           assert "atomicchat-flux3-image-klein-gguf" in website_ids
           assert {"hugging-face-hub", "minicpm-v-4-7-1b-heretic"} <= website_ids
+          assert "sopilot" in website_ids
           fully_scanned = [row for row in result["projects"]
                            if row["status"] != "skipped-inactive"]
           assert result["summary"]["fully_assessed_projects"] == len(fully_scanned)
@@ -90,6 +91,14 @@ jobs:
               assert tts_audit["source_assessment"]["websites"]["fasth3-omni-collection"]["decision"] != "matched"
               assert tts_audit["source_assessment"]["websites"]["atomicchat-flux3-image-klein-gguf"]["decision"] != "matched"
               assert tts_audit["source_assessment"]["websites"]["minicpm-v-4-7-1b-heretic"]["decision"] != "matched"
+          # A supermarket-coupon discovery app must not be sent an
+          # X auto-engagement/backlink automation service as a dependency.
+          retail = next((row for row in result["projects"]
+                         if row["repository"].lower() == "dbrckk/promo-alimentaire"), None)
+          if retail is not None and retail["source_coverage"]["complete"]:
+              assert retail["source_assessment"]["websites"]["sopilot"]["decision"] != "matched"
+              assert not any(site["id"] == "sopilot"
+                             for site in retail["website_references"])
           for full_name, expected_source in (
               ("dbrckk/asset-forge", "atomicchat-flux3-image-klein-gguf"),
               ("dbrckk/monteur-video", "fasth3-omni-collection"),
