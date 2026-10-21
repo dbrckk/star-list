@@ -80,6 +80,26 @@ understanding, captioning or multimodal objectives; generic speech projects
 and asset-generation apps do not receive this VLM simply because they
 work with AI or images.
 
+## Explicit review gates in daily recommendations
+
+Every qualified web reference carries `reviewGates` in the full
+portfolio artifact and its matched `source_assessment` decision. The
+daily public review issue also prints the relevant gates next to the
+source, rather than concealing restrictions behind the generic phrase
+"inspect reuse rights". Examples:
+
+- MiniCPM-V Heretic: `reduced-refusal-public-safety-review` and
+  `model-license-and-attribution-review`; never mistake an abliterated
+  vision-language model for a moderated public endpoint
+- AtomicChat FLUX.3: `unverified-hub-license-tag` plus model-runtime
+  and commercial-licensing review
+- Hosted generators: `hosted-terms-privacy-and-cost-review`
+- Hugging Face Hub: `per-item-license-and-provider-review`
+
+All websites and models remain `integrationEligible: false`; a
+visible review gate is not proof of compatibility, working GPU access,
+permission to redistribute weights, or successful target delivery.
+
 ## Complete per-project catalog decisions
 
 The daily portfolio scan now evaluates **every catalogued GitHub repository and website**
