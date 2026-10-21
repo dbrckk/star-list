@@ -737,15 +737,12 @@
         "cinematic",
         "cutscene",
         "film",
-        "media",
         "movie",
-        "audio",
         "montage",
         "trailer",
         "comfyui",
-        "generative",
-        "diffusion",
-        "ai-media"
+        "image-to-video",
+        "reference-to-video"
       ],
       "caution": "This is a collection of third-party model weights, not an executable GitHub dependency or a free hosted inference API. FastH3 Omni weights reference the MiniMax-H3 Community License Agreement, which must be reviewed independently for commercial use and redistribution. Large checkpoint downloads, compatible GPU/VRAM, runtime and additional text encoder/video/audio VAE are required. Never automatically install, fetch large weights, generate media or upload user content; inspect individual model licences and costs."
     }
