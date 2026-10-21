@@ -102,6 +102,14 @@ Status: active
 ## Last verified
 - 2026-10-18 (980 catalog entries, 846 accessible public Stars reconciled in the latest verified admission; 847/980 permanent GitHub IDs verified and 133 name-only; 42/42 public projects scanned with 13 receiving 21 curated skill references; private-scanner success was last separately verified on October 18; zero new Production-OS integrations and terminal-v3 fleet stop remain in place).
 
+## Verified 2026-10-21: per-project decisions for every catalogued source
+
+- [PR #160](https://github.com/dbrckk/star-list/pull/160) merged as `aba361d`: consider relevant curated GitHub sources even when the automatic-dispatch admission gates exclude them. Sources with audit-only tiers, missing licenses, high integration complexity or insufficient score become review-only with explicit blockers; native dispatch gates remain intact. Exact-head Validate catalog and real public portfolio smoke passed.
+- [PR #163](https://github.com/dbrckk/star-list/pull/163) merged as `65ae30f`: added [FastH3 Omni collection](https://huggingface.co/collections/FastVideo/fasth3-omni) as the 22nd website, referencing licensed and hardware-heavy video+audio models, not free unattended inference. Each active target's `source_assessment` now records a decision and reason for **every** GitHub catalog entry and curated website. A missing identity is a scan failure, and mutating dispatch is blocked.
+- [Real post-merge workflow #39644170090](https://github.com/dbrckk/star-list/actions/runs/39644170090) succeeded; [public issue #61](https://github.com/dbrckk/star-list/issues/61) confirms **42/42** public projects and **42 complete per-source inventories**, **42,966 GitHub repository assessments (1,023 × 42)** and **924 website assessments (22 × 42)**. There were **216** GitHub matches (80 requiring policy review and 24 native-mode), **52** web references and **zero** new Production-OS dispatches. Post-merge Validate catalog and Repository standards also passed.
+- Interpret "scan" precisely: this is a complete local metadata/relevance evaluation for every registered source, *not* fetching all third-party website pages, downloading model weights, executing SKILL.md files, or running 42,000 network requests. Hosted resources never become automatic dependencies.
+- **Outstanding:** the earlier Production-OS integration fleet hold remains (four unresolved v2, one terminal v3). Restore genuinely available inference/worker capacity and prove exactly one licensed real target code change with reviewed PR and passing exact-SHA CI before resuming unattended launches. Do not claim that catalog recommendations have already been integrated.
+
 <!-- AUTO:START -->
 ## Automatic repository state
 
