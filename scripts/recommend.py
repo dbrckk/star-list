@@ -32,6 +32,11 @@ DOMAIN_ALIASES = {
     "marketing": "marketing", "seo": "marketing", "outreach": "marketing",
     "campaign": "marketing", "campaigns": "marketing", "social": "marketing",
     "social-media": "marketing",
+    "writing": "writing", "rewrite": "writing", "rewriting": "writing",
+    "paraphrase": "writing", "paraphrasing": "writing",
+    "copywriting": "writing", "editorial": "writing",
+    "newsletter": "writing", "proofreading": "writing",
+    "essay": "writing", "blog": "writing", "emails": "writing",
 }
 TIER_BONUS = {"core": 1.0, "recommended": 0.6, "specialized": 0.25, "audit": -0.4}
 LEVEL = {"low": 0, "medium": 1, "high": 2}
@@ -81,6 +86,13 @@ def website_review_gates(site):
         gates.append("unverified-hub-license-tag")
     if site.get("safetyRisk") == "reduced-refusal":
         gates.append("reduced-refusal-public-safety-review")
+    # Rewriting output is never guaranteed to retain names, dates, numbers,
+    # quotations, formatting or source language. Label these constraints
+    # independently from a licence or hosted compute review.
+    if resource_type == "model-checkpoint" and "text-rewriting" in set(site.get("tags") or []):
+        gates.append("factual-and-format-preservation-review")
+        gates.append("source-and-target-language-review")
+        gates.append("human-editor-approval-before-publication")
     if resource_type == "marketing-automation-service":
         gates.append("platform-anti-spam-and-account-policy-review")
         gates.append("manual-publication-and-consent-required")
@@ -120,6 +132,8 @@ def recommend_websites(qtokens, domains, limit=5):
             "reuse": site["reuse"], "caution": site["caution"],
             "bestFor": site["bestFor"],
             "portfolioRequiredSignals": site.get("portfolioRequiredSignals", []),
+            **({"supportedLanguages": site["supportedLanguages"]}
+               if site.get("supportedLanguages") else {}),
             "reviewGates": website_review_gates(site),
             **({"sourceLicenseTag": site["sourceLicenseTag"]}
                if site.get("sourceLicenseTag") else {}),
