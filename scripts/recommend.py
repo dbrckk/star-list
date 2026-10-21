@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse, json, re
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 from health_score import health_score
 from find_replacements import replacement_score
@@ -116,6 +117,7 @@ def activity_adjustment(r):
     if days <= 730: return -3.0, "stale>1y"
     return -8.0, "stale>2y"
 
+@lru_cache(maxsize=8192)
 def trend_adjustment(repo_name):
     if not HISTORY.exists(): return 0.0, None
     try:
