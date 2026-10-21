@@ -490,7 +490,15 @@
         "Reviewing Unity, Unreal or web character SDK integrations"
       ],
       "reuse": "hosted-service",
-      "caution": "Requires a hosted account and API configuration. Check engine compatibility, latency, privacy, commercial plans and SDK terms; do not grant keys or capture player audio automatically."
+      "caution": "Requires a hosted account and API configuration. Check engine compatibility, latency, privacy, commercial plans and SDK terms; do not grant keys or capture player audio automatically.",
+      "portfolioRequiredSignals": [
+        "npc",
+        "dialogue",
+        "character",
+        "voice",
+        "conversational",
+        "rpg"
+      ]
     },
     {
       "id": "inworld-ai",
@@ -520,7 +528,16 @@
         "Comparing voice infrastructure for interactive characters"
       ],
       "reuse": "hosted-service",
-      "caution": "Current offerings emphasize low-latency speech and inference, not necessarily legacy NPC integrations. Verify supported engines, pricing, privacy and API terms before use."
+      "caution": "Current offerings emphasize low-latency speech and inference, not necessarily legacy NPC integrations. Verify supported engines, pricing, privacy and API terms before use.",
+      "portfolioRequiredSignals": [
+        "npc",
+        "dialogue",
+        "voice",
+        "speech",
+        "tts",
+        "stt",
+        "audio"
+      ]
     },
     {
       "id": "ludo-ai",
@@ -589,7 +606,16 @@
         "Reviewing topology, textures and polygon counts before asset import"
       ],
       "reuse": "hosted-service",
-      "caution": "Generated assets are not automatically licensed or optimized for production. Check export formats, commercial terms, rig suitability and performance before importing into a game."
+      "caution": "Generated assets are not automatically licensed or optimized for production. Check export formats, commercial terms, rig suitability and performance before importing into a game.",
+      "portfolioRequiredSignals": [
+        "3d",
+        "model",
+        "models",
+        "mesh",
+        "props",
+        "roblox",
+        "blender"
+      ]
     },
     {
       "id": "charisma-ai",
@@ -621,7 +647,18 @@
         "Reviewing character-driven narrative SDKs for Unity or Unreal"
       ],
       "reuse": "hosted-service",
-      "caution": "Creation may require an account, trial licence or commercial agreement. SDKs and narrative workflows are not compatible with every engine; check pricing, privacy and rights."
+      "caution": "Creation may require an account, trial licence or commercial agreement. SDKs and narrative workflows are not compatible with every engine; check pricing, privacy and rights.",
+      "portfolioRequiredSignals": [
+        "narrative",
+        "dialogue",
+        "story",
+        "stories",
+        "branching",
+        "rpg",
+        "npc",
+        "quest",
+        "cutscene"
+      ]
     },
     {
       "id": "modl-ai",
