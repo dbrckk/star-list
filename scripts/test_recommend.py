@@ -87,6 +87,47 @@ tts_portfolio_sites = website_references_for_project(
     {"domains": ["ai_media"]},
 )
 assert not any(s["id"] == "game-art-style" for s in tts_portfolio_sites)
+# Quantized checkpoints must be discoverable for visual projects, but a
+# generic AI/media project (including speech) must not get an image generator.
+gguf_id = "atomicchat-flux3-image-klein-gguf"
+assert sum(x["id"] == gguf_id for x in sites) == 1, "Repeated URLs must not create duplicate entries"
+gguf = next(x for x in sites if x["id"] == gguf_id)
+assert gguf["sourceLicenseTag"] == "other"
+assert gguf["upstreamModel"] == "black-forest-labs/flux-3-image-klein"
+assert gguf["type"] == "model-checkpoint"
+assert gguf["reuse"] == "licensed-material"
+assert not gguf.get("portfolioBaselineDomains")
+image_project = {"name": "asset-forge", "description": "Image-to-image sprite texture assets",
+                 "topics": ["image-editing", "gguf"]}
+image_profile = {"domains": ["ai_media", "graphics"]}
+image_references = website_references_for_project(image_project, image_profile)
+gguf_result = next(x for x in image_references if x["id"] == gguf_id)
+assert gguf_result["integrationEligible"] is False
+assert gguf_result["sourceLicenseTag"] == "other"
+assert gguf_result["upstreamModel"] == gguf["upstreamModel"]
+assert gguf_id in {x["id"] for x in recommend_websites(
+    tokens("flux gguf image generation editing"), {"ai_media"}, limit=None
+)}
+quiet_game = website_references_for_project(
+    {"name": "Jumpy", "description": None, "topics": []}, {"domains": ["game_dev"]}
+)
+assert gguf_id not in {x["id"] for x in quiet_game}
+assert gguf_id not in {x["id"] for x in tts_portfolio_sites}
+assert gguf_id not in {x["id"] for x in website_references_for_project(
+    {"name": "speech-service", "description": "Speech synthesis and podcasts", "topics": []},
+    {"domains": ["ai_media"]}
+)}
+# Metadata decisions must cover the model even when it is rejected.
+image_audit = {}
+website_references_for_project(image_project, image_profile, assessment=image_audit)
+assert image_audit[gguf_id]["decision"] == "matched"
+speech_audit = {}
+website_references_for_project(
+    {"name": "speech-service", "description": "Voice generation", "topics": []},
+    {"domains": ["ai_media"]}, assessment=speech_audit
+)
+assert speech_audit[gguf_id]["decision"] == "not-relevant"
+assert speech_audit[gguf_id]["integrationEligible"] is False
 # Game repositories often have sparse GitHub descriptions. Their actual
 # game-development domain is sufficient to recommend art-direction research.
 game_sites = website_references_for_project(
@@ -133,6 +174,13 @@ bad_pinoc["mcpEndpoint"] = "https://attacker.example/mcp"
 assert check_websites(unsafe_websites, website_schema)
 bad_pinoc["mcpEndpoint"] = "https://pinoc.mcp.viggle.ai/other"
 assert check_websites(unsafe_websites, website_schema)
+bad_model = copy.deepcopy(websites_catalog)
+model_data = next(x for x in bad_model["websites"] if x["id"] == gguf_id)
+model_data.pop("sourceLicenseTag")
+assert check_websites(bad_model, website_schema)
+model_data["sourceLicenseTag"] = "other"
+model_data["portfolioBaselineDomains"] = ["ai_media"]
+assert check_websites(bad_model, website_schema)
 
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 for item in strict["recommendations"]:

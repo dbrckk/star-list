@@ -68,7 +68,8 @@
               "game-design-service",
               "asset-generator",
               "game-testing-service",
-              "model-collection"
+              "model-collection",
+              "model-checkpoint"
             ]
           },
           "access": {
@@ -156,6 +157,14 @@
               "type": "string",
               "minLength": 2
             }
+          },
+          "sourceLicenseTag": {
+            "type": "string",
+            "minLength": 2
+          },
+          "upstreamModel": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
           }
         }
       }

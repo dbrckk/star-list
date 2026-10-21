@@ -908,8 +908,8 @@ def website_references_for_project(repo: dict, profile: dict, limit: int | None 
         # case while descriptions/topics are empty. Split only the metadata
         # labels here; do not alter the global repository tokenization.
         re.sub(r"[-_]", " ", str(repo.get("name") or "")),
-        str(repo.get("description") or ""),
-        " ".join(repo.get("topics") or []),
+        re.sub(r"[-_]", " ", str(repo.get("description") or "")),
+        re.sub(r"[-_]", " ", " ".join(repo.get("topics") or [])),
     ]))
     candidates = recommend_websites(metadata_terms, domains, limit=None)
     chosen = [

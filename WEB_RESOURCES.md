@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **22 websites** are curated alongside it in [`websites.json`](websites.json);
+These **23 websites** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -29,8 +29,26 @@ the ability to browse a page.
 | Sloyd AI | [sloyd.ai](https://sloyd.ai/) | Generated 3D meshes, props and topology review | Freemium | Check export, performance and generated-model commercial rights |
 | Charisma AI | [charisma.ai](https://charisma.ai/) | Branching storytelling, interactive dialogue and narrative SDKs | Access to verify | Licence, pricing and compatible engine integration require review |
 | modl.ai | [modl.ai](https://modl.ai/) | AI gameplay QA, crashes, visual bugs and regression playtests | Access to verify | Hosted build upload; inspect current cost, supported platforms and build privacy |
-
 | FastVideo — FastH3 Omni | [Hugging Face collection](https://huggingface.co/collections/FastVideo/fasth3-omni) | Reference-guided video generation with synchronized audio; BF16, INT8, FP8 and NVFP4 variants | Free model browsing; expensive local inference | MiniMax-H3 Community License Agreement applies to weights; review each model and GPU/VRAM/encoder/VAE requirements; never auto-download or invoke |
+| AtomicChat — FLUX.3 Image Klein GGUF | [Hugging Face checkpoint](https://huggingface.co/AtomicChat/FLUX-3-Image-Klein-GGUF) | Quantized image-generation/editing transformer for licensed art assets and imagery | Model metadata accessible; compute and rights require review | Hugging Face `license: other`; upstream FLUX Kommunity License. Verify converted-weight redistribution, commercial output terms, compatible GGUF runtime, separate encoder/VAE and CPU/GPU memory before use. No automatic model downloads |
+
+## Quantized image checkpoints are references, not plug-and-play dependencies
+
+`AtomicChat/FLUX-3-Image-Klein-GGUF` is tagged `gguf` and
+`stable-diffusion.cpp` on its Hugging Face model page; the page reports
+`license: other`. It is a community quantization of Black Forest Labs'
+`flux-3-image-klein`, which uses the **FLUX Kommunity License**. This
+requires reviewing the actual upstream and conversion terms before
+commercial use, distribution or embedding a model in an application.
+A GGUF transformer on its own does **not** supply the text encoder, VAE
+or a functioning Android/mobile inference service, and a file-size estimate
+does not prove GPU RAM sufficiency.
+
+This checkpoint is considered for project-specific image, sprite, texture,
+visual or asset-generation needs, including hyphenated description/topic
+labels. It is excluded from generic AI and speech project recommendations.
+It remains `integrationEligible: false` even if relevant. The daily scan
+records its provenance and explicit non-selection reasons for other projects.
 
 ## Complete per-project catalog decisions
 
@@ -54,7 +72,7 @@ version automatically.
 
 ## How specialist game platforms are selected
 
-The daily portfolio scan inspects **all 22 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
+The daily portfolio scan inspects **all 23 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
 
 ## Search repositories and relevant websites together
 

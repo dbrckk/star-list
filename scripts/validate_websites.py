@@ -63,6 +63,18 @@ def check_websites(data, schema):
         if any(not re.fullmatch(r"[a-z0-9][a-z0-9-]*", signal)
                for signal in required_signals):
             errors.append(f"{identity}: invalid specialist project-fit token")
+        # Converted HF weights inherit upstream usage restrictions. The
+        # 'other' hub tag is unknown permission, never an approval to install
+        # or use images commercially; checkpoint provenance is mandatory.
+        if site["type"] == "model-checkpoint":
+            if (site.get("reuse") != "licensed-material"
+                    or not site.get("upstreamModel")
+                    or not site.get("sourceLicenseTag")):
+                errors.append(f"{identity}: model checkpoint requires reviewed licence and upstream provenance")
+            if site.get("portfolioBaselineDomains"):
+                errors.append(f"{identity}: model checkpoint cannot be a blanket domain recommendation")
+            if not site.get("portfolioRequiredSignals"):
+                errors.append(f"{identity}: model checkpoint requires task-specific project signals")
         # An MCP endpoint is an authenticated remote service, not a harmless
         # website link. Require a bounded HTTPS /mcp URL owned by the
         # documented provider; no credentials, foreign hosts or auto-install.
