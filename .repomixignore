@@ -4,3 +4,13 @@
 # The reusable repository-standards workflow enforces a 1,500,000-byte cap.
 reports/**
 imports/**
+
+# Structured data is consumed directly by validators and discovery workflows;
+# duplicating it in a single architecture summary adds no useful code context.
+# These exclusions affect Repomix AI map output only, NOT Git, scanning or CI.
+catalog.json
+discovery-cache.json
+discovery-memory.json
+history.json
+health-snapshot.json
+cache-health-history.json
