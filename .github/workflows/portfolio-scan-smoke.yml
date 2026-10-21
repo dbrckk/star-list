@@ -45,6 +45,10 @@ jobs:
           assert result["summary"]["qualifying_repositories"] == sum(
               len(row["suggestions"]) for row in result["projects"]
           )
+          assert result["summary"]["policy_review_suggestions"] == sum(
+              bool(item["policyReview"])
+              for row in result["projects"] for item in row["suggestions"]
+          )
           assert result["summary"]["catalog_repositories"] >= 1000
           native_by_project = [
               sum(item["mode"] == "native" for item in row["suggestions"])
@@ -108,6 +112,14 @@ jobs:
                   + str(result["summary"]["with_native_suggestions"]) + "**.") in report_markdown
           for project in result["projects"]:
               for candidate in project["suggestions"]:
+                  assert candidate["integrationEligible"] == (
+                      candidate["mode"] == "native"
+                  ), candidate
+                  assert isinstance(candidate["policyReview"], list), candidate
+                  if candidate["policyReview"]:
+                      assert candidate["mode"] != "native", candidate
+                  if candidate["mode"] == "policy-review":
+                      assert candidate["policyReview"], candidate
                   if "roblox" in project["repository"].lower():
                       assert candidate["repository"].lower() not in {"libgdx/libgdx", "godotengine/godot"}, candidate
                       if candidate["repository"].lower() == "chrrxs/robloxstudio-mcp":
@@ -571,6 +583,18 @@ jobs:
           matched = recommendations(game, profile, [bridge], 3)
           assert len(matched) == 1, matched
           assert matched[0]["mode"] == "adapter-review", matched
+          # A relevant curated tool must remain visible when its admission
+          # tier/license/complexity require human review. It must never become
+          # native or eligible for a mutating Production-OS request.
+          unsafe_bridge = {
+              **bridge, "tier": "audit", "integrationComplexity": "high",
+              "github": {**bridge["github"], "license": "NOASSERTION"},
+          }
+          advisory = recommendations(game, profile, [unsafe_bridge], 3)
+          assert len(advisory) == 1 and advisory[0]["mode"] == "policy-review", advisory
+          assert advisory[0]["integrationEligible"] is False
+          assert {"tier-not-approved", "high-integration-complexity",
+                  "license-not-approved"} <= set(advisory[0]["policyReview"]), advisory
           # Development bridges remain reviewable, not dispatched natively.
           assert not any(x["mode"] == "native" for x in matched)
           engines = [item for item in catalog_entries if item["repo"].lower()
@@ -629,6 +653,7 @@ jobs:
           ]
           def suggestion(slug, score):
               return {"repository": slug, "score": score, "mode": "native",
+                      "integrationEligible": True, "policyReview": [],
                       "url": "https://github.com/" + slug, "license": "MIT",
                       "shared_terms": ["integration"]}
           offers = {
