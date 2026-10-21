@@ -869,9 +869,13 @@ def render_markdown(report: dict) -> str:
         if len(row["skill_discovery"]["recommendations"]) > 3:
             lines.append("- Additional relevant agent skills in the complete workflow JSON artifact.")
         for site in row.get("website_references", [])[:5]:
+            review_gates = site.get("reviewGates") or ["third-party-source-review"]
+            # Preserve explicit model/provider risk information in the public
+            # review; do not treat a discovered model as installable software.
             lines.append("- Web reference: [" + site["name"] + "](" + site["url"] + ")"
                          + " — " + site["type"] + ", " + site["reuse"]
-                         + " (advisory only; inspect reuse rights)")
+                         + " (advisory only; review gates: "
+                         + ", ".join(review_gates) + ")")
         if len(row.get("website_references", [])) > 5:
             lines.append("- Additional relevant web references in the complete workflow JSON artifact.")
         for item in row.get("dispatches", []):
@@ -998,6 +1002,7 @@ def website_references_for_project(repo: dict, profile: dict, limit: int | None 
         for site in chosen:
             assessment[site["id"]] = {
                 "decision": "matched", "reason": site["type"],
+                "reviewGates": site.get("reviewGates") or ["third-party-source-review"],
                 "integrationEligible": False,
             }
     return chosen if limit is None else chosen[:limit]
