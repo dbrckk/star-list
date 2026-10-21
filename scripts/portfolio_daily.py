@@ -300,8 +300,21 @@ def project_profile(repo: dict, token: str) -> dict:
     for domain, words in KEYWORDS.items():
         if any(re.search(r"(?<![a-z0-9])" + re.escape(word) + r"(?![a-z0-9])", label_text) for word in words):
             domains.add(domain)
+    # Exact manifest package declarations and GitHub's primary Luau/GDScript
+    # language are stronger evidence than a missing or generic repo name.
+    # Reuse only the bounded, already-inspected technology signals, without
+    # tokenizing arbitrary dependency scripts or README instructions.
+    trusted_technology_terms = {
+        "react", "nextjs", "tailwind", "flutter", "dart", "expo",
+        "remotion", "godot", "gdscript", "luau",
+    }
+    domains.update(skill_domains & {
+        "web_frontend", "mobile", "game_dev", "graphics",
+        "ai_media", "software_engineering",
+    })
+    project_terms = tokens(overview) | (skill_terms & trusted_technology_terms)
     # README may refine a known project, but never invent a domain solely from README.
-    return {"domains": sorted(domains), "terms": tokens(overview), "dependencies": dependency_text.lower(),
+    return {"domains": sorted(domains), "terms": project_terms, "dependencies": dependency_text.lower(),
             "overview": overview[:900], "language": str(repo.get("language") or "").lower(),
             "skill_domains": sorted(skill_domains), "skill_terms": sorted(skill_terms)}
 
