@@ -11,19 +11,19 @@
     "with_suggestions": 24,
     "with_native_suggestions": 9,
     "native_suggestions": 24,
-    "with_website_references": 15,
+    "with_website_references": 19,
     "skill_directory_references": 42,
     "with_skill_recommendations": 13,
     "dispatched": 0,
     "public_report_issue": 61,
-    "verified_workflow_run": 39644170090,
+    "verified_workflow_run": 39652514651,
     "skill_recommendations": 60,
-    "website_references": 52,
+    "website_references": 74,
     "qualifying_repositories": 216,
-    "curated_websites": 22,
+    "curated_websites": 25,
     "fully_assessed_projects": 42,
     "github_resource_assessments": 42966,
-    "website_resource_assessments": 924,
+    "website_resource_assessments": 1050,
     "policy_review_suggestions": 80
   },
   "last_verified_integration_inventory": {
@@ -110,7 +110,11 @@
     159,
     160,
     161,
-    163
+    163,
+    164,
+    165,
+    166,
+    167
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -173,13 +177,14 @@
     "Star-list PR #158 merged as 9776e9d on 2026-10-21: verified official Rosebud AI, Convai, Inworld AI, Ludo.ai, Sloyd AI, Charisma AI and modl.ai website references were added as strictly review-only services (21 total websites). Explicit domain-baseline referrals and specialist task-signal gates fixed missing low-metadata game QA/prototype/design suggestions without auto installing or spending credits. Exact-head catalog and live portfolio smoke passed; post-merge Validate catalog and Repository standards succeeded.",
     "Star-list PR #160 merged as aba361d (2026-10-21): decoupled exhaustive project relevance from strict native dispatch admission. All 1,023 GitHub catalogue rows are considered, previously skipped audit/complex/licence/low-score matches remain advisory and tagged policyReview, cannot dispatch. Per-source momentum cached for scan performance. Exact-head Validate catalog and real read-only smoke passed; postmerge Validate catalog, Repository standards and daily portfolio scan succeeded. Verified public report rose 106 to 164 task matches while preserving 14 native candidates, 58 policy-review references.",
     "Star-list PR #161 merged as 91a61ac (2026-10-21): promoted only verified exact root framework manifest packages plus GitHub Luau/GDScript primary-language evidence to project selection domains/terms; secondary React/Next.js/Flutter/Expo/Remotion projects no longer hidden behind generic README labels or a first Python manifest. Existing smoke proves polyglot and Lua/Luau distinctions. Exact-head Validate catalog and portfolio smoke plus postmerge catalog, standards and actual daily scan succeeded. Public issue #61 (run 39643135868): 42/42 inspected, 1,023 catalogue sources, 21 websites, 216 qualified GitHub matches, 80 policy-review, 24 native across nine public projects, 49 website references, 0 dispatched (4 historical v2 and 1 terminal v3 holds).",
-    "Star-list PR #163 merged as 65ae30f on 2026-10-21: indexed licensed FastH3 Omni HF model collection as the 22nd website; source_assessment now records an explicit metadata-derived decision for each catalog GitHub and website entry for every active target, verifies full coverage before dispatch, preserves review-only licence/compute gates, and leaves 4 v2 + 1 v3 Production-OS fleet holds untouched. Exact-head Validate catalog and live portfolio smoke passed; post-merge Validate catalog, Repository standards and daily full portfolio scan #39644170090 passed. Public issue #61: 42/42 scanned, 42,966 GitHub + 924 web assessments, 216 qualifying GitHub matches (80 policy-review, 24 native), 52 relevant web refs, 0 dispatches."
+    "Star-list PR #163 merged as 65ae30f on 2026-10-21: indexed licensed FastH3 Omni HF model collection as the 22nd website; source_assessment now records an explicit metadata-derived decision for each catalog GitHub and website entry for every active target, verifies full coverage before dispatch, preserves review-only licence/compute gates, and leaves 4 v2 + 1 v3 Production-OS fleet holds untouched. Exact-head Validate catalog and live portfolio smoke passed; post-merge Validate catalog, Repository standards and daily full portfolio scan #39644170090 passed. Public issue #61: 42/42 scanned, 42,966 GitHub + 924 web assessments, 216 qualifying GitHub matches (80 policy-review, 24 native), 52 relevant web refs, 0 dispatches.",
+    "Star-list PRs #165 (AtomicChat FLUX.3 Image Klein GGUF), #166 (sparse asset-forge/monteur-video advisory matching) and #167 (Hugging Face model/dataset/Spaces hub plus MiniCPM-V 4.7 1B Heretic) merged on 2026-10-21. MiniCPM declares Apache-2.0 with upstream openbmb/MiniCPM-V-4.7-1B, safetyRisk reduced-refusal/abliterated and requires a separate ~1.11GB GGUF vision projector; do not ship unmoderated public use. PR #167 exact head catalog CI and live 42-repo smoke passed, postmerge standards, catalog and daily portfolio scan #39652514651 passed. Actual issue #61: 42/42 targets, 1023 GitHub +25 web sources per target =44016 decisions, 216 qualifying GitHub matches (24 native/80 review), 74 website references across 19 targets, 0 dispatch. Render production-os1 deployed latest 06b2af5 live, worker CI passed 8c8301b, but provider capacity and old Production-OS integration failures NOT proven recovered."
   ],
   "next_priority": [
-    "Restore sustainable authenticated Production-OS model/worker availability with a bounded diagnostic and operator review of four failed v2 and terminal failed v3 managed tasks; do not bypass the fleet safety hold or count a recommendation as integrated code.",
-    "After capacity proof, complete exactly one new licensed native integration into a real target, with model-authored code, reviewable draft PR, exact source SHA and target CI; do not merge unreviewed code.",
-    "Keep daily exhaustive project-by-project metadata decisions for all currently 1023 GitHub repositories plus 22 curated websites (42 of 42 public targets, 43890 recorded per-resource decisions in run #39644170090). The HF FastH3 Omni weights are MiniMax-H3 Community License and heavyweight GPU-dependent, so reference-only.",
-    "Continue licence, duplicate identity and stale-source audits. Distinguish catalog metadata inspection from live crawling, provider login or remote model inference, which are not performed automatically."
+    "Prioritize diagnosing Production-OS fleet safety hold: four unresolved star-list integration v2 jobs and one terminal v3; inspect task-level provider errors and run only a bounded read-only/authorized inference capacity probe before any explicit operator-approved restart. Do not equate healthy Render deployment or CI with inference success.",
+    "After verifying repeatable inference and task queue, safely complete one real licensed-compatible code integration into a target draft PR, independently verify exact source SHA and target CI; report actual delivery rather than discovery counts.",
+    "Maintain daily complete metadata decision audit of 1023 GitHub entries and 25 websites for each active accessible target. Last verified 42/42 public repos and 44,016 per-resource decisions in workflow #39652514651; all hosted sites and model weights remain reference-only.",
+    "Audit upstream model licences and safety/quantization requirements before local inference, especially reduced-refusal MiniCPM VLM and restricted FLUX.3 GGUF. Do not run Hugging Face-hosted apps, use model weights commercially or infer Android performance from repository labels."
   ],
   "constraints": [
     "No automatic merge/deployment of third-party integrations",
