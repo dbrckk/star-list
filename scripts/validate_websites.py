@@ -89,6 +89,17 @@ def check_websites(data, schema):
                 errors.append(f"{identity}: generic model hub must remain reference-only")
             if site.get("mcpEndpoint") or site.get("upstreamModel"):
                 errors.append(f"{identity}: generic model hub cannot masquerade as an executable model")
+        # Social network automation is hosted, credential-sensitive and
+        # platform-policy sensitive. Never admit a blanket auto-publish tool.
+        if site["type"] == "marketing-automation-service":
+            if (site.get("reuse") != "hosted-service"
+                    or "marketing" not in site.get("domains", [])
+                    or not site.get("portfolioRequiredSignals")
+                    or site.get("portfolioBaselineDomains")):
+                errors.append(
+                    f"{identity}: marketing automation requires an explicit task "
+                    "match, hosted-service review and no baseline install"
+                )
         # An MCP endpoint is an authenticated remote service, not a harmless
         # website link. Require a bounded HTTPS /mcp URL owned by the
         # documented provider; no credentials, foreign hosts or auto-install.
