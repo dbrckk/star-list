@@ -113,24 +113,24 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-21T18:46:00Z
+Generated: 2026-10-21T19:19:04Z
 
 ### Git
 - Branch: `main`
-- Head: `dbc2cbf1140a`
-- Commit date: 2026-10-21T14:45:47-04:00
-- Commit: feat(portfolio): expose model license and safety review gates (#169)
+- Head: `69d27d1dd077`
+- Commit date: 2026-10-21T15:18:53-04:00
+- Commit: feat(web): safely discover SoPilot for marketing and SEO targets (#170)
 - Tracked files: 294
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
+- `README.md`
+- `RECOMMENDER.md`
 - `WEB_RESOURCES.md`
+- `schemas/websites.schema.json`
 - `scripts/portfolio_daily.py`
 - `scripts/recommend.py`
 - `scripts/test_recommend.py`
-- `README.md`
-- `RECOMMENDER.md`
-- `schemas/websites.schema.json`
 - `scripts/validate_websites.py`
 - `websites.json`
 

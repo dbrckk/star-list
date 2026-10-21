@@ -2,23 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "fix: make reference-only tools reviewable and cap portfolio queue",
-      "terms": [
-        "cap",
-        "make",
-        "portfolio",
-        "queue",
-        "reference-only",
-        "reviewable",
-        "tools"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/portfolio_daily.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "fix: exclude French filler from catalog matches",
       "terms": [
         "catalog",
@@ -1311,6 +1294,28 @@
         "scripts/recommend.py",
         "scripts/test_recommend.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(web): safely discover SoPilot for marketing and SEO targets (#170)",
+      "terms": [
+        "170",
+        "discover",
+        "feat",
+        "marketing",
+        "safely",
+        "seo",
+        "sopilot",
+        "targets",
+        "web"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py",
+        "scripts/test_recommend.py",
+        "scripts/validate_websites.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1494,6 +1499,12 @@
       "scripts/test_json_contracts.py": 4,
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/validate_json_contract.py": 4
+    },
+    "170": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "19": {
       "scripts/audit_catalog_quality.py": 4,
@@ -2012,6 +2023,12 @@
     "diagnostics": {
       "scripts/portfolio_failure_diagnostics.py": 8
     },
+    "discover": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "discovery": {
       "scripts/agent_skill_discovery.py": 4,
       "scripts/discover_candidates.py": 4,
@@ -2140,15 +2157,15 @@
       "scripts/backfill_github_ids.py": 4,
       "scripts/portfolio_daily.py": 40,
       "scripts/portfolio_failure_diagnostics.py": 12,
-      "scripts/recommend.py": 28,
+      "scripts/recommend.py": 32,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_catalog_quality.py": 8,
       "scripts/test_documentation.py": 20,
       "scripts/test_json_contracts.py": 8,
-      "scripts/test_recommend.py": 36,
+      "scripts/test_recommend.py": 40,
       "scripts/test_sync_github_stars.py": 4,
-      "scripts/validate_websites.py": 20
+      "scripts/validate_websites.py": 24
     },
     "files": {
       "scripts/agent_skill_discovery.py": 4,
@@ -2463,6 +2480,12 @@
     },
     "manifests": {
       "scripts/portfolio_daily.py": 8
+    },
+    "marketing": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "matches": {
       "scripts/portfolio_daily.py": 20
@@ -2891,11 +2914,11 @@
       "scripts/recommend.py": 4
     },
     "safely": {
-      "scripts/portfolio_daily.py": 16,
+      "scripts/portfolio_daily.py": 20,
       "scripts/portfolio_failure_diagnostics.py": 4,
-      "scripts/recommend.py": 4,
-      "scripts/test_recommend.py": 4,
-      "scripts/validate_websites.py": 4
+      "scripts/recommend.py": 8,
+      "scripts/test_recommend.py": 8,
+      "scripts/validate_websites.py": 8
     },
     "safer": {
       "scripts/portfolio_daily.py": 4,
@@ -2939,6 +2962,12 @@
       "scripts/test_recommend.py": 4,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 8
+    },
+    "seo": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "separate": {
       "scripts/portfolio_daily.py": 4
@@ -2989,6 +3018,12 @@
     },
     "snapshots": {
       "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
+    "sopilot": {
       "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4,
@@ -3105,6 +3140,12 @@
     "targeted": {
       "scripts/portfolio_daily.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "targets": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "task": {
       "scripts/portfolio_failure_diagnostics.py": 4
@@ -3223,10 +3264,10 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "web": {
-      "scripts/portfolio_daily.py": 20,
-      "scripts/recommend.py": 12,
-      "scripts/test_recommend.py": 20,
-      "scripts/validate_websites.py": 12
+      "scripts/portfolio_daily.py": 24,
+      "scripts/recommend.py": 16,
+      "scripts/test_recommend.py": 24,
+      "scripts/validate_websites.py": 16
     },
     "websites": {
       "scripts/portfolio_daily.py": 8,

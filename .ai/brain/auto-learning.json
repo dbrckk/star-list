@@ -5,27 +5,28 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "169",
-      "expose",
+      "170",
+      "discover",
       "feat",
-      "gates",
-      "license",
-      "model",
-      "portfolio",
-      "review",
-      "safety"
+      "marketing",
+      "safely",
+      "seo",
+      "sopilot",
+      "targets",
+      "web"
     ],
     "test_count": 0,
-    "useful_count": 3
+    "useful_count": 4
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(portfolio): expose model license and safety review gates (#169)",
+  "task": "feat(web): safely discover SoPilot for marketing and SEO targets (#170)",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py",
     "scripts/recommend.py",
-    "scripts/test_recommend.py"
+    "scripts/test_recommend.py",
+    "scripts/validate_websites.py"
   ]
 }

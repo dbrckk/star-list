@@ -757,6 +757,7 @@ jobs:
           assert "fasth3-omni-collection" in website_ids
           assert "atomicchat-flux3-image-klein-gguf" in website_ids
           assert {"hugging-face-hub", "minicpm-v-4-7-1b-heretic"} <= website_ids
+          assert "sopilot" in website_ids
           fully_scanned = [row for row in result["projects"]
                            if row["status"] != "skipped-inactive"]
           assert result["summary"]["fully_assessed_projects"] == len(fully_scanned)
@@ -790,6 +791,14 @@ jobs:
               assert tts_audit["source_assessment"]["websites"]["fasth3-omni-collection"]["decision"] != "matched"
               assert tts_audit["source_assessment"]["websites"]["atomicchat-flux3-image-klein-gguf"]["decision"] != "matched"
               assert tts_audit["source_assessment"]["websites"]["minicpm-v-4-7-1b-heretic"]["decision"] != "matched"
+          # A supermarket-coupon discovery app must not be sent an
+          # X auto-engagement/backlink automation service as a dependency.
+          retail = next((row for row in result["projects"]
+                         if row["repository"].lower() == "dbrckk/promo-alimentaire"), None)
+          if retail is not None and retail["source_coverage"]["complete"]:
+              assert retail["source_assessment"]["websites"]["sopilot"]["decision"] != "matched"
+              assert not any(site["id"] == "sopilot"
+                             for site in retail["website_references"])
           for full_name, expected_source in (
               ("dbrckk/asset-forge", "atomicchat-flux3-image-klein-gguf"),
               ("dbrckk/monteur-video", "fasth3-omni-collection"),
@@ -3098,7 +3107,8 @@ initial_prompt: |
               "game-testing-service",
               "model-collection",
               "model-checkpoint",
-              "model-hub"
+              "model-hub",
+              "marketing-automation-service"
             ]
           },
           "access": {
@@ -3122,7 +3132,8 @@ initial_prompt: |
                 "software_engineering",
                 "ai_agents",
                 "ai_media",
-                "other"
+                "other",
+                "marketing"
               ]
             }
           },
@@ -3174,7 +3185,8 @@ initial_prompt: |
                 "software_engineering",
                 "ai_agents",
                 "ai_media",
-                "other"
+                "other",
+                "marketing"
               ]
             }
           },
@@ -4670,6 +4682,9 @@ metadata_terms = tokens(" ".join([
 # Use explicit repository *labels* to recover domains for reference-only
 # sources, without modifying the stricter native-code integration profile.
 ⋮----
+# Hosted social-marketing suggestions require explicit GitHub label
+# evidence (not README prose, a generic 'promo' name, or an AI label).
+# This does not affect the stricter GitHub native-code dispatch domains.
 # Vision-language research is not necessarily marketed with the word
 # "AI": OCR/screenshot/vision labels still qualify for *advisory* model
 # discovery. No domain promotion reaches native-code integration.
@@ -6633,6 +6648,9 @@ required_signals = site.get("portfolioRequiredSignals", [])
 ⋮----
 lowered_tags = {str(t).lower() for t in site["tags"]}
 ⋮----
+# Social network automation is hosted, credential-sensitive and
+# platform-policy sensitive. Never admit a blanket auto-publish tool.
+⋮----
 # An MCP endpoint is an authenticated remote service, not a harmless
 # website link. Require a bounded HTTPS /mcp URL owned by the
 # documented provider; no credentials, foreign hosts or auto-install.
@@ -7824,7 +7842,7 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **25 curated website links** for UI design,
+The catalog also includes **26 curated website links** for UI design,
 animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, AI game prototyping, NPC/voice platforms, 3D assets, narrative design, gameplay QA and licensed reference-to-video/audio model collections quantized image-generation checkpoints, Hugging Face model discovery and locally reviewed vision-language checkpoints. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
@@ -9173,6 +9191,73 @@ General-purpose GitHub discovery remains advisory and never inserts external can
       "upstreamModel": "openbmb/MiniCPM-V-4.7-1B",
       "safetyRisk": "reduced-refusal",
       "caution": "Community-edited 'heretic' / abliterated variant deliberately suppresses refusal behavior and ships without an additional safety layer. Do not deploy it to unmoderated public-facing or user-content endpoints: use human review, abuse prevention and data controls. The Hugging Face card lists Apache-2.0 inherited from the base, but reports no LICENSE file in either model repository; verify actual licensing and attribution before distribution. Approximately 1.55B parameters total (about 1.01B language plus 0.55B vision). Vision-enabled GGUF requires the separate ~1.11GB mmproj file in addition to compatible main weights and llama.cpp runtime. Neither standalone model nor on-device feasibility is proven by this catalog entry. No automatic weight downloads or inference."
+    },
+    {
+      "id": "sopilot",
+      "name": "SoPilot — AI Social Media and SEO Growth",
+      "url": "https://sopilot.net/",
+      "type": "marketing-automation-service",
+      "access": "freemium",
+      "domains": [
+        "marketing"
+      ],
+      "tags": [
+        "marketing",
+        "social",
+        "social-media",
+        "social-media-marketing",
+        "x-marketing",
+        "twitter-marketing",
+        "creator-growth",
+        "audience-growth",
+        "promotion",
+        "promotional",
+        "growth",
+        "outreach",
+        "seo",
+        "backlinks",
+        "campaign",
+        "campaigns",
+        "distribution",
+        "product-launch",
+        "marketing-content",
+        "content-calendar",
+        "content-marketing",
+        "scheduling",
+        "short-form-video",
+        "brand-marketing",
+        "lead-generation",
+        "xrank"
+      ],
+      "bestFor": [
+        "Researching rising topics and creator benchmarks on X for a product launch or creator growth campaign",
+        "Planning original social posts, repeatable content columns and short kinetic promotional videos",
+        "Evaluating opt-in SEO directory submissions and marketing automation after privacy, platform-policy, quality and pricing checks"
+      ],
+      "reuse": "hosted-service",
+      "portfolioRequiredSignals": [
+        "marketing",
+        "social",
+        "social-media",
+        "seo",
+        "backlink",
+        "backlinks",
+        "outreach",
+        "campaign",
+        "campaigns",
+        "creator",
+        "audience",
+        "growth",
+        "distribution",
+        "product-launch",
+        "x-marketing",
+        "content-marketing",
+        "promotion",
+        "promotional",
+        "lead-generation",
+        "brand-marketing"
+      ],
+      "caution": "Commercial hosted service with account/Chrome extension, subscriptions or credit limits; it is not an open-source repository, local inference backend or free unlimited marketing API. AI-generated X replies, follows, reposting and bulk directory submissions may violate platform rules, appear as spam or harm SEO; never auto-install browser extensions, connect social accounts, publish, bulk-comment/follow, submit backlinks, pay or disclose private projects without explicit per-action approval. Check current X/platform policy, consent, account permissions and content originality."
     }
   ]
 }

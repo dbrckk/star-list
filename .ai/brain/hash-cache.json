@@ -1,12 +1,24 @@
 {
   "files": {
     ".github/workflows/portfolio-scan-smoke.yml": {
-      "sha256": "95b0a01ea77a11105216721da0c2adee3a9727c33fd13d1ba7c052fe81e59ac2",
-      "size": 63491
+      "sha256": "6e4ac43f8a56958983b2ed7ae7c7dfea15f65cf0606fc86bb778d3c3d1c857d4",
+      "size": 64122
+    },
+    "README.md": {
+      "sha256": "f79a4a502e71c82f9d5d58c6c46ae28a7cd88e6c11b793453b4d92586eef7b76",
+      "size": 13739
+    },
+    "RECOMMENDER.md": {
+      "sha256": "5c17d802cea38e2063760e95b70a3662d6624cc5c4add0413c4d731becbc569f",
+      "size": 7030
     },
     "WEB_RESOURCES.md": {
-      "sha256": "77887417d0d58697e1be38aff0d351dc11a06d7298cc982598484829ca58e68a",
-      "size": 18191
+      "sha256": "9a38dfd94a387fe4914045055529986c808e2047e00489d63b4c42e3f0155c64",
+      "size": 19658
+    },
+    "schemas/websites.schema.json": {
+      "sha256": "debd182ca4416e6f2fd1b73f4f9eeee6a73bea214b477fd767633a76f937f12f",
+      "size": 4633
     },
     "scripts/agent_skill_discovery.py": {
       "sha256": "7b40a23dd9f147d1ab3435f7a9ea87a08ec59d8791d925279a13201024c6c007",
@@ -21,24 +33,36 @@
       "size": 2456
     },
     "scripts/portfolio_daily.py": {
-      "sha256": "07d3519265a0b8cdc214a432b6d4fbadb3f5033723ae0630dfe168c53e61204d",
-      "size": 71639
+      "sha256": "def77d4c5ac12e89f26cbce9615d7d6cd80a846b06454942c56157d8a1fbfea4",
+      "size": 71876
     },
     "scripts/portfolio_failure_diagnostics.py": {
       "sha256": "3f6972d50b7db5c499ccb845dbe21ff4c760dac1db12c6b6d5190adea586e62b",
       "size": 19022
     },
     "scripts/recommend.py": {
-      "sha256": "e8ab15cdfea50ca94a42d101f7476428b9fbcf67ae47d4ea0c074cbd913b84d7",
-      "size": 22701
+      "sha256": "5147a30d3b118863de1e77bb1593849f4e56cc2614178ff6c5cc5cf6f444afcb",
+      "size": 23076
+    },
+    "scripts/test_json_contracts.py": {
+      "sha256": "6038b92af9b3ab6e432cd9bed72abab18f12bc2c30fdcabc3bfae24136725195",
+      "size": 6564
     },
     "scripts/test_recommend.py": {
-      "sha256": "dc9ee4e3a4884901cb4796bd48f3524ed62e85ce2862f7a0b79e4e050bc05275",
-      "size": 22990
+      "sha256": "b6a51c416db6d2e693b138db2c6af015850240ab33d8d26409778fdef7c97107",
+      "size": 25994
+    },
+    "scripts/validate_json_contract.py": {
+      "sha256": "7b86d77770a52cbcc2038c177764fdc6b5ea0c198f2c347f58b45a41356ee8ff",
+      "size": 5696
     },
     "scripts/validate_websites.py": {
-      "sha256": "9e9ebddd9dff2923415052378b28117cac92b662b1f5dcd4dc5c3b55ab6d352e",
-      "size": 6715
+      "sha256": "020f5dc028a0e564a27a32a5a8cfef76a894a881d24c10524b812a4e806fff2f",
+      "size": 7377
+    },
+    "websites.json": {
+      "sha256": "b9224a767ab23759514c6c46c797dec37f69cee4345cdf6d6325ccf5dc8f1d9a",
+      "size": 31063
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",
