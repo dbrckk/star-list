@@ -113,24 +113,24 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-21T17:42:16Z
+Generated: 2026-10-21T17:47:14Z
 
 ### Git
 - Branch: `main`
-- Head: `7a22c97b5a8d`
-- Commit date: 2026-10-21T13:42:04-04:00
-- Commit: feat(sources): curated AtomicChat FLUX.3 GGUF image model review (#165)
+- Head: `49a685323941`
+- Commit date: 2026-10-21T13:47:04-04:00
+- Commit: fix(portfolio): surface relevant image/video models in sparse repositories (#166)
 - Tracked files: 294
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
+- `scripts/portfolio_daily.py`
+- `scripts/test_recommend.py`
 - `README.md`
 - `RECOMMENDER.md`
 - `WEB_RESOURCES.md`
 - `schemas/websites.schema.json`
-- `scripts/portfolio_daily.py`
 - `scripts/recommend.py`
-- `scripts/test_recommend.py`
 - `scripts/validate_websites.py`
 - `websites.json`
 

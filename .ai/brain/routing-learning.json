@@ -2,24 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "feat: daily star-list portfolio discovery and qualified integration queue",
-      "terms": [
-        "daily",
-        "discovery",
-        "feat",
-        "integration",
-        "portfolio",
-        "qualified",
-        "queue",
-        "star-list"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/portfolio_daily.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "fix: qualify portfolio matches before Production-OS handoff",
       "terms": [
         "before",
@@ -1297,6 +1279,25 @@
         "scripts/test_recommend.py",
         "scripts/validate_websites.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): surface relevant image/video models in sparse repositories (#166)",
+      "terms": [
+        "166",
+        "image/video",
+        "models",
+        "portfolio",
+        "relevant",
+        "repositories",
+        "sparse",
+        "surface"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py",
+        "scripts/test_recommend.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1455,6 +1456,10 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
+    },
+    "166": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -2268,6 +2273,10 @@
       "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
     },
+    "image/video": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "immutable": {
       "scripts/backfill_github_ids.py": 4,
       "scripts/test_documentation.py": 4
@@ -2441,6 +2450,10 @@
       "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
     },
+    "models": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "names": {
       "scripts/admit_github_stars.py": 4,
       "scripts/sync_github_stars.py": 4,
@@ -2536,7 +2549,7 @@
       "scripts/sync_github_stars.py": 4,
       "scripts/test_documentation.py": 8,
       "scripts/test_json_contracts.py": 4,
-      "scripts/test_recommend.py": 4,
+      "scripts/test_recommend.py": 8,
       "scripts/test_sync_github_stars.py": 4,
       "scripts/validate_websites.py": 4
     },
@@ -2694,8 +2707,9 @@
       "scripts/portfolio_daily.py": 4
     },
     "relevant": {
-      "scripts/portfolio_daily.py": 4,
-      "scripts/recommend.py": 4
+      "scripts/portfolio_daily.py": 8,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "render": {
       "scripts/portfolio_daily.py": 4,
@@ -2724,12 +2738,12 @@
     "repositories": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/infer_selection_guidance.py": 4,
-      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_daily.py": 8,
       "scripts/recommend.py": 12,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_json_contracts.py": 4,
-      "scripts/test_recommend.py": 16,
+      "scripts/test_recommend.py": 20,
       "scripts/test_selection_guidance.py": 4,
       "scripts/validate_catalog.py": 12
     },
@@ -2922,8 +2936,8 @@
       "scripts/validate_websites.py": 4
     },
     "sparse": {
-      "scripts/portfolio_daily.py": 4,
-      "scripts/test_recommend.py": 4
+      "scripts/portfolio_daily.py": 8,
+      "scripts/test_recommend.py": 8
     },
     "specialized": {
       "scripts/recommend.py": 4,
@@ -3000,10 +3014,10 @@
       "scripts/test_recommend.py": 4
     },
     "surface": {
-      "scripts/portfolio_daily.py": 12,
+      "scripts/portfolio_daily.py": 16,
       "scripts/test_documentation.py": 4,
       "scripts/test_json_contracts.py": 4,
-      "scripts/test_recommend.py": 4,
+      "scripts/test_recommend.py": 8,
       "scripts/validate_websites.py": 4
     },
     "sync": {

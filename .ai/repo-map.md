@@ -779,6 +779,18 @@ jobs:
           if tts_audit is not None and tts_audit["source_coverage"]["complete"]:
               assert tts_audit["source_assessment"]["websites"]["fasth3-omni-collection"]["decision"] != "matched"
               assert tts_audit["source_assessment"]["websites"]["atomicchat-flux3-image-klein-gguf"]["decision"] != "matched"
+          for full_name, expected_source in (
+              ("dbrckk/asset-forge", "atomicchat-flux3-image-klein-gguf"),
+              ("dbrckk/monteur-video", "fasth3-omni-collection"),
+          ):
+              target = next((row for row in result["projects"]
+                             if row["repository"].lower() == full_name), None)
+              if target is not None and target["source_coverage"]["complete"]:
+                  assert (target["source_assessment"]["websites"]
+                          [expected_source]["decision"] == "matched"), target
+                  assert any(ref["id"] == expected_source
+                             for ref in target["website_references"]), target
+
           native_by_project = [
               sum(item["mode"] == "native" for item in row["suggestions"])
               for row in result["projects"]
@@ -4625,9 +4637,18 @@ lines = ["<!-- star-list-portfolio-daily -->", "# Daily star-list portfolio disc
 domains = set(profile.get("domains") or [])
 metadata_terms = tokens(" ".join([
 ⋮----
-# GitHub repository names often encode the engine in kebab/snake
-# case while descriptions/topics are empty. Split only the metadata
-# labels here; do not alter the global repository tokenization.
+# GitHub labels often contain hyphens and have no description/topics;
+# split names for advisory website matching, not native integration.
+⋮----
+# Use explicit repository *labels* to recover domains for reference-only
+# sources, without modifying the stricter native-code integration profile.
+⋮----
+# A pipeline called "asset-forge" can be truly graphical while its sparse
+# GitHub description and language do not disclose that. Require the asset
+# name plus specific README capability evidence (not generic prose)
+# before considering graphics/media model references. README text is
+# untrusted and may influence advisory relevance only, never dispatch.
+visual_terms = {
 ⋮----
 candidates = recommend_websites(metadata_terms, domains, limit=None)
 chosen = [
@@ -6106,6 +6127,16 @@ quiet_game = website_references_for_project(
 image_audit = {}
 ⋮----
 speech_audit = {}
+⋮----
+# Advisory matching must work on real sparse repository identities.
+# The native-code recommender still uses its stricter engine/domain profile.
+sparse_assets = {"name": "asset-forge", "description": None, "topics": []}
+sparse_asset_profile = {
+sparse_asset_refs = website_references_for_project(sparse_assets, sparse_asset_profile)
+⋮----
+sparse_video_refs = website_references_for_project(
+⋮----
+finance_asset_refs = website_references_for_project(
 ⋮----
 # Game repositories often have sparse GitHub descriptions. Their actual
 # game-development domain is sufficient to recommend art-direction research.
