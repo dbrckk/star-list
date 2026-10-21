@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_date_utc": "2026-10-20",
+  "updated_date_utc": "2026-10-21",
   "repository": "dbrckk/star-list",
   "reference_branch": "main",
   "status": "active",
@@ -10,14 +10,16 @@
     "inspected": 42,
     "with_suggestions": 16,
     "with_native_suggestions": 3,
-    "native_suggestions": 5,
+    "native_suggestions": 14,
     "with_website_references": 11,
     "skill_directory_references": 42,
     "with_skill_recommendations": 13,
     "dispatched": 0,
     "public_report_issue": 61,
-    "verified_workflow_run": 39462107469,
-    "skill_recommendations": 21
+    "verified_workflow_run": 39628513425,
+    "skill_recommendations": 21,
+    "website_references": 20,
+    "qualifying_repositories": 106
   },
   "last_verified_integration_inventory": {
     "active": 0,
@@ -94,7 +96,10 @@
     144,
     145,
     148,
-    149
+    149,
+    152,
+    153,
+    155
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -148,13 +153,18 @@
     "Star-list PR #143 recognized PINOC references in Roblox repositories with minimal metadata; PR #144 audited all 25 exact-pinned agent SKILL.md sources daily without remote execution; PR #145 reconciled 123 legacy permanent GitHub IDs, leaving 10 for manual alias resolution.",
     "Star-list PR #148 merged as 883ccf0 on 2026-10-20: canonicalized prisma/orm, react/react, react/react-native by exact immutable GitHub ID, preserved curation and three catalog relationship references; exact-head PR CI, main Validate catalog, quality refresh, public Stars sync and standards all passed.",
     "Star-list PR #149 merged as 42f59c5 on 2026-10-20: retained six historical observations each for the three renamed repos and preserved health snapshot baseline without changing metrics; exact-head PR CI and post-merge Validate catalog and Repository standards passed.",
-    "Live post-#148 Stars sync #39483152255 enumerated 879/879 accessible public favorites, nine pages, 0 new or missed. Catalog quality #32 confirmed 1006/1013 immutable IDs, seven unresolved: six duplicate historical aliases and one inaccessible Rustchain slug. Production-OS autonomous dispatch remains paused."
+    "Live post-#148 Stars sync #39483152255 enumerated 879/879 accessible public favorites, nine pages, 0 new or missed. Catalog quality #32 confirmed 1006/1013 immutable IDs, seven unresolved: six duplicate historical aliases and one inaccessible Rustchain slug. Production-OS autonomous dispatch remains paused.",
+    "Star-list PR #152 merged as 1e822fb (2026-10-21): removed discovery truncation for every qualified catalog GitHub candidate, relevant curated website and pinned Skill Issue source; preserved native-first score, license and compatibility filters plus bounded safe dispatch. Added user-supplied Jupiter Game Art Style site as unverified, reference-only, 14th website. Exact-head catalog CI and live portfolio smoke passed.",
+    "Real read-only daily scan #39628513425 after PR #152 checked 42/42 public targets, 106 qualified GitHub matches (14 native candidates across three projects), 20 web references, 16 projects with suggestions. Workflow and issue #61 report 0 integrations dispatched due to 4 unresolved v2 and 1 terminal v3 capacity failure. All relevant matches in JSON artifact; issue previews bounded.",
+    "Star-list PR #153 merged as 2e0ff4a: recovered genuine model-authored production-os source fix of MCP www host guard by restoring accidentally changed executable mode on unchanged second file; verified exact one-file diff and exact-head catalog/portfolio CI passed. Manual recovery does not prove automatic handoff repeatability.",
+    "Ai-dev-server PR #370 merged as bc82897 after exact-head 7/7 CI job successes: generic Git publication preserves 100755 and 100644 from exact base tree, avoiding chmod-only spurious files; postmerge and another actual live handoff still need verification.",
+    "Star-list PR #155 merged as b42c4de: Repomix excludes large structured data snapshots from monolithic AI context only, reducing repo-map from 1,506,885 to 335,601 bytes. Exact-head catalog validations and live postmerge Repository standards plus Validate catalog passed."
   ],
   "next_priority": [
-    "Use the 25 pinned Skill Issue and supplementary platform sources as task-specific review references across all public and private portfolio scans; do not automatically execute unaudited SKILL.md scripts or install external instructions.",
-    "Review six duplicate legacy aliases against canonical ID-bearing catalog entries, preserving curated guidance and cross-references; investigate Scottcjn/Rustchain without inventing an identity or deleting it. Seven unverified catalog IDs remain.",
-    "Demonstrate one small licensed/compatible target-code integration and exact-SHA draft PR plus target CI, only after verified usable free provider capacity and operator review of the terminal v3 failure.",
-    "Keep daily public/private discovery, hourly Star sync, strict manifest-name skill matching and token/credential isolation; measure impact in current issue #61."
+    "Verify the ai-dev-server #370 post-merge worker CI, then repeat an actual single-target licensed model-authored code change via authenticated Production-OS and exact-SHA trusted PR handoff/target CI without mode noise; maintain draft-only review and explicit credentials boundaries.",
+    "Keep fleet dispatch paused while one terminal failed v3 and four failed v2 historical managed tasks remain unresolved; restore verified sustainable inference capacity and review operator evidence before granting a bounded launch. A successful Jumpy/Star-list canary does not automatically clear historical failure holds.",
+    "Keep daily full catalog matching (all eligible candidate repos and relevant websites/skills, not top-N truncated), measure quality, false positives, and real compatible target adoption. Jupiter art site is unverified reference-only; no assets licensed for automatic copying.",
+    "Review seven unresolved historical GitHub identities; preserve Stars reconciliation and private-target confidentiality."
   ],
   "constraints": [
     "No automatic merge/deployment of third-party integrations",
