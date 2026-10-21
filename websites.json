@@ -939,6 +939,73 @@
       "upstreamModel": "openbmb/MiniCPM-V-4.7-1B",
       "safetyRisk": "reduced-refusal",
       "caution": "Community-edited 'heretic' / abliterated variant deliberately suppresses refusal behavior and ships without an additional safety layer. Do not deploy it to unmoderated public-facing or user-content endpoints: use human review, abuse prevention and data controls. The Hugging Face card lists Apache-2.0 inherited from the base, but reports no LICENSE file in either model repository; verify actual licensing and attribution before distribution. Approximately 1.55B parameters total (about 1.01B language plus 0.55B vision). Vision-enabled GGUF requires the separate ~1.11GB mmproj file in addition to compatible main weights and llama.cpp runtime. Neither standalone model nor on-device feasibility is proven by this catalog entry. No automatic weight downloads or inference."
+    },
+    {
+      "id": "sopilot",
+      "name": "SoPilot — AI Social Media and SEO Growth",
+      "url": "https://sopilot.net/",
+      "type": "marketing-automation-service",
+      "access": "freemium",
+      "domains": [
+        "marketing"
+      ],
+      "tags": [
+        "marketing",
+        "social",
+        "social-media",
+        "social-media-marketing",
+        "x-marketing",
+        "twitter-marketing",
+        "creator-growth",
+        "audience-growth",
+        "promotion",
+        "promotional",
+        "growth",
+        "outreach",
+        "seo",
+        "backlinks",
+        "campaign",
+        "campaigns",
+        "distribution",
+        "product-launch",
+        "marketing-content",
+        "content-calendar",
+        "content-marketing",
+        "scheduling",
+        "short-form-video",
+        "brand-marketing",
+        "lead-generation",
+        "xrank"
+      ],
+      "bestFor": [
+        "Researching rising topics and creator benchmarks on X for a product launch or creator growth campaign",
+        "Planning original social posts, repeatable content columns and short kinetic promotional videos",
+        "Evaluating opt-in SEO directory submissions and marketing automation after privacy, platform-policy, quality and pricing checks"
+      ],
+      "reuse": "hosted-service",
+      "portfolioRequiredSignals": [
+        "marketing",
+        "social",
+        "social-media",
+        "seo",
+        "backlink",
+        "backlinks",
+        "outreach",
+        "campaign",
+        "campaigns",
+        "creator",
+        "audience",
+        "growth",
+        "distribution",
+        "product-launch",
+        "x-marketing",
+        "content-marketing",
+        "promotion",
+        "promotional",
+        "lead-generation",
+        "brand-marketing"
+      ],
+      "caution": "Commercial hosted service with account/Chrome extension, subscriptions or credit limits; it is not an open-source repository, local inference backend or free unlimited marketing API. AI-generated X replies, follows, reposting and bulk directory submissions may violate platform rules, appear as spam or harm SEO; never auto-install browser extensions, connect social accounts, publish, bulk-comment/follow, submit backlinks, pay or disclose private projects without explicit per-action approval. Check current X/platform policy, consent, account permissions and content originality."
     }
   ]
 }
