@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **26 websites** are curated alongside it in [`websites.json`](websites.json);
+These **27 websites** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -34,6 +34,7 @@ the ability to browse a page.
 | Hugging Face — Model, Dataset and Space Hub | [huggingface.co](https://huggingface.co/) | Discover AI checkpoints, datasets, demos and inference providers for relevant projects | Freemium | Each model/Space has independent rights, risks, compute and pricing; model discovery is not installation or free GPU inference |
 | MiniCPM-V 4.7 1B Heretic | [Hugging Face model](https://huggingface.co/saidutta69/MiniCPM-V-4.7-1B-heretic) | Local image Q&A, OCR, screenshot understanding and lightweight multimodal research | Model browser access free; runtime separate | Tagged Apache-2.0, but no bundled licence file per card; community-abliterated and reduced-refusal, no safety filter. Vision GGUF needs separate ~1.11GB projector; do not deploy to unmoderated public endpoints |
 | SoPilot | [sopilot.net](https://sopilot.net/) | X/social media trends, original marketing content, opt-in campaigns and SEO outreach | Hosted Chrome extension; credits and paid tiers | Check platform policies, prices and privacy; never post, bulk engage or submit directory backlinks automatically |
+| Humanizer 12B | [Hugging Face](https://huggingface.co/jialinyyzz/humanizer) | English/Chinese rewrite of existing editorial drafts while aiming to retain facts | Downloadable Apache-2.0 weights; no current hosted HF inference provider | 12B local text-completion model: Q4 ~7.6GB on disk; needs exact prompt/runtime, proofreading and fact/format/language checks; no French support verified, no automatic install |
 
 ## Quantized image checkpoints are references, not plug-and-play dependencies
 
@@ -101,6 +102,37 @@ consent and platform-policy review before any outreach, replies, follows
 or directory submission. Mass engagement can be spam, and low-quality
 backlinking can harm reputation and rankings.
 
+## Humanizer: keep writing use cases separate from developer agents
+
+[Humanizer 12B](https://huggingface.co/jialinyyzz/humanizer) is a
+Gemma-4 12B fine-tune, declared Apache-2.0, for rewriting an existing
+draft in **English or Chinese**. It is a **completion model**, not a
+general chat assistant or a vetted multilingual translator. As of its
+published model card it has **no default Hugging Face hosted inference
+provider**. GGUF and safetensors weights are available for compatible
+local runtimes, but the approximately **7.6 GB Q4_K_M** GGUF checkpoint
+alone makes direct Android deployment unproven. Smaller quantizations
+can reduce fidelity.
+
+The author reports that a strict judge found factual issues in **44 of
+420 English rewrites**; formatting can also change. Treat marketing copy,
+blog posts, newsletters, editorial drafts and email rewriting as
+**human-reviewed** references only. The model is matched by explicit
+writing/rewriting/copywriting labels, **not** by generic AI, code,
+video editing or text processing. The source advertises an `AGENTS.md`
+with install commands, but Star List treats it as **untrusted
+third-party documentation** and does not execute it or automatically
+download checkpoint files.
+
+Matched project records and public issue references expose the
+`factual-and-format-preservation-review`,
+`source-and-target-language-review` and
+`human-editor-approval-before-publication` gates in addition to the
+usual model licence/runtime review. Names, figures, dates, quotations,
+links and formatting must be checked against the original; neither
+language preservation nor a particular AI-detector outcome is
+guaranteed. Any academic or professional disclosure rules still apply.
+
 ## Explicit review gates in daily recommendations
 
 Every qualified web reference carries `reviewGates` in the full
@@ -143,7 +175,7 @@ version automatically.
 
 ## How specialist game platforms are selected
 
-The daily portfolio scan inspects **all 26 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
+The daily portfolio scan inspects **all 27 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
 
 ## Search repositories and relevant websites together
 

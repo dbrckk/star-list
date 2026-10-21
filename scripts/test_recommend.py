@@ -126,6 +126,62 @@ website_references_for_project(
 )
 assert retail_decisions[sopilot_id]["decision"] == "not-relevant"
 
+# Humanizer is a 12B English/Chinese draft *completion* checkpoint, not a
+# broadly compatible French-language chat agent or free hosted inference API.
+humanizer_id = "jialinyyzz-humanizer-12b"
+humanizer_model = next(x for x in sites if x["id"] == humanizer_id)
+assert sum(x["id"] == humanizer_id for x in sites) == 1
+assert humanizer_model["url"] == "https://huggingface.co/jialinyyzz/humanizer"
+assert humanizer_model["type"] == "model-checkpoint"
+assert humanizer_model["sourceLicenseTag"] == "apache-2.0"
+assert humanizer_model["upstreamModel"] == "google/gemma-4-12B"
+assert set(humanizer_model["supportedLanguages"]) == {"en", "zh"}
+assert not humanizer_model.get("portfolioBaselineDomains")
+assert humanizer_model["portfolioRequiredSignals"]
+assert "writing" in infer_domains({"writing", "editorial"})
+assert "writing" not in infer_domains({"video", "game", "code", "image", "text"})
+writing_project = {
+    "name": "newsletter-copywriting", "description": None, "topics": ["rewriting"]
+}
+writing_matches = website_references_for_project(
+    writing_project, {"domains": [], "terms": set()}
+)
+humanizer_advice = next(x for x in writing_matches if x["id"] == humanizer_id)
+assert humanizer_advice["integrationEligible"] is False
+assert humanizer_advice["supportedLanguages"] == ["en", "zh"]
+assert {"model-runtime-and-device-review",
+        "model-license-and-attribution-review",
+        "factual-and-format-preservation-review",
+        "source-and-target-language-review",
+        "human-editor-approval-before-publication"} <= set(humanizer_advice["reviewGates"])
+assert humanizer_id in {x["id"] for x in run(
+    "rewrite newsletter copywriting", "--websites", "--top-websites", "50"
+)["websiteRecommendations"]}
+writing_decisions = {}
+website_references_for_project(
+    writing_project, {"domains": [], "terms": set()}, assessment=writing_decisions
+)
+assert writing_decisions[humanizer_id]["decision"] == "matched"
+assert "factual-and-format-preservation-review" in writing_decisions[humanizer_id]["reviewGates"]
+for nonwriting in (
+    {"name": "monteur-video", "description": "Automatic video editing", "topics": []},
+    {"name": "TTS", "description": "Multilingual speech synthesis", "topics": []},
+    {"name": "Jumpy", "description": "Godot game", "topics": []},
+    {"name": "ai-agent", "description": "Autonomous coding agent", "topics": []},
+    {"name": "Promo-alimentaire", "description": "Retail discount coupons", "topics": []},
+):
+    advice = website_references_for_project(
+        nonwriting, {"domains": ["ai_media"] if nonwriting["name"] == "TTS" else [], "terms": set()}
+    )
+    assert humanizer_id not in {x["id"] for x in advice}, nonwriting
+rejected_writing = {}
+website_references_for_project(
+    {"name": "Jumpy", "description": "Godot game", "topics": []},
+    {"domains": ["game_dev"]}, assessment=rejected_writing
+)
+assert rejected_writing[humanizer_id]["decision"] == "not-relevant"
+assert rejected_writing[humanizer_id]["integrationEligible"] is False
+
 # Real regression: TTS was being shown game-art-style due to generic words
 # such as "and" in both project metadata and curator descriptions.
 tts_labels = "TTS a deep learning toolkit for Text-to-Speech battle-tested in research and production"
@@ -323,6 +379,13 @@ unsafe_marketing = copy.deepcopy(websites_catalog)
 unsafe_sopilot = next(x for x in unsafe_marketing["websites"] if x["id"] == sopilot_id)
 unsafe_sopilot["portfolioBaselineDomains"] = ["marketing"]
 assert check_websites(unsafe_marketing, website_schema)
+unsafe_humanizer = copy.deepcopy(websites_catalog)
+humanizer_row = next(x for x in unsafe_humanizer["websites"] if x["id"] == humanizer_id)
+humanizer_row.pop("supportedLanguages")
+assert check_websites(unsafe_humanizer, website_schema)
+humanizer_row["supportedLanguages"] = ["en", "zh"]
+humanizer_row["portfolioBaselineDomains"] = ["writing"]
+assert check_websites(unsafe_humanizer, website_schema)
 unsafe_sopilot.pop("portfolioBaselineDomains")
 unsafe_sopilot["reuse"] = "open-source-upstream"
 assert check_websites(unsafe_marketing, website_schema)

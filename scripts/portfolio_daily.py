@@ -918,7 +918,7 @@ def website_references_for_project(repo: dict, profile: dict, limit: int | None 
     # sources, without modifying the stricter native-code integration profile.
     domains.update(infer_domains(metadata_terms) & {
         "ai_media", "graphics", "game_dev", "web_frontend",
-        "mobile", "software_engineering", "ai_agents", "marketing",
+        "mobile", "software_engineering", "ai_agents", "marketing", "writing",
     })
     # Hosted social-marketing suggestions require explicit GitHub label
     # evidence (not README prose, a generic 'promo' name, or an AI label).
