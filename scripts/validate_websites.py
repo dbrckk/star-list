@@ -25,7 +25,7 @@ def canonical_url(value):
             or not re.fullmatch(r"[a-z0-9.-]+", parsed.hostname)
             or parsed.hostname.startswith(".") or parsed.hostname.endswith(".")
             or ".." in parsed.hostname
-            or not re.fullmatch(r"/(?:[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*/?)*", parsed.path or "/")):
+            or not re.fullmatch(r"/(?:[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*/?)*", parsed.path or "/")):
         raise ValueError("website URL must be a plain HTTPS address without credentials or query")
     return parsed.hostname.lower().removeprefix("www.") + (parsed.path.rstrip("/") or "/")
 
