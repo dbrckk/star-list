@@ -79,6 +79,18 @@ jobs:
           if tts_audit is not None and tts_audit["source_coverage"]["complete"]:
               assert tts_audit["source_assessment"]["websites"]["fasth3-omni-collection"]["decision"] != "matched"
               assert tts_audit["source_assessment"]["websites"]["atomicchat-flux3-image-klein-gguf"]["decision"] != "matched"
+          for full_name, expected_source in (
+              ("dbrckk/asset-forge", "atomicchat-flux3-image-klein-gguf"),
+              ("dbrckk/monteur-video", "fasth3-omni-collection"),
+          ):
+              target = next((row for row in result["projects"]
+                             if row["repository"].lower() == full_name), None)
+              if target is not None and target["source_coverage"]["complete"]:
+                  assert (target["source_assessment"]["websites"]
+                          [expected_source]["decision"] == "matched"), target
+                  assert any(ref["id"] == expected_source
+                             for ref in target["website_references"]), target
+
           native_by_project = [
               sum(item["mode"] == "native" for item in row["suggestions"])
               for row in result["projects"]
