@@ -745,6 +745,10 @@ jobs:
           assert result["summary"]["qualifying_repositories"] == sum(
               len(row["suggestions"]) for row in result["projects"]
           )
+          assert result["summary"]["policy_review_suggestions"] == sum(
+              bool(item["policyReview"])
+              for row in result["projects"] for item in row["suggestions"]
+          )
           assert result["summary"]["catalog_repositories"] >= 1000
           native_by_project = [
               sum(item["mode"] == "native" for item in row["suggestions"])
@@ -808,6 +812,14 @@ jobs:
                   + str(result["summary"]["with_native_suggestions"]) + "**.") in report_markdown
           for project in result["projects"]:
               for candidate in project["suggestions"]:
+                  assert candidate["integrationEligible"] == (
+                      candidate["mode"] == "native"
+                  ), candidate
+                  assert isinstance(candidate["policyReview"], list), candidate
+                  if candidate["policyReview"]:
+                      assert candidate["mode"] != "native", candidate
+                  if candidate["mode"] == "policy-review":
+                      assert candidate["policyReview"], candidate
                   if "roblox" in project["repository"].lower():
                       assert candidate["repository"].lower() not in {"libgdx/libgdx", "godotengine/godot"}, candidate
                       if candidate["repository"].lower() == "chrrxs/robloxstudio-mcp":
@@ -1271,6 +1283,18 @@ jobs:
           matched = recommendations(game, profile, [bridge], 3)
           assert len(matched) == 1, matched
           assert matched[0]["mode"] == "adapter-review", matched
+          # A relevant curated tool must remain visible when its admission
+          # tier/license/complexity require human review. It must never become
+          # native or eligible for a mutating Production-OS request.
+          unsafe_bridge = {
+              **bridge, "tier": "audit", "integrationComplexity": "high",
+              "github": {**bridge["github"], "license": "NOASSERTION"},
+          }
+          advisory = recommendations(game, profile, [unsafe_bridge], 3)
+          assert len(advisory) == 1 and advisory[0]["mode"] == "policy-review", advisory
+          assert advisory[0]["integrationEligible"] is False
+          assert {"tier-not-approved", "high-integration-complexity",
+                  "license-not-approved"} <= set(advisory[0]["policyReview"]), advisory
           # Development bridges remain reviewable, not dispatched natively.
           assert not any(x["mode"] == "native" for x in matched)
           engines = [item for item in catalog_entries if item["repo"].lower()
@@ -1329,6 +1353,7 @@ jobs:
           ]
           def suggestion(slug, score):
               return {"repository": slug, "score": score, "mode": "native",
+                      "integrationEligible": True, "policyReview": [],
                       "url": "https://github.com/" + slug, "license": "MIT",
                       "shared_terms": ["integration"]}
           offers = {
@@ -4320,11 +4345,22 @@ domains = set(infer_domains(tokens(label_text)))
 ⋮----
 # README may refine a known project, but never invent a domain solely from README.
 ⋮----
+def review_blockers(item: dict) -> list[str]
+⋮----
+"""Explain why a relevant catalog entry is advisory, never auto-dispatchable.
+
+    A curated catalog row deserves task-relevance evaluation even when its
+    licensing, maintenance or deployment maturity does not qualify it for
+    autonomous code changes. This function preserves the existing strict
+    integration policy and exposes its decisions instead of silently dropping
+    most of the catalog before matching.
+    """
+gh = item.get("github") or {}
+blockers = []
+⋮----
 def eligible(item: dict) -> bool
 ⋮----
-gh = item.get("github") or {}
-⋮----
-license_key = str(gh.get("license") or "").strip().lower()
+"""Strict integration admission: do not widen with discovery coverage."""
 ⋮----
 def is_reference_candidate(tool: dict) -> bool
 ⋮----
@@ -4359,6 +4395,8 @@ excluded_engine_sources = existing_engine_sources | {
 matches = []
 ⋮----
 slug = str(tool.get("repo") or "")
+⋮----
+blockers = review_blockers(tool)
 ⋮----
 terms = (tokens(slug) | tokens(" ".join(tool.get("capabilities") or []))
 shared = sorted((profile["terms"] & terms) - GENERIC - STOPWORDS)
@@ -4921,6 +4959,7 @@ pushed = gh.get("pushedAt")
 dt = datetime.fromisoformat(pushed.replace("Z", "+00:00"))
 days = max(0, (datetime.now(timezone.utc) - dt).days)
 ⋮----
+@lru_cache(maxsize=8192)
 def trend_adjustment(repo_name)
 ⋮----
 pts=json.loads(HISTORY.read_text()).get("repositories",{}).get(repo_name,[])

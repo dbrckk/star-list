@@ -11,19 +11,7 @@
         "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
-      "score": 505
-    },
-    {
-      "path": "scripts/test_recommend.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 465
+      "score": 510
     },
     {
       "path": "scripts/recommend.py",
@@ -37,24 +25,14 @@
       "score": 435
     },
     {
-      "path": "scripts/validate_websites.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 360
-    },
-    {
-      "path": "scripts/test_json_contracts.py",
+      "path": "scripts/test_recommend.py",
       "reasons": [
         "impact",
         "reverse-dependency-neighbor",
-        "selected-test"
+        "selected-test",
+        "symbol-indexed"
       ],
-      "score": 180
+      "score": 215
     },
     {
       "path": "scripts/portfolio_failure_diagnostics.py",
@@ -87,7 +65,7 @@
       "score": 25
     },
     {
-      "path": "scripts/validate_json_contract.py",
+      "path": "scripts/validate_websites.py",
       "reasons": [
         "dependency-neighbor"
       ],

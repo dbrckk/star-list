@@ -105,30 +105,29 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-21T16:35:03Z
+Generated: 2026-10-21T17:17:49Z
 
 ### Git
 - Branch: `main`
-- Head: `9776e9d90b8a`
-- Commit date: 2026-10-21T12:34:51-04:00
-- Commit: feat(web): add seven game AI services and safer project-fit review (#158)
+- Head: `aba361d0e177`
+- Commit date: 2026-10-21T13:17:39-04:00
+- Commit: fix(portfolio): review all relevant catalog sources with safe native dispatch (#160)
 - Tracked files: 294
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
+- `scripts/portfolio_daily.py`
+- `scripts/recommend.py`
 - `README.md`
 - `RECOMMENDER.md`
 - `WEB_RESOURCES.md`
 - `schemas/websites.schema.json`
-- `scripts/portfolio_daily.py`
-- `scripts/recommend.py`
 - `scripts/test_recommend.py`
 - `scripts/validate_websites.py`
 - `websites.json`
 - `.repomixignore`
 - `docs/DAILY_PORTFOLIO_INTEGRATION.md`
 - `scripts/agent_skill_discovery.py`
-- `.github/workflows/production-os-review-handoff.yml`
 
 ### Project signals
 - No common build descriptor detected

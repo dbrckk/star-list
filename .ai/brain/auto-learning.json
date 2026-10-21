@@ -5,30 +5,27 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "158",
-      "add",
-      "ai",
-      "feat",
-      "game",
-      "project-fit",
+      "160",
+      "all",
+      "catalog",
+      "dispatch",
+      "native",
+      "portfolio",
+      "relevant",
       "review",
-      "safer",
-      "services",
-      "seven",
-      "web"
+      "safe",
+      "sources"
     ],
     "test_count": 0,
-    "useful_count": 4
+    "useful_count": 2
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(web): add seven game AI services and safer project-fit review (#158)",
+  "task": "fix(portfolio): review all relevant catalog sources with safe native dispatch (#160)",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py",
-    "scripts/recommend.py",
-    "scripts/test_recommend.py",
-    "scripts/validate_websites.py"
+    "scripts/recommend.py"
   ]
 }
