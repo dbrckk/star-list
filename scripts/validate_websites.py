@@ -69,7 +69,7 @@ def check_websites(data, schema):
                 service = urlsplit(endpoint)
                 website = urlsplit(site["url"])
                 host = service.hostname.lower()
-                root = website.hostname.lower()
+                root = website.hostname.lower().removeprefix("www.")
                 if (service.path != "/mcp" or
                         not (host == root or host.endswith("." + root))):
                     errors.append(f"{identity}: MCP endpoint must be /mcp on a provider-owned subdomain")
