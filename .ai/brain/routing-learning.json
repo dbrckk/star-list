@@ -2,22 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "fix: recover failed portfolio integrations with bounded budgets",
-      "terms": [
-        "bounded",
-        "budgets",
-        "failed",
-        "integrations",
-        "portfolio",
-        "recover"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/portfolio_daily.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "fix: make reference-only tools reviewable and cap portfolio queue",
       "terms": [
         "cap",
@@ -1306,6 +1290,27 @@
         "scripts/test_recommend.py",
         "scripts/validate_websites.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(portfolio): expose model license and safety review gates (#169)",
+      "terms": [
+        "169",
+        "expose",
+        "feat",
+        "gates",
+        "license",
+        "model",
+        "portfolio",
+        "review",
+        "safety"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py",
+        "scripts/test_recommend.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1474,6 +1479,11 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
+    },
+    "169": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -2079,8 +2089,11 @@
     "expose": {
       "scripts/admit_github_stars.py": 4,
       "scripts/audit_catalog_quality.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_catalog_quality.py": 4,
+      "scripts/test_recommend.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
     "exposing": {
@@ -2127,13 +2140,13 @@
       "scripts/backfill_github_ids.py": 4,
       "scripts/portfolio_daily.py": 40,
       "scripts/portfolio_failure_diagnostics.py": 12,
-      "scripts/recommend.py": 24,
+      "scripts/recommend.py": 28,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_catalog_quality.py": 8,
       "scripts/test_documentation.py": 20,
       "scripts/test_json_contracts.py": 8,
-      "scripts/test_recommend.py": 32,
+      "scripts/test_recommend.py": 36,
       "scripts/test_sync_github_stars.py": 4,
       "scripts/validate_websites.py": 20
     },
@@ -2216,6 +2229,11 @@
     },
     "games": {
       "scripts/portfolio_daily.py": 4
+    },
+    "gates": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "generic": {
       "scripts/portfolio_daily.py": 4
@@ -2407,9 +2425,12 @@
     "license": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/backfill_licenses.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
       "scripts/refresh_github_metadata.py": 8,
       "scripts/test_backfill_licenses.py": 4,
       "scripts/test_catalog_quality.py": 4,
+      "scripts/test_recommend.py": 4,
       "scripts/test_refresh_github_metadata.py": 8,
       "scripts/validate_catalog.py": 8
     },
@@ -2489,9 +2510,9 @@
       "scripts/test_documentation.py": 4
     },
     "model": {
-      "scripts/portfolio_daily.py": 4,
-      "scripts/recommend.py": 4,
-      "scripts/test_recommend.py": 4,
+      "scripts/portfolio_daily.py": 8,
+      "scripts/recommend.py": 8,
+      "scripts/test_recommend.py": 8,
       "scripts/validate_websites.py": 4
     },
     "models": {
@@ -2589,11 +2610,11 @@
       "scripts/agent_skill_discovery.py": 4,
       "scripts/portfolio_daily.py": 40,
       "scripts/portfolio_failure_diagnostics.py": 28,
-      "scripts/recommend.py": 8,
+      "scripts/recommend.py": 12,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_documentation.py": 8,
       "scripts/test_json_contracts.py": 4,
-      "scripts/test_recommend.py": 8,
+      "scripts/test_recommend.py": 12,
       "scripts/test_sync_github_stars.py": 4,
       "scripts/validate_websites.py": 4
     },
@@ -2845,10 +2866,10 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "review": {
-      "scripts/portfolio_daily.py": 16,
-      "scripts/recommend.py": 16,
+      "scripts/portfolio_daily.py": 20,
+      "scripts/recommend.py": 20,
       "scripts/sync_github_stars.py": 4,
-      "scripts/test_recommend.py": 12,
+      "scripts/test_recommend.py": 16,
       "scripts/test_sync_github_stars.py": 4,
       "scripts/validate_websites.py": 12
     },
@@ -2881,6 +2902,11 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
+    },
+    "safety": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "same": {
       "scripts/portfolio_daily.py": 4,

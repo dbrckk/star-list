@@ -14,6 +14,17 @@
       "score": 510
     },
     {
+      "path": "scripts/recommend.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "dependency-neighbor",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 440
+    },
+    {
       "path": "scripts/test_recommend.py",
       "reasons": [
         "changed",
@@ -23,38 +34,7 @@
         "selected-test",
         "symbol-indexed"
       ],
-      "score": 465
-    },
-    {
-      "path": "scripts/recommend.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
       "score": 435
-    },
-    {
-      "path": "scripts/validate_websites.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 360
-    },
-    {
-      "path": "scripts/test_json_contracts.py",
-      "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test"
-      ],
-      "score": 180
     },
     {
       "path": "scripts/portfolio_failure_diagnostics.py",
@@ -87,7 +67,7 @@
       "score": 25
     },
     {
-      "path": "scripts/validate_json_contract.py",
+      "path": "scripts/validate_websites.py",
       "reasons": [
         "dependency-neighbor"
       ],

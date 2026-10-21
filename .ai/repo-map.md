@@ -774,7 +774,16 @@ jobs:
                   assert record["decision"] == "matched", suggestion
                   assert record["integrationEligible"] == suggestion["integrationEligible"]
               for site in project["website_references"]:
-                  assert decision["websites"][site["id"]]["decision"] == "matched", site
+                  verified_site = decision["websites"][site["id"]]
+                  assert verified_site["decision"] == "matched", site
+                  assert verified_site["integrationEligible"] is False
+                  assert verified_site["reviewGates"] == (
+                      site["reviewGates"] or ["third-party-source-review"]
+                  ), site
+                  if site.get("safetyRisk") == "reduced-refusal":
+                      assert "reduced-refusal-public-safety-review" in site["reviewGates"], site
+                  if site.get("sourceLicenseTag") == "other":
+                      assert "unverified-hub-license-tag" in site["reviewGates"], site
           tts_audit = next((row for row in result["projects"]
                             if row["repository"].lower() == "dbrckk/tts"), None)
           if tts_audit is not None and tts_audit["source_coverage"]["complete"]:
@@ -792,6 +801,10 @@ jobs:
                           [expected_source]["decision"] == "matched"), target
                   assert any(ref["id"] == expected_source
                              for ref in target["website_references"]), target
+                  if expected_source == "atomicchat-flux3-image-klein-gguf":
+                      assert "unverified-hub-license-tag" in (
+                          target["source_assessment"]["websites"][expected_source]["reviewGates"]
+                      ), target
 
           native_by_project = [
               sum(item["mode"] == "native" for item in row["suggestions"])
@@ -4638,6 +4651,10 @@ def render_markdown(report: dict) -> str
 summary = report["summary"]
 lines = ["<!-- star-list-portfolio-daily -->", "# Daily star-list portfolio discovery", "",
 ⋮----
+review_gates = site.get("reviewGates") or ["third-party-source-review"]
+# Preserve explicit model/provider risk information in the public
+# review; do not treat a discovered model as installable software.
+⋮----
 """Suggest websites only for applicable project domains, never as code.
 
     Game projects benefit from an art-direction atlas and reviewed baseline
@@ -5043,6 +5060,17 @@ def infer_domains(qtokens)
 # Generic connective words in curator prose are not evidence that a website
 # applies to a project (e.g. "and" in both a TTS description and art guidance).
 WEBSITE_MATCH_STOPWORDS = frozenset(
+⋮----
+def website_review_gates(site)
+⋮----
+"""Stable, auditable reasons a curated web resource needs separate review.
+
+    These are discovery metadata only, not install instructions or a grant of
+    commercial image/model rights. All web resources remain non-executable.
+    """
+gates = []
+resource_type = site.get("type")
+reuse = site.get("reuse")
 ⋮----
 def recommend_websites(qtokens, domains, limit=5)
 ⋮----

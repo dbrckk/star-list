@@ -5,30 +5,27 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "167",
-      "add",
-      "face",
+      "169",
+      "expose",
       "feat",
-      "heretic",
-      "hub",
-      "hugging",
-      "minicpm",
+      "gates",
+      "license",
+      "model",
+      "portfolio",
       "review",
-      "safely",
-      "web"
+      "safety"
     ],
     "test_count": 0,
-    "useful_count": 4
+    "useful_count": 3
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(web): add Hugging Face Hub and safely review MiniCPM Heretic (#167)",
+  "task": "feat(portfolio): expose model license and safety review gates (#169)",
   "tests_selected": [],
   "useful": [
     "scripts/portfolio_daily.py",
     "scripts/recommend.py",
-    "scripts/test_recommend.py",
-    "scripts/validate_websites.py"
+    "scripts/test_recommend.py"
   ]
 }
