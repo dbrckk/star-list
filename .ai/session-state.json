@@ -16,14 +16,14 @@
     "with_skill_recommendations": 13,
     "dispatched": 0,
     "public_report_issue": 61,
-    "verified_workflow_run": 39652514651,
+    "verified_workflow_run": 39660543182,
     "skill_recommendations": 60,
     "website_references": 74,
     "qualifying_repositories": 216,
-    "curated_websites": 25,
+    "curated_websites": 26,
     "fully_assessed_projects": 42,
     "github_resource_assessments": 42966,
-    "website_resource_assessments": 1050,
+    "website_resource_assessments": 1092,
     "policy_review_suggestions": 80
   },
   "last_verified_integration_inventory": {
@@ -114,7 +114,10 @@
     164,
     165,
     166,
-    167
+    167,
+    168,
+    169,
+    170
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -179,13 +182,14 @@
     "Star-list PR #161 merged as 91a61ac (2026-10-21): promoted only verified exact root framework manifest packages plus GitHub Luau/GDScript primary-language evidence to project selection domains/terms; secondary React/Next.js/Flutter/Expo/Remotion projects no longer hidden behind generic README labels or a first Python manifest. Existing smoke proves polyglot and Lua/Luau distinctions. Exact-head Validate catalog and portfolio smoke plus postmerge catalog, standards and actual daily scan succeeded. Public issue #61 (run 39643135868): 42/42 inspected, 1,023 catalogue sources, 21 websites, 216 qualified GitHub matches, 80 policy-review, 24 native across nine public projects, 49 website references, 0 dispatched (4 historical v2 and 1 terminal v3 holds).",
     "Star-list PR #163 merged as 65ae30f on 2026-10-21: indexed licensed FastH3 Omni HF model collection as the 22nd website; source_assessment now records an explicit metadata-derived decision for each catalog GitHub and website entry for every active target, verifies full coverage before dispatch, preserves review-only licence/compute gates, and leaves 4 v2 + 1 v3 Production-OS fleet holds untouched. Exact-head Validate catalog and live portfolio smoke passed; post-merge Validate catalog, Repository standards and daily full portfolio scan #39644170090 passed. Public issue #61: 42/42 scanned, 42,966 GitHub + 924 web assessments, 216 qualifying GitHub matches (80 policy-review, 24 native), 52 relevant web refs, 0 dispatches.",
     "Star-list PRs #165 (AtomicChat FLUX.3 Image Klein GGUF), #166 (sparse asset-forge/monteur-video advisory matching) and #167 (Hugging Face model/dataset/Spaces hub plus MiniCPM-V 4.7 1B Heretic) merged on 2026-10-21. MiniCPM declares Apache-2.0 with upstream openbmb/MiniCPM-V-4.7-1B, safetyRisk reduced-refusal/abliterated and requires a separate ~1.11GB GGUF vision projector; do not ship unmoderated public use. PR #167 exact head catalog CI and live 42-repo smoke passed, postmerge standards, catalog and daily portfolio scan #39652514651 passed. Actual issue #61: 42/42 targets, 1023 GitHub +25 web sources per target =44016 decisions, 216 qualifying GitHub matches (24 native/80 review), 74 website references across 19 targets, 0 dispatch. Render production-os1 deployed latest 06b2af5 live, worker CI passed 8c8301b, but provider capacity and old Production-OS integration failures NOT proven recovered.",
-    "2026-10-21: AI Dev Server / Production-OS previously delivered Jumpy source checkpoint via reviewed draft PR dbrckk/Jumpy#37, generated change in scripts/integrations.gd adding clipboard feature check and share_unavailable event. The exact model-authored PR head f643d0646c13e77c7746750a2acbaca9e240d119 passed Godot parse run 39590218197; independently reviewed and squash merged as 7ba62fce709f852aa1a43f4246f1ca8a142c7ad2. Post-merge Godot validation 39654404595, Android debug APK 39654404846 and standards 39654406518 all SUCCESS on that merged commit. This is real previously published worker code delivered into target main, NOT a new Star List fleet dispatch or general reliable inference-capacity proof. Star-list PR #154 is already functionally superseded on main: root MCP hostname normalization exists, so do not re-merge its redundant source patch."
+    "2026-10-21: AI Dev Server / Production-OS previously delivered Jumpy source checkpoint via reviewed draft PR dbrckk/Jumpy#37, generated change in scripts/integrations.gd adding clipboard feature check and share_unavailable event. The exact model-authored PR head f643d0646c13e77c7746750a2acbaca9e240d119 passed Godot parse run 39590218197; independently reviewed and squash merged as 7ba62fce709f852aa1a43f4246f1ca8a142c7ad2. Post-merge Godot validation 39654404595, Android debug APK 39654404846 and standards 39654406518 all SUCCESS on that merged commit. This is real previously published worker code delivered into target main, NOT a new Star List fleet dispatch or general reliable inference-capacity proof. Star-list PR #154 is already functionally superseded on main: root MCP hostname normalization exists, so do not re-merge its redundant source patch.",
+    "2026-10-21: PR #170 merged as 69d27d1dd077290ab3c5b32b7f61e99c2e80e5da. Added SoPilot https://sopilot.net/ as 26th curated hosted marketing/social/X/SEO source with precise marketing-domain matching, no installation, no social posting or backlink submission without consent; retail dbrckk/Promo-alimentaire correctly excluded despite its name. Exact-head Validate catalog 39660325117 and public portfolio smoke 39660324870 successful; postmerge Validate catalog 39660543267, standards 39660545212, daily scan 39660543182 successful. Public issue #61: 42/42 repositories, 1023 GitHub+26 sites assessed per target = 44,058 source decisions (42,966 GitHub, 1,092 web); 216 GitHub qualified matches, 24 native, 80 policy-review, 74 web refs across 19 projects, 0 integration launches. No active public project has explicit SoPilot marketing fit, so a 26-site completeness check is accurate even without a SoPilot recommendation. Four historical v2 and one terminal v3 capacity failures still require proof/operator review."
   ],
   "next_priority": [
-    "Confirm new authenticated Production-OS inference/worker capacity with a bounded nonmutating proof. Star-list still has four unresolved v2 and one terminal v3 integration attempts; do not bypass the global fleet hold merely because earlier Jumpy source from a prior worker was merged manually and CI passed.",
-    "System now has one verified reviewed worker-produced source delivery into dbrckk/Jumpy main (PR #37, merged 7ba62fc, Android and Godot CI green). Use this as an exact-SHA quality precedent. Next prove a NEW worker-generated compatible integration through target PR and independent CI with safe source license.",
-    "Keep full metadata evaluation of 1023 GitHub sources +25 curated web sources on all 42 active public targets (44,016 decisions); all website model integrations remain advisory with explicit model license/safety/reuse gates in the report.",
-    "Keep legacy GitHub canonical identity, model license, and still-draft redundant PR review backlog accurate; never count unreviewed source suggestions or queued tasks as completed integrations."
+    "Restore trusted Production-OS/AI Dev Server worker capacity with bounded authenticated proof and explicit operator review of four historical v2 and one terminal v3 exhausted tasks before fleet restart; do not bypass the fail-closed hold.",
+    "Complete and CI-validate one NEW licensed native source integration into a target review PR. Earlier worker-generated dbrckk/Jumpy PR #37 was independently merged to main with Godot and Android CI green; that does not prove new automatic worker capacity.",
+    "Keep daily comprehensive per-project metadata assessment of 1023 catalog GitHub resources and 26 curated sites (42/42 public repositories, 44,058 decisions, run #39660543182); do not confuse meta discovery with executing, downloading or crawling hosted sites.",
+    "Preserve consent and platform anti-spam gates: SoPilot recommendations are confined to explicit marketing/SEO/social signals and never authorize autonomous social account login, mass engagement, publishing, backlink submission or paid tiers."
   ],
   "constraints": [
     "No automatic merge/deployment of third-party integrations",
