@@ -88,6 +88,38 @@ jobs:
           if len(files) != 1 or files[0].get("filename") != "scripts/validate_websites.py" or files[0].get("status") != "modified":
               raise SystemExit("Review handoff only accepts the vetted one-file website source fix")
 
+          # A single named file is not sufficient: another generic engine
+          # previously overwrote the same reserved branch with an EMPTY
+          # validator (98 lines deleted). Require the exact operator-reviewed
+          # one-line repair, and reject omissions, chmod-only changes, extra
+          # edits, unverified patch evidence and unexpected AI output.
+          changed = files[0]
+          patch = changed.get("patch")
+          if (type(changed.get("additions")) is not int
+                  or type(changed.get("deletions")) is not int
+                  or changed["additions"] != 1 or changed["deletions"] != 1
+                  or type(changed.get("changes")) is not int
+                  or changed["changes"] != 2
+                  or not isinstance(patch, str) or len(patch) > 4000):
+              raise SystemExit("Review handoff rejected an unbounded source diff")
+          source_edits = [
+              line for line in patch.splitlines()
+              if line.startswith(("+", "-"))
+              and not line.startswith(("+++", "---"))
+          ]
+          if source_edits != [
+              "-                root = website.hostname.lower()",
+              '+                root = website.hostname.lower().removeprefix("www.")',
+          ]:
+              raise SystemExit("Review handoff rejected a source edit outside the approved assignment")
+
+          # Require the same exact branch head immediately before opening the
+          # review. Never trust a previously compared SHA after a concurrent
+          # worker updates the managed branch.
+          latest_ref = request("GET", "/git/ref/heads/" + branch)
+          if (latest_ref.get("object") or {}).get("sha") != sha:
+              raise SystemExit("Review handoff rejected a branch movement after comparison")
+
           owner = repo.split("/", 1)[0]
           query = urllib.parse.urlencode({
               "state": "open", "head": owner + ":" + branch, "base": "main",
