@@ -56,6 +56,7 @@ jobs:
           assert len(website_ids) == result["summary"]["catalog_websites"]
           assert "fasth3-omni-collection" in website_ids
           assert "atomicchat-flux3-image-klein-gguf" in website_ids
+          assert {"hugging-face-hub", "minicpm-v-4-7-1b-heretic"} <= website_ids
           fully_scanned = [row for row in result["projects"]
                            if row["status"] != "skipped-inactive"]
           assert result["summary"]["fully_assessed_projects"] == len(fully_scanned)
@@ -79,6 +80,7 @@ jobs:
           if tts_audit is not None and tts_audit["source_coverage"]["complete"]:
               assert tts_audit["source_assessment"]["websites"]["fasth3-omni-collection"]["decision"] != "matched"
               assert tts_audit["source_assessment"]["websites"]["atomicchat-flux3-image-klein-gguf"]["decision"] != "matched"
+              assert tts_audit["source_assessment"]["websites"]["minicpm-v-4-7-1b-heretic"]["decision"] != "matched"
           for full_name, expected_source in (
               ("dbrckk/asset-forge", "atomicchat-flux3-image-klein-gguf"),
               ("dbrckk/monteur-video", "fasth3-omni-collection"),
