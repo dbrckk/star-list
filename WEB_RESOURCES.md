@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **13 websites** are curated alongside it in [`websites.json`](websites.json);
+These **14 websites** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -20,6 +20,7 @@ the ability to browse a page.
 | Lovable | [lovable.dev](https://lovable.dev/) | AI-generated website/application prototypes | Freemium | Hosted service; check export/data/usage plans |
 | Skill Issue | [skill-issue.in](https://skill-issue.in/) | Ranked directory of agent skills for development, design, video and automation | Free browsing | Directory only; review each source SKILL.md before use |
 | Game Art Style | [gameartstyle.loopyhop.com](https://gameartstyle.loopyhop.com/) | Visual atlas of 37 game art styles, game references and coherent art-direction prompts | Free browsing | Inspiration only; screenshots remain owned by their respective creators |
+| Jupiter the Warlock — Game Art Style | [jupiterthewarlock.com/gameartstyle](https://jupiterthewarlock.com/gameartstyle/) | Additional user-supplied game art direction reference; content not independently retrieved | Availability unverified | Reference only; independently confirm page and all image/asset rights before use |
 | PINOC MCP by Viggle | [viggle.ai/pinoc/mcp](https://viggle.ai/pinoc/mcp) ([user link](https://viggle.ai/pinoc/app/mcp)) | Agent-accessible preset 3D motions, video mocap, text-to-motion and rigged characters | Freemium; read-only lookups/preset motions free; generation uses credits | Login and approval required; check asset rights, supported rigs, model formats and each charge |
 
 ## Search repositories and relevant websites together
@@ -102,17 +103,18 @@ Neither site is an autonomous Production-OS integration candidate.
 - Future website additions should use canonical HTTPS URLs, stable unique IDs,
   descriptive tags, access expectations and an explicit `reuse` policy.
   Validate against [`schemas/websites.schema.json`](schemas/websites.schema.json).
-- During daily portfolio discovery, the scanner also proposes at most **two**
-  matching website references per repository, based on owned repository
+- During daily portfolio discovery, the scanner considers **all** websites
+  and retains every genuinely relevant reference per repository, based on owned repository
   metadata and concrete keyword overlap. Game projects also receive
   **Game Art Style** as a prioritized art-direction reference when their
   GitHub description contains no design terms; unrelated domains are excluded
   and generic prose words (such as `and` or `for`) never qualify a match.
-  When explicit 3D motion/rigging cues exist, PINOC MCP can appear as the
-  second reference after Game Art Style for game projects. No MCP request,
+  When explicit 3D motion/rigging cues exist, PINOC MCP is prioritized
+  immediately after Game Art Style; the Jupiter art-direction reference is
+  also retained when game development applies. No MCP request,
   authorization or credit spend occurs during scanning.
   These suggestions are kept in the
-  `website_references` report field, separate from GitHub integration
+  complete `website_references` workflow JSON artifact, separate from GitHub integration
   `suggestions`; the reference list is never entered into the dispatch queue.
 - The existing `scripts/validate_websites.py` semantic validator checks
   HTTPS URLs, credential-free identity, aliases, duplicates and MCP endpoint
@@ -129,6 +131,6 @@ The high-priority [Skill Issue](https://skill-issue.in/) portal is an
 upstream source repositories is searchable with `--skills` or
 [`scripts/agent_skill_discovery.py`](scripts/agent_skill_discovery.py).
 The public/private portfolio scans link the directory for every accessible
-repository and show at most two independently reviewable, metadata-matched
-skills. This does **not** authorize automatic installation or execution;
+repository and retain all independently reviewable, metadata-matched
+skills in the full workflow JSON artifact (the public issue shows a concise preview). This does **not** authorize automatic installation or execution;
 see [`AGENT_SKILLS.md`](AGENT_SKILLS.md) for security and license checks.
