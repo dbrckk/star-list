@@ -886,7 +886,8 @@ def render_markdown(report: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
-def website_references_for_project(repo: dict, profile: dict, limit: int | None = None) -> list[dict]:
+def website_references_for_project(repo: dict, profile: dict, limit: int | None = None,
+                                   assessment: dict | None = None) -> list[dict]:
     """Suggest websites only for applicable project domains, never as code.
 
     Game projects benefit from an art-direction atlas and reviewed baseline
@@ -936,6 +937,34 @@ def website_references_for_project(repo: dict, profile: dict, limit: int | None 
             position = 1 if chosen and chosen[0]["id"] == "game-art-style" else 0
             chosen = [site for site in chosen if site["id"] != "viggle-pinoc-mcp"]
             chosen.insert(position, pinoc)
+    if assessment is not None:
+        assessment.clear()
+        # The ranking considers every curated website; retain the disposition
+        # for those that fail the project/task/licence-safe reference filters.
+        for site in json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))["websites"]:
+            site_domains = set(site["domains"])
+            required = set(site.get("portfolioRequiredSignals") or [])
+            if site["id"] == "skill-issue":
+                reason = "skill-directory-discovered-for-every-target"
+                decision = "directory-review"
+            elif not site_domains & domains:
+                reason = "project-domain-mismatch"
+                decision = "not-relevant"
+            elif required and not required & metadata_terms:
+                reason = "specialist-project-signals-unmatched"
+                decision = "not-relevant"
+            else:
+                reason = "no-specific-project-signal"
+                decision = "not-relevant"
+            assessment[site["id"]] = {
+                "decision": decision, "reason": reason,
+                "integrationEligible": False,
+            }
+        for site in chosen:
+            assessment[site["id"]] = {
+                "decision": "matched", "reason": site["type"],
+                "integrationEligible": False,
+            }
     return chosen if limit is None else chosen[:limit]
 
 
