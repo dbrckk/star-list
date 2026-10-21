@@ -45,6 +45,10 @@ jobs:
           assert result["summary"]["qualifying_repositories"] == sum(
               len(row["suggestions"]) for row in result["projects"]
           )
+          assert result["summary"]["policy_review_suggestions"] == sum(
+              bool(item["policyReview"])
+              for row in result["projects"] for item in row["suggestions"]
+          )
           assert result["summary"]["catalog_repositories"] >= 1000
           native_by_project = [
               sum(item["mode"] == "native" for item in row["suggestions"])
