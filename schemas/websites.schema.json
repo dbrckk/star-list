@@ -69,7 +69,8 @@
               "asset-generator",
               "game-testing-service",
               "model-collection",
-              "model-checkpoint"
+              "model-checkpoint",
+              "model-hub"
             ]
           },
           "access": {
@@ -165,6 +166,13 @@
           "upstreamModel": {
             "type": "string",
             "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+          },
+          "safetyRisk": {
+            "enum": [
+              "reduced-refusal",
+              "unknown",
+              "standard"
+            ]
           }
         }
       }
