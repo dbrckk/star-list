@@ -105,26 +105,26 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-21T17:22:03Z
+Generated: 2026-10-21T17:29:03Z
 
 ### Git
 - Branch: `main`
-- Head: `91a61acd46d0`
-- Commit date: 2026-10-21T13:21:53-04:00
-- Commit: fix(portfolio): infer trusted framework fit across polyglot manifests (#161)
+- Head: `65ae30f1c0bf`
+- Commit date: 2026-10-21T13:28:53-04:00
+- Commit: feat(portfolio): audit all catalog sources and add FastH3 Omni (#163)
 - Tracked files: 294
 
 ### Recently changed files
 - `.github/workflows/portfolio-scan-smoke.yml`
-- `scripts/portfolio_daily.py`
-- `scripts/recommend.py`
 - `README.md`
 - `RECOMMENDER.md`
 - `WEB_RESOURCES.md`
 - `schemas/websites.schema.json`
+- `scripts/portfolio_daily.py`
+- `websites.json`
+- `scripts/recommend.py`
 - `scripts/test_recommend.py`
 - `scripts/validate_websites.py`
-- `websites.json`
 - `.repomixignore`
 
 ### Project signals

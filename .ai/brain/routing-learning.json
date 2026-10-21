@@ -2,24 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "Synchronize GitHub Stars daily for human review (#51)",
-      "terms": [
-        "51",
-        "daily",
-        "github",
-        "human",
-        "review",
-        "stars",
-        "synchronize"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/sync_github_stars.py",
-        "scripts/test_sync_github_stars.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "feat: automatically admit all public GitHub Stars into star-list (#58)",
       "terms": [
         "58",
@@ -1293,6 +1275,26 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(portfolio): audit all catalog sources and add FastH3 Omni (#163)",
+      "terms": [
+        "163",
+        "add",
+        "all",
+        "audit",
+        "catalog",
+        "fasth3",
+        "feat",
+        "omni",
+        "portfolio",
+        "sources"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1441,6 +1443,9 @@
       "scripts/recommend.py": 4
     },
     "161": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "163": {
       "scripts/portfolio_daily.py": 4
     },
     "17": {
@@ -1607,7 +1612,7 @@
     "add": {
       "scripts/agent_skill_discovery.py": 4,
       "scripts/audit_catalog_quality.py": 4,
-      "scripts/portfolio_daily.py": 12,
+      "scripts/portfolio_daily.py": 16,
       "scripts/recommend.py": 12,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_documentation.py": 4,
@@ -1649,7 +1654,7 @@
     },
     "all": {
       "scripts/admit_github_stars.py": 4,
-      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_daily.py": 8,
       "scripts/recommend.py": 4,
       "scripts/test_auto_stars_admission.py": 4
     },
@@ -1702,6 +1707,7 @@
       "scripts/admit_github_stars.py": 4,
       "scripts/audit_agent_skill_sources.py": 4,
       "scripts/audit_catalog_quality.py": 12,
+      "scripts/portfolio_daily.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_catalog_quality.py": 12,
       "scripts/test_documentation.py": 16,
@@ -1796,7 +1802,7 @@
     "catalog": {
       "scripts/admit_github_stars.py": 4,
       "scripts/audit_catalog_quality.py": 12,
-      "scripts/portfolio_daily.py": 12,
+      "scripts/portfolio_daily.py": 16,
       "scripts/recommend.py": 8,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/sync_github_stars.py": 4,
@@ -2070,6 +2076,9 @@
     },
     "failures": {
       "scripts/portfolio_failure_diagnostics.py": 8
+    },
+    "fasth3": {
+      "scripts/portfolio_daily.py": 4
     },
     "feat": {
       "scripts/admit_github_stars.py": 8,
@@ -2422,6 +2431,9 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "obsolete": {
+      "scripts/portfolio_daily.py": 4
+    },
+    "omni": {
       "scripts/portfolio_daily.py": 4
     },
     "one": {
@@ -2866,7 +2878,7 @@
       "scripts/test_recommend.py": 4
     },
     "sources": {
-      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_daily.py": 8,
       "scripts/recommend.py": 4
     },
     "sparse": {

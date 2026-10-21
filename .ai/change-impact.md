@@ -1,14 +1,21 @@
 # Change impact
 
-Base: 114fabdcf6ba6bcb507956718da4dbbf61298f6e
-Head: 91a61acd46d03c5a6a75ac97d3365d69cee4e7e7
+Base: 38b8a5bba2eff970ff03d572d28a8908497e167f
+Head: 65ae30f1c0bf3f100cb99bd6afcf3614ae791e46
 
 ## Changed files
 - M .github/workflows/portfolio-scan-smoke.yml
+- M README.md
+- M RECOMMENDER.md
+- M WEB_RESOURCES.md
+- M schemas/websites.schema.json
 - M scripts/portfolio_daily.py
+- M websites.json
 
 ## Affected areas
 - .github
+- (root)
+- schemas
 - scripts
 
 ## Related test candidates

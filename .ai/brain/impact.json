@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "aba361d0e177a7174685be8665e0fe59bbb3eee7",
-  "head": "91a61acd46d03c5a6a75ac97d3365d69cee4e7e7",
+  "base": "91a61acd46d03c5a6a75ac97d3365d69cee4e7e7",
+  "head": "65ae30f1c0bf3f100cb99bd6afcf3614ae791e46",
   "index_mode": "incremental",
   "changed_files": [
     {
@@ -10,7 +10,27 @@
       "status": "M"
     },
     {
+      "path": "README.md",
+      "status": "M"
+    },
+    {
+      "path": "RECOMMENDER.md",
+      "status": "M"
+    },
+    {
+      "path": "WEB_RESOURCES.md",
+      "status": "M"
+    },
+    {
+      "path": "schemas/websites.schema.json",
+      "status": "M"
+    },
+    {
       "path": "scripts/portfolio_daily.py",
+      "status": "M"
+    },
+    {
+      "path": "websites.json",
       "status": "M"
     }
   ],
@@ -93,91 +113,91 @@
       "name": "count_active_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 501
+      "line": 534
     },
     {
       "name": "busy_integration_targets",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 511
+      "line": 544
     },
     {
       "name": "unresolved_failed_v2_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 531
+      "line": 564
     },
     {
       "name": "count_failed_v2_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 562
+      "line": 595
     },
     {
       "name": "count_failed_v3_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 567
+      "line": 600
     },
     {
       "name": "count_launches_on_utc_date",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 583
+      "line": 616
     },
     {
       "name": "verified_managed_projects",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 603
+      "line": 636
     },
     {
       "name": "public_integration_status",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 654
+      "line": 687
     },
     {
       "name": "integration_marker",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 676
+      "line": 709
     },
     {
       "name": "recoverable_failure_targets",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 683
+      "line": 716
     },
     {
       "name": "launch_integration",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 719
+      "line": 752
     },
     {
       "name": "confirmed_launch",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 747
+      "line": 780
     },
     {
       "name": "render_markdown",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 781
+      "line": 814
     },
     {
       "name": "website_references_for_project",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 856
+      "line": 897
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 909
+      "line": 979
     },
     {
       "name": "safe_state",

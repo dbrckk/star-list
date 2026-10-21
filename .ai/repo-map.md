@@ -750,6 +750,33 @@ jobs:
               for row in result["projects"] for item in row["suggestions"]
           )
           assert result["summary"]["catalog_repositories"] >= 1000
+          catalog_names = {x["repo"] for x in json.loads(Path("catalog.json").read_text())["repositories"]}
+          website_ids = {x["id"] for x in json.loads(Path("websites.json").read_text())["websites"]}
+          assert len(catalog_names) == result["summary"]["catalog_repositories"]
+          assert len(website_ids) == result["summary"]["catalog_websites"]
+          assert "fasth3-omni-collection" in website_ids
+          fully_scanned = [row for row in result["projects"]
+                           if row["status"] != "skipped-inactive"]
+          assert result["summary"]["fully_assessed_projects"] == len(fully_scanned)
+          assert result["summary"]["repository_assessments"] == len(fully_scanned) * len(catalog_names)
+          assert result["summary"]["website_assessments"] == len(fully_scanned) * len(website_ids)
+          for project in fully_scanned:
+              decision = project["source_assessment"]
+              assert project["source_coverage"]["complete"] is True
+              assert set(decision["repositories"]) == catalog_names
+              assert set(decision["websites"]) == website_ids
+              assert all(x["reason"] and x["decision"]
+                         for group in decision.values() for x in group.values())
+              for suggestion in project["suggestions"]:
+                  record = decision["repositories"][suggestion["repository"]]
+                  assert record["decision"] == "matched", suggestion
+                  assert record["integrationEligible"] == suggestion["integrationEligible"]
+              for site in project["website_references"]:
+                  assert decision["websites"][site["id"]]["decision"] == "matched", site
+          tts_audit = next((row for row in result["projects"]
+                            if row["repository"].lower() == "dbrckk/tts"), None)
+          if tts_audit is not None and tts_audit["source_coverage"]["complete"]:
+              assert tts_audit["source_assessment"]["websites"]["fasth3-omni-collection"]["decision"] != "matched"
           native_by_project = [
               sum(item["mode"] == "native" for item in row["suggestions"])
               for row in result["projects"]
@@ -3039,7 +3066,8 @@ initial_prompt: |
               "narrative-platform",
               "game-design-service",
               "asset-generator",
-              "game-testing-service"
+              "game-testing-service",
+              "model-collection"
             ]
           },
           "access": {
@@ -4392,10 +4420,11 @@ reference_clues = (
 # an autonomous dependency integration solely because languages match.
 WEAK_CAPABILITY_TERMS = {
 ⋮----
-def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int | None = None) -> list[dict]
-⋮----
 name = repo["full_name"].lower()
 domains = set(profile["domains"])
+⋮----
+# Record each identity before considering any domain/score threshold.
+# A rejected candidate remains accounted for in the scan evidence.
 ⋮----
 target_identity = repo["name"].lower()
 godot_target = profile["language"] == "gdscript" or "godot" in target_identity
@@ -4576,8 +4605,6 @@ def render_markdown(report: dict) -> str
 summary = report["summary"]
 lines = ["<!-- star-list-portfolio-daily -->", "# Daily star-list portfolio discovery", "",
 ⋮----
-def website_references_for_project(repo: dict, profile: dict, limit: int | None = None) -> list[dict]
-⋮----
 """Suggest websites only for applicable project domains, never as code.
 
     Game projects benefit from an art-direction atlas and reviewed baseline
@@ -4615,6 +4642,22 @@ pinoc = next((site for site in candidates if site["id"] == "viggle-pinoc-mcp"), 
 position = 1 if chosen and chosen[0]["id"] == "game-art-style" else 0
 chosen = [site for site in chosen if site["id"] != "viggle-pinoc-mcp"]
 ⋮----
+# The ranking considers every curated website; retain the disposition
+# for those that fail the project/task/licence-safe reference filters.
+⋮----
+site_domains = set(site["domains"])
+required = set(site.get("portfolioRequiredSignals") or [])
+⋮----
+reason = "skill-directory-discovered-for-every-target"
+decision = "directory-review"
+⋮----
+reason = "project-domain-mismatch"
+decision = "not-relevant"
+⋮----
+reason = "specialist-project-signals-unmatched"
+⋮----
+reason = "no-specific-project-signal"
+⋮----
 def main() -> int
 ⋮----
 ap = argparse.ArgumentParser()
@@ -4628,6 +4671,10 @@ service = os.getenv("PRODUCTION_OS_URL", "https://production-os1.onrender.com")
 report = {"generated_at": datetime.now(timezone.utc).isoformat(), "owner": args.owner,
 ⋮----
 catalog = json.loads(args.catalog.read_text(encoding="utf-8"))["repositories"]
+catalog_ids = {str(item["repo"]) for item in catalog}
+⋮----
+websites = json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))["websites"]
+website_ids = {str(site["id"]) for site in websites}
 ⋮----
 target = request_json(API + "/repos/" + args.repository, portfolio_token or gh_token)
 ⋮----
@@ -4649,6 +4696,11 @@ skill_domains = (set(profile.get("domains") or [])
 ⋮----
 # Owned GitHub metadata only: reference sites never become
 # installable tools, and unrelated domain/prose matches are out.
+⋮----
+repo_checked = set(row["source_assessment"]["repositories"])
+websites_checked = set(row["source_assessment"]["websites"])
+⋮----
+# Incomplete decision traces must not trigger any mutation.
 ⋮----
 # Discovery must be complete before starting any potentially mutating
 # managed project. A per-repository read error is not a partial success.
@@ -7797,8 +7849,8 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **21 curated website links** for UI design,
-animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, AI game prototyping, NPC/voice platforms, 3D assets, narrative design and gameplay QA. Explore them
+The catalog also includes **22 curated website links** for UI design,
+animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, AI game prototyping, NPC/voice platforms, 3D assets, narrative design, gameplay QA and licensed reference-to-video/audio model collections. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
 repositories and are never passed to Production-OS as code dependencies.
@@ -7812,6 +7864,16 @@ python scripts/validate_json_contract.py schemas/websites.schema.json websites.j
 The optional website ranking preserves the original repository rankings and
 reports licensing/usage cautions separately; do not treat paid design assets
 or third-party shaders as open source.
+
+## Exhaustive project-level resource audit
+
+Every active, accessible project receives a **decision for each catalogued
+GitHub source and each curated website** in the daily portfolio artifact:
+matched / not relevant / requiring review, with per-source reasons. Summary
+counters verify total coverage, rather than only counting suggested matches.
+See [website and catalog scan documentation](WEB_RESOURCES.md). Review-only
+sources are never installed automatically; runtime changes still need a
+verified licence, compatible target and independently passing CI.
 
 ## Priority agent skills from Skill Issue
 
@@ -8889,6 +8951,59 @@ General-purpose GitHub discovery remains advisory and never inserts external can
         "game_dev"
       ],
       "caution": "Provider currently advertises build-upload testing without SDK integration; older docs describe Unity plugins. Check current platform support, costs, build privacy and test reproducibility before uploading."
+    },
+    {
+      "id": "fasth3-omni-collection",
+      "name": "FastVideo — FastH3 Omni (Hugging Face collection)",
+      "url": "https://huggingface.co/collections/FastVideo/fasth3-omni",
+      "type": "model-collection",
+      "access": "free",
+      "domains": [
+        "ai_media",
+        "graphics",
+        "game_dev"
+      ],
+      "tags": [
+        "video",
+        "video-generation",
+        "image-to-video",
+        "reference-to-video",
+        "audio",
+        "synchronized-audio",
+        "diffusion",
+        "generative",
+        "multimodal",
+        "animation",
+        "cinematic",
+        "comfyui",
+        "fastvideo",
+        "fasth3",
+        "omni",
+        "fp8",
+        "int8",
+        "nvfp4",
+        "gpu"
+      ],
+      "bestFor": [
+        "Evaluating prompt- and reference-conditioned video generation with synchronized audio for media workflows",
+        "Comparing BF16, INT8, FP8 and NVFP4 model variants and compatible FastVideo or ComfyUI runtimes",
+        "Researching storyboards, cutscenes and promotional clips before assessing compute, safety, quality and licensing"
+      ],
+      "reuse": "licensed-material",
+      "portfolioRequiredSignals": [
+        "video",
+        "animation",
+        "cinematic",
+        "cutscene",
+        "film",
+        "movie",
+        "montage",
+        "trailer",
+        "comfyui",
+        "image-to-video",
+        "reference-to-video"
+      ],
+      "caution": "This is a collection of third-party model weights, not an executable GitHub dependency or a free hosted inference API. FastH3 Omni weights reference the MiniMax-H3 Community License Agreement, which must be reviewed independently for commercial use and redistribution. Large checkpoint downloads, compatible GPU/VRAM, runtime and additional text encoder/video/audio VAE are required. Never automatically install, fetch large weights, generate media or upload user content; inspect individual model licences and costs."
     }
   ]
 }
