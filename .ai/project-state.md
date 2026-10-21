@@ -105,25 +105,28 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-20T19:28:13Z
+Generated: 2026-10-21T15:49:18Z
 
 ### Git
 - Branch: `main`
-- Head: `42f59c5ec5be`
-- Commit date: 2026-10-20T15:28:03-04:00
-- Commit: fix(history): preserve metrics through GitHub transfers (#149)
-- Tracked files: 297
+- Head: `b42c4deb9cd1`
+- Commit date: 2026-10-21T11:49:07-04:00
+- Commit: ci(ai-map): exclude non-code snapshots from Repomix (#155)
+- Tracked files: 298
 
 ### Recently changed files
-- `health-snapshot.json`
-- `history.json`
+- `.repomixignore`
+- `scripts/validate_websites.py`
+- `.github/workflows/portfolio-scan-smoke.yml`
+- `WEB_RESOURCES.md`
+- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
+- `scripts/agent_skill_discovery.py`
+- `scripts/portfolio_daily.py`
+- `scripts/recommend.py`
+- `scripts/test_recommend.py`
+- `websites.json`
+- `.github/workflows/production-os-review-handoff.yml`
 - `catalog.json`
-- `.github/workflows/backfill-github-ids.yml`
-- `.github/workflows/validate.yml`
-- `docs/GITHUB_STARS_SYNC.md`
-- `schemas/github-id-backfill-report.schema.json`
-- `scripts/backfill_github_ids.py`
-- `scripts/test_documentation.py`
 
 ### Project signals
 - No common build descriptor detected

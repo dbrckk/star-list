@@ -1,8 +1,32 @@
 {
-  "schema_version": 1,
   "generated_by": "dbrckk/repo-brain-auto-learning-v1",
-  "learned": false,
-  "reason": "missing-task-or-source-change",
-  "task": "fix(history): preserve metrics through GitHub transfers (#149)",
-  "useful": []
+  "learned": true,
+  "learning_result": {
+    "example_count": 64,
+    "rejected_count": 0,
+    "terms": [
+      "155",
+      "ai-map",
+      "ci",
+      "exclude",
+      "from",
+      "non-code",
+      "repomix",
+      "snapshots"
+    ],
+    "test_count": 0,
+    "useful_count": 5
+  },
+  "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
+  "rejected": [],
+  "schema_version": 1,
+  "task": "ci(ai-map): exclude non-code snapshots from Repomix (#155)",
+  "tests_selected": [],
+  "useful": [
+    "scripts/agent_skill_discovery.py",
+    "scripts/portfolio_daily.py",
+    "scripts/recommend.py",
+    "scripts/test_recommend.py",
+    "scripts/validate_websites.py"
+  ]
 }

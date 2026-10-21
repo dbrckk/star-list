@@ -6,13 +6,13 @@
     "requested_max_files": 12,
     "score_margin": 12,
     "tier": "narrow",
-    "top_score": 53
+    "top_score": 62
   },
   "cache": {
-    "fingerprint": "319c768141e6d8b9d99f771b815d8633674f40095ee19124cb9286abd2748ff4",
+    "fingerprint": "569c969344f6018af65c0d9c9c3351e3c11fbf4452872658dcfe0c693a4f5cf4",
     "hit": false
   },
-  "candidate_count": 9,
+  "candidate_count": 17,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -23,10 +23,12 @@
       ],
       "path": "scripts/portfolio_daily.py",
       "reasons": [
+        "impact",
         "learning",
+        "recently-changed",
         "search-index"
       ],
-      "score": 53,
+      "score": 62,
       "symbols": [
         "SameOriginRedirect",
         "busy_integration_targets",
@@ -58,33 +60,47 @@
       ],
       "path": "scripts/test_recommend.py",
       "reasons": [
+        "impact",
         "learning",
+        "recently-changed",
         "search-index"
       ],
-      "score": 41,
+      "score": 50,
       "symbols": [
         "run"
       ]
     },
     {
-      "learning_score": 0,
+      "learning_score": 8,
       "matched_terms": [
-        "engine",
         "game"
       ],
-      "path": "scripts/admit_github_stars.py",
+      "path": "scripts/recommend.py",
       "reasons": [
+        "impact",
+        "learning",
+        "recently-changed",
         "search-index"
       ],
-      "score": 29,
+      "score": 34,
       "symbols": [
-        "admit",
-        "catalog_entry",
-        "classify",
-        "count",
-        "get_repo",
+        "activity_adjustment",
+        "choose_stack",
+        "delta",
+        "explain_repo",
+        "guidance_weight",
+        "infer_alternatives",
+        "infer_complements",
+        "infer_domains",
+        "load",
         "main",
-        "manifest_stable_ids"
+        "norm",
+        "recommend_websites",
+        "resolve_relations",
+        "score_repo",
+        "tokens",
+        "trend_adjustment",
+        "usable"
       ]
     }
   ],

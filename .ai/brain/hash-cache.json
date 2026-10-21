@@ -1,44 +1,76 @@
 {
   "files": {
-    "AGENT_SKILLS.md": {
-      "sha256": "1109e5df9849026ed39b6f9e9a610e62fb0384b98afc86a3575120d5f5b71e59",
-      "size": 10007
+    ".github/workflows/portfolio-scan-smoke.yml": {
+      "sha256": "dc21fb713add5eb6a292478e1e6f7a963a97128d728f4f97e4fc9ec3f2044585",
+      "size": 57167
     },
-    "README.md": {
-      "sha256": "5d0a0ee29a62ba12e2fd78f3e57eefaa1ae58bf905901e400e3c89cac4f6f0a1",
-      "size": 12949
+    ".github/workflows/production-os-review-handoff.yml": {
+      "sha256": "66720b6eabb269c3caad9d61125bb65a8abbc23971d54d6e118c74850d3d1385",
+      "size": 5902
+    },
+    ".repomixignore": {
+      "sha256": "4fac6254c28d030c0d156a188ff04d4b8959b713d3f0919c7ba4a5a53d8b6b26",
+      "size": 673
+    },
+    "WEB_RESOURCES.md": {
+      "sha256": "73bd956d5a1bd2e22bb4945e52cbee0a5978c8c23ddc3312e0aeda9e4a649906",
+      "size": 9580
     },
     "catalog.json": {
-      "sha256": "3691488338a02b4a473180d1ea8cfc25943265ea5e3c7a7a4f09e8bdc8a533e5",
-      "size": 1122684
+      "sha256": "cf080c137e58109d3df4cd35d292329ef374a3dd1f652137630e2da408561f63",
+      "size": 1133825
     },
-    "health-snapshot.json": {
-      "sha256": "9df9ef99f8903ea51c4597237aacbe0cae68a0791f4749666abf435115af75f9",
-      "size": 103307
+    "docs/DAILY_PORTFOLIO_INTEGRATION.md": {
+      "sha256": "fbe6c68ecf21861ce6dff953a307a0a087d4ce4cc77e4915c840d644099bf2f4",
+      "size": 17275
     },
-    "history.json": {
-      "sha256": "5bbe36849e44ef359ac9a7a24d0f479facb77d410fa11bf7e34be7493e0e7bee",
-      "size": 406316
-    },
-    "schemas/agent-skill-source-audit.schema.json": {
-      "sha256": "3bd67d5ce3fefe17f8984bc3f74ec27d96476b1405c5ced25e43b661a4de3337",
-      "size": 2855
-    },
-    "schemas/github-id-backfill-report.schema.json": {
-      "sha256": "86d0060f53de018ddc6fc0b7f54df3d010124705b9c04b37dc87696129263dfc",
-      "size": 1588
+    "scripts/agent_skill_discovery.py": {
+      "sha256": "7b40a23dd9f147d1ab3435f7a9ea87a08ec59d8791d925279a13201024c6c007",
+      "size": 7987
     },
     "scripts/audit_agent_skill_sources.py": {
       "sha256": "08741c472e41b46adaabe2cb9f1d2ccc148e9a29e2d526543bed43a18e0d647f",
       "size": 6970
     },
-    "scripts/backfill_github_ids.py": {
-      "sha256": "118f26f77fc0566a03b4e7695e5e5c30c00a1630c071058cbcf136417f648d98",
-      "size": 7080
+    "scripts/find_replacements.py": {
+      "sha256": "fc4e3e288abcc1b48eaf238d09357ff7d11e5f1ce8b62aa92d4a4717c20006d9",
+      "size": 3404
     },
-    "scripts/test_documentation.py": {
-      "sha256": "0dabaea2a0998522a130ab8faa8c57feeba72b3ba0c107551c8cfca96c2bcbf6",
-      "size": 6827
+    "scripts/health_score.py": {
+      "sha256": "c16d8e8ed70025692961a42a6179051a4baaee2b1d721af26554816612f9000f",
+      "size": 2456
+    },
+    "scripts/portfolio_daily.py": {
+      "sha256": "9f24bcac5a99e98b579d1aef5291be21f69146f4e2fff526ec268579d4cbdc4f",
+      "size": 61350
+    },
+    "scripts/portfolio_failure_diagnostics.py": {
+      "sha256": "3f6972d50b7db5c499ccb845dbe21ff4c760dac1db12c6b6d5190adea586e62b",
+      "size": 19022
+    },
+    "scripts/recommend.py": {
+      "sha256": "04c95da1740d858d22bcf09ca25805ee1a44d1a30c3174ada64ba23240108fe1",
+      "size": 20792
+    },
+    "scripts/test_json_contracts.py": {
+      "sha256": "6038b92af9b3ab6e432cd9bed72abab18f12bc2c30fdcabc3bfae24136725195",
+      "size": 6564
+    },
+    "scripts/test_recommend.py": {
+      "sha256": "ad097c0b7f26f7aca513f2b33e88bd4b13dcd8c177f2186a7023d6b038070f0a",
+      "size": 15037
+    },
+    "scripts/validate_json_contract.py": {
+      "sha256": "7b86d77770a52cbcc2038c177764fdc6b5ea0c198f2c347f58b45a41356ee8ff",
+      "size": 5696
+    },
+    "scripts/validate_websites.py": {
+      "sha256": "74fe5272a0d99a3025b9016fbbcca16c8e38f435146bc2314bca886b1dd2a2cd",
+      "size": 4284
+    },
+    "websites.json": {
+      "sha256": "41bb3333dafef08aab8f92606b60e1972ae02491ae2095ebaa8a0824c59e903a",
+      "size": 12198
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

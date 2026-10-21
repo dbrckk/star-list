@@ -2,22 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "Enforce unresolved license status validation (#37)",
-      "terms": [
-        "37",
-        "enforce",
-        "license",
-        "status",
-        "unresolved",
-        "validation"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/validate_catalog.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "Build deterministic GitHub star import pipeline (#42)",
       "terms": [
         "42",
@@ -1276,6 +1260,28 @@
         "scripts/backfill_github_ids.py",
         "scripts/test_documentation.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "ci(ai-map): exclude non-code snapshots from Repomix (#155)",
+      "terms": [
+        "155",
+        "ai-map",
+        "ci",
+        "exclude",
+        "from",
+        "non-code",
+        "repomix",
+        "snapshots"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/agent_skill_discovery.py",
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py",
+        "scripts/test_recommend.py",
+        "scripts/validate_websites.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1405,6 +1411,13 @@
     "145": {
       "scripts/backfill_github_ids.py": 4,
       "scripts/test_documentation.py": 4
+    },
+    "155": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1597,6 +1610,13 @@
       "scripts/portfolio_daily.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "ai-map": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "all": {
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
@@ -1757,6 +1777,13 @@
     },
     "catalog-declared": {
       "scripts/portfolio_daily.py": 4
+    },
+    "ci": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "classify": {
       "scripts/audit_catalog_quality.py": 4,
@@ -1962,9 +1989,11 @@
       "scripts/portfolio_daily.py": 4
     },
     "exclude": {
-      "scripts/portfolio_daily.py": 12,
-      "scripts/recommend.py": 4,
-      "scripts/test_recommend.py": 4
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 16,
+      "scripts/recommend.py": 8,
+      "scripts/test_recommend.py": 8,
+      "scripts/validate_websites.py": 4
     },
     "expand": {
       "scripts/agent_skill_discovery.py": 4,
@@ -2056,22 +2085,24 @@
       "scripts/portfolio_daily.py": 4
     },
     "from": {
+      "scripts/agent_skill_discovery.py": 4,
       "scripts/audit_catalog_quality.py": 4,
       "scripts/backfill_licenses.py": 4,
       "scripts/discover_candidates.py": 4,
       "scripts/find_replacements.py": 4,
-      "scripts/portfolio_daily.py": 20,
-      "scripts/recommend.py": 4,
+      "scripts/portfolio_daily.py": 24,
+      "scripts/recommend.py": 8,
       "scripts/refresh_github_metadata.py": 12,
       "scripts/test_backfill_licenses.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_discovery_cache.py": 4,
       "scripts/test_find_replacements.py": 4,
       "scripts/test_json_contracts.py": 4,
-      "scripts/test_recommend.py": 4,
+      "scripts/test_recommend.py": 8,
       "scripts/test_refresh_github_metadata.py": 12,
       "scripts/validate_catalog.py": 4,
-      "scripts/validate_json_contract.py": 4
+      "scripts/validate_json_contract.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "frontend/mobile": {
       "scripts/portfolio_daily.py": 4
@@ -2334,6 +2365,13 @@
     "new": {
       "scripts/portfolio_daily.py": 4
     },
+    "non-code": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "not": {
       "scripts/portfolio_daily.py": 8,
       "scripts/recommend.py": 4,
@@ -2566,6 +2604,13 @@
       "scripts/backfill_github_ids.py": 4,
       "scripts/test_documentation.py": 4
     },
+    "repomix": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "report": {
       "scripts/portfolio_daily.py": 8
     },
@@ -2726,6 +2771,13 @@
     "slow": {
       "scripts/portfolio_daily.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "snapshots": {
+      "scripts/agent_skill_discovery.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "source": {
       "scripts/agent_skill_discovery.py": 4,
