@@ -893,6 +893,11 @@ jobs:
           with skill_patch("portfolio_daily.file_text", side_effect=fake_file_text):
               hybrid_profile = project_profile(hybrid, "")
           assert hybrid_profile["dependencies"].strip() == hybrid_files["pyproject.toml"].strip()
+          # The main scorer may use exact, already-reviewed framework evidence
+          # from secondary manifests without treating arbitrary manifest scripts
+          # or README words as a new project domain.
+          assert {"web_frontend", "mobile", "game_dev"} <= set(hybrid_profile["domains"])
+          assert {"nextjs", "flutter", "godot"} <= hybrid_profile["terms"]
           assert manifest_reads.count("package.json") == 1
           assert manifest_reads.count("pubspec.yaml") == 1
           # Flutter-only manifests are already probed before the fallback
@@ -908,6 +913,8 @@ jobs:
           assert flutter_reads.count("package.json") == 1
           assert flutter_reads.count("pubspec.yaml") == 1
           assert {"mobile"} <= set(flutter_profile["skill_domains"])
+          assert "mobile" in flutter_profile["domains"]
+          assert {"flutter", "dart"} <= flutter_profile["terms"]
           assert {"web_frontend", "mobile", "game_dev"} <= set(hybrid_profile["skill_domains"])
           assert {"nextjs", "flutter", "dart", "godot", "gdscript"} <= set(hybrid_profile["skill_terms"])
           with skill_patch("portfolio_daily.file_text", side_effect=fake_file_text):
@@ -915,8 +922,11 @@ jobs:
               lua_profile = project_profile({**hybrid, "language": "Lua"}, "")
           assert "luau" in luau_profile["skill_terms"]
           assert "game_dev" in luau_profile["skill_domains"]
+          assert "game_dev" in luau_profile["domains"]
+          assert "luau" in luau_profile["terms"]
           assert "luau" not in lua_profile["skill_terms"]
           assert "game_dev" not in lua_profile["skill_domains"]
+          assert "game_dev" not in lua_profile["domains"]
           roblox_matched = recommend_skills(
               set(luau_profile["skill_terms"]), set(luau_profile["skill_domains"]),
               language="Luau", limit=20,
@@ -4343,6 +4353,13 @@ overview = " ".join([repo["name"], description, " ".join(topics), intro[:1200]])
 label_text = " ".join([repo["name"], description, " ".join(topics)]).lower()
 domains = set(infer_domains(tokens(label_text)))
 ⋮----
+# Exact manifest package declarations and GitHub's primary Luau/GDScript
+# language are stronger evidence than a missing or generic repo name.
+# Reuse only the bounded, already-inspected technology signals, without
+# tokenizing arbitrary dependency scripts or README instructions.
+trusted_technology_terms = {
+⋮----
+project_terms = tokens(overview) | (skill_terms & trusted_technology_terms)
 # README may refine a known project, but never invent a domain solely from README.
 ⋮----
 def review_blockers(item: dict) -> list[str]

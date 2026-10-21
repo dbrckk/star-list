@@ -105,13 +105,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-21T17:17:49Z
+Generated: 2026-10-21T17:22:03Z
 
 ### Git
 - Branch: `main`
-- Head: `aba361d0e177`
-- Commit date: 2026-10-21T13:17:39-04:00
-- Commit: fix(portfolio): review all relevant catalog sources with safe native dispatch (#160)
+- Head: `91a61acd46d0`
+- Commit date: 2026-10-21T13:21:53-04:00
+- Commit: fix(portfolio): infer trusted framework fit across polyglot manifests (#161)
 - Tracked files: 294
 
 ### Recently changed files
@@ -126,8 +126,6 @@ Generated: 2026-10-21T17:17:49Z
 - `scripts/validate_websites.py`
 - `websites.json`
 - `.repomixignore`
-- `docs/DAILY_PORTFOLIO_INTEGRATION.md`
-- `scripts/agent_skill_discovery.py`
 
 ### Project signals
 - No common build descriptor detected

@@ -9,7 +9,7 @@
     "top_score": 66
   },
   "cache": {
-    "fingerprint": "d9709bce249f82e1ad979a21073763998ceba64feecb5d68058219b70083dc18",
+    "fingerprint": "4f2419ef61655e6fba79c293ddb1dd67c29c521a0c0cdfeb6472b920d20c2fb3",
     "hit": false
   },
   "candidate_count": 8,
@@ -70,36 +70,24 @@
       ]
     },
     {
-      "learning_score": 12,
+      "learning_score": 0,
       "matched_terms": [
+        "engine",
         "game"
       ],
-      "path": "scripts/recommend.py",
+      "path": "scripts/admit_github_stars.py",
       "reasons": [
-        "impact",
-        "learning",
-        "recently-changed",
         "search-index"
       ],
-      "score": 38,
+      "score": 29,
       "symbols": [
-        "activity_adjustment",
-        "choose_stack",
-        "delta",
-        "explain_repo",
-        "guidance_weight",
-        "infer_alternatives",
-        "infer_complements",
-        "infer_domains",
-        "load",
+        "admit",
+        "catalog_entry",
+        "classify",
+        "count",
+        "get_repo",
         "main",
-        "norm",
-        "recommend_websites",
-        "resolve_relations",
-        "score_repo",
-        "tokens",
-        "trend_adjustment",
-        "usable"
+        "manifest_stable_ids"
       ]
     }
   ],

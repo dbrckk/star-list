@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "9776e9d90b8aabe233d817eb786e874f9b3be27b",
-  "head": "aba361d0e177a7174685be8665e0fe59bbb3eee7",
+  "base": "aba361d0e177a7174685be8665e0fe59bbb3eee7",
+  "head": "91a61acd46d03c5a6a75ac97d3365d69cee4e7e7",
   "index_mode": "incremental",
   "changed_files": [
     {
@@ -12,20 +12,14 @@
     {
       "path": "scripts/portfolio_daily.py",
       "status": "M"
-    },
-    {
-      "path": "scripts/recommend.py",
-      "status": "M"
     }
   ],
   "changed_source_files": [
-    "scripts/portfolio_daily.py",
-    "scripts/recommend.py"
+    "scripts/portfolio_daily.py"
   ],
   "impacted_files": [
     "scripts/portfolio_daily.py",
     "scripts/portfolio_failure_diagnostics.py",
-    "scripts/recommend.py",
     "scripts/test_recommend.py"
   ],
   "impacted_symbols": [
@@ -75,115 +69,115 @@
       "name": "review_blockers",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 309
+      "line": 322
     },
     {
       "name": "eligible",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 337
+      "line": 350
     },
     {
       "name": "is_reference_candidate",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 342
+      "line": 355
     },
     {
       "name": "recommendations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 369
+      "line": 382
     },
     {
       "name": "count_active_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 488
+      "line": 501
     },
     {
       "name": "busy_integration_targets",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 498
+      "line": 511
     },
     {
       "name": "unresolved_failed_v2_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 518
+      "line": 531
     },
     {
       "name": "count_failed_v2_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 549
+      "line": 562
     },
     {
       "name": "count_failed_v3_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 554
+      "line": 567
     },
     {
       "name": "count_launches_on_utc_date",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 570
+      "line": 583
     },
     {
       "name": "verified_managed_projects",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 590
+      "line": 603
     },
     {
       "name": "public_integration_status",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 641
+      "line": 654
     },
     {
       "name": "integration_marker",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 663
+      "line": 676
     },
     {
       "name": "recoverable_failure_targets",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 670
+      "line": 683
     },
     {
       "name": "launch_integration",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 706
+      "line": 719
     },
     {
       "name": "confirmed_launch",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 734
+      "line": 747
     },
     {
       "name": "render_markdown",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 768
+      "line": 781
     },
     {
       "name": "website_references_for_project",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 843
+      "line": 856
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 896
+      "line": 909
     },
     {
       "name": "safe_state",
@@ -232,108 +226,6 @@
       "kind": "function",
       "file": "scripts/portfolio_failure_diagnostics.py",
       "line": 349
-    },
-    {
-      "name": "norm",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 38
-    },
-    {
-      "name": "tokens",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 41
-    },
-    {
-      "name": "load",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 44
-    },
-    {
-      "name": "infer_domains",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 49
-    },
-    {
-      "name": "recommend_websites",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 61
-    },
-    {
-      "name": "activity_adjustment",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 101
-    },
-    {
-      "name": "trend_adjustment",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 121
-    },
-    {
-      "name": "delta",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 133
-    },
-    {
-      "name": "guidance_weight",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 146
-    },
-    {
-      "name": "score_repo",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 153
-    },
-    {
-      "name": "explain_repo",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 184
-    },
-    {
-      "name": "choose_stack",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 207
-    },
-    {
-      "name": "infer_alternatives",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 220
-    },
-    {
-      "name": "infer_complements",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 241
-    },
-    {
-      "name": "resolve_relations",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 266
-    },
-    {
-      "name": "usable",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 268
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 289
     },
     {
       "name": "run",

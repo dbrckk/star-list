@@ -2,24 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "Respect hard constraints in recommendation relations and stacks (#50)",
-      "terms": [
-        "50",
-        "constraints",
-        "hard",
-        "recommendation",
-        "relations",
-        "respect",
-        "stacks"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/recommend.py",
-        "scripts/test_recommend.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "Synchronize GitHub Stars daily for human review (#51)",
       "terms": [
         "51",
@@ -1292,6 +1274,25 @@
         "scripts/portfolio_daily.py",
         "scripts/recommend.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "fix(portfolio): infer trusted framework fit across polyglot manifests (#161)",
+      "terms": [
+        "161",
+        "across",
+        "fit",
+        "framework",
+        "infer",
+        "manifests",
+        "polyglot",
+        "portfolio",
+        "trusted"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1438,6 +1439,9 @@
     "160": {
       "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 4
+    },
+    "161": {
+      "scripts/portfolio_daily.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1595,7 +1599,7 @@
     },
     "across": {
       "scripts/agent_skill_discovery.py": 4,
-      "scripts/portfolio_daily.py": 4,
+      "scripts/portfolio_daily.py": 8,
       "scripts/recommend.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_recommend.py": 4
@@ -2101,6 +2105,9 @@
       "scripts/portfolio_daily.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4
     },
+    "fit": {
+      "scripts/portfolio_daily.py": 4
+    },
     "flutter": {
       "scripts/portfolio_daily.py": 4
     },
@@ -2109,6 +2116,9 @@
     },
     "four": {
       "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "framework": {
+      "scripts/portfolio_daily.py": 4
     },
     "french": {
       "scripts/portfolio_daily.py": 4
@@ -2240,6 +2250,7 @@
       "scripts/portfolio_daily.py": 4
     },
     "infer": {
+      "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
@@ -2342,7 +2353,7 @@
       "scripts/test_recommend.py": 4
     },
     "manifests": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8
     },
     "matches": {
       "scripts/portfolio_daily.py": 20
@@ -2463,6 +2474,9 @@
       "scripts/agent_skill_discovery.py": 4,
       "scripts/portfolio_daily.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "polyglot": {
+      "scripts/portfolio_daily.py": 4
     },
     "portfolio": {
       "scripts/agent_skill_discovery.py": 4,
@@ -2990,6 +3004,9 @@
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/validate_catalog.py": 4
+    },
+    "trusted": {
+      "scripts/portfolio_daily.py": 4
     },
     "tts": {
       "scripts/portfolio_daily.py": 4,
