@@ -916,6 +916,14 @@ def website_references_for_project(repo: dict, profile: dict, limit: int | None 
         "ai_media", "graphics", "game_dev", "web_frontend",
         "mobile", "software_engineering", "ai_agents",
     })
+    # Vision-language research is not necessarily marketed with the word
+    # "AI": OCR/screenshot/vision labels still qualify for *advisory* model
+    # discovery. No domain promotion reaches native-code integration.
+    if metadata_terms & {
+        "ocr", "vlm", "vision", "multimodal", "captioning",
+        "image-analysis", "video-analysis", "screenshot", "screenshots",
+    }:
+        domains.add("ai_media")
     # A pipeline called "asset-forge" can be truly graphical while its sparse
     # GitHub description and language do not disclose that. Require the asset
     # name plus specific README capability evidence (not generic prose)
