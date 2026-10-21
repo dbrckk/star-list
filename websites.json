@@ -819,6 +819,126 @@
       "sourceLicenseTag": "other",
       "upstreamModel": "black-forest-labs/flux-3-image-klein",
       "caution": "AtomicChat currently labels this Hugging Face GGUF quantization as license:other (not an automatically approved licence). Upstream FLUX.3 Image Klein uses the FLUX Kommunity License, which restricts commercial and redistribution uses unless its specific conditions are met; verify both upstream and converted-weight rights. GGUF is a transformer checkpoint, not a complete image-generation service: compatible loader, separately licensed Qwen3-VL text encoder, VAE and sufficient CPU/GPU memory may be required. GGUF quantizations and stable-diffusion.cpp loaders are not interchangeable with every Diffusers or ComfyUI build. Never auto-download weights, assume Android-local feasibility, run inference, or use outputs commercially without independent review."
+    },
+    {
+      "id": "hugging-face-hub",
+      "name": "Hugging Face — Model, Dataset and Space Hub",
+      "url": "https://huggingface.co/",
+      "type": "model-hub",
+      "access": "freemium",
+      "domains": [
+        "ai_agents",
+        "ai_media",
+        "graphics",
+        "game_dev",
+        "mobile",
+        "software_engineering"
+      ],
+      "tags": [
+        "huggingface",
+        "hugging-face",
+        "hf",
+        "model",
+        "models",
+        "multimodal",
+        "machine-learning",
+        "vision",
+        "ocr",
+        "video",
+        "audio",
+        "image",
+        "generation",
+        "dataset",
+        "datasets",
+        "spaces",
+        "inference",
+        "transformers",
+        "diffusers",
+        "model-discovery",
+        "model-comparison"
+      ],
+      "bestFor": [
+        "Discovering and comparing AI models, datasets, applications and demo Spaces for supported project capabilities",
+        "Checking each model's model card, license, lineage, benchmark evidence and required inference hardware before considering adoption",
+        "Exploring hosted inference providers and free public resources separately from usage-based GPU and paid endpoints"
+      ],
+      "reuse": "reference-only",
+      "portfolioBaselineDomains": [
+        "ai_agents",
+        "ai_media"
+      ],
+      "caution": "Hugging Face is a catalog and hosted community platform, not a single uniformly licensed model or an unlimited free inference endpoint. A public page or open model card does not grant every model's commercial rights. Review each selected repository's exact license, usage restrictions, model quality, token access, provider billing and deployment constraints before use. Do not auto-download checkpoints, run untrusted Spaces, spend credits or upload private files."
+    },
+    {
+      "id": "minicpm-v-4-7-1b-heretic",
+      "name": "MiniCPM-V 4.7 1B Heretic — vision-language checkpoint",
+      "url": "https://huggingface.co/saidutta69/MiniCPM-V-4.7-1B-heretic",
+      "type": "model-checkpoint",
+      "access": "free",
+      "domains": [
+        "ai_media",
+        "ai_agents",
+        "graphics",
+        "mobile",
+        "software_engineering"
+      ],
+      "tags": [
+        "vision-language",
+        "vlm",
+        "minicpm",
+        "minicpm-v",
+        "multimodal",
+        "image-understanding",
+        "image-text-to-text",
+        "ocr",
+        "document",
+        "documents",
+        "screenshot",
+        "screenshots",
+        "visual-question-answering",
+        "captioning",
+        "image-analysis",
+        "video-understanding",
+        "on-device",
+        "gguf",
+        "llama.cpp",
+        "transformers",
+        "vision-projector",
+        "heretic",
+        "abliterated"
+      ],
+      "bestFor": [
+        "Reviewing local multimodal visual comprehension, OCR and screenshot or document analysis on supported devices",
+        "Comparing image question answering, video frame interpretation and visual-agent reasoning with the base MiniCPM-V 4.7 model",
+        "Evaluating on-device deployment costs and quality with compatible transformers or llama.cpp multimodal model plus the separate GGUF vision projector"
+      ],
+      "reuse": "licensed-material",
+      "portfolioRequiredSignals": [
+        "ocr",
+        "vision",
+        "vlm",
+        "multimodal",
+        "screenshot",
+        "screenshots",
+        "document",
+        "documents",
+        "captioning",
+        "caption",
+        "recognition",
+        "visual-question-answering",
+        "image-analysis",
+        "video-analysis",
+        "image-understanding",
+        "video-understanding",
+        "image-to-text",
+        "scene-understanding",
+        "scene-analysis",
+        "image-captioning"
+      ],
+      "sourceLicenseTag": "apache-2.0",
+      "upstreamModel": "openbmb/MiniCPM-V-4.7-1B",
+      "safetyRisk": "reduced-refusal",
+      "caution": "Community-edited 'heretic' / abliterated variant deliberately suppresses refusal behavior and ships without an additional safety layer. Do not deploy it to unmoderated public-facing or user-content endpoints: use human review, abuse prevention and data controls. The Hugging Face card lists Apache-2.0 inherited from the base, but reports no LICENSE file in either model repository; verify actual licensing and attribution before distribution. Approximately 1.55B parameters total (about 1.01B language plus 0.55B vision). Vision-enabled GGUF requires the separate ~1.11GB mmproj file in addition to compatible main weights and llama.cpp runtime. Neither standalone model nor on-device feasibility is proven by this catalog entry. No automatic weight downloads or inference."
     }
   ]
 }
