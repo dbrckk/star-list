@@ -991,7 +991,7 @@ def main() -> int:
         # Always prioritize highest-confidence matches, irrespective of repository order.
         queue = sorted(((item["score"], row, item) for row in report["projects"]
                         for item in row["suggestions"]
-                        if item["mode"] == "native" and item["integrationEligible"]),
+                        if item["mode"] == "native" and item.get("integrationEligible") is True),
                         key=lambda p: (-p[0], p[1]["repository"]))
         try:
             existing = request_json(service.rstrip("/") + "/v1/managed-projects/integration-inventory", operator_token)
