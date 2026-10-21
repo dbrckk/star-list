@@ -75,6 +75,10 @@ def check_websites(data, schema):
                 errors.append(f"{identity}: model checkpoint cannot be a blanket domain recommendation")
             if not site.get("portfolioRequiredSignals"):
                 errors.append(f"{identity}: model checkpoint requires task-specific project signals")
+            # Rewriting checkpoints must disclose verified supported languages
+            # and cannot be implicitly recommended to every chatbot.
+            if "text-rewriting" in site.get("tags", []) and not site.get("supportedLanguages"):
+                errors.append(f"{identity}: text rewriter requires supportedLanguages")
         # Safety-modified multimodal checkpoints must carry an explicit
         # reduced-refusal flag, not hide behind an open source licence.
         if site["type"] == "model-checkpoint":
