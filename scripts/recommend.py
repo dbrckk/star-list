@@ -85,6 +85,7 @@ def recommend_websites(qtokens, domains, limit=5):
             "type": site["type"], "access": site["access"],
             "reuse": site["reuse"], "caution": site["caution"],
             "bestFor": site["bestFor"],
+            "portfolioRequiredSignals": site.get("portfolioRequiredSignals", []),
             # A verified documentation endpoint is reference metadata only;
             # the recommender never connects or authorizes paid MCP tools.
             **({"mcpEndpoint": site["mcpEndpoint"]} if site.get("mcpEndpoint") else {}),
