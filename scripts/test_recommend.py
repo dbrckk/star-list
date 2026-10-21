@@ -260,6 +260,26 @@ unsafe_hf = copy.deepcopy(websites_catalog)
 hf_row = next(x for x in unsafe_hf["websites"] if x["id"] == hf_hub_id)
 hf_row["reuse"] = "open-source-upstream"
 assert check_websites(unsafe_hf, website_schema)
+# HF model IDs commonly contain dots (MiniCPM-V-4.7), while
+# dot-segment path traversal, queries and embedded credentials stay blocked.
+from validate_websites import canonical_url
+assert canonical_url("https://huggingface.co/saidutta69/MiniCPM-V-4.7-1B-heretic") == (
+    "huggingface.co/saidutta69/MiniCPM-V-4.7-1B-heretic"
+)
+for unsafe_url in (
+    "https://huggingface.co/../secret",
+    "https://huggingface.co/a/./b",
+    "https://huggingface.co/a..b",
+    "https://huggingface.co/a//b",
+    "https://huggingface.co/?download=1",
+    "https://user:secret@huggingface.co/model",
+):
+    try:
+        canonical_url(unsafe_url)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("unsafe URL accepted: " + unsafe_url)
 
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 for item in strict["recommendations"]:
