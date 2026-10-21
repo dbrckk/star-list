@@ -65,6 +65,16 @@ The optional website ranking preserves the original repository rankings and
 reports licensing/usage cautions separately; do not treat paid design assets
 or third-party shaders as open source.
 
+## Exhaustive project-level resource audit
+
+Every active, accessible project receives a **decision for each catalogued
+GitHub source and each curated website** in the daily portfolio artifact:
+matched / not relevant / requiring review, with per-source reasons. Summary
+counters verify total coverage, rather than only counting suggested matches.
+See [website and catalog scan documentation](WEB_RESOURCES.md). Review-only
+sources are never installed automatically; runtime changes still need a
+verified licence, compatible target and independently passing CI.
+
 ## Priority agent skills from Skill Issue
 
 The [Skill Issue](https://skill-issue.in/) directory provides reusable agent-skill
