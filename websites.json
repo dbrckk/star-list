@@ -745,6 +745,80 @@
         "reference-to-video"
       ],
       "caution": "This is a collection of third-party model weights, not an executable GitHub dependency or a free hosted inference API. FastH3 Omni weights reference the MiniMax-H3 Community License Agreement, which must be reviewed independently for commercial use and redistribution. Large checkpoint downloads, compatible GPU/VRAM, runtime and additional text encoder/video/audio VAE are required. Never automatically install, fetch large weights, generate media or upload user content; inspect individual model licences and costs."
+    },
+    {
+      "id": "atomicchat-flux3-image-klein-gguf",
+      "name": "AtomicChat — FLUX.3 Image Klein GGUF",
+      "url": "https://huggingface.co/AtomicChat/FLUX-3-Image-Klein-GGUF",
+      "type": "model-checkpoint",
+      "access": "unknown",
+      "domains": [
+        "ai_media",
+        "graphics",
+        "game_dev"
+      ],
+      "tags": [
+        "text-to-image",
+        "image-editing",
+        "image-generation",
+        "quantized",
+        "gguf",
+        "flux-3",
+        "image",
+        "images",
+        "graphics",
+        "textures",
+        "asset",
+        "assets",
+        "photo",
+        "visual",
+        "diffusion",
+        "comfyui",
+        "stable-diffusion.cpp",
+        "offline",
+        "gpu"
+      ],
+      "bestFor": [
+        "Reviewing quantized FLUX.3 Image Klein transformer checkpoints for local image generation or reference-guided editing",
+        "Assessing graphics, illustration, thumbnail, sprite and texture production workflows after checking compatible loaders and quality",
+        "Comparing GGUF-specific memory and runtime trade-offs before deploying media tools"
+      ],
+      "reuse": "licensed-material",
+      "portfolioRequiredSignals": [
+        "image",
+        "images",
+        "imagegen",
+        "img2img",
+        "photo",
+        "photos",
+        "photography",
+        "graphics",
+        "graphic",
+        "visual",
+        "visuals",
+        "artwork",
+        "illustration",
+        "illustrations",
+        "sprite",
+        "sprites",
+        "texture",
+        "textures",
+        "asset",
+        "assets",
+        "thumbnail",
+        "thumbnails",
+        "poster",
+        "posters",
+        "flux",
+        "gguf",
+        "diffusion",
+        "comfyui",
+        "portrait",
+        "rendering"
+      ],
+      "sourceLicenseTag": "other",
+      "upstreamModel": "black-forest-labs/flux-3-image-klein",
+      "caution": "AtomicChat currently labels this Hugging Face GGUF quantization as license:other (not an automatically approved licence). Upstream FLUX.3 Image Klein uses the FLUX Kommunity License, which restricts commercial and redistribution uses unless its specific conditions are met; verify both upstream and converted-weight rights. GGUF is a transformer checkpoint, not a complete image-generation service: compatible loader, separately licensed Qwen3-VL text encoder, VAE and sufficient CPU/GPU memory may be required. GGUF quantizations and stable-diffusion.cpp loaders are not interchangeable with every Diffusers or ComfyUI build. Never auto-download weights, assume Android-local feasibility, run inference, or use outputs commercially without independent review."
     }
   ]
 }
