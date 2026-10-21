@@ -379,9 +379,20 @@ WEAK_CAPABILITY_TERMS = {
 }
 
 
-def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int | None = None) -> list[dict]:
+def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int | None = None,
+                    assessment: dict | None = None) -> list[dict]:
     name = repo["full_name"].lower()
     domains = set(profile["domains"])
+    if assessment is not None:
+        assessment.clear()
+        # Record each identity before considering any domain/score threshold.
+        # A rejected candidate remains accounted for in the scan evidence.
+        assessment.update({
+            str(tool["repo"]): {"decision": "not-relevant",
+                                "reason": "project-domain-unavailable" if not domains else "domain-mismatch",
+                                "integrationEligible": False}
+            for tool in catalog
+        })
     if not domains:
         return []
     target_identity = repo["name"].lower()
@@ -418,10 +429,14 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
     for tool in catalog:
         slug = str(tool.get("repo") or "")
         if slug.lower() == name:
+            if assessment is not None:
+                assessment[slug]["reason"] = "same-repository"
             continue
         blockers = review_blockers(tool)
         if tool.get("domain") not in domains:
             continue
+        if assessment is not None:
+            assessment[slug]["reason"] = "no-task-term-match"
         terms = (tokens(slug) | tokens(" ".join(tool.get("capabilities") or []))
                  | tokens(" ".join(tool.get("bestFor") or [])))
         shared = sorted((profile["terms"] & terms) - GENERIC - STOPWORDS)
@@ -432,25 +447,37 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
         capability_terms = (tokens(" ".join(tool.get("capabilities") or []))
                             | tokens(" ".join(tool.get("bestFor") or []))) - GENERIC - STOPWORDS
         if len(shared) < 2 and not (set(shared) & capability_terms):
+            if assessment is not None:
+                assessment[slug]["reason"] = "weak-task-evidence"
             continue
         if slug.lower() in excluded_engine_sources:
+            if assessment is not None:
+                assessment[slug]["reason"] = "alternative-or-existing-game-engine"
             # Ignore the installed engine source and explicit substitute
             # engines. Continue recommending compatible plugins/addons.
             continue
         if profile["language"] == "luau" or "roblox" in target_identity:
             if any(marker in slug.lower() for marker in ENGINE_CONFLICTS["roblox"]):
+                if assessment is not None:
+                    assessment[slug]["reason"] = "incompatible-game-engine"
                 continue
         if profile["language"] == "gdscript" or "godot" in target_identity:
             if any(marker in slug.lower() for marker in ENGINE_CONFLICTS["godot"]):
+                if assessment is not None:
+                    assessment[slug]["reason"] = "incompatible-game-engine"
                 continue
         slug_name = slug.rsplit("/", 1)[-1].lower()
         if slug_name in profile["dependencies"] or slug_name in profile["overview"].lower():
+            if assessment is not None:
+                assessment[slug]["reason"] = "possibly-already-used"
             continue
         candidate_languages = set(str(x).lower() for x in (tool.get("languages") or []))
         # Missing language metadata is unknown compatibility, not native support.
         languages_match = bool(profile["language"]) and profile["language"] in candidate_languages
         score = score_repo(tool, profile["terms"], domains, set(), set())
         if score is None or score < 35:
+            if assessment is not None:
+                assessment[slug]["reason"] = "below-relevance-threshold"
             continue
         # An incidental word such as "workflows" from a README must not
         # qualify an otherwise unrelated same-language library for dispatch.
@@ -477,6 +504,12 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
             or not languages_match else
             "native" if capability_overlap else "capability-review"
         )
+        if assessment is not None:
+            assessment[slug] = {
+                "decision": "matched",
+                "reason": mode,
+                "integrationEligible": mode == "native" and not blockers,
+            }
         matches.append({"repository": slug, "score": round(score, 2),
                         "quality": tool["score"], "domain": tool["domain"],
                         "shared_terms": shared[:5],
