@@ -36,7 +36,7 @@ assert all(site["url"].startswith("https://") for site in sites)
 assert all(site["reuse"] for site in sites)
 assert next(site for site in sites if site["id"] == "recent-design")["originalUrl"] == "https://godly.website/"
 baseline_web_query = run("3d scroll animation website", "--top", "4")
-with_web_query = run("3d scroll animation website", "--top", "4", "--websites", "--top-websites", "10")
+with_web_query = run("3d scroll animation website", "--top", "4", "--websites", "--top-websites", "30")
 assert baseline_web_query["recommendations"] == with_web_query["recommendations"]
 assert "websiteRecommendations" not in baseline_web_query
 assert "skillDiscovery" not in baseline_web_query
