@@ -814,8 +814,9 @@ def render_markdown(report: dict) -> str:
 def website_references_for_project(repo: dict, profile: dict, limit: int | None = None) -> list[dict]:
     """Suggest websites only for applicable project domains, never as code.
 
-    Game projects benefit from an art-direction atlas even if their GitHub
-    metadata says only "Jumpy" or "Roblox" and has no explicit art keywords.
+    Game projects benefit from an art-direction atlas and reviewed baseline
+    planning/QA/prototyping sources even when their GitHub metadata is sparse.
+    Hosted services remain references: no credentials, installs or spending.
     """
     domains = set(profile.get("domains") or [])
     metadata_terms = tokens(" ".join([
@@ -831,7 +832,10 @@ def website_references_for_project(repo: dict, profile: dict, limit: int | None 
         site for site in candidates
         if site["id"] != "skill-issue"
         and site["why"]["domains"]
-        and (site["why"]["tags"] or site["why"]["terms"])
+        and (site["why"]["tags"] or site["why"]["terms"]
+             or site["why"].get("portfolioBaselineDomains"))
+        and (not site.get("portfolioRequiredSignals")
+             or set(site["portfolioRequiredSignals"]) & metadata_terms)
     ]
     if "game_dev" in domains:
         game_art = next((site for site in candidates if site["id"] == "game-art-style"), None)

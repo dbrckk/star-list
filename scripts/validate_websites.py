@@ -54,6 +54,15 @@ def check_websites(data, schema):
             if prior is not None and prior != identity:
                 errors.append(f"{identity}: URL collides with {prior}: {normalized}")
             owner_by_url[normalized] = identity
+        # Always-review declarations must not escape a website\'s stated domain.
+        baseline = set(site.get("portfolioBaselineDomains", []))
+        if baseline - set(site["domains"]):
+            errors.append(f"{identity}: baseline domains must be included in website domains")
+        # Specialist triggers must be explicit canonical labels, not prose.
+        required_signals = site.get("portfolioRequiredSignals", [])
+        if any(not re.fullmatch(r"[a-z0-9][a-z0-9-]*", signal)
+               for signal in required_signals):
+            errors.append(f"{identity}: invalid specialist project-fit token")
         # An MCP endpoint is an authenticated remote service, not a harmless
         # website link. Require a bounded HTTPS /mcp URL owned by the
         # documented provider; no credentials, foreign hosts or auto-install.

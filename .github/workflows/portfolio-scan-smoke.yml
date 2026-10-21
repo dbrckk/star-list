@@ -88,6 +88,7 @@ jobs:
                   assert "repo" not in website
                   assert website["why"]["domains"], website
                   assert (website["why"]["tags"] or website["why"]["terms"]
+                          or website["why"].get("portfolioBaselineDomains")
                           or (website["id"] in {"game-art-style", "jupiter-game-art-style"}
                               and "game_dev" in website["why"]["domains"])), website
           tts = next((row for row in result["projects"]
@@ -98,7 +99,8 @@ jobs:
           jumpy = next((row for row in result["projects"]
                         if row["repository"].lower() == "dbrckk/jumpy"), None)
           if jumpy is not None and jumpy["status"] != "skipped-inactive":
-              assert {"game-art-style", "jupiter-game-art-style"} <= {
+              assert {"game-art-style", "jupiter-game-art-style",
+                      "rosebud-ai", "ludo-ai", "modl-ai"} <= {
                   site["id"] for site in jumpy["website_references"]
               }, jumpy
           report_markdown = Path("portfolio-daily.md").read_text()

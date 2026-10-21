@@ -428,6 +428,270 @@
       ],
       "reuse": "hosted-service",
       "caution": "PINOC MCP requires interactive user login and authorization. Connect read-only first. Preset motion browsing and retrieval are free; generating characters or motion consumes credits (text/video motion 1 credit per second, character 6–10 credits). Never grant write/generate scopes or spend credits automatically; verify asset licenses, privacy and engine/rig compatibility."
+    },
+    {
+      "id": "rosebud-ai",
+      "name": "Rosebud AI",
+      "url": "https://rosebud.ai/",
+      "type": "hosted-builder",
+      "access": "freemium",
+      "domains": [
+        "game_dev",
+        "graphics",
+        "web_frontend"
+      ],
+      "tags": [
+        "game",
+        "gameplay",
+        "prototype",
+        "prototyping",
+        "browser",
+        "2d",
+        "3d",
+        "interactive",
+        "threejs",
+        "webgl"
+      ],
+      "bestFor": [
+        "Generating playable browser game prototypes",
+        "Exploring game mechanics and rapid visual iterations"
+      ],
+      "reuse": "hosted-service",
+      "portfolioBaselineDomains": [
+        "game_dev"
+      ],
+      "caution": "Free game creation does not establish commercial-use rights: check plans and export terms. A hosted game generator is not a drop-in engine library; do not upload private code or auto-publish."
+    },
+    {
+      "id": "convai",
+      "name": "Convai",
+      "url": "https://convai.com/",
+      "type": "npc-platform",
+      "access": "freemium",
+      "domains": [
+        "game_dev",
+        "ai_agents",
+        "ai_media"
+      ],
+      "tags": [
+        "npc",
+        "dialogue",
+        "character",
+        "voice",
+        "conversational",
+        "embodied",
+        "unity",
+        "unreal",
+        "3d",
+        "spatial"
+      ],
+      "bestFor": [
+        "Evaluating context-aware real-time conversational NPCs",
+        "Reviewing Unity, Unreal or web character SDK integrations"
+      ],
+      "reuse": "hosted-service",
+      "caution": "Requires a hosted account and API configuration. Check engine compatibility, latency, privacy, commercial plans and SDK terms; do not grant keys or capture player audio automatically.",
+      "portfolioRequiredSignals": [
+        "npc",
+        "dialogue",
+        "character",
+        "voice",
+        "conversational",
+        "rpg"
+      ]
+    },
+    {
+      "id": "inworld-ai",
+      "name": "Inworld AI",
+      "url": "https://inworld.ai/",
+      "type": "npc-platform",
+      "access": "freemium",
+      "domains": [
+        "game_dev",
+        "ai_media",
+        "ai_agents"
+      ],
+      "tags": [
+        "npc",
+        "dialogue",
+        "voice",
+        "speech",
+        "tts",
+        "stt",
+        "realtime",
+        "audio",
+        "character",
+        "inference"
+      ],
+      "bestFor": [
+        "Evaluating real-time speech and game dialogue APIs",
+        "Comparing voice infrastructure for interactive characters"
+      ],
+      "reuse": "hosted-service",
+      "caution": "Current offerings emphasize low-latency speech and inference, not necessarily legacy NPC integrations. Verify supported engines, pricing, privacy and API terms before use.",
+      "portfolioRequiredSignals": [
+        "npc",
+        "dialogue",
+        "voice",
+        "speech",
+        "tts",
+        "stt",
+        "audio"
+      ]
+    },
+    {
+      "id": "ludo-ai",
+      "name": "Ludo.ai",
+      "url": "https://ludo.ai/",
+      "type": "game-design-service",
+      "access": "freemium",
+      "domains": [
+        "game_dev",
+        "graphics",
+        "ai_media"
+      ],
+      "tags": [
+        "game",
+        "gameplay",
+        "game-design",
+        "gdd",
+        "ideation",
+        "prototype",
+        "prototyping",
+        "sprites",
+        "art",
+        "3d",
+        "assets",
+        "planning"
+      ],
+      "bestFor": [
+        "Brainstorming gameplay mechanics and retention loops",
+        "Drafting game design documents and art direction",
+        "Reviewing optional asset generation through CLI, MCP or API"
+      ],
+      "reuse": "hosted-service",
+      "portfolioBaselineDomains": [
+        "game_dev"
+      ],
+      "caution": "Hosted and credit-based: generation, CLI, REST API and MCP may require an account or consume credits. Check export/commercial rights; never install agents or spend credits automatically."
+    },
+    {
+      "id": "sloyd-ai",
+      "name": "Sloyd AI",
+      "url": "https://sloyd.ai/",
+      "type": "asset-generator",
+      "access": "freemium",
+      "domains": [
+        "game_dev",
+        "graphics",
+        "ai_media"
+      ],
+      "tags": [
+        "3d",
+        "models",
+        "mesh",
+        "modeling",
+        "props",
+        "environment",
+        "characters",
+        "roblox",
+        "blender",
+        "unity",
+        "low-poly",
+        "glb",
+        "game-assets"
+      ],
+      "bestFor": [
+        "Exploring generated game-ready 3D meshes and props",
+        "Reviewing topology, textures and polygon counts before asset import"
+      ],
+      "reuse": "hosted-service",
+      "caution": "Generated assets are not automatically licensed or optimized for production. Check export formats, commercial terms, rig suitability and performance before importing into a game.",
+      "portfolioRequiredSignals": [
+        "3d",
+        "model",
+        "models",
+        "mesh",
+        "props",
+        "roblox",
+        "blender"
+      ]
+    },
+    {
+      "id": "charisma-ai",
+      "name": "Charisma AI",
+      "url": "https://charisma.ai/",
+      "type": "narrative-platform",
+      "access": "unknown",
+      "domains": [
+        "game_dev",
+        "ai_agents",
+        "ai_media"
+      ],
+      "tags": [
+        "narrative",
+        "dialogue",
+        "story",
+        "stories",
+        "branching",
+        "rpg",
+        "npc",
+        "character",
+        "interactive",
+        "unity",
+        "unreal",
+        "conversation"
+      ],
+      "bestFor": [
+        "Designing branching interactive dialogue and plot triggers",
+        "Reviewing character-driven narrative SDKs for Unity or Unreal"
+      ],
+      "reuse": "hosted-service",
+      "caution": "Creation may require an account, trial licence or commercial agreement. SDKs and narrative workflows are not compatible with every engine; check pricing, privacy and rights.",
+      "portfolioRequiredSignals": [
+        "narrative",
+        "dialogue",
+        "story",
+        "stories",
+        "branching",
+        "rpg",
+        "npc",
+        "quest",
+        "cutscene"
+      ]
+    },
+    {
+      "id": "modl-ai",
+      "name": "modl.ai",
+      "url": "https://modl.ai/",
+      "type": "game-testing-service",
+      "access": "unknown",
+      "domains": [
+        "game_dev",
+        "software_engineering"
+      ],
+      "tags": [
+        "game",
+        "gameplay",
+        "qa",
+        "testing",
+        "playtesting",
+        "bugs",
+        "regression",
+        "crash",
+        "performance",
+        "automation",
+        "ci"
+      ],
+      "bestFor": [
+        "Planning automated gameplay, exploratory and regression tests",
+        "Evaluating AI agents that report crashes, softlocks and visual bugs"
+      ],
+      "reuse": "hosted-service",
+      "portfolioBaselineDomains": [
+        "game_dev"
+      ],
+      "caution": "Provider currently advertises build-upload testing without SDK integration; older docs describe Unity plugins. Check current platform support, costs, build privacy and test reproducibility before uploading."
     }
   ]
 }

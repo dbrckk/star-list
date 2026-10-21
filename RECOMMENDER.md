@@ -37,7 +37,7 @@ stack when every member passes the requested hard constraints.
 
 ## External website references (opt-in)
 
-Use [the 10-site directory](WEB_RESOURCES.md) to discover website
+Use [the 21-site directory](WEB_RESOURCES.md) to discover website
 inspiration, React components, motion references, 3D/shader examples or
 hosted builders alongside GitHub repositories.
 
@@ -53,7 +53,7 @@ array with HTTPS links, type, free/freemium access expectations,
 be dispatched as a GitHub dependency. The normal repository
 `recommendations` and `recommendedStack` are unchanged.
 
-`--top-websites N` limits the separately ranked web references (default 5).
+`--top-websites N` limits interactive CLI output (default 5); the daily portfolio scanner evaluates all curated sites without a top-N cap and admits sparse game-project baseline references as review-only. Specialist NPC, narrative and 3D providers require a project-metadata match.
 Repository-only technical hard filters (such as `--language`, `--platform`
 or `--self-hosted`) do not establish compatibility or code licensing
 for these external reference pages.
