@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **25 websites** are curated alongside it in [`websites.json`](websites.json);
+These **26 websites** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -33,6 +33,7 @@ the ability to browse a page.
 | AtomicChat — FLUX.3 Image Klein GGUF | [Hugging Face checkpoint](https://huggingface.co/AtomicChat/FLUX-3-Image-Klein-GGUF) | Quantized image-generation/editing transformer for licensed art assets and imagery | Model metadata accessible; compute and rights require review | Hugging Face `license: other`; upstream FLUX Kommunity License. Verify converted-weight redistribution, commercial output terms, compatible GGUF runtime, separate encoder/VAE and CPU/GPU memory before use. No automatic model downloads |
 | Hugging Face — Model, Dataset and Space Hub | [huggingface.co](https://huggingface.co/) | Discover AI checkpoints, datasets, demos and inference providers for relevant projects | Freemium | Each model/Space has independent rights, risks, compute and pricing; model discovery is not installation or free GPU inference |
 | MiniCPM-V 4.7 1B Heretic | [Hugging Face model](https://huggingface.co/saidutta69/MiniCPM-V-4.7-1B-heretic) | Local image Q&A, OCR, screenshot understanding and lightweight multimodal research | Model browser access free; runtime separate | Tagged Apache-2.0, but no bundled licence file per card; community-abliterated and reduced-refusal, no safety filter. Vision GGUF needs separate ~1.11GB projector; do not deploy to unmoderated public endpoints |
+| SoPilot | [sopilot.net](https://sopilot.net/) | X/social media trends, original marketing content, opt-in campaigns and SEO outreach | Hosted Chrome extension; credits and paid tiers | Check platform policies, prices and privacy; never post, bulk engage or submit directory backlinks automatically |
 
 ## Quantized image checkpoints are references, not plug-and-play dependencies
 
@@ -80,6 +81,26 @@ understanding, captioning or multimodal objectives; generic speech projects
 and asset-generation apps do not receive this VLM simply because they
 work with AI or images.
 
+## SoPilot: discover a marketing workflow without automating public accounts
+
+[SoPilot](https://sopilot.net/) is a commercial social-marketing service,
+particularly focused on X trend research, AI-written posts, content
+calendars, short kinetic videos and SEO directory/backlink submissions.
+It uses a Chrome extension, user accounts and credit/subscription plans.
+It is **not** a code library, general free model endpoint, or default
+dependency for Android games and retail discount aggregators.
+
+Star List adds a narrowly scoped `marketing` project domain based on
+clear **GitHub repository labels** (`social`, `marketing`, `seo`,
+`campaign`, `outreach`), never on arbitrary README instructions or
+the word `promo` alone. A matching project receives **advisory-only**
+guidance; this never triggers social publishing or browser automation.
+The explicit `platform-anti-spam-and-account-policy-review` and
+`manual-publication-and-consent-required` gates require account-owner
+consent and platform-policy review before any outreach, replies, follows
+or directory submission. Mass engagement can be spam, and low-quality
+backlinking can harm reputation and rankings.
+
 ## Explicit review gates in daily recommendations
 
 Every qualified web reference carries `reviewGates` in the full
@@ -122,7 +143,7 @@ version automatically.
 
 ## How specialist game platforms are selected
 
-The daily portfolio scan inspects **all 25 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
+The daily portfolio scan inspects **all 26 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
 
 ## Search repositories and relevant websites together
 

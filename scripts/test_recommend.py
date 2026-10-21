@@ -75,6 +75,57 @@ assert all(row["url"].startswith("https://") for row in with_web_query["websiteR
 assert run("xauusd trading execution", "--websites")["websiteRecommendations"] == []
 assert any(row["id"] == "60fps" for row in run("mobile ui motion animation", "--websites")["websiteRecommendations"])
 
+# SoPilot is an opt-in Chrome/X/SEO marketing service, not a general-purpose
+# AI coder, video renderer, retail discount data feed or installable library.
+sopilot_id = "sopilot"
+sopilot = next(x for x in sites if x["id"] == sopilot_id)
+assert sum(x["id"] == sopilot_id for x in sites) == 1
+assert sopilot["url"] == "https://sopilot.net/"
+assert sopilot["type"] == "marketing-automation-service"
+assert sopilot["reuse"] == "hosted-service"
+assert sopilot["domains"] == ["marketing"]
+assert sopilot["portfolioRequiredSignals"]
+assert not sopilot.get("portfolioBaselineDomains")
+assert sopilot_id in {x["id"] for x in run(
+    "social media marketing SEO campaign", "--websites", "--top-websites", "40"
+)["websiteRecommendations"]}
+from recommend import infer_domains
+assert "marketing" in infer_domains({"seo", "campaign"})
+assert "marketing" not in infer_domains({"promo", "discount", "food", "game", "video"})
+from portfolio_daily import website_references_for_project
+marketing_target = {
+    "name": "social-campaign-studio", "description": None, "topics": ["seo", "marketing"]
+}
+marketing_matches = website_references_for_project(marketing_target, {"domains": [], "terms": set()})
+sopilot_match = next(x for x in marketing_matches if x["id"] == sopilot_id)
+assert sopilot_match["integrationEligible"] is False
+assert {"platform-anti-spam-and-account-policy-review",
+        "manual-publication-and-consent-required",
+        "hosted-terms-privacy-and-cost-review"} <= set(sopilot_match["reviewGates"])
+for unrelated in (
+    {"name": "Promo-alimentaire", "description": "Retail discounts and coupons", "topics": []},
+    {"name": "Jumpy", "description": "Godot jumping game", "topics": []},
+    {"name": "monteur-video", "description": "Automatic HD video montage", "topics": []},
+):
+    assert sopilot_id not in {
+        x["id"] for x in website_references_for_project(
+            unrelated, {"domains": [], "terms": set()}
+        )
+    }, unrelated
+sopilot_decisions = {}
+website_references_for_project(
+    marketing_target, {"domains": [], "terms": set()}, assessment=sopilot_decisions
+)
+assert sopilot_decisions[sopilot_id]["decision"] == "matched"
+assert sopilot_decisions[sopilot_id]["integrationEligible"] is False
+assert "manual-publication-and-consent-required" in sopilot_decisions[sopilot_id]["reviewGates"]
+retail_decisions = {}
+website_references_for_project(
+    {"name": "Promo-alimentaire", "description": "Discount coupons", "topics": []},
+    {"domains": [], "terms": set()}, assessment=retail_decisions
+)
+assert retail_decisions[sopilot_id]["decision"] == "not-relevant"
+
 # Real regression: TTS was being shown game-art-style due to generic words
 # such as "and" in both project metadata and curator descriptions.
 tts_labels = "TTS a deep learning toolkit for Text-to-Speech battle-tested in research and production"
@@ -268,6 +319,13 @@ unsafe_hf = copy.deepcopy(websites_catalog)
 hf_row = next(x for x in unsafe_hf["websites"] if x["id"] == hf_hub_id)
 hf_row["reuse"] = "open-source-upstream"
 assert check_websites(unsafe_hf, website_schema)
+unsafe_marketing = copy.deepcopy(websites_catalog)
+unsafe_sopilot = next(x for x in unsafe_marketing["websites"] if x["id"] == sopilot_id)
+unsafe_sopilot["portfolioBaselineDomains"] = ["marketing"]
+assert check_websites(unsafe_marketing, website_schema)
+unsafe_sopilot.pop("portfolioBaselineDomains")
+unsafe_sopilot["reuse"] = "open-source-upstream"
+assert check_websites(unsafe_marketing, website_schema)
 # HF model IDs commonly contain dots (MiniCPM-V-4.7), while
 # dot-segment path traversal, queries and embedded credentials stay blocked.
 from validate_websites import canonical_url
