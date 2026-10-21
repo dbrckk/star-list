@@ -379,9 +379,20 @@ WEAK_CAPABILITY_TERMS = {
 }
 
 
-def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int | None = None) -> list[dict]:
+def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int | None = None,
+                    assessment: dict | None = None) -> list[dict]:
     name = repo["full_name"].lower()
     domains = set(profile["domains"])
+    if assessment is not None:
+        assessment.clear()
+        # Record each identity before considering any domain/score threshold.
+        # A rejected candidate remains accounted for in the scan evidence.
+        assessment.update({
+            str(tool["repo"]): {"decision": "not-relevant",
+                                "reason": "project-domain-unavailable" if not domains else "domain-mismatch",
+                                "integrationEligible": False}
+            for tool in catalog
+        })
     if not domains:
         return []
     target_identity = repo["name"].lower()
@@ -418,10 +429,14 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
     for tool in catalog:
         slug = str(tool.get("repo") or "")
         if slug.lower() == name:
+            if assessment is not None:
+                assessment[slug]["reason"] = "same-repository"
             continue
         blockers = review_blockers(tool)
         if tool.get("domain") not in domains:
             continue
+        if assessment is not None:
+            assessment[slug]["reason"] = "no-task-term-match"
         terms = (tokens(slug) | tokens(" ".join(tool.get("capabilities") or []))
                  | tokens(" ".join(tool.get("bestFor") or [])))
         shared = sorted((profile["terms"] & terms) - GENERIC - STOPWORDS)
@@ -432,25 +447,37 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
         capability_terms = (tokens(" ".join(tool.get("capabilities") or []))
                             | tokens(" ".join(tool.get("bestFor") or []))) - GENERIC - STOPWORDS
         if len(shared) < 2 and not (set(shared) & capability_terms):
+            if assessment is not None:
+                assessment[slug]["reason"] = "weak-task-evidence"
             continue
         if slug.lower() in excluded_engine_sources:
+            if assessment is not None:
+                assessment[slug]["reason"] = "alternative-or-existing-game-engine"
             # Ignore the installed engine source and explicit substitute
             # engines. Continue recommending compatible plugins/addons.
             continue
         if profile["language"] == "luau" or "roblox" in target_identity:
             if any(marker in slug.lower() for marker in ENGINE_CONFLICTS["roblox"]):
+                if assessment is not None:
+                    assessment[slug]["reason"] = "incompatible-game-engine"
                 continue
         if profile["language"] == "gdscript" or "godot" in target_identity:
             if any(marker in slug.lower() for marker in ENGINE_CONFLICTS["godot"]):
+                if assessment is not None:
+                    assessment[slug]["reason"] = "incompatible-game-engine"
                 continue
         slug_name = slug.rsplit("/", 1)[-1].lower()
         if slug_name in profile["dependencies"] or slug_name in profile["overview"].lower():
+            if assessment is not None:
+                assessment[slug]["reason"] = "possibly-already-used"
             continue
         candidate_languages = set(str(x).lower() for x in (tool.get("languages") or []))
         # Missing language metadata is unknown compatibility, not native support.
         languages_match = bool(profile["language"]) and profile["language"] in candidate_languages
         score = score_repo(tool, profile["terms"], domains, set(), set())
         if score is None or score < 35:
+            if assessment is not None:
+                assessment[slug]["reason"] = "below-relevance-threshold"
             continue
         # An incidental word such as "workflows" from a README must not
         # qualify an otherwise unrelated same-language library for dispatch.
@@ -477,6 +504,12 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
             or not languages_match else
             "native" if capability_overlap else "capability-review"
         )
+        if assessment is not None:
+            assessment[slug] = {
+                "decision": "matched",
+                "reason": mode,
+                "integrationEligible": mode == "native" and not blockers,
+            }
         matches.append({"repository": slug, "score": round(score, 2),
                         "quality": tool["score"], "domain": tool["domain"],
                         "shared_terms": shared[:5],
@@ -783,6 +816,9 @@ def render_markdown(report: dict) -> str:
     lines = ["<!-- star-list-portfolio-daily -->", "# Daily star-list portfolio discovery", "",
              "Generated (UTC): " + report["generated_at"], "",
              "Repositories inspected: **" + str(summary["inspected"]) + "/" + str(summary["discovered"]) + "**.",
+             "Projects with exhaustive per-source decisions: **" + str(summary["fully_assessed_projects"]) + "**.",
+             "GitHub catalog sources examined: **" + str(summary["repository_assessments"]) + "**.",
+             "Curated website sources examined: **" + str(summary["website_assessments"]) + "**.",
              "Projects with reviewable suggestions: **" + str(summary["with_suggestions"]) + "**.",
              "Projects with native-mode candidates: **" + str(summary["with_native_suggestions"]) + "**.",
              "All qualifying GitHub matches (uncapped artifact): **" + str(summary["qualifying_repositories"]) + "**.",
@@ -812,6 +848,11 @@ def render_markdown(report: dict) -> str:
     for row in report["projects"]:
         lines.append("## " + row["repository"])
         lines.append("Status: " + row["status"])
+        if row["source_coverage"]["complete"]:
+            lines.append("- Complete catalog assessment: "
+                         + str(row["source_coverage"]["repositories"]) + " GitHub entries, "
+                         + str(row["source_coverage"]["websites"]) + " website entries "
+                         + "(decisions and reasons in the workflow JSON artifact).")
         for item in row["suggestions"][:5]:
             lines.append("- [" + item["repository"] + "](" + item["url"] + ")"
                          + " — fit " + str(item["score"]) + ", " + item["mode"]
@@ -853,7 +894,8 @@ def render_markdown(report: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
-def website_references_for_project(repo: dict, profile: dict, limit: int | None = None) -> list[dict]:
+def website_references_for_project(repo: dict, profile: dict, limit: int | None = None,
+                                   assessment: dict | None = None) -> list[dict]:
     """Suggest websites only for applicable project domains, never as code.
 
     Game projects benefit from an art-direction atlas and reviewed baseline
@@ -903,6 +945,34 @@ def website_references_for_project(repo: dict, profile: dict, limit: int | None 
             position = 1 if chosen and chosen[0]["id"] == "game-art-style" else 0
             chosen = [site for site in chosen if site["id"] != "viggle-pinoc-mcp"]
             chosen.insert(position, pinoc)
+    if assessment is not None:
+        assessment.clear()
+        # The ranking considers every curated website; retain the disposition
+        # for those that fail the project/task/licence-safe reference filters.
+        for site in json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))["websites"]:
+            site_domains = set(site["domains"])
+            required = set(site.get("portfolioRequiredSignals") or [])
+            if site["id"] == "skill-issue":
+                reason = "skill-directory-discovered-for-every-target"
+                decision = "directory-review"
+            elif not site_domains & domains:
+                reason = "project-domain-mismatch"
+                decision = "not-relevant"
+            elif required and not required & metadata_terms:
+                reason = "specialist-project-signals-unmatched"
+                decision = "not-relevant"
+            else:
+                reason = "no-specific-project-signal"
+                decision = "not-relevant"
+            assessment[site["id"]] = {
+                "decision": decision, "reason": reason,
+                "integrationEligible": False,
+            }
+        for site in chosen:
+            assessment[site["id"]] = {
+                "decision": "matched", "reason": site["type"],
+                "integrationEligible": False,
+            }
     return chosen if limit is None else chosen[:limit]
 
 
@@ -924,8 +994,16 @@ def main() -> int:
     report = {"generated_at": datetime.now(timezone.utc).isoformat(), "owner": args.owner,
               "dispatch_status": "enabled" if operator_token else "disabled (missing PRODUCTION_OS_OPERATOR_TOKEN)",
               "projects": [], "errors": [], "summary": {}}
+    catalog_ids, website_ids = set(), set()
     try:
         catalog = json.loads(args.catalog.read_text(encoding="utf-8"))["repositories"]
+        catalog_ids = {str(item["repo"]) for item in catalog}
+        if len(catalog_ids) != len(catalog):
+            raise ValueError("Duplicate GitHub repository identities in catalog")
+        websites = json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))["websites"]
+        website_ids = {str(site["id"]) for site in websites}
+        if len(website_ids) != len(websites):
+            raise ValueError("Duplicate website identities in catalog")
         if args.repository:
             if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", args.repository):
                 raise ValueError("Invalid target repository")
@@ -945,6 +1023,8 @@ def main() -> int:
     for repo in source:
         target = repo["full_name"]
         row = {"repository": target, "status": "scanned", "suggestions": [], "website_references": [],
+               "source_assessment": {"repositories": {}, "websites": {}},
+               "source_coverage": {"complete": False, "repositories": 0, "websites": 0},
                "skill_discovery": {"directory": SKILL_ISSUE_URL, "priority": "high",
                                    "reviewRequired": True, "recommendations": []},
                "dispatches": []}
@@ -953,7 +1033,9 @@ def main() -> int:
                 row["status"] = "skipped-inactive"
             else:
                 profile = project_profile(repo, portfolio_token or gh_token)
-                row["suggestions"] = recommendations(repo, profile, catalog)
+                row["suggestions"] = recommendations(
+                    repo, profile, catalog, None, row["source_assessment"]["repositories"]
+                )
                 # All targets receive the directory; skill matches are based
                 # on owned GitHub labels and language, never README instructions.
                 skill_terms = word_set(" ".join([
@@ -968,7 +1050,19 @@ def main() -> int:
                 )
                 # Owned GitHub metadata only: reference sites never become
                 # installable tools, and unrelated domain/prose matches are out.
-                row["website_references"] = website_references_for_project(repo, profile)
+                row["website_references"] = website_references_for_project(
+                    repo, profile, None, row["source_assessment"]["websites"]
+                )
+                repo_checked = set(row["source_assessment"]["repositories"])
+                websites_checked = set(row["source_assessment"]["websites"])
+                if repo_checked != catalog_ids or websites_checked != website_ids:
+                    # Incomplete decision traces must not trigger any mutation.
+                    raise RuntimeError("Catalog per-resource assessment is incomplete")
+                row["source_coverage"] = {
+                    "complete": True,
+                    "repositories": len(repo_checked),
+                    "websites": len(websites_checked),
+                }
                 row["status"] = ("qualified-candidates" if row["suggestions"]
                                  else "web-reference-only" if row["website_references"]
                                  else "no-qualified-candidate")
@@ -1173,6 +1267,16 @@ def main() -> int:
         "with_suggestions": sum(bool(p["suggestions"]) for p in report["projects"]),
         "qualifying_repositories": sum(len(p["suggestions"]) for p in report["projects"]),
         "catalog_repositories": len(catalog),
+        "catalog_websites": len(website_ids),
+        "fully_assessed_projects": sum(
+            row["source_coverage"]["complete"] for row in report["projects"]
+        ),
+        "repository_assessments": sum(
+            row["source_coverage"]["repositories"] for row in report["projects"]
+        ),
+        "website_assessments": sum(
+            row["source_coverage"]["websites"] for row in report["projects"]
+        ),
         "policy_review_suggestions": sum(
             bool(item["policyReview"])
             for row in report["projects"] for item in row["suggestions"]

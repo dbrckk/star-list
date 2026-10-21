@@ -49,8 +49,8 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **21 curated website links** for UI design,
-animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, AI game prototyping, NPC/voice platforms, 3D assets, narrative design and gameplay QA. Explore them
+The catalog also includes **22 curated website links** for UI design,
+animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, AI game prototyping, NPC/voice platforms, 3D assets, narrative design, gameplay QA and licensed reference-to-video/audio model collections. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
 repositories and are never passed to Production-OS as code dependencies.
@@ -64,6 +64,16 @@ python scripts/validate_json_contract.py schemas/websites.schema.json websites.j
 The optional website ranking preserves the original repository rankings and
 reports licensing/usage cautions separately; do not treat paid design assets
 or third-party shaders as open source.
+
+## Exhaustive project-level resource audit
+
+Every active, accessible project receives a **decision for each catalogued
+GitHub source and each curated website** in the daily portfolio artifact:
+matched / not relevant / requiring review, with per-source reasons. Summary
+counters verify total coverage, rather than only counting suggested matches.
+See [website and catalog scan documentation](WEB_RESOURCES.md). Review-only
+sources are never installed automatically; runtime changes still need a
+verified licence, compatible target and independently passing CI.
 
 ## Priority agent skills from Skill Issue
 

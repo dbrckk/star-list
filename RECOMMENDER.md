@@ -37,7 +37,7 @@ stack when every member passes the requested hard constraints.
 
 ## External website references (opt-in)
 
-Use [the 21-site directory](WEB_RESOURCES.md) to discover website
+Use [the 22-site directory](WEB_RESOURCES.md) to discover website
 inspiration, React components, motion references, 3D/shader examples or
 hosted builders alongside GitHub repositories.
 

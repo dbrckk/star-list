@@ -692,6 +692,59 @@
         "game_dev"
       ],
       "caution": "Provider currently advertises build-upload testing without SDK integration; older docs describe Unity plugins. Check current platform support, costs, build privacy and test reproducibility before uploading."
+    },
+    {
+      "id": "fasth3-omni-collection",
+      "name": "FastVideo — FastH3 Omni (Hugging Face collection)",
+      "url": "https://huggingface.co/collections/FastVideo/fasth3-omni",
+      "type": "model-collection",
+      "access": "free",
+      "domains": [
+        "ai_media",
+        "graphics",
+        "game_dev"
+      ],
+      "tags": [
+        "video",
+        "video-generation",
+        "image-to-video",
+        "reference-to-video",
+        "audio",
+        "synchronized-audio",
+        "diffusion",
+        "generative",
+        "multimodal",
+        "animation",
+        "cinematic",
+        "comfyui",
+        "fastvideo",
+        "fasth3",
+        "omni",
+        "fp8",
+        "int8",
+        "nvfp4",
+        "gpu"
+      ],
+      "bestFor": [
+        "Evaluating prompt- and reference-conditioned video generation with synchronized audio for media workflows",
+        "Comparing BF16, INT8, FP8 and NVFP4 model variants and compatible FastVideo or ComfyUI runtimes",
+        "Researching storyboards, cutscenes and promotional clips before assessing compute, safety, quality and licensing"
+      ],
+      "reuse": "licensed-material",
+      "portfolioRequiredSignals": [
+        "video",
+        "animation",
+        "cinematic",
+        "cutscene",
+        "film",
+        "movie",
+        "montage",
+        "trailer",
+        "comfyui",
+        "image-to-video",
+        "reference-to-video"
+      ],
+      "caution": "This is a collection of third-party model weights, not an executable GitHub dependency or a free hosted inference API. FastH3 Omni weights reference the MiniMax-H3 Community License Agreement, which must be reviewed independently for commercial use and redistribution. Large checkpoint downloads, compatible GPU/VRAM, runtime and additional text encoder/video/audio VAE are required. Never automatically install, fetch large weights, generate media or upload user content; inspect individual model licences and costs."
     }
   ]
 }
