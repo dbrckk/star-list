@@ -128,6 +128,27 @@ website_references_for_project(
 )
 assert speech_audit[gguf_id]["decision"] == "not-relevant"
 assert speech_audit[gguf_id]["integrationEligible"] is False
+# Advisory matching must work on real sparse repository identities.
+# The native-code recommender still uses its stricter engine/domain profile.
+sparse_assets = {"name": "asset-forge", "description": None, "topics": []}
+sparse_asset_profile = {
+    "domains": [],
+    "terms": tokens("central visual asset production illustration sprites textures"),
+}
+sparse_asset_refs = website_references_for_project(sparse_assets, sparse_asset_profile)
+assert gguf_id in {x["id"] for x in sparse_asset_refs}, sparse_asset_refs
+assert all(not x["integrationEligible"] for x in sparse_asset_refs)
+sparse_video_refs = website_references_for_project(
+    {"name": "monteur-video", "description": None, "topics": []},
+    {"domains": [], "terms": set()},
+)
+assert "fasth3-omni-collection" in {x["id"] for x in sparse_video_refs}, sparse_video_refs
+assert gguf_id not in {x["id"] for x in sparse_video_refs}
+finance_asset_refs = website_references_for_project(
+    {"name": "asset-ledger", "description": None, "topics": []},
+    {"domains": [], "terms": tokens("portfolio finance trades balance")},
+)
+assert gguf_id not in {x["id"] for x in finance_asset_refs}
 # Game repositories often have sparse GitHub descriptions. Their actual
 # game-development domain is sufficient to recommend art-direction research.
 game_sites = website_references_for_project(
