@@ -50,6 +50,33 @@ jobs:
               for row in result["projects"] for item in row["suggestions"]
           )
           assert result["summary"]["catalog_repositories"] >= 1000
+          catalog_names = {x["repo"] for x in json.loads(Path("catalog.json").read_text())["repositories"]}
+          website_ids = {x["id"] for x in json.loads(Path("websites.json").read_text())["websites"]}
+          assert len(catalog_names) == result["summary"]["catalog_repositories"]
+          assert len(website_ids) == result["summary"]["catalog_websites"]
+          assert "fasth3-omni-collection" in website_ids
+          fully_scanned = [row for row in result["projects"]
+                           if row["status"] != "skipped-inactive"]
+          assert result["summary"]["fully_assessed_projects"] == len(fully_scanned)
+          assert result["summary"]["repository_assessments"] == len(fully_scanned) * len(catalog_names)
+          assert result["summary"]["website_assessments"] == len(fully_scanned) * len(website_ids)
+          for project in fully_scanned:
+              decision = project["source_assessment"]
+              assert project["source_coverage"]["complete"] is True
+              assert set(decision["repositories"]) == catalog_names
+              assert set(decision["websites"]) == website_ids
+              assert all(x["reason"] and x["decision"]
+                         for group in decision.values() for x in group.values())
+              for suggestion in project["suggestions"]:
+                  record = decision["repositories"][suggestion["repository"]]
+                  assert record["decision"] == "matched", suggestion
+                  assert record["integrationEligible"] == suggestion["integrationEligible"]
+              for site in project["website_references"]:
+                  assert decision["websites"][site["id"]]["decision"] == "matched", site
+          tts_audit = next((row for row in result["projects"]
+                            if row["repository"].lower() == "dbrckk/tts"), None)
+          if tts_audit is not None and tts_audit["source_coverage"]["complete"]:
+              assert tts_audit["source_assessment"]["websites"]["fasth3-omni-collection"]["decision"] != "matched"
           native_by_project = [
               sum(item["mode"] == "native" for item in row["suggestions"])
               for row in result["projects"]
