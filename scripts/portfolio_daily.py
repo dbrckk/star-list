@@ -816,6 +816,9 @@ def render_markdown(report: dict) -> str:
     lines = ["<!-- star-list-portfolio-daily -->", "# Daily star-list portfolio discovery", "",
              "Generated (UTC): " + report["generated_at"], "",
              "Repositories inspected: **" + str(summary["inspected"]) + "/" + str(summary["discovered"]) + "**.",
+             "Projects with exhaustive per-source decisions: **" + str(summary["fully_assessed_projects"]) + "**.",
+             "GitHub catalog sources examined: **" + str(summary["repository_assessments"]) + "**.",
+             "Curated website sources examined: **" + str(summary["website_assessments"]) + "**.",
              "Projects with reviewable suggestions: **" + str(summary["with_suggestions"]) + "**.",
              "Projects with native-mode candidates: **" + str(summary["with_native_suggestions"]) + "**.",
              "All qualifying GitHub matches (uncapped artifact): **" + str(summary["qualifying_repositories"]) + "**.",
@@ -845,6 +848,11 @@ def render_markdown(report: dict) -> str:
     for row in report["projects"]:
         lines.append("## " + row["repository"])
         lines.append("Status: " + row["status"])
+        if row["source_coverage"]["complete"]:
+            lines.append("- Complete catalog assessment: "
+                         + str(row["source_coverage"]["repositories"]) + " GitHub entries, "
+                         + str(row["source_coverage"]["websites"]) + " website entries "
+                         + "(decisions and reasons in the workflow JSON artifact).")
         for item in row["suggestions"][:5]:
             lines.append("- [" + item["repository"] + "](" + item["url"] + ")"
                          + " — fit " + str(item["score"]) + ", " + item["mode"]
@@ -986,8 +994,16 @@ def main() -> int:
     report = {"generated_at": datetime.now(timezone.utc).isoformat(), "owner": args.owner,
               "dispatch_status": "enabled" if operator_token else "disabled (missing PRODUCTION_OS_OPERATOR_TOKEN)",
               "projects": [], "errors": [], "summary": {}}
+    catalog_ids, website_ids = set(), set()
     try:
         catalog = json.loads(args.catalog.read_text(encoding="utf-8"))["repositories"]
+        catalog_ids = {str(item["repo"]) for item in catalog}
+        if len(catalog_ids) != len(catalog):
+            raise ValueError("Duplicate GitHub repository identities in catalog")
+        websites = json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))["websites"]
+        website_ids = {str(site["id"]) for site in websites}
+        if len(website_ids) != len(websites):
+            raise ValueError("Duplicate website identities in catalog")
         if args.repository:
             if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", args.repository):
                 raise ValueError("Invalid target repository")
@@ -1007,6 +1023,8 @@ def main() -> int:
     for repo in source:
         target = repo["full_name"]
         row = {"repository": target, "status": "scanned", "suggestions": [], "website_references": [],
+               "source_assessment": {"repositories": {}, "websites": {}},
+               "source_coverage": {"complete": False, "repositories": 0, "websites": 0},
                "skill_discovery": {"directory": SKILL_ISSUE_URL, "priority": "high",
                                    "reviewRequired": True, "recommendations": []},
                "dispatches": []}
@@ -1015,7 +1033,9 @@ def main() -> int:
                 row["status"] = "skipped-inactive"
             else:
                 profile = project_profile(repo, portfolio_token or gh_token)
-                row["suggestions"] = recommendations(repo, profile, catalog)
+                row["suggestions"] = recommendations(
+                    repo, profile, catalog, None, row["source_assessment"]["repositories"]
+                )
                 # All targets receive the directory; skill matches are based
                 # on owned GitHub labels and language, never README instructions.
                 skill_terms = word_set(" ".join([
@@ -1030,7 +1050,19 @@ def main() -> int:
                 )
                 # Owned GitHub metadata only: reference sites never become
                 # installable tools, and unrelated domain/prose matches are out.
-                row["website_references"] = website_references_for_project(repo, profile)
+                row["website_references"] = website_references_for_project(
+                    repo, profile, None, row["source_assessment"]["websites"]
+                )
+                repo_checked = set(row["source_assessment"]["repositories"])
+                websites_checked = set(row["source_assessment"]["websites"])
+                if repo_checked != catalog_ids or websites_checked != website_ids:
+                    # Incomplete decision traces must not trigger any mutation.
+                    raise RuntimeError("Catalog per-resource assessment is incomplete")
+                row["source_coverage"] = {
+                    "complete": True,
+                    "repositories": len(repo_checked),
+                    "websites": len(websites_checked),
+                }
                 row["status"] = ("qualified-candidates" if row["suggestions"]
                                  else "web-reference-only" if row["website_references"]
                                  else "no-qualified-candidate")
@@ -1235,6 +1267,16 @@ def main() -> int:
         "with_suggestions": sum(bool(p["suggestions"]) for p in report["projects"]),
         "qualifying_repositories": sum(len(p["suggestions"]) for p in report["projects"]),
         "catalog_repositories": len(catalog),
+        "catalog_websites": len(website_ids),
+        "fully_assessed_projects": sum(
+            row["source_coverage"]["complete"] for row in report["projects"]
+        ),
+        "repository_assessments": sum(
+            row["source_coverage"]["repositories"] for row in report["projects"]
+        ),
+        "website_assessments": sum(
+            row["source_coverage"]["websites"] for row in report["projects"]
+        ),
         "policy_review_suggestions": sum(
             bool(item["policyReview"])
             for row in report["projects"] for item in row["suggestions"]
