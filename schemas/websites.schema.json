@@ -96,7 +96,8 @@
                 "ai_agents",
                 "ai_media",
                 "other",
-                "marketing"
+                "marketing",
+                "writing"
               ]
             }
           },
@@ -149,7 +150,8 @@
                 "ai_agents",
                 "ai_media",
                 "other",
-                "marketing"
+                "marketing",
+                "writing"
               ]
             }
           },
@@ -176,6 +178,15 @@
               "unknown",
               "standard"
             ]
+          },
+          "supportedLanguages": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$"
+            }
           }
         }
       }
