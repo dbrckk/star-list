@@ -113,16 +113,18 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-21T19:19:04Z
+Generated: 2026-10-21T22:37:50Z
 
 ### Git
 - Branch: `main`
-- Head: `69d27d1dd077`
-- Commit date: 2026-10-21T15:18:53-04:00
-- Commit: feat(web): safely discover SoPilot for marketing and SEO targets (#170)
+- Head: `923f310e80e4`
+- Commit date: 2026-10-21T18:37:41-04:00
+- Commit: fix(handoff): enforce exact one-line model diff and recheck branch SHA before PR (#172)
 - Tracked files: 294
 
 ### Recently changed files
+- `.github/workflows/production-os-review-handoff.yml`
+- `catalog.json`
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `README.md`
 - `RECOMMENDER.md`

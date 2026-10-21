@@ -1,71 +1,14 @@
 {
   "files": [
     {
-      "path": "scripts/portfolio_daily.py",
+      "path": ".github/workflows/production-os-review-handoff.yml",
       "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "reverse-dependency-neighbor",
-        "symbol-indexed"
+        "changed"
       ],
-      "score": 510
+      "score": 100
     },
     {
-      "path": "scripts/test_recommend.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 465
-    },
-    {
-      "path": "scripts/recommend.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 440
-    },
-    {
-      "path": "scripts/validate_websites.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 360
-    },
-    {
-      "path": "scripts/test_json_contracts.py",
-      "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test"
-      ],
-      "score": 180
-    },
-    {
-      "path": "scripts/portfolio_failure_diagnostics.py",
-      "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "symbol-indexed"
-      ],
-      "score": 150
-    },
-    {
-      "path": ".github/workflows/portfolio-scan-smoke.yml",
+      "path": "catalog.json",
       "reasons": [
         "changed"
       ],
@@ -74,65 +17,65 @@
     {
       "path": "README.md",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
     },
     {
       "path": "RECOMMENDER.md",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
     },
     {
       "path": "WEB_RESOURCES.md",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
     },
     {
       "path": "schemas/websites.schema.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
+      "score": 60
+    },
+    {
+      "path": "scripts/portfolio_daily.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/recommend.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/test_recommend.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/validate_websites.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     },
     {
       "path": "websites.json",
       "reasons": [
-        "changed"
+        "recent-project-state"
       ],
-      "score": 100
-    },
-    {
-      "path": "scripts/agent_skill_discovery.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 75
-    },
-    {
-      "path": "scripts/find_replacements.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
-    },
-    {
-      "path": "scripts/health_score.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
-    },
-    {
-      "path": "scripts/validate_json_contract.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
+      "score": 60
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",
