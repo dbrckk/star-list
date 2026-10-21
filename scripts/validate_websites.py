@@ -54,6 +54,14 @@ def check_websites(data, schema):
             if prior is not None and prior != identity:
                 errors.append(f"{identity}: URL collides with {prior}: {normalized}")
             owner_by_url[normalized] = identity
+        # Always-review declarations must not escape a website\'s stated domain.
+        baseline = set(site.get("portfolioBaselineDomains", []))
+        if baseline - set(site["domains"]):
+            errors.append(f"{identity}: baseline domains must be included in website domains")
+        # Specialist gating needs meaningful project labels rather than all games.
+        required_signals = site.get("portfolioRequiredSignals", [])
+        if required_signals and not set(required_signals):
+            errors.append(f"{identity}: empty specialist project-fit signals")
         # An MCP endpoint is an authenticated remote service, not a harmless
         # website link. Require a bounded HTTPS /mcp URL owned by the
         # documented provider; no credentials, foreign hosts or auto-install.
