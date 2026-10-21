@@ -95,7 +95,7 @@ def recommend_skills(
     shell installers or instructions for agent execution.
     """
     source = load_skills()
-    if limit < 1:
+    if limit is not None and limit < 1:
         return []
     words = set().union(*(word_set(term) for term in terms))
     selected = []
@@ -131,7 +131,7 @@ def recommend_skills(
         "reviewRequired": True,
         "integrationEligible": False,
         "installCommand": None,
-    } for score, item, domain_hits, tag_hits in selected[:limit]]
+    } for score, item, domain_hits, tag_hits in (selected if limit is None else selected[:limit])]
 
 
 def main() -> int:

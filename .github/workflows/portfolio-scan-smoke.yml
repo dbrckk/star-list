@@ -42,6 +42,10 @@ jobs:
           assert result["summary"]["discovered"] >= 1
           assert result["summary"]["inspected"] == result["summary"]["discovered"]
           assert result["summary"]["dispatched"] == 0
+          assert result["summary"]["qualifying_repositories"] == sum(
+              len(row["suggestions"]) for row in result["projects"]
+          )
+          assert result["summary"]["catalog_repositories"] >= 1000
           native_by_project = [
               sum(item["mode"] == "native" for item in row["suggestions"])
               for row in result["projects"]
@@ -59,6 +63,7 @@ jobs:
               len(row["website_references"]) for row in result["projects"]
           )
           assert "Projects with website references: **" in Path("portfolio-daily.md").read_text()
+          assert "All qualifying GitHub matches (uncapped artifact): **" in Path("portfolio-daily.md").read_text()
           assert result["summary"]["skill_directory_references"] == len(result["projects"])
           assert result["summary"]["with_skill_recommendations"] == sum(
               bool(row["skill_discovery"]["recommendations"]) for row in result["projects"]
@@ -70,7 +75,7 @@ jobs:
           for row in result["projects"]:
               assert row["skill_discovery"]["directory"] == "https://skill-issue.in/"
               assert row["skill_discovery"]["reviewRequired"] is True
-              assert len(row["skill_discovery"]["recommendations"]) <= 2
+              assert len({skill["id"] for skill in row["skill_discovery"]["recommendations"]}) == len(row["skill_discovery"]["recommendations"])
               for skill in row["skill_discovery"]["recommendations"]:
                   assert skill["integrationEligible"] is False
                   assert skill["reviewRequired"] is True
@@ -83,7 +88,7 @@ jobs:
                   assert "repo" not in website
                   assert website["why"]["domains"], website
                   assert (website["why"]["tags"] or website["why"]["terms"]
-                          or (website["id"] == "game-art-style"
+                          or (website["id"] in {"game-art-style", "jupiter-game-art-style"}
                               and "game_dev" in website["why"]["domains"])), website
           tts = next((row for row in result["projects"]
                       if row["repository"].lower() == "dbrckk/tts"), None)
@@ -93,8 +98,9 @@ jobs:
           jumpy = next((row for row in result["projects"]
                         if row["repository"].lower() == "dbrckk/jumpy"), None)
           if jumpy is not None and jumpy["status"] != "skipped-inactive":
-              assert any(site["id"] == "game-art-style"
-                         for site in jumpy["website_references"]), jumpy
+              assert {"game-art-style", "jupiter-game-art-style"} <= {
+                  site["id"] for site in jumpy["website_references"]
+              }, jumpy
           report_markdown = Path("portfolio-daily.md").read_text()
           assert ("Projects with native-mode candidates: **"
                   + str(result["summary"]["with_native_suggestions"]) + "**.") in report_markdown

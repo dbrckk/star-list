@@ -91,7 +91,7 @@ def recommend_websites(qtokens, domains, limit=5):
             "why": {"domains": domain_hits, "tags": tag_hits, "terms": text_hits},
             "integrationEligible": False,
         }
-        for score, site, domain_hits, tag_hits, text_hits in ranked[:limit]
+        for score, site, domain_hits, tag_hits, text_hits in (ranked if limit is None else ranked[:limit])
     ]
 
 def activity_adjustment(r):

@@ -35,14 +35,21 @@ repositories' own daily workflows.
 3. Compares its actual profile with all catalog candidates.
 4. Rejects audit-tier, archived, unsupported-license, paid, low-quality and
    high-complexity candidates before deciding that an integration is eligible.
-5. Records each scanned target, including those with **no useful match**, in
+5. Preserves **every** eligible and relevance-qualified GitHub candidate,
+   separately ranked (native integrations before reference/adapters), instead of
+   silently dropping matches after the first three. Skills and websites likewise
+   have no discovery-result truncation. A relevance/compatibility hard gate still
+   excludes unsuitable items; this is not a promise to install every source.
+   The complete untruncated selection lives in the workflow JSON artifact.
+   Records each scanned target, including those with **no useful match**, in
    `portfolio-daily.json`, `portfolio-daily.md`, a retained Actions artifact
    and an updated GitHub issue. Reports both reviewable suggestions and the
    smaller subset classified `native`, with separate project and candidate
    counts. `native` is preliminary evidence, **not** proof that integration
    succeeded or that the package will work at runtime.
-6. Emits up to two relevant entries from `websites.json` per project as
-   `website_references`. These are curated visual/design and hosted-service
+6. Evaluates **all** entries from `websites.json` for each project and retains
+   every relevant result as `website_references` in the complete JSON artifact.
+   The public GitHub issue displays a bounded preview to stay within its body limit. These are curated visual/design and hosted-service
    references only. They are never included in the native integration queue
    or counted as a completed integration, and licenses remain per-item.
 7. If a qualified suggestion exists and a Production-OS **operator** secret is
@@ -105,8 +112,12 @@ Transport or dispatch errors are recorded and the workflow fails visibly.
 - Only open-source candidates with an eligible explicitly recognized SPDX
   license are considered. Verify upstream files and redistribution terms at
   implementation time; metadata alone is insufficient.
-- Max 3 managed-project launches per daily run and up to three qualified candidates per
-  target. All accessible repositories are still inspected on each run.
+- Max 3 managed-project launches per daily run. **There is no longer a
+  three-candidate or two-website discovery cap.** All accessible repositories,
+  all eligible catalog entries and all matching site/skill references are
+  evaluated. Only implementation concurrency is bounded; neither discovery
+  nor reporting is evidence of integration. The artifact includes the full
+  candidate inventory, while the GitHub issue shows a concise preview.
 - If any v2 high-budget integration needs attention, **quarantine its target**
   from further automatic attempts and admit **at most one different project
   per UTC day**, only when no other portfolio integration is active. This
@@ -242,3 +253,14 @@ request or integration launch is attempted, even if other repositories have
 qualified candidates. The JSON/Markdown report remains available for triage
 and `dispatch_status` states why launches were blocked. Unselected catalog matches remain available
 for later review; not every third-party project is safe or useful to install.
+
+## Additional art reference (2026-10-21)
+
+`https://jupiterthewarlock.com/gameartstyle/` is cataloged separately from
+`https://gameartstyle.loopyhop.com/` under `jupiter-game-art-style`.
+The requested page could not be independently fetched at admission time;
+its access and media rights remain **unverified**. Both can be surfaced for
+game projects as visual direction references, never as automatically reusable
+asset downloads or installable code. Verify actual page content and licensing
+before any use. The discovery layer does not conflate matching website
+references with qualifying code dependencies.
