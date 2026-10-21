@@ -5,26 +5,29 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "163",
-      "add",
-      "all",
-      "audit",
-      "catalog",
-      "fasth3",
+      "165",
+      "atomicchat",
+      "curated",
       "feat",
-      "omni",
-      "portfolio",
+      "flux.3",
+      "gguf",
+      "image",
+      "model",
+      "review",
       "sources"
     ],
     "test_count": 0,
-    "useful_count": 1
+    "useful_count": 4
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(portfolio): audit all catalog sources and add FastH3 Omni (#163)",
+  "task": "feat(sources): curated AtomicChat FLUX.3 GGUF image model review (#165)",
   "tests_selected": [],
   "useful": [
-    "scripts/portfolio_daily.py"
+    "scripts/portfolio_daily.py",
+    "scripts/recommend.py",
+    "scripts/test_recommend.py",
+    "scripts/validate_websites.py"
   ]
 }

@@ -113,13 +113,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-21T17:29:03Z
+Generated: 2026-10-21T17:42:16Z
 
 ### Git
 - Branch: `main`
-- Head: `65ae30f1c0bf`
-- Commit date: 2026-10-21T13:28:53-04:00
-- Commit: feat(portfolio): audit all catalog sources and add FastH3 Omni (#163)
+- Head: `7a22c97b5a8d`
+- Commit date: 2026-10-21T13:42:04-04:00
+- Commit: feat(sources): curated AtomicChat FLUX.3 GGUF image model review (#165)
 - Tracked files: 294
 
 ### Recently changed files
@@ -129,11 +129,10 @@ Generated: 2026-10-21T17:29:03Z
 - `WEB_RESOURCES.md`
 - `schemas/websites.schema.json`
 - `scripts/portfolio_daily.py`
-- `websites.json`
 - `scripts/recommend.py`
 - `scripts/test_recommend.py`
 - `scripts/validate_websites.py`
-- `.repomixignore`
+- `websites.json`
 
 ### Project signals
 - No common build descriptor detected

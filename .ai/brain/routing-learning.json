@@ -2,27 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "feat: automatically admit all public GitHub Stars into star-list (#58)",
-      "terms": [
-        "58",
-        "admit",
-        "all",
-        "automatically",
-        "feat",
-        "github",
-        "into",
-        "public",
-        "star-list",
-        "stars"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/admit_github_stars.py",
-        "scripts/test_auto_stars_admission.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "feat: daily star-list portfolio discovery and qualified integration queue",
       "terms": [
         "daily",
@@ -1295,6 +1274,29 @@
       "useful": [
         "scripts/portfolio_daily.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(sources): curated AtomicChat FLUX.3 GGUF image model review (#165)",
+      "terms": [
+        "165",
+        "atomicchat",
+        "curated",
+        "feat",
+        "flux.3",
+        "gguf",
+        "image",
+        "model",
+        "review",
+        "sources"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py",
+        "scripts/test_recommend.py",
+        "scripts/validate_websites.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1447,6 +1449,12 @@
     },
     "163": {
       "scripts/portfolio_daily.py": 4
+    },
+    "165": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "17": {
       "scripts/discover_candidates.py": 4,
@@ -1700,6 +1708,12 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "atomicchat": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "attempts": {
       "scripts/portfolio_daily.py": 4
     },
@@ -1878,12 +1892,12 @@
       "scripts/test_sync_github_stars.py": 4
     },
     "curated": {
-      "scripts/portfolio_daily.py": 4,
-      "scripts/recommend.py": 8,
+      "scripts/portfolio_daily.py": 8,
+      "scripts/recommend.py": 12,
       "scripts/test_documentation.py": 8,
       "scripts/test_json_contracts.py": 8,
-      "scripts/test_recommend.py": 8,
-      "scripts/validate_websites.py": 4
+      "scripts/test_recommend.py": 12,
+      "scripts/validate_websites.py": 8
     },
     "curation": {
       "scripts/backfill_github_ids.py": 4,
@@ -2088,15 +2102,15 @@
       "scripts/backfill_github_ids.py": 4,
       "scripts/portfolio_daily.py": 40,
       "scripts/portfolio_failure_diagnostics.py": 12,
-      "scripts/recommend.py": 16,
+      "scripts/recommend.py": 20,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_catalog_quality.py": 8,
       "scripts/test_documentation.py": 20,
       "scripts/test_json_contracts.py": 8,
-      "scripts/test_recommend.py": 24,
+      "scripts/test_recommend.py": 28,
       "scripts/test_sync_github_stars.py": 4,
-      "scripts/validate_websites.py": 12
+      "scripts/validate_websites.py": 16
     },
     "files": {
       "scripts/agent_skill_discovery.py": 4,
@@ -2119,6 +2133,12 @@
     },
     "flutter": {
       "scripts/portfolio_daily.py": 4
+    },
+    "flux.3": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "forwarding": {
       "scripts/portfolio_daily.py": 4
@@ -2174,6 +2194,12 @@
     },
     "generic": {
       "scripts/portfolio_daily.py": 4
+    },
+    "gguf": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "github": {
       "scripts/admit_github_stars.py": 12,
@@ -2235,6 +2261,12 @@
     },
     "if": {
       "scripts/test_documentation.py": 4
+    },
+    "image": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "immutable": {
       "scripts/backfill_github_ids.py": 4,
@@ -2402,6 +2434,12 @@
     "missing": {
       "scripts/backfill_github_ids.py": 4,
       "scripts/test_documentation.py": 4
+    },
+    "model": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "names": {
       "scripts/admit_github_stars.py": 4,
@@ -2749,12 +2787,12 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "review": {
-      "scripts/portfolio_daily.py": 8,
-      "scripts/recommend.py": 8,
+      "scripts/portfolio_daily.py": 12,
+      "scripts/recommend.py": 12,
       "scripts/sync_github_stars.py": 4,
-      "scripts/test_recommend.py": 4,
+      "scripts/test_recommend.py": 8,
       "scripts/test_sync_github_stars.py": 4,
-      "scripts/validate_websites.py": 4
+      "scripts/validate_websites.py": 8
     },
     "reviewable": {
       "scripts/portfolio_daily.py": 8
@@ -2878,8 +2916,10 @@
       "scripts/test_recommend.py": 4
     },
     "sources": {
-      "scripts/portfolio_daily.py": 8,
-      "scripts/recommend.py": 4
+      "scripts/portfolio_daily.py": 12,
+      "scripts/recommend.py": 8,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "sparse": {
       "scripts/portfolio_daily.py": 4,

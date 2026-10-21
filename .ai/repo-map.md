@@ -755,6 +755,7 @@ jobs:
           assert len(catalog_names) == result["summary"]["catalog_repositories"]
           assert len(website_ids) == result["summary"]["catalog_websites"]
           assert "fasth3-omni-collection" in website_ids
+          assert "atomicchat-flux3-image-klein-gguf" in website_ids
           fully_scanned = [row for row in result["projects"]
                            if row["status"] != "skipped-inactive"]
           assert result["summary"]["fully_assessed_projects"] == len(fully_scanned)
@@ -777,6 +778,7 @@ jobs:
                             if row["repository"].lower() == "dbrckk/tts"), None)
           if tts_audit is not None and tts_audit["source_coverage"]["complete"]:
               assert tts_audit["source_assessment"]["websites"]["fasth3-omni-collection"]["decision"] != "matched"
+              assert tts_audit["source_assessment"]["websites"]["atomicchat-flux3-image-klein-gguf"]["decision"] != "matched"
           native_by_project = [
               sum(item["mode"] == "native" for item in row["suggestions"])
               for row in result["projects"]
@@ -3067,7 +3069,8 @@ initial_prompt: |
               "game-design-service",
               "asset-generator",
               "game-testing-service",
-              "model-collection"
+              "model-collection",
+              "model-checkpoint"
             ]
           },
           "access": {
@@ -3155,6 +3158,14 @@ initial_prompt: |
               "type": "string",
               "minLength": 2
             }
+          },
+          "sourceLicenseTag": {
+            "type": "string",
+            "minLength": 2
+          },
+          "upstreamModel": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
           }
         }
       }
@@ -6078,6 +6089,24 @@ tts_sites = recommend_websites(tokens(tts_labels), {"ai_media"}, limit=30)
 ⋮----
 tts_portfolio_sites = website_references_for_project(
 ⋮----
+# Quantized checkpoints must be discoverable for visual projects, but a
+# generic AI/media project (including speech) must not get an image generator.
+gguf_id = "atomicchat-flux3-image-klein-gguf"
+⋮----
+gguf = next(x for x in sites if x["id"] == gguf_id)
+⋮----
+image_project = {"name": "asset-forge", "description": "Image-to-image sprite texture assets",
+image_profile = {"domains": ["ai_media", "graphics"]}
+image_references = website_references_for_project(image_project, image_profile)
+gguf_result = next(x for x in image_references if x["id"] == gguf_id)
+⋮----
+quiet_game = website_references_for_project(
+⋮----
+# Metadata decisions must cover the model even when it is rejected.
+image_audit = {}
+⋮----
+speech_audit = {}
+⋮----
 # Game repositories often have sparse GitHub descriptions. Their actual
 # game-development domain is sufficient to recommend art-direction research.
 game_sites = website_references_for_project(
@@ -6099,6 +6128,9 @@ website_schema = json.loads((ROOT / "schemas/websites.schema.json").read_text(en
 ⋮----
 unsafe_websites = copy.deepcopy(websites_catalog)
 bad_pinoc = next(site for site in unsafe_websites["websites"] if site["id"] == "viggle-pinoc-mcp")
+⋮----
+bad_model = copy.deepcopy(websites_catalog)
+model_data = next(x for x in bad_model["websites"] if x["id"] == gguf_id)
 ⋮----
 strict = run("android mobile", "--platform", "android", "--require-all-caps", "--cap", "mobile")
 ⋮----
@@ -6657,6 +6689,10 @@ baseline = set(site.get("portfolioBaselineDomains", []))
 ⋮----
 # Specialist triggers must be explicit canonical labels, not prose.
 required_signals = site.get("portfolioRequiredSignals", [])
+⋮----
+# Converted HF weights inherit upstream usage restrictions. The
+# 'other' hub tag is unknown permission, never an approval to install
+# or use images commercially; checkpoint provenance is mandatory.
 ⋮----
 # An MCP endpoint is an authenticated remote service, not a harmless
 # website link. Require a bounded HTTPS /mcp URL owned by the
@@ -7849,8 +7885,8 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **22 curated website links** for UI design,
-animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, AI game prototyping, NPC/voice platforms, 3D assets, narrative design, gameplay QA and licensed reference-to-video/audio model collections. Explore them
+The catalog also includes **23 curated website links** for UI design,
+animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, AI game prototyping, NPC/voice platforms, 3D assets, narrative design, gameplay QA and licensed reference-to-video/audio model collections and quantized image-generation checkpoints. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
 repositories and are never passed to Production-OS as code dependencies.
@@ -9004,6 +9040,80 @@ General-purpose GitHub discovery remains advisory and never inserts external can
         "reference-to-video"
       ],
       "caution": "This is a collection of third-party model weights, not an executable GitHub dependency or a free hosted inference API. FastH3 Omni weights reference the MiniMax-H3 Community License Agreement, which must be reviewed independently for commercial use and redistribution. Large checkpoint downloads, compatible GPU/VRAM, runtime and additional text encoder/video/audio VAE are required. Never automatically install, fetch large weights, generate media or upload user content; inspect individual model licences and costs."
+    },
+    {
+      "id": "atomicchat-flux3-image-klein-gguf",
+      "name": "AtomicChat — FLUX.3 Image Klein GGUF",
+      "url": "https://huggingface.co/AtomicChat/FLUX-3-Image-Klein-GGUF",
+      "type": "model-checkpoint",
+      "access": "unknown",
+      "domains": [
+        "ai_media",
+        "graphics",
+        "game_dev"
+      ],
+      "tags": [
+        "text-to-image",
+        "image-editing",
+        "image-generation",
+        "quantized",
+        "gguf",
+        "flux-3",
+        "image",
+        "images",
+        "graphics",
+        "textures",
+        "asset",
+        "assets",
+        "photo",
+        "visual",
+        "diffusion",
+        "comfyui",
+        "stable-diffusion.cpp",
+        "offline",
+        "gpu"
+      ],
+      "bestFor": [
+        "Reviewing quantized FLUX.3 Image Klein transformer checkpoints for local image generation or reference-guided editing",
+        "Assessing graphics, illustration, thumbnail, sprite and texture production workflows after checking compatible loaders and quality",
+        "Comparing GGUF-specific memory and runtime trade-offs before deploying media tools"
+      ],
+      "reuse": "licensed-material",
+      "portfolioRequiredSignals": [
+        "image",
+        "images",
+        "imagegen",
+        "img2img",
+        "photo",
+        "photos",
+        "photography",
+        "graphics",
+        "graphic",
+        "visual",
+        "visuals",
+        "artwork",
+        "illustration",
+        "illustrations",
+        "sprite",
+        "sprites",
+        "texture",
+        "textures",
+        "asset",
+        "assets",
+        "thumbnail",
+        "thumbnails",
+        "poster",
+        "posters",
+        "flux",
+        "gguf",
+        "diffusion",
+        "comfyui",
+        "portrait",
+        "rendering"
+      ],
+      "sourceLicenseTag": "other",
+      "upstreamModel": "black-forest-labs/flux-3-image-klein",
+      "caution": "AtomicChat currently labels this Hugging Face GGUF quantization as license:other (not an automatically approved licence). Upstream FLUX.3 Image Klein uses the FLUX Kommunity License, which restricts commercial and redistribution uses unless its specific conditions are met; verify both upstream and converted-weight rights. GGUF is a transformer checkpoint, not a complete image-generation service: compatible loader, separately licensed Qwen3-VL text encoder, VAE and sufficient CPU/GPU memory may be required. GGUF quantizations and stable-diffusion.cpp loaders are not interchangeable with every Diffusers or ComfyUI build. Never auto-download weights, assume Android-local feasibility, run inference, or use outputs commercially without independent review."
     }
   ]
 }

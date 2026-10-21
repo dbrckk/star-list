@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "91a61acd46d03c5a6a75ac97d3365d69cee4e7e7",
-  "head": "65ae30f1c0bf3f100cb99bd6afcf3614ae791e46",
+  "base": "65ae30f1c0bf3f100cb99bd6afcf3614ae791e46",
+  "head": "7a22c97b5a8d7cfd72d8c80d418afbc45c56fe0b",
   "index_mode": "incremental",
   "changed_files": [
     {
@@ -30,17 +30,35 @@
       "status": "M"
     },
     {
+      "path": "scripts/recommend.py",
+      "status": "M"
+    },
+    {
+      "path": "scripts/test_recommend.py",
+      "status": "M"
+    },
+    {
+      "path": "scripts/validate_websites.py",
+      "status": "M"
+    },
+    {
       "path": "websites.json",
       "status": "M"
     }
   ],
   "changed_source_files": [
-    "scripts/portfolio_daily.py"
+    "scripts/portfolio_daily.py",
+    "scripts/recommend.py",
+    "scripts/test_recommend.py",
+    "scripts/validate_websites.py"
   ],
   "impacted_files": [
     "scripts/portfolio_daily.py",
     "scripts/portfolio_failure_diagnostics.py",
-    "scripts/test_recommend.py"
+    "scripts/recommend.py",
+    "scripts/test_json_contracts.py",
+    "scripts/test_recommend.py",
+    "scripts/validate_websites.py"
   ],
   "impacted_symbols": [
     {
@@ -248,13 +266,134 @@
       "line": 349
     },
     {
+      "name": "norm",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 38
+    },
+    {
+      "name": "tokens",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 41
+    },
+    {
+      "name": "load",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 44
+    },
+    {
+      "name": "infer_domains",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 49
+    },
+    {
+      "name": "recommend_websites",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 61
+    },
+    {
+      "name": "activity_adjustment",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 105
+    },
+    {
+      "name": "trend_adjustment",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 125
+    },
+    {
+      "name": "delta",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 137
+    },
+    {
+      "name": "guidance_weight",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 150
+    },
+    {
+      "name": "score_repo",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 157
+    },
+    {
+      "name": "explain_repo",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 188
+    },
+    {
+      "name": "choose_stack",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 211
+    },
+    {
+      "name": "infer_alternatives",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 224
+    },
+    {
+      "name": "infer_complements",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 245
+    },
+    {
+      "name": "resolve_relations",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 270
+    },
+    {
+      "name": "usable",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 272
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 293
+    },
+    {
       "name": "run",
       "kind": "function",
       "file": "scripts/test_recommend.py",
       "line": 9
+    },
+    {
+      "name": "canonical_url",
+      "kind": "function",
+      "file": "scripts/validate_websites.py",
+      "line": 18
+    },
+    {
+      "name": "check_websites",
+      "kind": "function",
+      "file": "scripts/validate_websites.py",
+      "line": 33
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/validate_websites.py",
+      "line": 107
     }
   ],
   "selected_tests": [
+    "scripts/test_json_contracts.py",
     "scripts/test_recommend.py"
   ]
 }

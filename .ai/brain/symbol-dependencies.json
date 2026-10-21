@@ -244,7 +244,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 153,
+              "line": 157,
               "kind": "function",
               "language": "python"
             }
@@ -268,7 +268,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 268,
+              "line": 272,
               "kind": "function",
               "language": "python"
             }
@@ -804,6 +804,693 @@
         }
       ],
       "dependency_count": 22
+    },
+    "norm": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 38,
+        "end": 39
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "tokens": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 41,
+        "end": 42
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "norm",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 38,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "load": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 44,
+        "end": 47
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "infer_domains": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 49,
+        "end": 50
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "recommend_websites": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 61,
+        "end": 103
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "tokens",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 41,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "activity_adjustment": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 105,
+        "end": 122
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "trend_adjustment": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 125,
+        "end": 148
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "delta",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 137,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "delta": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 137,
+        "end": 257
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "activity_adjustment",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 105,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "choose_stack",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 211,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "explain_repo",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 188,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "guidance_weight",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 150,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "health_score",
+          "definitions": [
+            {
+              "file": "scripts/health_score.py",
+              "line": 27,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "infer_alternatives",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 224,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "infer_complements",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 245,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "replacement_score",
+          "definitions": [
+            {
+              "file": "scripts/find_replacements.py",
+              "line": 14,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "score_repo",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 157,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "tokens",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 41,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "trend_adjustment",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 125,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 11
+    },
+    "guidance_weight": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 150,
+        "end": 154
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "score_repo": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 157,
+        "end": 186
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "activity_adjustment",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 105,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "guidance_weight",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 150,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "health_score",
+          "definitions": [
+            {
+              "file": "scripts/health_score.py",
+              "line": 27,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "tokens",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 41,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "trend_adjustment",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 125,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 5
+    },
+    "explain_repo": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 188,
+        "end": 209
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "activity_adjustment",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 105,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "tokens",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 41,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "trend_adjustment",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 125,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 3
+    },
+    "choose_stack": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 211,
+        "end": 221
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "tokens",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 41,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "infer_alternatives": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 224,
+        "end": 242
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "replacement_score",
+          "definitions": [
+            {
+              "file": "scripts/find_replacements.py",
+              "line": 14,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "infer_complements": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 245,
+        "end": 267
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "health_score",
+          "definitions": [
+            {
+              "file": "scripts/health_score.py",
+              "line": 27,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 1
+    },
+    "resolve_relations": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 270,
+        "end": 291
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "infer_alternatives",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 224,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "infer_complements",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 245,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "usable",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 272,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 3
+    },
+    "usable": {
+      "source": {
+        "file": "scripts/recommend.py",
+        "start": 272,
+        "end": 392
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "choose_stack",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 211,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "explain_repo",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 188,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "health_score",
+          "definitions": [
+            {
+              "file": "scripts/health_score.py",
+              "line": 27,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        },
+        {
+          "symbol": "infer_alternatives",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 224,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "infer_complements",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 245,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "infer_domains",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 49,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "load",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 44,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "main",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 293,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "recommend_websites",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 61,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "resolve_relations",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 270,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "score_repo",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 157,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "tokens",
+          "definitions": [
+            {
+              "file": "scripts/recommend.py",
+              "line": 41,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        }
+      ],
+      "dependency_count": 12
+    },
+    "run": {
+      "source": {
+        "file": "scripts/test_recommend.py",
+        "start": 9,
+        "end": 11
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "canonical_url": {
+      "source": {
+        "file": "scripts/validate_websites.py",
+        "start": 18,
+        "end": 30
+      },
+      "symbol_dependencies": [],
+      "dependency_count": 0
+    },
+    "check_websites": {
+      "source": {
+        "file": "scripts/validate_websites.py",
+        "start": 33,
+        "end": 104
+      },
+      "symbol_dependencies": [
+        {
+          "symbol": "canonical_url",
+          "definitions": [
+            {
+              "file": "scripts/validate_websites.py",
+              "line": 18,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "same_file"
+        },
+        {
+          "symbol": "validate",
+          "definitions": [
+            {
+              "file": "scripts/validate_json_contract.py",
+              "line": 29,
+              "kind": "function",
+              "language": "python"
+            }
+          ],
+          "relation": "imported_module"
+        }
+      ],
+      "dependency_count": 2
     }
   }
 }
