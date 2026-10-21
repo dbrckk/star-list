@@ -347,7 +347,7 @@ WEAK_CAPABILITY_TERMS = {
 }
 
 
-def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) -> list[dict]:
+def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int | None = None) -> list[dict]:
     name = repo["full_name"].lower()
     domains = set(profile["domains"])
     if not domains:
@@ -455,7 +455,7 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int) 
                 "adapter-review": 2, "reference-review": 3}
     matches.sort(key=lambda r: (priority.get(r["mode"], 3),
                                 -r["score"], -r["quality"], r["repository"].lower()))
-    return matches[:count]
+    return matches if count is None else matches[:count]
 
 
 INTEGRATION_TOKEN_BUDGET = 90000
@@ -748,6 +748,8 @@ def render_markdown(report: dict) -> str:
              "Repositories inspected: **" + str(summary["inspected"]) + "/" + str(summary["discovered"]) + "**.",
              "Projects with reviewable suggestions: **" + str(summary["with_suggestions"]) + "**.",
              "Projects with native-mode candidates: **" + str(summary["with_native_suggestions"]) + "**.",
+             "All qualifying GitHub matches (uncapped artifact): **" + str(summary["qualifying_repositories"]) + "**.",
+             "All relevant website references (uncapped artifact): **" + str(summary["website_references"]) + "**.",
              "Native-mode candidates: **" + str(summary["native_suggestions"]) + "**.",
              "Projects with website references: **" + str(summary["with_website_references"]) + "**.",
              "Repositories informed about Skill Issue: **" + str(summary["skill_directory_references"]) + "**.",
@@ -772,21 +774,27 @@ def render_markdown(report: dict) -> str:
     for row in report["projects"]:
         lines.append("## " + row["repository"])
         lines.append("Status: " + row["status"])
-        for item in row["suggestions"]:
+        for item in row["suggestions"][:5]:
             lines.append("- [" + item["repository"] + "](" + item["url"] + ")"
                          + " — fit " + str(item["score"]) + ", " + item["mode"]
                          + ", license " + str(item["license"])
                          + ", overlap: " + ", ".join(item["shared_terms"]))
+        if len(row["suggestions"]) > 5:
+            lines.append("- " + str(len(row["suggestions"]) - 5) + " more matched GitHub repos in the complete workflow JSON artifact.")
         lines.append("- Agent-skill directory: [Skill Issue](" + row["skill_discovery"]["directory"]
                      + ") — high-priority research only; review individual skills before installing.")
-        for skill in row["skill_discovery"]["recommendations"]:
+        for skill in row["skill_discovery"]["recommendations"][:3]:
             lines.append("- Suggested agent skill: [" + skill["name"] + "](" + skill["skillFileUrl"]
                          + ") — pinned SKILL.md, repo-label match (" + ", ".join(skill["why"]["tags"])
                          + "); requires review, no automatic installation.")
-        for site in row.get("website_references", []):
+        if len(row["skill_discovery"]["recommendations"]) > 3:
+            lines.append("- Additional relevant agent skills in the complete workflow JSON artifact.")
+        for site in row.get("website_references", [])[:5]:
             lines.append("- Web reference: [" + site["name"] + "](" + site["url"] + ")"
                          + " — " + site["type"] + ", " + site["reuse"]
                          + " (advisory only; inspect reuse rights)")
+        if len(row.get("website_references", [])) > 5:
+            lines.append("- Additional relevant web references in the complete workflow JSON artifact.")
         for item in row.get("dispatches", []):
             lines.append("- Integration queue: " + item)
         for item in row.get("integrations", []):
@@ -803,7 +811,7 @@ def render_markdown(report: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
-def website_references_for_project(repo: dict, profile: dict, limit: int = 2) -> list[dict]:
+def website_references_for_project(repo: dict, profile: dict, limit: int | None = None) -> list[dict]:
     """Suggest websites only for applicable project domains, never as code.
 
     Game projects benefit from an art-direction atlas even if their GitHub
@@ -818,7 +826,7 @@ def website_references_for_project(repo: dict, profile: dict, limit: int = 2) ->
         str(repo.get("description") or ""),
         " ".join(repo.get("topics") or []),
     ]))
-    candidates = recommend_websites(metadata_terms, domains, limit=30)
+    candidates = recommend_websites(metadata_terms, domains, limit=None)
     chosen = [
         site for site in candidates
         if site["id"] != "skill-issue"
@@ -831,6 +839,10 @@ def website_references_for_project(repo: dict, profile: dict, limit: int = 2) ->
             # Give real game projects the visual atlas without letting generic
             # wording rank it above relevant websites for unrelated projects.
             chosen = [game_art] + [site for site in chosen if site["id"] != "game-art-style"]
+        jupiter_art = next((site for site in candidates if site["id"] == "jupiter-game-art-style"), None)
+        if jupiter_art is not None:
+            chosen = [site for site in chosen if site["id"] != "jupiter-game-art-style"]
+            chosen.insert(1 if chosen and chosen[0]["id"] == "game-art-style" else 0, jupiter_art)
     # 3D motion/rigging tools need concrete project metadata evidence, not
     # simply a generic game label; game-art-style retains top priority.
     # Explicit 3D engine names qualify for an advisory motion library review.
@@ -845,7 +857,7 @@ def website_references_for_project(repo: dict, profile: dict, limit: int = 2) ->
             position = 1 if chosen and chosen[0]["id"] == "game-art-style" else 0
             chosen = [site for site in chosen if site["id"] != "viggle-pinoc-mcp"]
             chosen.insert(position, pinoc)
-    return chosen[:limit]
+    return chosen if limit is None else chosen[:limit]
 
 
 def main() -> int:
@@ -895,7 +907,7 @@ def main() -> int:
                 row["status"] = "skipped-inactive"
             else:
                 profile = project_profile(repo, portfolio_token or gh_token)
-                row["suggestions"] = recommendations(repo, profile, catalog, 3)
+                row["suggestions"] = recommendations(repo, profile, catalog)
                 # All targets receive the directory; skill matches are based
                 # on owned GitHub labels and language, never README instructions.
                 skill_terms = word_set(" ".join([
@@ -906,7 +918,7 @@ def main() -> int:
                                  | set(profile.get("skill_domains") or []))
                 row["skill_discovery"]["recommendations"] = recommend_skills(
                     skill_terms, skill_domains,
-                    language=profile.get("language") or "", limit=2,
+                    language=profile.get("language") or "", limit=None,
                 )
                 # Owned GitHub metadata only: reference sites never become
                 # installable tools, and unrelated domain/prose matches are out.
@@ -1112,6 +1124,8 @@ def main() -> int:
     report["summary"] = {
         "discovered": len(source), "inspected": sum(p["status"] != "scan-failed" for p in report["projects"]),
         "with_suggestions": sum(bool(p["suggestions"]) for p in report["projects"]),
+        "qualifying_repositories": sum(len(p["suggestions"]) for p in report["projects"]),
+        "catalog_repositories": len(catalog),
         "with_native_suggestions": sum(
             any(item["mode"] == "native" for item in p["suggestions"])
             for p in report["projects"]
