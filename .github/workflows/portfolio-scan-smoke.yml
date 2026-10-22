@@ -59,6 +59,11 @@ jobs:
           assert {"hugging-face-hub", "minicpm-v-4-7-1b-heretic"} <= website_ids
           assert "sopilot" in website_ids
           assert "jialinyyzz-humanizer-12b" in website_ids
+          animation_ids = {
+              "sakugabooru", "shot-cafe", "posemy-art",
+              "niwatoliver-costume-atlas", "youmind-video-prompts", "carat-ai-media",
+          }
+          assert animation_ids <= website_ids
           fully_scanned = [row for row in result["projects"]
                            if row["status"] != "skipped-inactive"]
           assert result["summary"]["fully_assessed_projects"] == len(fully_scanned)
@@ -93,6 +98,19 @@ jobs:
               assert tts_audit["source_assessment"]["websites"]["atomicchat-flux3-image-klein-gguf"]["decision"] != "matched"
               assert tts_audit["source_assessment"]["websites"]["minicpm-v-4-7-1b-heretic"]["decision"] != "matched"
               assert tts_audit["source_assessment"]["websites"]["jialinyyzz-humanizer-12b"]["decision"] != "matched"
+          # Scene/storyboard tools may be useful for explicitly labelled
+          # video studios, but not for generic TTS or financial libraries.
+          if tts_audit is not None and tts_audit["source_coverage"]["complete"]:
+              for identity in animation_ids:
+                  assert (tts_audit["source_assessment"]["websites"]
+                          [identity]["decision"] != "matched"), identity
+          movie_studio = next((row for row in result["projects"]
+                               if row["repository"].lower() == "dbrckk/monteur-video"), None)
+          if movie_studio is not None and movie_studio["source_coverage"]["complete"]:
+              for identity in ("youmind-video-prompts", "carat-ai-media"):
+                  assert movie_studio["source_assessment"]["websites"][identity]["decision"] == "matched"
+                  assert any(ref["id"] == identity and ref["integrationEligible"] is False
+                             for ref in movie_studio["website_references"]), identity
           # A supermarket-coupon discovery app must not be sent an
           # X auto-engagement/backlink automation service as a dependency.
           retail = next((row for row in result["projects"]

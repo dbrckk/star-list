@@ -111,6 +111,18 @@ def website_review_gates(site):
     if resource_type == "marketing-automation-service":
         gates.append("platform-anti-spam-and-account-policy-review")
         gates.append("manual-publication-and-consent-required")
+    if resource_type in {"animation-reference-library", "film-stills-library"}:
+        gates.append("copyrighted-reference-no-production-reuse")
+    if resource_type == "costume-history-atlas":
+        gates.append("verify-per-image-public-domain-or-cc0-provenance")
+        gates.append("creator-submitted-design-rights-review")
+    if resource_type == "3d-pose-reference-tool":
+        gates.append("pose-export-format-and-rights-review")
+    if resource_type == "prompt-template-library":
+        gates.append("prompt-creator-rights-and-instruction-safety-review")
+    if resource_type == "ai-media-generator":
+        gates.append("generated-output-licence-and-subject-consent-review")
+        gates.append("human-approved-inference-and-compute-costs")
     if reuse == "hosted-service":
         gates.append("hosted-terms-privacy-and-cost-review")
     elif reuse in {"licensed-material", "license-per-item", "reference-only"}:
