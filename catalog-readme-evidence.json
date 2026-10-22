@@ -575,6 +575,129 @@
       ],
       "evidenceSnippet": "A simple bot that uses selenium to farm Microsoft Rewards",
       "reviewNotes": "README warns Microsoft may ban accounts; no autonomous account actions."
+    },
+    {
+      "repository": "ccusage/ccusage",
+      "githubRepositoryId": 992755069,
+      "path": "README.md",
+      "blobSha": "799fb879fa708d31347bb248f92c6463c67f70eb",
+      "advisoryDomains": [
+        "productivity"
+      ],
+      "taskTerms": [
+        "tokens",
+        "usage",
+        "cost",
+        "claude",
+        "report"
+      ],
+      "evidenceSnippet": "ccusage",
+      "reviewNotes": "Usage tracking is advisory; credentials and local logs require separate privacy checks."
+    },
+    {
+      "repository": "h0m3us3r/w1700k-sdr",
+      "githubRepositoryId": 1414851145,
+      "path": "README.md",
+      "blobSha": "5936d6fb8ad69869420590ebda90e3de329fa4a9",
+      "advisoryDomains": [
+        "embedded_iot"
+      ],
+      "taskTerms": [
+        "radio",
+        "sdr",
+        "firmware",
+        "receiver",
+        "router"
+      ],
+      "evidenceSnippet": "wideband software-defined receiver",
+      "reviewNotes": "Experimental SDR firmware depends on specific router hardware and may involve regulatory obligations."
+    },
+    {
+      "repository": "lukasz-madon/awesome-remote-job",
+      "githubRepositoryId": 28699471,
+      "path": "README.md",
+      "blobSha": "8c9c6dae92850de7e5d30a9c4ff7fe6f59780627",
+      "advisoryDomains": [
+        "productivity"
+      ],
+      "taskTerms": [
+        "remote",
+        "jobs",
+        "recruiting",
+        "career"
+      ],
+      "evidenceSnippet": "A curated list of awesome",
+      "reviewNotes": "Curated external links are reference material, not validated job openings."
+    },
+    {
+      "repository": "stkw0/awesome-telegram-groups",
+      "githubRepositoryId": 75951376,
+      "path": "README.md",
+      "blobSha": "641db74c86fb359f9d79e11861f0d1827dc94c72",
+      "advisoryDomains": [
+        "productivity"
+      ],
+      "taskTerms": [
+        "telegram",
+        "groups",
+        "communities",
+        "directory"
+      ],
+      "evidenceSnippet": "List of telegram groups",
+      "reviewNotes": "External public groups are unvetted and should not be automatically joined."
+    },
+    {
+      "repository": "garycaogan/ai-live-avatar",
+      "githubRepositoryId": 1425306307,
+      "path": "README.md",
+      "blobSha": "574d9a07a1c3f63ad0877709b9b099bf3084c629",
+      "advisoryDomains": [
+        "ai_media"
+      ],
+      "taskTerms": [
+        "avatar",
+        "livestream",
+        "video",
+        "obs",
+        "voice"
+      ],
+      "evidenceSnippet": "AI 实时直播间",
+      "reviewNotes": "Vidu API and original character assets are not included; live avatar features are restricted."
+    },
+    {
+      "repository": "vinnylarouge/jevlike",
+      "githubRepositoryId": 1372867305,
+      "path": "README.md",
+      "blobSha": "44480ee1d40e9e1d969c70fe985c2b22be8eaaea",
+      "advisoryDomains": [
+        "data_ml"
+      ],
+      "taskTerms": [
+        "model",
+        "classification",
+        "inference",
+        "text",
+        "probability"
+      ],
+      "evidenceSnippet": "Train a small model that chooses among a changing list of text options.",
+      "reviewNotes": "Independent experimental model; do not imply TypeSafe Jev equivalence."
+    },
+    {
+      "repository": "bleedline/aimoneyhunter",
+      "githubRepositoryId": 731450488,
+      "path": "README.md",
+      "blobSha": "89311ebaf77e9932dd70ceebf980e42048708c06",
+      "advisoryDomains": [
+        "marketing"
+      ],
+      "taskTerms": [
+        "seo",
+        "affiliate",
+        "content",
+        "marketing"
+      ],
+      "evidenceSnippet": "这个仓库目前已经作废",
+      "reviewNotes": "README says project has been abandoned; historical reference only."
     }
   ]
 }
