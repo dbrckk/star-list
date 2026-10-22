@@ -28,11 +28,10 @@ jobs:
           import datetime, json
           from pathlib import Path
           data = json.loads(Path("catalog.json").read_text(encoding="utf-8"))
-          uncertain = sum(
-              (row.get("github") or {}).get("license") in (None, "", "NOASSERTION")
-              or type(row.get("selfHosted")) is not bool
-              for row in data["repositories"]
-          )
+          import sys
+          sys.path.insert(0, "scripts")
+          from verify_catalog_evidence import requires_review
+          uncertain = sum(requires_review(row) for row in data["repositories"])
           batches = max(1, (uncertain + 14) // 15)
           print(f"index={datetime.date.today().toordinal() % batches}")
           PY
