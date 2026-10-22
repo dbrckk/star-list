@@ -46317,6 +46317,55 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "nodetool-ai/nodetool",
+      "githubRepositoryId": 777230015,
+      "score": 6.0,
+      "tier": "audit",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "anthropic",
+        "claude",
+        "fal",
+        "gemini",
+        "huggingface",
+        "image-generation",
+        "image-processing",
+        "kie",
+        "motion-graphics",
+        "ollama",
+        "openai",
+        "openrouter"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 582,
+        "forks": 85,
+        "openIssues": 10,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-21T23:23:38Z"
+      },
+      "bestFor": [
+        "Agent-first Creative Workspace"
+      ],
+      "avoidWhen": [
+        "production use before licensing and security review"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
