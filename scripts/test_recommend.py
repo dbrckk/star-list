@@ -73,6 +73,12 @@ assert {row["id"] for row in with_web_query["websiteRecommendations"]} >= {"scro
 assert all(not row["integrationEligible"] for row in with_web_query["websiteRecommendations"])
 assert all(row["url"].startswith("https://") for row in with_web_query["websiteRecommendations"])
 assert run("xauusd trading execution", "--websites")["websiteRecommendations"] == []
+all_sites = run("xauusd trading execution", "--websites", "--rank-all-websites", "--top-websites", "200")
+assert len(all_sites["websiteRecommendations"]) == len(sites)
+assert all_sites["websiteDiagnostics"]["catalogSize"] == len(sites)
+assert all_sites["websiteDiagnostics"]["rankAll"] is True
+assert any(x["selectionScore"] == 0 for x in all_sites["websiteRecommendations"])
+assert all(x["integrationEligible"] is False for x in all_sites["websiteRecommendations"])
 assert any(row["id"] == "60fps" for row in run("mobile ui motion animation", "--websites")["websiteRecommendations"])
 
 # SoPilot is an opt-in Chrome/X/SEO marketing service, not a general-purpose
@@ -419,14 +425,36 @@ high_threshold = run("ai agent", "--min-score", "1000")
 assert high_threshold["recommendations"] == []
 assert high_threshold["diagnostics"]["returned"] == 0
 
-default_audit = run("ponytail agent", "--top", "20")
-assert all(item["tier"] != "audit" for item in default_audit["recommendations"])
-assert default_audit["diagnostics"]["filtered"]["audit"] > 0
-assert default_audit["constraints"]["includeAudit"] is False
+# All catalog records are ranked by default, including zero/negative scores,
+# unreviewed audit entries, archived and disabled entries. Ranking is not approval.
+default_audit = run("ponytail agent", "--top", "30")
+assert default_audit["diagnostics"]["eligible"] == default_audit["diagnostics"]["catalogSize"]
+assert default_audit["diagnostics"]["filtered"]["audit"] == 0
+assert default_audit["diagnostics"]["filtered"]["inactive"] == 0
+assert default_audit["diagnostics"]["filtered"]["minScore"] == 0
+assert default_audit["constraints"]["includeAudit"] is True
+assert default_audit["constraints"]["includeArchived"] is True
+assert default_audit["constraints"]["minScore"] is None
+ponytail = next(item for item in default_audit["recommendations"]
+               if item["repo"] == "DietrichGebert/ponytail")
+assert ponytail["tier"] == "audit"
+assert ponytail["reviewRequired"] is True
+assert "audit-tier" in ponytail["rankingReviewGates"]
 
-with_audit = run("ponytail agent", "--top", "20", "--include-audit")
-assert any(item["repo"] == "DietrichGebert/ponytail" for item in with_audit["recommendations"])
-assert with_audit["constraints"]["includeAudit"] is True
+# Legacy positive flags continue to work. Explicit opt-out filters remain available.
+with_audit = run("ponytail agent", "--top", "30", "--include-audit", "--include-archived")
+assert with_audit["diagnostics"]["eligible"] == default_audit["diagnostics"]["eligible"]
+without_audit = run("ponytail agent", "--top", "30", "--exclude-audit")
+assert all(item["tier"] != "audit" for item in without_audit["recommendations"])
+assert without_audit["diagnostics"]["filtered"]["audit"] > 0
+assert without_audit["constraints"]["includeAudit"] is False
+without_inactive = run("ponytail agent", "--top", "30", "--exclude-archived")
+assert without_inactive["diagnostics"]["filtered"]["inactive"] > 0
+assert without_inactive["constraints"]["includeArchived"] is False
+# An impossible query still ranks every record; relevance is not an admission gate.
+zero_relevance = run("qzxwvtr234567unknown", "--top", "5")
+assert zero_relevance["diagnostics"]["eligible"] == zero_relevance["diagnostics"]["catalogSize"]
+assert all("rankingReviewGates" in item for item in zero_relevance["recommendations"])
 
 spec = importlib.util.spec_from_file_location("recommend", SCRIPT)
 mod = importlib.util.module_from_spec(spec)
