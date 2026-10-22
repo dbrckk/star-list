@@ -1061,43 +1061,57 @@
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
-      "name": "_decode_content",
+      "name": "root_license_scope_warning",
       "line": 99
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
+      "name": "strict_root_license",
+      "line": 116
+    },
+    {
+      "file": "scripts/refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_decode_content",
+      "line": 144
+    },
+    {
+      "file": "scripts/refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
       "name": "fallback_license",
-      "line": 111
+      "line": 156
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "metadata",
-      "line": 166
+      "line": 194
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "refresh_primary_language",
-      "line": 177
+      "line": 205
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "is_missing_repository_error",
-      "line": 184
+      "line": 212
     },
     {
       "file": "scripts/refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "main",
-      "line": 188
+      "line": 216
     },
     {
       "file": "scripts/render_discovery_issue.py",
@@ -1433,63 +1447,77 @@
       "language": "python",
       "kind": "function",
       "name": "test_license_fallback_reads_root_license_file",
-      "line": 98
+      "line": 110
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "fake_contents",
-      "line": 101
+      "line": 113
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "test_license_fallback_reads_readme_when_root_license_is_absent",
-      "line": 118
+      "line": 130
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "fake_contents",
-      "line": 121
+      "line": 133
+    },
+    {
+      "file": "scripts/test_refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "test_license_fallback_rejects_conflicting_root_files",
+      "line": 146
+    },
+    {
+      "file": "scripts/test_refresh_github_metadata.py",
+      "language": "python",
+      "kind": "function",
+      "name": "fake_contents",
+      "line": 149
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "test_metadata_refresh_uses_license_fallback",
-      "line": 134
+      "line": 168
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
-      "line": 164
+      "line": 198
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "test_server_error_remains_fatal",
-      "line": 197
+      "line": 231
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "class",
       "name": "RejectingOpener",
-      "line": 262
+      "line": 296
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
       "language": "python",
       "kind": "function",
       "name": "open",
-      "line": 263
+      "line": 297
     },
     {
       "file": "scripts/test_sync_github_stars.py",
@@ -1560,6 +1588,62 @@
       "kind": "function",
       "name": "offline_write",
       "line": 268
+    },
+    {
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "source",
+      "line": 12
+    },
+    {
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "fake_repo",
+      "line": 33
+    },
+    {
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "fake_content",
+      "line": 39
+    },
+    {
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 50
+    },
+    {
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "scoped_content",
+      "line": 57
+    },
+    {
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "conflicting_repo",
+      "line": 89
+    },
+    {
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "reused_repo",
+      "line": 93
+    },
+    {
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "readme_only",
+      "line": 103
     },
     {
       "file": "scripts/update_cache_health_history.py",
@@ -1791,6 +1875,69 @@
       "kind": "function",
       "name": "main",
       "line": 136
+    },
+    {
+      "file": "scripts/verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "root_files",
+      "line": 32
+    },
+    {
+      "file": "scripts/verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "is_license_file",
+      "line": 47
+    },
+    {
+      "file": "scripts/verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "content_with_sha",
+      "line": 52
+    },
+    {
+      "file": "scripts/verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "blob_evidence",
+      "line": 77
+    },
+    {
+      "file": "scripts/verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "inspect_entry",
+      "line": 82
+    },
+    {
+      "file": "scripts/verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "requires_review",
+      "line": 182
+    },
+    {
+      "file": "scripts/verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "select_entries",
+      "line": 193
+    },
+    {
+      "file": "scripts/verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "audit",
+      "line": 210
+    },
+    {
+      "file": "scripts/verify_catalog_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 252
     }
   ]
 }

@@ -113,17 +113,24 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-22T07:11:16Z
+Generated: 2026-10-22T08:42:22Z
 
 ### Git
 - Branch: `main`
-- Head: `5ddf4c6d5684`
-- Commit date: 2026-10-22T03:11:06-04:00
-- Commit: fix(recommender): improve relevance and metadata review (#176)
-- Tracked files: 295
+- Head: `54ee1d9aa618`
+- Commit date: 2026-10-22T04:42:11-04:00
+- Commit: feat(metadata): audit all review-gated catalog sources with verifiable evidence (#177)
+- Tracked files: 299
 
 ### Recently changed files
+- `.github/workflows/metadata-evidence-review.yml`
+- `.github/workflows/validate.yml`
 - `RECOMMENDER.md`
+- `schemas/metadata-evidence.schema.json`
+- `scripts/refresh_github_metadata.py`
+- `scripts/test_refresh_github_metadata.py`
+- `scripts/test_verify_catalog_evidence.py`
+- `scripts/verify_catalog_evidence.py`
 - `scripts/recommend.py`
 - `scripts/test_recommend.py`
 - `catalog.json`

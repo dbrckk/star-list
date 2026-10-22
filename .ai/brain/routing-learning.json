@@ -2,25 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "fix(portfolio): quarantine failed attempts, resume one distinct project daily",
-      "terms": [
-        "attempts",
-        "daily",
-        "distinct",
-        "failed",
-        "one",
-        "portfolio",
-        "project",
-        "quarantine",
-        "resume"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/portfolio_daily.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "fix: resume one failed star-list integration safely per UTC day",
       "terms": [
         "day",
@@ -1323,6 +1304,29 @@
         "scripts/recommend.py",
         "scripts/test_recommend.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(metadata): audit all review-gated catalog sources with verifiable evidence (#177)",
+      "terms": [
+        "177",
+        "all",
+        "audit",
+        "catalog",
+        "evidence",
+        "feat",
+        "metadata",
+        "review-gated",
+        "sources",
+        "verifiable"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/refresh_github_metadata.py",
+        "scripts/test_refresh_github_metadata.py",
+        "scripts/test_verify_catalog_evidence.py",
+        "scripts/verify_catalog_evidence.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1533,6 +1537,12 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "177": {
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/test_verify_catalog_evidence.py": 4,
+      "scripts/verify_catalog_evidence.py": 4
+    },
     "19": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
@@ -1731,7 +1741,11 @@
       "scripts/admit_github_stars.py": 4,
       "scripts/portfolio_daily.py": 8,
       "scripts/recommend.py": 4,
-      "scripts/test_auto_stars_admission.py": 4
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_auto_stars_admission.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/test_verify_catalog_evidence.py": 4,
+      "scripts/verify_catalog_evidence.py": 4
     },
     "alongside": {
       "scripts/recommend.py": 4,
@@ -1790,12 +1804,16 @@
       "scripts/audit_catalog_quality.py": 12,
       "scripts/portfolio_daily.py": 8,
       "scripts/recommend.py": 4,
+      "scripts/refresh_github_metadata.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_catalog_quality.py": 12,
       "scripts/test_documentation.py": 16,
       "scripts/test_recommend.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4,
       "scripts/test_sync_github_stars.py": 4,
-      "scripts/validate_websites.py": 4
+      "scripts/test_verify_catalog_evidence.py": 4,
+      "scripts/validate_websites.py": 4,
+      "scripts/verify_catalog_evidence.py": 4
     },
     "audit-tier": {
       "scripts/recommend.py": 4,
@@ -1888,14 +1906,16 @@
       "scripts/audit_catalog_quality.py": 12,
       "scripts/portfolio_daily.py": 16,
       "scripts/recommend.py": 12,
-      "scripts/refresh_github_metadata.py": 4,
+      "scripts/refresh_github_metadata.py": 8,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_catalog_quality.py": 12,
       "scripts/test_documentation.py": 16,
       "scripts/test_json_contracts.py": 4,
       "scripts/test_recommend.py": 8,
-      "scripts/test_refresh_github_metadata.py": 4,
-      "scripts/test_sync_github_stars.py": 4
+      "scripts/test_refresh_github_metadata.py": 8,
+      "scripts/test_sync_github_stars.py": 4,
+      "scripts/test_verify_catalog_evidence.py": 4,
+      "scripts/verify_catalog_evidence.py": 4
     },
     "catalog-declared": {
       "scripts/portfolio_daily.py": 4
@@ -2117,8 +2137,12 @@
     "evidence": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4,
+      "scripts/refresh_github_metadata.py": 4,
       "scripts/test_catalog_quality.py": 4,
-      "scripts/validate_catalog.py": 4
+      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/test_verify_catalog_evidence.py": 4,
+      "scripts/validate_catalog.py": 4,
+      "scripts/verify_catalog_evidence.py": 4
     },
     "exact": {
       "scripts/portfolio_daily.py": 4
@@ -2200,14 +2224,18 @@
       "scripts/portfolio_daily.py": 40,
       "scripts/portfolio_failure_diagnostics.py": 12,
       "scripts/recommend.py": 40,
+      "scripts/refresh_github_metadata.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_catalog_quality.py": 8,
       "scripts/test_documentation.py": 20,
       "scripts/test_json_contracts.py": 8,
       "scripts/test_recommend.py": 40,
+      "scripts/test_refresh_github_metadata.py": 4,
       "scripts/test_sync_github_stars.py": 4,
-      "scripts/validate_websites.py": 28
+      "scripts/test_verify_catalog_evidence.py": 4,
+      "scripts/validate_websites.py": 28,
+      "scripts/verify_catalog_evidence.py": 4
     },
     "files": {
       "scripts/agent_skill_discovery.py": 4,
@@ -2563,13 +2591,15 @@
       "scripts/backfill_licenses.py": 4,
       "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 8,
-      "scripts/refresh_github_metadata.py": 12,
+      "scripts/refresh_github_metadata.py": 16,
       "scripts/test_backfill_licenses.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_recommend.py": 12,
-      "scripts/test_refresh_github_metadata.py": 12,
-      "scripts/validate_catalog.py": 4
+      "scripts/test_refresh_github_metadata.py": 16,
+      "scripts/test_verify_catalog_evidence.py": 4,
+      "scripts/validate_catalog.py": 4,
+      "scripts/verify_catalog_evidence.py": 4
     },
     "minicpm": {
       "scripts/portfolio_daily.py": 4,
@@ -2960,6 +2990,12 @@
       "scripts/test_sync_github_stars.py": 4,
       "scripts/validate_websites.py": 12
     },
+    "review-gated": {
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/test_verify_catalog_evidence.py": 4,
+      "scripts/verify_catalog_evidence.py": 4
+    },
     "reviewable": {
       "scripts/portfolio_daily.py": 8
     },
@@ -3110,8 +3146,12 @@
     "sources": {
       "scripts/portfolio_daily.py": 12,
       "scripts/recommend.py": 8,
+      "scripts/refresh_github_metadata.py": 4,
       "scripts/test_recommend.py": 4,
-      "scripts/validate_websites.py": 4
+      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/test_verify_catalog_evidence.py": 4,
+      "scripts/validate_websites.py": 4,
+      "scripts/verify_catalog_evidence.py": 4
     },
     "sparse": {
       "scripts/portfolio_daily.py": 8,
@@ -3309,6 +3349,12 @@
       "scripts/test_json_contracts.py": 4,
       "scripts/validate_catalog.py": 4,
       "scripts/validate_websites.py": 4
+    },
+    "verifiable": {
+      "scripts/refresh_github_metadata.py": 4,
+      "scripts/test_refresh_github_metadata.py": 4,
+      "scripts/test_verify_catalog_evidence.py": 4,
+      "scripts/verify_catalog_evidence.py": 4
     },
     "verified": {
       "scripts/admit_github_stars.py": 4,

@@ -5,23 +5,29 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "176",
-      "improve",
+      "177",
+      "all",
+      "audit",
+      "catalog",
+      "evidence",
+      "feat",
       "metadata",
-      "recommender",
-      "relevance",
-      "review"
+      "review-gated",
+      "sources",
+      "verifiable"
     ],
     "test_count": 0,
-    "useful_count": 2
+    "useful_count": 4
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "fix(recommender): improve relevance and metadata review (#176)",
+  "task": "feat(metadata): audit all review-gated catalog sources with verifiable evidence (#177)",
   "tests_selected": [],
   "useful": [
-    "scripts/recommend.py",
-    "scripts/test_recommend.py"
+    "scripts/refresh_github_metadata.py",
+    "scripts/test_refresh_github_metadata.py",
+    "scripts/test_verify_catalog_evidence.py",
+    "scripts/verify_catalog_evidence.py"
   ]
 }

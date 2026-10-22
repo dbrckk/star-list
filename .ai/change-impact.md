@@ -1,15 +1,22 @@
 # Change impact
 
-Base: 93ef1f737e870c8e69f65e955a4802b1a77e447e
-Head: 5ddf4c6d5684e21fb8b07096e069d733c80b8007
+Base: 775a0d221f6e904c7226b901f82521abaf583120
+Head: 54ee1d9aa6187c5e4a7bc4d0a67497b55034fafa
 
 ## Changed files
+- A .github/workflows/metadata-evidence-review.yml
+- M .github/workflows/validate.yml
 - M RECOMMENDER.md
-- M scripts/recommend.py
-- M scripts/test_recommend.py
+- A schemas/metadata-evidence.schema.json
+- M scripts/refresh_github_metadata.py
+- M scripts/test_refresh_github_metadata.py
+- A scripts/test_verify_catalog_evidence.py
+- A scripts/verify_catalog_evidence.py
 
 ## Affected areas
+- .github
 - (root)
+- schemas
 - scripts
 
 ## Related test candidates

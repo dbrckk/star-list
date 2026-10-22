@@ -385,6 +385,15 @@
       "urllib.parse",
       "urllib.request"
     ],
+    "scripts/test_verify_catalog_evidence.py": [
+      "base64",
+      "hashlib",
+      "json",
+      "pathlib",
+      "tempfile",
+      "validate_json_contract",
+      "verify_catalog_evidence"
+    ],
     "scripts/update_cache_health_history.py": [
       "argparse",
       "datetime",
@@ -419,6 +428,19 @@
       "sys",
       "urllib.parse",
       "validate_json_contract"
+    ],
+    "scripts/verify_catalog_evidence.py": [
+      "argparse",
+      "base64",
+      "datetime",
+      "hashlib",
+      "json",
+      "os",
+      "pathlib",
+      "re",
+      "refresh_github_metadata",
+      "sys",
+      "tempfile"
     ]
   }
 }

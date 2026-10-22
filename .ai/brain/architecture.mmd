@@ -25,5 +25,8 @@ flowchart LR
   n0c8a572d8b["scripts/test_star_import_pipeline.py"] --> n83b2d4016a["scripts/star_import_pipeline.py"]
   n895eef35e5["scripts/test_sync_github_stars.py"] --> n8d03612ec4["scripts/admit_github_stars.py"]
   n895eef35e5["scripts/test_sync_github_stars.py"] --> n9ec765cbfe["scripts/sync_github_stars.py"]
+  nf529075003["scripts/test_verify_catalog_evidence.py"] --> nbd2a675ab8["scripts/validate_json_contract.py"]
+  nf529075003["scripts/test_verify_catalog_evidence.py"] --> n387ca81352["scripts/verify_catalog_evidence.py"]
   nd96d7a95bb["scripts/validate_websites.py"] --> nbd2a675ab8["scripts/validate_json_contract.py"]
+  n387ca81352["scripts/verify_catalog_evidence.py"] --> n673a0bb367["scripts/refresh_github_metadata.py"]
   n895eef35e5["scripts/test_sync_github_stars.py"] --> n9ec765cbfe["scripts/sync_github_stars.py"]

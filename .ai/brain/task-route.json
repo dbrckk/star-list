@@ -4,15 +4,15 @@
     "expand_to": 12,
     "max_files": 3,
     "requested_max_files": 12,
-    "score_margin": 9,
+    "score_margin": 12,
     "tier": "narrow",
-    "top_score": 63
+    "top_score": 57
   },
   "cache": {
-    "fingerprint": "d33f24e388fd5a450540f979cffa1bbe9adbe3673da71ce064085971731e1016",
+    "fingerprint": "c726c10a7550b05392bc5e43557c6469890a4e78886115f7dc21ba1a1e1c05c8",
     "hit": false
   },
-  "candidate_count": 8,
+  "candidate_count": 16,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -23,11 +23,10 @@
       ],
       "path": "scripts/portfolio_daily.py",
       "reasons": [
-        "impact",
         "learning",
         "search-index"
       ],
-      "score": 63,
+      "score": 57,
       "symbols": [
         "SameOriginRedirect",
         "busy_integration_targets",
@@ -59,50 +58,33 @@
       ],
       "path": "scripts/test_recommend.py",
       "reasons": [
-        "impact",
         "learning",
-        "recently-changed",
         "search-index"
       ],
-      "score": 54,
+      "score": 45,
       "symbols": [
         "run"
       ]
     },
     {
-      "learning_score": 12,
+      "learning_score": 0,
       "matched_terms": [
+        "engine",
         "game"
       ],
-      "path": "scripts/recommend.py",
+      "path": "scripts/admit_github_stars.py",
       "reasons": [
-        "impact",
-        "learning",
-        "recently-changed",
         "search-index"
       ],
-      "score": 38,
+      "score": 29,
       "symbols": [
-        "activity_adjustment",
-        "choose_stack",
-        "delta",
-        "explain_repo",
-        "guidance_weight",
-        "infer_alternatives",
-        "infer_complements",
-        "infer_domains",
-        "load",
+        "admit",
+        "catalog_entry",
+        "classify",
+        "count",
+        "get_repo",
         "main",
-        "metadata_review_gates",
-        "norm",
-        "ranking_review_gates",
-        "recommend_websites",
-        "resolve_relations",
-        "score_repo",
-        "tokens",
-        "trend_adjustment",
-        "usable",
-        "website_review_gates"
+        "manifest_stable_ids"
       ]
     }
   ],

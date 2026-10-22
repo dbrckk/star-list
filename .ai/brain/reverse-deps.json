@@ -121,9 +121,10 @@
       ],
       "dependents": [
         "scripts/backfill_licenses.py",
-        "scripts/test_refresh_github_metadata.py"
+        "scripts/test_refresh_github_metadata.py",
+        "scripts/verify_catalog_evidence.py"
       ],
-      "in_degree": 2,
+      "in_degree": 3,
       "out_degree": 1
     },
     "scripts/star_import_pipeline.py": {
@@ -202,12 +203,22 @@
       "in_degree": 0,
       "out_degree": 2
     },
+    "scripts/test_verify_catalog_evidence.py": {
+      "dependencies": [
+        "scripts/validate_json_contract.py",
+        "scripts/verify_catalog_evidence.py"
+      ],
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 2
+    },
     "scripts/validate_json_contract.py": {
       "dependencies": [],
       "dependents": [
+        "scripts/test_verify_catalog_evidence.py",
         "scripts/validate_websites.py"
       ],
-      "in_degree": 1,
+      "in_degree": 2,
       "out_degree": 0
     },
     "scripts/validate_websites.py": {
@@ -219,6 +230,16 @@
         "scripts/test_recommend.py"
       ],
       "in_degree": 2,
+      "out_degree": 1
+    },
+    "scripts/verify_catalog_evidence.py": {
+      "dependencies": [
+        "scripts/refresh_github_metadata.py"
+      ],
+      "dependents": [
+        "scripts/test_verify_catalog_evidence.py"
+      ],
+      "in_degree": 1,
       "out_degree": 1
     }
   },

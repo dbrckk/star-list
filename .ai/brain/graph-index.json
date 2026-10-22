@@ -46,6 +46,19 @@
     },
     {
       "dependencies": [
+        "scripts/sync_github_stars.py"
+      ],
+      "dependents": [
+        "scripts/backfill_licenses.py",
+        "scripts/test_refresh_github_metadata.py",
+        "scripts/verify_catalog_evidence.py"
+      ],
+      "in_degree": 3,
+      "out_degree": 1,
+      "path": "scripts/refresh_github_metadata.py"
+    },
+    {
+      "dependencies": [
         "scripts/agent_skill_discovery.py",
         "scripts/recommend.py"
       ],
@@ -82,18 +95,6 @@
     },
     {
       "dependencies": [
-        "scripts/sync_github_stars.py"
-      ],
-      "dependents": [
-        "scripts/backfill_licenses.py",
-        "scripts/test_refresh_github_metadata.py"
-      ],
-      "in_degree": 2,
-      "out_degree": 1,
-      "path": "scripts/refresh_github_metadata.py"
-    },
-    {
-      "dependencies": [
         "scripts/validate_json_contract.py"
       ],
       "dependents": [
@@ -127,6 +128,16 @@
       "path": "scripts/star_import_pipeline.py"
     },
     {
+      "dependencies": [],
+      "dependents": [
+        "scripts/test_verify_catalog_evidence.py",
+        "scripts/validate_websites.py"
+      ],
+      "in_degree": 2,
+      "out_degree": 0,
+      "path": "scripts/validate_json_contract.py"
+    },
+    {
       "dependencies": [
         "scripts/health_score.py"
       ],
@@ -136,6 +147,17 @@
       "in_degree": 1,
       "out_degree": 1,
       "path": "scripts/find_replacements.py"
+    },
+    {
+      "dependencies": [
+        "scripts/refresh_github_metadata.py"
+      ],
+      "dependents": [
+        "scripts/test_verify_catalog_evidence.py"
+      ],
+      "in_degree": 1,
+      "out_degree": 1,
+      "path": "scripts/verify_catalog_evidence.py"
     },
     {
       "dependencies": [
@@ -158,13 +180,14 @@
       "path": "scripts/test_sync_github_stars.py"
     },
     {
-      "dependencies": [],
-      "dependents": [
-        "scripts/validate_websites.py"
+      "dependencies": [
+        "scripts/validate_json_contract.py",
+        "scripts/verify_catalog_evidence.py"
       ],
-      "in_degree": 1,
-      "out_degree": 0,
-      "path": "scripts/validate_json_contract.py"
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 2,
+      "path": "scripts/test_verify_catalog_evidence.py"
     },
     {
       "dependencies": [
@@ -248,8 +271,8 @@
       "path": "scripts/test_star_import_pipeline.py"
     }
   ],
-  "edge_count": 28,
+  "edge_count": 31,
   "generated_by": "dbrckk/repo-brain-v7-graph",
-  "node_count": 23,
+  "node_count": 25,
   "schema_version": 1
 }

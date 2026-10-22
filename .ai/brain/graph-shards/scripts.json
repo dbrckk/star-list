@@ -137,8 +137,23 @@
       "type": "symbol-reference"
     },
     {
+      "source": "scripts/test_verify_catalog_evidence.py",
+      "target": "scripts/validate_json_contract.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_verify_catalog_evidence.py",
+      "target": "scripts/verify_catalog_evidence.py",
+      "type": "imports"
+    },
+    {
       "source": "scripts/validate_websites.py",
       "target": "scripts/validate_json_contract.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/verify_catalog_evidence.py",
+      "target": "scripts/refresh_github_metadata.py",
       "type": "imports"
     }
   ],

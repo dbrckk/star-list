@@ -2,7 +2,14 @@
   "area": "github",
   "files": [
     {
-      "path": ".github/workflows/portfolio-scan-smoke.yml",
+      "path": ".github/workflows/metadata-evidence-review.yml",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": ".github/workflows/validate.yml",
       "reasons": [
         "changed"
       ],

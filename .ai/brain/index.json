@@ -1,14 +1,14 @@
 {
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
-  "files_indexed": 57,
-  "symbol_count": 256,
-  "edge_count": 27,
+  "files_indexed": 59,
+  "symbol_count": 277,
+  "edge_count": 30,
   "languages": {
-    "python": 57
+    "python": 59
   },
   "index_mode": "incremental",
-  "reparsed_files": 2,
+  "reparsed_files": 4,
   "top_symbol_files": [
     {
       "file": "scripts/portfolio_daily.py",
@@ -28,19 +28,19 @@
     },
     {
       "file": "scripts/test_refresh_github_metadata.py",
-      "symbols": 14
+      "symbols": 16
     },
     {
       "file": "scripts/evaluate_candidates.py",
       "symbols": 12
     },
     {
-      "file": "scripts/star_import_pipeline.py",
-      "symbols": 11
+      "file": "scripts/refresh_github_metadata.py",
+      "symbols": 12
     },
     {
-      "file": "scripts/refresh_github_metadata.py",
-      "symbols": 10
+      "file": "scripts/star_import_pipeline.py",
+      "symbols": 11
     },
     {
       "file": "scripts/sync_github_stars.py",
@@ -51,7 +51,15 @@
       "symbols": 10
     },
     {
+      "file": "scripts/verify_catalog_evidence.py",
+      "symbols": 9
+    },
+    {
       "file": "scripts/portfolio_failure_diagnostics.py",
+      "symbols": 8
+    },
+    {
+      "file": "scripts/test_verify_catalog_evidence.py",
       "symbols": 8
     },
     {

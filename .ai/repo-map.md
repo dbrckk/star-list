@@ -46,6 +46,7 @@ The content is organized as follows:
     catalog-quality-on-change.yml
     daily-portfolio-integration.yml
     license-backfill.yml
+    metadata-evidence-review.yml
     portfolio-failure-diagnostics.yml
     portfolio-scan-smoke.yml
     production-os-review-handoff.yml
@@ -73,6 +74,7 @@ schemas/
   health-snapshot.schema.json
   health-trends.schema.json
   history.schema.json
+  metadata-evidence.schema.json
   replacement-report.schema.json
   star-sync-report.schema.json
   websites.schema.json
@@ -129,11 +131,13 @@ scripts/
   test_selection_guidance.py
   test_star_import_pipeline.py
   test_sync_github_stars.py
+  test_verify_catalog_evidence.py
   update_cache_health_history.py
   update_history.py
   validate_catalog.py
   validate_json_contract.py
   validate_websites.py
+  verify_catalog_evidence.py
 .repo-standards.yml
 agent-skills.json
 AGENTS.md
@@ -645,6 +649,64 @@ jobs:
           git commit -m "chore: backfill detected repository licenses"
           git pull --rebase origin main
           git push
+````
+
+## File: .github/workflows/metadata-evidence-review.yml
+````yaml
+name: Review uncertain catalog metadata
+
+on:
+  schedule:
+    - cron: "27 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: catalog-metadata-evidence-review
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Select a bounded rotating evidence batch
+        id: batch
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import datetime, json
+          from pathlib import Path
+          data = json.loads(Path("catalog.json").read_text(encoding="utf-8"))
+          import sys
+          sys.path.insert(0, "scripts")
+          from verify_catalog_evidence import requires_review
+          uncertain = sum(requires_review(row) for row in data["repositories"])
+          batches = max(1, (uncertain + 14) // 15)
+          print(f"index={datetime.date.today().toordinal() % batches}")
+          PY
+      - name: Verify GitHub evidence without modifying catalog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/verify_catalog_evidence.py --limit 15 \
+            --batch-index "${{ steps.batch.outputs.index }}" \
+            --report-out metadata-evidence.json > /tmp/evidence-summary.json
+          python scripts/validate_json_contract.py \
+            schemas/metadata-evidence.schema.json metadata-evidence.json
+      - name: Upload evidence report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalog-metadata-evidence
+          path: metadata-evidence.json
+          if-no-files-found: warn
+          retention-days: 35
 ````
 
 ## File: .github/workflows/portfolio-failure-diagnostics.yml
@@ -2369,6 +2431,8 @@ jobs:
         run: python scripts/test_refresh_github_metadata.py
       - name: Test targeted license backfill
         run: python scripts/test_backfill_licenses.py
+      - name: Test evidence-based metadata verification
+        run: python scripts/test_verify_catalog_evidence.py
       - name: Test selection guidance inference
         run: python scripts/test_selection_guidance.py
       - name: Test recommendation engine
@@ -2935,6 +2999,285 @@ initial_prompt: |
 ## File: schemas/history.schema.json
 ````json
 {"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Repository History","type":"object","required":["schemaVersion","repositories"],"properties":{"schemaVersion":{"type":"integer","const":1},"repositories":{"type":"object","additionalProperties":{"type":"array","items":{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"Repository History Point","type":"object","required":["date","health","status","stars","forks"],"properties":{"date":{"type":"string","pattern":"^\\d{4}-\\d{2}-\\d{2}$"},"health":{"type":["number","null"],"minimum":0,"maximum":100},"status":{"type":["string","null"]},"stars":{"type":["integer","null"],"minimum":0},"forks":{"type":["integer","null"],"minimum":0}},"additionalProperties":false}}}},"additionalProperties":false}
+````
+
+## File: schemas/metadata-evidence.schema.json
+````json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Star List evidence audit",
+  "type": "object",
+  "required": [
+    "generatedAt",
+    "catalogSize",
+    "uncertainEntries",
+    "selected",
+    "inspected",
+    "counts",
+    "results",
+    "updates",
+    "errors",
+    "batchIndex",
+    "wroteCatalog"
+  ],
+  "properties": {
+    "generatedAt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "catalogSize": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "uncertainEntries": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "selected": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "inspected": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "batchIndex": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "wroteCatalog": {
+      "type": "boolean"
+    },
+    "counts": {
+      "type": "object",
+      "required": [
+        "verifiedRootLicenses",
+        "githubClaimsOnly",
+        "hostingCandidates",
+        "proposedLicenseUpdates",
+        "appliedUpdates",
+        "errors",
+        "scopedLicenses"
+      ],
+      "properties": {
+        "verifiedRootLicenses": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "githubClaimsOnly": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hostingCandidates": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "proposedLicenseUpdates": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "appliedUpdates": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "errors": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "scopedLicenses": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "repository",
+          "repositoryId",
+          "defaultBranch",
+          "license",
+          "hosting",
+          "proposedLicense"
+        ],
+        "properties": {
+          "repository": {
+            "type": "string",
+            "pattern": "^[^/]+/[^/]+$"
+          },
+          "repositoryId": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "defaultBranch": {
+            "type": "string",
+            "minLength": 1
+          },
+          "proposedLicense": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "license": {
+            "type": "object",
+            "required": [
+              "status",
+              "value",
+              "evidence"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "unverified",
+                  "verified-root-file",
+                  "github-claim-only",
+                  "conflict",
+                  "scoped-licensing-review"
+                ]
+              },
+              "value": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "method",
+                    "value",
+                    "url"
+                  ],
+                  "properties": {
+                    "method": {
+                      "enum": [
+                        "github-repository-spdx",
+                        "root-license-signature",
+                        "root-license-scope-warning"
+                      ]
+                    },
+                    "value": {
+                      "type": "string"
+                    },
+                    "path": {
+                      "type": "string"
+                    },
+                    "blobSha": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{40}$"
+                    },
+                    "url": {
+                      "type": "string",
+                      "pattern": "^https://api.github.com/repos/"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "hosting": {
+            "type": "object",
+            "required": [
+              "status",
+              "evidence"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "unverified",
+                  "deployment-file-present-review-required"
+                ]
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "method",
+                    "path",
+                    "blobSha",
+                    "url"
+                  ],
+                  "properties": {
+                    "method": {
+                      "const": "compose-root-file"
+                    },
+                    "path": {
+                      "type": "string"
+                    },
+                    "blobSha": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{40}$"
+                    },
+                    "url": {
+                      "type": "string",
+                      "pattern": "^https://api.github.com/repos/"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "updates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "repository",
+          "license",
+          "evidence"
+        ],
+        "properties": {
+          "repository": {
+            "type": "string"
+          },
+          "license": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string",
+            "pattern": "^https://api.github.com/repos/"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "repository",
+          "error"
+        ],
+        "properties": {
+          "repository": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
 ````
 
 ## File: schemas/replacement-report.schema.json
@@ -5361,6 +5704,19 @@ def detect_license_text(text)
 normalized = re.sub(r"\s+", " ", (text or "")).strip().lower()
 signatures = [
 ⋮----
+def root_license_scope_warning(text)
+⋮----
+"""Catch explicit partial, commercial or directory-specific licence grants."""
+⋮----
+lower = re.sub(r"\s+", " ", text).lower()
+⋮----
+def strict_root_license(text)
+⋮----
+"""No README guesses, SPDX strings alone or isolated 'MIT' mentions."""
+⋮----
+# Text signatures are accepted only for the authoritative root licence
+# file, never for incidental descriptions or nested examples.
+⋮----
 def _decode_content(payload)
 ⋮----
 encoded = payload.get("content")
@@ -5374,19 +5730,21 @@ candidates = []
 name = str(item.get("name", "")).lower()
 stem = re.split(r"[._-]", name, maxsplit=1)[0]
 ⋮----
+detected_licenses = set()
+⋮----
 path = item.get("path")
 ⋮----
 payload = fetch_contents(repo, path=path, ref=default_branch, token=token)
 ⋮----
+# Incomplete root-file inspection is not enough to safely infer
+# a repository-wide license.
+⋮----
 text = _decode_content(payload)
 ⋮----
-detected = detect_license_text(text)
+detected = strict_root_license(text)
 ⋮----
-# Some curated lists and documentation repositories state their license
-# only in the README. Use this as a secondary signal, never as a guess.
-readmes = []
-⋮----
-payload = fetch_contents(repo, path=item.get("path"), ref=default_branch, token=token)
+# Conflicting licence files are treated as unresolved, not first-match wins.
+# README prose is never a grant covering all directories.
 ⋮----
 def metadata(raw)
 ⋮----
@@ -6235,6 +6593,8 @@ written = json.loads(catalog.read_text())
 ⋮----
 def test_license_signature_detection()
 ⋮----
+# Bare words and README snippets must not grant repo-wide reuse rights.
+⋮----
 def test_license_fallback_reads_root_license_file()
 ⋮----
 original = refresh.fetch_contents
@@ -6244,6 +6604,10 @@ def fake_contents(repo, path="", ref=None, token=None, retries=2)
 content = base64.b64encode(
 ⋮----
 def test_license_fallback_reads_readme_when_root_license_is_absent()
+⋮----
+def test_license_fallback_rejects_conflicting_root_files()
+⋮----
+content = (
 ⋮----
 def test_metadata_refresh_uses_license_fallback()
 ⋮----
@@ -6377,6 +6741,65 @@ new_before_repeat = catalog_path.read_text()
 repeat = subprocess.run(args + ["--write"], text=True, capture_output=True)
 ⋮----
 bad = subprocess.run(args + ["--write"], text=True, capture_output=True)
+````
+
+## File: scripts/test_verify_catalog_evidence.py
+````python
+#!/usr/bin/env python3
+"""Deterministic offline tests for evidence-based metadata review."""
+⋮----
+def source(text)
+⋮----
+data = text.encode("utf-8")
+blob = hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
+⋮----
+MIT = ("MIT License\nCopyright (c) 2026 Example\n"
+LISTING = [
+row = {"repo": "example/project", "tier": "audit", "githubRepositoryId": 123,
+⋮----
+def fake_repo(name, token=None)
+⋮----
+def fake_content(name, path="", ref=None, token=None)
+⋮----
+def main()
+⋮----
+partial = ('Portions of this software are licensed as follows: '
+⋮----
+def scoped_content(name, path="", ref=None, token=None)
+scoped_row = audit.inspect_entry(row, fake_repo, scoped_content)
+⋮----
+bad = source(MIT)
+⋮----
+report = audit.inspect_entry(row, fake_repo, fake_content)
+⋮----
+changed = dict(row, licenseStatus="partial")
+⋮----
+changed = dict(row, github={**row["github"], "license": "Apache-2.0"})
+⋮----
+def conflicting_repo(name, token=None)
+⋮----
+def reused_repo(name, token=None)
+⋮----
+# A README claim without a root licence is never promoted.
+def readme_only(name, path="", ref=None, token=None)
+⋮----
+entries = [dict(row), {**row, "repo": "example/second"}]
+⋮----
+flagged = dict(row, repo="example/audit-only", selfHosted=True,
+⋮----
+only = [dict(row, github=dict(row["github"]))]
+original_self_hosted = only[0]["selfHosted"]
+full = audit.audit(only, only, 1, fake_repo, fake_content, apply=True)
+⋮----
+schema = json.loads((Path(__file__).resolve().parents[1]
+report_contract = {**full, "batchIndex": 0, "wroteCatalog": True}
+⋮----
+unsafe = dict(report_contract, counts={**full["counts"], "scopedLicenses": "not-a-number"})
+⋮----
+# Caller writes nothing if any individual operation fails, including an
+# identity conflict in a later entry in the batch.
+⋮----
+path = Path(tmp) / "catalog.json"
 ````
 
 ## File: scripts/update_cache_health_history.py
@@ -6760,6 +7183,140 @@ def main()
 data = json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))
 schema = json.loads((ROOT / "schemas/websites.schema.json").read_text(encoding="utf-8"))
 errors = check_websites(data, schema)
+````
+
+## File: scripts/verify_catalog_evidence.py
+````python
+#!/usr/bin/env python3
+"""Evidence-based, read-only by default triage for uncertain catalog metadata.
+
+GitHub is the only remote source. A verified root licence can be applied with
+--apply, but deployment configuration files are never proof that a project
+is fully self-hostable.
+"""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+CATALOG = ROOT / "catalog.json"
+UNKNOWN_LICENSE = (None, "", "NOASSERTION")
+MAX_FILE_BYTES = 128 * 1024
+LICENSE_STEMS = frozenset({"license", "licence", "copying"})
+COMPOSE_FILES = frozenset({
+REPO_RE = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
+⋮----
+def root_files(payload)
+⋮----
+files = {}
+⋮----
+name = item.get("name")
+path = item.get("path")
+⋮----
+def is_license_file(name)
+⋮----
+stem = re.split(r"[._-]", name.lower(), maxsplit=1)[0]
+⋮----
+def content_with_sha(payload)
+⋮----
+size = payload.get("size")
+⋮----
+sha = payload.get("sha")
+⋮----
+encoded = payload.get("content")
+⋮----
+raw = base64.b64decode(encoded, validate=False)
+⋮----
+actual_sha = hashlib.sha1(b"blob " + str(len(raw)).encode() + b"\0" + raw).hexdigest()
+⋮----
+text = raw.decode("utf-8")
+⋮----
+def blob_evidence(name, sha)
+⋮----
+# Immutable blob reference, not a mutable default-branch page.
+⋮----
+def inspect_entry(entry, fetch_repo=github.fetch, fetch_content=github.fetch_contents, token=None)
+⋮----
+name = entry.get("repo")
+⋮----
+gh = entry.get("github") or {}
+⋮----
+raw = fetch_repo(name, token=token)
+⋮----
+expected_id = entry.get("githubRepositoryId")
+actual_id = raw.get("id")
+⋮----
+branch = raw.get("default_branch")
+⋮----
+files = root_files(fetch_content(name, ref=branch, token=token))
+item = {
+api_license = raw.get("license")
+api_spdx = api_license.get("spdx_id") if isinstance(api_license, dict) else None
+⋮----
+strong = set()
+scoped = False
+⋮----
+payload = fetch_content(name, path=file["path"], ref=branch, token=token)
+⋮----
+scoped = True
+⋮----
+detected = github.strict_root_license(content)
+⋮----
+verified = next(iter(strong))
+⋮----
+# A previous restrictive/partial/external-terms review is not
+# invalidated by finding one apparently permissive root file.
+⋮----
+# Never infer selfHosted=True from root Docker files; report candidates
+# for human examination instead.
+⋮----
+file = files.get(filename)
+⋮----
+def requires_review(row)
+⋮----
+"""Keep the evidence queue aligned with every catalog review gate."""
+gh = row.get("github")
+⋮----
+def select_entries(repos, limit, batch_index, selected_names)
+⋮----
+uncertain = [row for row in repos if requires_review(row)]
+⋮----
+by_name = {row.get("repo"): row for row in repos}
+missing = sorted(set(selected_names) - set(by_name))
+⋮----
+rows = [by_name[name] for name in selected_names]
+⋮----
+rows = sorted(uncertain, key=lambda x: x["repo"].lower())
+chunks = max(1, (len(rows) + limit - 1) // limit)
+⋮----
+rows = rows[batch_index * limit:(batch_index + 1) * limit]
+⋮----
+by_name = {x.get("repo"): x for x in repos}
+⋮----
+result = inspect_entry(entry, fetch_repo, fetch_content, token)
+⋮----
+license_value = result.get("proposedLicense")
+⋮----
+current = by_name[result["repository"]]
+⋮----
+# API failures and identity conflicts are never interpreted as
+# 'not licensed' or 'not self-hostable'.
+⋮----
+def main()
+⋮----
+parser = argparse.ArgumentParser(description="Verify evidence for uncertain Star List metadata.")
+⋮----
+args = parser.parse_args()
+⋮----
+data = json.loads(args.catalog.read_text(encoding="utf-8"))
+repos = data["repositories"]
+⋮----
+result = audit(repos, entries, total_uncertain, token=os.environ.get("GITHUB_TOKEN"),
+⋮----
+# An interrupted process must never leave a partially written catalog.
+⋮----
+temporary_path = Path(handle.name)
+⋮----
+# Fail closed; avoid partial catalog writes if even one source failed.
+⋮----
+encoded = json.dumps(result, indent=2, ensure_ascii=False) + "\n"
 ````
 
 ## File: .repo-standards.yml

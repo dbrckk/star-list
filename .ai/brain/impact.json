@@ -1,317 +1,342 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "e0332c31fd637b28ee822067616aa030256e9112",
-  "head": "5ddf4c6d5684e21fb8b07096e069d733c80b8007",
+  "base": "5ddf4c6d5684e21fb8b07096e069d733c80b8007",
+  "head": "54ee1d9aa6187c5e4a7bc4d0a67497b55034fafa",
   "index_mode": "incremental",
   "changed_files": [
+    {
+      "path": ".github/workflows/metadata-evidence-review.yml",
+      "status": "A"
+    },
+    {
+      "path": ".github/workflows/validate.yml",
+      "status": "M"
+    },
     {
       "path": "RECOMMENDER.md",
       "status": "M"
     },
     {
-      "path": "scripts/recommend.py",
+      "path": "schemas/metadata-evidence.schema.json",
+      "status": "A"
+    },
+    {
+      "path": "scripts/refresh_github_metadata.py",
       "status": "M"
     },
     {
-      "path": "scripts/test_recommend.py",
+      "path": "scripts/test_refresh_github_metadata.py",
       "status": "M"
+    },
+    {
+      "path": "scripts/test_verify_catalog_evidence.py",
+      "status": "A"
+    },
+    {
+      "path": "scripts/verify_catalog_evidence.py",
+      "status": "A"
     }
   ],
   "changed_source_files": [
-    "scripts/recommend.py",
-    "scripts/test_recommend.py"
+    "scripts/refresh_github_metadata.py",
+    "scripts/test_refresh_github_metadata.py",
+    "scripts/test_verify_catalog_evidence.py",
+    "scripts/verify_catalog_evidence.py"
   ],
   "impacted_files": [
-    "scripts/portfolio_daily.py",
-    "scripts/recommend.py",
-    "scripts/test_recommend.py"
+    "scripts/backfill_licenses.py",
+    "scripts/refresh_github_metadata.py",
+    "scripts/test_refresh_github_metadata.py",
+    "scripts/test_verify_catalog_evidence.py",
+    "scripts/verify_catalog_evidence.py"
   ],
   "impacted_symbols": [
     {
-      "name": "package_skill_signals",
+      "name": "backfill",
       "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 111
+      "file": "scripts/backfill_licenses.py",
+      "line": 15
     },
     {
-      "name": "SameOriginRedirect",
-      "kind": "class",
-      "file": "scripts/portfolio_daily.py",
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/backfill_licenses.py",
+      "line": 34
+    },
+    {
+      "name": "_request_json",
+      "kind": "function",
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 34
+    },
+    {
+      "name": "fetch",
+      "kind": "function",
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 54
+    },
+    {
+      "name": "fetch_contents",
+      "kind": "function",
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 58
+    },
+    {
+      "name": "detect_license_text",
+      "kind": "function",
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 66
+    },
+    {
+      "name": "root_license_scope_warning",
+      "kind": "function",
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 99
+    },
+    {
+      "name": "strict_root_license",
+      "kind": "function",
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 116
+    },
+    {
+      "name": "_decode_content",
+      "kind": "function",
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 144
+    },
+    {
+      "name": "fallback_license",
+      "kind": "function",
+      "file": "scripts/refresh_github_metadata.py",
       "line": 156
     },
     {
-      "name": "redirect_request",
+      "name": "metadata",
       "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 159
-    },
-    {
-      "name": "request_json",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 173
-    },
-    {
-      "name": "github_repos",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 220
-    },
-    {
-      "name": "file_text",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 240
-    },
-    {
-      "name": "project_profile",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 251
-    },
-    {
-      "name": "review_blockers",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 322
-    },
-    {
-      "name": "eligible",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 350
-    },
-    {
-      "name": "is_reference_candidate",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 355
-    },
-    {
-      "name": "recommendations",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 382
-    },
-    {
-      "name": "count_active_integrations",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 534
-    },
-    {
-      "name": "busy_integration_targets",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 544
-    },
-    {
-      "name": "unresolved_failed_v2_integrations",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 564
-    },
-    {
-      "name": "count_failed_v2_integrations",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 595
-    },
-    {
-      "name": "count_failed_v3_integrations",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 600
-    },
-    {
-      "name": "count_launches_on_utc_date",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 616
-    },
-    {
-      "name": "verified_managed_projects",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 636
-    },
-    {
-      "name": "public_integration_status",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 687
-    },
-    {
-      "name": "integration_marker",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 709
-    },
-    {
-      "name": "recoverable_failure_targets",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 716
-    },
-    {
-      "name": "launch_integration",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 752
-    },
-    {
-      "name": "confirmed_launch",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 780
-    },
-    {
-      "name": "render_markdown",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 814
-    },
-    {
-      "name": "website_references_for_project",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 901
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/portfolio_daily.py",
-      "line": 1014
-    },
-    {
-      "name": "norm",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 46
-    },
-    {
-      "name": "tokens",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 49
-    },
-    {
-      "name": "load",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 52
-    },
-    {
-      "name": "infer_domains",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 57
-    },
-    {
-      "name": "website_review_gates",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 76
-    },
-    {
-      "name": "recommend_websites",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 113
-    },
-    {
-      "name": "activity_adjustment",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 162
-    },
-    {
-      "name": "trend_adjustment",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 182
-    },
-    {
-      "name": "delta",
-      "kind": "function",
-      "file": "scripts/recommend.py",
+      "file": "scripts/refresh_github_metadata.py",
       "line": 194
     },
     {
-      "name": "guidance_weight",
+      "name": "refresh_primary_language",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 207
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 205
     },
     {
-      "name": "ranking_review_gates",
+      "name": "is_missing_repository_error",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 214
-    },
-    {
-      "name": "metadata_review_gates",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 228
-    },
-    {
-      "name": "score_repo",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 241
-    },
-    {
-      "name": "explain_repo",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 272
-    },
-    {
-      "name": "choose_stack",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 304
-    },
-    {
-      "name": "infer_alternatives",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 331
-    },
-    {
-      "name": "infer_complements",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 352
-    },
-    {
-      "name": "resolve_relations",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 377
-    },
-    {
-      "name": "usable",
-      "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 379
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 212
     },
     {
       "name": "main",
       "kind": "function",
-      "file": "scripts/recommend.py",
-      "line": 400
+      "file": "scripts/refresh_github_metadata.py",
+      "line": 216
     },
     {
-      "name": "run",
+      "name": "http_error",
       "kind": "function",
-      "file": "scripts/test_recommend.py",
-      "line": 9
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 13
+    },
+    {
+      "name": "run_main",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 23
+    },
+    {
+      "name": "test_missing_repo_is_recorded_but_nonfatal",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 32
+    },
+    {
+      "name": "fake_fetch",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 47
+    },
+    {
+      "name": "test_license_signature_detection",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 80
+    },
+    {
+      "name": "test_license_fallback_reads_root_license_file",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 110
+    },
+    {
+      "name": "fake_contents",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 113
+    },
+    {
+      "name": "test_license_fallback_reads_readme_when_root_license_is_absent",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 130
+    },
+    {
+      "name": "fake_contents",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 133
+    },
+    {
+      "name": "test_license_fallback_rejects_conflicting_root_files",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 146
+    },
+    {
+      "name": "fake_contents",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 149
+    },
+    {
+      "name": "test_metadata_refresh_uses_license_fallback",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 168
+    },
+    {
+      "name": "test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 198
+    },
+    {
+      "name": "test_server_error_remains_fatal",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 231
+    },
+    {
+      "name": "RejectingOpener",
+      "kind": "class",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 296
+    },
+    {
+      "name": "open",
+      "kind": "function",
+      "file": "scripts/test_refresh_github_metadata.py",
+      "line": 297
+    },
+    {
+      "name": "source",
+      "kind": "function",
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "line": 12
+    },
+    {
+      "name": "fake_repo",
+      "kind": "function",
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "line": 33
+    },
+    {
+      "name": "fake_content",
+      "kind": "function",
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "line": 39
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "line": 50
+    },
+    {
+      "name": "scoped_content",
+      "kind": "function",
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "line": 57
+    },
+    {
+      "name": "conflicting_repo",
+      "kind": "function",
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "line": 89
+    },
+    {
+      "name": "reused_repo",
+      "kind": "function",
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "line": 93
+    },
+    {
+      "name": "readme_only",
+      "kind": "function",
+      "file": "scripts/test_verify_catalog_evidence.py",
+      "line": 103
+    },
+    {
+      "name": "root_files",
+      "kind": "function",
+      "file": "scripts/verify_catalog_evidence.py",
+      "line": 32
+    },
+    {
+      "name": "is_license_file",
+      "kind": "function",
+      "file": "scripts/verify_catalog_evidence.py",
+      "line": 47
+    },
+    {
+      "name": "content_with_sha",
+      "kind": "function",
+      "file": "scripts/verify_catalog_evidence.py",
+      "line": 52
+    },
+    {
+      "name": "blob_evidence",
+      "kind": "function",
+      "file": "scripts/verify_catalog_evidence.py",
+      "line": 77
+    },
+    {
+      "name": "inspect_entry",
+      "kind": "function",
+      "file": "scripts/verify_catalog_evidence.py",
+      "line": 82
+    },
+    {
+      "name": "requires_review",
+      "kind": "function",
+      "file": "scripts/verify_catalog_evidence.py",
+      "line": 182
+    },
+    {
+      "name": "select_entries",
+      "kind": "function",
+      "file": "scripts/verify_catalog_evidence.py",
+      "line": 193
+    },
+    {
+      "name": "audit",
+      "kind": "function",
+      "file": "scripts/verify_catalog_evidence.py",
+      "line": 210
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/verify_catalog_evidence.py",
+      "line": 252
     }
   ],
   "selected_tests": [
-    "scripts/test_recommend.py"
+    "scripts/test_refresh_github_metadata.py",
+    "scripts/test_verify_catalog_evidence.py"
   ]
 }
