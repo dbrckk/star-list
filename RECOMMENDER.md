@@ -179,7 +179,8 @@ python scripts/validate_json_contract.py schemas/metadata-evidence.schema.json /
 ```
 
 The daily **Review uncertain catalog metadata** GitHub workflow selects a
-rotating batch of unresolved licences or unverified hosting metadata and
+rotating batch covering **all review-gated repositories**, including audit-tier,
+archived/disabled, unresolved licences and unverified hosting metadata, and
 uploads a JSON evidence artifact. Normal execution is **read-only**. The
 auditor checks GitHub repository identity, records immutable Git blob hashes,
 and validates root licence signatures. Explicitly scoped or mixed licensing
