@@ -44,6 +44,7 @@ hosted builders alongside GitHub repositories.
 ```bash
 python scripts/recommend.py "3d scroll animation website" --websites --top-websites 10
 python scripts/recommend.py "react ui animation" --websites --json
+python scripts/recommend.py "any topic" --websites --rank-all-websites --top-websites 200 --json
 ```
 
 With `--websites`, JSON contains a separate `websiteRecommendations`
@@ -52,6 +53,10 @@ array with HTTPS links, type, free/freemium access expectations,
 `integrationEligible: false`: a web gallery or paid service must not
 be dispatched as a GitHub dependency. The normal repository
 `recommendations` and `recommendedStack` are unchanged.
+
+`--rank-all-websites` also ranks websites with no matching signals (zero score).
+Without that opt-in, unrelated sites remain hidden to avoid noisy results.
+Every web resource is reference-only and never auto-integrated.
 
 `--top-websites N` limits interactive CLI output (default 5); the daily portfolio scanner evaluates all curated sites without a top-N cap and admits sparse game-project baseline references as review-only. Specialist NPC, narrative and 3D providers require a project-metadata match.
 Repository-only technical hard filters (such as `--language`, `--platform`
@@ -81,6 +86,31 @@ The selection score combines:
 
 If no `--cap` is supplied, lexical relevance receives extra weight.
 
+## Complete catalog ranking (default)
+
+Every repository in `catalog.json` is eligible for **ranking by default**, even
+an `audit` entry, an archived/disabled entry, or a record with a zero or
+negative task-selection score. Nothing is silently removed for these reasons.
+For a full ordered list, raise `--top` to the catalog size, for example:
+
+```bash
+python scripts/recommend.py "youtube video automation" --top 2000 --json
+```
+
+The returned `diagnostics.eligible` count equals `diagnostics.catalogSize`
+when no explicit constraints are supplied; `--top` controls only how many
+ranked results are displayed. Score and relevance are **not** quality or
+security certification. `rankingReviewGates` and `reviewRequired` mark
+unreviewed (`audit`) or archived/disabled projects. Such entries may be
+evaluated but are **not** allowed into automatically inferred related-tool
+suggestions or recommended stacks. Lack of a gate is not proof of safety,
+licensing, compatibility or suitability.
+
+Users can explicitly narrow the candidate set with `--exclude-audit`,
+`--exclude-archived`, `--min-score`, and the technical filters below.
+The older `--include-audit` and `--include-archived` flags remain accepted
+for backward compatibility but are redundant in the default mode.
+
 ## Constraint filters
 
 The recommender can enforce technical constraints before scoring:
@@ -102,11 +132,15 @@ Supported options:
 | `--exclude-cap VALUE` | Excluded capability; repeatable. |
 | `--domain VALUE` | Force a domain instead of relying only on query inference; repeatable. |
 | `--top N` | Maximum number of recommendations; default 5. |
-| `--min-score N` | Minimum positive selection score. |
+| `--min-score N` | Optional minimum selection score (no default threshold). |
 | `--platform VALUE` | Required platform; repeatable. |
 | `--language VALUE` | Required language; repeatable. |
 | `--self-hosted` | Require `selfHosted: true`. |
-| `--include-archived` | Allow archived or disabled repositories. |
+| `--include-archived` | Explicitly confirm the default inclusive ranking. |
+| `--exclude-archived` | Filter out archived or disabled repositories. |
+| `--include-audit` | Explicitly confirm the default inclusive ranking. |
+| `--exclude-audit` | Filter out audit-tier repositories. |
+| `--rank-all-websites` | With `--websites`, rank every website, even zero-match entries. |
 | `--max-resource low|medium|high` | Maximum resource level. |
 | `--max-complexity low|medium|high` | Maximum integration complexity. |
 | `--json` | Emit structured JSON instead of the human-readable ranking. |
@@ -118,7 +152,8 @@ Repeated platform/language filters are conjunctive: the repository must contain 
 The same hard filters used for the main recommendations also apply to linked alternatives,
 complementary tools and predefined stacks. A curated relationship cannot override a
 requested platform, language, capability exclusion, self-hosting requirement, resource
-limit, complexity limit or the default inactive/audit exclusions.
+limit or complexity limit. Audit/inactive entries remain outside inferred
+links and predefined stacks, even while they appear in the full ranking.
 
 - An ineligible curated link is removed. The engine can infer an eligible replacement when available.
 - A predefined stack is only displayed when **all** of its component repositories are eligible.
@@ -126,8 +161,9 @@ limit, complexity limit or the default inactive/audit exclusions.
 - `--min-score` determines which repositories appear as primary recommendations; related
   tools still honor the hard filters, but need not individually meet the query-specific
   relevance threshold.
-- The `--include-audit` and `--include-archived` switches can widen eligibility, but
-  do not change the need to review an inactive or poorly licensed repository.
+- Audit/archived entries can be inspected in the primary ranking but remain
+  excluded from inferred relations and predefined stacks. Ranking does not grant
+  permission to install or reuse a dependency.
 
 Domain inference also recognizes `roblox`, `godot` and `luau` as game-development queries.
 
