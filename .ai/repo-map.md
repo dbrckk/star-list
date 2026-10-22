@@ -5145,7 +5145,7 @@ reuse = site.get("reuse")
 # quotations, formatting or source language. Label these constraints
 # independently from a licence or hosted compute review.
 ⋮----
-def recommend_websites(qtokens, domains, limit=5)
+def recommend_websites(qtokens, domains, limit=5, include_unmatched=False)
 ⋮----
 """Rank non-GitHub references separately from code integration candidates.
 
@@ -5197,6 +5197,10 @@ reason="declining" if momentum<=-2 else "improving" if momentum>=2 else "growing
 def guidance_weight(r)
 ⋮----
 source = r.get("guidanceSource")
+⋮----
+def ranking_review_gates(r)
+⋮----
+"""Rank everything, but make unaudited or inactive entries explicit."""
 ⋮----
 def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps)
 ⋮----
@@ -5267,13 +5271,17 @@ def main()
 ⋮----
 ap = argparse.ArgumentParser(description="Recommend repositories from star-list catalog.")
 ⋮----
+archived_filter = ap.add_mutually_exclusive_group()
+⋮----
+audit_filter = ap.add_mutually_exclusive_group()
+⋮----
 args = ap.parse_args()
 ⋮----
 repo_by_name = {r["repo"]: r for r in repos}
 qtokens = tokens(args.query)
 domains = set(args.domain) or infer_domains(qtokens)
 ⋮----
-eligible_names = set()
+relation_names = set()  # Conservative suggestions: never auto-link audit or inactive entries.
 filtered = {"platform":0, "language":0, "selfHosted":0, "inactive":0, "audit":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
 ⋮----
 gh = r.get("github", {})
@@ -5284,7 +5292,7 @@ s = score_repo(r, qtokens, domains, required_caps, excluded_caps)
 ⋮----
 top = []
 ⋮----
-relations = resolve_relations(r, repos, stacks, repo_by_name, eligible_names)
+relations = resolve_relations(r, repos, stacks, repo_by_name, relation_names)
 ⋮----
 result = {
 ⋮----

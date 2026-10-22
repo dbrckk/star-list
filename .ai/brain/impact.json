@@ -1,36 +1,16 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "923f310e80e476d530a9c7742f65eb00807e9c64",
-  "head": "df9ed26847b2c79d57870e49b3a925356699681a",
+  "base": "df9ed26847b2c79d57870e49b3a925356699681a",
+  "head": "e0332c31fd637b28ee822067616aa030256e9112",
   "index_mode": "incremental",
   "changed_files": [
-    {
-      "path": ".github/workflows/portfolio-scan-smoke.yml",
-      "status": "M"
-    },
-    {
-      "path": "README.md",
-      "status": "M"
-    },
     {
       "path": "RECOMMENDER.md",
       "status": "M"
     },
     {
-      "path": "WEB_RESOURCES.md",
-      "status": "M"
-    },
-    {
       "path": "catalog.json",
-      "status": "M"
-    },
-    {
-      "path": "schemas/websites.schema.json",
-      "status": "M"
-    },
-    {
-      "path": "scripts/portfolio_daily.py",
       "status": "M"
     },
     {
@@ -40,29 +20,16 @@
     {
       "path": "scripts/test_recommend.py",
       "status": "M"
-    },
-    {
-      "path": "scripts/validate_websites.py",
-      "status": "M"
-    },
-    {
-      "path": "websites.json",
-      "status": "M"
     }
   ],
   "changed_source_files": [
-    "scripts/portfolio_daily.py",
     "scripts/recommend.py",
-    "scripts/test_recommend.py",
-    "scripts/validate_websites.py"
+    "scripts/test_recommend.py"
   ],
   "impacted_files": [
     "scripts/portfolio_daily.py",
-    "scripts/portfolio_failure_diagnostics.py",
     "scripts/recommend.py",
-    "scripts/test_json_contracts.py",
-    "scripts/test_recommend.py",
-    "scripts/validate_websites.py"
+    "scripts/test_recommend.py"
   ],
   "impacted_symbols": [
     {
@@ -222,54 +189,6 @@
       "line": 1014
     },
     {
-      "name": "safe_state",
-      "kind": "function",
-      "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 54
-    },
-    {
-      "name": "failure_category",
-      "kind": "function",
-      "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 59
-    },
-    {
-      "name": "safe_public_failure",
-      "kind": "function",
-      "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 73
-    },
-    {
-      "name": "task_failure_evidence",
-      "kind": "function",
-      "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 110
-    },
-    {
-      "name": "add_deep_task_diagnostics",
-      "kind": "function",
-      "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 181
-    },
-    {
-      "name": "inventory_diagnostic_inbox",
-      "kind": "function",
-      "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 279
-    },
-    {
-      "name": "public_diagnostics",
-      "kind": "function",
-      "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 315
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/portfolio_failure_diagnostics.py",
-      "line": 349
-    },
-    {
       "name": "norm",
       "kind": "function",
       "file": "scripts/recommend.py",
@@ -330,80 +249,67 @@
       "line": 200
     },
     {
-      "name": "score_repo",
+      "name": "ranking_review_gates",
       "kind": "function",
       "file": "scripts/recommend.py",
       "line": 207
     },
     {
+      "name": "score_repo",
+      "kind": "function",
+      "file": "scripts/recommend.py",
+      "line": 221
+    },
+    {
       "name": "explain_repo",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 238
+      "line": 252
     },
     {
       "name": "choose_stack",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 261
+      "line": 275
     },
     {
       "name": "infer_alternatives",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 274
+      "line": 288
     },
     {
       "name": "infer_complements",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 295
+      "line": 309
     },
     {
       "name": "resolve_relations",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 320
+      "line": 334
     },
     {
       "name": "usable",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 322
+      "line": 336
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 343
+      "line": 357
     },
     {
       "name": "run",
       "kind": "function",
       "file": "scripts/test_recommend.py",
       "line": 9
-    },
-    {
-      "name": "canonical_url",
-      "kind": "function",
-      "file": "scripts/validate_websites.py",
-      "line": 18
-    },
-    {
-      "name": "check_websites",
-      "kind": "function",
-      "file": "scripts/validate_websites.py",
-      "line": 33
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/validate_websites.py",
-      "line": 136
     }
   ],
   "selected_tests": [
-    "scripts/test_json_contracts.py",
     "scripts/test_recommend.py"
   ]
 }

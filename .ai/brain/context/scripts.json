@@ -2,16 +2,15 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/portfolio_daily.py",
+      "path": "scripts/recommend.py",
       "reasons": [
         "changed",
         "changed-source",
         "dependency-neighbor",
         "impact",
-        "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
-      "score": 510
+      "score": 445
     },
     {
       "path": "scripts/test_recommend.py",
@@ -23,47 +22,17 @@
         "selected-test",
         "symbol-indexed"
       ],
-      "score": 465
+      "score": 435
     },
     {
-      "path": "scripts/recommend.py",
+      "path": "scripts/portfolio_daily.py",
       "reasons": [
-        "changed",
-        "changed-source",
         "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 440
-    },
-    {
-      "path": "scripts/validate_websites.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 360
-    },
-    {
-      "path": "scripts/test_json_contracts.py",
-      "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test"
-      ],
-      "score": 180
-    },
-    {
-      "path": "scripts/portfolio_failure_diagnostics.py",
-      "reasons": [
         "impact",
         "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
-      "score": 150
+      "score": 265
     },
     {
       "path": "scripts/agent_skill_discovery.py",
@@ -71,6 +40,13 @@
         "dependency-neighbor"
       ],
       "score": 75
+    },
+    {
+      "path": "scripts/portfolio_failure_diagnostics.py",
+      "reasons": [
+        "reverse-dependency-neighbor"
+      ],
+      "score": 30
     },
     {
       "path": "scripts/find_replacements.py",
@@ -87,7 +63,7 @@
       "score": 25
     },
     {
-      "path": "scripts/validate_json_contract.py",
+      "path": "scripts/validate_websites.py",
       "reasons": [
         "dependency-neighbor"
       ],

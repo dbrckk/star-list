@@ -4,15 +4,15 @@
     "expand_to": 12,
     "max_files": 3,
     "requested_max_files": 12,
-    "score_margin": 12,
+    "score_margin": 9,
     "tier": "narrow",
-    "top_score": 66
+    "top_score": 63
   },
   "cache": {
-    "fingerprint": "82f6debfa2665e10f6a0d4db4a515294a2e7e83adece79358872452602493c46",
+    "fingerprint": "da3239b46f4b62559b87aa09c637c4a2ed4c8a6e22e5df84b862e050aaac000e",
     "hit": false
   },
-  "candidate_count": 15,
+  "candidate_count": 9,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -25,10 +25,9 @@
       "reasons": [
         "impact",
         "learning",
-        "recently-changed",
         "search-index"
       ],
-      "score": 66,
+      "score": 63,
       "symbols": [
         "SameOriginRedirect",
         "busy_integration_targets",
@@ -95,6 +94,7 @@
         "load",
         "main",
         "norm",
+        "ranking_review_gates",
         "recommend_websites",
         "resolve_relations",
         "score_repo",

@@ -5,28 +5,26 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "12b",
-      "173",
-      "audit",
-      "editorial",
-      "factual",
+      "175",
+      "catalog",
       "feat",
-      "humanizer",
-      "rewriting",
-      "web"
+      "full",
+      "gates",
+      "rank",
+      "recommender",
+      "review",
+      "safety"
     ],
     "test_count": 0,
-    "useful_count": 4
+    "useful_count": 2
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(web): audit Humanizer 12B for factual editorial rewriting (#173)",
+  "task": "feat(recommender): rank full catalog with safety review gates (#175)",
   "tests_selected": [],
   "useful": [
-    "scripts/portfolio_daily.py",
     "scripts/recommend.py",
-    "scripts/test_recommend.py",
-    "scripts/validate_websites.py"
+    "scripts/test_recommend.py"
   ]
 }

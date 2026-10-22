@@ -113,27 +113,27 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-21T23:58:36Z
+Generated: 2026-10-22T06:18:01Z
 
 ### Git
 - Branch: `main`
-- Head: `df9ed26847b2`
-- Commit date: 2026-10-21T19:58:25-04:00
-- Commit: feat(web): audit Humanizer 12B for factual editorial rewriting (#173)
+- Head: `e0332c31fd63`
+- Commit date: 2026-10-22T02:17:51-04:00
+- Commit: feat(recommender): rank full catalog with safety review gates (#175)
 - Tracked files: 294
 
 ### Recently changed files
+- `RECOMMENDER.md`
+- `scripts/recommend.py`
+- `scripts/test_recommend.py`
+- `catalog.json`
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `README.md`
-- `RECOMMENDER.md`
 - `WEB_RESOURCES.md`
 - `schemas/websites.schema.json`
 - `scripts/portfolio_daily.py`
-- `scripts/recommend.py`
-- `scripts/test_recommend.py`
 - `scripts/validate_websites.py`
 - `websites.json`
-- `catalog.json`
 - `.github/workflows/production-os-review-handoff.yml`
 
 ### Project signals
