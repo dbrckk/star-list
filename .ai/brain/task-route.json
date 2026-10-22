@@ -4,15 +4,15 @@
     "expand_to": 12,
     "max_files": 3,
     "requested_max_files": 12,
-    "score_margin": 15,
+    "score_margin": 12,
     "tier": "narrow",
-    "top_score": 66
+    "top_score": 57
   },
   "cache": {
-    "fingerprint": "ca889971bcc43c6033dc4a78cf829764d86a2de9a08784212d1a8469ddee1c97",
+    "fingerprint": "d8e6e0b3a10001eab99359e0ddea315274f89989987420ec2ba27b9aa04e65fc",
     "hit": false
   },
-  "candidate_count": 20,
+  "candidate_count": 9,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -23,12 +23,10 @@
       ],
       "path": "scripts/portfolio_daily.py",
       "reasons": [
-        "impact",
         "learning",
-        "recently-changed",
         "search-index"
       ],
-      "score": 66,
+      "score": 57,
       "symbols": [
         "SameOriginRedirect",
         "busy_integration_targets",
@@ -60,11 +58,10 @@
       ],
       "path": "scripts/test_recommend.py",
       "reasons": [
-        "impact",
         "learning",
         "search-index"
       ],
-      "score": 51,
+      "score": 45,
       "symbols": [
         "run"
       ]
@@ -75,19 +72,19 @@
         "engine",
         "game"
       ],
-      "path": "scripts/catalog_domain_evidence.py",
+      "path": "scripts/admit_github_stars.py",
       "reasons": [
-        "impact",
-        "recently-changed",
         "search-index"
       ],
-      "score": 38,
+      "score": 29,
       "symbols": [
-        "_normalized",
-        "_readme_source_map",
-        "advisory_domain_evidence",
-        "reviewed_readme_source",
-        "reviewed_readme_task_terms"
+        "admit",
+        "catalog_entry",
+        "classify",
+        "count",
+        "get_repo",
+        "main",
+        "manifest_stable_ids"
       ]
     }
   ],

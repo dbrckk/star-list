@@ -5,30 +5,28 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "181",
-      "audit",
-      "discovery",
-      "domains",
-      "feat",
-      "freshness",
-      "readme-backed",
-      "traceable"
+      "183",
+      "catalog",
+      "foreign",
+      "guard",
+      "hosts",
+      "mcp",
+      "reject",
+      "retain",
+      "subdomain",
+      "test",
+      "verified",
+      "www-provider"
     ],
     "test_count": 0,
-    "useful_count": 7
+    "useful_count": 1
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(discovery): traceable README-backed domains and freshness audit (#181)",
+  "task": "test(catalog): retain verified MCP www-provider subdomain guard and reject foreign hosts (#183)",
   "tests_selected": [],
   "useful": [
-    "scripts/catalog_domain_evidence.py",
-    "scripts/check_readme_evidence_freshness.py",
-    "scripts/portfolio_daily.py",
-    "scripts/recommend.py",
-    "scripts/report_domain_coverage.py",
-    "scripts/test_readme_domain_evidence.py",
-    "scripts/test_readme_evidence_freshness.py"
+    "scripts/test_json_contracts.py"
   ]
 }

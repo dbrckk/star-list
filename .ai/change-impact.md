@@ -1,26 +1,12 @@
 # Change impact
 
-Base: 677c805b9cfe5a0311e0775c33b439cb62dbe9d6
-Head: 597fa44e8b2f960b4a07da8e547d6d4d67bffcfa
+Base: 9d8d206f979e2416babae63b4b7d5aecf7b78046
+Head: 7e9516b02a956386f816ad850930b136e57f31b3
 
 ## Changed files
-- A .github/workflows/readme-evidence-freshness.yml
-- M .github/workflows/validate.yml
-- M RECOMMENDER.md
-- A catalog-readme-evidence.json
-- A schemas/readme-domain-evidence.schema.json
-- M scripts/catalog_domain_evidence.py
-- A scripts/check_readme_evidence_freshness.py
-- M scripts/portfolio_daily.py
-- M scripts/recommend.py
-- M scripts/report_domain_coverage.py
-- A scripts/test_readme_domain_evidence.py
-- A scripts/test_readme_evidence_freshness.py
+- M scripts/test_json_contracts.py
 
 ## Affected areas
-- .github
-- (root)
-- schemas
 - scripts
 
 ## Related test candidates

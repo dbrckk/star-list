@@ -2,156 +2,102 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/portfolio_daily.py",
+      "path": "scripts/test_json_contracts.py",
       "reasons": [
         "changed",
         "changed-source",
-        "dependency-neighbor",
         "impact",
-        "reverse-dependency-neighbor",
+        "selected-test",
         "symbol-indexed"
       ],
-      "score": 640
+      "score": 375
     },
     {
-      "path": "scripts/recommend.py",
+      "path": "scripts/admit_github_stars.py",
       "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "reverse-dependency-neighbor",
-        "symbol-indexed"
+        "recent-project-state"
       ],
-      "score": 575
+      "score": 60
     },
     {
-      "path": "scripts/test_readme_domain_evidence.py",
+      "path": "scripts/audit_catalog_quality.py",
       "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test"
+        "recent-project-state"
       ],
-      "score": 490
+      "score": 60
     },
     {
       "path": "scripts/catalog_domain_evidence.py",
       "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
+        "recent-project-state"
       ],
-      "score": 475
-    },
-    {
-      "path": "scripts/test_readme_evidence_freshness.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 415
-    },
-    {
-      "path": "scripts/report_domain_coverage.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "reverse-dependency-neighbor",
-        "symbol-indexed"
-      ],
-      "score": 385
+      "score": 60
     },
     {
       "path": "scripts/check_readme_evidence_freshness.py",
       "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
+        "recent-project-state"
       ],
-      "score": 340
+      "score": 60
     },
     {
-      "path": "scripts/test_other_domain_expansion.py",
+      "path": "scripts/infer_selection_guidance.py",
       "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test"
+        "recent-project-state"
       ],
-      "score": 270
+      "score": 60
+    },
+    {
+      "path": "scripts/portfolio_daily.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/recommend.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
+    },
+    {
+      "path": "scripts/report_domain_coverage.py",
+      "reasons": [
+        "recent-project-state"
+      ],
+      "score": 60
     },
     {
       "path": "scripts/test_catalog_domain_evidence.py",
       "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
+        "recent-project-state"
       ],
-      "score": 245
+      "score": 60
     },
     {
-      "path": "scripts/test_recommend.py",
+      "path": "scripts/test_other_domain_expansion.py",
       "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
+        "recent-project-state"
       ],
-      "score": 215
+      "score": 60
     },
     {
-      "path": "scripts/test_full_catalog_availability.py",
+      "path": "scripts/test_readme_domain_evidence.py",
       "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test"
+        "recent-project-state"
       ],
-      "score": 210
+      "score": 60
     },
     {
-      "path": "scripts/portfolio_failure_diagnostics.py",
+      "path": "scripts/test_readme_evidence_freshness.py",
       "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "symbol-indexed"
+        "recent-project-state"
       ],
-      "score": 150
+      "score": 60
     },
     {
-      "path": "scripts/agent_skill_discovery.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 75
-    },
-    {
-      "path": "scripts/find_replacements.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
-    },
-    {
-      "path": "scripts/health_score.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
-    },
-    {
-      "path": "scripts/refresh_github_metadata.py",
+      "path": "scripts/validate_websites.py",
       "reasons": [
         "dependency-neighbor"
       ],

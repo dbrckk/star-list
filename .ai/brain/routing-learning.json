@@ -2,25 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "fix(portfolio): exclude demo repos and generic matches from automatic integration",
-      "terms": [
-        "automatic",
-        "demo",
-        "exclude",
-        "from",
-        "generic",
-        "integration",
-        "matches",
-        "portfolio",
-        "repos"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/portfolio_daily.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "fix(portfolio): release quarantine after completed v3 recovery",
       "terms": [
         "after",
@@ -1351,6 +1332,28 @@
         "scripts/test_readme_domain_evidence.py",
         "scripts/test_readme_evidence_freshness.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "test(catalog): retain verified MCP www-provider subdomain guard and reject foreign hosts (#183)",
+      "terms": [
+        "183",
+        "catalog",
+        "foreign",
+        "guard",
+        "hosts",
+        "mcp",
+        "reject",
+        "retain",
+        "subdomain",
+        "test",
+        "verified",
+        "www-provider"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/test_json_contracts.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1602,6 +1605,9 @@
       "scripts/report_domain_coverage.py": 4,
       "scripts/test_readme_domain_evidence.py": 4,
       "scripts/test_readme_evidence_freshness.py": 4
+    },
+    "183": {
+      "scripts/test_json_contracts.py": 4
     },
     "19": {
       "scripts/audit_catalog_quality.py": 4,
@@ -2002,7 +2008,7 @@
       "scripts/test_catalog_quality.py": 16,
       "scripts/test_documentation.py": 16,
       "scripts/test_full_catalog_availability.py": 4,
-      "scripts/test_json_contracts.py": 4,
+      "scripts/test_json_contracts.py": 8,
       "scripts/test_recommend.py": 12,
       "scripts/test_refresh_github_metadata.py": 8,
       "scripts/test_sync_github_stars.py": 4,
@@ -2396,6 +2402,9 @@
       "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
     },
+    "foreign": {
+      "scripts/test_json_contracts.py": 4
+    },
     "forwarding": {
       "scripts/portfolio_daily.py": 4
     },
@@ -2497,6 +2506,9 @@
     "godot": {
       "scripts/portfolio_daily.py": 8
     },
+    "guard": {
+      "scripts/test_json_contracts.py": 4
+    },
     "guidance": {
       "scripts/infer_selection_guidance.py": 4,
       "scripts/recommend.py": 8,
@@ -2522,6 +2534,9 @@
     },
     "hermes": {
       "scripts/portfolio_daily.py": 4
+    },
+    "hosts": {
+      "scripts/test_json_contracts.py": 4
     },
     "hub": {
       "scripts/portfolio_daily.py": 4,
@@ -2734,6 +2749,7 @@
     "mcp": {
       "scripts/portfolio_daily.py": 12,
       "scripts/recommend.py": 4,
+      "scripts/test_json_contracts.py": 4,
       "scripts/test_recommend.py": 8,
       "scripts/validate_websites.py": 4
     },
@@ -3048,7 +3064,8 @@
     },
     "reject": {
       "scripts/portfolio_daily.py": 4,
-      "scripts/test_documentation.py": 4
+      "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4
     },
     "relations": {
       "scripts/recommend.py": 8,
@@ -3152,7 +3169,8 @@
       "scripts/portfolio_daily.py": 8
     },
     "retain": {
-      "scripts/portfolio_failure_diagnostics.py": 4
+      "scripts/portfolio_failure_diagnostics.py": 4,
+      "scripts/test_json_contracts.py": 4
     },
     "retire": {
       "scripts/portfolio_daily.py": 4
@@ -3420,6 +3438,9 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "subdomain": {
+      "scripts/test_json_contracts.py": 4
+    },
     "surface": {
       "scripts/portfolio_daily.py": 16,
       "scripts/test_documentation.py": 4,
@@ -3452,6 +3473,9 @@
     "tasks": {
       "scripts/portfolio_daily.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "test": {
+      "scripts/test_json_contracts.py": 4
     },
     "throttled": {
       "scripts/portfolio_daily.py": 4
@@ -3578,6 +3602,7 @@
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_discovery_cache.py": 4,
       "scripts/test_documentation.py": 4,
+      "scripts/test_json_contracts.py": 4,
       "scripts/test_recommend.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
@@ -3640,6 +3665,9 @@
     "workflow": {
       "scripts/star_import_pipeline.py": 4,
       "scripts/test_star_import_pipeline.py": 4
+    },
+    "www-provider": {
+      "scripts/test_json_contracts.py": 4
     }
   },
   "term_test_scores": {}

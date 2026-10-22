@@ -2,13 +2,13 @@
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
   "files_indexed": 67,
-  "symbol_count": 291,
+  "symbol_count": 292,
   "edge_count": 48,
   "languages": {
     "python": 67
   },
   "index_mode": "incremental",
-  "reparsed_files": 7,
+  "reparsed_files": 1,
   "top_symbol_files": [
     {
       "file": "scripts/portfolio_daily.py",
@@ -184,6 +184,10 @@
     },
     {
       "file": "scripts/test_degraded_inputs.py",
+      "symbols": 1
+    },
+    {
+      "file": "scripts/test_json_contracts.py",
       "symbols": 1
     },
     {

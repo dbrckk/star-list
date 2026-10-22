@@ -113,16 +113,17 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-22T13:53:08Z
+Generated: 2026-10-22T15:42:55Z
 
 ### Git
 - Branch: `main`
-- Head: `597fa44e8b2f`
-- Commit date: 2026-10-22T09:52:48-04:00
-- Commit: feat(discovery): traceable README-backed domains and freshness audit (#181)
-- Tracked files: 310
+- Head: `7e9516b02a95`
+- Commit date: 2026-10-22T11:42:44-04:00
+- Commit: test(catalog): retain verified MCP www-provider subdomain guard and reject foreign hosts (#183)
+- Tracked files: 315
 
 ### Recently changed files
+- `scripts/test_json_contracts.py`
 - `.github/workflows/readme-evidence-freshness.yml`
 - `.github/workflows/validate.yml`
 - `RECOMMENDER.md`
@@ -142,7 +143,6 @@ Generated: 2026-10-22T13:53:08Z
 - `catalog.schema.json`
 - `scripts/admit_github_stars.py`
 - `scripts/audit_catalog_quality.py`
-- `scripts/infer_selection_guidance.py`
 
 ### Project signals
 - No common build descriptor detected
