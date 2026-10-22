@@ -1,0 +1,275 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Star List evidence audit",
+  "type": "object",
+  "required": [
+    "generatedAt",
+    "catalogSize",
+    "uncertainEntries",
+    "selected",
+    "inspected",
+    "counts",
+    "results",
+    "updates",
+    "errors",
+    "batchIndex",
+    "wroteCatalog"
+  ],
+  "properties": {
+    "generatedAt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "catalogSize": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "uncertainEntries": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "selected": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "inspected": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "batchIndex": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "wroteCatalog": {
+      "type": "boolean"
+    },
+    "counts": {
+      "type": "object",
+      "required": [
+        "verifiedRootLicenses",
+        "githubClaimsOnly",
+        "hostingCandidates",
+        "proposedLicenseUpdates",
+        "appliedUpdates",
+        "errors",
+        "scopedLicenses"
+      ],
+      "properties": {
+        "verifiedRootLicenses": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "githubClaimsOnly": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hostingCandidates": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "proposedLicenseUpdates": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "appliedUpdates": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "errors": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "scopedLicenses": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "repository",
+          "repositoryId",
+          "defaultBranch",
+          "license",
+          "hosting",
+          "proposedLicense"
+        ],
+        "properties": {
+          "repository": {
+            "type": "string",
+            "pattern": "^[^/]+/[^/]+$"
+          },
+          "repositoryId": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "defaultBranch": {
+            "type": "string",
+            "minLength": 1
+          },
+          "proposedLicense": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "license": {
+            "type": "object",
+            "required": [
+              "status",
+              "value",
+              "evidence"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "unverified",
+                  "verified-root-file",
+                  "github-claim-only",
+                  "conflict",
+                  "scoped-licensing-review"
+                ]
+              },
+              "value": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "method",
+                    "value",
+                    "url"
+                  ],
+                  "properties": {
+                    "method": {
+                      "enum": [
+                        "github-repository-spdx",
+                        "root-license-signature",
+                        "root-license-scope-warning"
+                      ]
+                    },
+                    "value": {
+                      "type": "string"
+                    },
+                    "path": {
+                      "type": "string"
+                    },
+                    "blobSha": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{40}$"
+                    },
+                    "url": {
+                      "type": "string",
+                      "pattern": "^https://api.github.com/repos/"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "hosting": {
+            "type": "object",
+            "required": [
+              "status",
+              "evidence"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "unverified",
+                  "deployment-file-present-review-required"
+                ]
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "method",
+                    "path",
+                    "blobSha",
+                    "url"
+                  ],
+                  "properties": {
+                    "method": {
+                      "const": "compose-root-file"
+                    },
+                    "path": {
+                      "type": "string"
+                    },
+                    "blobSha": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{40}$"
+                    },
+                    "url": {
+                      "type": "string",
+                      "pattern": "^https://api.github.com/repos/"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "updates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "repository",
+          "license",
+          "evidence"
+        ],
+        "properties": {
+          "repository": {
+            "type": "string"
+          },
+          "license": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string",
+            "pattern": "^https://api.github.com/repos/"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "repository",
+          "error"
+        ],
+        "properties": {
+          "repository": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
