@@ -3,7 +3,7 @@
 - Index mode: incremental
 - Files indexed: 57
 - Files reparsed this run: 2
-- Symbols: 255
+- Symbols: 256
 - Internal import edges: 27
 - Impacted files: 3
 - Selected tests: 1
@@ -14,7 +14,7 @@
 ## Highest-density symbol files
 - scripts/portfolio_daily.py: 26 symbols
 - scripts/discover_candidates.py: 23 symbols
-- scripts/recommend.py: 19 symbols
+- scripts/recommend.py: 20 symbols
 - scripts/update_cache_health_history.py: 19 symbols
 - scripts/test_refresh_github_metadata.py: 14 symbols
 - scripts/evaluate_candidates.py: 12 symbols
@@ -44,7 +44,7 @@
 - AST index mode: incremental
 - AST files reparsed this run: 2
 - outline files retained: 57
-- top-level items retained: 1076
+- top-level items retained: 1082
 - direct members retained: 11
 - symbol shards: 25
 - route named symbols via ast-routing.json, then fetch one ast-symbols/<initial>.json shard

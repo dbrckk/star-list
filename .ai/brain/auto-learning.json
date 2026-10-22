@@ -5,15 +5,12 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "175",
-      "catalog",
-      "feat",
-      "full",
-      "gates",
-      "rank",
+      "176",
+      "improve",
+      "metadata",
       "recommender",
-      "review",
-      "safety"
+      "relevance",
+      "review"
     ],
     "test_count": 0,
     "useful_count": 2
@@ -21,7 +18,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(recommender): rank full catalog with safety review gates (#175)",
+  "task": "fix(recommender): improve relevance and metadata review (#176)",
   "tests_selected": [],
   "useful": [
     "scripts/recommend.py",

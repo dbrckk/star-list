@@ -5126,6 +5126,11 @@ stacks = json.loads(STACKS.read_text()) if STACKS.exists() else {"stacks": []}
 ⋮----
 def infer_domains(qtokens)
 ⋮----
+domains = {DOMAIN_ALIASES[t] for t in qtokens if t in DOMAIN_ALIASES}
+# "AI" alone is generic. In an explicitly media, graphics, marketing, or
+# writing task, it should not add a spurious coding-agent domain.
+explicit_agents = {"agent", "agents", "coding", "code", "dev"}
+⋮----
 # Generic connective words in curator prose are not evidence that a website
 # applies to a project (e.g. "and" in both a TTS description and art guidance).
 WEBSITE_MATCH_STOPWORDS = frozenset(
@@ -5200,7 +5205,11 @@ source = r.get("guidanceSource")
 ⋮----
 def ranking_review_gates(r)
 ⋮----
-"""Rank everything, but make unaudited or inactive entries explicit."""
+"""Rank everything, but expose the reasons an entry requires review."""
+⋮----
+def metadata_review_gates(r)
+⋮----
+"""Report factual gaps without guessing about hosting or licensing."""
 ⋮----
 def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps)
 ⋮----
@@ -5230,12 +5239,25 @@ matched_caps = sorted(required_caps & caps)
 ⋮----
 matched_terms = sorted(qtokens & (tokens(r.get("repo", "")) | caps | best))
 ⋮----
+# Generic words can occur in unrelated stacks. They cannot establish a fit
+# on their own (e.g. "AI video" must not select a coding-agent stack).
+STACK_GENERIC_TERMS = frozenset(
+⋮----
 def choose_stack(stacks, qtokens, domains, allowed_names=None)
 ⋮----
-# Never propose an unusable predefined stack when candidates are filtered.
+domain_match = st.get("domain") in domains
 ⋮----
-stoks = tokens(st.get("name", "") + " " + st.get("goal", "") + " " + " ".join(st.get("notes", [])))
-score = 2*len(qtokens & stoks) + (3 if st.get("domain") in domains else 0)
+title_terms = tokens(st.get("name", ""))
+goal_terms = tokens(st.get("goal", ""))
+significant = (qtokens & (title_terms | goal_terms)) - STACK_GENERIC_TERMS
+# Require a strong named match, or two independent task-specific
+# signals. Notes cannot be evidence: they often describe caveats,
+# alternatives or unrelated technologies.
+title_words = norm(st.get("name", "")).split()
+anchor = next((word for word in title_words if word not in STACK_GENERIC_TERMS), None)
+anchored = anchor is not None and anchor in qtokens
+⋮----
+score = 4 * len(significant) + (3 if domain_match else 0) + (2 if anchored else 0)
 ⋮----
 def infer_alternatives(source, repos, top=3, allowed_names=None)
 ⋮----
@@ -5295,6 +5317,8 @@ top = []
 relations = resolve_relations(r, repos, stacks, repo_by_name, relation_names)
 ⋮----
 result = {
+⋮----
+all_gates = item["rankingReviewGates"] + item["metadataReviewGates"]
 ⋮----
 st = result["recommendedStack"]
 ````

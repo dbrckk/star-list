@@ -113,14 +113,14 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-22T06:18:01Z
+Generated: 2026-10-22T07:11:16Z
 
 ### Git
 - Branch: `main`
-- Head: `e0332c31fd63`
-- Commit date: 2026-10-22T02:17:51-04:00
-- Commit: feat(recommender): rank full catalog with safety review gates (#175)
-- Tracked files: 294
+- Head: `5ddf4c6d5684`
+- Commit date: 2026-10-22T03:11:06-04:00
+- Commit: fix(recommender): improve relevance and metadata review (#176)
+- Tracked files: 295
 
 ### Recently changed files
 - `RECOMMENDER.md`
@@ -134,7 +134,6 @@ Generated: 2026-10-22T06:18:01Z
 - `scripts/portfolio_daily.py`
 - `scripts/validate_websites.py`
 - `websites.json`
-- `.github/workflows/production-os-review-handoff.yml`
 
 ### Project signals
 - No common build descriptor detected
