@@ -1,0 +1,19 @@
+{
+  "name": "Freebuff Android - IDE dans Chrome",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22-bookworm",
+  "remoteUser": "node",
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.fontSize": 15,
+        "editor.fontSize": 15,
+        "terminal.integrated.scrollback": 5000
+      }
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  }
+}

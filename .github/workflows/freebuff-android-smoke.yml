@@ -1,0 +1,50 @@
+name: Freebuff Android checks
+on:
+  push:
+    branches: [freebuff-android]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Shell and simulated Termux tests
+        run: bash .devcontainer/tests/test-shell.sh
+  official-cli-install:
+    name: CLI native ${{ matrix.runner }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install official Freebuff CLI and execute version check
+        run: bash .devcontainer/setup.sh
+      - name: Verify native client can print help
+        run: |
+          uname -m
+          timeout 45s "$HOME/.local/bin/freebuff" --help >/dev/null
+      - name: Check interactive startup without account credentials
+        run: |
+          set +e
+          timeout 12s script -q -e -c "$HOME/.local/bin/freebuff" /dev/null </dev/null > tui-smoke.txt 2>&1
+          status=$?
+          set -e
+          if grep -Eiq 'Usage: node (mcp_proxy|test-bootstrap-caching)' tui-smoke.txt; then
+            echo 'Invalid Freebuff bundled startup entrypoint' >&2
+            exit 1
+          fi
+          test -s tui-smoke.txt || { echo 'Freebuff did not draw a terminal screen'; exit 1; }
+          case "$status" in 0|124) ;; *) echo "Freebuff TUI exited with $status" >&2; exit 1;; esac
+      - name: Menu smoke check
+        run: printf '0\n' | "$HOME/.local/bin/freebuff-mobile" >/dev/null

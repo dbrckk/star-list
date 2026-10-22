@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+export PATH="$HOME/.local/bin:$PATH"
+base="${HOME}/projects"
+mkdir -p "$base"
+
+clone_repo() {
+  local repo dir
+  read -r -p 'Dépôt propriétaire/nom : ' repo || return
+  [[ "$repo" =~ ^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ ]] || { echo 'Format invalide.'; return; }
+  dir="${repo//\//__}"
+  [[ "$dir" != '.' && "$dir" != '..' && "${repo%%/*}" != '.' && "${repo%%/*}" != '..' ]] || { echo 'Nom invalide.'; return; }
+  [[ ! -e "$base/$dir" ]] || { echo 'Dossier déjà présent, aucun fichier écrasé.'; return; }
+  if command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; then
+    gh repo clone "$repo" "$base/$dir"
+  else
+    git clone "https://github.com/$repo.git" "$base/$dir" || echo 'Dépôt privé ? Lance la connexion GitHub (choix 4).'
+  fi
+}
+
+git_status_projects() {
+  local dirs=() d
+  mapfile -t dirs < <(find "$base" -mindepth 1 -maxdepth 1 -type d -print | LC_ALL=C sort)
+  for d in "${dirs[@]}"; do
+    [[ -d "$d/.git" || -f "$d/.git" ]] || continue
+    printf '\n--- %s ---\n' "${d##*/}"
+    git -C "$d" status --short --branch || true
+  done
+}
+
+open_project() {
+  local projects=() sel i name
+  mapfile -t projects < <(find "$base" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | LC_ALL=C sort)
+  if [[ -z "${projects[*]:-}" ]]; then echo 'Aucun projet. Clone un dépôt avec le choix 2.'; return; fi
+  for ((i=0;i<${#projects[@]};i++)); do printf '%d. %s\n' "$((i+1))" "${projects[i]}"; done
+  read -r -p 'Numéro : ' sel || return
+  [[ "$sel" =~ ^[0-9]+$ ]] || { echo 'Choix invalide.'; return; }
+  ((10#$sel>=1 && 10#$sel<=${#projects[@]})) || return
+  name="${projects[10#$sel-1]}"
+  [[ "$name" =~ ^[A-Za-z0-9._-]+$ ]] || { echo 'Nom invalide.'; return; }
+  (cd "$base/$name" && freebuff)
+}
+
+while :; do
+  printf '\n=== FREEBUFF MOBILE / CODESPACES ===\n'
+  printf '1. Ouvrir Freebuff dans un projet cloné\n2. Cloner un dépôt GitHub\n'
+  printf '3. Se connecter à Freebuff\n4. Se connecter à GitHub\n'
+  printf '5. Ouvrir Freebuff dans le dépôt actuel\n6. Mettre à jour Freebuff\n0. Quitter\n'
+  read -r -p 'Choix : ' answer || break
+  case "$answer" in
+    1) open_project ;;
+    2) clone_repo ;;
+    3) freebuff login ;;
+    4) gh auth login -h github.com -p https -w && gh auth setup-git ;;
+    5) freebuff ;;
+    6) npm install -g --prefix "$HOME/.local" freebuff && freebuff --version ;;
+    7) git_status_projects ;;
+    8) node --version; freebuff --version; gh auth status || true ;;
+    0) break ;;
+    *) echo 'Choix inconnu.' ;;
+  esac
+done
