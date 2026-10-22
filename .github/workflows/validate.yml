@@ -107,6 +107,8 @@ jobs:
         run: python scripts/test_selection_guidance.py
       - name: Test recommendation engine
         run: python scripts/test_recommend.py
+      - name: Verify full catalog discovery with no audit tier
+        run: python scripts/test_full_catalog_availability.py
       - name: Functional game-production recommendations
         run: |
           python scripts/recommend.py "roblox studio luau playtesting agent" --json > /tmp/star-list-roblox.json

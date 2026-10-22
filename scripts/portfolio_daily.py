@@ -330,8 +330,6 @@ def review_blockers(item: dict) -> list[str]:
     """
     gh = item.get("github") or {}
     blockers = []
-    if item.get("tier") not in {"core", "recommended", "specialized"}:
-        blockers.append("tier-not-approved")
     if item.get("lifecycle") in {"legacy", "reference"}:
         blockers.append("reference-or-legacy")
     if gh.get("archived") or gh.get("disabled"):

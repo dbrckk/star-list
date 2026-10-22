@@ -38,7 +38,7 @@ DOMAIN_ALIASES = {
     "newsletter": "writing", "proofreading": "writing",
     "essay": "writing", "blog": "writing", "emails": "writing",
 }
-TIER_BONUS = {"core": 1.0, "recommended": 0.6, "specialized": 0.25, "audit": -0.4}
+TIER_BONUS = {"core": 1.0, "recommended": 0.6, "specialized": 0.25, "indexed": -0.4}
 LEVEL = {"low": 0, "medium": 1, "high": 2}
 GUIDANCE_WEIGHT = {"curated": 1.0, "inferred": 0.55}
 SPECIALIZED_INFERRED_WEIGHT = 0.35
@@ -214,8 +214,6 @@ def guidance_weight(r):
 def ranking_review_gates(r):
     """Rank everything, but expose the reasons an entry requires review."""
     gates = []
-    if r.get("tier") == "audit":
-        gates.append("audit-tier")
     gh = r.get("github")
     if isinstance(gh, dict):
         if gh.get("archived"):
@@ -331,9 +329,9 @@ def choose_stack(stacks, qtokens, domains, allowed_names=None):
 def infer_alternatives(source, repos, top=3, allowed_names=None):
     candidates = []
     for candidate in repos:
-        if allowed_names is not None and candidate["repo"] not in allowed_names:
+        if candidate["repo"] == source["repo"]:
             continue
-        if candidate.get("tier") == "audit":
+        if allowed_names is not None and candidate["repo"] not in allowed_names:
             continue
         result = replacement_score(source, candidate)
         if result is None:
@@ -362,7 +360,7 @@ def infer_complements(source, stacks, repo_by_name, top=4, allowed_names=None):
             if allowed_names is not None and name not in allowed_names:
                 continue
             candidate = repo_by_name.get(name)
-            if not candidate or candidate.get("tier") == "audit":
+            if not candidate:
                 continue
             health = health_score(candidate)
             if health.get("status") in {"inactive", "weak"}:
@@ -414,11 +412,13 @@ def main():
                                  default=True, help="Include archived/disabled entries (default)")
     archived_filter.add_argument("--exclude-archived", action="store_false", dest="include_archived",
                                  help="Opt in to excluding archived/disabled entries")
-    audit_filter = ap.add_mutually_exclusive_group()
-    audit_filter.add_argument("--include-audit", action="store_true", dest="include_audit",
-                              default=True, help="Include audit-tier entries (default)")
-    audit_filter.add_argument("--exclude-audit", action="store_false", dest="include_audit",
-                              help="Opt in to excluding unreviewed audit-tier entries")
+    indexed_filter = ap.add_mutually_exclusive_group()
+    indexed_filter.add_argument("--include-indexed", "--include-audit", action="store_true",
+                                dest="include_indexed", default=True,
+                                help="Include indexed references (default, including old --include-audit alias)")
+    indexed_filter.add_argument("--exclude-indexed", "--exclude-audit", action="store_false",
+                                dest="include_indexed",
+                                help="Opt in to omitting indexed references; --exclude-audit is a legacy alias")
     ap.add_argument("--max-resource", choices=["low","medium","high"], default="high")
     ap.add_argument("--max-complexity", choices=["low","medium","high"], default="high")
     ap.add_argument("--websites", action="store_true", help="Include matching external web references separately from repositories")
@@ -444,12 +444,12 @@ def main():
     domains = set(args.domain) or infer_domains(qtokens)
     required_caps, excluded_caps = set(args.cap), set(args.exclude_cap)
     ranked = []
-    relation_names = set()  # Conservative suggestions: never auto-link audit or inactive entries.
-    filtered = {"platform":0, "language":0, "selfHosted":0, "inactive":0, "audit":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
+    relation_names = set()  # Advisory links may reference indexed sources; installation remains independently gated.
+    filtered = {"platform":0, "language":0, "selfHosted":0, "inactive":0, "indexed":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
 
     for r in repos:
-        if r.get("tier") == "audit" and not args.include_audit:
-            filtered["audit"] += 1
+        if r.get("tier") == "indexed" and not args.include_indexed:
+            filtered["indexed"] += 1
             continue
         caps = set(r.get("capabilities", [])) | set(r.get("roles", []))
         if args.platform and not set(args.platform).issubset(set(r.get("platforms", []))):
@@ -471,7 +471,7 @@ def main():
         if s is None:
             filtered["excluded"] += 1; continue
         # Eligibility for related tools/stacks must obey the same hard constraints.
-        if not ranking_review_gates(r):
+        if not (isinstance(gh, dict) and (gh.get("archived") or gh.get("disabled"))):
             relation_names.add(r["repo"])
         if args.min_score is not None and s < args.min_score:
             filtered["minScore"] += 1; continue
@@ -496,6 +496,8 @@ def main():
             "health": health_score(r),
             "rankingReviewGates": ranking_review_gates(r),
             "metadataReviewGates": metadata_review_gates(r),
+            "availableForDiscovery": True,
+            "automaticIntegrationApproved": False,
             "reviewRequired": bool(ranking_review_gates(r) or metadata_review_gates(r)),
         })
 
@@ -505,7 +507,7 @@ def main():
         "constraints": {"platforms":args.platform, "languages":args.language, "selfHosted":args.self_hosted,
                         "maxResource":args.max_resource, "maxComplexity":args.max_complexity,
                         "requireAllCapabilities":args.require_all_caps, "minScore":args.min_score,
-                        "includeArchived":args.include_archived, "includeAudit":args.include_audit},
+                        "includeArchived":args.include_archived, "includeIndexed":args.include_indexed, "includeAudit":args.include_indexed},
         "diagnostics": {
             "catalogSize": len(repos), "eligible": len(ranked), "returned": len(top),
             "filtered": filtered,

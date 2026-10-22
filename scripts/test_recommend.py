@@ -426,10 +426,10 @@ assert high_threshold["recommendations"] == []
 assert high_threshold["diagnostics"]["returned"] == 0
 
 # All catalog records are ranked by default, including zero/negative scores,
-# unreviewed audit entries, archived and disabled entries. Ranking is not approval.
+# indexed entries, archived and disabled entries. Ranking is not approval.
 default_audit = run("ponytail agent", "--top", "30")
 assert default_audit["diagnostics"]["eligible"] == default_audit["diagnostics"]["catalogSize"]
-assert default_audit["diagnostics"]["filtered"]["audit"] == 0
+assert default_audit["diagnostics"]["filtered"]["indexed"] == 0
 assert default_audit["diagnostics"]["filtered"]["inactive"] == 0
 assert default_audit["diagnostics"]["filtered"]["minScore"] == 0
 assert default_audit["constraints"]["includeAudit"] is True
@@ -437,16 +437,17 @@ assert default_audit["constraints"]["includeArchived"] is True
 assert default_audit["constraints"]["minScore"] is None
 ponytail = next(item for item in default_audit["recommendations"]
                if item["repo"] == "DietrichGebert/ponytail")
-assert ponytail["tier"] == "audit"
-assert ponytail["reviewRequired"] is True
-assert "audit-tier" in ponytail["rankingReviewGates"]
+assert ponytail["tier"] == "indexed"
+assert ponytail["availableForDiscovery"] is True
+assert ponytail["automaticIntegrationApproved"] is False
+assert "indexed-unverified" not in ponytail["rankingReviewGates"]
 
 # Legacy positive flags continue to work. Explicit opt-out filters remain available.
 with_audit = run("ponytail agent", "--top", "30", "--include-audit", "--include-archived")
 assert with_audit["diagnostics"]["eligible"] == default_audit["diagnostics"]["eligible"]
 without_audit = run("ponytail agent", "--top", "30", "--exclude-audit")
-assert all(item["tier"] != "audit" for item in without_audit["recommendations"])
-assert without_audit["diagnostics"]["filtered"]["audit"] > 0
+assert all(item["tier"] != "indexed" for item in without_audit["recommendations"])
+assert without_audit["diagnostics"]["filtered"]["indexed"] > 0
 assert without_audit["constraints"]["includeAudit"] is False
 without_inactive = run("ponytail agent", "--top", "30", "--exclude-archived")
 assert without_inactive["diagnostics"]["filtered"]["inactive"] > 0
@@ -455,6 +456,7 @@ assert without_inactive["constraints"]["includeArchived"] is False
 zero_relevance = run("qzxwvtr234567unknown", "--top", "5")
 assert zero_relevance["diagnostics"]["eligible"] == zero_relevance["diagnostics"]["catalogSize"]
 assert all("rankingReviewGates" in item for item in zero_relevance["recommendations"])
+
 
 spec = importlib.util.spec_from_file_location("recommend", SCRIPT)
 mod = importlib.util.module_from_spec(spec)
@@ -532,8 +534,9 @@ candidate = {
     "score":9.0, "tier":"recommended",
     "github":{"archived":False,"disabled":False,"license":"MIT","stars":2000,"forks":200,"openIssues":5,"pushedAt":"2026-09-01T00:00:00Z"},
 }
-audit_candidate = dict(candidate, repo="x/audit", tier="audit")
-assert mod.infer_alternatives(source, [source, candidate, audit_candidate]) == ["x/candidate"]
+audit_candidate = dict(candidate, repo="x/indexed", tier="indexed", score=8.0)
+assert mod.infer_alternatives(source, [source, candidate, audit_candidate]) == ["x/candidate", "x/indexed"][:2]
+assert "x/source" not in mod.infer_alternatives(source, [source, candidate, audit_candidate])
 
 stack_repo = dict(candidate, repo="x/stack-tool", capabilities=["cache"])
 repo_by_name = {r["repo"]: r for r in [source, stack_repo]}
@@ -589,7 +592,8 @@ for results in (
     for item in results["recommendations"]:
         for name in item["alternatives"] + item["complements"]:
             linked = catalog_index[name]
-            assert linked["tier"] != "audit" and not linked.get("github", {}).get("archived")
+            assert linked["tier"] in {"core", "recommended", "specialized", "indexed"}
+            assert not linked.get("github", {}).get("archived")
             assert all(p in linked.get("platforms", []) for p in constraints["platforms"])
             assert all(lang in linked.get("languages", []) for lang in constraints["languages"])
             assert mod.LEVEL.get(linked.get("resourceLevel", "medium"), 1) <= mod.LEVEL[constraints["maxResource"]]
@@ -597,7 +601,7 @@ for results in (
     if results["recommendedStack"]:
         for member in results["recommendedStack"]["repos"]:
             linked = catalog_index[member]
-            assert linked["tier"] != "audit"
+            assert linked["tier"] in {"core", "recommended", "specialized", "indexed"}
             assert all(p in linked.get("platforms", []) for p in constraints["platforms"])
             assert all(lang in linked.get("languages", []) for lang in constraints["languages"])
 

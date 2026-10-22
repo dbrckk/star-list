@@ -47,9 +47,9 @@ def analyze(repos, stale_days=730, now=None):
             tier = entry.get("tier")
             lifecycle = entry.get("lifecycle")
             if gh.get("archived") is True:
-                if tier == "audit" or lifecycle in {"reference", "legacy"}:
-                    code = f"archived-{lifecycle or 'audit'}-retained"
-                    label = lifecycle or "audit"
+                if tier == "indexed" or lifecycle in {"reference", "legacy"}:
+                    code = f"archived-{lifecycle or 'indexed'}-retained"
+                    label = lifecycle or "indexed"
                     add(
                         name,
                         "info",
@@ -70,12 +70,12 @@ def analyze(repos, stale_days=730, now=None):
                         f"stale-{lifecycle}",
                         f"No GitHub push for {age} days; classified as {lifecycle}.",
                     )
-                elif tier == "audit":
+                elif tier == "indexed":
                     add(
                         name,
                         "info",
-                        "stale-audit-retained",
-                        f"No GitHub push for {age} days; retained in the audit tier.",
+                        "stale-indexed-retained",
+                        f"No GitHub push for {age} days; retained as an indexed reference.",
                     )
                 else:
                     add(

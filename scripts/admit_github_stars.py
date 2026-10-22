@@ -116,7 +116,7 @@ def catalog_entry(meta):
 
     branch = meta.get("default_branch")
     if not isinstance(branch, str) or not branch:
-        branch = "unknown"  # Nonempty schema value; the audit tier marks the gap.
+        branch = "unknown"  # Nonempty schema value; indexed entries retain an explicit metadata gap.
     domain = classify(meta)
     language = meta.get("language")
     languages = [language.lower()] if isinstance(language, str) and language.strip() else []
@@ -128,7 +128,7 @@ def catalog_entry(meta):
         "repo": repo,
         "githubRepositoryId": repo_id,
         "score": 6.0,
-        "tier": "audit",
+        "tier": "indexed",
         "category": CATEGORIES[domain],
         "domain": domain,
         "capabilities": capabilities,
@@ -150,7 +150,7 @@ def catalog_entry(meta):
             "pushedAt": meta.get("pushed_at") if isinstance(meta.get("pushed_at"), str) else None,
         },
         "bestFor": guidance,
-        "avoidWhen": ["production use before licensing and security review"],
+        "avoidWhen": ["automatic installation before license and security checks"],
         "guidanceSource": "inferred",
         "lifecycle": "legacy" if meta.get("archived") or meta.get("disabled") else "reference",
     }

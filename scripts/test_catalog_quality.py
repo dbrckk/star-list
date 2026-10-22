@@ -66,7 +66,7 @@ repos = [
     },
     {
         "repo": "x/legacy-archive",
-        "tier": "audit",
+        "tier": "indexed",
         "lifecycle": "legacy",
         "selfHosted": False,
         "github": {
@@ -78,7 +78,7 @@ repos = [
     },
     {
         "repo": "x/audit-stale",
-        "tier": "audit",
+        "tier": "indexed",
         "selfHosted": True,
         "github": {
             "archived": False,
@@ -87,10 +87,10 @@ repos = [
             "pushedAt": "2023-01-01T00:00:00Z",
         },
     },
-    {"repo": "x/missing", "tier": "audit", "selfHosted": True},
+    {"repo": "x/missing", "tier": "indexed", "selfHosted": True},
     {"repo":"x/custom","tier":"specialized","selfHosted":True,"licenseStatus":"custom-restrictive","github":{"archived":False,"disabled":False,"license":None,"pushedAt":"2026-09-01T00:00:00Z"}},
-    {"repo":"x/partial","tier":"audit","selfHosted":True,"licenseStatus":"partial","github":{"archived":False,"disabled":False,"license":None,"pushedAt":"2026-09-01T00:00:00Z"}},
-    {"repo":"x/external","tier":"audit","selfHosted":True,"licenseStatus":"external-terms","github":{"archived":False,"disabled":False,"license":None,"pushedAt":"2026-09-01T00:00:00Z"}},
+    {"repo":"x/partial","tier":"indexed","selfHosted":True,"licenseStatus":"partial","github":{"archived":False,"disabled":False,"license":None,"pushedAt":"2026-09-01T00:00:00Z"}},
+    {"repo":"x/external","tier":"indexed","selfHosted":True,"licenseStatus":"external-terms","github":{"archived":False,"disabled":False,"license":None,"pushedAt":"2026-09-01T00:00:00Z"}},
     {"repo":"x/notfound","tier":"specialized","selfHosted":True,"licenseStatus":"not-found","github":{"archived":False,"disabled":False,"license":None,"pushedAt":"2026-09-01T00:00:00Z"}},
 ]
 
@@ -101,7 +101,7 @@ assert report["summary"]["byCode"]["stale-over-threshold"] == 1
 assert report["summary"]["byCode"]["stale-stable"] == 1
 assert report["summary"]["byCode"]["stale-reference"] == 1
 assert report["summary"]["byCode"]["archived-legacy-retained"] == 1
-assert report["summary"]["byCode"]["stale-audit-retained"] == 1
+assert report["summary"]["byCode"]["stale-indexed-retained"] == 1
 assert report["summary"]["byCode"]["missing-github-metadata"] == 1
 assert report["summary"]["byCode"]["license-unknown"] == 1
 assert report["summary"]["byCode"]["license-file-missing"] == 1
