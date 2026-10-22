@@ -143,6 +143,28 @@ def test_license_fallback_reads_readme_when_root_license_is_absent():
         refresh.fetch_contents = original
 
 
+def test_license_fallback_rejects_conflicting_root_files():
+    original = refresh.fetch_contents
+    try:
+        def fake_contents(repo, path="", ref=None, token=None, retries=2):
+            if not path:
+                return [
+                    {"type": "file", "name": "LICENSE", "path": "LICENSE"},
+                    {"type": "file", "name": "COPYING", "path": "COPYING"},
+                ]
+            content = (
+                "MIT License\\nPermission is hereby granted, free of charge, to any person "
+                "obtaining a copy of this software, to deal in the Software without restriction."
+                if path == "LICENSE" else
+                "GNU GENERAL PUBLIC LICENSE\\nVersion 3, 29 June 2007"
+            )
+            return {"type": "file", "content": base64.b64encode(content.encode()).decode()}
+        refresh.fetch_contents = fake_contents
+        assert refresh.fallback_license("x/repo", "main") is None
+    finally:
+        refresh.fetch_contents = original
+
+
 def test_metadata_refresh_uses_license_fallback():
     with tempfile.TemporaryDirectory() as tmp:
         catalog = Path(tmp) / "catalog.json"
@@ -297,6 +319,7 @@ if __name__ == "__main__":
     test_license_signature_detection()
     test_license_fallback_reads_root_license_file()
     test_license_fallback_reads_readme_when_root_license_is_absent()
+    test_license_fallback_rejects_conflicting_root_files()
     test_metadata_refresh_uses_license_fallback()
     test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive()
     test_server_error_remains_fatal()
