@@ -147,6 +147,25 @@ Supported options:
 
 Repeated platform/language filters are conjunctive: the repository must contain every requested value.
 
+### Distinguishing rankability from metadata trust
+
+Every repository remains searchable even when some metadata is unknown. In JSON,
+`metadataReviewGates` explains unresolved GitHub licence metadata or
+`selfHosted` values such as `unknown` and `partial`; these are not silently
+converted into `true` or `false`. The existing `rankingReviewGates` continue
+to distinguish audit-tier, archived and disabled projects. `reviewRequired`
+is true if *either* group has any findings.
+
+`diagnostics.metadata` counts unverified self-hosting, unresolved licences
+and entries requiring review across **all ranked results**, not just `--top`.
+For detailed findings, run `python scripts/audit_catalog_quality.py`.
+
+Stack selection now needs a recognizable name/task-specific match and
+compatible domain. Generic shared words in a stack's warnings or usage notes
+cannot make it a valid recommendation (for example, an AI/video task does
+not imply a Roblox Studio or autonomous coding stack). Stack and relation
+results are *advisory*, not proof of approved or safe integration.
+
 ### Constraint-safe relations and stacks
 
 The same hard filters used for the main recommendations also apply to linked alternatives,
@@ -170,6 +189,10 @@ Domain inference also recognizes `roblox`, `godot` and `luau` as game-developmen
 ## Domain inference
 
 When `--domain` is not provided, common query terms are mapped to catalog domains. Examples include `ai`/`agent`, `memory`/`rag`, `android`/`mobile`, `trading`/`quant`/`xauusd`, `security`/`pentest`, `ml`/`data`, and `devops`/`infra`.
+
+A generic "AI" token does not inject the coding-agent domain when
+other specific domains (such as video, writing, or marketing) are detected,
+unless the query explicitly mentions coding, development, or agents.
 
 Explicit `--domain` values replace inferred domains for that run.
 

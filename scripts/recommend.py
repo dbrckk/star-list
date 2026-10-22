@@ -55,7 +55,14 @@ def load():
     return data["repositories"], stacks.get("stacks", [])
 
 def infer_domains(qtokens):
-    return {DOMAIN_ALIASES[t] for t in qtokens if t in DOMAIN_ALIASES}
+    domains = {DOMAIN_ALIASES[t] for t in qtokens if t in DOMAIN_ALIASES}
+    # "AI" alone is generic. In an explicitly media, graphics, marketing, or
+    # writing task, it should not add a spurious coding-agent domain.
+    explicit_agents = {"agent", "agents", "coding", "code", "dev"}
+    if ("ai" in qtokens and len(domains) > 1
+            and not qtokens.intersection(explicit_agents)):
+        domains.discard("ai_agents")
+    return domains
 
 
 # Generic connective words in curator prose are not evidence that a website
@@ -205,7 +212,7 @@ def guidance_weight(r):
 
 
 def ranking_review_gates(r):
-    """Rank everything, but make unaudited or inactive entries explicit."""
+    """Rank everything, but expose the reasons an entry requires review."""
     gates = []
     if r.get("tier") == "audit":
         gates.append("audit-tier")
@@ -215,6 +222,19 @@ def ranking_review_gates(r):
             gates.append("archived")
         if gh.get("disabled"):
             gates.append("disabled")
+    return gates
+
+
+def metadata_review_gates(r):
+    """Report factual gaps without guessing about hosting or licensing."""
+    gates = []
+    gh = r.get("github")
+    if not isinstance(gh, dict) or not gh:
+        gates.append("github-metadata-unavailable")
+    elif str(gh.get("license") or "").strip().upper() in {"", "NOASSERTION"}:
+        gates.append("license-unresolved")
+    if not isinstance(r.get("selfHosted"), bool):
+        gates.append("self-hosting-unverified")
     return gates
 
 
@@ -272,17 +292,40 @@ def explain_repo(r, qtokens, domains, required_caps):
     if trend_reason and trend_reason != "stable": reasons.append("trend:" + trend_reason)
     return reasons[:4]
 
+# Generic words can occur in unrelated stacks. They cannot establish a fit
+# on their own (e.g. "AI video" must not select a coding-agent stack).
+STACK_GENERIC_TERMS = frozenset(
+    "ai agent agents app apps tool tools dev software production project "
+    "projects system systems workflow workflows modern high quality using with "
+    "and for research validation".split()
+)
+
+
 def choose_stack(stacks, qtokens, domains, allowed_names=None):
     best, best_score = None, -1
     for st in stacks:
-        # Never propose an unusable predefined stack when candidates are filtered.
         if allowed_names is not None and not all(name in allowed_names for name in st.get("repos", [])):
             continue
-        stoks = tokens(st.get("name", "") + " " + st.get("goal", "") + " " + " ".join(st.get("notes", [])))
-        score = 2*len(qtokens & stoks) + (3 if st.get("domain") in domains else 0)
+        domain_match = st.get("domain") in domains
+        if domains and st.get("domain") and not domain_match:
+            continue
+        title_terms = tokens(st.get("name", ""))
+        goal_terms = tokens(st.get("goal", ""))
+        significant = (qtokens & (title_terms | goal_terms)) - STACK_GENERIC_TERMS
+        # Require a strong named match, or two independent task-specific
+        # signals. Notes cannot be evidence: they often describe caveats,
+        # alternatives or unrelated technologies.
+        title_words = norm(st.get("name", "")).split()
+        anchor = next((word for word in title_words if word not in STACK_GENERIC_TERMS), None)
+        anchored = anchor is not None and anchor in qtokens
+        if not anchored and len(significant) < 2:
+            continue
+        if not domain_match and st.get("domain") and len(significant) < 3:
+            continue
+        score = 4 * len(significant) + (3 if domain_match else 0) + (2 if anchored else 0)
         if score > best_score:
             best_score, best = score, st
-    return best if best_score > 0 else None
+    return best
 
 
 def infer_alternatives(source, repos, top=3, allowed_names=None):
@@ -452,7 +495,8 @@ def main():
             "why": explain_repo(r, qtokens, domains, required_caps),
             "health": health_score(r),
             "rankingReviewGates": ranking_review_gates(r),
-            "reviewRequired": bool(ranking_review_gates(r)),
+            "metadataReviewGates": metadata_review_gates(r),
+            "reviewRequired": bool(ranking_review_gates(r) or metadata_review_gates(r)),
         })
 
     result = {
@@ -462,7 +506,15 @@ def main():
                         "maxResource":args.max_resource, "maxComplexity":args.max_complexity,
                         "requireAllCapabilities":args.require_all_caps, "minScore":args.min_score,
                         "includeArchived":args.include_archived, "includeAudit":args.include_audit},
-        "diagnostics": {"catalogSize":len(repos), "eligible":len(ranked), "returned":len(top), "filtered":filtered},
+        "diagnostics": {
+            "catalogSize": len(repos), "eligible": len(ranked), "returned": len(top),
+            "filtered": filtered,
+            "metadata": {
+                "unverifiedSelfHosting": sum(bool("self-hosting-unverified" in metadata_review_gates(r)) for _, r in ranked),
+                "unresolvedLicenses": sum(bool("license-unresolved" in metadata_review_gates(r)) for _, r in ranked),
+                "reviewRequired": sum(bool(ranking_review_gates(r) or metadata_review_gates(r)) for _, r in ranked),
+            },
+        },
         "recommendedStack": choose_stack(stacks, qtokens, domains, relation_names),
     }
     if args.websites:
@@ -492,8 +544,9 @@ def main():
         for i, item in enumerate(top, 1):
             print(f"{i}. {item['repo']} | selection={item['selectionScore']:.1f} | quality={item['qualityScore']}/10 | {item['tier']}")
             if item["why"]: print("   why:", "; ".join(item["why"]))
-            if item["rankingReviewGates"]:
-                print("   review required:", ", ".join(item["rankingReviewGates"]))
+            all_gates = item["rankingReviewGates"] + item["metadataReviewGates"]
+            if all_gates:
+                print("   review required:", ", ".join(all_gates))
             if item["bestFor"]: print("   bestFor:", "; ".join(item["bestFor"][:3]))
             if item["complements"]: print("   complements:", ", ".join(item["complements"][:4]))
         if result["recommendedStack"]:

@@ -459,6 +459,47 @@ assert all("rankingReviewGates" in item for item in zero_relevance["recommendati
 spec = importlib.util.spec_from_file_location("recommend", SCRIPT)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
+# Ranking preserves uncertain source facts without inventing missing values.
+assert mod.metadata_review_gates({"github": {"license": "MIT"}, "selfHosted": True}) == []
+assert mod.metadata_review_gates({"github": {"license": "NOASSERTION"}, "selfHosted": "unknown"}) == [
+    "license-unresolved", "self-hosting-unverified"
+]
+assert mod.metadata_review_gates({"github": {"license": None}, "selfHosted": "partial"}) == [
+    "license-unresolved", "self-hosting-unverified"
+]
+assert mod.metadata_review_gates({}) == [
+    "github-metadata-unavailable", "self-hosting-unverified"
+]
+complete_rank = run("youtube cartoon video automation", "--top", "2000")
+entire_catalog = mod.load()[0]
+assert complete_rank["diagnostics"]["eligible"] == len(entire_catalog)
+assert complete_rank["diagnostics"]["returned"] == len(entire_catalog)
+metadata_counts = complete_rank["diagnostics"]["metadata"]
+assert metadata_counts["unverifiedSelfHosting"] == sum(
+    not isinstance(entry.get("selfHosted"), bool) for entry in entire_catalog
+)
+assert metadata_counts["unresolvedLicenses"] == sum(
+    "license-unresolved" in mod.metadata_review_gates(entry) for entry in entire_catalog
+)
+assert metadata_counts["reviewRequired"] == sum(
+    bool(mod.metadata_review_gates(entry) or mod.ranking_review_gates(entry)) for entry in entire_catalog
+)
+assert all(item["reviewRequired"] == bool(item["rankingReviewGates"] or item["metadataReviewGates"])
+           for item in complete_rank["recommendations"])
+
+# The first release previously suggested an unrelated Roblox stack for a
+# faceless-YouTube task because generic words in stack notes matched.
+stack_catalog = mod.load()[1]
+for query in ("faceless youtube cartoon AI video voiceover thumbnails",
+              "educational animated video content automatic captions narration"):
+    assert mod.choose_stack(stack_catalog, mod.tokens(query),
+                            mod.infer_domains(mod.tokens(query))) is None
+assert mod.choose_stack(stack_catalog, mod.tokens("roblox studio luau playtesting"),
+                        {"game_dev"})["name"] == "Roblox Studio Agent Production"
+assert mod.choose_stack(stack_catalog, mod.tokens("godot gameplay shaders vfx"),
+                        {"game_dev"})["name"] == "Godot Gameplay and VFX"
+assert mod.choose_stack(stack_catalog, mod.tokens("android vector animation"),
+                        {"graphics", "mobile"})["name"] == "Vector Animation Android"
 assert mod.activity_adjustment({"github":{"archived":True}})[0] == -30.0
 assert mod.activity_adjustment({"github":{"disabled":True}})[0] == -30.0
 assert mod.activity_adjustment({}) == (0.0, None)
@@ -507,6 +548,10 @@ assert resolved["complements"] == ["x/manual-comp"]
 assert resolved["complementsSource"] == "curated"
 
 # Hard constraints must also apply to curated/inferred relations and suggested stacks.
+assert mod.infer_domains(mod.tokens("AI video narration")) == {"ai_media"}
+assert mod.infer_domains(mod.tokens("AI marketing")) == {"marketing"}
+assert mod.infer_domains(mod.tokens("AI agent video")) == {"ai_agents", "ai_media"}
+assert mod.infer_domains(mod.tokens("AI")) == {"ai_agents"}
 assert mod.infer_domains(mod.tokens("Roblox Studio Luau")) == {"game_dev"}
 assert mod.infer_domains(mod.tokens("Godot shaders")) == {"game_dev"}
 assert mod.choose_stack(stacks, mod.tokens("backend"), {"backend"}, {"x/source"}) is None
