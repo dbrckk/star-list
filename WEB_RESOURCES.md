@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **27 websites** are curated alongside it in [`websites.json`](websites.json);
+These **33 websites** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -35,6 +35,37 @@ the ability to browse a page.
 | MiniCPM-V 4.7 1B Heretic | [Hugging Face model](https://huggingface.co/saidutta69/MiniCPM-V-4.7-1B-heretic) | Local image Q&A, OCR, screenshot understanding and lightweight multimodal research | Model browser access free; runtime separate | Tagged Apache-2.0, but no bundled licence file per card; community-abliterated and reduced-refusal, no safety filter. Vision GGUF needs separate ~1.11GB projector; do not deploy to unmoderated public endpoints |
 | SoPilot | [sopilot.net](https://sopilot.net/) | X/social media trends, original marketing content, opt-in campaigns and SEO outreach | Hosted Chrome extension; credits and paid tiers | Check platform policies, prices and privacy; never post, bulk engage or submit directory backlinks automatically |
 | Humanizer 12B | [Hugging Face](https://huggingface.co/jialinyyzz/humanizer) | English/Chinese rewrite of existing editorial drafts while aiming to retain facts | Downloadable Apache-2.0 weights; no current hosted HF inference provider | 12B local text-completion model: Q4 ~7.6GB on disk; needs exact prompt/runtime, proofreading and fact/format/language checks; no French support verified, no automatic install |
+| Sakugabooru | [sakugabooru.com](https://www.sakugabooru.com/) | Anime animation cuts, timing and motion/action choreography references | Free reference browsing | Copyrighted anime footage; research/inspiration only, never auto-download or reproduce clips |
+| SHOT.CAFE | [shot.cafe](https://shot.cafe/) | Film stills for cinematic composition, lighting, framing and storyboards | Free browsing | The underlying films retain copyright; original frames are not reusable production assets |
+| PoseMy.Art | [posemy.art](https://posemy.art/) | Interactive 3D mannequins, character poses, camera angle, OpenPose/depth references | Free tool | Check exports, usage terms and actual engine support; does not auto-rig games |
+| Niwatoliver historical costume atlas | [costume.tools.niwatoliver.dev](https://costume.tools.niwatoliver.dev/) | Period-costume research and editable 3D dress silhouettes/PSD/PNG/SVG line art | Free, Japanese-language site | Site labels its 1,639 source images PD/CC0 and self-created line art CC0; verify each item's provenance and third-party/user submissions |
+| YouMind — anime video prompts | [youmind.com/prompts/video/anime](https://youmind.com/prompts/video/anime) | Curated anime video prompt examples for original animation clips and creative direction | Free prompt browsing | Creator prompt/media terms vary; not an inference endpoint; pasted prompts remain untrusted |
+| Carat | [carat.im](https://carat.im/) | Hosted image-to-video, text/video effects and AI image/video generation | Freemium | Terms, provider credits, licensing, consent and privacy require review; no automatic upload, spending or inference |
+
+## Six new animation and cinema references — reviewed production path
+
+The six user-supplied sources support a possible research path: motion
+reference (Sakugabooru), shot composition (SHOT.CAFE), original 3D poses
+(PoseMy.Art), historical outfit reference (Niwatoliver), custom anime
+video-prompt drafting (YouMind), and optionally hosted image-to-video
+experiments (Carat). They **do not constitute an automatic end-to-end
+video pipeline**. Every site is separately assessed for each repository;
+only explicit motion/cinema/pose/costume/video project signals can match,
+and every reference retains `integrationEligible: false`.
+
+- **Copyright:** Anime clips and film stills can inspire original work but
+  are not licensed production frames. No copying, scraping, training or
+  importing proprietary content by default.
+- **Historical sources:** The costume site itself identifies 1,639 historic
+  source images as public-domain/CC0 and its own dress line art as CC0;
+  check individual provenance and distinguish user-submitted designs.
+- **External computation:** A YouMind prompt listing is not free video
+  inference; Carat is a third-party AI service with potentially paid
+  usage, licence and private-input restrictions.
+- **Specialist use:** A general-purpose game, speech, trading, coupon or
+  software project does not automatically need any of these six sites.
+  Site research is nonexecuting metadata guidance, not an instruction to
+  run arbitrary web content or contact external accounts.
 
 ## Quantized image checkpoints are references, not plug-and-play dependencies
 
@@ -175,7 +206,7 @@ version automatically.
 
 ## How specialist game platforms are selected
 
-The daily portfolio scan inspects **all 27 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
+The daily portfolio scan inspects **all 33 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
 
 ## Search repositories and relevant websites together
 
