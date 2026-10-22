@@ -103,7 +103,7 @@ def website_review_gates(site):
     return gates
 
 
-def recommend_websites(qtokens, domains, limit=5):
+def recommend_websites(qtokens, domains, limit=5, include_unmatched=False):
     """Rank non-GitHub references separately from code integration candidates.
 
     This remains advisory: no site can be auto-dispatched as a dependency.
@@ -119,7 +119,7 @@ def recommend_websites(qtokens, domains, limit=5):
         matched_text = sorted((qtokens & tokens(
             site["name"] + " " + " ".join(site["bestFor"])
         )) - WEBSITE_MATCH_STOPWORDS)
-        if not matched_domains and not matched_tags and not matched_text:
+        if not include_unmatched and not matched_domains and not matched_tags and not matched_text:
             continue
         score = (12 * len(matched_domains) + 10 * len(matched_tags)
                  + 4 * len(matched_text))
@@ -202,6 +202,20 @@ def guidance_weight(r):
     if source == "inferred" and r.get("tier") == "specialized":
         return SPECIALIZED_INFERRED_WEIGHT
     return GUIDANCE_WEIGHT.get(source, 1.0)
+
+
+def ranking_review_gates(r):
+    """Rank everything, but make unaudited or inactive entries explicit."""
+    gates = []
+    if r.get("tier") == "audit":
+        gates.append("audit-tier")
+    gh = r.get("github")
+    if isinstance(gh, dict):
+        if gh.get("archived"):
+            gates.append("archived")
+        if gh.get("disabled"):
+            gates.append("disabled")
+    return gates
 
 
 def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps):
@@ -348,15 +362,25 @@ def main():
     ap.add_argument("--exclude-cap", action="append", default=[], help="Excluded capability; repeatable")
     ap.add_argument("--domain", action="append", default=[], help="Force a domain; repeatable")
     ap.add_argument("--top", type=int, default=5)
-    ap.add_argument("--min-score", type=float, default=0.0, help="Minimum selection score")
+    ap.add_argument("--min-score", type=float, default=None, help="Optional score threshold; without it every catalog entry is rankable")
     ap.add_argument("--platform", action="append", default=[], help="Required platform; repeatable")
     ap.add_argument("--language", action="append", default=[], help="Required language; repeatable")
     ap.add_argument("--self-hosted", action="store_true", help="Require self-hosted/local-friendly repositories")
-    ap.add_argument("--include-archived", action="store_true", help="Allow archived/disabled repositories")
-    ap.add_argument("--include-audit", action="store_true", help="Allow audit-tier repositories in recommendations")
+    archived_filter = ap.add_mutually_exclusive_group()
+    archived_filter.add_argument("--include-archived", action="store_true", dest="include_archived",
+                                 default=True, help="Include archived/disabled entries (default)")
+    archived_filter.add_argument("--exclude-archived", action="store_false", dest="include_archived",
+                                 help="Opt in to excluding archived/disabled entries")
+    audit_filter = ap.add_mutually_exclusive_group()
+    audit_filter.add_argument("--include-audit", action="store_true", dest="include_audit",
+                              default=True, help="Include audit-tier entries (default)")
+    audit_filter.add_argument("--exclude-audit", action="store_false", dest="include_audit",
+                              help="Opt in to excluding unreviewed audit-tier entries")
     ap.add_argument("--max-resource", choices=["low","medium","high"], default="high")
     ap.add_argument("--max-complexity", choices=["low","medium","high"], default="high")
     ap.add_argument("--websites", action="store_true", help="Include matching external web references separately from repositories")
+    ap.add_argument("--rank-all-websites", action="store_true",
+                    help="With --websites, rank unrelated sites with zero relevance too")
     ap.add_argument("--skills", action="store_true", help="Find curated agent-skill sources from Skill Issue (review-only)")
     ap.add_argument("--top-skills", type=int, default=3, help="Max matching agent-skill sources when --skills is active")
     ap.add_argument("--top-websites", type=int, default=5, help="Max external website references when --websites is active")
@@ -368,7 +392,7 @@ def main():
         ap.error("--top-websites must be >= 1")
     if args.top_skills < 1 or args.top_skills > 20:
         ap.error("--top-skills must be between 1 and 20")
-    if args.min_score < 0:
+    if args.min_score is not None and args.min_score < 0:
         ap.error("--min-score must be >= 0")
 
     repos, stacks = load()
@@ -377,7 +401,7 @@ def main():
     domains = set(args.domain) or infer_domains(qtokens)
     required_caps, excluded_caps = set(args.cap), set(args.exclude_cap)
     ranked = []
-    eligible_names = set()
+    relation_names = set()  # Conservative suggestions: never auto-link audit or inactive entries.
     filtered = {"platform":0, "language":0, "selfHosted":0, "inactive":0, "audit":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
 
     for r in repos:
@@ -404,15 +428,16 @@ def main():
         if s is None:
             filtered["excluded"] += 1; continue
         # Eligibility for related tools/stacks must obey the same hard constraints.
-        eligible_names.add(r["repo"])
-        if s < args.min_score or s <= 0:
+        if not ranking_review_gates(r):
+            relation_names.add(r["repo"])
+        if args.min_score is not None and s < args.min_score:
             filtered["minScore"] += 1; continue
         ranked.append((s, r))
 
     ranked.sort(key=lambda x: (-x[0], -x[1].get("score", 0), x[1]["repo"].lower()))
     top = []
     for s, r in ranked[:args.top]:
-        relations = resolve_relations(r, repos, stacks, repo_by_name, eligible_names)
+        relations = resolve_relations(r, repos, stacks, repo_by_name, relation_names)
         top.append({
             "repo": r["repo"], "selectionScore": s, "qualityScore": r.get("score"),
             "tier": r.get("tier"), "domain": r.get("domain"),
@@ -426,6 +451,8 @@ def main():
             "guidanceSource": r.get("guidanceSource", "curated"),
             "why": explain_repo(r, qtokens, domains, required_caps),
             "health": health_score(r),
+            "rankingReviewGates": ranking_review_gates(r),
+            "reviewRequired": bool(ranking_review_gates(r)),
         })
 
     result = {
@@ -436,10 +463,17 @@ def main():
                         "requireAllCapabilities":args.require_all_caps, "minScore":args.min_score,
                         "includeArchived":args.include_archived, "includeAudit":args.include_audit},
         "diagnostics": {"catalogSize":len(repos), "eligible":len(ranked), "returned":len(top), "filtered":filtered},
-        "recommendedStack": choose_stack(stacks, qtokens, domains, eligible_names),
+        "recommendedStack": choose_stack(stacks, qtokens, domains, relation_names),
     }
     if args.websites:
-        result["websiteRecommendations"] = recommend_websites(qtokens, domains, args.top_websites)
+        result["websiteRecommendations"] = recommend_websites(
+            qtokens, domains, args.top_websites, include_unmatched=args.rank_all_websites
+        )
+        result["websiteDiagnostics"] = {
+            "catalogSize": len(json.loads(WEBSITES.read_text(encoding="utf-8"))["websites"]),
+            "rankAll": args.rank_all_websites,
+            "returned": len(result["websiteRecommendations"]),
+        }
     if args.skills:
         result["skillDiscovery"] = {
             "directory": SKILL_ISSUE_URL, "priority": "high",
@@ -458,6 +492,8 @@ def main():
         for i, item in enumerate(top, 1):
             print(f"{i}. {item['repo']} | selection={item['selectionScore']:.1f} | quality={item['qualityScore']}/10 | {item['tier']}")
             if item["why"]: print("   why:", "; ".join(item["why"]))
+            if item["rankingReviewGates"]:
+                print("   review required:", ", ".join(item["rankingReviewGates"]))
             if item["bestFor"]: print("   bestFor:", "; ".join(item["bestFor"][:3]))
             if item["complements"]: print("   complements:", ", ".join(item["complements"][:4]))
         if result["recommendedStack"]:
