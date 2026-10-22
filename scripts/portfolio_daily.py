@@ -22,6 +22,7 @@ from urllib.parse import quote, urlparse
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 from recommend import DOMAIN_ALIASES, infer_domains, score_repo, tokens, recommend_websites
+from catalog_domain_evidence import advisory_domain_evidence
 from agent_skill_discovery import SKILL_ISSUE_URL, recommend_skills, word_set
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -431,19 +432,29 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
                 assessment[slug]["reason"] = "same-repository"
             continue
         blockers = review_blockers(tool)
-        if tool.get("domain") not in domains:
+        domain_evidence = advisory_domain_evidence(tool)
+        if not domains & domain_evidence.keys():
             continue
+        advisory_routing = tool.get("domain") not in domains
         if assessment is not None:
             assessment[slug]["reason"] = "no-task-term-match"
-        terms = (tokens(slug) | tokens(" ".join(tool.get("capabilities") or []))
+        # Exact hyphenated capability labels are meaningful metadata. Splitting
+        # them for advisory term matching recovers "video editing" vs
+        # "video-editing" without changing global tokenizer semantics.
+        capability_labels = " ".join(str(x) for x in (tool.get("capabilities") or []))
+        terms = (tokens(slug) | tokens(capability_labels)
+                 | tokens(capability_labels.replace("-", " ").replace("_", " "))
                  | tokens(" ".join(tool.get("bestFor") or [])))
         shared = sorted((profile["terms"] & terms) - GENERIC - STOPWORDS)
         if not shared:
             continue
         # A lone match must describe an actual candidate capability/use case,
         # not merely an organization name (or an incidental README word).
-        capability_terms = (tokens(" ".join(tool.get("capabilities") or []))
-                            | tokens(" ".join(tool.get("bestFor") or []))) - GENERIC - STOPWORDS
+        capability_terms = (
+            tokens(capability_labels) |
+            tokens(capability_labels.replace("-", " ").replace("_", " ")) |
+            tokens(" ".join(tool.get("bestFor") or []))
+        ) - GENERIC - STOPWORDS
         if len(shared) < 2 and not (set(shared) & capability_terms):
             if assessment is not None:
                 assessment[slug]["reason"] = "weak-task-evidence"
@@ -473,7 +484,11 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
         # Missing language metadata is unknown compatibility, not native support.
         languages_match = bool(profile["language"]) and profile["language"] in candidate_languages
         score = score_repo(tool, profile["terms"], domains, set(), set())
-        if score is None or score < 35:
+        # Inferred domains remain review-only; rank specific evidence against
+        # a slightly lower threshold so valid indexed tools don't vanish just
+        # because the original catalog domain was "other".
+        threshold = 28 if advisory_routing else 35
+        if score is None or score < threshold:
             if assessment is not None:
                 assessment[slug]["reason"] = "below-relevance-threshold"
             continue
@@ -497,30 +512,40 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
         # with only prose overlap remain discoverable but require review.
         mode = (
             "reference-review" if is_reference_candidate(tool) else
+            "domain-review" if advisory_routing else
             "policy-review" if blockers else
             "adapter-review" if external_studio_bridge or slug.lower() in EXTERNAL_CODING_AGENT_CLIS
             or not languages_match else
             "native" if capability_overlap else "capability-review"
         )
+        policy_review = list(blockers)
+        if advisory_routing:
+            policy_review.append("inferred-domain-needs-confirmation")
         if assessment is not None:
             assessment[slug] = {
                 "decision": "matched",
                 "reason": mode,
-                "integrationEligible": mode == "native" and not blockers,
+                "domainEvidence": {
+                    key: value for key, value in domain_evidence.items() if key in domains
+                },
+                "integrationEligible": mode == "native" and not policy_review,
             }
         matches.append({"repository": slug, "score": round(score, 2),
                         "quality": tool["score"], "domain": tool["domain"],
+                        "domainEvidence": {
+                            key: value for key, value in domain_evidence.items() if key in domains
+                        },
                         "shared_terms": shared[:5],
                         "mode": mode,
-                        "integrationEligible": mode == "native" and not blockers,
-                        "policyReview": blockers,
+                        "integrationEligible": mode == "native" and not policy_review,
+                        "policyReview": policy_review,
                         "license": tool.get("github", {}).get("license"),
                         "url": "https://github.com/" + slug})
     # A native library gets precedence over example applications and adapters.
     # Otherwise a reference app can fill the three slots before a usable SDK.
     priority = {"native": 0, "capability-review": 1,
                 "adapter-review": 2, "reference-review": 3,
-                "policy-review": 4}
+                "policy-review": 4, "domain-review": 5}
     matches.sort(key=lambda r: (priority.get(r["mode"], 3),
                                 -r["score"], -r["quality"], r["repository"].lower()))
     return matches if count is None else matches[:count]

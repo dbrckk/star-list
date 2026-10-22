@@ -107,6 +107,8 @@ jobs:
         run: python scripts/test_selection_guidance.py
       - name: Test recommendation engine
         run: python scripts/test_recommend.py
+      - name: Test evidence-backed domain routing for indexed sources
+        run: python scripts/test_catalog_domain_evidence.py
       - name: Verify full catalog discovery with no audit tier
         run: python scripts/test_full_catalog_availability.py
       - name: Functional game-production recommendations

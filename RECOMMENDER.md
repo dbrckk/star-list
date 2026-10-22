@@ -157,6 +157,33 @@ Supported options:
 
 Repeated platform/language filters are conjunctive: the repository must contain every requested value.
 
+### Improve domain matching for newly indexed repositories
+
+New GitHub Stars are immediately indexed, but a catalog entry may initially
+have `domain: other` even if its GitHub metadata describes a specialized tool.
+The recommender now uses `scripts/catalog_domain_evidence.py` to derive
+**advisory** domains for such entries only, from an explicit technical capability
+label (such as `video-generation`, `mcp`, or `database`) or a tightly matched
+task phrase in the GitHub description. Generic words (such as `AI`,
+`agent`, `automation`, or `app`) are never enough.
+
+Results preserve the original domain and include `advisoryDomains` with
+their evidence. The JSON response includes `domainReviewGates` with
+`inferred-domain-needs-confirmation` when routing relies on an inferred domain.
+The portfolio scanner records `domainEvidence` for each such match, returns
+`domain-review` instead of `native`, and sets `integrationEligible: false`.
+Curated domains continue to take precedence; metadata-based domain inference
+**never** grants installation or worker-dispatch permissions.
+
+The portfolio scanner still evaluates **every** source and records a reason
+for non-matches. Partial evidence makes an indexed source more *discoverable*
+without making an unsupported compatibility or licensing claim.
+
+Run the focused regression test with:
+```bash
+python scripts/test_catalog_domain_evidence.py
+```
+
 ### Distinguishing rankability from metadata trust
 
 Every repository remains searchable even when some metadata is unknown. In JSON,
