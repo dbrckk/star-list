@@ -93,6 +93,18 @@ Version 3, 29 June 2007
     assert refresh.detect_license_text("To the extent possible under law, Example Author has waived all copyright and related or neighboring rights to this work.") == "CC0-1.0"
     assert refresh.detect_license_text("## License\nMIT") == "MIT"
     assert refresh.detect_license_text("custom proprietary terms") is None
+    # Bare words and README snippets must not grant repo-wide reuse rights.
+    assert refresh.strict_root_license("## License\\nMIT") is None
+    assert refresh.strict_root_license(
+        "Portions of this software are licensed as follows: MIT for other files. "
+        "Permission is hereby granted, free of charge, to any person obtaining a copy "
+        "of this software, to deal in the Software without restriction."
+    ) is None
+    assert refresh.strict_root_license(
+        "MIT License\\nPermission is hereby granted, free of charge, to any person obtaining a copy "
+        "of this software, to deal in the Software without restriction."
+    ) == "MIT"
+
 
 
 def test_license_fallback_reads_root_license_file():
@@ -106,7 +118,7 @@ def test_license_fallback_reads_root_license_file():
                 ]
             assert path == "LICENSE"
             content = base64.b64encode(
-                b"MIT License\nPermission is hereby granted, free of charge, to any person obtaining a copy"
+                b"MIT License\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software, to deal in the Software without restriction."
             ).decode()
             return {"type": "file", "name": "LICENSE", "path": "LICENSE", "content": content}
         refresh.fetch_contents = fake_contents
@@ -126,7 +138,29 @@ def test_license_fallback_reads_readme_when_root_license_is_absent():
             ).decode()
             return {"type": "file", "name": "README.md", "path": "README.md", "content": content}
         refresh.fetch_contents = fake_contents
-        assert refresh.fallback_license("x/repo", "main") == "CC-BY-4.0"
+        assert refresh.fallback_license("x/repo", "main") is None
+    finally:
+        refresh.fetch_contents = original
+
+
+def test_license_fallback_rejects_conflicting_root_files():
+    original = refresh.fetch_contents
+    try:
+        def fake_contents(repo, path="", ref=None, token=None, retries=2):
+            if not path:
+                return [
+                    {"type": "file", "name": "LICENSE", "path": "LICENSE"},
+                    {"type": "file", "name": "COPYING", "path": "COPYING"},
+                ]
+            content = (
+                "MIT License\\nPermission is hereby granted, free of charge, to any person "
+                "obtaining a copy of this software, to deal in the Software without restriction."
+                if path == "LICENSE" else
+                "GNU GENERAL PUBLIC LICENSE\\nVersion 3, 29 June 2007"
+            )
+            return {"type": "file", "content": base64.b64encode(content.encode()).decode()}
+        refresh.fetch_contents = fake_contents
+        assert refresh.fallback_license("x/repo", "main") is None
     finally:
         refresh.fetch_contents = original
 
@@ -285,6 +319,7 @@ if __name__ == "__main__":
     test_license_signature_detection()
     test_license_fallback_reads_root_license_file()
     test_license_fallback_reads_readme_when_root_license_is_absent()
+    test_license_fallback_rejects_conflicting_root_files()
     test_metadata_refresh_uses_license_fallback()
     test_metadata_refresh_preserves_verified_license_when_github_is_inconclusive()
     test_server_error_remains_fatal()

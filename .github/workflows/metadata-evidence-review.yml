@@ -1,0 +1,54 @@
+name: Review uncertain catalog metadata
+
+on:
+  schedule:
+    - cron: "27 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: catalog-metadata-evidence-review
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Select a bounded rotating evidence batch
+        id: batch
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import datetime, json
+          from pathlib import Path
+          data = json.loads(Path("catalog.json").read_text(encoding="utf-8"))
+          import sys
+          sys.path.insert(0, "scripts")
+          from verify_catalog_evidence import requires_review
+          uncertain = sum(requires_review(row) for row in data["repositories"])
+          batches = max(1, (uncertain + 14) // 15)
+          print(f"index={datetime.date.today().toordinal() % batches}")
+          PY
+      - name: Verify GitHub evidence without modifying catalog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/verify_catalog_evidence.py --limit 15 \
+            --batch-index "${{ steps.batch.outputs.index }}" \
+            --report-out metadata-evidence.json > /tmp/evidence-summary.json
+          python scripts/validate_json_contract.py \
+            schemas/metadata-evidence.schema.json metadata-evidence.json
+      - name: Upload evidence report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalog-metadata-evidence
+          path: metadata-evidence.json
+          if-no-files-found: warn
+          retention-days: 35

@@ -96,6 +96,51 @@ def detect_license_text(text):
     return None
 
 
+def root_license_scope_warning(text):
+    """Catch explicit partial, commercial or directory-specific licence grants."""
+    if not isinstance(text, str):
+        return False
+    lower = re.sub(r"\s+", " ", text).lower()
+    return any(marker in lower for marker in (
+        "portions of this software are licensed as follows",
+        "content outside of the above mentioned",
+        "licensed under the license defined in",
+        "parts of this repository are licensed",
+        "different license applies",
+        "separately licensed",
+        "dual-licensed",
+        "dual licensed",
+    )) or bool(re.search(r"\b(?:enterprise|commercial) (?:components?|directories|code|features?)\b.{0,100}\blicen[sc]e", lower))
+
+
+def strict_root_license(text):
+    """No README guesses, SPDX strings alone or isolated 'MIT' mentions."""
+    if not isinstance(text, str) or root_license_scope_warning(text):
+        return None
+    lower = re.sub(r"\s+", " ", text).lower()
+    if "all rights reserved" in lower and "permission is hereby granted" not in lower:
+        return None
+    if ("permission is hereby granted, free of charge, to any person obtaining a copy" in lower
+            and "the software" in lower and "without restriction" in lower):
+        return "MIT"
+    # Text signatures are accepted only for the authoritative root licence
+    # file, never for incidental descriptions or nested examples.
+    for name, bits in (
+        ("Apache-2.0", ("apache license", "version 2.0, january 2004")),
+        ("GPL-3.0", ("gnu general public license", "version 3, 29 june 2007")),
+        ("AGPL-3.0", ("gnu affero general public license", "version 3, 19 november 2007")),
+        ("LGPL-3.0", ("gnu lesser general public license", "version 3, 29 june 2007")),
+        ("MPL-2.0", ("mozilla public license version 2.0",)),
+        ("BSD-3-Clause", ("redistribution and use in source and binary forms",
+                          "neither the name of")),
+        ("Unlicense", ("this is free and unencumbered software released into the public domain",)),
+    ):
+        if all(x in lower for x in bits):
+            return name
+    return None
+
+
+
 def _decode_content(payload):
     if not isinstance(payload, dict):
         return None
@@ -124,6 +169,7 @@ def fallback_license(repo, default_branch, token=None):
         if stem in LICENSE_NAMES:
             candidates.append(item)
     candidates.sort(key=lambda item: (0 if str(item.get("name","")).lower().startswith(("license","licence")) else 1, str(item.get("name","")).lower()))
+    detected_licenses = set()
     for item in candidates[:4]:
         path = item.get("path")
         if not path:
@@ -131,36 +177,18 @@ def fallback_license(repo, default_branch, token=None):
         try:
             payload = fetch_contents(repo, path=path, ref=default_branch, token=token)
         except Exception:
-            continue
+            # Incomplete root-file inspection is not enough to safely infer
+            # a repository-wide license.
+            return None
         text = _decode_content(payload)
-        if text is None:
-            continue
-        detected = detect_license_text(text)
+        if text is None or root_license_scope_warning(text):
+            return None
+        detected = strict_root_license(text)
         if detected:
-            return detected
-
-    # Some curated lists and documentation repositories state their license
-    # only in the README. Use this as a secondary signal, never as a guess.
-    readmes = []
-    for item in root:
-        if not isinstance(item, dict) or item.get("type") != "file":
-            continue
-        name = str(item.get("name", "")).lower()
-        stem = re.split(r"[._-]", name, maxsplit=1)[0]
-        if stem in README_NAMES:
-            readmes.append(item)
-    for item in readmes[:2]:
-        try:
-            payload = fetch_contents(repo, path=item.get("path"), ref=default_branch, token=token)
-        except Exception:
-            continue
-        text = _decode_content(payload)
-        if text is None:
-            continue
-        detected = detect_license_text(text)
-        if detected:
-            return detected
-    return None
+            detected_licenses.add(detected)
+    # Conflicting licence files are treated as unresolved, not first-match wins.
+    # README prose is never a grant covering all directories.
+    return next(iter(detected_licenses)) if len(detected_licenses) == 1 else None
 
 
 def metadata(raw):
