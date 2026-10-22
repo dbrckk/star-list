@@ -108,6 +108,13 @@ def main():
     entries = [dict(row), {**row, "repo": "example/second"}]
     chosen, uncertain = audit.select_entries(entries, 1, 0, [])
     assert len(chosen) == 1 and uncertain == 2
+    flagged = dict(row, repo="example/audit-only", selfHosted=True,
+                   github={**row["github"], "license": "MIT"})
+    assert audit.requires_review(flagged) is True
+    flagged["tier"] = "recommended"
+    assert audit.requires_review(flagged) is False
+    flagged["github"]["archived"] = True
+    assert audit.requires_review(flagged) is True
     chosen2, _ = audit.select_entries(entries, 1, 1, [])
     assert chosen[0]["repo"] != chosen2[0]["repo"]
     try:
