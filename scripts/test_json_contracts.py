@@ -135,4 +135,34 @@ collision = {**sample, "websites": [
 ]}
 assert any("collides" in error for error in check_websites(collision, websites_schema))
 
+# Real Production-OS source repair #41: a provider's public website may use
+# www while its documented MCP endpoint is on a provider-owned subdomain.
+# Keep the security boundary: foreign domains, lookalikes and unsafe schemes
+# must never pass through the same acceptance path.
+mcp_provider = {
+    **sample["websites"][0],
+    "type": "mcp-service",
+    "url": "https://www.example.org/",
+    "reuse": "hosted-service",
+    "mcpEndpoint": "https://mcp.example.org/mcp",
+}
+def mcp_errors(endpoint, website="https://www.example.org/"):
+    return check_websites({
+        "schemaVersion": 1,
+        "websites": [{**mcp_provider, "url": website, "mcpEndpoint": endpoint}],
+    }, websites_schema)
+
+assert not mcp_errors("https://mcp.example.org/mcp"), "Owned MCP subdomain falsely rejected for www site"
+assert not mcp_errors("https://example.org/mcp"), "Exact provider-owned MCP hostname falsely rejected"
+assert not mcp_errors("https://mcp.example.org/mcp", "https://example.org/"), "Non-www provider website regressed"
+for hostile_endpoint in (
+    "https://example.org.evil.net/mcp",
+    "https://evil.example.net/mcp",
+    "https://mcp.example.org.evil.net/mcp",
+    "https://mcp.example.org/not-mcp",
+    "http://mcp.example.org/mcp",
+    "https://user:pass@mcp.example.org/mcp",
+):
+    assert mcp_errors(hostile_endpoint), f"Unsafe MCP endpoint accepted: {hostile_endpoint!r}"
+
 print("OK: pipeline and catalog JSON contract tests passed")
