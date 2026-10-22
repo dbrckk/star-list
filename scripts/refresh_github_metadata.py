@@ -169,6 +169,7 @@ def fallback_license(repo, default_branch, token=None):
         if stem in LICENSE_NAMES:
             candidates.append(item)
     candidates.sort(key=lambda item: (0 if str(item.get("name","")).lower().startswith(("license","licence")) else 1, str(item.get("name","")).lower()))
+    detected_licenses = set()
     for item in candidates[:4]:
         path = item.get("path")
         if not path:
@@ -176,17 +177,18 @@ def fallback_license(repo, default_branch, token=None):
         try:
             payload = fetch_contents(repo, path=path, ref=default_branch, token=token)
         except Exception:
-            continue
+            # Incomplete root-file inspection is not enough to safely infer
+            # a repository-wide license.
+            return None
         text = _decode_content(payload)
-        if text is None:
-            continue
+        if text is None or root_license_scope_warning(text):
+            return None
         detected = strict_root_license(text)
         if detected:
-            return detected
-
-    # README prose is not an authoritative repository-wide licence grant.
-    # Never auto-fill github.license from its text.
-    return None
+            detected_licenses.add(detected)
+    # Conflicting licence files are treated as unresolved, not first-match wins.
+    # README prose is never a grant covering all directories.
+    return next(iter(detected_licenses)) if len(detected_licenses) == 1 else None
 
 
 def metadata(raw):
