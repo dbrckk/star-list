@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "updated_date_utc": "2026-10-21",
+  "updated_date_utc": "2026-10-22",
   "repository": "dbrckk/star-list",
   "reference_branch": "main",
   "status": "active",
-  "verified_catalog_repositories": 1023,
+  "verified_catalog_repositories": 1060,
   "last_verified_public_portfolio_scan": {
     "discovered": 42,
     "inspected": 42,
@@ -16,15 +16,16 @@
     "with_skill_recommendations": 13,
     "dispatched": 0,
     "public_report_issue": 61,
-    "verified_workflow_run": 39660543182,
+    "verified_workflow_run": 39696803928,
     "skill_recommendations": 60,
     "website_references": 74,
-    "qualifying_repositories": 216,
-    "curated_websites": 26,
+    "qualifying_repositories": 221,
+    "curated_websites": 27,
     "fully_assessed_projects": 42,
-    "github_resource_assessments": 42966,
-    "website_resource_assessments": 1092,
-    "policy_review_suggestions": 80
+    "github_resource_assessments": 44520,
+    "website_resource_assessments": 1134,
+    "policy_review_suggestions": 85,
+    "catalog_repositories": 1060
   },
   "last_verified_integration_inventory": {
     "active": 0,
@@ -117,7 +118,10 @@
     167,
     168,
     169,
-    170
+    170,
+    171,
+    172,
+    173
   ],
   "completed_work": [
     "Preserve sync error reports and audit-tier admission semantics",
@@ -183,13 +187,14 @@
     "Star-list PR #163 merged as 65ae30f on 2026-10-21: indexed licensed FastH3 Omni HF model collection as the 22nd website; source_assessment now records an explicit metadata-derived decision for each catalog GitHub and website entry for every active target, verifies full coverage before dispatch, preserves review-only licence/compute gates, and leaves 4 v2 + 1 v3 Production-OS fleet holds untouched. Exact-head Validate catalog and live portfolio smoke passed; post-merge Validate catalog, Repository standards and daily full portfolio scan #39644170090 passed. Public issue #61: 42/42 scanned, 42,966 GitHub + 924 web assessments, 216 qualifying GitHub matches (80 policy-review, 24 native), 52 relevant web refs, 0 dispatches.",
     "Star-list PRs #165 (AtomicChat FLUX.3 Image Klein GGUF), #166 (sparse asset-forge/monteur-video advisory matching) and #167 (Hugging Face model/dataset/Spaces hub plus MiniCPM-V 4.7 1B Heretic) merged on 2026-10-21. MiniCPM declares Apache-2.0 with upstream openbmb/MiniCPM-V-4.7-1B, safetyRisk reduced-refusal/abliterated and requires a separate ~1.11GB GGUF vision projector; do not ship unmoderated public use. PR #167 exact head catalog CI and live 42-repo smoke passed, postmerge standards, catalog and daily portfolio scan #39652514651 passed. Actual issue #61: 42/42 targets, 1023 GitHub +25 web sources per target =44016 decisions, 216 qualifying GitHub matches (24 native/80 review), 74 website references across 19 targets, 0 dispatch. Render production-os1 deployed latest 06b2af5 live, worker CI passed 8c8301b, but provider capacity and old Production-OS integration failures NOT proven recovered.",
     "2026-10-21: AI Dev Server / Production-OS previously delivered Jumpy source checkpoint via reviewed draft PR dbrckk/Jumpy#37, generated change in scripts/integrations.gd adding clipboard feature check and share_unavailable event. The exact model-authored PR head f643d0646c13e77c7746750a2acbaca9e240d119 passed Godot parse run 39590218197; independently reviewed and squash merged as 7ba62fce709f852aa1a43f4246f1ca8a142c7ad2. Post-merge Godot validation 39654404595, Android debug APK 39654404846 and standards 39654406518 all SUCCESS on that merged commit. This is real previously published worker code delivered into target main, NOT a new Star List fleet dispatch or general reliable inference-capacity proof. Star-list PR #154 is already functionally superseded on main: root MCP hostname normalization exists, so do not re-merge its redundant source patch.",
-    "2026-10-21: PR #170 merged as 69d27d1dd077290ab3c5b32b7f61e99c2e80e5da. Added SoPilot https://sopilot.net/ as 26th curated hosted marketing/social/X/SEO source with precise marketing-domain matching, no installation, no social posting or backlink submission without consent; retail dbrckk/Promo-alimentaire correctly excluded despite its name. Exact-head Validate catalog 39660325117 and public portfolio smoke 39660324870 successful; postmerge Validate catalog 39660543267, standards 39660545212, daily scan 39660543182 successful. Public issue #61: 42/42 repositories, 1023 GitHub+26 sites assessed per target = 44,058 source decisions (42,966 GitHub, 1,092 web); 216 GitHub qualified matches, 24 native, 80 policy-review, 74 web refs across 19 projects, 0 integration launches. No active public project has explicit SoPilot marketing fit, so a 26-site completeness check is accurate even without a SoPilot recommendation. Four historical v2 and one terminal v3 capacity failures still require proof/operator review."
+    "2026-10-21: PR #170 merged as 69d27d1dd077290ab3c5b32b7f61e99c2e80e5da. Added SoPilot https://sopilot.net/ as 26th curated hosted marketing/social/X/SEO source with precise marketing-domain matching, no installation, no social posting or backlink submission without consent; retail dbrckk/Promo-alimentaire correctly excluded despite its name. Exact-head Validate catalog 39660325117 and public portfolio smoke 39660324870 successful; postmerge Validate catalog 39660543267, standards 39660545212, daily scan 39660543182 successful. Public issue #61: 42/42 repositories, 1023 GitHub+26 sites assessed per target = 44,058 source decisions (42,966 GitHub, 1,092 web); 216 GitHub qualified matches, 24 native, 80 policy-review, 74 web refs across 19 projects, 0 integration launches. No active public project has explicit SoPilot marketing fit, so a 26-site completeness check is accurate even without a SoPilot recommendation. Four historical v2 and one terminal v3 capacity failures still require proof/operator review.",
+    "2026-10-22: PR #173 merged as df9ed26847b2c79d57870e49b3a925356699681a. Curated jialinyyzz/humanizer as website #27, Apache-2.0 Gemma-4 12B English/Chinese text-rewriting completion checkpoint, not a default HF hosted endpoint, model card's untrusted AGENTS.md not auto-executed. Added writing-only source matching and supportedLanguages review, factual/date/name/layout preservation & human editorial checks. Exact-head validation 39696656871 plus read-only 42-repository live smoke 39696656736 succeeded; postmerge catalog 39696803698, standards 39696805462, daily portfolio 39696803928 all SUCCESS. Recent Stars sync raised GitHub catalog to 1,060 entries; public issue #61 reports 42/42 active projects, 44,520 GitHub +1,134 web metadata source decisions =45,654, 221 qualified GitHub matches (24 native,85 policy review), 74 web references across 19 projects, zero new worker dispatches. No existing public target had enough explicit writing/rewrite metadata to shortlist Humanizer, but its assessment is present for each. Production-OS fleet global hold remains (4 historical v2 failures + terminal v3), must not claim restored free inference capacity."
   ],
   "next_priority": [
-    "Restore trusted Production-OS/AI Dev Server worker capacity with bounded authenticated proof and explicit operator review of four historical v2 and one terminal v3 exhausted tasks before fleet restart; do not bypass the fail-closed hold.",
-    "Complete and CI-validate one NEW licensed native source integration into a target review PR. Earlier worker-generated dbrckk/Jumpy PR #37 was independently merged to main with Godot and Android CI green; that does not prove new automatic worker capacity.",
-    "Keep daily comprehensive per-project metadata assessment of 1023 catalog GitHub resources and 26 curated sites (42/42 public repositories, 44,058 decisions, run #39660543182); do not confuse meta discovery with executing, downloading or crawling hosted sites.",
-    "Preserve consent and platform anti-spam gates: SoPilot recommendations are confined to explicit marketing/SEO/social signals and never authorize autonomous social account login, mass engagement, publishing, backlink submission or paid tiers."
+    "Confirm repeatable authorized Production-OS worker/model inference capacity before any fleet restart: previous 4 v2 and 1 terminal v3 exhausted attempts remain; Render service readiness and successful source recovery alone do not prove available provider capacity.",
+    "Only after qualified capacity, execute a NEW safe native integration into a target draft PR and verify actual runtime usage and exact-source SHA target CI. Previously produced Jumpy worker fix #37 was independently merged as 7ba62fc with Godot and Android workflows green; this is prior delivery, not fleet recovery.",
+    "Continue complete daily metadata scan of 1,060 GitHub catalog entries and 27 curated website/model sources for all 42 active accessible public targets; last exact-main read-only counts 45,654 per-resource decisions in workflow #39696803928 and issue #61. Treat models (including Humanizer) as advisory; never auto-download weights or execute upstream AGENTS.md instructions.",
+    "Preserve source-specific licensing and editorial safety: Humanizer is English/Chinese 12B text-completion, no verified French writing, Q4 model ~7.6GB, human checks of facts/language/formatting; SoPilot social automation requires separate account-owner consent and platform policy review."
   ],
   "constraints": [
     "No automatic merge/deployment of third-party integrations",
