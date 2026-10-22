@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Star List reviewed upstream README evidence",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "sourceType",
+    "sources"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "sourceType": {
+      "const": "reviewed-readme-blob"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "repository",
+          "githubRepositoryId",
+          "path",
+          "blobSha",
+          "advisoryDomains",
+          "taskTerms",
+          "evidenceSnippet",
+          "reviewNotes"
+        ],
+        "properties": {
+          "repository": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+$"
+          },
+          "githubRepositoryId": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "path": {
+            "const": "README.md"
+          },
+          "blobSha": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "advisoryDomains": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "ai_media",
+                "ai_agents",
+                "data_ml",
+                "graphics",
+                "game_dev",
+                "marketing",
+                "software_engineering",
+                "writing",
+                "productivity",
+                "backend",
+                "web_frontend",
+                "embedded_iot",
+                "education",
+                "cybersecurity",
+                "ai_memory",
+                "devops"
+              ]
+            }
+          },
+          "taskTerms": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 10,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$"
+            }
+          },
+          "evidenceSnippet": {
+            "type": "string",
+            "minLength": 3
+          },
+          "reviewNotes": {
+            "type": "string",
+            "minLength": 5
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

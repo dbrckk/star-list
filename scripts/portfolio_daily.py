@@ -22,7 +22,9 @@ from urllib.parse import quote, urlparse
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 from recommend import DOMAIN_ALIASES, infer_domains, score_repo, tokens, recommend_websites
-from catalog_domain_evidence import advisory_domain_evidence
+from catalog_domain_evidence import (
+    advisory_domain_evidence, reviewed_readme_task_terms
+)
 from agent_skill_discovery import SKILL_ISSUE_URL, recommend_skills, word_set
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -32,6 +34,8 @@ ALLOWED_LICENSES = {
     "mpl-2.0", "unlicense", "cc0-1.0", "0bsd",
 }
 KEYWORDS = {
+    "education": ("education", "curriculum", "learning", "teaching",
+                  "school", "schooling", "pedagogy"),
     "embedded_iot": ("esp32", "esp8266", "arduino", "firmware", "embedded",
                      "iot", "microcontroller", "espressif", "drone"),
     "game_dev": ("roblox", "luau", "godot", "game", "gaming", "unity", "jelly", "zombie", "jumpy"),
@@ -458,6 +462,7 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
         # name evidence may split a hyphenated repository technology label.
         if advisory_routing:
             terms.update(exact_slug_terms)
+            terms.update(tokens(" ".join(reviewed_readme_task_terms(tool))))
         shared = sorted((profile["terms"] & terms) - GENERIC - STOPWORDS)
         if not shared:
             continue
@@ -469,11 +474,14 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
             tokens(" ".join(tool.get("bestFor") or []))
         ) - GENERIC - STOPWORDS
         explicit_slug_match = bool(set(shared) & exact_slug_terms)
+        readme_term_match = bool(
+            set(shared) & tokens(" ".join(reviewed_readme_task_terms(tool)))
+        )
         # High-specificity technology tokens such as ESP32/agent-sdk in a
         # repository slug can establish advisory relevance even when GitHub
         # has no topics or description. This NEVER permits native dispatch.
         if len(shared) < 2 and not (set(shared) & capability_terms) and not (
-            advisory_routing and explicit_slug_match
+            advisory_routing and (explicit_slug_match or readme_term_match)
         ):
             if assessment is not None:
                 assessment[slug]["reason"] = "weak-task-evidence"

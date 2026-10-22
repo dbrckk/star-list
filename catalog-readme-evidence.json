@@ -1,0 +1,580 @@
+{
+  "schemaVersion": 1,
+  "sourceType": "reviewed-readme-blob",
+  "sources": [
+    {
+      "repository": "Asad-Ismail/MoneyPrinterTurbo-Extended",
+      "githubRepositoryId": 988352805,
+      "path": "README.md",
+      "blobSha": "affa3a55666123d2f886ea43b86ab091461bad39",
+      "advisoryDomains": [
+        "ai_media"
+      ],
+      "taskTerms": [
+        "video",
+        "subtitles",
+        "tts",
+        "voice",
+        "clips"
+      ],
+      "evidenceSnippet": "subtitle highlighting and TTS capabilities",
+      "reviewNotes": "Fork description; runtime/model costs must be checked."
+    },
+    {
+      "repository": "hexgrad/kokoro",
+      "githubRepositoryId": 915054134,
+      "path": "README.md",
+      "blobSha": "765dcc77ff656885225fd882d3e7c3c67545325b",
+      "advisoryDomains": [
+        "ai_media"
+      ],
+      "taskTerms": [
+        "tts",
+        "speech",
+        "voice",
+        "audio",
+        "synthesis"
+      ],
+      "evidenceSnippet": "an open-weight TTS model with 82 million parameters",
+      "reviewNotes": "Model weights and library licensing must be assessed separately."
+    },
+    {
+      "repository": "HVision-NKU/StoryDiffusion",
+      "githubRepositoryId": 789712717,
+      "path": "README.md",
+      "blobSha": "2b2c0da824c16f0b01ede7b70823eec9ab7864e0",
+      "advisoryDomains": [
+        "ai_media"
+      ],
+      "taskTerms": [
+        "image",
+        "video",
+        "generation",
+        "characters",
+        "comics"
+      ],
+      "evidenceSnippet": "Image and Video Generation",
+      "reviewNotes": "Experimental model; verify model usage rights and runtime requirements."
+    },
+    {
+      "repository": "KarakuriAgent/h3-motion-creator",
+      "githubRepositoryId": 1427850125,
+      "path": "README.md",
+      "blobSha": "087c44ba30913341e18ea212720356eea20e1588",
+      "advisoryDomains": [
+        "graphics"
+      ],
+      "taskTerms": [
+        "vrm",
+        "animation",
+        "motion",
+        "rig",
+        "video",
+        "3d"
+      ],
+      "evidenceSnippet": "VRM Animation",
+      "reviewNotes": "Model weights not included; external model and workflow restrictions apply."
+    },
+    {
+      "repository": "Tencent-Hunyuan/Hy-MT2",
+      "githubRepositoryId": 1242193963,
+      "path": "README.md",
+      "blobSha": "5198cf68c804ac698d756934ae24d12d4107b763",
+      "advisoryDomains": [
+        "data_ml",
+        "ai_media"
+      ],
+      "taskTerms": [
+        "translation",
+        "multilingual",
+        "subtitles",
+        "model"
+      ],
+      "evidenceSnippet": "multilingual translation models",
+      "reviewNotes": "Translation model licensing and compute are separate from repository metadata."
+    },
+    {
+      "repository": "mcncarl/jianying-headless",
+      "githubRepositoryId": 1371378654,
+      "path": "README.md",
+      "blobSha": "b27670ba1e9521ef65139927087e0b7552aa97e9",
+      "advisoryDomains": [
+        "ai_media"
+      ],
+      "taskTerms": [
+        "video",
+        "editing",
+        "drafts",
+        "subtitles",
+        "export",
+        "mp4"
+      ],
+      "evidenceSnippet": "多轨工程",
+      "reviewNotes": "macOS Jianying version constraints; no claim of Android or arbitrary-platform compatibility."
+    },
+    {
+      "repository": "GoogleCloudPlatform/genmedia-izumi-agent",
+      "githubRepositoryId": 1199868922,
+      "path": "README.md",
+      "blobSha": "e99607138abbf5e886737ca72324ced12cc8fdc4",
+      "advisoryDomains": [
+        "ai_media",
+        "marketing",
+        "ai_agents"
+      ],
+      "taskTerms": [
+        "multimedia",
+        "advertising",
+        "agents",
+        "media",
+        "creative",
+        "video"
+      ],
+      "evidenceSnippet": "Automated Multimedia Advertisement Creation",
+      "reviewNotes": "Example reference architecture; Google Cloud services may incur costs."
+    },
+    {
+      "repository": "higgsfield-ai/skills",
+      "githubRepositoryId": 1206425593,
+      "path": "README.md",
+      "blobSha": "682610d4189c0c6fbfb68b3753fcc86ccd43e247",
+      "advisoryDomains": [
+        "ai_media",
+        "marketing",
+        "graphics"
+      ],
+      "taskTerms": [
+        "video",
+        "images",
+        "animation",
+        "branding",
+        "marketing"
+      ],
+      "evidenceSnippet": "AI agent skills for image/video generation",
+      "reviewNotes": "External Higgsfield CLI/auth and service terms must be checked."
+    },
+    {
+      "repository": "towfiqi/serpbear",
+      "githubRepositoryId": 570178488,
+      "path": "README.md",
+      "blobSha": "9ad775e1d003648be1f8c6b378e9eba7bee3ca54",
+      "advisoryDomains": [
+        "marketing"
+      ],
+      "taskTerms": [
+        "seo",
+        "serp",
+        "keywords",
+        "ranking",
+        "analytics"
+      ],
+      "evidenceSnippet": "Search Engine Position Tracking and Keyword Research App",
+      "reviewNotes": "External SERP providers may require payment."
+    },
+    {
+      "repository": "neilsonnn/image-blaster",
+      "githubRepositoryId": 1216542069,
+      "path": "README.md",
+      "blobSha": "633aa3bf4ea17d4516138132758b07229948df90",
+      "advisoryDomains": [
+        "graphics",
+        "game_dev"
+      ],
+      "taskTerms": [
+        "3d",
+        "models",
+        "meshes",
+        "assets",
+        "sfx",
+        "environments"
+      ],
+      "evidenceSnippet": "Creates 3D environments, SFX, and meshes from a single image",
+      "reviewNotes": "World Labs and FAL API keys are required."
+    },
+    {
+      "repository": "baidu/Unlimited-OCR",
+      "githubRepositoryId": 1273138090,
+      "path": "README.md",
+      "blobSha": "b8cbea5cf9be8852e29d1a502175d9999e068428",
+      "advisoryDomains": [
+        "data_ml"
+      ],
+      "taskTerms": [
+        "ocr",
+        "document",
+        "parsing",
+        "text",
+        "images"
+      ],
+      "evidenceSnippet": "Unlimited OCR Works",
+      "reviewNotes": "Model terms, hardware and deployment remain unverified."
+    },
+    {
+      "repository": "anthropics/claude-quickstarts",
+      "githubRepositoryId": 849553306,
+      "path": "README.md",
+      "blobSha": "9cac84096b77c32521c718f5b507aa866ed232b1",
+      "advisoryDomains": [
+        "ai_agents",
+        "software_engineering"
+      ],
+      "taskTerms": [
+        "agent",
+        "api",
+        "coding",
+        "browser",
+        "computer",
+        "tools"
+      ],
+      "evidenceSnippet": "Claude Quickstarts is a collection of projects",
+      "reviewNotes": "Requires Claude API credentials and possibly paid usage."
+    },
+    {
+      "repository": "richiemcilroy/Tov",
+      "githubRepositoryId": 1396004915,
+      "path": "README.md",
+      "blobSha": "57fd4ce5f60f0e2a1e33a2bc2fc99230d18e6104",
+      "advisoryDomains": [
+        "software_engineering"
+      ],
+      "taskTerms": [
+        "programming",
+        "language",
+        "compiler",
+        "typescript",
+        "coding"
+      ],
+      "evidenceSnippet": "A programming language for coding agents",
+      "reviewNotes": "Early 0.0.1 release; not production-validated."
+    },
+    {
+      "repository": "withmarbleapp/os-taxonomy",
+      "githubRepositoryId": 1293375068,
+      "path": "README.md",
+      "blobSha": "6d05f5b5c5cd60e23ec1bd35ce5a06e26fb87ebe",
+      "advisoryDomains": [
+        "education"
+      ],
+      "taskTerms": [
+        "curriculum",
+        "education",
+        "learning",
+        "school",
+        "teaching",
+        "standards"
+      ],
+      "evidenceSnippet": "An open, structured taxonomy of **what children learn**",
+      "reviewNotes": "Education taxonomy is not a runtime dependency."
+    },
+    {
+      "repository": "h0m3us3r/eSpDR",
+      "githubRepositoryId": 1387871388,
+      "path": "README.md",
+      "blobSha": "5c6b1fedc45293e6b10d49adb969b1bb1a0c0a45",
+      "advisoryDomains": [
+        "embedded_iot"
+      ],
+      "taskTerms": [
+        "esp32",
+        "sdr",
+        "radio",
+        "firmware",
+        "receiver"
+      ],
+      "evidenceSnippet": "ESP32-S3 SDR",
+      "reviewNotes": "Hardware-dependent experimental design."
+    },
+    {
+      "repository": "luigifcruz/BirriaSDR",
+      "githubRepositoryId": 1416428935,
+      "path": "README.md",
+      "blobSha": "9ca6a2a6af1875055145882709a68323c3fd5904",
+      "advisoryDomains": [
+        "embedded_iot"
+      ],
+      "taskTerms": [
+        "sdr",
+        "radio",
+        "receiver",
+        "usb",
+        "hardware"
+      ],
+      "evidenceSnippet": "experimental SDR receiver",
+      "reviewNotes": "Experimental hardware and uncalibrated receiver."
+    },
+    {
+      "repository": "mcncarl/yichen-skills",
+      "githubRepositoryId": 1155113456,
+      "path": "README.md",
+      "blobSha": "c2aaa5387062b9b1282ba4c17d3a25ea644d1a8a",
+      "advisoryDomains": [
+        "writing",
+        "marketing",
+        "ai_agents"
+      ],
+      "taskTerms": [
+        "writing",
+        "skills",
+        "articles",
+        "content",
+        "publishing"
+      ],
+      "evidenceSnippet": "A skill collection for creators",
+      "reviewNotes": "Commercial use requires explicit author permission."
+    },
+    {
+      "repository": "pluginagentmarketplace/custom-plugin-game-developer",
+      "githubRepositoryId": 1099329268,
+      "path": "README.md",
+      "blobSha": "653a0c33cf1326d36e3220ce564b0fefaa7a1863",
+      "advisoryDomains": [
+        "game_dev",
+        "ai_agents"
+      ],
+      "taskTerms": [
+        "game",
+        "development",
+        "agents",
+        "skills",
+        "engine"
+      ],
+      "evidenceSnippet": "Game Developer Assistant",
+      "reviewNotes": "Custom licence; inspect before any code reuse."
+    },
+    {
+      "repository": "rivet-dev/skills",
+      "githubRepositoryId": 1140411856,
+      "path": "README.md",
+      "blobSha": "95438b7d2248a1a4bd121288327a78d1c8a7471d",
+      "advisoryDomains": [
+        "ai_agents"
+      ],
+      "taskTerms": [
+        "skills",
+        "agents",
+        "integrations",
+        "rivet"
+      ],
+      "evidenceSnippet": "Rivet Skills",
+      "reviewNotes": "Generated documentation, not a directly installable library."
+    },
+    {
+      "repository": "alexngdev99/rork-restaurant-tycoon",
+      "githubRepositoryId": 1415197387,
+      "path": "README.md",
+      "blobSha": "8817c3e806540adddfd34989258c2dd26f27d7ef",
+      "advisoryDomains": [
+        "game_dev",
+        "web_frontend"
+      ],
+      "taskTerms": [
+        "game",
+        "tycoon",
+        "simulation",
+        "react",
+        "threejs"
+      ],
+      "evidenceSnippet": "3D restaurant management sim that runs in your browser",
+      "reviewNotes": "Reference game, not a reusable engine."
+    },
+    {
+      "repository": "omer-metin/skills-for-antigravity",
+      "githubRepositoryId": 1139862645,
+      "path": "README.md",
+      "blobSha": "a17e4d683bcaf4f1eaeb9308921ed397a1ce3c51",
+      "advisoryDomains": [
+        "ai_agents"
+      ],
+      "taskTerms": [
+        "skills",
+        "agent",
+        "development",
+        "antigravity"
+      ],
+      "evidenceSnippet": "collection of **462+ AI Skills**",
+      "reviewNotes": "Third-party converted skill instructions require review before use."
+    },
+    {
+      "repository": "dalathegreat/Battery-Emulator",
+      "githubRepositoryId": 603860295,
+      "path": "README.md",
+      "blobSha": "84943baacb1c41522c5f7d65e41414a87c3f3d06",
+      "advisoryDomains": [
+        "embedded_iot"
+      ],
+      "taskTerms": [
+        "battery",
+        "firmware",
+        "energy",
+        "storage",
+        "electric"
+      ],
+      "evidenceSnippet": "EV battery packs to be repurposed for stationary storage",
+      "reviewNotes": "Physical electrical system: do not infer safe deployment from documentation."
+    },
+    {
+      "repository": "RegeneratusLabs/physical-hermes",
+      "githubRepositoryId": 1424195755,
+      "path": "README.md",
+      "blobSha": "1b4fd2f438f5af289125390aaee7379cf866c9a1",
+      "advisoryDomains": [
+        "embedded_iot",
+        "ai_agents"
+      ],
+      "taskTerms": [
+        "esp32",
+        "robot",
+        "voice",
+        "agent",
+        "firmware"
+      ],
+      "evidenceSnippet": "Give your Hermes Agent a body.",
+      "reviewNotes": "Requires compatible robot hardware, flashing and a running agent."
+    },
+    {
+      "repository": "AskAillex/comic-maker",
+      "githubRepositoryId": 1303321172,
+      "path": "README.md",
+      "blobSha": "2dda9ddf15f3f32a614c5d9c9a42feb9a4f45168",
+      "advisoryDomains": [
+        "ai_media",
+        "graphics"
+      ],
+      "taskTerms": [
+        "comics",
+        "images",
+        "illustrations",
+        "story",
+        "panels"
+      ],
+      "evidenceSnippet": "one sentence → a lettered comic, fully local",
+      "reviewNotes": "Early development and local model dependencies."
+    },
+    {
+      "repository": "Antseed/AIPs",
+      "githubRepositoryId": 1291163775,
+      "path": "README.md",
+      "blobSha": "dbb2eaaeb9789eb8f0d1fb33cce2808b3a3805fe",
+      "advisoryDomains": [
+        "software_engineering"
+      ],
+      "taskTerms": [
+        "protocol",
+        "specification",
+        "documentation",
+        "p2p",
+        "network"
+      ],
+      "evidenceSnippet": "AntSeed Improvement Proposals (AIPs) describe standards and processes",
+      "reviewNotes": "Standards reference, not executable implementation."
+    },
+    {
+      "repository": "Humanive/cogfree",
+      "githubRepositoryId": 1403010415,
+      "path": "README.md",
+      "blobSha": "f3c13842c45552c60dfbb6ab9141341f5c504c00",
+      "advisoryDomains": [
+        "productivity"
+      ],
+      "taskTerms": [
+        "skills",
+        "cognition",
+        "thinking",
+        "memory",
+        "planning"
+      ],
+      "evidenceSnippet": "28 lightweight cognitive skills",
+      "reviewNotes": "Reference skills must be reviewed before adoption."
+    },
+    {
+      "repository": "liseami/CCBaga",
+      "githubRepositoryId": 1413898431,
+      "path": "README.md",
+      "blobSha": "578108a49206b3de64e9ad98306648bae3e4137a",
+      "advisoryDomains": [
+        "productivity"
+      ],
+      "taskTerms": [
+        "workspace",
+        "desktop",
+        "system",
+        "settings"
+      ],
+      "evidenceSnippet": "native macOS, Linux and Windows toolkit",
+      "reviewNotes": "Host settings and browser identity changes require explicit review."
+    },
+    {
+      "repository": "Xittered/xitter",
+      "githubRepositoryId": 1418075921,
+      "path": "README.md",
+      "blobSha": "f4e05f39279a645656359b88f4702e1d3c97e01c",
+      "advisoryDomains": [
+        "backend"
+      ],
+      "taskTerms": [
+        "backend",
+        "postgres",
+        "social",
+        "api",
+        "server"
+      ],
+      "evidenceSnippet": "A self-hosted backend for the X (Twitter) web client.",
+      "reviewNotes": "Legal constraints for obtaining the original client must be reviewed."
+    },
+    {
+      "repository": "anishfn/shapeshift",
+      "githubRepositoryId": 1381152958,
+      "path": "README.md",
+      "blobSha": "ae51f52b94bf9c846a4b2946b3b9cc072f98eae6",
+      "advisoryDomains": [
+        "web_frontend",
+        "productivity"
+      ],
+      "taskTerms": [
+        "ui",
+        "interface",
+        "forms",
+        "input",
+        "text"
+      ],
+      "evidenceSnippet": "One text box that morphs into the right UI as you type",
+      "reviewNotes": "UI demo may require model or runtime components."
+    },
+    {
+      "repository": "mexicat/pdoom-video",
+      "githubRepositoryId": 1386391454,
+      "path": "README.md",
+      "blobSha": "b7de7037ebb1d366099dffabb13086fbf6989c8c",
+      "advisoryDomains": [
+        "ai_media"
+      ],
+      "taskTerms": [
+        "music",
+        "video",
+        "render",
+        "audio",
+        "lyrics",
+        "typography"
+      ],
+      "evidenceSnippet": "A generative, code-rendered music video",
+      "reviewNotes": "Music rights are separate from the code."
+    },
+    {
+      "repository": "charlesbel/Microsoft-Rewards-Farmer",
+      "githubRepositoryId": 282502417,
+      "path": "README.md",
+      "blobSha": "960d44b097e56c88e4071fd6674262124398af10",
+      "advisoryDomains": [
+        "productivity"
+      ],
+      "taskTerms": [
+        "browser",
+        "automation",
+        "rewards",
+        "selenium"
+      ],
+      "evidenceSnippet": "A simple bot that uses selenium to farm Microsoft Rewards",
+      "reviewNotes": "README warns Microsoft may ban accounts; no autonomous account actions."
+    }
+  ]
+}

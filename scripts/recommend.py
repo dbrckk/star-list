@@ -6,7 +6,9 @@ from pathlib import Path
 from health_score import health_score
 from find_replacements import replacement_score
 from agent_skill_discovery import SKILL_ISSUE_URL, recommend_skills, word_set
-from catalog_domain_evidence import advisory_domain_evidence
+from catalog_domain_evidence import (
+    advisory_domain_evidence, reviewed_readme_task_terms
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog.json"
@@ -32,6 +34,8 @@ DOMAIN_ALIASES = {
     "esp32": "embedded_iot", "esp8266": "embedded_iot", "arduino": "embedded_iot",
     "firmware": "embedded_iot", "iot": "embedded_iot", "embedded": "embedded_iot",
     "microcontroller": "embedded_iot", "drone": "embedded_iot", "robotics": "embedded_iot",
+    "education": "education", "curriculum": "education", "teaching": "education",
+    "learning": "education", "school": "education",
     "automation": "productivity", "productivity": "productivity",
     "marketing": "marketing", "seo": "marketing", "outreach": "marketing",
     "campaign": "marketing", "campaigns": "marketing", "social": "marketing",
@@ -248,6 +252,9 @@ def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps):
         r.get("repo", ""), r.get("category", ""), r.get("domain", ""),
         " ".join(caps)
     ]))
+    # Exact task tokens from manually reviewed upstream README blobs improve
+    # only advisory relevance. They do not elevate tier or integration trust.
+    rtoks |= tokens(" ".join(reviewed_readme_task_terms(r)))
     lexical = len(qtokens & rtoks) / max(1, len(qtokens))
     cap_match = len(required_caps & caps) / max(1, len(required_caps)) if required_caps else 0.0
     domain_evidence = advisory_domain_evidence(r)

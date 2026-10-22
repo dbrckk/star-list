@@ -199,6 +199,36 @@ The report retains all original `other` catalog rows and exposes
 concrete `capability:`, `description:`, or `repo-name:` evidence. Rows
 without sufficient signals remain discoverable without a guessed domain.
 
+#### Reviewed upstream README sources
+
+When GitHub topics are sparse, `catalog-readme-evidence.json` records
+manually checked task descriptions from upstream READMEs. Each entry binds
+the exact `owner/repository`, immutable `githubRepositoryId`, `README.md`
+blob SHA, a short source excerpt, advisory domains, task terms and review
+notes for runtime, commercial licensing or provider costs.
+
+Results retain `readme:README.md@<blob-sha>` provenance. The exported domain
+coverage JSON adds `readmeEvidence` with the immutable GitHub blob API URL,
+snippet, caveat and snapshot date. The data never changes the original
+catalog domain, grants a licence, installs dependencies or authorizes an
+agent to run code. It is reference metadata only; the README is third-party
+content, not instructions for Star List to follow.
+
+```bash
+python scripts/validate_json_contract.py schemas/readme-domain-evidence.schema.json catalog-readme-evidence.json
+python scripts/test_readme_domain_evidence.py
+python scripts/report_domain_coverage.py --out /tmp/domain-coverage.json
+```
+
+The **Verify README evidence freshness** workflow checks rotating groups of
+12 sources against their upstream blob SHA, with GitHub ID verification.
+A changed README is reported as `review-outdated`, *not* auto-accepted.
+API failures and repository transfers remain visible and no automatic
+catalog edits are made. Until manually re-checked, such evidence is a
+historical snapshot rather than a promise about the current version.
+Queries for `education`/`curriculum` also support education references.
+
+
 Curated domains continue to take precedence; metadata-based domain inference
 **never** grants installation or worker-dispatch permissions.
 
