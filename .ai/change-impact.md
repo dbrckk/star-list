@@ -1,12 +1,23 @@
 # Change impact
 
-Base: 9d8d206f979e2416babae63b4b7d5aecf7b78046
-Head: 7e9516b02a956386f816ad850930b136e57f31b3
+Base: cf31b4eb58da896a67c06d078c9cf8db02ffde7f
+Head: e9f11dec82cb0d065230132c72da5def9000a1e7
 
 ## Changed files
-- M scripts/test_json_contracts.py
+- M .github/workflows/portfolio-scan-smoke.yml
+- M README.md
+- M RECOMMENDER.md
+- M WEB_RESOURCES.md
+- M schemas/websites.schema.json
+- M scripts/recommend.py
+- M scripts/test_recommend.py
+- M scripts/validate_websites.py
+- M websites.json
 
 ## Affected areas
+- .github
+- (root)
+- schemas
 - scripts
 
 ## Related test candidates

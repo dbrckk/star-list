@@ -1138,7 +1138,12 @@ websites.schema.json
               "model-collection",
               "model-checkpoint",
               "model-hub",
-              "marketing-automation-service"
+              "marketing-automation-service",
+              "animation-reference-library",
+              "film-stills-library",
+              "3d-pose-reference-tool",
+              "costume-history-atlas",
+              "ai-media-generator"
             ]
           },
           "access": {

@@ -3994,6 +3994,12 @@ lowered_tags = {str(t).lower() for t in site["tags"]}
 # Social network automation is hosted, credential-sensitive and
 # platform-policy sensitive. Never admit a blanket auto-publish tool.
 ⋮----
+# Motion/cinema references and hosted visual generators must be
+# selected for a concrete creative task. A game-dev domain alone
+# never authorizes importing film/anime frames or invoking hosted AI.
+visual_reuse_rules = {
+expected_visual_reuse = visual_reuse_rules.get(site["type"])
+⋮----
 # An MCP endpoint is an authenticated remote service, not a harmless
 # website link. Require a bounded HTTPS /mcp URL owned by the
 # documented provider; no credentials, foreign hosts or auto-install.

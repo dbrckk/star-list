@@ -1,52 +1,52 @@
 {
   "files": {
+    ".github/workflows/portfolio-scan-smoke.yml": {
+      "sha256": "a79e4925807282dded1b83cd0ade80d07035b9f5d43efd0ab1eb44e4dcb1aa86",
+      "size": 66235
+    },
+    "README.md": {
+      "sha256": "006a04f17bdae85802efc44bd33465d04e28348006f3358e1f3c9eb7e3c20cc7",
+      "size": 13739
+    },
     "RECOMMENDER.md": {
-      "sha256": "91f4278acb84461180f6ee9232dfe3c4ee01e3dbacaa7d7e0f648b5d551220a3",
+      "sha256": "139140fcf39ed60ffe3f5c69969163c6b1d13d6beb4b3c67b2c85681582437b6",
       "size": 17040
     },
-    "catalog-readme-evidence.json": {
-      "sha256": "f3c6112a387b8326044620737611fb9d568ea00b199e79fbf6a88758ff2c373a",
-      "size": 16471
+    "WEB_RESOURCES.md": {
+      "sha256": "e36a4cb48afebacd5a0dd8e9ebb3812a5b88b76dacc8861cb06ed4118590cac2",
+      "size": 24941
     },
-    "catalog.json": {
-      "sha256": "10e563851c25bde877cd7076be267427d3c8a8711dd14c39a526b0fc4af4a35f",
-      "size": 1179598
+    "schemas/websites.schema.json": {
+      "sha256": "3cd1ee6d5d7bfe1b20c563823cf694c431cd8c91542ae3d9414cf5819aa63dcf",
+      "size": 5141
     },
-    "catalog.schema.json": {
-      "sha256": "3f92a37a160924293525b3482aaa258c8d4ad262084cab8d46509fc79b5e0753",
-      "size": 7121
-    },
-    "schemas/readme-domain-evidence.schema.json": {
-      "sha256": "63869c16d7656342054c2723bf36e9898a9c2b9e4f24d1c9f531d4c09118fb06",
-      "size": 2384
-    },
-    "scripts/admit_github_stars.py": {
-      "sha256": "cdcaffb2395bfad6cac4820f4cf012322b74a9c8400d3cde2c5dc6cbe0d2a97e",
-      "size": 16659
-    },
-    "scripts/audit_catalog_quality.py": {
-      "sha256": "379faf1738f0418a47fe7786eba5800041a4a19b90611630db49c6bf737de105",
-      "size": 9486
+    "scripts/agent_skill_discovery.py": {
+      "sha256": "7b40a23dd9f147d1ab3435f7a9ea87a08ec59d8791d925279a13201024c6c007",
+      "size": 7987
     },
     "scripts/catalog_domain_evidence.py": {
       "sha256": "2741155be567cd551b9e3a6f4db5ded611f4f69336f1e4e2cf213c61f277fc36",
       "size": 13574
     },
-    "scripts/check_readme_evidence_freshness.py": {
-      "sha256": "47e354a6c78e6606dd38a447562f6e96333ef44433f85c1ca241952a354e8f4d",
-      "size": 3521
+    "scripts/find_replacements.py": {
+      "sha256": "fc4e3e288abcc1b48eaf238d09357ff7d11e5f1ce8b62aa92d4a4717c20006d9",
+      "size": 3404
     },
-    "scripts/infer_selection_guidance.py": {
-      "sha256": "6c450b78ef0f7a19927e608b2b666bf3a9bdec04c3e3835029a9f69110561638",
-      "size": 8752
+    "scripts/health_score.py": {
+      "sha256": "c16d8e8ed70025692961a42a6179051a4baaee2b1d721af26554816612f9000f",
+      "size": 2456
     },
     "scripts/portfolio_daily.py": {
       "sha256": "e9d7546b5582a39a36f6e93eebd87bfbf81c7bdac75791289e3c6c704094b826",
       "size": 74571
     },
+    "scripts/portfolio_failure_diagnostics.py": {
+      "sha256": "3f6972d50b7db5c499ccb845dbe21ff4c760dac1db12c6b6d5190adea586e62b",
+      "size": 19022
+    },
     "scripts/recommend.py": {
-      "sha256": "e6683b08d9252b6e65597c30a6c7928c7ba272d359e5ae4a44067b32afb78109",
-      "size": 30443
+      "sha256": "729b5c04d44ed1f044429eb65f7c8d372cdaa146a9af6a44e0220275509b5836",
+      "size": 31201
     },
     "scripts/report_domain_coverage.py": {
       "sha256": "02f92921c9ae51bcbbcd575e0e54b37cc5d717a394066f820c14977329f204f8",
@@ -55,6 +55,10 @@
     "scripts/test_catalog_domain_evidence.py": {
       "sha256": "c49be50488136690f97f945a70f24d0c8863a7a85d844d8b6e2954e05758cab6",
       "size": 4686
+    },
+    "scripts/test_full_catalog_availability.py": {
+      "sha256": "226e0a39aa24ea53d095af2b72a29ebc1217eff4ed6391d92b6c48e226a467ad",
+      "size": 3733
     },
     "scripts/test_json_contracts.py": {
       "sha256": "6428c4fede94e54f905b4b9ce46c0408575c1d7b05f1b6c56e08b498101e9c81",
@@ -68,13 +72,21 @@
       "sha256": "a2fd442a74e0ba1bd9c143706cab8d30cd76782605ad391717e1e871ec84f8b6",
       "size": 6590
     },
-    "scripts/test_readme_evidence_freshness.py": {
-      "sha256": "64f1710958500cdf50acc95e4bbcf9d2deff9c0b115c29cc73475b39926e6a53",
-      "size": 1526
+    "scripts/test_recommend.py": {
+      "sha256": "38b272f3f249021191ce034f384c7b149f76d62c47c763b8c11a567887463931",
+      "size": 39325
+    },
+    "scripts/validate_json_contract.py": {
+      "sha256": "7b86d77770a52cbcc2038c177764fdc6b5ea0c198f2c347f58b45a41356ee8ff",
+      "size": 5696
     },
     "scripts/validate_websites.py": {
-      "sha256": "0bc07a7858b7efbc403d6f43900c7a6648feec4d6ad7679823770147590a8044",
-      "size": 7709
+      "sha256": "69091cd9e245ffa4c95030775eb22d7988a84ae348dbafaebafdfb65d2c8303a",
+      "size": 8849
+    },
+    "websites.json": {
+      "sha256": "1f9f5b6c7dbebcfe2ec67b35c9df47b059c2db121e44544b53132a4c757d465b",
+      "size": 44544
     }
   },
   "generated_by": "dbrckk/repo-brain-v6",

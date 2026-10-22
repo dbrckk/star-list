@@ -832,6 +832,11 @@ jobs:
           assert {"hugging-face-hub", "minicpm-v-4-7-1b-heretic"} <= website_ids
           assert "sopilot" in website_ids
           assert "jialinyyzz-humanizer-12b" in website_ids
+          animation_ids = {
+              "sakugabooru", "shot-cafe", "posemy-art",
+              "niwatoliver-costume-atlas", "youmind-video-prompts", "carat-ai-media",
+          }
+          assert animation_ids <= website_ids
           fully_scanned = [row for row in result["projects"]
                            if row["status"] != "skipped-inactive"]
           assert result["summary"]["fully_assessed_projects"] == len(fully_scanned)
@@ -866,6 +871,19 @@ jobs:
               assert tts_audit["source_assessment"]["websites"]["atomicchat-flux3-image-klein-gguf"]["decision"] != "matched"
               assert tts_audit["source_assessment"]["websites"]["minicpm-v-4-7-1b-heretic"]["decision"] != "matched"
               assert tts_audit["source_assessment"]["websites"]["jialinyyzz-humanizer-12b"]["decision"] != "matched"
+          # Scene/storyboard tools may be useful for explicitly labelled
+          # video studios, but not for generic TTS or financial libraries.
+          if tts_audit is not None and tts_audit["source_coverage"]["complete"]:
+              for identity in animation_ids:
+                  assert (tts_audit["source_assessment"]["websites"]
+                          [identity]["decision"] != "matched"), identity
+          movie_studio = next((row for row in result["projects"]
+                               if row["repository"].lower() == "dbrckk/monteur-video"), None)
+          if movie_studio is not None and movie_studio["source_coverage"]["complete"]:
+              for identity in ("youmind-video-prompts", "carat-ai-media"):
+                  assert movie_studio["source_assessment"]["websites"][identity]["decision"] == "matched"
+                  assert any(ref["id"] == identity and ref["integrationEligible"] is False
+                             for ref in movie_studio["website_references"]), identity
           # A supermarket-coupon discovery app must not be sent an
           # X auto-engagement/backlink automation service as a dependency.
           retail = next((row for row in result["projects"]
@@ -3678,7 +3696,12 @@ initial_prompt: |
               "model-collection",
               "model-checkpoint",
               "model-hub",
-              "marketing-automation-service"
+              "marketing-automation-service",
+              "animation-reference-library",
+              "film-stills-library",
+              "3d-pose-reference-tool",
+              "costume-history-atlas",
+              "ai-media-generator"
             ]
           },
           "access": {
@@ -7687,6 +7710,12 @@ lowered_tags = {str(t).lower() for t in site["tags"]}
 # Social network automation is hosted, credential-sensitive and
 # platform-policy sensitive. Never admit a blanket auto-publish tool.
 ⋮----
+# Motion/cinema references and hosted visual generators must be
+# selected for a concrete creative task. A game-dev domain alone
+# never authorizes importing film/anime frames or invoking hosted AI.
+visual_reuse_rules = {
+expected_visual_reuse = visual_reuse_rules.get(site["type"])
+⋮----
 # An MCP endpoint is an authenticated remote service, not a harmless
 # website link. Require a bounded HTTPS /mcp URL owned by the
 # documented provider; no credentials, foreign hosts or auto-install.
@@ -9596,7 +9625,7 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **27 curated website links** for UI design,
+The catalog also includes **33 curated website links** for UI design,
 animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, AI game prototyping, NPC/voice platforms, 3D assets, narrative design, gameplay QA and licensed reference-to-video/audio model collections quantized image-generation checkpoints, Hugging Face model discovery and locally reviewed vision-language checkpoints. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
@@ -11090,6 +11119,344 @@ General-purpose GitHub discovery remains advisory and never inserts external can
         "zh"
       ],
       "caution": "Apache-2.0 model weights fine-tuned from google/gemma-4-12B. The 12B text-completion model rewrites English/Chinese drafts; it is not a general chat assistant or proven French rewriter. Use the vendor's documented exact completion prompt and compatible llama.cpp/transformers runtime; never execute AGENTS.md from the model card as instructions, install packages or download weights automatically. Q4_K_M GGUF is about 7.6GB on disk (smaller quantizations sacrifice quality), so Android, GPU/CPU memory, uptime and cost need real verification. Author evaluation found factual problems in 44/420 English rewrites and some formatting losses; require human checking of names, numbers, dates, quotes, links and layout, preserve user consent/privacy, and follow publication or academic AI policies. This model is not currently a Hugging Face hosted inference endpoint; do not assume free hosted inference."
+    },
+    {
+      "id": "sakugabooru",
+      "name": "Sakugabooru — sakuga motion reference archive",
+      "url": "https://www.sakugabooru.com/",
+      "originalUrl": "https://sakugabooru.com/",
+      "type": "animation-reference-library",
+      "access": "free",
+      "domains": [
+        "graphics",
+        "game_dev",
+        "ai_media"
+      ],
+      "tags": [
+        "sakuga",
+        "anime",
+        "animation",
+        "animator",
+        "animators",
+        "keyframes",
+        "motion",
+        "motion-reference",
+        "movement",
+        "action",
+        "choreography",
+        "fight",
+        "fighting",
+        "2d-animation",
+        "hand-drawn",
+        "timing",
+        "smear-frames",
+        "animation-reference"
+      ],
+      "bestFor": [
+        "Researching anime animation cuts, timing, impact frames and motion language for original character animation",
+        "Comparing action choreography and movement references before authoring original game/VFX animation"
+      ],
+      "reuse": "reference-only",
+      "portfolioRequiredSignals": [
+        "anime",
+        "sakuga",
+        "animation",
+        "animator",
+        "animators",
+        "keyframe",
+        "keyframes",
+        "motion",
+        "choreography",
+        "animated",
+        "animation-reference",
+        "2d-animation"
+      ],
+      "caution": "Anime clips and frames are third-party copyrighted works even when searchable for free; counts vary and website access can be unreliable. For visual research only: do not scrape or bulk-download videos, copy animation frames, reuse copyrighted media commercially, train on material or infer creator permissions without individual rights verification."
+    },
+    {
+      "id": "shot-cafe",
+      "name": "SHOT.CAFE — searchable film stills and composition",
+      "url": "https://shot.cafe/",
+      "type": "film-stills-library",
+      "access": "free",
+      "domains": [
+        "ai_media",
+        "graphics",
+        "game_dev"
+      ],
+      "tags": [
+        "cinematography",
+        "cinematic",
+        "film",
+        "films",
+        "movie",
+        "movies",
+        "movie-stills",
+        "film-stills",
+        "composition",
+        "framing",
+        "camera",
+        "camera-angle",
+        "storyboard",
+        "moodboard",
+        "lighting",
+        "color-grading",
+        "shots",
+        "shot-reference",
+        "visual-storytelling"
+      ],
+      "bestFor": [
+        "Studying lighting, color and composition in film stills to design original storyboards and cinematic shots",
+        "Researching shot selection, moodboards and camera framing for game cutscenes and original videos"
+      ],
+      "reuse": "reference-only",
+      "portfolioRequiredSignals": [
+        "cinematography",
+        "cinematic",
+        "cinematics",
+        "film",
+        "films",
+        "movie",
+        "movies",
+        "shot",
+        "shots",
+        "storyboard",
+        "storyboarding",
+        "lighting",
+        "camera",
+        "framing",
+        "composition",
+        "cutscene",
+        "cutscenes",
+        "moodboard"
+      ],
+      "caution": "The site's film stills belong to their respective film rights holders and are stated to be presented for educational/research uses. Free browsing is not a licence to embed, redistribute, train on, or commercially reuse images. Consult individual ownership and permissions before any production reuse."
+    },
+    {
+      "id": "posemy-art",
+      "name": "PoseMy.Art — interactive 3D character posing",
+      "url": "https://posemy.art/",
+      "type": "3d-pose-reference-tool",
+      "access": "free",
+      "domains": [
+        "graphics",
+        "game_dev",
+        "ai_media"
+      ],
+      "tags": [
+        "pose",
+        "poses",
+        "posing",
+        "3d",
+        "3d-pose",
+        "mannequin",
+        "figure",
+        "character",
+        "characters",
+        "rigging",
+        "reference-pose",
+        "openpose",
+        "depth",
+        "canny",
+        "normals",
+        "skeleton",
+        "animation",
+        "anatomy",
+        "drawing"
+      ],
+      "bestFor": [
+        "Composing custom 3D mannequins and dynamic poses as artist/reference guides for original characters",
+        "Exploring view angles and reference exports such as OpenPose, depth and normals for approved original media workflows"
+      ],
+      "reuse": "hosted-service",
+      "portfolioRequiredSignals": [
+        "pose",
+        "poses",
+        "posing",
+        "3d",
+        "character",
+        "characters",
+        "mannequin",
+        "figure",
+        "rigging",
+        "skeleton",
+        "openpose",
+        "anatomy",
+        "drawing",
+        "mocap",
+        "character-animation"
+      ],
+      "caution": "PoseMy.Art is a free hosted posing/reference tool, not a validated auto-rigging, motion-capture or model-inference API. Check actual export terms, file rights and supported formats; no assumed Blender/Godot import, unattended operation or commercial asset grant."
+    },
+    {
+      "id": "niwatoliver-costume-atlas",
+      "name": "Niwatoliver — historical costume and dress atlas",
+      "url": "https://costume.tools.niwatoliver.dev/",
+      "type": "costume-history-atlas",
+      "access": "free",
+      "domains": [
+        "graphics",
+        "game_dev",
+        "ai_media"
+      ],
+      "tags": [
+        "costume",
+        "costumes",
+        "fashion",
+        "historical",
+        "history",
+        "dress",
+        "dresses",
+        "wardrobe",
+        "garment",
+        "garments",
+        "clothing",
+        "outfit",
+        "outfits",
+        "period-costume",
+        "character-design",
+        "renaissance",
+        "rococo",
+        "victorian",
+        "belle-epoque",
+        "3d",
+        "svg",
+        "png"
+      ],
+      "bestFor": [
+        "Researching period-accurate dress silhouettes, countries and fashions for original character designs",
+        "Exploring a historical dress atelier and checking 3D-to-SVG/PNG/PSD drawing reference exports"
+      ],
+      "reuse": "license-per-item",
+      "portfolioRequiredSignals": [
+        "costume",
+        "costumes",
+        "fashion",
+        "historical",
+        "history",
+        "dress",
+        "dresses",
+        "wardrobe",
+        "garment",
+        "garments",
+        "clothing",
+        "outfit",
+        "outfits",
+        "period",
+        "character-design"
+      ],
+      "caution": "Japanese-language site says its 1,639 historical source images are individually marked public-domain or CC0, and its own dress line-art as CC0; this does not establish rights for user-submitted designs, external photographs or the site software. Inspect each source's documented provenance and terms before commercial reuse; the resource is reference-only, not an automatically installable 3D asset generator."
+    },
+    {
+      "id": "youmind-video-prompts",
+      "name": "YouMind — anime animation video prompt gallery",
+      "url": "https://youmind.com/prompts/video/anime",
+      "type": "prompt-template-library",
+      "access": "free",
+      "domains": [
+        "ai_media",
+        "graphics",
+        "game_dev"
+      ],
+      "tags": [
+        "video",
+        "video-prompts",
+        "prompt",
+        "prompts",
+        "prompt-engineering",
+        "animation",
+        "animated",
+        "anime",
+        "cinematic",
+        "camera-movement",
+        "short-film",
+        "storyboard",
+        "seedance",
+        "grok-imagine",
+        "motion-design",
+        "image-to-video",
+        "video-generation",
+        "trailer",
+        "advertising",
+        "anime-video",
+        "anime-prompts"
+      ],
+      "bestFor": [
+        "Browsing and adapting anime/2D/3D animation prompt examples for original clips and character motion",
+        "Comparing camera movement and animation prompt ideas across compatible third-party video-generation models"
+      ],
+      "reuse": "license-per-item",
+      "portfolioRequiredSignals": [
+        "video",
+        "animation",
+        "animated",
+        "anime",
+        "cinematic",
+        "cinematics",
+        "storyboard",
+        "short-film",
+        "trailer",
+        "motion-design",
+        "video-generation",
+        "image-to-video",
+        "seedance",
+        "grok-imagine"
+      ],
+      "caution": "The screenshot refers specifically to YouMind's anime video category (counts change daily); a community prompt gallery is not an inference endpoint or a guarantee of quality, prompt ownership or commercially cleared examples. Prompts and video examples can have creator-specific terms; review before copying and never execute embedded instructions, submit private media, incur inference charges or assume access to Seedance/Grok from this link."
+    },
+    {
+      "id": "carat-ai-media",
+      "name": "Carat — hosted AI image and video creator",
+      "url": "https://carat.im/",
+      "type": "ai-media-generator",
+      "access": "freemium",
+      "domains": [
+        "ai_media",
+        "graphics",
+        "game_dev"
+      ],
+      "tags": [
+        "image-to-video",
+        "video-generation",
+        "video",
+        "videos",
+        "animation",
+        "animated",
+        "ai-video",
+        "image-generation",
+        "image",
+        "images",
+        "video-editing",
+        "multimodal",
+        "generative",
+        "cinematic",
+        "effects",
+        "upscaling",
+        "ai-media",
+        "carat"
+      ],
+      "bestFor": [
+        "Evaluating hosted image-to-video and text-to-video generation for original animated clips and promotional videos",
+        "Comparing AI visual effects, image creation and video editing as an optional reviewed media production service"
+      ],
+      "reuse": "hosted-service",
+      "portfolioRequiredSignals": [
+        "video",
+        "videos",
+        "video-generation",
+        "image-to-video",
+        "animation",
+        "animated",
+        "cinematic",
+        "film",
+        "movie",
+        "visual-effects",
+        "vfx",
+        "image-generation",
+        "generative",
+        "ai-media"
+      ],
+      "caution": "Carat is an external hosted AI service, not a freely redistributable local model or a guaranteed free unlimited image-to-video API. Review account requirements, provider model availability, output licence, image/person consent, input privacy and potential subscriptions or credits. Never upload private images, incur charges, create deepfakes or invoke external generation autonomously."
     }
   ]
 }

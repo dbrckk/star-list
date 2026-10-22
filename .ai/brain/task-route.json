@@ -4,15 +4,15 @@
     "expand_to": 12,
     "max_files": 3,
     "requested_max_files": 12,
-    "score_margin": 12,
+    "score_margin": 9,
     "tier": "narrow",
-    "top_score": 57
+    "top_score": 63
   },
   "cache": {
-    "fingerprint": "d8e6e0b3a10001eab99359e0ddea315274f89989987420ec2ba27b9aa04e65fc",
+    "fingerprint": "6d30187f39c3640dbabb05bbb7ad303f298e7c9bce99de1c2f414c72d05f262a",
     "hit": false
   },
-  "candidate_count": 9,
+  "candidate_count": 19,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -23,10 +23,11 @@
       ],
       "path": "scripts/portfolio_daily.py",
       "reasons": [
+        "impact",
         "learning",
         "search-index"
       ],
-      "score": 57,
+      "score": 63,
       "symbols": [
         "SameOriginRedirect",
         "busy_integration_targets",
@@ -58,33 +59,49 @@
       ],
       "path": "scripts/test_recommend.py",
       "reasons": [
+        "impact",
         "learning",
+        "recently-changed",
         "search-index"
       ],
-      "score": 45,
+      "score": 54,
       "symbols": [
         "run"
       ]
     },
     {
-      "learning_score": 0,
+      "learning_score": 12,
       "matched_terms": [
-        "engine",
         "game"
       ],
-      "path": "scripts/admit_github_stars.py",
+      "path": "scripts/recommend.py",
       "reasons": [
+        "impact",
+        "learning",
+        "recently-changed",
         "search-index"
       ],
-      "score": 29,
+      "score": 38,
       "symbols": [
-        "admit",
-        "catalog_entry",
-        "classify",
-        "count",
-        "get_repo",
-        "main",
-        "manifest_stable_ids"
+        "activity_adjustment",
+        "choose_stack",
+        "delta",
+        "explain_repo",
+        "guidance_weight",
+        "infer_alternatives",
+        "infer_complements",
+        "infer_domains",
+        "load",
+        "metadata_review_gates",
+        "norm",
+        "ranking_review_gates",
+        "recommend_websites",
+        "resolve_relations",
+        "score_repo",
+        "tokens",
+        "trend_adjustment",
+        "usable",
+        "website_review_gates"
       ]
     }
   ],

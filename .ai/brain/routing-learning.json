@@ -2,23 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "fix(portfolio): release quarantine after completed v3 recovery",
-      "terms": [
-        "after",
-        "completed",
-        "portfolio",
-        "quarantine",
-        "recovery",
-        "release",
-        "v3"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/portfolio_daily.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "fix(portfolio): retire obsolete candidate quarantines safely",
       "terms": [
         "candidate",
@@ -1354,6 +1337,27 @@
       "useful": [
         "scripts/test_json_contracts.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(web): add six copyright-aware animation and cinema references (#184)",
+      "terms": [
+        "184",
+        "add",
+        "animation",
+        "cinema",
+        "copyright-aware",
+        "feat",
+        "references",
+        "six",
+        "web"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/recommend.py",
+        "scripts/test_recommend.py",
+        "scripts/validate_websites.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1609,6 +1613,11 @@
     "183": {
       "scripts/test_json_contracts.py": 4
     },
+    "184": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "19": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
@@ -1764,13 +1773,13 @@
       "scripts/agent_skill_discovery.py": 4,
       "scripts/audit_catalog_quality.py": 4,
       "scripts/portfolio_daily.py": 20,
-      "scripts/recommend.py": 16,
+      "scripts/recommend.py": 20,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_json_contracts.py": 4,
-      "scripts/test_recommend.py": 20,
+      "scripts/test_recommend.py": 24,
       "scripts/validate_catalog.py": 4,
-      "scripts/validate_websites.py": 12
+      "scripts/validate_websites.py": 16
     },
     "admission": {
       "scripts/admit_github_stars.py": 4,
@@ -1855,9 +1864,9 @@
     },
     "animation": {
       "scripts/portfolio_daily.py": 4,
-      "scripts/recommend.py": 4,
-      "scripts/test_recommend.py": 4,
-      "scripts/validate_websites.py": 4
+      "scripts/recommend.py": 8,
+      "scripts/test_recommend.py": 8,
+      "scripts/validate_websites.py": 8
     },
     "api": {
       "scripts/discover_candidates.py": 4,
@@ -2026,6 +2035,11 @@
       "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
     },
+    "cinema": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "classify": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4,
@@ -2058,6 +2072,11 @@
     "constraints": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "copyright-aware": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "core": {
       "scripts/validate_catalog.py": 4
@@ -2371,7 +2390,7 @@
       "scripts/test_sync_github_stars.py": 4,
       "scripts/test_verify_catalog_evidence.py": 8,
       "scripts/validate_catalog.py": 4,
-      "scripts/validate_websites.py": 28,
+      "scripts/validate_websites.py": 32,
       "scripts/verify_catalog_evidence.py": 8
     },
     "files": {
@@ -3054,7 +3073,9 @@
     "references": {
       "scripts/agent_skill_discovery.py": 8,
       "scripts/portfolio_daily.py": 8,
-      "scripts/test_recommend.py": 8
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 12,
+      "scripts/validate_websites.py": 4
     },
     "refresh": {
       "scripts/test_documentation.py": 4
@@ -3294,6 +3315,11 @@
     },
     "seven": {
       "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
+    "six": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
@@ -3618,9 +3644,9 @@
     },
     "web": {
       "scripts/portfolio_daily.py": 28,
-      "scripts/recommend.py": 20,
-      "scripts/test_recommend.py": 28,
-      "scripts/validate_websites.py": 20
+      "scripts/recommend.py": 24,
+      "scripts/test_recommend.py": 32,
+      "scripts/validate_websites.py": 24
     },
     "websites": {
       "scripts/portfolio_daily.py": 8,

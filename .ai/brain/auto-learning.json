@@ -5,28 +5,27 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "183",
-      "catalog",
-      "foreign",
-      "guard",
-      "hosts",
-      "mcp",
-      "reject",
-      "retain",
-      "subdomain",
-      "test",
-      "verified",
-      "www-provider"
+      "184",
+      "add",
+      "animation",
+      "cinema",
+      "copyright-aware",
+      "feat",
+      "references",
+      "six",
+      "web"
     ],
     "test_count": 0,
-    "useful_count": 1
+    "useful_count": 3
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "test(catalog): retain verified MCP www-provider subdomain guard and reject foreign hosts (#183)",
+  "task": "feat(web): add six copyright-aware animation and cinema references (#184)",
   "tests_selected": [],
   "useful": [
-    "scripts/test_json_contracts.py"
+    "scripts/recommend.py",
+    "scripts/test_recommend.py",
+    "scripts/validate_websites.py"
   ]
 }
