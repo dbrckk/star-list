@@ -89,9 +89,10 @@
       ],
       "dependents": [
         "scripts/portfolio_failure_diagnostics.py",
+        "scripts/test_full_catalog_availability.py",
         "scripts/test_recommend.py"
       ],
-      "in_degree": 2,
+      "in_degree": 3,
       "out_degree": 2
     },
     "scripts/portfolio_failure_diagnostics.py": {
@@ -110,9 +111,10 @@
       ],
       "dependents": [
         "scripts/portfolio_daily.py",
+        "scripts/test_full_catalog_availability.py",
         "scripts/test_recommend.py"
       ],
-      "in_degree": 2,
+      "in_degree": 3,
       "out_degree": 3
     },
     "scripts/refresh_github_metadata.py": {
@@ -157,6 +159,15 @@
       "dependents": [],
       "in_degree": 0,
       "out_degree": 1
+    },
+    "scripts/test_full_catalog_availability.py": {
+      "dependencies": [
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py"
+      ],
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 2
     },
     "scripts/test_json_contracts.py": {
       "dependencies": [

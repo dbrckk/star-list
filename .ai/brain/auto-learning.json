@@ -5,29 +5,37 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "177",
+      "178",
+      "admission",
       "all",
       "audit",
       "catalog",
-      "evidence",
       "feat",
-      "metadata",
-      "review-gated",
-      "sources",
-      "verifiable"
+      "index",
+      "repositories",
+      "tier",
+      "without"
     ],
     "test_count": 0,
-    "useful_count": 4
+    "useful_count": 12
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(metadata): audit all review-gated catalog sources with verifiable evidence (#177)",
+  "task": "feat(catalog): index all repositories without audit admission tier (#178)",
   "tests_selected": [],
   "useful": [
-    "scripts/refresh_github_metadata.py",
-    "scripts/test_refresh_github_metadata.py",
+    "scripts/admit_github_stars.py",
+    "scripts/audit_catalog_quality.py",
+    "scripts/infer_selection_guidance.py",
+    "scripts/portfolio_daily.py",
+    "scripts/recommend.py",
+    "scripts/test_auto_stars_admission.py",
+    "scripts/test_catalog_quality.py",
+    "scripts/test_full_catalog_availability.py",
+    "scripts/test_recommend.py",
     "scripts/test_verify_catalog_evidence.py",
+    "scripts/validate_catalog.py",
     "scripts/verify_catalog_evidence.py"
   ]
 }

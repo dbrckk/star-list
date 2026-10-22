@@ -2,16 +2,26 @@
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
   "selected_test_files": [
-    "scripts/test_refresh_github_metadata.py",
+    "scripts/test_auto_stars_admission.py",
+    "scripts/test_catalog_quality.py",
+    "scripts/test_full_catalog_availability.py",
+    "scripts/test_recommend.py",
+    "scripts/test_selection_guidance.py",
+    "scripts/test_sync_github_stars.py",
     "scripts/test_verify_catalog_evidence.py"
   ],
   "commands": [
     {
-      "command": "python -m pytest scripts/test_refresh_github_metadata.py scripts/test_verify_catalog_evidence.py",
+      "command": "python -m pytest scripts/test_auto_stars_admission.py scripts/test_catalog_quality.py scripts/test_full_catalog_availability.py scripts/test_recommend.py scripts/test_selection_guidance.py scripts/test_sync_github_stars.py scripts/test_verify_catalog_evidence.py",
       "purpose": "targeted tests",
       "confidence": "high",
       "files": [
-        "scripts/test_refresh_github_metadata.py",
+        "scripts/test_auto_stars_admission.py",
+        "scripts/test_catalog_quality.py",
+        "scripts/test_full_catalog_availability.py",
+        "scripts/test_recommend.py",
+        "scripts/test_selection_guidance.py",
+        "scripts/test_sync_github_stars.py",
         "scripts/test_verify_catalog_evidence.py"
       ]
     }

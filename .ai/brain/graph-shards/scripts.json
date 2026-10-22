@@ -82,6 +82,16 @@
       "type": "imports"
     },
     {
+      "source": "scripts/test_full_catalog_availability.py",
+      "target": "scripts/portfolio_daily.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_full_catalog_availability.py",
+      "target": "scripts/recommend.py",
+      "type": "imports"
+    },
+    {
       "source": "scripts/test_json_contracts.py",
       "target": "scripts/validate_websites.py",
       "type": "imports"

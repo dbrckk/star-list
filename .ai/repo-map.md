@@ -119,6 +119,7 @@ scripts/
   test_documentation.py
   test_evaluate_candidates.py
   test_find_replacements.py
+  test_full_catalog_availability.py
   test_health_drift.py
   test_health_score.py
   test_history.py
@@ -1435,14 +1436,15 @@ jobs:
           # tier/license/complexity require human review. It must never become
           # native or eligible for a mutating Production-OS request.
           unsafe_bridge = {
-              **bridge, "tier": "audit", "integrationComplexity": "high",
+              **bridge, "tier": "indexed", "integrationComplexity": "high",
               "github": {**bridge["github"], "license": "NOASSERTION"},
           }
           advisory = recommendations(game, profile, [unsafe_bridge], 3)
           assert len(advisory) == 1 and advisory[0]["mode"] == "policy-review", advisory
           assert advisory[0]["integrationEligible"] is False
-          assert {"tier-not-approved", "high-integration-complexity",
+          assert {"high-integration-complexity",
                   "license-not-approved"} <= set(advisory[0]["policyReview"]), advisory
+          assert "tier-not-approved" not in advisory[0]["policyReview"]
           # Development bridges remain reviewable, not dispatched natively.
           assert not any(x["mode"] == "native" for x in matched)
           engines = [item for item in catalog_entries if item["repo"].lower()
@@ -2437,6 +2439,8 @@ jobs:
         run: python scripts/test_selection_guidance.py
       - name: Test recommendation engine
         run: python scripts/test_recommend.py
+      - name: Verify full catalog discovery with no audit tier
+        run: python scripts/test_full_catalog_availability.py
       - name: Functional game-production recommendations
         run: |
           python scripts/recommend.py "roblox studio luau playtesting agent" --json > /tmp/star-list-roblox.json
@@ -3667,7 +3671,7 @@ value = meta.get(key)
 ⋮----
 branch = meta.get("default_branch")
 ⋮----
-branch = "unknown"  # Nonempty schema value; the audit tier marks the gap.
+branch = "unknown"  # Nonempty schema value; indexed entries retain an explicit metadata gap.
 domain = classify(meta)
 language = meta.get("language")
 languages = [language.lower()] if isinstance(language, str) and language.strip() else []
@@ -3994,8 +3998,8 @@ gh = entry.get("github")
 tier = entry.get("tier")
 lifecycle = entry.get("lifecycle")
 ⋮----
-code = f"archived-{lifecycle or 'audit'}-retained"
-label = lifecycle or "audit"
+code = f"archived-{lifecycle or 'indexed'}-retained"
+label = lifecycle or "indexed"
 ⋮----
 age = _age_days(gh.get("pushedAt"), now)
 ⋮----
@@ -5453,7 +5457,7 @@ HISTORY = ROOT / "history.json"
 WEBSITES = ROOT / "websites.json"
 ⋮----
 DOMAIN_ALIASES = {
-TIER_BONUS = {"core": 1.0, "recommended": 0.6, "specialized": 0.25, "audit": -0.4}
+TIER_BONUS = {"core": 1.0, "recommended": 0.6, "specialized": 0.25, "indexed": -0.4}
 LEVEL = {"low": 0, "medium": 1, "high": 2}
 GUIDANCE_WEIGHT = {"curated": 1.0, "inferred": 0.55}
 SPECIALIZED_INFERRED_WEIGHT = 0.35
@@ -5638,7 +5642,7 @@ ap = argparse.ArgumentParser(description="Recommend repositories from star-list 
 ⋮----
 archived_filter = ap.add_mutually_exclusive_group()
 ⋮----
-audit_filter = ap.add_mutually_exclusive_group()
+indexed_filter = ap.add_mutually_exclusive_group()
 ⋮----
 args = ap.parse_args()
 ⋮----
@@ -5646,8 +5650,8 @@ repo_by_name = {r["repo"]: r for r in repos}
 qtokens = tokens(args.query)
 domains = set(args.domain) or infer_domains(qtokens)
 ⋮----
-relation_names = set()  # Conservative suggestions: never auto-link audit or inactive entries.
-filtered = {"platform":0, "language":0, "selfHosted":0, "inactive":0, "audit":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
+relation_names = set()  # Advisory links may reference indexed sources; installation remains independently gated.
+filtered = {"platform":0, "language":0, "selfHosted":0, "inactive":0, "indexed":0, "resource":0, "complexity":0, "capability":0, "excluded":0, "minScore":0}
 ⋮----
 gh = r.get("github", {})
 ⋮----
@@ -6485,6 +6489,37 @@ other = {"repo":"x/other","score":9.5,"domain":"graphics","capabilities":["vecto
 rows = mod.analyze([bad, good, other])
 ````
 
+## File: scripts/test_full_catalog_availability.py
+````python
+#!/usr/bin/env python3
+"""Catalog-wide availability contract: no audit tier / no silent admission queue."""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+⋮----
+catalog = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8"))["repositories"]
+websites = json.loads((ROOT / "websites.json").read_text(encoding="utf-8"))["websites"]
+names = [entry["repo"].lower() for entry in catalog]
+⋮----
+counts = Counter(entry["tier"] for entry in catalog)
+⋮----
+# An indexed source is never blocked *just* because it has not been hand-curated.
+clean = {
+⋮----
+unsafe = {**clean, "github": {**clean["github"], "license": None}}
+⋮----
+query = [
+payload = json.loads(subprocess.check_output(query, cwd=ROOT, text=True))
+⋮----
+recs = payload["recommendations"]
+⋮----
+project = {"full_name": "dbrckk/Moneyprinterturbo_perso", "name": "Moneyprinterturbo_perso",
+profile = {"domains": ["ai_media", "productivity"],
+assessed = {}
+site_assessed = {}
+matches = recommendations(project, profile, catalog, None, assessed)
+references = website_references_for_project(project, profile, None, site_assessed)
+````
+
 ## File: scripts/test_health_drift.py
 ````python
 #!/usr/bin/env python3
@@ -6755,7 +6790,7 @@ blob = hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest
 ⋮----
 MIT = ("MIT License\nCopyright (c) 2026 Example\n"
 LISTING = [
-row = {"repo": "example/project", "tier": "audit", "githubRepositoryId": 123,
+row = {"repo": "example/project", "tier": "indexed", "githubRepositoryId": 123,
 ⋮----
 def fake_repo(name, token=None)
 ⋮----
@@ -7018,7 +7053,7 @@ data = json.loads((ROOT / "catalog.json").read_text())
 ⋮----
 valid_domains = {"ai_agents","ai_memory","ai_media","software_engineering","web_frontend","backend","mobile","graphics","game_dev","trading","cybersecurity","data_ml","devops","productivity","other"}
 valid_roles = {"data","alpha","regime","backtest","risk","execution","portfolio","xauusd","macro","ml","microstructure","performance","volatility","optimization","forecasting","feature-engineering","derivatives","diagnostic","feature-selection","filtering"}
-valid_tiers = {"core","recommended","specialized","audit"}
+valid_tiers = {"core","recommended","specialized","indexed"}
 valid_levels = {"low","medium","high"}
 valid_lifecycles = {"active","stable","reference","legacy"}
 valid_guidance_sources = {"curated","inferred"}
@@ -7271,7 +7306,7 @@ file = files.get(filename)
 ⋮----
 def requires_review(row)
 ⋮----
-"""Keep the evidence queue aligned with every catalog review gate."""
+"""Watch missing facts and inactive projects, without gating discovery."""
 gh = row.get("github")
 ⋮----
 def select_entries(repos, limit, batch_index, selected_names)
@@ -8175,7 +8210,7 @@ Repository-specific rules:
               "core",
               "recommended",
               "specialized",
-              "audit"
+              "indexed"
             ]
           },
           "category": {

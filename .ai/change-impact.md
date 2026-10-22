@@ -1,22 +1,30 @@
 # Change impact
 
-Base: 775a0d221f6e904c7226b901f82521abaf583120
-Head: 54ee1d9aa6187c5e4a7bc4d0a67497b55034fafa
+Base: 07e9102700062611290ee7c265ca1a14001e7dba
+Head: eba03b554adfe6a49b20b52c6bdebfb4f72c3ca8
 
 ## Changed files
-- A .github/workflows/metadata-evidence-review.yml
+- M .github/workflows/portfolio-scan-smoke.yml
 - M .github/workflows/validate.yml
 - M RECOMMENDER.md
-- A schemas/metadata-evidence.schema.json
-- M scripts/refresh_github_metadata.py
-- M scripts/test_refresh_github_metadata.py
-- A scripts/test_verify_catalog_evidence.py
-- A scripts/verify_catalog_evidence.py
+- M catalog.json
+- M catalog.schema.json
+- M scripts/admit_github_stars.py
+- M scripts/audit_catalog_quality.py
+- M scripts/infer_selection_guidance.py
+- M scripts/portfolio_daily.py
+- M scripts/recommend.py
+- M scripts/test_auto_stars_admission.py
+- M scripts/test_catalog_quality.py
+- A scripts/test_full_catalog_availability.py
+- M scripts/test_recommend.py
+- M scripts/test_verify_catalog_evidence.py
+- M scripts/validate_catalog.py
+- M scripts/verify_catalog_evidence.py
 
 ## Affected areas
 - .github
 - (root)
-- schemas
 - scripts
 
 ## Related test candidates

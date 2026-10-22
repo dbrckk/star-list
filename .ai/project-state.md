@@ -113,34 +113,36 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-22T08:42:22Z
+Generated: 2026-10-22T10:20:08Z
 
 ### Git
 - Branch: `main`
-- Head: `54ee1d9aa618`
-- Commit date: 2026-10-22T04:42:11-04:00
-- Commit: feat(metadata): audit all review-gated catalog sources with verifiable evidence (#177)
-- Tracked files: 299
+- Head: `eba03b554adf`
+- Commit date: 2026-10-22T06:19:56-04:00
+- Commit: feat(catalog): index all repositories without audit admission tier (#178)
+- Tracked files: 300
 
 ### Recently changed files
-- `.github/workflows/metadata-evidence-review.yml`
+- `.github/workflows/portfolio-scan-smoke.yml`
 - `.github/workflows/validate.yml`
 - `RECOMMENDER.md`
+- `catalog.json`
+- `catalog.schema.json`
+- `scripts/admit_github_stars.py`
+- `scripts/audit_catalog_quality.py`
+- `scripts/infer_selection_guidance.py`
+- `scripts/portfolio_daily.py`
+- `scripts/recommend.py`
+- `scripts/test_auto_stars_admission.py`
+- `scripts/test_catalog_quality.py`
+- `scripts/test_full_catalog_availability.py`
+- `scripts/test_recommend.py`
+- `scripts/test_verify_catalog_evidence.py`
+- `scripts/validate_catalog.py`
+- `scripts/verify_catalog_evidence.py`
+- `.github/workflows/metadata-evidence-review.yml`
 - `schemas/metadata-evidence.schema.json`
 - `scripts/refresh_github_metadata.py`
-- `scripts/test_refresh_github_metadata.py`
-- `scripts/test_verify_catalog_evidence.py`
-- `scripts/verify_catalog_evidence.py`
-- `scripts/recommend.py`
-- `scripts/test_recommend.py`
-- `catalog.json`
-- `.github/workflows/portfolio-scan-smoke.yml`
-- `README.md`
-- `WEB_RESOURCES.md`
-- `schemas/websites.schema.json`
-- `scripts/portfolio_daily.py`
-- `scripts/validate_websites.py`
-- `websites.json`
 
 ### Project signals
 - No common build descriptor detected

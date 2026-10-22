@@ -6,13 +6,13 @@
     "requested_max_files": 12,
     "score_margin": 12,
     "tier": "narrow",
-    "top_score": 57
+    "top_score": 66
   },
   "cache": {
-    "fingerprint": "c726c10a7550b05392bc5e43557c6469890a4e78886115f7dc21ba1a1e1c05c8",
+    "fingerprint": "61ed23dd48556324b3aaed85b08af04f8deb3fe9081a6133b4a6abd9b8667bec",
     "hit": false
   },
-  "candidate_count": 16,
+  "candidate_count": 20,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -23,10 +23,12 @@
       ],
       "path": "scripts/portfolio_daily.py",
       "reasons": [
+        "impact",
         "learning",
+        "recently-changed",
         "search-index"
       ],
-      "score": 57,
+      "score": 66,
       "symbols": [
         "SameOriginRedirect",
         "busy_integration_targets",
@@ -58,10 +60,12 @@
       ],
       "path": "scripts/test_recommend.py",
       "reasons": [
+        "impact",
         "learning",
+        "recently-changed",
         "search-index"
       ],
-      "score": 45,
+      "score": 54,
       "symbols": [
         "run"
       ]
@@ -74,9 +78,11 @@
       ],
       "path": "scripts/admit_github_stars.py",
       "reasons": [
+        "impact",
+        "recently-changed",
         "search-index"
       ],
-      "score": 29,
+      "score": 38,
       "symbols": [
         "admit",
         "catalog_entry",

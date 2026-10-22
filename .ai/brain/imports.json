@@ -301,6 +301,15 @@
       "importlib.util",
       "pathlib"
     ],
+    "scripts/test_full_catalog_availability.py": [
+      "collections",
+      "json",
+      "pathlib",
+      "portfolio_daily",
+      "recommend",
+      "subprocess",
+      "sys"
+    ],
     "scripts/test_health_drift.py": [
       "importlib.util",
       "pathlib"
