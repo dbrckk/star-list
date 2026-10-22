@@ -10,7 +10,7 @@
         "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
-      "score": 590
+      "score": 615
     },
     {
       "path": "scripts/recommend.py",
@@ -22,19 +22,18 @@
         "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
-      "score": 530
+      "score": 555
     },
     {
-      "path": "scripts/test_catalog_domain_evidence.py",
+      "path": "scripts/test_other_domain_expansion.py",
       "reasons": [
         "changed",
         "changed-source",
         "impact",
         "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
+        "selected-test"
       ],
-      "score": 465
+      "score": 490
     },
     {
       "path": "scripts/catalog_domain_evidence.py",
@@ -45,7 +44,29 @@
         "impact",
         "symbol-indexed"
       ],
-      "score": 385
+      "score": 435
+    },
+    {
+      "path": "scripts/report_domain_coverage.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "dependency-neighbor",
+        "impact",
+        "reverse-dependency-neighbor",
+        "symbol-indexed"
+      ],
+      "score": 360
+    },
+    {
+      "path": "scripts/test_catalog_domain_evidence.py",
+      "reasons": [
+        "impact",
+        "reverse-dependency-neighbor",
+        "selected-test",
+        "symbol-indexed"
+      ],
+      "score": 245
     },
     {
       "path": "scripts/test_recommend.py",

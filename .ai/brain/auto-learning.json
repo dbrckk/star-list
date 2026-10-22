@@ -5,26 +5,28 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "179",
+      "180",
       "discovery",
       "evidence-backed",
+      "expand",
       "feat",
-      "indexed",
-      "recommender",
+      "generic",
+      "routing",
       "source"
     ],
     "test_count": 0,
-    "useful_count": 4
+    "useful_count": 5
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(recommender): evidence-backed indexed source discovery (#179)",
+  "task": "feat(discovery): expand evidence-backed generic source routing (#180)",
   "tests_selected": [],
   "useful": [
     "scripts/catalog_domain_evidence.py",
     "scripts/portfolio_daily.py",
     "scripts/recommend.py",
-    "scripts/test_catalog_domain_evidence.py"
+    "scripts/report_domain_coverage.py",
+    "scripts/test_other_domain_expansion.py"
   ]
 }

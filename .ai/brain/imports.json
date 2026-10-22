@@ -210,6 +210,13 @@
       "json",
       "pathlib"
     ],
+    "scripts/report_domain_coverage.py": [
+      "argparse",
+      "catalog_domain_evidence",
+      "collections",
+      "json",
+      "pathlib"
+    ],
     "scripts/star_import_pipeline.py": [
       "__future__",
       "argparse",
@@ -342,6 +349,14 @@
       "pathlib",
       "sys",
       "validate_websites"
+    ],
+    "scripts/test_other_domain_expansion.py": [
+      "catalog_domain_evidence",
+      "json",
+      "pathlib",
+      "portfolio_daily",
+      "recommend",
+      "report_domain_coverage"
     ],
     "scripts/test_pipeline_integration.py": [
       "datetime",

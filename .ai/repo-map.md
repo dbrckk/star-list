@@ -103,6 +103,7 @@ scripts/
   refresh_github_metadata.py
   render_discovery_issue.py
   render_health_issue.py
+  report_domain_coverage.py
   star_import_pipeline.py
   sync_github_stars.py
   test_analyze_coverage.py
@@ -126,6 +127,7 @@ scripts/
   test_health_score.py
   test_history.py
   test_json_contracts.py
+  test_other_domain_expansion.py
   test_pipeline_integration.py
   test_recommend.py
   test_refresh_github_metadata.py
@@ -2443,6 +2445,16 @@ jobs:
         run: python scripts/test_recommend.py
       - name: Test evidence-backed domain routing for indexed sources
         run: python scripts/test_catalog_domain_evidence.py
+      - name: Test expanded evidence-only routing and IoT projects
+        run: python scripts/test_other_domain_expansion.py
+      - name: Export unresolved domain evidence
+        run: python scripts/report_domain_coverage.py --out domain-coverage.json > /tmp/domain-coverage-output.json
+      - name: Upload domain coverage evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: indexed-domain-coverage
+          path: domain-coverage.json
+          retention-days: 30
       - name: Verify full catalog discovery with no audit tier
         run: python scripts/test_full_catalog_availability.py
       - name: Functional game-production recommendations
@@ -4196,7 +4208,16 @@ caps = {str(v).strip().casefold() for v in (
 # Structured capability labels may be overly broad or inaccurate. The
 # result is therefore advisory even if the label is an exact match.
 description = _normalized(" ".join(
+# Exact ecosystem tokens from the repository slug are robust enough for
+# advisory routing, but ambiguous brand/project names are not.
+slug = str(item.get("repo") or "").split("/")[-1]
+slug_terms = {x for x in re.split(r"[^a-z0-9]+", slug.lower()) if x}
+slug_source = slug.casefold()
+⋮----
+specific_slug_technology = {
 evidence = {}
+⋮----
+match = sorted(slug_terms & lexemes)
 ⋮----
 hits = sorted(caps & signals)
 ⋮----
@@ -4949,11 +4970,19 @@ advisory_routing = tool.get("domain") not in domains
 # "video-editing" without changing global tokenizer semantics.
 capability_labels = " ".join(str(x) for x in (tool.get("capabilities") or []))
 terms = (tokens(slug) | tokens(capability_labels)
+exact_slug_terms = {
+# Keep the standard tokenizer unchanged: only explicit high-specificity
+# name evidence may split a hyphenated repository technology label.
+⋮----
 shared = sorted((profile["terms"] & terms) - GENERIC - STOPWORDS)
 ⋮----
 # A lone match must describe an actual candidate capability/use case,
 # not merely an organization name (or an incidental README word).
 capability_terms = (
+explicit_slug_match = bool(set(shared) & exact_slug_terms)
+# High-specificity technology tokens such as ESP32/agent-sdk in a
+# repository slug can establish advisory relevance even when GitHub
+# has no topics or description. This NEVER permits native dispatch.
 ⋮----
 # Ignore the installed engine source and explicit substitute
 # engines. Continue recommending compatible plugins/addons.
@@ -5914,6 +5943,31 @@ drift=json.loads(args.drift.read_text()) if args.drift else None
 body=render(json.loads(args.report.read_text()),drift)
 ````
 
+## File: scripts/report_domain_coverage.py
+````python
+#!/usr/bin/env python3
+"""Inspect evidence-backed advisory domain coverage without mutating catalog."""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+⋮----
+def analyze(catalog)
+⋮----
+repositories = catalog["repositories"]
+rows = [r for r in repositories if r.get("domain") == "other"]
+⋮----
+domains = Counter()
+⋮----
+evidence = advisory_domain_evidence(row)
+⋮----
+def main()
+⋮----
+parser = argparse.ArgumentParser()
+⋮----
+args = parser.parse_args()
+result = analyze(json.loads(args.catalog.read_text(encoding="utf-8")))
+encoded = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
+````
+
 ## File: scripts/star_import_pipeline.py
 ````python
 #!/usr/bin/env python3
@@ -6645,6 +6699,40 @@ spec=importlib.util.spec_from_file_location("h",SCRIPT); h=importlib.util.module
 pts=[{"date":"2026-08-18","health":70,"stars":100,"forks":10},{"date":"2026-08-25","health":72,"stars":114,"forks":12},{"date":"2026-09-01","health":75,"stars":128,"forks":14},{"date":"2026-09-08","health":78,"stars":142,"forks":16},{"date":"2026-09-15","health":82,"stars":156,"forks":18}]
 m=h.window_metrics(pts,5); assert m["healthDelta"]==12 and m["starsPerWeek"]==14 and m["forksPerWeek"]==2
 t=h.trends({"repositories":{"a/x":pts}})["repositories"][0]; assert t["trend"]=="improving" and t["fourWeeks"]["points"]==5 and t["week"]["points"]==2
+````
+
+## File: scripts/test_other_domain_expansion.py
+````python
+#!/usr/bin/env python3
+"""Regression tests for broad yet conservative advisory classification."""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+catalog = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8"))
+rows = catalog["repositories"]
+lookup = {r["repo"]: r for r in rows}
+report = analyze(catalog)
+⋮----
+# Explicit high-quality labels and descriptions. Never rewrite original domain.
+⋮----
+row = lookup[name]
+⋮----
+evidence = advisory_domain_evidence(row)
+⋮----
+# Ambiguous metadata must never gain a domain merely to increase the metric.
+⋮----
+# An inferred domain can be suggested to a compatible task but never silently
+# authorize a third-party integration. The existing trust boundary must hold.
+project = {"full_name": "dbrckk/esp32-project", "name": "esp32-project"}
+profile = {
+decision_trace = {}
+suggestions = recommendations(project, profile, rows, None, decision_trace)
+⋮----
+by_suggestion = {r["repository"]: r for r in suggestions}
+⋮----
+row = by_suggestion[name]
+⋮----
+# Real inactive or unresolved sources continue to carry source-specific guards.
+unsafe = dict(lookup["espressif/arduino-esp32"])
 ````
 
 ## File: scripts/test_pipeline_integration.py

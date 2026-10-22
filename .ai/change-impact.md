@@ -1,15 +1,16 @@
 # Change impact
 
-Base: 0ab301dd7de812a60ea59a12c66daef230c1b046
-Head: 71d2450aad8868b2862a366329780b72ce8c7d51
+Base: b7ca8593fc56726a52f04ca198964f0acad3cbdf
+Head: c69ef2fdbe939f4271f7a71d5ed29064e1bc8682
 
 ## Changed files
 - M .github/workflows/validate.yml
 - M RECOMMENDER.md
-- A scripts/catalog_domain_evidence.py
+- M scripts/catalog_domain_evidence.py
 - M scripts/portfolio_daily.py
 - M scripts/recommend.py
-- A scripts/test_catalog_domain_evidence.py
+- A scripts/report_domain_coverage.py
+- A scripts/test_other_domain_expansion.py
 
 ## Affected areas
 - .github

@@ -1,20 +1,20 @@
 {
   "files": {
     ".github/workflows/validate.yml": {
-      "sha256": "89d68e03c12fe71e083296392aa217301814ad19f34e7b31da55ebf8216e812e",
-      "size": 9760
+      "sha256": "b8bac8a6cd31cca3eb6d7fef3aceeed9b006b194158c1ef743ce6f728115bf6c",
+      "size": 10257
     },
     "RECOMMENDER.md": {
-      "sha256": "c19e51e43d59545b8ee7361562a426cb0b2f95dfda6677e731f61c87e0055c7f",
-      "size": 14194
+      "sha256": "e955a199edb778ef20507730d3d18589cef36ca3ceccfedcb32e66e59384199c",
+      "size": 15474
     },
     "scripts/agent_skill_discovery.py": {
       "sha256": "7b40a23dd9f147d1ab3435f7a9ea87a08ec59d8791d925279a13201024c6c007",
       "size": 7987
     },
     "scripts/catalog_domain_evidence.py": {
-      "sha256": "1eae118eb52c73931b9bae70f61dd468984894730e15b392581e95a6c6276662",
-      "size": 6319
+      "sha256": "c7461494fe18ddb0c33636040cd42fb96899c4fc29b5c4fa4d7a5b794bf7f0a6",
+      "size": 12052
     },
     "scripts/find_replacements.py": {
       "sha256": "fc4e3e288abcc1b48eaf238d09357ff7d11e5f1ce8b62aa92d4a4717c20006d9",
@@ -25,16 +25,20 @@
       "size": 2456
     },
     "scripts/portfolio_daily.py": {
-      "sha256": "2273ad5d56ff04196c708de4ac762e90404ad8d6766d15051c05183316b74a9c",
-      "size": 73194
+      "sha256": "5a1f8284d124800a7f5747f591fd2f88931887d1b382486abe8c795641111224",
+      "size": 74191
     },
     "scripts/portfolio_failure_diagnostics.py": {
       "sha256": "3f6972d50b7db5c499ccb845dbe21ff4c760dac1db12c6b6d5190adea586e62b",
       "size": 19022
     },
     "scripts/recommend.py": {
-      "sha256": "f0b7999b29df505cef59d2afdd2acc835ef38fc509035b94645ab28d342fb712",
-      "size": 29799
+      "sha256": "cbe1347e1464b8721427d3bb3faa709c0176c7830b69d948fcce9ae855373ea3",
+      "size": 30057
+    },
+    "scripts/report_domain_coverage.py": {
+      "sha256": "6e20f52d0989f2c6d92663483f2ef06339bb61bc271abf1a75325a023ad8aefc",
+      "size": 2062
     },
     "scripts/test_catalog_domain_evidence.py": {
       "sha256": "c49be50488136690f97f945a70f24d0c8863a7a85d844d8b6e2954e05758cab6",
@@ -43,6 +47,10 @@
     "scripts/test_full_catalog_availability.py": {
       "sha256": "226e0a39aa24ea53d095af2b72a29ebc1217eff4ed6391d92b6c48e226a467ad",
       "size": 3733
+    },
+    "scripts/test_other_domain_expansion.py": {
+      "sha256": "716ea4609055fec0caca85ac01f3992a20e23f7ef9161e80c78bcbc5d9a306ed",
+      "size": 4391
     },
     "scripts/test_recommend.py": {
       "sha256": "09290b3613745fde92e92fc1d1d52931dad13075b932784f33f89bf339eec8ab",

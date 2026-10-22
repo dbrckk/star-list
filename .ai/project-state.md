@@ -113,14 +113,14 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-22T11:32:17Z
+Generated: 2026-10-22T12:21:06Z
 
 ### Git
 - Branch: `main`
-- Head: `71d2450aad88`
-- Commit date: 2026-10-22T07:32:08-04:00
-- Commit: feat(recommender): evidence-backed indexed source discovery (#179)
-- Tracked files: 302
+- Head: `c69ef2fdbe93`
+- Commit date: 2026-10-22T08:20:55-04:00
+- Commit: feat(discovery): expand evidence-backed generic source routing (#180)
+- Tracked files: 304
 
 ### Recently changed files
 - `.github/workflows/validate.yml`
@@ -128,6 +128,8 @@ Generated: 2026-10-22T11:32:17Z
 - `scripts/catalog_domain_evidence.py`
 - `scripts/portfolio_daily.py`
 - `scripts/recommend.py`
+- `scripts/report_domain_coverage.py`
+- `scripts/test_other_domain_expansion.py`
 - `scripts/test_catalog_domain_evidence.py`
 - `.github/workflows/portfolio-scan-smoke.yml`
 - `catalog.json`
@@ -141,8 +143,6 @@ Generated: 2026-10-22T11:32:17Z
 - `scripts/test_recommend.py`
 - `scripts/test_verify_catalog_evidence.py`
 - `scripts/validate_catalog.py`
-- `scripts/verify_catalog_evidence.py`
-- `.github/workflows/metadata-evidence-review.yml`
 
 ### Project signals
 - No common build descriptor detected

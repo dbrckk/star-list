@@ -86,6 +86,11 @@
       "type": "imports"
     },
     {
+      "source": "scripts/report_domain_coverage.py",
+      "target": "scripts/catalog_domain_evidence.py",
+      "type": "imports"
+    },
+    {
       "source": "scripts/test_catalog_domain_evidence.py",
       "target": "scripts/catalog_domain_evidence.py",
       "type": "imports"
@@ -118,6 +123,26 @@
     {
       "source": "scripts/test_json_contracts.py",
       "target": "scripts/validate_websites.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_other_domain_expansion.py",
+      "target": "scripts/catalog_domain_evidence.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_other_domain_expansion.py",
+      "target": "scripts/portfolio_daily.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_other_domain_expansion.py",
+      "target": "scripts/recommend.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_other_domain_expansion.py",
+      "target": "scripts/report_domain_coverage.py",
       "type": "imports"
     },
     {

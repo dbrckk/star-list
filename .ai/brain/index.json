@@ -1,14 +1,14 @@
 {
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
-  "files_indexed": 62,
-  "symbol_count": 280,
-  "edge_count": 37,
+  "files_indexed": 64,
+  "symbol_count": 282,
+  "edge_count": 42,
   "languages": {
-    "python": 62
+    "python": 64
   },
   "index_mode": "incremental",
-  "reparsed_files": 4,
+  "reparsed_files": 5,
   "top_symbol_files": [
     {
       "file": "scripts/portfolio_daily.py",
@@ -148,6 +148,10 @@
     },
     {
       "file": "scripts/render_health_issue.py",
+      "symbols": 2
+    },
+    {
+      "file": "scripts/report_domain_coverage.py",
       "symbols": 2
     },
     {
