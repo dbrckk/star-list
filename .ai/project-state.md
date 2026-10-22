@@ -113,22 +113,28 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-22T12:21:06Z
+Generated: 2026-10-22T13:53:08Z
 
 ### Git
 - Branch: `main`
-- Head: `c69ef2fdbe93`
-- Commit date: 2026-10-22T08:20:55-04:00
-- Commit: feat(discovery): expand evidence-backed generic source routing (#180)
-- Tracked files: 304
+- Head: `597fa44e8b2f`
+- Commit date: 2026-10-22T09:52:48-04:00
+- Commit: feat(discovery): traceable README-backed domains and freshness audit (#181)
+- Tracked files: 310
 
 ### Recently changed files
+- `.github/workflows/readme-evidence-freshness.yml`
 - `.github/workflows/validate.yml`
 - `RECOMMENDER.md`
+- `catalog-readme-evidence.json`
+- `schemas/readme-domain-evidence.schema.json`
 - `scripts/catalog_domain_evidence.py`
+- `scripts/check_readme_evidence_freshness.py`
 - `scripts/portfolio_daily.py`
 - `scripts/recommend.py`
 - `scripts/report_domain_coverage.py`
+- `scripts/test_readme_domain_evidence.py`
+- `scripts/test_readme_evidence_freshness.py`
 - `scripts/test_other_domain_expansion.py`
 - `scripts/test_catalog_domain_evidence.py`
 - `.github/workflows/portfolio-scan-smoke.yml`
@@ -137,12 +143,6 @@ Generated: 2026-10-22T12:21:06Z
 - `scripts/admit_github_stars.py`
 - `scripts/audit_catalog_quality.py`
 - `scripts/infer_selection_guidance.py`
-- `scripts/test_auto_stars_admission.py`
-- `scripts/test_catalog_quality.py`
-- `scripts/test_full_catalog_availability.py`
-- `scripts/test_recommend.py`
-- `scripts/test_verify_catalog_evidence.py`
-- `scripts/validate_catalog.py`
 
 ### Project signals
 - No common build descriptor detected

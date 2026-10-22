@@ -50,6 +50,7 @@ The content is organized as follows:
     portfolio-failure-diagnostics.yml
     portfolio-scan-smoke.yml
     production-os-review-handoff.yml
+    readme-evidence-freshness.yml
     refresh-metadata.yml
     semantic-refresh.yml
     sync-github-stars.yml
@@ -75,6 +76,7 @@ schemas/
   health-trends.schema.json
   history.schema.json
   metadata-evidence.schema.json
+  readme-domain-evidence.schema.json
   replacement-report.schema.json
   star-sync-report.schema.json
   websites.schema.json
@@ -90,6 +92,7 @@ scripts/
   build_discovery_watchlist.py
   catalog_domain_evidence.py
   catalog_stats.py
+  check_readme_evidence_freshness.py
   detect_health_drift.py
   discover_candidates.py
   evaluate_candidates.py
@@ -129,6 +132,8 @@ scripts/
   test_json_contracts.py
   test_other_domain_expansion.py
   test_pipeline_integration.py
+  test_readme_domain_evidence.py
+  test_readme_evidence_freshness.py
   test_recommend.py
   test_refresh_github_metadata.py
   test_render_discovery_issue.py
@@ -146,6 +151,7 @@ scripts/
 .repo-standards.yml
 agent-skills.json
 AGENTS.md
+catalog-readme-evidence.json
 catalog.schema.json
 README.md
 stacks.json
@@ -2028,6 +2034,56 @@ jobs:
           PY
 ````
 
+## File: .github/workflows/readme-evidence-freshness.yml
+````yaml
+name: Verify README evidence freshness
+
+on:
+  schedule:
+    - cron: "37 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: star-list-readme-freshness
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Select a rotating batch of reviewed README evidence
+        id: batch
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import datetime, json
+          from pathlib import Path
+          sources = json.loads(Path("catalog-readme-evidence.json").read_text())["sources"]
+          batches = max(1, (len(sources) + 11) // 12)
+          print(f"index={datetime.date.today().toordinal() % batches}")
+          PY
+      - name: Check upstream README hashes without writes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/check_readme_evidence_freshness.py --batch-size 12             --batch-index "${{ steps.batch.outputs.index }}"             --out readme-evidence-freshness.json > /tmp/readme-evidence-summary.json
+      - name: Upload source change report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: readme-evidence-freshness
+          path: readme-evidence-freshness.json
+          if-no-files-found: warn
+          retention-days: 35
+````
+
 ## File: .github/workflows/refresh-metadata.yml
 ````yaml
 name: Refresh GitHub metadata
@@ -2447,6 +2503,12 @@ jobs:
         run: python scripts/test_catalog_domain_evidence.py
       - name: Test expanded evidence-only routing and IoT projects
         run: python scripts/test_other_domain_expansion.py
+      - name: Validate reviewed README evidence manifest
+        run: python scripts/validate_json_contract.py schemas/readme-domain-evidence.schema.json catalog-readme-evidence.json
+      - name: Test immutable README advisory routing
+        run: python scripts/test_readme_domain_evidence.py
+      - name: Test README evidence freshness checks
+        run: python scripts/test_readme_evidence_freshness.py
       - name: Export unresolved domain evidence
         run: python scripts/report_domain_coverage.py --out domain-coverage.json > /tmp/domain-coverage-output.json
       - name: Upload domain coverage evidence
@@ -3290,6 +3352,108 @@ initial_prompt: |
           },
           "error": {
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
+````
+
+## File: schemas/readme-domain-evidence.schema.json
+````json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Star List reviewed upstream README evidence",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "sourceType",
+    "sources"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "sourceType": {
+      "const": "reviewed-readme-blob"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "repository",
+          "githubRepositoryId",
+          "path",
+          "blobSha",
+          "advisoryDomains",
+          "taskTerms",
+          "evidenceSnippet",
+          "reviewNotes"
+        ],
+        "properties": {
+          "repository": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+$"
+          },
+          "githubRepositoryId": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "path": {
+            "const": "README.md"
+          },
+          "blobSha": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "advisoryDomains": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "ai_media",
+                "ai_agents",
+                "data_ml",
+                "graphics",
+                "game_dev",
+                "marketing",
+                "software_engineering",
+                "writing",
+                "productivity",
+                "backend",
+                "web_frontend",
+                "embedded_iot",
+                "education",
+                "cybersecurity",
+                "ai_memory",
+                "devops"
+              ]
+            }
+          },
+          "taskTerms": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 10,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$"
+            }
+          },
+          "evidenceSnippet": {
+            "type": "string",
+            "minLength": 3
+          },
+          "reviewNotes": {
+            "type": "string",
+            "minLength": 5
           }
         },
         "additionalProperties": false
@@ -4199,6 +4363,29 @@ DESCRIPTION_DOMAIN_PHRASES = {
 ⋮----
 def _normalized(value)
 ⋮----
+@lru_cache(maxsize=1)
+def _readme_source_map()
+⋮----
+"""Read a fixed, manually reviewed set of upstream blob references."""
+path = Path(__file__).resolve().parents[1] / "catalog-readme-evidence.json"
+data = json.loads(path.read_text(encoding="utf-8"))
+⋮----
+def reviewed_readme_source(item)
+⋮----
+"""Return reviewed evidence only for the exact catalog identity.
+
+    All claims are advisory. Upstream README text is never executed or parsed as
+    instructions; this file records reviewed descriptions and immutable hashes.
+    """
+⋮----
+name = item.get("repo")
+record = _readme_source_map().get(name)
+⋮----
+def reviewed_readme_task_terms(item)
+⋮----
+"""Task-specific hints only, never proof of software compatibility."""
+record = reviewed_readme_source(item)
+⋮----
 def advisory_domain_evidence(item)
 ⋮----
 """Return {domain: supporting evidence strings}, for advisory routing only."""
@@ -4222,6 +4409,8 @@ match = sorted(slug_terms & lexemes)
 hits = sorted(caps & signals)
 ⋮----
 matches = [s for s in phrases if re.search(
+⋮----
+signal = "readme:" + record["path"] + "@" + record["blobSha"]
 ````
 
 ## File: scripts/catalog_stats.py
@@ -4244,6 +4433,47 @@ scores = [r.get("score", 0) for r in repos if isinstance(r.get("score"), (int, f
 by_domain = defaultdict(list)
 ⋮----
 report = {
+````
+
+## File: scripts/check_readme_evidence_freshness.py
+````python
+#!/usr/bin/env python3
+"""Read-only freshness check for manually reviewed GitHub README blob evidence.
+
+A changed README requires a new review; it never authorizes automatic changes
+to a catalog or target repository.
+"""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+MANIFEST = ROOT / "catalog-readme-evidence.json"
+⋮----
+def inspect(record, fetch_repo=gh.fetch, fetch_contents=gh.fetch_contents, token=None)
+⋮----
+name = record["repository"]
+entry = {"repo": name, "recordedBlobSha": record["blobSha"],
+⋮----
+info = fetch_repo(name, token=token)
+⋮----
+payload = fetch_contents(name, path=record["path"], token=token)
+sha = payload.get("sha") if isinstance(payload, dict) else None
+⋮----
+size = (len(sources) + batch_size - 1) // batch_size
+⋮----
+start = batch_index * batch_size
+selected = sources[start:start + batch_size]
+findings = [inspect(x, fetch_repo, fetch_contents, token) for x in selected]
+counts = {k: sum(x["status"] == k for x in findings)
+⋮----
+def main()
+⋮----
+parser = argparse.ArgumentParser()
+⋮----
+args = parser.parse_args()
+data = json.loads(args.manifest.read_text(encoding="utf-8"))
+⋮----
+result = check(data["sources"], batch_size=args.batch_size,
+⋮----
+encoded = json.dumps(result,ensure_ascii=False,indent=2)+"\n"
 ````
 
 ## File: scripts/detect_health_drift.py
@@ -4980,6 +5210,7 @@ shared = sorted((profile["terms"] & terms) - GENERIC - STOPWORDS)
 # not merely an organization name (or an incidental README word).
 capability_terms = (
 explicit_slug_match = bool(set(shared) & exact_slug_terms)
+readme_term_match = bool(
 # High-specificity technology tokens such as ESP32/agent-sdk in a
 # repository slug can establish advisory relevance even when GitHub
 # has no topics or description. This NEVER permits native dispatch.
@@ -5642,6 +5873,9 @@ def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps)
 caps = set(r.get("capabilities", [])) | set(r.get("roles", []))
 ⋮----
 rtoks = tokens(" ".join([
+# Exact task tokens from manually reviewed upstream README blobs improve
+# only advisory relevance. They do not elevate tier or integration trust.
+⋮----
 lexical = len(qtokens & rtoks) / max(1, len(qtokens))
 cap_match = len(required_caps & caps) / max(1, len(required_caps)) if required_caps else 0.0
 domain_evidence = advisory_domain_evidence(r)
@@ -5958,6 +6192,9 @@ rows = [r for r in repositories if r.get("domain") == "other"]
 domains = Counter()
 ⋮----
 evidence = advisory_domain_evidence(row)
+⋮----
+record = reviewed_readme_source(row)
+output = {
 ⋮----
 def main()
 ⋮----
@@ -6781,6 +7018,78 @@ by_repo={row["repo"]:row for row in evaluated["repositories"]}
 state={"schemaVersion":1,"candidates":{}}
 ⋮----
 body=renderer.render(visible)
+````
+
+## File: scripts/test_readme_domain_evidence.py
+````python
+#!/usr/bin/env python3
+"""Offline evidence-integrity and relevance regressions for immutable README hints."""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+catalog = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8"))
+repos = catalog["repositories"]
+by_repo = {r["repo"]: r for r in repos}
+manifest = json.loads((ROOT / "catalog-readme-evidence.json").read_text(encoding="utf-8"))
+sources = manifest["sources"]
+⋮----
+allowed = {
+⋮----
+name = entry["repository"]
+⋮----
+row = by_repo[name]
+⋮----
+ev = advisory_domain_evidence(row)
+⋮----
+wrong_id = {**row, "githubRepositoryId": row["githubRepositoryId"] + 1000000}
+⋮----
+curated = {**row, "domain": "game_dev"}
+⋮----
+report = analyze(catalog)
+⋮----
+assert len(report["unrouted"]) >= 1  # Never invent a domain to reach 100% classification.
+⋮----
+ref = row["readmeEvidence"]
+⋮----
+# Grounded examples: targeted routes derived from upstream README snapshots.
+cases = [
+⋮----
+tool = by_repo[name]
+⋮----
+project = {"full_name": "dbrckk/target-test", "name": "target-test"}
+profile = {"domains":[domain],"terms":tokens(query),"language":"python",
+assessment = {}
+picks = recommendations(project, profile, [tool], None, assessment)
+⋮----
+picked = picks[0]
+⋮----
+# A source with conflicting identity or unsupported domain must not inherit
+# the vetted README instructions / routing.
+⋮----
+# CLI ranking works with a new task domain without mutating catalog.
+args = [sys.executable, str(ROOT / "scripts/recommend.py"),
+payload = json.loads(subprocess.check_output(args,cwd=ROOT,text=True))
+⋮----
+record = next(row for row in payload["recommendations"] if row["repo"] == "withmarbleapp/os-taxonomy")
+⋮----
+# Real safeguards remain independent of source evidence.
+unsafe = {**by_repo["hexgrad/kokoro"],
+````
+
+## File: scripts/test_readme_evidence_freshness.py
+````python
+#!/usr/bin/env python3
+"""Offline proof: drift checks preserve original source facts and identity."""
+⋮----
+ROOT=Path(__file__).resolve().parents[1]
+records=json.loads((ROOT/"catalog-readme-evidence.json").read_text())["sources"]
+known=records[0]
+def repo(name, token=None)
+def content(name, path="", token=None)
+base=inspect(known,repo,content)
+⋮----
+def failed(*args,**kwargs)
+⋮----
+reports=check([known],1,0,repo,content)
 ````
 
 ## File: scripts/test_refresh_github_metadata.py
@@ -8338,6 +8647,590 @@ Repository-specific rules:
 - Never reproduce suspected secret values.
 - Update manual project-state sections when status, blockers, or next priority materially changes.
 - Maintain `.ai/session-state.json` for substantial multi-turn work so a later "Continue" can resume without reconstructing the repository.
+````
+
+## File: catalog-readme-evidence.json
+````json
+{
+  "schemaVersion": 1,
+  "sourceType": "reviewed-readme-blob",
+  "sources": [
+    {
+      "repository": "Asad-Ismail/MoneyPrinterTurbo-Extended",
+      "githubRepositoryId": 988352805,
+      "path": "README.md",
+      "blobSha": "affa3a55666123d2f886ea43b86ab091461bad39",
+      "advisoryDomains": [
+        "ai_media"
+      ],
+      "taskTerms": [
+        "video",
+        "subtitles",
+        "tts",
+        "voice",
+        "clips"
+      ],
+      "evidenceSnippet": "subtitle highlighting and TTS capabilities",
+      "reviewNotes": "Fork description; runtime/model costs must be checked."
+    },
+    {
+      "repository": "hexgrad/kokoro",
+      "githubRepositoryId": 915054134,
+      "path": "README.md",
+      "blobSha": "765dcc77ff656885225fd882d3e7c3c67545325b",
+      "advisoryDomains": [
+        "ai_media"
+      ],
+      "taskTerms": [
+        "tts",
+        "speech",
+        "voice",
+        "audio",
+        "synthesis"
+      ],
+      "evidenceSnippet": "an open-weight TTS model with 82 million parameters",
+      "reviewNotes": "Model weights and library licensing must be assessed separately."
+    },
+    {
+      "repository": "HVision-NKU/StoryDiffusion",
+      "githubRepositoryId": 789712717,
+      "path": "README.md",
+      "blobSha": "2b2c0da824c16f0b01ede7b70823eec9ab7864e0",
+      "advisoryDomains": [
+        "ai_media"
+      ],
+      "taskTerms": [
+        "image",
+        "video",
+        "generation",
+        "characters",
+        "comics"
+      ],
+      "evidenceSnippet": "Image and Video Generation",
+      "reviewNotes": "Experimental model; verify model usage rights and runtime requirements."
+    },
+    {
+      "repository": "KarakuriAgent/h3-motion-creator",
+      "githubRepositoryId": 1427850125,
+      "path": "README.md",
+      "blobSha": "087c44ba30913341e18ea212720356eea20e1588",
+      "advisoryDomains": [
+        "graphics"
+      ],
+      "taskTerms": [
+        "vrm",
+        "animation",
+        "motion",
+        "rig",
+        "video",
+        "3d"
+      ],
+      "evidenceSnippet": "VRM Animation",
+      "reviewNotes": "Model weights not included; external model and workflow restrictions apply."
+    },
+    {
+      "repository": "Tencent-Hunyuan/Hy-MT2",
+      "githubRepositoryId": 1242193963,
+      "path": "README.md",
+      "blobSha": "5198cf68c804ac698d756934ae24d12d4107b763",
+      "advisoryDomains": [
+        "data_ml",
+        "ai_media"
+      ],
+      "taskTerms": [
+        "translation",
+        "multilingual",
+        "subtitles",
+        "model"
+      ],
+      "evidenceSnippet": "multilingual translation models",
+      "reviewNotes": "Translation model licensing and compute are separate from repository metadata."
+    },
+    {
+      "repository": "mcncarl/jianying-headless",
+      "githubRepositoryId": 1371378654,
+      "path": "README.md",
+      "blobSha": "b27670ba1e9521ef65139927087e0b7552aa97e9",
+      "advisoryDomains": [
+        "ai_media"
+      ],
+      "taskTerms": [
+        "video",
+        "editing",
+        "drafts",
+        "subtitles",
+        "export",
+        "mp4"
+      ],
+      "evidenceSnippet": "多轨工程",
+      "reviewNotes": "macOS Jianying version constraints; no claim of Android or arbitrary-platform compatibility."
+    },
+    {
+      "repository": "GoogleCloudPlatform/genmedia-izumi-agent",
+      "githubRepositoryId": 1199868922,
+      "path": "README.md",
+      "blobSha": "e99607138abbf5e886737ca72324ced12cc8fdc4",
+      "advisoryDomains": [
+        "ai_media",
+        "marketing",
+        "ai_agents"
+      ],
+      "taskTerms": [
+        "multimedia",
+        "advertising",
+        "agents",
+        "media",
+        "creative",
+        "video"
+      ],
+      "evidenceSnippet": "Automated Multimedia Advertisement Creation",
+      "reviewNotes": "Example reference architecture; Google Cloud services may incur costs."
+    },
+    {
+      "repository": "higgsfield-ai/skills",
+      "githubRepositoryId": 1206425593,
+      "path": "README.md",
+      "blobSha": "682610d4189c0c6fbfb68b3753fcc86ccd43e247",
+      "advisoryDomains": [
+        "ai_media",
+        "marketing",
+        "graphics"
+      ],
+      "taskTerms": [
+        "video",
+        "images",
+        "animation",
+        "branding",
+        "marketing"
+      ],
+      "evidenceSnippet": "AI agent skills for image/video generation",
+      "reviewNotes": "External Higgsfield CLI/auth and service terms must be checked."
+    },
+    {
+      "repository": "towfiqi/serpbear",
+      "githubRepositoryId": 570178488,
+      "path": "README.md",
+      "blobSha": "9ad775e1d003648be1f8c6b378e9eba7bee3ca54",
+      "advisoryDomains": [
+        "marketing"
+      ],
+      "taskTerms": [
+        "seo",
+        "serp",
+        "keywords",
+        "ranking",
+        "analytics"
+      ],
+      "evidenceSnippet": "Search Engine Position Tracking and Keyword Research App",
+      "reviewNotes": "External SERP providers may require payment."
+    },
+    {
+      "repository": "neilsonnn/image-blaster",
+      "githubRepositoryId": 1216542069,
+      "path": "README.md",
+      "blobSha": "633aa3bf4ea17d4516138132758b07229948df90",
+      "advisoryDomains": [
+        "graphics",
+        "game_dev"
+      ],
+      "taskTerms": [
+        "3d",
+        "models",
+        "meshes",
+        "assets",
+        "sfx",
+        "environments"
+      ],
+      "evidenceSnippet": "Creates 3D environments, SFX, and meshes from a single image",
+      "reviewNotes": "World Labs and FAL API keys are required."
+    },
+    {
+      "repository": "baidu/Unlimited-OCR",
+      "githubRepositoryId": 1273138090,
+      "path": "README.md",
+      "blobSha": "b8cbea5cf9be8852e29d1a502175d9999e068428",
+      "advisoryDomains": [
+        "data_ml"
+      ],
+      "taskTerms": [
+        "ocr",
+        "document",
+        "parsing",
+        "text",
+        "images"
+      ],
+      "evidenceSnippet": "Unlimited OCR Works",
+      "reviewNotes": "Model terms, hardware and deployment remain unverified."
+    },
+    {
+      "repository": "anthropics/claude-quickstarts",
+      "githubRepositoryId": 849553306,
+      "path": "README.md",
+      "blobSha": "9cac84096b77c32521c718f5b507aa866ed232b1",
+      "advisoryDomains": [
+        "ai_agents",
+        "software_engineering"
+      ],
+      "taskTerms": [
+        "agent",
+        "api",
+        "coding",
+        "browser",
+        "computer",
+        "tools"
+      ],
+      "evidenceSnippet": "Claude Quickstarts is a collection of projects",
+      "reviewNotes": "Requires Claude API credentials and possibly paid usage."
+    },
+    {
+      "repository": "richiemcilroy/Tov",
+      "githubRepositoryId": 1396004915,
+      "path": "README.md",
+      "blobSha": "57fd4ce5f60f0e2a1e33a2bc2fc99230d18e6104",
+      "advisoryDomains": [
+        "software_engineering"
+      ],
+      "taskTerms": [
+        "programming",
+        "language",
+        "compiler",
+        "typescript",
+        "coding"
+      ],
+      "evidenceSnippet": "A programming language for coding agents",
+      "reviewNotes": "Early 0.0.1 release; not production-validated."
+    },
+    {
+      "repository": "withmarbleapp/os-taxonomy",
+      "githubRepositoryId": 1293375068,
+      "path": "README.md",
+      "blobSha": "6d05f5b5c5cd60e23ec1bd35ce5a06e26fb87ebe",
+      "advisoryDomains": [
+        "education"
+      ],
+      "taskTerms": [
+        "curriculum",
+        "education",
+        "learning",
+        "school",
+        "teaching",
+        "standards"
+      ],
+      "evidenceSnippet": "An open, structured taxonomy of **what children learn**",
+      "reviewNotes": "Education taxonomy is not a runtime dependency."
+    },
+    {
+      "repository": "h0m3us3r/eSpDR",
+      "githubRepositoryId": 1387871388,
+      "path": "README.md",
+      "blobSha": "5c6b1fedc45293e6b10d49adb969b1bb1a0c0a45",
+      "advisoryDomains": [
+        "embedded_iot"
+      ],
+      "taskTerms": [
+        "esp32",
+        "sdr",
+        "radio",
+        "firmware",
+        "receiver"
+      ],
+      "evidenceSnippet": "ESP32-S3 SDR",
+      "reviewNotes": "Hardware-dependent experimental design."
+    },
+    {
+      "repository": "luigifcruz/BirriaSDR",
+      "githubRepositoryId": 1416428935,
+      "path": "README.md",
+      "blobSha": "9ca6a2a6af1875055145882709a68323c3fd5904",
+      "advisoryDomains": [
+        "embedded_iot"
+      ],
+      "taskTerms": [
+        "sdr",
+        "radio",
+        "receiver",
+        "usb",
+        "hardware"
+      ],
+      "evidenceSnippet": "experimental SDR receiver",
+      "reviewNotes": "Experimental hardware and uncalibrated receiver."
+    },
+    {
+      "repository": "mcncarl/yichen-skills",
+      "githubRepositoryId": 1155113456,
+      "path": "README.md",
+      "blobSha": "c2aaa5387062b9b1282ba4c17d3a25ea644d1a8a",
+      "advisoryDomains": [
+        "writing",
+        "marketing",
+        "ai_agents"
+      ],
+      "taskTerms": [
+        "writing",
+        "skills",
+        "articles",
+        "content",
+        "publishing"
+      ],
+      "evidenceSnippet": "A skill collection for creators",
+      "reviewNotes": "Commercial use requires explicit author permission."
+    },
+    {
+      "repository": "pluginagentmarketplace/custom-plugin-game-developer",
+      "githubRepositoryId": 1099329268,
+      "path": "README.md",
+      "blobSha": "653a0c33cf1326d36e3220ce564b0fefaa7a1863",
+      "advisoryDomains": [
+        "game_dev",
+        "ai_agents"
+      ],
+      "taskTerms": [
+        "game",
+        "development",
+        "agents",
+        "skills",
+        "engine"
+      ],
+      "evidenceSnippet": "Game Developer Assistant",
+      "reviewNotes": "Custom licence; inspect before any code reuse."
+    },
+    {
+      "repository": "rivet-dev/skills",
+      "githubRepositoryId": 1140411856,
+      "path": "README.md",
+      "blobSha": "95438b7d2248a1a4bd121288327a78d1c8a7471d",
+      "advisoryDomains": [
+        "ai_agents"
+      ],
+      "taskTerms": [
+        "skills",
+        "agents",
+        "integrations",
+        "rivet"
+      ],
+      "evidenceSnippet": "Rivet Skills",
+      "reviewNotes": "Generated documentation, not a directly installable library."
+    },
+    {
+      "repository": "alexngdev99/rork-restaurant-tycoon",
+      "githubRepositoryId": 1415197387,
+      "path": "README.md",
+      "blobSha": "8817c3e806540adddfd34989258c2dd26f27d7ef",
+      "advisoryDomains": [
+        "game_dev",
+        "web_frontend"
+      ],
+      "taskTerms": [
+        "game",
+        "tycoon",
+        "simulation",
+        "react",
+        "threejs"
+      ],
+      "evidenceSnippet": "3D restaurant management sim that runs in your browser",
+      "reviewNotes": "Reference game, not a reusable engine."
+    },
+    {
+      "repository": "omer-metin/skills-for-antigravity",
+      "githubRepositoryId": 1139862645,
+      "path": "README.md",
+      "blobSha": "a17e4d683bcaf4f1eaeb9308921ed397a1ce3c51",
+      "advisoryDomains": [
+        "ai_agents"
+      ],
+      "taskTerms": [
+        "skills",
+        "agent",
+        "development",
+        "antigravity"
+      ],
+      "evidenceSnippet": "collection of **462+ AI Skills**",
+      "reviewNotes": "Third-party converted skill instructions require review before use."
+    },
+    {
+      "repository": "dalathegreat/Battery-Emulator",
+      "githubRepositoryId": 603860295,
+      "path": "README.md",
+      "blobSha": "84943baacb1c41522c5f7d65e41414a87c3f3d06",
+      "advisoryDomains": [
+        "embedded_iot"
+      ],
+      "taskTerms": [
+        "battery",
+        "firmware",
+        "energy",
+        "storage",
+        "electric"
+      ],
+      "evidenceSnippet": "EV battery packs to be repurposed for stationary storage",
+      "reviewNotes": "Physical electrical system: do not infer safe deployment from documentation."
+    },
+    {
+      "repository": "RegeneratusLabs/physical-hermes",
+      "githubRepositoryId": 1424195755,
+      "path": "README.md",
+      "blobSha": "1b4fd2f438f5af289125390aaee7379cf866c9a1",
+      "advisoryDomains": [
+        "embedded_iot",
+        "ai_agents"
+      ],
+      "taskTerms": [
+        "esp32",
+        "robot",
+        "voice",
+        "agent",
+        "firmware"
+      ],
+      "evidenceSnippet": "Give your Hermes Agent a body.",
+      "reviewNotes": "Requires compatible robot hardware, flashing and a running agent."
+    },
+    {
+      "repository": "AskAillex/comic-maker",
+      "githubRepositoryId": 1303321172,
+      "path": "README.md",
+      "blobSha": "2dda9ddf15f3f32a614c5d9c9a42feb9a4f45168",
+      "advisoryDomains": [
+        "ai_media",
+        "graphics"
+      ],
+      "taskTerms": [
+        "comics",
+        "images",
+        "illustrations",
+        "story",
+        "panels"
+      ],
+      "evidenceSnippet": "one sentence → a lettered comic, fully local",
+      "reviewNotes": "Early development and local model dependencies."
+    },
+    {
+      "repository": "Antseed/AIPs",
+      "githubRepositoryId": 1291163775,
+      "path": "README.md",
+      "blobSha": "dbb2eaaeb9789eb8f0d1fb33cce2808b3a3805fe",
+      "advisoryDomains": [
+        "software_engineering"
+      ],
+      "taskTerms": [
+        "protocol",
+        "specification",
+        "documentation",
+        "p2p",
+        "network"
+      ],
+      "evidenceSnippet": "AntSeed Improvement Proposals (AIPs) describe standards and processes",
+      "reviewNotes": "Standards reference, not executable implementation."
+    },
+    {
+      "repository": "Humanive/cogfree",
+      "githubRepositoryId": 1403010415,
+      "path": "README.md",
+      "blobSha": "f3c13842c45552c60dfbb6ab9141341f5c504c00",
+      "advisoryDomains": [
+        "productivity"
+      ],
+      "taskTerms": [
+        "skills",
+        "cognition",
+        "thinking",
+        "memory",
+        "planning"
+      ],
+      "evidenceSnippet": "28 lightweight cognitive skills",
+      "reviewNotes": "Reference skills must be reviewed before adoption."
+    },
+    {
+      "repository": "liseami/CCBaga",
+      "githubRepositoryId": 1413898431,
+      "path": "README.md",
+      "blobSha": "578108a49206b3de64e9ad98306648bae3e4137a",
+      "advisoryDomains": [
+        "productivity"
+      ],
+      "taskTerms": [
+        "workspace",
+        "desktop",
+        "system",
+        "settings"
+      ],
+      "evidenceSnippet": "native macOS, Linux and Windows toolkit",
+      "reviewNotes": "Host settings and browser identity changes require explicit review."
+    },
+    {
+      "repository": "Xittered/xitter",
+      "githubRepositoryId": 1418075921,
+      "path": "README.md",
+      "blobSha": "f4e05f39279a645656359b88f4702e1d3c97e01c",
+      "advisoryDomains": [
+        "backend"
+      ],
+      "taskTerms": [
+        "backend",
+        "postgres",
+        "social",
+        "api",
+        "server"
+      ],
+      "evidenceSnippet": "A self-hosted backend for the X (Twitter) web client.",
+      "reviewNotes": "Legal constraints for obtaining the original client must be reviewed."
+    },
+    {
+      "repository": "anishfn/shapeshift",
+      "githubRepositoryId": 1381152958,
+      "path": "README.md",
+      "blobSha": "ae51f52b94bf9c846a4b2946b3b9cc072f98eae6",
+      "advisoryDomains": [
+        "web_frontend",
+        "productivity"
+      ],
+      "taskTerms": [
+        "ui",
+        "interface",
+        "forms",
+        "input",
+        "text"
+      ],
+      "evidenceSnippet": "One text box that morphs into the right UI as you type",
+      "reviewNotes": "UI demo may require model or runtime components."
+    },
+    {
+      "repository": "mexicat/pdoom-video",
+      "githubRepositoryId": 1386391454,
+      "path": "README.md",
+      "blobSha": "b7de7037ebb1d366099dffabb13086fbf6989c8c",
+      "advisoryDomains": [
+        "ai_media"
+      ],
+      "taskTerms": [
+        "music",
+        "video",
+        "render",
+        "audio",
+        "lyrics",
+        "typography"
+      ],
+      "evidenceSnippet": "A generative, code-rendered music video",
+      "reviewNotes": "Music rights are separate from the code."
+    },
+    {
+      "repository": "charlesbel/Microsoft-Rewards-Farmer",
+      "githubRepositoryId": 282502417,
+      "path": "README.md",
+      "blobSha": "960d44b097e56c88e4071fd6674262124398af10",
+      "advisoryDomains": [
+        "productivity"
+      ],
+      "taskTerms": [
+        "browser",
+        "automation",
+        "rewards",
+        "selenium"
+      ],
+      "evidenceSnippet": "A simple bot that uses selenium to farm Microsoft Rewards",
+      "reviewNotes": "README warns Microsoft may ban accounts; no autonomous account actions."
+    }
+  ]
+}
 ````
 
 ## File: catalog.schema.json

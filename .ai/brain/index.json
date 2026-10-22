@@ -1,14 +1,14 @@
 {
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
-  "files_indexed": 64,
-  "symbol_count": 282,
-  "edge_count": 42,
+  "files_indexed": 67,
+  "symbol_count": 291,
+  "edge_count": 48,
   "languages": {
-    "python": 64
+    "python": 67
   },
   "index_mode": "incremental",
-  "reparsed_files": 5,
+  "reparsed_files": 7,
   "top_symbol_files": [
     {
       "file": "scripts/portfolio_daily.py",
@@ -87,6 +87,10 @@
       "symbols": 5
     },
     {
+      "file": "scripts/catalog_domain_evidence.py",
+      "symbols": 5
+    },
+    {
       "file": "scripts/agent_skill_discovery.py",
       "symbols": 4
     },
@@ -115,6 +119,10 @@
       "symbols": 3
     },
     {
+      "file": "scripts/check_readme_evidence_freshness.py",
+      "symbols": 3
+    },
+    {
       "file": "scripts/detect_health_drift.py",
       "symbols": 3
     },
@@ -124,6 +132,10 @@
     },
     {
       "file": "scripts/test_pipeline_integration.py",
+      "symbols": 3
+    },
+    {
+      "file": "scripts/test_readme_evidence_freshness.py",
       "symbols": 3
     },
     {
@@ -140,10 +152,6 @@
     },
     {
       "file": "scripts/build_discovery_watchlist.py",
-      "symbols": 2
-    },
-    {
-      "file": "scripts/catalog_domain_evidence.py",
       "symbols": 2
     },
     {

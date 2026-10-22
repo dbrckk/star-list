@@ -10,7 +10,7 @@
         "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
-      "score": 615
+      "score": 640
     },
     {
       "path": "scripts/recommend.py",
@@ -22,10 +22,10 @@
         "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
-      "score": 555
+      "score": 575
     },
     {
-      "path": "scripts/test_other_domain_expansion.py",
+      "path": "scripts/test_readme_domain_evidence.py",
       "reasons": [
         "changed",
         "changed-source",
@@ -44,7 +44,19 @@
         "impact",
         "symbol-indexed"
       ],
-      "score": 435
+      "score": 475
+    },
+    {
+      "path": "scripts/test_readme_evidence_freshness.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "reverse-dependency-neighbor",
+        "selected-test",
+        "symbol-indexed"
+      ],
+      "score": 415
     },
     {
       "path": "scripts/report_domain_coverage.py",
@@ -56,7 +68,27 @@
         "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
-      "score": 360
+      "score": 385
+    },
+    {
+      "path": "scripts/check_readme_evidence_freshness.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "dependency-neighbor",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 340
+    },
+    {
+      "path": "scripts/test_other_domain_expansion.py",
+      "reasons": [
+        "impact",
+        "reverse-dependency-neighbor",
+        "selected-test"
+      ],
+      "score": 270
     },
     {
       "path": "scripts/test_catalog_domain_evidence.py",
@@ -97,6 +129,13 @@
       "score": 150
     },
     {
+      "path": ".github/workflows/readme-evidence-freshness.yml",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
       "path": ".github/workflows/validate.yml",
       "reasons": [
         "changed"
@@ -105,6 +144,20 @@
     },
     {
       "path": "RECOMMENDER.md",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "catalog-readme-evidence.json",
+      "reasons": [
+        "changed"
+      ],
+      "score": 100
+    },
+    {
+      "path": "schemas/readme-domain-evidence.schema.json",
       "reasons": [
         "changed"
       ],
@@ -126,6 +179,13 @@
     },
     {
       "path": "scripts/health_score.py",
+      "reasons": [
+        "dependency-neighbor"
+      ],
+      "score": 25
+    },
+    {
+      "path": "scripts/refresh_github_metadata.py",
       "reasons": [
         "dependency-neighbor"
       ],

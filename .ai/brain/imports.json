@@ -86,12 +86,25 @@
       "pathlib"
     ],
     "scripts/catalog_domain_evidence.py": [
+      "functools",
+      "json",
+      "pathlib",
       "re"
     ],
     "scripts/catalog_stats.py": [
       "collections",
       "json",
       "pathlib"
+    ],
+    "scripts/check_readme_evidence_freshness.py": [
+      "argparse",
+      "datetime",
+      "json",
+      "os",
+      "pathlib",
+      "re",
+      "refresh_github_metadata",
+      "sys"
     ],
     "scripts/detect_health_drift.py": [
       "argparse",
@@ -363,6 +376,22 @@
       "importlib.util",
       "pathlib",
       "sys"
+    ],
+    "scripts/test_readme_domain_evidence.py": [
+      "catalog_domain_evidence",
+      "json",
+      "pathlib",
+      "portfolio_daily",
+      "re",
+      "recommend",
+      "report_domain_coverage",
+      "subprocess",
+      "sys"
+    ],
+    "scripts/test_readme_evidence_freshness.py": [
+      "check_readme_evidence_freshness",
+      "json",
+      "pathlib"
     ],
     "scripts/test_recommend.py": [
       "agent_skill_discovery",

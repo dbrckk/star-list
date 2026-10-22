@@ -15,9 +15,10 @@
         "scripts/test_catalog_domain_evidence.py",
         "scripts/test_full_catalog_availability.py",
         "scripts/test_other_domain_expansion.py",
+        "scripts/test_readme_domain_evidence.py",
         "scripts/test_recommend.py"
       ],
-      "in_degree": 5,
+      "in_degree": 6,
       "out_degree": 4,
       "path": "scripts/recommend.py"
     },
@@ -32,9 +33,10 @@
         "scripts/test_catalog_domain_evidence.py",
         "scripts/test_full_catalog_availability.py",
         "scripts/test_other_domain_expansion.py",
+        "scripts/test_readme_domain_evidence.py",
         "scripts/test_recommend.py"
       ],
-      "in_degree": 5,
+      "in_degree": 6,
       "out_degree": 3,
       "path": "scripts/portfolio_daily.py"
     },
@@ -60,11 +62,26 @@
         "scripts/recommend.py",
         "scripts/report_domain_coverage.py",
         "scripts/test_catalog_domain_evidence.py",
-        "scripts/test_other_domain_expansion.py"
+        "scripts/test_other_domain_expansion.py",
+        "scripts/test_readme_domain_evidence.py"
       ],
-      "in_degree": 5,
+      "in_degree": 6,
       "out_degree": 0,
       "path": "scripts/catalog_domain_evidence.py"
+    },
+    {
+      "dependencies": [
+        "scripts/sync_github_stars.py"
+      ],
+      "dependents": [
+        "scripts/backfill_licenses.py",
+        "scripts/check_readme_evidence_freshness.py",
+        "scripts/test_refresh_github_metadata.py",
+        "scripts/verify_catalog_evidence.py"
+      ],
+      "in_degree": 4,
+      "out_degree": 1,
+      "path": "scripts/refresh_github_metadata.py"
     },
     {
       "dependencies": [],
@@ -80,16 +97,15 @@
     },
     {
       "dependencies": [
-        "scripts/sync_github_stars.py"
+        "scripts/catalog_domain_evidence.py",
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py",
+        "scripts/report_domain_coverage.py"
       ],
-      "dependents": [
-        "scripts/backfill_licenses.py",
-        "scripts/test_refresh_github_metadata.py",
-        "scripts/verify_catalog_evidence.py"
-      ],
-      "in_degree": 3,
-      "out_degree": 1,
-      "path": "scripts/refresh_github_metadata.py"
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 4,
+      "path": "scripts/test_other_domain_expansion.py"
     },
     {
       "dependencies": [
@@ -101,7 +117,7 @@
       "dependents": [],
       "in_degree": 0,
       "out_degree": 4,
-      "path": "scripts/test_other_domain_expansion.py"
+      "path": "scripts/test_readme_domain_evidence.py"
     },
     {
       "dependencies": [
@@ -125,6 +141,18 @@
       "in_degree": 3,
       "out_degree": 0,
       "path": "scripts/health_score.py"
+    },
+    {
+      "dependencies": [
+        "scripts/catalog_domain_evidence.py"
+      ],
+      "dependents": [
+        "scripts/test_other_domain_expansion.py",
+        "scripts/test_readme_domain_evidence.py"
+      ],
+      "in_degree": 2,
+      "out_degree": 1,
+      "path": "scripts/report_domain_coverage.py"
     },
     {
       "dependencies": [
@@ -183,6 +211,17 @@
     },
     {
       "dependencies": [
+        "scripts/refresh_github_metadata.py"
+      ],
+      "dependents": [
+        "scripts/test_readme_evidence_freshness.py"
+      ],
+      "in_degree": 1,
+      "out_degree": 1,
+      "path": "scripts/check_readme_evidence_freshness.py"
+    },
+    {
+      "dependencies": [
         "scripts/health_score.py"
       ],
       "dependents": [
@@ -191,17 +230,6 @@
       "in_degree": 1,
       "out_degree": 1,
       "path": "scripts/find_replacements.py"
-    },
-    {
-      "dependencies": [
-        "scripts/catalog_domain_evidence.py"
-      ],
-      "dependents": [
-        "scripts/test_other_domain_expansion.py"
-      ],
-      "in_degree": 1,
-      "out_degree": 1,
-      "path": "scripts/report_domain_coverage.py"
     },
     {
       "dependencies": [
@@ -328,6 +356,15 @@
     },
     {
       "dependencies": [
+        "scripts/check_readme_evidence_freshness.py"
+      ],
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 1,
+      "path": "scripts/test_readme_evidence_freshness.py"
+    },
+    {
+      "dependencies": [
         "scripts/star_import_pipeline.py"
       ],
       "dependents": [],
@@ -336,8 +373,8 @@
       "path": "scripts/test_star_import_pipeline.py"
     }
   ],
-  "edge_count": 43,
+  "edge_count": 49,
   "generated_by": "dbrckk/repo-brain-v7-graph",
-  "node_count": 30,
+  "node_count": 33,
   "schema_version": 1
 }

@@ -32,6 +32,11 @@
       "type": "imports"
     },
     {
+      "source": "scripts/check_readme_evidence_freshness.py",
+      "target": "scripts/refresh_github_metadata.py",
+      "type": "imports"
+    },
+    {
       "source": "scripts/discover_candidates.py",
       "target": "scripts/sync_github_stars.py",
       "type": "imports"
@@ -144,6 +149,31 @@
     {
       "source": "scripts/test_other_domain_expansion.py",
       "target": "scripts/report_domain_coverage.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_readme_domain_evidence.py",
+      "target": "scripts/catalog_domain_evidence.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_readme_domain_evidence.py",
+      "target": "scripts/portfolio_daily.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_readme_domain_evidence.py",
+      "target": "scripts/recommend.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_readme_domain_evidence.py",
+      "target": "scripts/report_domain_coverage.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_readme_evidence_freshness.py",
+      "target": "scripts/check_readme_evidence_freshness.py",
       "type": "imports"
     },
     {

@@ -2,25 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "fix(portfolio): reject unsafe Production-OS inventory states before dispatch (#74)",
-      "terms": [
-        "74",
-        "before",
-        "dispatch",
-        "inventory",
-        "portfolio",
-        "production-os",
-        "reject",
-        "states",
-        "unsafe"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/portfolio_daily.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "fix(portfolio): exclude demo repos and generic matches from automatic integration",
       "terms": [
         "automatic",
@@ -1346,6 +1327,30 @@
         "scripts/report_domain_coverage.py",
         "scripts/test_other_domain_expansion.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "feat(discovery): traceable README-backed domains and freshness audit (#181)",
+      "terms": [
+        "181",
+        "audit",
+        "discovery",
+        "domains",
+        "feat",
+        "freshness",
+        "readme-backed",
+        "traceable"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/catalog_domain_evidence.py",
+        "scripts/check_readme_evidence_freshness.py",
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py",
+        "scripts/report_domain_coverage.py",
+        "scripts/test_readme_domain_evidence.py",
+        "scripts/test_readme_evidence_freshness.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1588,6 +1593,15 @@
       "scripts/recommend.py": 4,
       "scripts/report_domain_coverage.py": 4,
       "scripts/test_other_domain_expansion.py": 4
+    },
+    "181": {
+      "scripts/catalog_domain_evidence.py": 4,
+      "scripts/check_readme_evidence_freshness.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/report_domain_coverage.py": 4,
+      "scripts/test_readme_domain_evidence.py": 4,
+      "scripts/test_readme_evidence_freshness.py": 4
     },
     "19": {
       "scripts/audit_catalog_quality.py": 4,
@@ -1868,15 +1882,20 @@
       "scripts/admit_github_stars.py": 8,
       "scripts/audit_agent_skill_sources.py": 4,
       "scripts/audit_catalog_quality.py": 16,
+      "scripts/catalog_domain_evidence.py": 4,
+      "scripts/check_readme_evidence_freshness.py": 4,
       "scripts/infer_selection_guidance.py": 4,
-      "scripts/portfolio_daily.py": 12,
-      "scripts/recommend.py": 8,
+      "scripts/portfolio_daily.py": 16,
+      "scripts/recommend.py": 12,
       "scripts/refresh_github_metadata.py": 4,
+      "scripts/report_domain_coverage.py": 4,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
       "scripts/test_catalog_quality.py": 16,
       "scripts/test_documentation.py": 16,
       "scripts/test_full_catalog_availability.py": 4,
+      "scripts/test_readme_domain_evidence.py": 4,
+      "scripts/test_readme_evidence_freshness.py": 4,
       "scripts/test_recommend.py": 8,
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/test_sync_github_stars.py": 4,
@@ -2155,15 +2174,18 @@
     },
     "discovery": {
       "scripts/agent_skill_discovery.py": 4,
-      "scripts/catalog_domain_evidence.py": 8,
+      "scripts/catalog_domain_evidence.py": 12,
+      "scripts/check_readme_evidence_freshness.py": 4,
       "scripts/discover_candidates.py": 4,
-      "scripts/portfolio_daily.py": 24,
-      "scripts/recommend.py": 16,
-      "scripts/report_domain_coverage.py": 4,
+      "scripts/portfolio_daily.py": 28,
+      "scripts/recommend.py": 20,
+      "scripts/report_domain_coverage.py": 8,
       "scripts/test_catalog_domain_evidence.py": 4,
       "scripts/test_discovery_cache.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_other_domain_expansion.py": 4,
+      "scripts/test_readme_domain_evidence.py": 4,
+      "scripts/test_readme_evidence_freshness.py": 4,
       "scripts/test_recommend.py": 8,
       "scripts/validate_websites.py": 4
     },
@@ -2180,6 +2202,15 @@
     },
     "do": {
       "scripts/portfolio_daily.py": 4
+    },
+    "domains": {
+      "scripts/catalog_domain_evidence.py": 4,
+      "scripts/check_readme_evidence_freshness.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/report_domain_coverage.py": 4,
+      "scripts/test_readme_domain_evidence.py": 4,
+      "scripts/test_readme_evidence_freshness.py": 4
     },
     "duplicate": {
       "scripts/portfolio_daily.py": 4
@@ -2311,13 +2342,14 @@
       "scripts/audit_agent_skill_sources.py": 4,
       "scripts/audit_catalog_quality.py": 12,
       "scripts/backfill_github_ids.py": 4,
-      "scripts/catalog_domain_evidence.py": 8,
+      "scripts/catalog_domain_evidence.py": 12,
+      "scripts/check_readme_evidence_freshness.py": 4,
       "scripts/infer_selection_guidance.py": 4,
       "scripts/portfolio_daily.py": 40,
       "scripts/portfolio_failure_diagnostics.py": 12,
       "scripts/recommend.py": 40,
       "scripts/refresh_github_metadata.py": 4,
-      "scripts/report_domain_coverage.py": 4,
+      "scripts/report_domain_coverage.py": 8,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 8,
       "scripts/test_catalog_domain_evidence.py": 4,
@@ -2326,6 +2358,8 @@
       "scripts/test_full_catalog_availability.py": 4,
       "scripts/test_json_contracts.py": 8,
       "scripts/test_other_domain_expansion.py": 4,
+      "scripts/test_readme_domain_evidence.py": 4,
+      "scripts/test_readme_evidence_freshness.py": 4,
       "scripts/test_recommend.py": 40,
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/test_sync_github_stars.py": 4,
@@ -2373,6 +2407,15 @@
     },
     "french": {
       "scripts/portfolio_daily.py": 4
+    },
+    "freshness": {
+      "scripts/catalog_domain_evidence.py": 4,
+      "scripts/check_readme_evidence_freshness.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/report_domain_coverage.py": 4,
+      "scripts/test_readme_domain_evidence.py": 4,
+      "scripts/test_readme_evidence_freshness.py": 4
     },
     "from": {
       "scripts/agent_skill_discovery.py": 4,
@@ -2926,6 +2969,15 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
     },
+    "readme-backed": {
+      "scripts/catalog_domain_evidence.py": 4,
+      "scripts/check_readme_evidence_freshness.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/report_domain_coverage.py": 4,
+      "scripts/test_readme_domain_evidence.py": 4,
+      "scripts/test_readme_evidence_freshness.py": 4
+    },
     "real": {
       "scripts/portfolio_daily.py": 4,
       "scripts/test_recommend.py": 4
@@ -3435,6 +3487,15 @@
     "touching": {
       "scripts/backfill_github_ids.py": 4,
       "scripts/test_documentation.py": 4
+    },
+    "traceable": {
+      "scripts/catalog_domain_evidence.py": 4,
+      "scripts/check_readme_evidence_freshness.py": 4,
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 4,
+      "scripts/report_domain_coverage.py": 4,
+      "scripts/test_readme_domain_evidence.py": 4,
+      "scripts/test_readme_evidence_freshness.py": 4
     },
     "track": {
       "scripts/audit_catalog_quality.py": 4,

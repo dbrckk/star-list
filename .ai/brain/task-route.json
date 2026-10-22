@@ -9,10 +9,10 @@
     "top_score": 66
   },
   "cache": {
-    "fingerprint": "73f35e67ce90f459025c2f87dc1a1d48022c7fdeb5635bf2495bcf73ca61c761",
+    "fingerprint": "ca889971bcc43c6033dc4a78cf829764d86a2de9a08784212d1a8469ddee1c97",
     "hit": false
   },
-  "candidate_count": 14,
+  "candidate_count": 20,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -84,7 +84,10 @@
       "score": 38,
       "symbols": [
         "_normalized",
-        "advisory_domain_evidence"
+        "_readme_source_map",
+        "advisory_domain_evidence",
+        "reviewed_readme_source",
+        "reviewed_readme_task_terms"
       ]
     }
   ],

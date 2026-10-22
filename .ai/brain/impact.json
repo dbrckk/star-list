@@ -1,10 +1,14 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "71d2450aad8868b2862a366329780b72ce8c7d51",
-  "head": "c69ef2fdbe939f4271f7a71d5ed29064e1bc8682",
+  "base": "c69ef2fdbe939f4271f7a71d5ed29064e1bc8682",
+  "head": "597fa44e8b2f960b4a07da8e547d6d4d67bffcfa",
   "index_mode": "incremental",
   "changed_files": [
+    {
+      "path": ".github/workflows/readme-evidence-freshness.yml",
+      "status": "A"
+    },
     {
       "path": ".github/workflows/validate.yml",
       "status": "M"
@@ -14,8 +18,20 @@
       "status": "M"
     },
     {
+      "path": "catalog-readme-evidence.json",
+      "status": "A"
+    },
+    {
+      "path": "schemas/readme-domain-evidence.schema.json",
+      "status": "A"
+    },
+    {
       "path": "scripts/catalog_domain_evidence.py",
       "status": "M"
+    },
+    {
+      "path": "scripts/check_readme_evidence_freshness.py",
+      "status": "A"
     },
     {
       "path": "scripts/portfolio_daily.py",
@@ -27,22 +43,29 @@
     },
     {
       "path": "scripts/report_domain_coverage.py",
+      "status": "M"
+    },
+    {
+      "path": "scripts/test_readme_domain_evidence.py",
       "status": "A"
     },
     {
-      "path": "scripts/test_other_domain_expansion.py",
+      "path": "scripts/test_readme_evidence_freshness.py",
       "status": "A"
     }
   ],
   "changed_source_files": [
     "scripts/catalog_domain_evidence.py",
+    "scripts/check_readme_evidence_freshness.py",
     "scripts/portfolio_daily.py",
     "scripts/recommend.py",
     "scripts/report_domain_coverage.py",
-    "scripts/test_other_domain_expansion.py"
+    "scripts/test_readme_domain_evidence.py",
+    "scripts/test_readme_evidence_freshness.py"
   ],
   "impacted_files": [
     "scripts/catalog_domain_evidence.py",
+    "scripts/check_readme_evidence_freshness.py",
     "scripts/portfolio_daily.py",
     "scripts/portfolio_failure_diagnostics.py",
     "scripts/recommend.py",
@@ -50,6 +73,8 @@
     "scripts/test_catalog_domain_evidence.py",
     "scripts/test_full_catalog_availability.py",
     "scripts/test_other_domain_expansion.py",
+    "scripts/test_readme_domain_evidence.py",
+    "scripts/test_readme_evidence_freshness.py",
     "scripts/test_recommend.py"
   ],
   "impacted_symbols": [
@@ -57,169 +82,205 @@
       "name": "_normalized",
       "kind": "function",
       "file": "scripts/catalog_domain_evidence.py",
-      "line": 219
+      "line": 222
+    },
+    {
+      "name": "_readme_source_map",
+      "kind": "function",
+      "file": "scripts/catalog_domain_evidence.py",
+      "line": 227
+    },
+    {
+      "name": "reviewed_readme_source",
+      "kind": "function",
+      "file": "scripts/catalog_domain_evidence.py",
+      "line": 234
+    },
+    {
+      "name": "reviewed_readme_task_terms",
+      "kind": "function",
+      "file": "scripts/catalog_domain_evidence.py",
+      "line": 251
     },
     {
       "name": "advisory_domain_evidence",
       "kind": "function",
       "file": "scripts/catalog_domain_evidence.py",
-      "line": 223
+      "line": 257
+    },
+    {
+      "name": "inspect",
+      "kind": "function",
+      "file": "scripts/check_readme_evidence_freshness.py",
+      "line": 21
+    },
+    {
+      "name": "check",
+      "kind": "function",
+      "file": "scripts/check_readme_evidence_freshness.py",
+      "line": 43
+    },
+    {
+      "name": "main",
+      "kind": "function",
+      "file": "scripts/check_readme_evidence_freshness.py",
+      "line": 68
     },
     {
       "name": "package_skill_signals",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 114
+      "line": 118
     },
     {
       "name": "SameOriginRedirect",
       "kind": "class",
       "file": "scripts/portfolio_daily.py",
-      "line": 159
+      "line": 163
     },
     {
       "name": "redirect_request",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 162
+      "line": 166
     },
     {
       "name": "request_json",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 176
+      "line": 180
     },
     {
       "name": "github_repos",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 223
+      "line": 227
     },
     {
       "name": "file_text",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 243
+      "line": 247
     },
     {
       "name": "project_profile",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 254
+      "line": 258
     },
     {
       "name": "review_blockers",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 325
+      "line": 329
     },
     {
       "name": "eligible",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 351
+      "line": 355
     },
     {
       "name": "is_reference_candidate",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 356
+      "line": 360
     },
     {
       "name": "recommendations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 383
+      "line": 387
     },
     {
       "name": "count_active_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 576
+      "line": 584
     },
     {
       "name": "busy_integration_targets",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 586
+      "line": 594
     },
     {
       "name": "unresolved_failed_v2_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 606
+      "line": 614
     },
     {
       "name": "count_failed_v2_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 637
+      "line": 645
     },
     {
       "name": "count_failed_v3_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 642
+      "line": 650
     },
     {
       "name": "count_launches_on_utc_date",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 658
+      "line": 666
     },
     {
       "name": "verified_managed_projects",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 678
+      "line": 686
     },
     {
       "name": "public_integration_status",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 729
+      "line": 737
     },
     {
       "name": "integration_marker",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 751
+      "line": 759
     },
     {
       "name": "recoverable_failure_targets",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 758
+      "line": 766
     },
     {
       "name": "launch_integration",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 794
+      "line": 802
     },
     {
       "name": "confirmed_launch",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 822
+      "line": 830
     },
     {
       "name": "render_markdown",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 856
+      "line": 864
     },
     {
       "name": "website_references_for_project",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 943
+      "line": 951
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 1056
+      "line": 1064
     },
     {
       "name": "safe_state",
@@ -273,139 +334,157 @@
       "name": "norm",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 50
+      "line": 54
     },
     {
       "name": "tokens",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 53
+      "line": 57
     },
     {
       "name": "load",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 56
+      "line": 60
     },
     {
       "name": "infer_domains",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 61
+      "line": 65
     },
     {
       "name": "website_review_gates",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 80
+      "line": 84
     },
     {
       "name": "recommend_websites",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 117
+      "line": 121
     },
     {
       "name": "activity_adjustment",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 166
+      "line": 170
     },
     {
       "name": "trend_adjustment",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 186
+      "line": 190
     },
     {
       "name": "delta",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 198
+      "line": 202
     },
     {
       "name": "guidance_weight",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 211
+      "line": 215
     },
     {
       "name": "ranking_review_gates",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 218
+      "line": 222
     },
     {
       "name": "metadata_review_gates",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 230
+      "line": 234
     },
     {
       "name": "score_repo",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 243
+      "line": 247
     },
     {
       "name": "explain_repo",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 275
+      "line": 282
     },
     {
       "name": "choose_stack",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 311
+      "line": 318
     },
     {
       "name": "infer_alternatives",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 338
+      "line": 345
     },
     {
       "name": "infer_complements",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 359
+      "line": 366
     },
     {
       "name": "resolve_relations",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 384
+      "line": 391
     },
     {
       "name": "usable",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 386
+      "line": 393
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 407
+      "line": 414
     },
     {
       "name": "analyze",
       "kind": "function",
       "file": "scripts/report_domain_coverage.py",
-      "line": 13
+      "line": 15
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/report_domain_coverage.py",
-      "line": 46
+      "line": 61
     },
     {
       "name": "project",
       "kind": "function",
       "file": "scripts/test_catalog_domain_evidence.py",
       "line": 43
+    },
+    {
+      "name": "repo",
+      "kind": "function",
+      "file": "scripts/test_readme_evidence_freshness.py",
+      "line": 10
+    },
+    {
+      "name": "content",
+      "kind": "function",
+      "file": "scripts/test_readme_evidence_freshness.py",
+      "line": 12
+    },
+    {
+      "name": "failed",
+      "kind": "function",
+      "file": "scripts/test_readme_evidence_freshness.py",
+      "line": 21
     },
     {
       "name": "run",
@@ -418,6 +497,8 @@
     "scripts/test_catalog_domain_evidence.py",
     "scripts/test_full_catalog_availability.py",
     "scripts/test_other_domain_expansion.py",
+    "scripts/test_readme_domain_evidence.py",
+    "scripts/test_readme_evidence_freshness.py",
     "scripts/test_recommend.py"
   ]
 }

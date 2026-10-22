@@ -5,28 +5,30 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "180",
+      "181",
+      "audit",
       "discovery",
-      "evidence-backed",
-      "expand",
+      "domains",
       "feat",
-      "generic",
-      "routing",
-      "source"
+      "freshness",
+      "readme-backed",
+      "traceable"
     ],
     "test_count": 0,
-    "useful_count": 5
+    "useful_count": 7
   },
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(discovery): expand evidence-backed generic source routing (#180)",
+  "task": "feat(discovery): traceable README-backed domains and freshness audit (#181)",
   "tests_selected": [],
   "useful": [
     "scripts/catalog_domain_evidence.py",
+    "scripts/check_readme_evidence_freshness.py",
     "scripts/portfolio_daily.py",
     "scripts/recommend.py",
     "scripts/report_domain_coverage.py",
-    "scripts/test_other_domain_expansion.py"
+    "scripts/test_readme_domain_evidence.py",
+    "scripts/test_readme_evidence_freshness.py"
   ]
 }

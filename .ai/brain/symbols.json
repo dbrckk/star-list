@@ -250,14 +250,35 @@
       "language": "python",
       "kind": "function",
       "name": "_normalized",
-      "line": 219
+      "line": 222
+    },
+    {
+      "file": "scripts/catalog_domain_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "_readme_source_map",
+      "line": 227
+    },
+    {
+      "file": "scripts/catalog_domain_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "reviewed_readme_source",
+      "line": 234
+    },
+    {
+      "file": "scripts/catalog_domain_evidence.py",
+      "language": "python",
+      "kind": "function",
+      "name": "reviewed_readme_task_terms",
+      "line": 251
     },
     {
       "file": "scripts/catalog_domain_evidence.py",
       "language": "python",
       "kind": "function",
       "name": "advisory_domain_evidence",
-      "line": 223
+      "line": 257
     },
     {
       "file": "scripts/catalog_stats.py",
@@ -265,6 +286,27 @@
       "kind": "function",
       "name": "main",
       "line": 9
+    },
+    {
+      "file": "scripts/check_readme_evidence_freshness.py",
+      "language": "python",
+      "kind": "function",
+      "name": "inspect",
+      "line": 21
+    },
+    {
+      "file": "scripts/check_readme_evidence_freshness.py",
+      "language": "python",
+      "kind": "function",
+      "name": "check",
+      "line": 43
+    },
+    {
+      "file": "scripts/check_readme_evidence_freshness.py",
+      "language": "python",
+      "kind": "function",
+      "name": "main",
+      "line": 68
     },
     {
       "file": "scripts/detect_health_drift.py",
@@ -670,182 +712,182 @@
       "language": "python",
       "kind": "function",
       "name": "package_skill_signals",
-      "line": 114
+      "line": 118
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "class",
       "name": "SameOriginRedirect",
-      "line": 159
+      "line": 163
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "redirect_request",
-      "line": 162
+      "line": 166
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "request_json",
-      "line": 176
+      "line": 180
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "github_repos",
-      "line": 223
+      "line": 227
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "file_text",
-      "line": 243
+      "line": 247
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "project_profile",
-      "line": 254
+      "line": 258
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "review_blockers",
-      "line": 325
+      "line": 329
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "eligible",
-      "line": 351
+      "line": 355
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "is_reference_candidate",
-      "line": 356
+      "line": 360
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "recommendations",
-      "line": 383
+      "line": 387
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "count_active_integrations",
-      "line": 576
+      "line": 584
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "busy_integration_targets",
-      "line": 586
+      "line": 594
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "unresolved_failed_v2_integrations",
-      "line": 606
+      "line": 614
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "count_failed_v2_integrations",
-      "line": 637
+      "line": 645
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "count_failed_v3_integrations",
-      "line": 642
+      "line": 650
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "count_launches_on_utc_date",
-      "line": 658
+      "line": 666
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "verified_managed_projects",
-      "line": 678
+      "line": 686
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "public_integration_status",
-      "line": 729
+      "line": 737
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "integration_marker",
-      "line": 751
+      "line": 759
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "recoverable_failure_targets",
-      "line": 758
+      "line": 766
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "launch_integration",
-      "line": 794
+      "line": 802
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "confirmed_launch",
-      "line": 822
+      "line": 830
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "render_markdown",
-      "line": 856
+      "line": 864
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "website_references_for_project",
-      "line": 943
+      "line": 951
     },
     {
       "file": "scripts/portfolio_daily.py",
       "language": "python",
       "kind": "function",
       "name": "main",
-      "line": 1056
+      "line": 1064
     },
     {
       "file": "scripts/portfolio_failure_diagnostics.py",
@@ -908,140 +950,140 @@
       "language": "python",
       "kind": "function",
       "name": "norm",
-      "line": 50
+      "line": 54
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "tokens",
-      "line": 53
+      "line": 57
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "load",
-      "line": 56
+      "line": 60
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "infer_domains",
-      "line": 61
+      "line": 65
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "website_review_gates",
-      "line": 80
+      "line": 84
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "recommend_websites",
-      "line": 117
+      "line": 121
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "activity_adjustment",
-      "line": 166
+      "line": 170
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "trend_adjustment",
-      "line": 186
+      "line": 190
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "delta",
-      "line": 198
+      "line": 202
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "guidance_weight",
-      "line": 211
+      "line": 215
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "ranking_review_gates",
-      "line": 218
+      "line": 222
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "metadata_review_gates",
-      "line": 230
+      "line": 234
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "score_repo",
-      "line": 243
+      "line": 247
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "explain_repo",
-      "line": 275
+      "line": 282
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "choose_stack",
-      "line": 311
+      "line": 318
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "infer_alternatives",
-      "line": 338
+      "line": 345
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "infer_complements",
-      "line": 359
+      "line": 366
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "resolve_relations",
-      "line": 384
+      "line": 391
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "usable",
-      "line": 386
+      "line": 393
     },
     {
       "file": "scripts/recommend.py",
       "language": "python",
       "kind": "function",
       "name": "main",
-      "line": 407
+      "line": 414
     },
     {
       "file": "scripts/refresh_github_metadata.py",
@@ -1167,14 +1209,14 @@
       "language": "python",
       "kind": "function",
       "name": "analyze",
-      "line": 13
+      "line": 15
     },
     {
       "file": "scripts/report_domain_coverage.py",
       "language": "python",
       "kind": "function",
       "name": "main",
-      "line": 46
+      "line": 61
     },
     {
       "file": "scripts/star_import_pipeline.py",
@@ -1434,6 +1476,27 @@
       "kind": "function",
       "name": "fake_enrich",
       "line": 77
+    },
+    {
+      "file": "scripts/test_readme_evidence_freshness.py",
+      "language": "python",
+      "kind": "function",
+      "name": "repo",
+      "line": 10
+    },
+    {
+      "file": "scripts/test_readme_evidence_freshness.py",
+      "language": "python",
+      "kind": "function",
+      "name": "content",
+      "line": 12
+    },
+    {
+      "file": "scripts/test_readme_evidence_freshness.py",
+      "language": "python",
+      "kind": "function",
+      "name": "failed",
+      "line": 21
     },
     {
       "file": "scripts/test_recommend.py",
