@@ -104,6 +104,26 @@ def check_websites(data, schema):
                     f"{identity}: marketing automation requires an explicit task "
                     "match, hosted-service review and no baseline install"
                 )
+        # Motion/cinema references and hosted visual generators must be
+        # selected for a concrete creative task. A game-dev domain alone
+        # never authorizes importing film/anime frames or invoking hosted AI.
+        visual_reuse_rules = {
+            "animation-reference-library": "reference-only",
+            "film-stills-library": "reference-only",
+            "3d-pose-reference-tool": "hosted-service",
+            "costume-history-atlas": "license-per-item",
+            "ai-media-generator": "hosted-service",
+        }
+        expected_visual_reuse = visual_reuse_rules.get(site["type"])
+        if expected_visual_reuse is not None:
+            if (site["reuse"] != expected_visual_reuse
+                    or not site.get("portfolioRequiredSignals")
+                    or site.get("portfolioBaselineDomains")
+                    or not set(site["domains"]) & {"graphics", "game_dev", "ai_media"}):
+                errors.append(
+                    f"{identity}: visual reference service requires task-specific "
+                    "signals, bounded creative domains and correct reuse rights"
+                )
         # An MCP endpoint is an authenticated remote service, not a harmless
         # website link. Require a bounded HTTPS /mcp URL owned by the
         # documented provider; no credentials, foreign hosts or auto-install.
