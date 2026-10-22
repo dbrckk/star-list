@@ -172,6 +172,33 @@ their evidence. The JSON response includes `domainReviewGates` with
 `inferred-domain-needs-confirmation` when routing relies on an inferred domain.
 The portfolio scanner records `domainEvidence` for each such match, returns
 `domain-review` instead of `native`, and sets `integrationEligible: false`.
+
+#### Expanded source evidence and IoT discovery
+
+The advisory classifier recognizes additional explicit topics and technical
+descriptions for embedded hardware (`embedded_iot`, including ESP32, Arduino
+and firmware), media processing, model inference, writing, SEO, productivity,
+and engineering. `--domain embedded_iot` and queries mentioning ESP32,
+firmware or microcontrollers can now select indexed hardware references.
+
+Exceptionally unambiguous technology tokens in repository names (such as
+`esp32` and `agent-sdk`) can establish *advisory* relevance when GitHub
+topics and descriptions are absent. Generic words like `AI`, `agent`,
+`automation` or `web` still cannot. A name match is never evidence that a
+dependency is compatible, correctly licensed, secure or executable.
+
+Inspect the coverage and every accepted / missing evidence trail locally:
+
+```bash
+python scripts/report_domain_coverage.py --out /tmp/star-list-domain-coverage.json
+python scripts/test_other_domain_expansion.py
+```
+
+The report retains all original `other` catalog rows and exposes
+`advisoryRouted`, `unresolvedAdvisoryDomain`, `domainCounts` and the
+concrete `capability:`, `description:`, or `repo-name:` evidence. Rows
+without sufficient signals remain discoverable without a guessed domain.
+
 Curated domains continue to take precedence; metadata-based domain inference
 **never** grants installation or worker-dispatch permissions.
 
