@@ -179,12 +179,19 @@ def inspect_entry(entry, fetch_repo=github.fetch, fetch_content=github.fetch_con
     return item
 
 
+def requires_review(row):
+    """Keep the evidence queue aligned with every catalog review gate."""
+    gh = row.get("github")
+    if not isinstance(gh, dict) or not gh:
+        return True
+    return (row.get("tier") == "audit"
+            or bool(gh.get("archived") or gh.get("disabled"))
+            or gh.get("license") in UNKNOWN_LICENSE
+            or type(row.get("selfHosted")) is not bool)
+
+
 def select_entries(repos, limit, batch_index, selected_names):
-    uncertain = [
-        row for row in repos
-        if (row.get("github") or {}).get("license") in UNKNOWN_LICENSE
-        or type(row.get("selfHosted")) is not bool
-    ]
+    uncertain = [row for row in repos if requires_review(row)]
     if selected_names:
         by_name = {row.get("repo"): row for row in repos}
         missing = sorted(set(selected_names) - set(by_name))
