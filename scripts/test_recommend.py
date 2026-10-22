@@ -99,6 +99,97 @@ from recommend import infer_domains
 assert "marketing" in infer_domains({"seo", "campaign"})
 assert "marketing" not in infer_domains({"promo", "discount", "food", "game", "video"})
 from portfolio_daily import website_references_for_project
+# Six screenshot-supplied sources are independent, specialist research entries.
+animation_ids = {
+    "sakugabooru", "shot-cafe", "posemy-art",
+    "niwatoliver-costume-atlas", "youmind-video-prompts", "carat-ai-media",
+}
+assert animation_ids <= {site["id"] for site in sites}
+assert all(sum(site["id"] == identity for site in sites) == 1 for identity in animation_ids)
+assert next(site for site in sites if site["id"] == "sakugabooru")["originalUrl"] == (
+    "https://sakugabooru.com/"
+)
+assert next(site for site in sites if site["id"] == "youmind-video-prompts")["url"] == (
+    "https://youmind.com/prompts/video/anime"
+)
+assert next(site for site in sites if site["id"] == "niwatoliver-costume-atlas")["url"] == (
+    "https://costume.tools.niwatoliver.dev/"
+)
+for site in sites:
+    if site["id"] in animation_ids:
+        assert site.get("portfolioRequiredSignals") and not site.get("portfolioBaselineDomains")
+        assert site["reuse"] in {"reference-only", "license-per-item", "hosted-service"}
+animation_queries = (
+    ({"name": "anime-motion-studio", "description": "Anime animation choreography",
+      "topics": ["sakuga"]},
+     {"domains": ["game_dev", "graphics"]}, {"sakugabooru"}),
+    ({"name": "cinematic-storyboard", "description": "Film camera framing and cinematic lighting",
+      "topics": ["storyboard"]},
+     {"domains": ["game_dev", "ai_media"]}, {"shot-cafe"}),
+    ({"name": "3d-character-posing", "description": "3d character mannequin poses",
+      "topics": ["rigging"]},
+     {"domains": ["graphics", "game_dev"]}, {"posemy-art"}),
+    ({"name": "historical-costume-design", "description": "Historical wardrobe dress fashion",
+      "topics": ["costume"]},
+     {"domains": ["graphics", "game_dev"]}, {"niwatoliver-costume-atlas"}),
+    ({"name": "anime-video-generation", "description": "Animated anime video generation",
+      "topics": ["video"]},
+     {"domains": ["ai_media"]}, {"youmind-video-prompts", "carat-ai-media"}),
+)
+for project, project_profile, expected in animation_queries:
+    audit = {}
+    matched = website_references_for_project(project, project_profile, assessment=audit)
+    refs = {site["id"]: site for site in matched}
+    assert expected <= refs.keys(), (project, refs)
+    for identity in expected:
+        assert refs[identity]["integrationEligible"] is False
+        assert refs[identity]["reviewGates"]
+        assert audit[identity]["decision"] == "matched"
+        assert audit[identity]["integrationEligible"] is False
+        assert audit[identity]["reviewGates"] == refs[identity]["reviewGates"]
+assert "copyrighted-reference-no-production-reuse" in next(
+    row for row in website_references_for_project(
+        {"name": "anime-motion", "description": "sakuga anime animated animation",
+         "topics": ["sakuga"]}, {"domains": ["graphics"]}
+    ) if row["id"] == "sakugabooru"
+)["reviewGates"]
+assert "verify-per-image-public-domain-or-cc0-provenance" in next(
+    row for row in website_references_for_project(
+        {"name": "costume-history", "description": "historical fashion dress",
+         "topics": ["costume"]}, {"domains": ["graphics"]}
+    ) if row["id"] == "niwatoliver-costume-atlas"
+)["reviewGates"]
+assert "human-approved-inference-and-compute-costs" in next(
+    row for row in website_references_for_project(
+        {"name": "anime-video", "description": "animated video generation",
+         "topics": ["video"]}, {"domains": ["ai_media"]}
+    ) if row["id"] == "carat-ai-media"
+)["reviewGates"]
+for unrelated_project, domains in (
+    ({"name": "Jumpy", "description": None, "topics": []}, ["game_dev"]),
+    ({"name": "asset-ledger", "description": "finance and trading",
+      "topics": []}, []),
+    ({"name": "TTS", "description": "Text to speech synthesis",
+      "topics": []}, ["ai_media"]),
+):
+    rejected = website_references_for_project(
+        unrelated_project, {"domains": domains, "terms": set()}
+    )
+    assert not animation_ids & {item["id"] for item in rejected}, unrelated_project
+from validate_websites import check_websites as validate_visual_websites
+import copy as animation_copy
+animation_schema = json.loads((ROOT / "schemas/websites.schema.json").read_text(encoding="utf-8"))
+unsafe_visual = animation_copy.deepcopy(websites_catalog)
+copyrighted_site = next(x for x in unsafe_visual["websites"] if x["id"] == "sakugabooru")
+copyrighted_site["reuse"] = "open-source-upstream"
+assert validate_visual_websites(unsafe_visual, animation_schema)
+copyrighted_site["reuse"] = "reference-only"
+copyrighted_site["portfolioBaselineDomains"] = ["game_dev"]
+assert validate_visual_websites(unsafe_visual, animation_schema)
+copyrighted_site.pop("portfolioBaselineDomains")
+hosted_generation = next(x for x in unsafe_visual["websites"] if x["id"] == "carat-ai-media")
+hosted_generation["reuse"] = "open-source-upstream"
+assert validate_visual_websites(unsafe_visual, animation_schema)
 marketing_target = {
     "name": "social-campaign-studio", "description": None, "topics": ["seo", "marketing"]
 }
