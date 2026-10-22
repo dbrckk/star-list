@@ -166,6 +166,37 @@ cannot make it a valid recommendation (for example, an AI/video task does
 not imply a Roblox Studio or autonomous coding stack). Stack and relation
 results are *advisory*, not proof of approved or safe integration.
 
+### Evidence-based metadata verification
+
+The catalog keeps original `unknown` / `partial` self-hosting values
+rather than guessing. Use the bounded GitHub evidence auditor for individual
+sources or rotating batches:
+
+```bash
+python scripts/verify_catalog_evidence.py --repo activepieces/activepieces --report-out /tmp/evidence.json
+python scripts/verify_catalog_evidence.py --limit 15 --batch-index 0 --report-out /tmp/evidence.json
+python scripts/validate_json_contract.py schemas/metadata-evidence.schema.json /tmp/evidence.json
+```
+
+The daily **Review uncertain catalog metadata** GitHub workflow selects a
+rotating batch of unresolved licences or unverified hosting metadata and
+uploads a JSON evidence artifact. Normal execution is **read-only**. The
+auditor checks GitHub repository identity, records immutable Git blob hashes,
+and validates root licence signatures. Explicitly scoped or mixed licensing
+(e.g. a root MIT licence excluding enterprise directories) remains flagged
+for review and cannot be automatically promoted.
+
+A root Compose configuration produces a *deployment candidate*, not a
+`selfHosted=true` assertion. It can require external paid infrastructure,
+secrets, resources or non-open-source components. An unresolved GitHub SPDX
+claim alone is insufficient to auto-approve a whole repository.
+
+Only after reviewing the licences and report, an operator may opt in with
+`--apply` to save a clearly verified root licence to `catalog.json`.
+An ID mismatch or an API failure prevents writing the entire batch. The
+auditor does not certify the licensing of every embedded component, and
+GitHub rate-limit errors must be retried with an authorized API token.
+
 ### Constraint-safe relations and stacks
 
 The same hard filters used for the main recommendations also apply to linked alternatives,
