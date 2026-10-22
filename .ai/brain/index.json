@@ -1,14 +1,14 @@
 {
   "schema_version": 2,
   "generated_by": "dbrckk/repo-brain",
-  "files_indexed": 60,
-  "symbol_count": 277,
-  "edge_count": 32,
+  "files_indexed": 62,
+  "symbol_count": 280,
+  "edge_count": 37,
   "languages": {
-    "python": 60
+    "python": 62
   },
   "index_mode": "incremental",
-  "reparsed_files": 12,
+  "reparsed_files": 4,
   "top_symbol_files": [
     {
       "file": "scripts/portfolio_daily.py",
@@ -143,6 +143,10 @@
       "symbols": 2
     },
     {
+      "file": "scripts/catalog_domain_evidence.py",
+      "symbols": 2
+    },
+    {
       "file": "scripts/render_health_issue.py",
       "symbols": 2
     },
@@ -160,6 +164,10 @@
     },
     {
       "file": "scripts/test_backfill_licenses.py",
+      "symbols": 1
+    },
+    {
+      "file": "scripts/test_catalog_domain_evidence.py",
       "symbols": 1
     },
     {

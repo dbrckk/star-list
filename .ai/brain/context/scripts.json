@@ -11,7 +11,7 @@
         "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
-      "score": 535
+      "score": 590
     },
     {
       "path": "scripts/recommend.py",
@@ -20,126 +20,52 @@
         "changed-source",
         "dependency-neighbor",
         "impact",
+        "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
-      "score": 475
+      "score": 530
+    },
+    {
+      "path": "scripts/test_catalog_domain_evidence.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "reverse-dependency-neighbor",
+        "selected-test",
+        "symbol-indexed"
+      ],
+      "score": 465
+    },
+    {
+      "path": "scripts/catalog_domain_evidence.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "dependency-neighbor",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 385
     },
     {
       "path": "scripts/test_recommend.py",
       "reasons": [
-        "changed",
-        "changed-source",
         "impact",
         "reverse-dependency-neighbor",
         "selected-test",
         "symbol-indexed"
       ],
-      "score": 435
-    },
-    {
-      "path": "scripts/test_verify_catalog_evidence.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 435
+      "score": 215
     },
     {
       "path": "scripts/test_full_catalog_availability.py",
       "reasons": [
-        "changed",
-        "changed-source",
         "impact",
         "reverse-dependency-neighbor",
         "selected-test"
       ],
-      "score": 430
-    },
-    {
-      "path": "scripts/test_auto_stars_admission.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 375
-    },
-    {
-      "path": "scripts/test_catalog_quality.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "selected-test"
-      ],
-      "score": 370
-    },
-    {
-      "path": "scripts/verify_catalog_evidence.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 365
-    },
-    {
-      "path": "scripts/admit_github_stars.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 360
-    },
-    {
-      "path": "scripts/audit_catalog_quality.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 325
-    },
-    {
-      "path": "scripts/infer_selection_guidance.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 320
-    },
-    {
-      "path": "scripts/validate_catalog.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact"
-      ],
-      "score": 300
-    },
-    {
-      "path": "scripts/test_sync_github_stars.py",
-      "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 230
+      "score": 210
     },
     {
       "path": "scripts/portfolio_failure_diagnostics.py",
@@ -158,11 +84,25 @@
       "score": 75
     },
     {
-      "path": "scripts/sync_github_stars.py",
+      "path": "scripts/find_replacements.py",
       "reasons": [
         "dependency-neighbor"
       ],
-      "score": 75
+      "score": 25
+    },
+    {
+      "path": "scripts/health_score.py",
+      "reasons": [
+        "dependency-neighbor"
+      ],
+      "score": 25
+    },
+    {
+      "path": "scripts/validate_websites.py",
+      "reasons": [
+        "dependency-neighbor"
+      ],
+      "score": 25
     }
   ],
   "generated_by": "dbrckk/repo-brain-v6",

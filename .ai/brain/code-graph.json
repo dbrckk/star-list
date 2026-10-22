@@ -47,6 +47,11 @@
     },
     {
       "source": "scripts/portfolio_daily.py",
+      "target": "scripts/catalog_domain_evidence.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/portfolio_daily.py",
       "target": "scripts/recommend.py",
       "type": "imports"
     },
@@ -62,6 +67,11 @@
     },
     {
       "source": "scripts/recommend.py",
+      "target": "scripts/catalog_domain_evidence.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/recommend.py",
       "target": "scripts/find_replacements.py",
       "type": "imports"
     },
@@ -73,6 +83,21 @@
     {
       "source": "scripts/refresh_github_metadata.py",
       "target": "scripts/sync_github_stars.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_catalog_domain_evidence.py",
+      "target": "scripts/catalog_domain_evidence.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_catalog_domain_evidence.py",
+      "target": "scripts/portfolio_daily.py",
+      "type": "imports"
+    },
+    {
+      "source": "scripts/test_catalog_domain_evidence.py",
+      "target": "scripts/recommend.py",
       "type": "imports"
     },
     {

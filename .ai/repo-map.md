@@ -88,6 +88,7 @@ scripts/
   backfill_github_ids.py
   backfill_licenses.py
   build_discovery_watchlist.py
+  catalog_domain_evidence.py
   catalog_stats.py
   detect_health_drift.py
   discover_candidates.py
@@ -109,6 +110,7 @@ scripts/
   test_backfill_licenses.py
   test_cache_health_history.py
   test_cache_health.py
+  test_catalog_domain_evidence.py
   test_catalog_quality.py
   test_degraded_inputs.py
   test_discover_candidates.py
@@ -2439,6 +2441,8 @@ jobs:
         run: python scripts/test_selection_guidance.py
       - name: Test recommendation engine
         run: python scripts/test_recommend.py
+      - name: Test evidence-backed domain routing for indexed sources
+        run: python scripts/test_catalog_domain_evidence.py
       - name: Verify full catalog discovery with no audit tier
         run: python scripts/test_full_catalog_availability.py
       - name: Functional game-production recommendations
@@ -4165,6 +4169,40 @@ ap=argparse.ArgumentParser()
 args=ap.parse_args()
 ````
 
+## File: scripts/catalog_domain_evidence.py
+````python
+#!/usr/bin/env python3
+"""Evidence-only advisory routing for catalog entries whose domain is unknown.
+
+Neither text clues nor GitHub descriptions authorize installation or execution.
+Keep named/curated domains authoritative and do not overwrite catalog metadata.
+"""
+⋮----
+# Only explicit technical capabilities or unambiguous *task phrases* qualify.
+# Generic words ("AI", "agent", "web", "app", "automation") never qualify alone.
+CAPABILITY_DOMAIN_SIGNALS = {
+# A title/description is *less* trustworthy than a structured capability.
+# Match task-specific phrases, never freeform single-topic descriptions.
+DESCRIPTION_DOMAIN_PHRASES = {
+⋮----
+def _normalized(value)
+⋮----
+def advisory_domain_evidence(item)
+⋮----
+"""Return {domain: supporting evidence strings}, for advisory routing only."""
+domain = item.get("domain")
+⋮----
+caps = {str(v).strip().casefold() for v in (
+# Structured capability labels may be overly broad or inaccurate. The
+# result is therefore advisory even if the label is an exact match.
+description = _normalized(" ".join(
+evidence = {}
+⋮----
+hits = sorted(caps & signals)
+⋮----
+matches = [s for s in phrases if re.search(
+````
+
 ## File: scripts/catalog_stats.py
 ````python
 #!/usr/bin/env python3
@@ -4902,13 +4940,20 @@ matches = []
 slug = str(tool.get("repo") or "")
 ⋮----
 blockers = review_blockers(tool)
+domain_evidence = advisory_domain_evidence(tool)
 ⋮----
-terms = (tokens(slug) | tokens(" ".join(tool.get("capabilities") or []))
+advisory_routing = tool.get("domain") not in domains
+⋮----
+# Exact hyphenated capability labels are meaningful metadata. Splitting
+# them for advisory term matching recovers "video editing" vs
+# "video-editing" without changing global tokenizer semantics.
+capability_labels = " ".join(str(x) for x in (tool.get("capabilities") or []))
+terms = (tokens(slug) | tokens(capability_labels)
 shared = sorted((profile["terms"] & terms) - GENERIC - STOPWORDS)
 ⋮----
 # A lone match must describe an actual candidate capability/use case,
 # not merely an organization name (or an incidental README word).
-capability_terms = (tokens(" ".join(tool.get("capabilities") or []))
+capability_terms = (
 ⋮----
 # Ignore the installed engine source and explicit substitute
 # engines. Continue recommending compatible plugins/addons.
@@ -4919,6 +4964,10 @@ candidate_languages = set(str(x).lower() for x in (tool.get("languages") or []))
 # Missing language metadata is unknown compatibility, not native support.
 languages_match = bool(profile["language"]) and profile["language"] in candidate_languages
 score = score_repo(tool, profile["terms"], domains, set(), set())
+# Inferred domains remain review-only; rank specific evidence against
+# a slightly lower threshold so valid indexed tools don't vanish just
+# because the original catalog domain was "other".
+threshold = 28 if advisory_routing else 35
 ⋮----
 # An incidental word such as "workflows" from a README must not
 # qualify an otherwise unrelated same-language library for dispatch.
@@ -4933,6 +4982,7 @@ external_studio_bridge = (
 # A language mismatch remains adapter-review; same-language tools
 # with only prose overlap remain discoverable but require review.
 mode = (
+policy_review = list(blockers)
 ⋮----
 # A native library gets precedence over example applications and adapters.
 # Otherwise a reference app can fill the three slots before a usable SDK.
@@ -5565,7 +5615,8 @@ caps = set(r.get("capabilities", [])) | set(r.get("roles", []))
 rtoks = tokens(" ".join([
 lexical = len(qtokens & rtoks) / max(1, len(qtokens))
 cap_match = len(required_caps & caps) / max(1, len(required_caps)) if required_caps else 0.0
-domain_match = 1.0 if requested_domains and r.get("domain") in requested_domains else 0.0
+domain_evidence = advisory_domain_evidence(r)
+domain_match = 1.0 if requested_domains and requested_domains & domain_evidence.keys() else 0.0
 quality = max(0.0, min(1.0, r.get("score", 0) / 10.0))
 tier = TIER_BONUS.get(r.get("tier"), 0.0)
 best_for = tokens(" ".join(r.get("bestFor", [])))
@@ -5581,6 +5632,7 @@ def explain_repo(r, qtokens, domains, required_caps)
 ⋮----
 best = tokens(" ".join(r.get("bestFor", [])))
 reasons = []
+matched_domains = sorted(domains & advisory_domain_evidence(r).keys())
 ⋮----
 matched_caps = sorted(required_caps & caps)
 ⋮----
@@ -5665,7 +5717,7 @@ relations = resolve_relations(r, repos, stacks, repo_by_name, relation_names)
 ⋮----
 result = {
 ⋮----
-all_gates = item["rankingReviewGates"] + item["metadataReviewGates"]
+all_gates = (item["rankingReviewGates"] + item["metadataReviewGates"]
 ⋮----
 st = result["recommendedStack"]
 ````
@@ -6205,6 +6257,42 @@ healthy = mod.analyze({
 watch = mod.analyze({
 ⋮----
 degraded = mod.analyze({
+````
+
+## File: scripts/test_catalog_domain_evidence.py
+````python
+#!/usr/bin/env python3
+"""Offline regression: improve indexed source discovery without auto-authorization."""
+⋮----
+ROOT = Path(__file__).resolve().parents[1]
+repos = json.loads((ROOT / "catalog.json").read_text())["repositories"]
+by_name = {r["repo"]: r for r in repos}
+⋮----
+# Real GitHub metadata: identify unambiguous sources without rewriting catalog.
+other = [r for r in repos if r["tier"] == "indexed" and r.get("domain") == "other"]
+routed = [r for r in other if advisory_domain_evidence(r)]
+⋮----
+def project(domain, query, language="python")
+⋮----
+decisions = {}
+suggestions = recommendations(target, profile, repos, None, decisions)
+⋮----
+matched = {s["repository"]: s for s in suggestions}
+⋮----
+picked = matched[required]
+⋮----
+ranking_query = [
+⋮----
+ranking = json.loads(subprocess.check_output(ranking_query, text=True, cwd=ROOT))
+ranked = next(row for row in ranking["recommendations"] if row["repo"] == required)
+⋮----
+# No weak/reused topic labels become grounds for autonomous execution.
+unsafe = {
+⋮----
+# All original review blockers still apply when evidence is strong.
+flagged = {
+⋮----
+matches = recommendations(target, profile, [flagged])
 ````
 
 ## File: scripts/test_catalog_quality.py

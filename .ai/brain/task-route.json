@@ -4,15 +4,15 @@
     "expand_to": 12,
     "max_files": 3,
     "requested_max_files": 12,
-    "score_margin": 12,
+    "score_margin": 15,
     "tier": "narrow",
     "top_score": 66
   },
   "cache": {
-    "fingerprint": "61ed23dd48556324b3aaed85b08af04f8deb3fe9081a6133b4a6abd9b8667bec",
+    "fingerprint": "d490932c5671d88eddfd18e84bdaa39895271e62de71bb03853deeddaf48c50d",
     "hit": false
   },
-  "candidate_count": 20,
+  "candidate_count": 12,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -62,10 +62,9 @@
       "reasons": [
         "impact",
         "learning",
-        "recently-changed",
         "search-index"
       ],
-      "score": 54,
+      "score": 51,
       "symbols": [
         "run"
       ]
@@ -76,7 +75,7 @@
         "engine",
         "game"
       ],
-      "path": "scripts/admit_github_stars.py",
+      "path": "scripts/catalog_domain_evidence.py",
       "reasons": [
         "impact",
         "recently-changed",
@@ -84,13 +83,8 @@
       ],
       "score": 38,
       "symbols": [
-        "admit",
-        "catalog_entry",
-        "classify",
-        "count",
-        "get_repo",
-        "main",
-        "manifest_stable_ids"
+        "_normalized",
+        "advisory_domain_evidence"
       ]
     }
   ],

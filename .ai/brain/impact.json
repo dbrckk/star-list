@@ -1,14 +1,10 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "54ee1d9aa6187c5e4a7bc4d0a67497b55034fafa",
-  "head": "eba03b554adfe6a49b20b52c6bdebfb4f72c3ca8",
+  "base": "eba03b554adfe6a49b20b52c6bdebfb4f72c3ca8",
+  "head": "71d2450aad8868b2862a366329780b72ce8c7d51",
   "index_mode": "incremental",
   "changed_files": [
-    {
-      "path": ".github/workflows/portfolio-scan-smoke.yml",
-      "status": "M"
-    },
     {
       "path": ".github/workflows/validate.yml",
       "status": "M"
@@ -18,24 +14,8 @@
       "status": "M"
     },
     {
-      "path": "catalog.json",
-      "status": "M"
-    },
-    {
-      "path": "catalog.schema.json",
-      "status": "M"
-    },
-    {
-      "path": "scripts/admit_github_stars.py",
-      "status": "M"
-    },
-    {
-      "path": "scripts/audit_catalog_quality.py",
-      "status": "M"
-    },
-    {
-      "path": "scripts/infer_selection_guidance.py",
-      "status": "M"
+      "path": "scripts/catalog_domain_evidence.py",
+      "status": "A"
     },
     {
       "path": "scripts/portfolio_daily.py",
@@ -46,316 +26,193 @@
       "status": "M"
     },
     {
-      "path": "scripts/test_auto_stars_admission.py",
-      "status": "M"
-    },
-    {
-      "path": "scripts/test_catalog_quality.py",
-      "status": "M"
-    },
-    {
-      "path": "scripts/test_full_catalog_availability.py",
+      "path": "scripts/test_catalog_domain_evidence.py",
       "status": "A"
-    },
-    {
-      "path": "scripts/test_recommend.py",
-      "status": "M"
-    },
-    {
-      "path": "scripts/test_verify_catalog_evidence.py",
-      "status": "M"
-    },
-    {
-      "path": "scripts/validate_catalog.py",
-      "status": "M"
-    },
-    {
-      "path": "scripts/verify_catalog_evidence.py",
-      "status": "M"
     }
   ],
   "changed_source_files": [
-    "scripts/admit_github_stars.py",
-    "scripts/audit_catalog_quality.py",
-    "scripts/infer_selection_guidance.py",
+    "scripts/catalog_domain_evidence.py",
     "scripts/portfolio_daily.py",
     "scripts/recommend.py",
-    "scripts/test_auto_stars_admission.py",
-    "scripts/test_catalog_quality.py",
-    "scripts/test_full_catalog_availability.py",
-    "scripts/test_recommend.py",
-    "scripts/test_verify_catalog_evidence.py",
-    "scripts/validate_catalog.py",
-    "scripts/verify_catalog_evidence.py"
+    "scripts/test_catalog_domain_evidence.py"
   ],
   "impacted_files": [
-    "scripts/admit_github_stars.py",
-    "scripts/audit_catalog_quality.py",
-    "scripts/infer_selection_guidance.py",
+    "scripts/catalog_domain_evidence.py",
     "scripts/portfolio_daily.py",
     "scripts/portfolio_failure_diagnostics.py",
     "scripts/recommend.py",
-    "scripts/test_auto_stars_admission.py",
-    "scripts/test_catalog_quality.py",
+    "scripts/test_catalog_domain_evidence.py",
     "scripts/test_full_catalog_availability.py",
-    "scripts/test_recommend.py",
-    "scripts/test_sync_github_stars.py",
-    "scripts/test_verify_catalog_evidence.py",
-    "scripts/validate_catalog.py",
-    "scripts/verify_catalog_evidence.py"
+    "scripts/test_recommend.py"
   ],
   "impacted_symbols": [
     {
-      "name": "classify",
+      "name": "_normalized",
       "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 52
+      "file": "scripts/catalog_domain_evidence.py",
+      "line": 129
     },
     {
-      "name": "get_repo",
+      "name": "advisory_domain_evidence",
       "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 64
-    },
-    {
-      "name": "catalog_entry",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 100
-    },
-    {
-      "name": "count",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 111
-    },
-    {
-      "name": "manifest_stable_ids",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 159
-    },
-    {
-      "name": "admit",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 199
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/admit_github_stars.py",
-      "line": 290
-    },
-    {
-      "name": "_age_days",
-      "kind": "function",
-      "file": "scripts/audit_catalog_quality.py",
-      "line": 14
-    },
-    {
-      "name": "analyze",
-      "kind": "function",
-      "file": "scripts/audit_catalog_quality.py",
-      "line": 26
-    },
-    {
-      "name": "add",
-      "kind": "function",
-      "file": "scripts/audit_catalog_quality.py",
-      "line": 33
-    },
-    {
-      "name": "render_markdown",
-      "kind": "function",
-      "file": "scripts/audit_catalog_quality.py",
-      "line": 150
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/audit_catalog_quality.py",
-      "line": 219
-    },
-    {
-      "name": "_humanize",
-      "kind": "function",
-      "file": "scripts/infer_selection_guidance.py",
-      "line": 123
-    },
-    {
-      "name": "infer_guidance",
-      "kind": "function",
-      "file": "scripts/infer_selection_guidance.py",
-      "line": 127
-    },
-    {
-      "name": "enrich",
-      "kind": "function",
-      "file": "scripts/infer_selection_guidance.py",
-      "line": 180
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/infer_selection_guidance.py",
-      "line": 200
+      "file": "scripts/catalog_domain_evidence.py",
+      "line": 133
     },
     {
       "name": "package_skill_signals",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 111
+      "line": 112
     },
     {
       "name": "SameOriginRedirect",
       "kind": "class",
       "file": "scripts/portfolio_daily.py",
-      "line": 156
+      "line": 157
     },
     {
       "name": "redirect_request",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 159
+      "line": 160
     },
     {
       "name": "request_json",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 173
+      "line": 174
     },
     {
       "name": "github_repos",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 220
+      "line": 221
     },
     {
       "name": "file_text",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 240
+      "line": 241
     },
     {
       "name": "project_profile",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 251
+      "line": 252
     },
     {
       "name": "review_blockers",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 322
+      "line": 323
     },
     {
       "name": "eligible",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 348
+      "line": 349
     },
     {
       "name": "is_reference_candidate",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 353
+      "line": 354
     },
     {
       "name": "recommendations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 380
+      "line": 381
     },
     {
       "name": "count_active_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 532
+      "line": 557
     },
     {
       "name": "busy_integration_targets",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 542
+      "line": 567
     },
     {
       "name": "unresolved_failed_v2_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 562
+      "line": 587
     },
     {
       "name": "count_failed_v2_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 593
+      "line": 618
     },
     {
       "name": "count_failed_v3_integrations",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 598
+      "line": 623
     },
     {
       "name": "count_launches_on_utc_date",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 614
+      "line": 639
     },
     {
       "name": "verified_managed_projects",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 634
+      "line": 659
     },
     {
       "name": "public_integration_status",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 685
+      "line": 710
     },
     {
       "name": "integration_marker",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 707
+      "line": 732
     },
     {
       "name": "recoverable_failure_targets",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 714
+      "line": 739
     },
     {
       "name": "launch_integration",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 750
+      "line": 775
     },
     {
       "name": "confirmed_launch",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 778
+      "line": 803
     },
     {
       "name": "render_markdown",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 812
+      "line": 837
     },
     {
       "name": "website_references_for_project",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 899
+      "line": 924
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/portfolio_daily.py",
-      "line": 1012
+      "line": 1037
     },
     {
       "name": "safe_state",
@@ -409,304 +266,138 @@
       "name": "norm",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 46
+      "line": 47
     },
     {
       "name": "tokens",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 49
+      "line": 50
     },
     {
       "name": "load",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 52
+      "line": 53
     },
     {
       "name": "infer_domains",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 57
+      "line": 58
     },
     {
       "name": "website_review_gates",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 76
+      "line": 77
     },
     {
       "name": "recommend_websites",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 113
+      "line": 114
     },
     {
       "name": "activity_adjustment",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 162
+      "line": 163
     },
     {
       "name": "trend_adjustment",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 182
+      "line": 183
     },
     {
       "name": "delta",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 194
+      "line": 195
     },
     {
       "name": "guidance_weight",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 207
+      "line": 208
     },
     {
       "name": "ranking_review_gates",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 214
+      "line": 215
     },
     {
       "name": "metadata_review_gates",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 226
+      "line": 227
     },
     {
       "name": "score_repo",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 239
+      "line": 240
     },
     {
       "name": "explain_repo",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 270
+      "line": 272
     },
     {
       "name": "choose_stack",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 302
+      "line": 308
     },
     {
       "name": "infer_alternatives",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 329
+      "line": 335
     },
     {
       "name": "infer_complements",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 350
+      "line": 356
     },
     {
       "name": "resolve_relations",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 375
+      "line": 381
     },
     {
       "name": "usable",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 377
+      "line": 383
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 398
+      "line": 404
     },
     {
-      "name": "read",
+      "name": "project",
       "kind": "function",
-      "file": "scripts/test_auto_stars_admission.py",
-      "line": 8
+      "file": "scripts/test_catalog_domain_evidence.py",
+      "line": 43
     },
     {
       "name": "run",
       "kind": "function",
       "file": "scripts/test_recommend.py",
       "line": 9
-    },
-    {
-      "name": "star",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 21
-    },
-    {
-      "name": "Response",
-      "kind": "class",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 35
-    },
-    {
-      "name": "__init__",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 36
-    },
-    {
-      "name": "__enter__",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 40
-    },
-    {
-      "name": "__exit__",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 43
-    },
-    {
-      "name": "read",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 46
-    },
-    {
-      "name": "two_page_opener",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 51
-    },
-    {
-      "name": "rate_limited",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 160
-    },
-    {
-      "name": "fresh_metadata",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 220
-    },
-    {
-      "name": "offline_write",
-      "kind": "function",
-      "file": "scripts/test_sync_github_stars.py",
-      "line": 268
-    },
-    {
-      "name": "source",
-      "kind": "function",
-      "file": "scripts/test_verify_catalog_evidence.py",
-      "line": 12
-    },
-    {
-      "name": "fake_repo",
-      "kind": "function",
-      "file": "scripts/test_verify_catalog_evidence.py",
-      "line": 33
-    },
-    {
-      "name": "fake_content",
-      "kind": "function",
-      "file": "scripts/test_verify_catalog_evidence.py",
-      "line": 39
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/test_verify_catalog_evidence.py",
-      "line": 50
-    },
-    {
-      "name": "scoped_content",
-      "kind": "function",
-      "file": "scripts/test_verify_catalog_evidence.py",
-      "line": 57
-    },
-    {
-      "name": "conflicting_repo",
-      "kind": "function",
-      "file": "scripts/test_verify_catalog_evidence.py",
-      "line": 89
-    },
-    {
-      "name": "reused_repo",
-      "kind": "function",
-      "file": "scripts/test_verify_catalog_evidence.py",
-      "line": 93
-    },
-    {
-      "name": "readme_only",
-      "kind": "function",
-      "file": "scripts/test_verify_catalog_evidence.py",
-      "line": 103
-    },
-    {
-      "name": "root_files",
-      "kind": "function",
-      "file": "scripts/verify_catalog_evidence.py",
-      "line": 32
-    },
-    {
-      "name": "is_license_file",
-      "kind": "function",
-      "file": "scripts/verify_catalog_evidence.py",
-      "line": 47
-    },
-    {
-      "name": "content_with_sha",
-      "kind": "function",
-      "file": "scripts/verify_catalog_evidence.py",
-      "line": 52
-    },
-    {
-      "name": "blob_evidence",
-      "kind": "function",
-      "file": "scripts/verify_catalog_evidence.py",
-      "line": 77
-    },
-    {
-      "name": "inspect_entry",
-      "kind": "function",
-      "file": "scripts/verify_catalog_evidence.py",
-      "line": 82
-    },
-    {
-      "name": "requires_review",
-      "kind": "function",
-      "file": "scripts/verify_catalog_evidence.py",
-      "line": 182
-    },
-    {
-      "name": "select_entries",
-      "kind": "function",
-      "file": "scripts/verify_catalog_evidence.py",
-      "line": 192
-    },
-    {
-      "name": "audit",
-      "kind": "function",
-      "file": "scripts/verify_catalog_evidence.py",
-      "line": 209
-    },
-    {
-      "name": "main",
-      "kind": "function",
-      "file": "scripts/verify_catalog_evidence.py",
-      "line": 251
     }
   ],
   "selected_tests": [
-    "scripts/test_auto_stars_admission.py",
-    "scripts/test_catalog_quality.py",
+    "scripts/test_catalog_domain_evidence.py",
     "scripts/test_full_catalog_availability.py",
-    "scripts/test_recommend.py",
-    "scripts/test_selection_guidance.py",
-    "scripts/test_sync_github_stars.py",
-    "scripts/test_verify_catalog_evidence.py"
+    "scripts/test_recommend.py"
   ]
 }

@@ -54,6 +54,16 @@
       "in_degree": 0,
       "out_degree": 1
     },
+    "scripts/catalog_domain_evidence.py": {
+      "dependencies": [],
+      "dependents": [
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py",
+        "scripts/test_catalog_domain_evidence.py"
+      ],
+      "in_degree": 3,
+      "out_degree": 0
+    },
     "scripts/discover_candidates.py": {
       "dependencies": [
         "scripts/sync_github_stars.py"
@@ -85,15 +95,17 @@
     "scripts/portfolio_daily.py": {
       "dependencies": [
         "scripts/agent_skill_discovery.py",
+        "scripts/catalog_domain_evidence.py",
         "scripts/recommend.py"
       ],
       "dependents": [
         "scripts/portfolio_failure_diagnostics.py",
+        "scripts/test_catalog_domain_evidence.py",
         "scripts/test_full_catalog_availability.py",
         "scripts/test_recommend.py"
       ],
-      "in_degree": 3,
-      "out_degree": 2
+      "in_degree": 4,
+      "out_degree": 3
     },
     "scripts/portfolio_failure_diagnostics.py": {
       "dependencies": [
@@ -106,16 +118,18 @@
     "scripts/recommend.py": {
       "dependencies": [
         "scripts/agent_skill_discovery.py",
+        "scripts/catalog_domain_evidence.py",
         "scripts/find_replacements.py",
         "scripts/health_score.py"
       ],
       "dependents": [
         "scripts/portfolio_daily.py",
+        "scripts/test_catalog_domain_evidence.py",
         "scripts/test_full_catalog_availability.py",
         "scripts/test_recommend.py"
       ],
-      "in_degree": 3,
-      "out_degree": 3
+      "in_degree": 4,
+      "out_degree": 4
     },
     "scripts/refresh_github_metadata.py": {
       "dependencies": [
@@ -151,6 +165,16 @@
       ],
       "in_degree": 7,
       "out_degree": 0
+    },
+    "scripts/test_catalog_domain_evidence.py": {
+      "dependencies": [
+        "scripts/catalog_domain_evidence.py",
+        "scripts/portfolio_daily.py",
+        "scripts/recommend.py"
+      ],
+      "dependents": [],
+      "in_degree": 0,
+      "out_degree": 3
     },
     "scripts/test_discovery_cache.py": {
       "dependencies": [

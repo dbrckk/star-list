@@ -1,26 +1,15 @@
 # Change impact
 
-Base: 07e9102700062611290ee7c265ca1a14001e7dba
-Head: eba03b554adfe6a49b20b52c6bdebfb4f72c3ca8
+Base: 0ab301dd7de812a60ea59a12c66daef230c1b046
+Head: 71d2450aad8868b2862a366329780b72ce8c7d51
 
 ## Changed files
-- M .github/workflows/portfolio-scan-smoke.yml
 - M .github/workflows/validate.yml
 - M RECOMMENDER.md
-- M catalog.json
-- M catalog.schema.json
-- M scripts/admit_github_stars.py
-- M scripts/audit_catalog_quality.py
-- M scripts/infer_selection_guidance.py
+- A scripts/catalog_domain_evidence.py
 - M scripts/portfolio_daily.py
 - M scripts/recommend.py
-- M scripts/test_auto_stars_admission.py
-- M scripts/test_catalog_quality.py
-- A scripts/test_full_catalog_availability.py
-- M scripts/test_recommend.py
-- M scripts/test_verify_catalog_evidence.py
-- M scripts/validate_catalog.py
-- M scripts/verify_catalog_evidence.py
+- A scripts/test_catalog_domain_evidence.py
 
 ## Affected areas
 - .github

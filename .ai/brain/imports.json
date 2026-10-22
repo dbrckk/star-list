@@ -85,6 +85,9 @@
       "json",
       "pathlib"
     ],
+    "scripts/catalog_domain_evidence.py": [
+      "re"
+    ],
     "scripts/catalog_stats.py": [
       "collections",
       "json",
@@ -145,6 +148,7 @@
       "agent_skill_discovery",
       "argparse",
       "base64",
+      "catalog_domain_evidence",
       "datetime",
       "hashlib",
       "json",
@@ -172,6 +176,7 @@
     "scripts/recommend.py": [
       "agent_skill_discovery",
       "argparse",
+      "catalog_domain_evidence",
       "datetime",
       "find_replacements",
       "functools",
@@ -251,6 +256,14 @@
     "scripts/test_cache_health_history.py": [
       "importlib.util",
       "pathlib"
+    ],
+    "scripts/test_catalog_domain_evidence.py": [
+      "catalog_domain_evidence",
+      "json",
+      "pathlib",
+      "portfolio_daily",
+      "recommend",
+      "subprocess"
     ],
     "scripts/test_catalog_quality.py": [
       "datetime",

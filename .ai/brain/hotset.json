@@ -10,7 +10,7 @@
         "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
-      "score": 535
+      "score": 590
     },
     {
       "path": "scripts/recommend.py",
@@ -19,126 +19,52 @@
         "changed-source",
         "dependency-neighbor",
         "impact",
+        "reverse-dependency-neighbor",
         "symbol-indexed"
       ],
-      "score": 475
+      "score": 530
+    },
+    {
+      "path": "scripts/test_catalog_domain_evidence.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "impact",
+        "reverse-dependency-neighbor",
+        "selected-test",
+        "symbol-indexed"
+      ],
+      "score": 465
+    },
+    {
+      "path": "scripts/catalog_domain_evidence.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "dependency-neighbor",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 385
     },
     {
       "path": "scripts/test_recommend.py",
       "reasons": [
-        "changed",
-        "changed-source",
         "impact",
         "reverse-dependency-neighbor",
         "selected-test",
         "symbol-indexed"
       ],
-      "score": 435
-    },
-    {
-      "path": "scripts/test_verify_catalog_evidence.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 435
+      "score": 215
     },
     {
       "path": "scripts/test_full_catalog_availability.py",
       "reasons": [
-        "changed",
-        "changed-source",
         "impact",
         "reverse-dependency-neighbor",
         "selected-test"
       ],
-      "score": 430
-    },
-    {
-      "path": "scripts/test_auto_stars_admission.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 375
-    },
-    {
-      "path": "scripts/test_catalog_quality.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "selected-test"
-      ],
-      "score": 370
-    },
-    {
-      "path": "scripts/verify_catalog_evidence.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 365
-    },
-    {
-      "path": "scripts/admit_github_stars.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "dependency-neighbor",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 360
-    },
-    {
-      "path": "scripts/audit_catalog_quality.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 325
-    },
-    {
-      "path": "scripts/infer_selection_guidance.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "symbol-indexed"
-      ],
-      "score": 320
-    },
-    {
-      "path": "scripts/validate_catalog.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact"
-      ],
-      "score": 300
-    },
-    {
-      "path": "scripts/test_sync_github_stars.py",
-      "reasons": [
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 230
+      "score": 210
     },
     {
       "path": "scripts/portfolio_failure_diagnostics.py",
@@ -148,13 +74,6 @@
         "symbol-indexed"
       ],
       "score": 150
-    },
-    {
-      "path": ".github/workflows/portfolio-scan-smoke.yml",
-      "reasons": [
-        "changed"
-      ],
-      "score": 100
     },
     {
       "path": ".github/workflows/validate.yml",
@@ -171,39 +90,11 @@
       "score": 100
     },
     {
-      "path": "catalog.json",
-      "reasons": [
-        "changed"
-      ],
-      "score": 100
-    },
-    {
-      "path": "catalog.schema.json",
-      "reasons": [
-        "changed"
-      ],
-      "score": 100
-    },
-    {
       "path": "scripts/agent_skill_discovery.py",
       "reasons": [
         "dependency-neighbor"
       ],
       "score": 75
-    },
-    {
-      "path": "scripts/sync_github_stars.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 75
-    },
-    {
-      "path": "scripts/test_selection_guidance.py",
-      "reasons": [
-        "selected-test"
-      ],
-      "score": 70
     },
     {
       "path": "scripts/find_replacements.py",
@@ -214,27 +105,6 @@
     },
     {
       "path": "scripts/health_score.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
-    },
-    {
-      "path": "scripts/refresh_github_metadata.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
-    },
-    {
-      "path": "scripts/star_import_pipeline.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 25
-    },
-    {
-      "path": "scripts/validate_json_contract.py",
       "reasons": [
         "dependency-neighbor"
       ],
