@@ -6,6 +6,7 @@ from pathlib import Path
 from health_score import health_score
 from find_replacements import replacement_score
 from agent_skill_discovery import SKILL_ISSUE_URL, recommend_skills, word_set
+from catalog_domain_evidence import advisory_domain_evidence
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog.json"
@@ -246,7 +247,8 @@ def score_repo(r, qtokens, requested_domains, required_caps, excluded_caps):
     ]))
     lexical = len(qtokens & rtoks) / max(1, len(qtokens))
     cap_match = len(required_caps & caps) / max(1, len(required_caps)) if required_caps else 0.0
-    domain_match = 1.0 if requested_domains and r.get("domain") in requested_domains else 0.0
+    domain_evidence = advisory_domain_evidence(r)
+    domain_match = 1.0 if requested_domains and requested_domains & domain_evidence.keys() else 0.0
     quality = max(0.0, min(1.0, r.get("score", 0) / 10.0))
     tier = TIER_BONUS.get(r.get("tier"), 0.0)
     best_for = tokens(" ".join(r.get("bestFor", [])))
@@ -271,8 +273,12 @@ def explain_repo(r, qtokens, domains, required_caps):
     caps = set(r.get("capabilities", [])) | set(r.get("roles", []))
     best = tokens(" ".join(r.get("bestFor", [])))
     reasons = []
-    if domains and r.get("domain") in domains:
-        reasons.append("domain:" + r["domain"])
+    matched_domains = sorted(domains & advisory_domain_evidence(r).keys())
+    if matched_domains:
+        if r.get("domain") in matched_domains:
+            reasons.append("domain:" + r["domain"])
+        else:
+            reasons.append("advisory-domain:" + ",".join(matched_domains[:2]))
     matched_caps = sorted(required_caps & caps)
     if matched_caps:
         reasons.append("capabilities:" + ",".join(matched_caps))
@@ -484,6 +490,12 @@ def main():
         top.append({
             "repo": r["repo"], "selectionScore": s, "qualityScore": r.get("score"),
             "tier": r.get("tier"), "domain": r.get("domain"),
+            "advisoryDomains": advisory_domain_evidence(r),
+            "domainReviewGates": (
+                ["inferred-domain-needs-confirmation"]
+                if r.get("domain") in {"other", "unknown", ""}
+                and domains & advisory_domain_evidence(r).keys() else []
+            ),
             "capabilities": r.get("capabilities", []), "bestFor": r.get("bestFor", []),
             "avoidWhen": r.get("avoidWhen", []),
             "alternatives": relations["alternatives"], "alternativesSource": relations["alternativesSource"],
@@ -498,7 +510,11 @@ def main():
             "metadataReviewGates": metadata_review_gates(r),
             "availableForDiscovery": True,
             "automaticIntegrationApproved": False,
-            "reviewRequired": bool(ranking_review_gates(r) or metadata_review_gates(r)),
+            "reviewRequired": bool(
+                ranking_review_gates(r) or metadata_review_gates(r) or
+                (r.get("domain") in {"other", "unknown", ""}
+                 and domains & advisory_domain_evidence(r).keys())
+            ),
         })
 
     result = {
@@ -514,7 +530,11 @@ def main():
             "metadata": {
                 "unverifiedSelfHosting": sum(bool("self-hosting-unverified" in metadata_review_gates(r)) for _, r in ranked),
                 "unresolvedLicenses": sum(bool("license-unresolved" in metadata_review_gates(r)) for _, r in ranked),
-                "reviewRequired": sum(bool(ranking_review_gates(r) or metadata_review_gates(r)) for _, r in ranked),
+                "reviewRequired": sum(bool(
+                    ranking_review_gates(r) or metadata_review_gates(r) or
+                    (r.get("domain") in {"other", "unknown", ""}
+                     and domains & advisory_domain_evidence(r).keys())
+                ) for _, r in ranked),
             },
         },
         "recommendedStack": choose_stack(stacks, qtokens, domains, relation_names),
@@ -546,7 +566,8 @@ def main():
         for i, item in enumerate(top, 1):
             print(f"{i}. {item['repo']} | selection={item['selectionScore']:.1f} | quality={item['qualityScore']}/10 | {item['tier']}")
             if item["why"]: print("   why:", "; ".join(item["why"]))
-            all_gates = item["rankingReviewGates"] + item["metadataReviewGates"]
+            all_gates = (item["rankingReviewGates"] + item["metadataReviewGates"]
+                         + item["domainReviewGates"])
             if all_gates:
                 print("   review required:", ", ".join(all_gates))
             if item["bestFor"]: print("   bestFor:", "; ".join(item["bestFor"][:3]))
