@@ -673,14 +673,15 @@ jobs:
           # tier/license/complexity require human review. It must never become
           # native or eligible for a mutating Production-OS request.
           unsafe_bridge = {
-              **bridge, "tier": "audit", "integrationComplexity": "high",
+              **bridge, "tier": "indexed", "integrationComplexity": "high",
               "github": {**bridge["github"], "license": "NOASSERTION"},
           }
           advisory = recommendations(game, profile, [unsafe_bridge], 3)
           assert len(advisory) == 1 and advisory[0]["mode"] == "policy-review", advisory
           assert advisory[0]["integrationEligible"] is False
-          assert {"tier-not-approved", "high-integration-complexity",
+          assert {"high-integration-complexity",
                   "license-not-approved"} <= set(advisory[0]["policyReview"]), advisory
+          assert "tier-not-approved" not in advisory[0]["policyReview"]
           # Development bridges remain reviewable, not dispatched natively.
           assert not any(x["mode"] == "native" for x in matched)
           engines = [item for item in catalog_entries if item["repo"].lower()

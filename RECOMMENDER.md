@@ -86,30 +86,40 @@ The selection score combines:
 
 If no `--cap` is supplied, lexical relevance receives extra weight.
 
-## Complete catalog ranking (default)
+## Complete catalog availability (default)
 
-Every repository in `catalog.json` is eligible for **ranking by default**, even
-an `audit` entry, an archived/disabled entry, or a record with a zero or
-negative task-selection score. Nothing is silently removed for these reasons.
-For a full ordered list, raise `--top` to the catalog size, for example:
+**Every GitHub entry is immediately discoverable and rankable.** The catalog
+uses four score tiers: `core`, `recommended`, `specialized`, and `indexed`.
+`indexed` means cataloged with automatically collected metadata; it is not an
+approval queue. Newly imported GitHub Stars enter as `indexed` and are
+searchable from admission. All items can be assessed by any portfolio project
+without waiting for a manual tier promotion.
+
+For an exhaustive, inspectable recommendation set:
 
 ```bash
-python scripts/recommend.py "youtube video automation" --top 2000 --json
+python scripts/recommend.py "youtube video automation" --top 2000 --websites --rank-all-websites --top-websites 200 --json
 ```
 
-The returned `diagnostics.eligible` count equals `diagnostics.catalogSize`
-when no explicit constraints are supplied; `--top` controls only how many
-ranked results are displayed. Score and relevance are **not** quality or
-security certification. `rankingReviewGates` and `reviewRequired` mark
-unreviewed (`audit`) or archived/disabled projects. Such entries may be
-evaluated but are **not** allowed into automatically inferred related-tool
-suggestions or recommended stacks. Lack of a gate is not proof of safety,
-licensing, compatibility or suitability.
+Without explicit filters, `diagnostics.eligible` equals
+`diagnostics.catalogSize`; `--top` only limits the number returned.
+Task relevance and selection score do **not** certify runtime compatibility,
+security, licence or quality.
 
-Users can explicitly narrow the candidate set with `--exclude-audit`,
-`--exclude-archived`, `--min-score`, and the technical filters below.
-The older `--include-audit` and `--include-archived` flags remain accepted
-for backward compatibility but are redundant in the default mode.
+The recommender exposes `availableForDiscovery: true` for each returned
+GitHub entry. `rankingReviewGates` reports archived or disabled upstream
+projects, and `metadataReviewGates` reports unresolved licence or hosting
+details. `reviewRequired` marks factual follow-up needs, **not**
+a hold on indexing, scanning or recommendations.
+`automaticIntegrationApproved: false` means the recommender does not
+authorize installation on its own. The production portfolio scanner evaluates
+separate safeguards before any mutating integration.
+
+Legacy `--include-audit`/`--exclude-audit` flags remain accepted as aliases
+for `--include-indexed`/`--exclude-indexed`, respectively. They no longer
+refer to an `audit` catalog tier. Users can explicitly filter by domain,
+platform, language, costs, complexity or upstream activity without altering
+default full-catalog coverage.
 
 ## Constraint filters
 
@@ -138,8 +148,8 @@ Supported options:
 | `--self-hosted` | Require `selfHosted: true`. |
 | `--include-archived` | Explicitly confirm the default inclusive ranking. |
 | `--exclude-archived` | Filter out archived or disabled repositories. |
-| `--include-audit` | Explicitly confirm the default inclusive ranking. |
-| `--exclude-audit` | Filter out audit-tier repositories. |
+| `--include-indexed` | Explicitly include indexed references (already default). |
+| `--exclude-indexed` | Optional filter for indexed references (does not delete them). |
 | `--rank-all-websites` | With `--websites`, rank every website, even zero-match entries. |
 | `--max-resource low|medium|high` | Maximum resource level. |
 | `--max-complexity low|medium|high` | Maximum integration complexity. |
@@ -153,8 +163,9 @@ Every repository remains searchable even when some metadata is unknown. In JSON,
 `metadataReviewGates` explains unresolved GitHub licence metadata or
 `selfHosted` values such as `unknown` and `partial`; these are not silently
 converted into `true` or `false`. The existing `rankingReviewGates` continue
-to distinguish audit-tier, archived and disabled projects. `reviewRequired`
-is true if *either* group has any findings.
+to distinguish archived and disabled upstream projects. The `indexed`
+tier itself is not a review blocker. `reviewRequired` is true if *either*
+group reports an actual source-level finding.
 
 `diagnostics.metadata` counts unverified self-hosting, unresolved licences
 and entries requiring review across **all ranked results**, not just `--top`.
@@ -179,9 +190,10 @@ python scripts/validate_json_contract.py schemas/metadata-evidence.schema.json /
 ```
 
 The daily **Review uncertain catalog metadata** GitHub workflow selects a
-rotating batch covering **all review-gated repositories**, including audit-tier,
-archived/disabled, unresolved licences and unverified hosting metadata, and
-uploads a JSON evidence artifact. Normal execution is **read-only**. The
+rotating batch of sources with **missing or problematic factual metadata**
+(archived/disabled, unresolved licences or unverified hosting). Being `indexed`
+alone never places a project in an approval queue. This evidence report
+does not block discovery, ranking or portfolio evaluation. Normal execution is **read-only**. The
 auditor checks GitHub repository identity, records immutable Git blob hashes,
 and validates root licence signatures. Explicitly scoped or mixed licensing
 (e.g. a root MIT licence excluding enterprise directories) remains flagged

@@ -180,12 +180,11 @@ def inspect_entry(entry, fetch_repo=github.fetch, fetch_content=github.fetch_con
 
 
 def requires_review(row):
-    """Keep the evidence queue aligned with every catalog review gate."""
+    """Watch missing facts and inactive projects, without gating discovery."""
     gh = row.get("github")
     if not isinstance(gh, dict) or not gh:
         return True
-    return (row.get("tier") == "audit"
-            or bool(gh.get("archived") or gh.get("disabled"))
+    return (bool(gh.get("archived") or gh.get("disabled"))
             or gh.get("license") in UNKNOWN_LICENSE
             or type(row.get("selfHosted")) is not bool)
 

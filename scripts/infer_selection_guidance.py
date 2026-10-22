@@ -199,7 +199,7 @@ def enrich(repos, tier="recommended", refresh_inferred=False):
 
 def main():
     parser = argparse.ArgumentParser(description="Backfill deterministic selection guidance.")
-    parser.add_argument("--tier", default="recommended", choices=["core","recommended","specialized","audit"])
+    parser.add_argument("--tier", default="recommended", choices=["core","recommended","specialized","indexed"])
     parser.add_argument("--write", action="store_true")
     parser.add_argument("--refresh-inferred", action="store_true")
     args = parser.parse_args()

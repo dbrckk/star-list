@@ -25,7 +25,7 @@ LISTING = [
     {"type": "file", "name": "LICENSE", "path": "LICENSE", "size": len(MIT)},
     {"type": "file", "name": "compose.yaml", "path": "compose.yaml", "size": 80},
 ]
-row = {"repo": "example/project", "tier": "audit", "githubRepositoryId": 123,
+row = {"repo": "example/project", "tier": "indexed", "githubRepositoryId": 123,
        "selfHosted": "unknown", "github": {"license": None, "defaultBranch": "main",
                                           "archived": False, "disabled": False}}
 
@@ -110,7 +110,7 @@ def main():
     assert len(chosen) == 1 and uncertain == 2
     flagged = dict(row, repo="example/audit-only", selfHosted=True,
                    github={**row["github"], "license": "MIT"})
-    assert audit.requires_review(flagged) is True
+    assert audit.requires_review(flagged) is False
     flagged["tier"] = "recommended"
     assert audit.requires_review(flagged) is False
     flagged["github"]["archived"] = True

@@ -68,11 +68,11 @@ for record in review["repositories"]:
     candidate = {"repo": record["repo"], "key": record["repo"].lower(), "sources": ["automatic"]}
     assert pipeline.classify_candidate(candidate, record)["status"] == "accepted"
 
-assert sum(cat[r["repo"].lower()]["tier"] == "audit" for r in review["repositories"]) == 7
+assert sum(cat[r["repo"].lower()]["tier"] == "indexed" for r in review["repositories"]) == 7
 assert cat["flutter-team-archive/plugins"]["github"]["archived"] is True
-assert cat["flutter-team-archive/plugins"]["tier"] == "audit"
-assert cat["freefq/free"]["tier"] == "audit"
-assert cat["segfault42/heliosgen"]["tier"] == "audit"
+assert cat["flutter-team-archive/plugins"]["tier"] == "indexed"
+assert cat["freefq/free"]["tier"] == "indexed"
+assert cat["segfault42/heliosgen"]["tier"] == "indexed"
 assert cat["openbq-org/openbb"]["licenseEvidence"] == "verified-file"
 assert cat["team-spotube/spotube"]["licenseEvidence"] == "verified-file"
 
@@ -95,9 +95,9 @@ for approved in followup["repositories"]:
         {"repo": approved["repo"], "key": approved["repo"].lower(), "sources": ["automatic"]},
         approved,
     )["status"] == "accepted"
-assert cat["devxprite/infoooze"]["tier"] == "audit"
+assert cat["devxprite/infoooze"]["tier"] == "indexed"
 assert cat["noahdunnagan/fsearch"]["platforms"] == ["macos"]
-assert cat["noahdunnagan/fsearch"]["tier"] == "audit"
+assert cat["noahdunnagan/fsearch"]["tier"] == "indexed"
 assert cat["symgraph/idassist"]["tier"] == "specialized"
 assert cat["symgraph/idassist"]["costModel"] == "mixed"
 assert len(catalog["repositories"]) >= 725
