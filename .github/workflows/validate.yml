@@ -109,6 +109,16 @@ jobs:
         run: python scripts/test_recommend.py
       - name: Test evidence-backed domain routing for indexed sources
         run: python scripts/test_catalog_domain_evidence.py
+      - name: Test expanded evidence-only routing and IoT projects
+        run: python scripts/test_other_domain_expansion.py
+      - name: Export unresolved domain evidence
+        run: python scripts/report_domain_coverage.py --out domain-coverage.json > /tmp/domain-coverage-output.json
+      - name: Upload domain coverage evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: indexed-domain-coverage
+          path: domain-coverage.json
+          retention-days: 30
       - name: Verify full catalog discovery with no audit tier
         run: python scripts/test_full_catalog_availability.py
       - name: Functional game-production recommendations

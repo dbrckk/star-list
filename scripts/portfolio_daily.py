@@ -32,6 +32,8 @@ ALLOWED_LICENSES = {
     "mpl-2.0", "unlicense", "cc0-1.0", "0bsd",
 }
 KEYWORDS = {
+    "embedded_iot": ("esp32", "esp8266", "arduino", "firmware", "embedded",
+                     "iot", "microcontroller", "espressif", "drone"),
     "game_dev": ("roblox", "luau", "godot", "game", "gaming", "unity", "jelly", "zombie", "jumpy"),
     "trading": ("trading", "quant", "backtest", "ftmo", "forex", "stock", "finance"),
     "mobile": ("android", "kotlin", "flutter", "mobile", "apk"),
@@ -445,6 +447,17 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
         terms = (tokens(slug) | tokens(capability_labels)
                  | tokens(capability_labels.replace("-", " ").replace("_", " "))
                  | tokens(" ".join(tool.get("bestFor") or [])))
+        exact_slug_terms = {
+            label.split(":", 1)[1]
+            for domain_name, evidence in domain_evidence.items()
+            if domain_name in domains
+            for label in evidence
+            if label.startswith("repo-name:")
+        }
+        # Keep the standard tokenizer unchanged: only explicit high-specificity
+        # name evidence may split a hyphenated repository technology label.
+        if advisory_routing:
+            terms.update(exact_slug_terms)
         shared = sorted((profile["terms"] & terms) - GENERIC - STOPWORDS)
         if not shared:
             continue
@@ -455,7 +468,13 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
             tokens(capability_labels.replace("-", " ").replace("_", " ")) |
             tokens(" ".join(tool.get("bestFor") or []))
         ) - GENERIC - STOPWORDS
-        if len(shared) < 2 and not (set(shared) & capability_terms):
+        explicit_slug_match = bool(set(shared) & exact_slug_terms)
+        # High-specificity technology tokens such as ESP32/agent-sdk in a
+        # repository slug can establish advisory relevance even when GitHub
+        # has no topics or description. This NEVER permits native dispatch.
+        if len(shared) < 2 and not (set(shared) & capability_terms) and not (
+            advisory_routing and explicit_slug_match
+        ):
             if assessment is not None:
                 assessment[slug]["reason"] = "weak-task-evidence"
             continue
