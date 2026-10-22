@@ -1,0 +1,46 @@
+name: Verify README evidence freshness
+
+on:
+  schedule:
+    - cron: "37 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: star-list-readme-freshness
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Select a rotating batch of reviewed README evidence
+        id: batch
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import datetime, json
+          from pathlib import Path
+          sources = json.loads(Path("catalog-readme-evidence.json").read_text())["sources"]
+          batches = max(1, (len(sources) + 11) // 12)
+          print(f"index={datetime.date.today().toordinal() % batches}")
+          PY
+      - name: Check upstream README hashes without writes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/check_readme_evidence_freshness.py --batch-size 12             --batch-index "${{ steps.batch.outputs.index }}"             --out readme-evidence-freshness.json > /tmp/readme-evidence-summary.json
+      - name: Upload source change report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: readme-evidence-freshness
+          path: readme-evidence-freshness.json
+          if-no-files-found: warn
+          retention-days: 35

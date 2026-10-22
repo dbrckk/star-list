@@ -5,6 +5,9 @@ Neither text clues nor GitHub descriptions authorize installation or execution.
 Keep named/curated domains authoritative and do not overwrite catalog metadata.
 """
 import re
+import json
+from functools import lru_cache
+from pathlib import Path
 
 # Only explicit technical capabilities or unambiguous *task phrases* qualify.
 # Generic words ("AI", "agent", "web", "app", "automation") never qualify alone.
@@ -220,6 +223,37 @@ def _normalized(value):
     return re.sub(r"[^a-z0-9]+", " ", str(value or "").lower()).strip()
 
 
+@lru_cache(maxsize=1)
+def _readme_source_map():
+    """Read a fixed, manually reviewed set of upstream blob references."""
+    path = Path(__file__).resolve().parents[1] / "catalog-readme-evidence.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    return {entry["repository"]: entry for entry in data["sources"]}
+
+
+def reviewed_readme_source(item):
+    """Return reviewed evidence only for the exact catalog identity.
+
+    All claims are advisory. Upstream README text is never executed or parsed as
+    instructions; this file records reviewed descriptions and immutable hashes.
+    """
+    if item.get("domain") not in ("other", "unknown", "", None):
+        return None
+    name = item.get("repo")
+    record = _readme_source_map().get(name)
+    if record and type(item.get("githubRepositoryId")) is int and (
+        item["githubRepositoryId"] == record["githubRepositoryId"]
+    ):
+        return record
+    return None
+
+
+def reviewed_readme_task_terms(item):
+    """Task-specific hints only, never proof of software compatibility."""
+    record = reviewed_readme_source(item)
+    return record["taskTerms"] if record else []
+
+
 def advisory_domain_evidence(item):
     """Return {domain: supporting evidence strings}, for advisory routing only."""
     domain = item.get("domain")
@@ -264,4 +298,10 @@ def advisory_domain_evidence(item):
         if matches:
             evidence.setdefault(name, [])
             evidence[name].extend("description:" + m for m in sorted(matches)[:2])
+    record = reviewed_readme_source(item)
+    if record:
+        for domain_name in record["advisoryDomains"]:
+            signal = "readme:" + record["path"] + "@" + record["blobSha"]
+            if signal not in evidence.setdefault(domain_name, []):
+                evidence[domain_name].append(signal)
     return evidence
