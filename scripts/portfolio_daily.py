@@ -431,6 +431,8 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
                 excluded_engine_sources.add(source)
                 excluded_engine_sources.update(alternatives)
     matches = []
+    # Exhaustive candidate evaluation: never truncate the source catalog before
+    # checking eligibility, engine compatibility, licensing and relevance.
     for tool in catalog:
         slug = str(tool.get("repo") or "")
         if slug.lower() == name:
@@ -575,6 +577,8 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
                 "policy-review": 4, "domain-review": 5}
     matches.sort(key=lambda r: (priority.get(r["mode"], 3),
                                 -r["score"], -r["quality"], r["repository"].lower()))
+    # A caller may limit display, but the daily scanner must retain every
+    # qualifying match in its machine-readable report.
     return matches if count is None else matches[:count]
 
 
