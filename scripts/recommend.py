@@ -118,6 +118,12 @@ def website_review_gates(site):
         gates.append("creator-submitted-design-rights-review")
     if resource_type == "3d-pose-reference-tool":
         gates.append("pose-export-format-and-rights-review")
+    if resource_type == "3d-asset-dataset":
+        gates.extend([
+            "asset-level-license-and-attribution-review",
+            "3d-mesh-texture-and-target-engine-review",
+            "individual-download-hash-and-file-safety-review",
+        ])
     if resource_type == "prompt-template-library":
         gates.append("prompt-creator-rights-and-instruction-safety-review")
     if resource_type == "ai-media-generator":

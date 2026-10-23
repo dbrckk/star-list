@@ -696,4 +696,42 @@ for results in (
             assert all(p in linked.get("platforms", []) for p in constraints["platforms"])
             assert all(lang in linked.get("languages", []) for lang in constraints["languages"])
 
+# Scenario Labs 3D asset dataset is a licensed, per-file reviewed visual
+# resource: match 3D game projects, reject unrelated coding/video tasks, and
+# never silently download, import or dispatch model files as code.
+scenario_id = "scenario-labs-3d-collection"
+scenario = next(x for x in sites if x["id"] == scenario_id)
+assert sum(x["id"] == scenario_id for x in sites) == 1
+assert scenario["url"] == "https://huggingface.co/datasets/scenario-labs/3d-collection"
+assert scenario["type"] == "3d-asset-dataset"
+assert scenario["reuse"] == "licensed-material"
+assert scenario["sourceLicenseTag"] == "cc-by-4.0"
+assert scenario["portfolioRequiredSignals"] and not scenario.get("portfolioBaselineDomains")
+scenario_query = run("roblox 3d glb models", "--websites", "--top-websites", "80")
+scenario_ranked = next(x for x in scenario_query["websiteRecommendations"] if x["id"] == scenario_id)
+assert scenario_ranked["integrationEligible"] is False
+assert {"asset-level-license-and-attribution-review",
+        "3d-mesh-texture-and-target-engine-review",
+        "individual-download-hash-and-file-safety-review",
+        "third-party-reuse-rights-review"} <= set(scenario_ranked["reviewGates"])
+scenario_game = {"name": "chaos-survival", "description": "Roblox 3D arena meshes", "topics": ["game"]}
+scenario_matches = website_references_for_project(scenario_game, {"domains": ["game_dev"], "terms": set()})
+assert scenario_id in {x["id"] for x in scenario_matches}
+scenario_assessment = {}
+website_references_for_project(scenario_game, {"domains": ["game_dev"], "terms": set()}, assessment=scenario_assessment)
+assert scenario_assessment[scenario_id]["decision"] == "matched"
+assert scenario_assessment[scenario_id]["integrationEligible"] is False
+for unrelated in (
+    {"name": "TTS", "description": "AI speech synthesis", "topics": []},
+    {"name": "production-os", "description": "Code automation agent", "topics": []},
+    {"name": "promo-alimentaire", "description": "Food prices and offers", "topics": []},
+):
+    unrelated_assessment = {}
+    sites_for_unrelated = website_references_for_project(
+        unrelated, {"domains": ["ai_media"] if unrelated["name"] == "TTS" else [], "terms": set()},
+        assessment=unrelated_assessment
+    )
+    assert scenario_id not in {x["id"] for x in sites_for_unrelated}, unrelated
+    assert unrelated_assessment[scenario_id]["decision"] == "not-relevant", unrelated
+
 print("OK: recommendation engine smoke tests passed")

@@ -1422,6 +1422,77 @@
         "ai-media"
       ],
       "caution": "Carat is an external hosted AI service, not a freely redistributable local model or a guaranteed free unlimited image-to-video API. Review account requirements, provider model availability, output licence, image/person consent, input privacy and potential subscriptions or credits. Never upload private images, incur charges, create deepfakes or invoke external generation autonomously."
+    },
+    {
+      "id": "scenario-labs-3d-collection",
+      "name": "Scenario Labs — 3D Collection",
+      "url": "https://huggingface.co/datasets/scenario-labs/3d-collection",
+      "type": "3d-asset-dataset",
+      "access": "free",
+      "domains": [
+        "game_dev",
+        "graphics",
+        "ai_media"
+      ],
+      "tags": [
+        "3d",
+        "3d-assets",
+        "3d-models",
+        "mesh",
+        "meshes",
+        "geometry",
+        "glb",
+        "fbx",
+        "blend",
+        "blender",
+        "ply",
+        "spz",
+        "voxel",
+        "vox",
+        "asset-library",
+        "game-assets",
+        "characters",
+        "props",
+        "environment",
+        "environments",
+        "text-to-3d",
+        "image-to-3d",
+        "roblox",
+        "godot",
+        "unity",
+        "unreal",
+        "modeling",
+        "textures",
+        "pbr",
+        "parquet"
+      ],
+      "bestFor": [
+        "Discovering downloadable 3D character, prop and environment examples for compatible game engines and Blender",
+        "Selecting individual GLB, FBX, Blender, PLY, VOX or SPZ assets through the dataset's searchable metadata and per-file links",
+        "Inspecting AI-generated 3D topology, materials, textures and licensing before optimizing and importing game-ready assets"
+      ],
+      "reuse": "licensed-material",
+      "sourceLicenseTag": "cc-by-4.0",
+      "portfolioRequiredSignals": [
+        "3d",
+        "3d-assets",
+        "3d-models",
+        "glb",
+        "fbx",
+        "blender",
+        "mesh",
+        "meshes",
+        "roblox",
+        "godot",
+        "unity",
+        "unreal",
+        "voxel",
+        "vox",
+        "3d-asset",
+        "3d-model",
+        "pbr"
+      ],
+      "caution": "Dataset card declares CC BY 4.0, requiring attribution to Scenario and compliance with any applicable file-level terms; check provenance and rights for each selected asset. Approximately 1,342 AI-generated examples and 38.7 GB total, not a lightweight model-inference API. Only fetch individual necessary files after explicit approval, verify provided SHA-256 hashes, reject unsafe Blender scripts, and review mesh topology, textures, rigging, visual quality, conversion and target mobile/game-engine performance. The separately licensed Hunyuan companion collection is not included. Never bulk-download, auto-import or redistribute unreviewed assets."
     }
   ]
 }
