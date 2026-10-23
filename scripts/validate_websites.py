@@ -124,6 +124,18 @@ def check_websites(data, schema):
                     f"{identity}: visual reference service requires task-specific "
                     "signals, bounded creative domains and correct reuse rights"
                 )
+        # Downloadable 3D datasets are assets, never runnable packages or
+        # blanket licences to import arbitrary generated meshes into games.
+        if site["type"] == "3d-asset-dataset":
+            if (site.get("reuse") != "licensed-material"
+                    or site.get("sourceLicenseTag") != "cc-by-4.0"
+                    or not site.get("portfolioRequiredSignals")
+                    or site.get("portfolioBaselineDomains")
+                    or not set(site["domains"]) & {"game_dev", "graphics"}):
+                errors.append(
+                    f"{identity}: 3D dataset requires verified licence metadata, "
+                    "specialist matching and asset-level review"
+                )
         # An MCP endpoint is an authenticated remote service, not a harmless
         # website link. Require a bounded HTTPS /mcp URL owned by the
         # documented provider; no credentials, foreign hosts or auto-install.
