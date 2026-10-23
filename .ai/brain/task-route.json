@@ -9,10 +9,10 @@
     "top_score": 63
   },
   "cache": {
-    "fingerprint": "6d30187f39c3640dbabb05bbb7ad303f298e7c9bce99de1c2f414c72d05f262a",
+    "fingerprint": "6c595757042abda57b6780b3e50a995f3f68dc86f8d3201a2742323728b569bd",
     "hit": false
   },
-  "candidate_count": 19,
+  "candidate_count": 18,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -72,6 +72,7 @@
     {
       "learning_score": 12,
       "matched_terms": [
+        "engine",
         "game"
       ],
       "path": "scripts/recommend.py",
@@ -81,7 +82,7 @@
         "recently-changed",
         "search-index"
       ],
-      "score": 38,
+      "score": 50,
       "symbols": [
         "activity_adjustment",
         "choose_stack",

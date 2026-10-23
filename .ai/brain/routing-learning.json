@@ -2,22 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "fix(portfolio): retire obsolete candidate quarantines safely",
-      "terms": [
-        "candidate",
-        "obsolete",
-        "portfolio",
-        "quarantines",
-        "retire",
-        "safely"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/portfolio_daily.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "fix(portfolio): enforce UTC daily launch quota and report throttling (#78)",
       "terms": [
         "78",
@@ -1358,6 +1342,28 @@
         "scripts/test_recommend.py",
         "scripts/validate_websites.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "catalog: add Scenario Labs 3D dataset with asset review gates (#185)",
+      "terms": [
+        "185",
+        "3d",
+        "add",
+        "asset",
+        "catalog",
+        "dataset",
+        "gates",
+        "labs",
+        "review",
+        "scenario"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/recommend.py",
+        "scripts/test_recommend.py",
+        "scripts/validate_websites.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1618,6 +1624,11 @@
       "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
     },
+    "185": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "19": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
@@ -1679,9 +1690,9 @@
     },
     "3d": {
       "scripts/portfolio_daily.py": 8,
-      "scripts/recommend.py": 4,
-      "scripts/test_recommend.py": 8,
-      "scripts/validate_websites.py": 4
+      "scripts/recommend.py": 8,
+      "scripts/test_recommend.py": 12,
+      "scripts/validate_websites.py": 8
     },
     "42": {
       "scripts/star_import_pipeline.py": 4,
@@ -1773,13 +1784,13 @@
       "scripts/agent_skill_discovery.py": 4,
       "scripts/audit_catalog_quality.py": 4,
       "scripts/portfolio_daily.py": 20,
-      "scripts/recommend.py": 20,
+      "scripts/recommend.py": 24,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_json_contracts.py": 4,
-      "scripts/test_recommend.py": 24,
+      "scripts/test_recommend.py": 28,
       "scripts/validate_catalog.py": 4,
-      "scripts/validate_websites.py": 16
+      "scripts/validate_websites.py": 20
     },
     "admission": {
       "scripts/admit_github_stars.py": 4,
@@ -1883,6 +1894,11 @@
       "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "asset": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "atomicchat": {
       "scripts/portfolio_daily.py": 4,
@@ -2010,7 +2026,7 @@
       "scripts/audit_catalog_quality.py": 16,
       "scripts/infer_selection_guidance.py": 4,
       "scripts/portfolio_daily.py": 20,
-      "scripts/recommend.py": 16,
+      "scripts/recommend.py": 20,
       "scripts/refresh_github_metadata.py": 8,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
@@ -2018,11 +2034,12 @@
       "scripts/test_documentation.py": 16,
       "scripts/test_full_catalog_availability.py": 4,
       "scripts/test_json_contracts.py": 8,
-      "scripts/test_recommend.py": 12,
+      "scripts/test_recommend.py": 16,
       "scripts/test_refresh_github_metadata.py": 8,
       "scripts/test_sync_github_stars.py": 4,
       "scripts/test_verify_catalog_evidence.py": 8,
       "scripts/validate_catalog.py": 4,
+      "scripts/validate_websites.py": 4,
       "scripts/verify_catalog_evidence.py": 8
     },
     "catalog-declared": {
@@ -2129,6 +2146,11 @@
     },
     "data": {
       "scripts/portfolio_failure_diagnostics.py": 4
+    },
+    "dataset": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "day": {
       "scripts/portfolio_daily.py": 4
@@ -2489,8 +2511,9 @@
     },
     "gates": {
       "scripts/portfolio_daily.py": 4,
-      "scripts/recommend.py": 8,
-      "scripts/test_recommend.py": 8
+      "scripts/recommend.py": 12,
+      "scripts/test_recommend.py": 12,
+      "scripts/validate_websites.py": 4
     },
     "generic": {
       "scripts/catalog_domain_evidence.py": 4,
@@ -2701,6 +2724,11 @@
       "scripts/discover_candidates.py": 4,
       "scripts/portfolio_daily.py": 4,
       "scripts/test_discovery_cache.py": 4
+    },
+    "labs": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "last": {
       "scripts/portfolio_daily.py": 4
@@ -3201,11 +3229,11 @@
     },
     "review": {
       "scripts/portfolio_daily.py": 20,
-      "scripts/recommend.py": 28,
+      "scripts/recommend.py": 32,
       "scripts/sync_github_stars.py": 4,
-      "scripts/test_recommend.py": 24,
+      "scripts/test_recommend.py": 28,
       "scripts/test_sync_github_stars.py": 4,
-      "scripts/validate_websites.py": 12
+      "scripts/validate_websites.py": 16
     },
     "review-gated": {
       "scripts/refresh_github_metadata.py": 4,
@@ -3276,6 +3304,11 @@
       "scripts/portfolio_daily.py": 8,
       "scripts/test_documentation.py": 4,
       "scripts/test_json_contracts.py": 4,
+      "scripts/validate_websites.py": 4
+    },
+    "scenario": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
     },
     "scoped": {

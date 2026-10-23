@@ -1143,7 +1143,8 @@ websites.schema.json
               "film-stills-library",
               "3d-pose-reference-tool",
               "costume-history-atlas",
-              "ai-media-generator"
+              "ai-media-generator",
+              "3d-asset-dataset"
             ]
           },
           "access": {

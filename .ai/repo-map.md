@@ -3701,7 +3701,8 @@ initial_prompt: |
               "film-stills-library",
               "3d-pose-reference-tool",
               "costume-history-atlas",
-              "ai-media-generator"
+              "ai-media-generator",
+              "3d-asset-dataset"
             ]
           },
           "access": {
@@ -7716,6 +7717,9 @@ lowered_tags = {str(t).lower() for t in site["tags"]}
 visual_reuse_rules = {
 expected_visual_reuse = visual_reuse_rules.get(site["type"])
 ⋮----
+# Downloadable 3D datasets are assets, never runnable packages or
+# blanket licences to import arbitrary generated meshes into games.
+⋮----
 # An MCP endpoint is an authenticated remote service, not a harmless
 # website link. Require a bounded HTTPS /mcp URL owned by the
 # documented provider; no credentials, foreign hosts or auto-install.
@@ -9625,8 +9629,12 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **33 curated website links** for UI design,
-animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools, AI game prototyping, NPC/voice platforms, 3D assets, narrative design, gameplay QA and licensed reference-to-video/audio model collections quantized image-generation checkpoints, Hugging Face model discovery and locally reviewed vision-language checkpoints. Explore them
+The catalog also includes **34 curated web resources** for UI design,
+animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools,
+AI game prototyping, NPC/voice platforms, licensed downloadable 3D assets,
+narrative design, gameplay QA, reference-to-video/audio model collections,
+quantized image-generation checkpoints, Hugging Face discovery and vision-language
+models. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
 repositories and are never passed to Production-OS as code dependencies.
@@ -11457,6 +11465,77 @@ General-purpose GitHub discovery remains advisory and never inserts external can
         "ai-media"
       ],
       "caution": "Carat is an external hosted AI service, not a freely redistributable local model or a guaranteed free unlimited image-to-video API. Review account requirements, provider model availability, output licence, image/person consent, input privacy and potential subscriptions or credits. Never upload private images, incur charges, create deepfakes or invoke external generation autonomously."
+    },
+    {
+      "id": "scenario-labs-3d-collection",
+      "name": "Scenario Labs — 3D Collection",
+      "url": "https://huggingface.co/datasets/scenario-labs/3d-collection",
+      "type": "3d-asset-dataset",
+      "access": "free",
+      "domains": [
+        "game_dev",
+        "graphics",
+        "ai_media"
+      ],
+      "tags": [
+        "3d",
+        "3d-assets",
+        "3d-models",
+        "mesh",
+        "meshes",
+        "geometry",
+        "glb",
+        "fbx",
+        "blend",
+        "blender",
+        "ply",
+        "spz",
+        "voxel",
+        "vox",
+        "asset-library",
+        "game-assets",
+        "characters",
+        "props",
+        "environment",
+        "environments",
+        "text-to-3d",
+        "image-to-3d",
+        "roblox",
+        "godot",
+        "unity",
+        "unreal",
+        "modeling",
+        "textures",
+        "pbr",
+        "parquet"
+      ],
+      "bestFor": [
+        "Discovering downloadable 3D character, prop and environment examples for compatible game engines and Blender",
+        "Selecting individual GLB, FBX, Blender, PLY, VOX or SPZ assets through the dataset's searchable metadata and per-file links",
+        "Inspecting AI-generated 3D topology, materials, textures and licensing before optimizing and importing game-ready assets"
+      ],
+      "reuse": "licensed-material",
+      "sourceLicenseTag": "cc-by-4.0",
+      "portfolioRequiredSignals": [
+        "3d",
+        "3d-assets",
+        "3d-models",
+        "glb",
+        "fbx",
+        "blender",
+        "mesh",
+        "meshes",
+        "roblox",
+        "godot",
+        "unity",
+        "unreal",
+        "voxel",
+        "vox",
+        "3d-asset",
+        "3d-model",
+        "pbr"
+      ],
+      "caution": "Dataset card declares CC BY 4.0, requiring attribution to Scenario and compliance with any applicable file-level terms; check provenance and rights for each selected asset. Approximately 1,342 AI-generated examples and 38.7 GB total, not a lightweight model-inference API. Only fetch individual necessary files after explicit approval, verify provided SHA-256 hashes, reject unsafe Blender scripts, and review mesh topology, textures, rigging, visual quality, conversion and target mobile/game-engine performance. The separately licensed Hunyuan companion collection is not included. Never bulk-download, auto-import or redistribute unreviewed assets."
     }
   ]
 }

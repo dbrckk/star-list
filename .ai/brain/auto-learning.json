@@ -5,15 +5,16 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "184",
+      "185",
+      "3d",
       "add",
-      "animation",
-      "cinema",
-      "copyright-aware",
-      "feat",
-      "references",
-      "six",
-      "web"
+      "asset",
+      "catalog",
+      "dataset",
+      "gates",
+      "labs",
+      "review",
+      "scenario"
     ],
     "test_count": 0,
     "useful_count": 3
@@ -21,7 +22,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "feat(web): add six copyright-aware animation and cinema references (#184)",
+  "task": "catalog: add Scenario Labs 3D dataset with asset review gates (#185)",
   "tests_selected": [],
   "useful": [
     "scripts/recommend.py",

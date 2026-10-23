@@ -113,36 +113,26 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-22T17:00:05Z
+Generated: 2026-10-23T17:33:15Z
 
 ### Git
 - Branch: `main`
-- Head: `e9f11dec82cb`
-- Commit date: 2026-10-22T12:59:53-04:00
-- Commit: feat(web): add six copyright-aware animation and cinema references (#184)
+- Head: `09c35fc0a70c`
+- Commit date: 2026-10-23T13:33:04-04:00
+- Commit: catalog: add Scenario Labs 3D dataset with asset review gates (#185)
 - Tracked files: 315
 
 ### Recently changed files
-- `.github/workflows/portfolio-scan-smoke.yml`
 - `README.md`
-- `RECOMMENDER.md`
 - `WEB_RESOURCES.md`
 - `schemas/websites.schema.json`
 - `scripts/recommend.py`
 - `scripts/test_recommend.py`
 - `scripts/validate_websites.py`
 - `websites.json`
-- `scripts/test_json_contracts.py`
-- `.github/workflows/readme-evidence-freshness.yml`
-- `.github/workflows/validate.yml`
-- `catalog-readme-evidence.json`
-- `schemas/readme-domain-evidence.schema.json`
-- `scripts/catalog_domain_evidence.py`
-- `scripts/check_readme_evidence_freshness.py`
-- `scripts/portfolio_daily.py`
-- `scripts/report_domain_coverage.py`
-- `scripts/test_readme_domain_evidence.py`
-- `scripts/test_readme_evidence_freshness.py`
+- `catalog.json`
+- `.github/workflows/portfolio-scan-smoke.yml`
+- `RECOMMENDER.md`
 
 ### Project signals
 - No common build descriptor detected

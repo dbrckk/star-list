@@ -1,24 +1,20 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "7e9516b02a956386f816ad850930b136e57f31b3",
-  "head": "e9f11dec82cb0d065230132c72da5def9000a1e7",
+  "base": "e9f11dec82cb0d065230132c72da5def9000a1e7",
+  "head": "09c35fc0a70c52372eb6323bf0e057e887dc22ba",
   "index_mode": "incremental",
   "changed_files": [
-    {
-      "path": ".github/workflows/portfolio-scan-smoke.yml",
-      "status": "M"
-    },
     {
       "path": "README.md",
       "status": "M"
     },
     {
-      "path": "RECOMMENDER.md",
+      "path": "WEB_RESOURCES.md",
       "status": "M"
     },
     {
-      "path": "WEB_RESOURCES.md",
+      "path": "catalog.json",
       "status": "M"
     },
     {
@@ -249,91 +245,91 @@
       "name": "recommend_websites",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 133
+      "line": 139
     },
     {
       "name": "activity_adjustment",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 182
+      "line": 188
     },
     {
       "name": "trend_adjustment",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 202
+      "line": 208
     },
     {
       "name": "delta",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 214
+      "line": 220
     },
     {
       "name": "guidance_weight",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 227
+      "line": 233
     },
     {
       "name": "ranking_review_gates",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 234
+      "line": 240
     },
     {
       "name": "metadata_review_gates",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 246
+      "line": 252
     },
     {
       "name": "score_repo",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 259
+      "line": 265
     },
     {
       "name": "explain_repo",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 294
+      "line": 300
     },
     {
       "name": "choose_stack",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 330
+      "line": 336
     },
     {
       "name": "infer_alternatives",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 357
+      "line": 363
     },
     {
       "name": "infer_complements",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 378
+      "line": 384
     },
     {
       "name": "resolve_relations",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 403
+      "line": 409
     },
     {
       "name": "usable",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 405
+      "line": 411
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 426
+      "line": 432
     },
     {
       "name": "project",
@@ -369,7 +365,7 @@
       "name": "main",
       "kind": "function",
       "file": "scripts/validate_websites.py",
-      "line": 156
+      "line": 168
     }
   ],
   "selected_tests": [

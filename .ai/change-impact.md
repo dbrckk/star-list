@@ -1,12 +1,10 @@
 # Change impact
 
-Base: cf31b4eb58da896a67c06d078c9cf8db02ffde7f
-Head: e9f11dec82cb0d065230132c72da5def9000a1e7
+Base: ddebcdaa4cca4f94537f0be4e516b2c4a2986e73
+Head: 09c35fc0a70c52372eb6323bf0e057e887dc22ba
 
 ## Changed files
-- M .github/workflows/portfolio-scan-smoke.yml
 - M README.md
-- M RECOMMENDER.md
 - M WEB_RESOURCES.md
 - M schemas/websites.schema.json
 - M scripts/recommend.py
@@ -15,7 +13,6 @@ Head: e9f11dec82cb0d065230132c72da5def9000a1e7
 - M websites.json
 
 ## Affected areas
-- .github
 - (root)
 - schemas
 - scripts

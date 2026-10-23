@@ -4000,6 +4000,9 @@ lowered_tags = {str(t).lower() for t in site["tags"]}
 visual_reuse_rules = {
 expected_visual_reuse = visual_reuse_rules.get(site["type"])
 ⋮----
+# Downloadable 3D datasets are assets, never runnable packages or
+# blanket licences to import arbitrary generated meshes into games.
+⋮----
 # An MCP endpoint is an authenticated remote service, not a harmless
 # website link. Require a bounded HTTPS /mcp URL owned by the
 # documented provider; no credentials, foreign hosts or auto-install.
