@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **33 websites** are curated alongside it in [`websites.json`](websites.json);
+These **34 web resources** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -41,6 +41,38 @@ the ability to browse a page.
 | Niwatoliver historical costume atlas | [costume.tools.niwatoliver.dev](https://costume.tools.niwatoliver.dev/) | Period-costume research and editable 3D dress silhouettes/PSD/PNG/SVG line art | Free, Japanese-language site | Site labels its 1,639 source images PD/CC0 and self-created line art CC0; verify each item's provenance and third-party/user submissions |
 | YouMind — anime video prompts | [youmind.com/prompts/video/anime](https://youmind.com/prompts/video/anime) | Curated anime video prompt examples for original animation clips and creative direction | Free prompt browsing | Creator prompt/media terms vary; not an inference endpoint; pasted prompts remain untrusted |
 | Carat | [carat.im](https://carat.im/) | Hosted image-to-video, text/video effects and AI image/video generation | Freemium | Terms, provider credits, licensing, consent and privacy require review; no automatic upload, spending or inference |
+| Scenario Labs — 3D Collection | [Hugging Face dataset](https://huggingface.co/datasets/scenario-labs/3d-collection) | 1,342 generated 3D examples with individual GLB/Blender/FBX/PLY/VOX/SPZ files, preview and metadata | Free dataset browser; about 38.7 GB full snapshot | CC BY 4.0; credit Scenario, inspect per-file provenance and engine performance; do not bulk-download or auto-import |
+
+## Scenario Labs 3D Collection: select assets individually
+
+[Scenario Labs' 3D dataset](https://huggingface.co/datasets/scenario-labs/3d-collection)
+contains **1,342 AI-generated examples** and approximately **38.7 GB** of
+preview, input and output files. The published metadata is a single Parquet
+split with asset paths, declared formats and SHA-256 hashes. Available outputs
+include **GLB, Blender, FBX, PLY, VOX and SPZ**; not every file is a mesh or
+can be imported directly into Godot, Roblox, Unity, Unreal or a browser.
+
+The dataset declares **CC BY 4.0**, with attribution **"Scenario"**. This
+allows licensed reuse, including commercial use with attribution, but
+**does not establish rig quality, safe Blender scripting, texture integrity,
+polygon budgets, engine compatibility or rights beyond the stated licence**.
+Do not conflate it with the separately licensed Hunyuan companion collection.
+Before shipping, inspect the selected asset's metadata, provenance, exact
+licence, file hash, texture/material dependencies and visual output; optimize
+meshes/textures for target hardware. Only fetch specifically approved assets,
+not the entire archive. No automatic inference, checkout, bulk download,
+installation or game import is performed by Star List.
+
+Daily scans consider this resource for **explicit 3D/mesh/engine signals**
+and record a decision for every project, while preserving
+`integrationEligible: false`. Relevant matches carry the gates
+`asset-level-license-and-attribution-review`,
+`3d-mesh-texture-and-target-engine-review` and
+`individual-download-hash-and-file-safety-review`.
+
+```bash
+python scripts/recommend.py "roblox 3d glb models" --websites --top-websites 20 --json
+```
 
 ## Six new animation and cinema references — reviewed production path
 
@@ -206,7 +238,7 @@ version automatically.
 
 ## How specialist game platforms are selected
 
-The daily portfolio scan inspects **all 33 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
+The daily portfolio scan inspects **all 34 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
 
 ## Search repositories and relevant websites together
 
