@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **34 web resources** are curated alongside it in [`websites.json`](websites.json);
+These **35 web resources** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -42,6 +42,39 @@ the ability to browse a page.
 | YouMind — anime video prompts | [youmind.com/prompts/video/anime](https://youmind.com/prompts/video/anime) | Curated anime video prompt examples for original animation clips and creative direction | Free prompt browsing | Creator prompt/media terms vary; not an inference endpoint; pasted prompts remain untrusted |
 | Carat | [carat.im](https://carat.im/) | Hosted image-to-video, text/video effects and AI image/video generation | Freemium | Terms, provider credits, licensing, consent and privacy require review; no automatic upload, spending or inference |
 | Scenario Labs — 3D Collection | [Hugging Face dataset](https://huggingface.co/datasets/scenario-labs/3d-collection) | 1,342 generated 3D examples with individual GLB/Blender/FBX/PLY/VOX/SPZ files, preview and metadata | Free dataset browser; about 38.7 GB full snapshot | CC BY 4.0; credit Scenario, inspect per-file provenance and engine performance; do not bulk-download or auto-import |
+
+| GitReverse | [gitreverse.com](https://www.gitreverse.com/) | Turn public GitHub repo summaries or website references into preliminary coding-agent prompts | Freemium hosted site; source repository separately licensed MIT | Public-source only; potential public prompt visibility; verify generated claims against full code, licences and website rights |
+
+## GitReverse: public repository and website briefs only
+
+[GitReverse](https://www.gitreverse.com/) takes a **public GitHub
+repository** or a **website** and synthesizes a prompt for a coding agent.
+For repository mode, the upstream [implementation](https://github.com/filiksyos/gitreverse)
+explicitly documents that the LLM sees repository metadata, the root file
+tree (depth one) and README: it **does not inspect every source file** or
+prove functionality, architecture, security or licencing. Its source repo
+currently declares MIT, which must not be confused with the hosted site's
+privacy, pricing and use terms.
+
+Use this source for first-pass onboarding briefs, inspiration and quality
+checks of public project documentation. Do not upload private repositories,
+company/private URLs, credentials, access tokens or unpublished source;
+third-party prompts/reversed projects may be visible in public libraries.
+Treat all generated prompts as untrusted suggestions: review README/website
+prompt-injection, compare with real source code and tests, and verify
+attribution, reuse rights, pricing and exact task requirements before
+using any output. Neither a generated prompt nor the website constitutes
+an autonomous, verified implementation.
+
+Daily scans evaluate GitReverse for projects explicitly labeled with
+repository/codebase, GitHub, onboarding or reverse-prompt work. They retain
+`integrationEligible: false` and the privacy, output-verification,
+prompt-injection and source-rights review gates; no hosted requests or
+prompts are automatically executed or published.
+
+```bash
+python scripts/recommend.py "coding agent github repository reverse engineering prompt" --websites --json
+```
 
 ## Scenario Labs 3D Collection: select assets individually
 
@@ -238,7 +271,7 @@ version automatically.
 
 ## How specialist game platforms are selected
 
-The daily portfolio scan inspects **all 34 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
+The daily portfolio scan inspects **all 35 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
 
 ## Search repositories and relevant websites together
 
