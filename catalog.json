@@ -47632,6 +47632,255 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "ddalcu/mlx-serve",
+      "githubRepositoryId": 1159656889,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Génération de médias / IA",
+      "domain": "ai_media",
+      "capabilities": [
+        "agent",
+        "anthropic-api",
+        "apple-silicon",
+        "claude-code",
+        "deepseek-v4",
+        "diffusion",
+        "gguf",
+        "image-generation",
+        "inference",
+        "llm",
+        "local-llm",
+        "macos"
+      ],
+      "languages": [
+        "zig"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 2074,
+        "forks": 218,
+        "openIssues": 66,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-22T18:29:39Z"
+      },
+      "bestFor": [
+        "Native LLM inference server for Apple Silicon. OpenAI + Anthropic API compatible. No Python. Zig backend, Swift frontend macOS app with chat, music, voice, video generation."
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "FireRedTeam/FireRedTTS3",
+      "githubRepositoryId": 1333156486,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1713,
+        "forks": 23,
+        "openIssues": 9,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-09-08T03:53:31Z"
+      },
+      "bestFor": [
+        "FireRedTTS3: Multilingual and Multi-Dialect Voice Cloning with Instruction-Guided Voice Design and Speech Editing"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "kyutai-labs/pocket-tts",
+      "githubRepositoryId": 1129863360,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 10042,
+        "forks": 1070,
+        "openIssues": 64,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-22T18:24:31Z"
+      },
+      "bestFor": [
+        "A TTS that fits in your CPU (and pocket)"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Leonxlnx/unlazy",
+      "githubRepositoryId": 1329272295,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai-agents",
+        "claude",
+        "claude-code",
+        "llm",
+        "productivity",
+        "prompt-engineering",
+        "skill"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4100,
+        "forks": 321,
+        "openIssues": 10,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-09-03T09:31:17Z"
+      },
+      "bestFor": [
+        "Anti-laziness skill for AI agents. Core: the Depth Tree method, which splits a task N layers deep and gives every leaf the full time budget of the whole task, so effort multiplies with depth. Grounded"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Narcooo/inkos",
+      "githubRepositoryId": 1179413000,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "ai",
+        "ai-agent",
+        "ai-game",
+        "ai-writing",
+        "chinese-novel",
+        "creative-writing-ai",
+        "generative-ai",
+        "novel-ai",
+        "novel-generation",
+        "short-drama",
+        "storyboard"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 10597,
+        "forks": 1949,
+        "openIssues": 245,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-24T05:30:14Z"
+      },
+      "bestFor": [
+        "Story Creation AI Agent for novel, scripts, translation, interactive games, and IP content"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Zyphra/Zonos",
+      "githubRepositoryId": 928631159,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 7235,
+        "forks": 815,
+        "openIssues": 164,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2025-03-05T20:02:00Z"
+      },
+      "bestFor": [
+        "Zonos-v0.1 is a leading open-weight text-to-speech model trained on more than 200k hours of varied multilingual speech, delivering expressiveness and quality on par with—or even surpassing—top TTS pro"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
