@@ -136,6 +136,19 @@ def check_websites(data, schema):
                     f"{identity}: 3D dataset requires verified licence metadata, "
                     "specialist matching and asset-level review"
                 )
+        # Reverse-prompt hosted tools can publicly expose submitted sources
+        # and are not a substitute for inspecting code or granting source rights.
+        if site["type"] == "codebase-prompt-generator":
+            if (site.get("reuse") != "hosted-service"
+                    or not site.get("portfolioRequiredSignals")
+                    or site.get("portfolioBaselineDomains")
+                    or not set(site["domains"]) & {"software_engineering", "ai_agents"}
+                    or site.get("sourceLicenseTag")
+                    or site.get("mcpEndpoint")):
+                errors.append(
+                    f"{identity}: reverse-prompt generators require specialist "
+                    "matching, hosted privacy review and no automatic licence claims"
+                )
         # An MCP endpoint is an authenticated remote service, not a harmless
         # website link. Require a bounded HTTPS /mcp URL owned by the
         # documented provider; no credentials, foreign hosts or auto-install.
