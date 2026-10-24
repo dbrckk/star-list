@@ -734,4 +734,57 @@ for unrelated in (
     assert scenario_id not in {x["id"] for x in sites_for_unrelated}, unrelated
     assert unrelated_assessment[scenario_id]["decision"] == "not-relevant", unrelated
 
+# GitReverse is a hosted, review-only reverse-prompt helper, not an audit
+# engine. Select it for explicit codebase/repository work, not every AI app.
+gitreverse_id = "gitreverse"
+gitreverse = next(s for s in sites if s["id"] == gitreverse_id)
+assert sum(s["id"] == gitreverse_id for s in sites) == 1
+assert gitreverse["url"] == "https://www.gitreverse.com/"
+assert gitreverse["type"] == "codebase-prompt-generator"
+assert gitreverse["reuse"] == "hosted-service" and gitreverse["access"] == "freemium"
+assert gitreverse["portfolioRequiredSignals"] and not gitreverse.get("portfolioBaselineDomains")
+matched_prompt = next(s for s in run(
+    "coding agent github repository reverse engineering prompt",
+    "--websites", "--top-websites", "100"
+)["websiteRecommendations"] if s["id"] == gitreverse_id)
+assert matched_prompt["integrationEligible"] is False
+assert {"public-prompt-visibility-and-sensitive-input-review",
+        "generated-prompt-accuracy-and-source-code-review",
+        "untrusted-repository-and-website-prompt-injection-review",
+        "upstream-code-and-website-reuse-rights-review",
+        "hosted-terms-privacy-and-cost-review"} <= set(matched_prompt["reviewGates"])
+prompt_project = {
+    "name": "repo-onboarding-agent",
+    "description": "Coding agent for public GitHub codebase analysis and prompt specifications",
+    "topics": ["prompt-engineering"]
+}
+gitreverse_decisions = {}
+prompt_refs = website_references_for_project(
+    prompt_project, {"domains": ["ai_agents", "software_engineering"], "terms": set()},
+    assessment=gitreverse_decisions
+)
+assert gitreverse_id in {site["id"] for site in prompt_refs}
+assert gitreverse_decisions[gitreverse_id]["decision"] == "matched"
+assert gitreverse_decisions[gitreverse_id]["integrationEligible"] is False
+for unrelated in (
+    {"name": "JumpyFrog", "description": "Godot jumping game", "topics": []},
+    {"name": "monteur-video", "description": "Automated video montage", "topics": []},
+    {"name": "production-os", "description": "Coding automation service", "topics": []},
+):
+    decisions = {}
+    refs = website_references_for_project(
+        unrelated, {"domains": ["software_engineering"] if unrelated["name"] == "production-os"
+                    else ["game_dev"] if unrelated["name"] == "JumpyFrog" else ["ai_media"],
+                    "terms": set()}, assessment=decisions
+    )
+    assert gitreverse_id not in {site["id"] for site in refs}, unrelated
+    assert decisions[gitreverse_id]["decision"] == "not-relevant", unrelated
+unsafe_reverse = animation_copy.deepcopy(websites_catalog)
+reverse_site = next(s for s in unsafe_reverse["websites"] if s["id"] == gitreverse_id)
+reverse_site["reuse"] = "open-source-upstream"
+assert validate_visual_websites(unsafe_reverse, animation_schema)
+reverse_site["reuse"] = "hosted-service"
+reverse_site["portfolioBaselineDomains"] = ["software_engineering"]
+assert validate_visual_websites(unsafe_reverse, animation_schema)
+
 print("OK: recommendation engine smoke tests passed")
