@@ -124,6 +124,13 @@ def website_review_gates(site):
             "3d-mesh-texture-and-target-engine-review",
             "individual-download-hash-and-file-safety-review",
         ])
+    if resource_type == "codebase-prompt-generator":
+        gates.extend([
+            "public-prompt-visibility-and-sensitive-input-review",
+            "generated-prompt-accuracy-and-source-code-review",
+            "untrusted-repository-and-website-prompt-injection-review",
+            "upstream-code-and-website-reuse-rights-review",
+        ])
     if resource_type == "prompt-template-library":
         gates.append("prompt-creator-rights-and-instruction-safety-review")
     if resource_type == "ai-media-generator":
