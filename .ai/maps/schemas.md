@@ -1144,7 +1144,8 @@ websites.schema.json
               "3d-pose-reference-tool",
               "costume-history-atlas",
               "ai-media-generator",
-              "3d-asset-dataset"
+              "3d-asset-dataset",
+              "codebase-prompt-generator"
             ]
           },
           "access": {

@@ -2,25 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "fix(portfolio): enforce UTC daily launch quota and report throttling (#78)",
-      "terms": [
-        "78",
-        "daily",
-        "enforce",
-        "launch",
-        "portfolio",
-        "quota",
-        "report",
-        "throttling",
-        "utc"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/portfolio_daily.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "fix(portfolio): block concurrent integrations into the same repository (#80)",
       "terms": [
         "80",
@@ -1364,6 +1345,25 @@
         "scripts/test_recommend.py",
         "scripts/validate_websites.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "catalog: add GitReverse prompt research resource (#186)",
+      "terms": [
+        "186",
+        "add",
+        "catalog",
+        "gitreverse",
+        "prompt",
+        "research",
+        "resource"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/recommend.py",
+        "scripts/test_recommend.py",
+        "scripts/validate_websites.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1629,6 +1629,11 @@
       "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
     },
+    "186": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "19": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
@@ -1784,13 +1789,13 @@
       "scripts/agent_skill_discovery.py": 4,
       "scripts/audit_catalog_quality.py": 4,
       "scripts/portfolio_daily.py": 20,
-      "scripts/recommend.py": 24,
+      "scripts/recommend.py": 28,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_json_contracts.py": 4,
-      "scripts/test_recommend.py": 28,
+      "scripts/test_recommend.py": 32,
       "scripts/validate_catalog.py": 4,
-      "scripts/validate_websites.py": 20
+      "scripts/validate_websites.py": 24
     },
     "admission": {
       "scripts/admit_github_stars.py": 4,
@@ -2026,7 +2031,7 @@
       "scripts/audit_catalog_quality.py": 16,
       "scripts/infer_selection_guidance.py": 4,
       "scripts/portfolio_daily.py": 20,
-      "scripts/recommend.py": 20,
+      "scripts/recommend.py": 24,
       "scripts/refresh_github_metadata.py": 8,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
@@ -2034,12 +2039,12 @@
       "scripts/test_documentation.py": 16,
       "scripts/test_full_catalog_availability.py": 4,
       "scripts/test_json_contracts.py": 8,
-      "scripts/test_recommend.py": 16,
+      "scripts/test_recommend.py": 20,
       "scripts/test_refresh_github_metadata.py": 8,
       "scripts/test_sync_github_stars.py": 4,
       "scripts/test_verify_catalog_evidence.py": 8,
       "scripts/validate_catalog.py": 4,
-      "scripts/validate_websites.py": 4,
+      "scripts/validate_websites.py": 8,
       "scripts/verify_catalog_evidence.py": 8
     },
     "catalog-declared": {
@@ -2545,6 +2550,11 @@
       "scripts/test_star_import_pipeline.py": 8,
       "scripts/test_sync_github_stars.py": 12
     },
+    "gitreverse": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "godot": {
       "scripts/portfolio_daily.py": 8
     },
@@ -2980,6 +2990,11 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 8
     },
+    "prompt": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "public": {
       "scripts/admit_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4
@@ -3198,11 +3213,16 @@
     "require": {
       "scripts/portfolio_daily.py": 4
     },
-    "resource": {
-      "scripts/portfolio_daily.py": 4,
+    "research": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
+    },
+    "resource": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/recommend.py": 8,
+      "scripts/test_recommend.py": 8,
+      "scripts/validate_websites.py": 8
     },
     "respect": {
       "scripts/recommend.py": 4,

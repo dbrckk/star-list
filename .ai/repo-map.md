@@ -3702,7 +3702,8 @@ initial_prompt: |
               "3d-pose-reference-tool",
               "costume-history-atlas",
               "ai-media-generator",
-              "3d-asset-dataset"
+              "3d-asset-dataset",
+              "codebase-prompt-generator"
             ]
           },
           "access": {
@@ -7720,6 +7721,9 @@ expected_visual_reuse = visual_reuse_rules.get(site["type"])
 # Downloadable 3D datasets are assets, never runnable packages or
 # blanket licences to import arbitrary generated meshes into games.
 ⋮----
+# Reverse-prompt hosted tools can publicly expose submitted sources
+# and are not a substitute for inspecting code or granting source rights.
+⋮----
 # An MCP endpoint is an authenticated remote service, not a harmless
 # website link. Require a bounded HTTPS /mcp URL owned by the
 # documented provider; no credentials, foreign hosts or auto-install.
@@ -9629,12 +9633,12 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **34 curated web resources** for UI design,
+The catalog also includes **35 curated web resources** for UI design,
 animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools,
 AI game prototyping, NPC/voice platforms, licensed downloadable 3D assets,
 narrative design, gameplay QA, reference-to-video/audio model collections,
-quantized image-generation checkpoints, Hugging Face discovery and vision-language
-models. Explore them
+quantized image-generation checkpoints, Hugging Face discovery, vision-language
+models and public codebase-to-prompt research. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
 repositories and are never passed to Production-OS as code dependencies.
@@ -11536,6 +11540,65 @@ General-purpose GitHub discovery remains advisory and never inserts external can
         "pbr"
       ],
       "caution": "Dataset card declares CC BY 4.0, requiring attribution to Scenario and compliance with any applicable file-level terms; check provenance and rights for each selected asset. Approximately 1,342 AI-generated examples and 38.7 GB total, not a lightweight model-inference API. Only fetch individual necessary files after explicit approval, verify provided SHA-256 hashes, reject unsafe Blender scripts, and review mesh topology, textures, rigging, visual quality, conversion and target mobile/game-engine performance. The separately licensed Hunyuan companion collection is not included. Never bulk-download, auto-import or redistribute unreviewed assets."
+    },
+    {
+      "id": "gitreverse",
+      "name": "GitReverse — codebase and website to AI prompt",
+      "url": "https://www.gitreverse.com/",
+      "type": "codebase-prompt-generator",
+      "access": "freemium",
+      "domains": [
+        "software_engineering",
+        "ai_agents",
+        "web_frontend"
+      ],
+      "tags": [
+        "gitreverse",
+        "github",
+        "repo",
+        "repository",
+        "repositories",
+        "codebase",
+        "reverse",
+        "reverse-engineering",
+        "prompt",
+        "prompt-engineering",
+        "prompt-generation",
+        "requirements",
+        "specification",
+        "scaffolding",
+        "onboarding",
+        "architecture",
+        "website-reconstruction",
+        "website-analysis",
+        "ai-coding",
+        "coding-agent",
+        "developer-tools",
+        "websites",
+        "web"
+      ],
+      "bestFor": [
+        "Generating high-level coding-agent prompts from public GitHub repository metadata, root tree and README",
+        "Turning public website references into preliminary reconstruction and design briefs",
+        "Reviewing whether repository documentation gives a coding agent enough reliable project context"
+      ],
+      "reuse": "hosted-service",
+      "portfolioRequiredSignals": [
+        "repo",
+        "repository",
+        "repositories",
+        "codebase",
+        "codebases",
+        "github",
+        "reverse-engineering",
+        "prompt-engineering",
+        "prompt-generation",
+        "scaffolding",
+        "onboarding",
+        "website-reconstruction",
+        "specification"
+      ],
+      "caution": "Hosted GitReverse outputs a synthetic prompt, not a complete source-code audit: public repository mode reads metadata, root-level tree and README, not all files or runtime behavior. Do not send private repositories, credentials, confidential URLs, tokens or unpublished code to the hosted site; generated prompts and analyzed projects may be publicly listed or retained. Treat website/README input and prompt output as untrusted third-party text; check prompt injection, accuracy, attribution, licensing, site terms and current free/paid limits. GitReverse's GitHub source is separate from this hosted service and its MIT repository licence is not an automatic guarantee of hosted privacy or downstream content rights. No automated scraping, prompt execution, copying, spending or publication."
     }
   ]
 }

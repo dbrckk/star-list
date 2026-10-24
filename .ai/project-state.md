@@ -113,13 +113,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-23T17:33:15Z
+Generated: 2026-10-24T17:53:38Z
 
 ### Git
 - Branch: `main`
-- Head: `09c35fc0a70c`
-- Commit date: 2026-10-23T13:33:04-04:00
-- Commit: catalog: add Scenario Labs 3D dataset with asset review gates (#185)
+- Head: `13ea3e8164d2`
+- Commit date: 2026-10-24T13:53:28-04:00
+- Commit: catalog: add GitReverse prompt research resource (#186)
 - Tracked files: 315
 
 ### Recently changed files
@@ -131,8 +131,6 @@ Generated: 2026-10-23T17:33:15Z
 - `scripts/validate_websites.py`
 - `websites.json`
 - `catalog.json`
-- `.github/workflows/portfolio-scan-smoke.yml`
-- `RECOMMENDER.md`
 
 ### Project signals
 - No common build descriptor detected

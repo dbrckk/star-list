@@ -4003,6 +4003,9 @@ expected_visual_reuse = visual_reuse_rules.get(site["type"])
 # Downloadable 3D datasets are assets, never runnable packages or
 # blanket licences to import arbitrary generated meshes into games.
 ⋮----
+# Reverse-prompt hosted tools can publicly expose submitted sources
+# and are not a substitute for inspecting code or granting source rights.
+⋮----
 # An MCP endpoint is an authenticated remote service, not a harmless
 # website link. Require a bounded HTTPS /mcp URL owned by the
 # documented provider; no credentials, foreign hosts or auto-install.

@@ -5,16 +5,13 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "185",
-      "3d",
+      "186",
       "add",
-      "asset",
       "catalog",
-      "dataset",
-      "gates",
-      "labs",
-      "review",
-      "scenario"
+      "gitreverse",
+      "prompt",
+      "research",
+      "resource"
     ],
     "test_count": 0,
     "useful_count": 3
@@ -22,7 +19,7 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "catalog: add Scenario Labs 3D dataset with asset review gates (#185)",
+  "task": "catalog: add GitReverse prompt research resource (#186)",
   "tests_selected": [],
   "useful": [
     "scripts/recommend.py",
