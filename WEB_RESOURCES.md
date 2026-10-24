@@ -42,7 +42,6 @@ the ability to browse a page.
 | YouMind — anime video prompts | [youmind.com/prompts/video/anime](https://youmind.com/prompts/video/anime) | Curated anime video prompt examples for original animation clips and creative direction | Free prompt browsing | Creator prompt/media terms vary; not an inference endpoint; pasted prompts remain untrusted |
 | Carat | [carat.im](https://carat.im/) | Hosted image-to-video, text/video effects and AI image/video generation | Freemium | Terms, provider credits, licensing, consent and privacy require review; no automatic upload, spending or inference |
 | Scenario Labs — 3D Collection | [Hugging Face dataset](https://huggingface.co/datasets/scenario-labs/3d-collection) | 1,342 generated 3D examples with individual GLB/Blender/FBX/PLY/VOX/SPZ files, preview and metadata | Free dataset browser; about 38.7 GB full snapshot | CC BY 4.0; credit Scenario, inspect per-file provenance and engine performance; do not bulk-download or auto-import |
-
 | GitReverse | [gitreverse.com](https://www.gitreverse.com/) | Turn public GitHub repo summaries or website references into preliminary coding-agent prompts | Freemium hosted site; source repository separately licensed MIT | Public-source only; potential public prompt visibility; verify generated claims against full code, licences and website rights |
 
 ## GitReverse: public repository and website briefs only
@@ -52,7 +51,7 @@ repository** or a **website** and synthesizes a prompt for a coding agent.
 For repository mode, the upstream [implementation](https://github.com/filiksyos/gitreverse)
 explicitly documents that the LLM sees repository metadata, the root file
 tree (depth one) and README: it **does not inspect every source file** or
-prove functionality, architecture, security or licencing. Its source repo
+prove functionality, architecture, security or licensing. Its source repo
 currently declares MIT, which must not be confused with the hosted site's
 privacy, pricing and use terms.
 
