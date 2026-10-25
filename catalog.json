@@ -47881,6 +47881,139 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "regaan/basilisk",
+      "githubRepositoryId": 1171574648,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "adversarial-ai",
+        "ai",
+        "ai-red-teaming",
+        "ai-security",
+        "basilisk",
+        "chatgpt-security",
+        "genetic-algorithm",
+        "jailbreak",
+        "llm",
+        "llm-security",
+        "llm-security-compliance-prompt-injection",
+        "offensive-security"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 46,
+        "forks": 5,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-01T15:51:31Z"
+      },
+      "bestFor": [
+        "Basilisk — Open-source AI red teaming framework with genetic prompt evolution. Automated LLM security testing for GPT-4, Claude, Grok, Gemini. OWASP LLM Top 10 coverage. 32 attack modules."
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "yorukot/superfile",
+      "githubRepositoryId": 774468912,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "bubbletea",
+        "cli",
+        "file-manager",
+        "filemanager",
+        "filesystem",
+        "golang",
+        "hacktoberfest",
+        "linux-app",
+        "terminal-app",
+        "terminal-based",
+        "tui"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 23919,
+        "forks": 833,
+        "openIssues": 291,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-22T16:12:25Z"
+      },
+      "bestFor": [
+        "Pretty fancy and modern terminal file manager"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Zagitta/gpu-unlock",
+      "githubRepositoryId": 1423892373,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4477,
+        "forks": 501,
+        "openIssues": 83,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": null,
+        "pushedAt": "2026-10-24T15:47:28Z"
+      },
+      "bestFor": [
+        "Unlock FP/BF16 instruction issue rate on Nvidia 3000's cards to their professional equivalents"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
