@@ -49,12 +49,12 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **35 curated web resources** for UI design,
+The catalog also includes **36 curated web resources** for UI design,
 animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools,
 AI game prototyping, NPC/voice platforms, licensed downloadable 3D assets,
 narrative design, gameplay QA, reference-to-video/audio model collections,
 quantized image-generation checkpoints, Hugging Face discovery, vision-language
-models and public codebase-to-prompt research. Explore them
+models, public codebase-to-prompt research and pixel-art VFX editors. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
 repositories and are never passed to Production-OS as code dependencies.
