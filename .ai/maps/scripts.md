@@ -4000,6 +4000,9 @@ lowered_tags = {str(t).lower() for t in site["tags"]}
 visual_reuse_rules = {
 expected_visual_reuse = visual_reuse_rules.get(site["type"])
 ⋮----
+# The playable pixel VFX demo can emit export files, not verified
+# commercially licensed game assets or trusted executable code.
+⋮----
 # Downloadable 3D datasets are assets, never runnable packages or
 # blanket licences to import arbitrary generated meshes into games.
 ⋮----

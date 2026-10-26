@@ -113,13 +113,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-24T17:53:38Z
+Generated: 2026-10-26T20:36:28Z
 
 ### Git
 - Branch: `main`
-- Head: `13ea3e8164d2`
-- Commit date: 2026-10-24T13:53:28-04:00
-- Commit: catalog: add GitReverse prompt research resource (#186)
+- Head: `d720764fe450`
+- Commit date: 2026-10-26T16:36:17-04:00
+- Commit: catalog: add Scenario Pixel VFX Forge with review gates (#187)
 - Tracked files: 315
 
 ### Recently changed files

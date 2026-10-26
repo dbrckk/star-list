@@ -58,7 +58,7 @@
       "source": {
         "file": "scripts/recommend.py",
         "start": 84,
-        "end": 143
+        "end": 149
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -66,8 +66,8 @@
     "recommend_websites": {
       "source": {
         "file": "scripts/recommend.py",
-        "start": 146,
-        "end": 193
+        "start": 152,
+        "end": 199
       },
       "symbol_dependencies": [
         {
@@ -100,8 +100,8 @@
     "activity_adjustment": {
       "source": {
         "file": "scripts/recommend.py",
-        "start": 195,
-        "end": 212
+        "start": 201,
+        "end": 218
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -109,8 +109,8 @@
     "trend_adjustment": {
       "source": {
         "file": "scripts/recommend.py",
-        "start": 215,
-        "end": 238
+        "start": 221,
+        "end": 244
       },
       "symbol_dependencies": [
         {
@@ -118,7 +118,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 227,
+              "line": 233,
               "kind": "function",
               "language": "python"
             }
@@ -131,8 +131,8 @@
     "delta": {
       "source": {
         "file": "scripts/recommend.py",
-        "start": 227,
-        "end": 347
+        "start": 233,
+        "end": 353
       },
       "symbol_dependencies": [
         {
@@ -140,7 +140,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 195,
+              "line": 201,
               "kind": "function",
               "language": "python"
             }
@@ -164,7 +164,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 343,
+              "line": 349,
               "kind": "function",
               "language": "python"
             }
@@ -176,7 +176,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 307,
+              "line": 313,
               "kind": "function",
               "language": "python"
             }
@@ -188,7 +188,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 240,
+              "line": 246,
               "kind": "function",
               "language": "python"
             }
@@ -212,7 +212,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 259,
+              "line": 265,
               "kind": "function",
               "language": "python"
             }
@@ -224,7 +224,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 247,
+              "line": 253,
               "kind": "function",
               "language": "python"
             }
@@ -248,7 +248,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 272,
+              "line": 278,
               "kind": "function",
               "language": "python"
             }
@@ -272,7 +272,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 215,
+              "line": 221,
               "kind": "function",
               "language": "python"
             }
@@ -285,8 +285,8 @@
     "guidance_weight": {
       "source": {
         "file": "scripts/recommend.py",
-        "start": 240,
-        "end": 244
+        "start": 246,
+        "end": 250
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -294,8 +294,8 @@
     "ranking_review_gates": {
       "source": {
         "file": "scripts/recommend.py",
-        "start": 247,
-        "end": 256
+        "start": 253,
+        "end": 262
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -303,8 +303,8 @@
     "metadata_review_gates": {
       "source": {
         "file": "scripts/recommend.py",
-        "start": 259,
-        "end": 269
+        "start": 265,
+        "end": 275
       },
       "symbol_dependencies": [],
       "dependency_count": 0
@@ -312,8 +312,8 @@
     "score_repo": {
       "source": {
         "file": "scripts/recommend.py",
-        "start": 272,
-        "end": 305
+        "start": 278,
+        "end": 311
       },
       "symbol_dependencies": [
         {
@@ -321,7 +321,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 195,
+              "line": 201,
               "kind": "function",
               "language": "python"
             }
@@ -345,7 +345,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 240,
+              "line": 246,
               "kind": "function",
               "language": "python"
             }
@@ -393,7 +393,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 215,
+              "line": 221,
               "kind": "function",
               "language": "python"
             }
@@ -406,8 +406,8 @@
     "explain_repo": {
       "source": {
         "file": "scripts/recommend.py",
-        "start": 307,
-        "end": 332
+        "start": 313,
+        "end": 338
       },
       "symbol_dependencies": [
         {
@@ -415,7 +415,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 195,
+              "line": 201,
               "kind": "function",
               "language": "python"
             }
@@ -451,7 +451,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 215,
+              "line": 221,
               "kind": "function",
               "language": "python"
             }
@@ -464,8 +464,8 @@
     "choose_stack": {
       "source": {
         "file": "scripts/recommend.py",
-        "start": 343,
-        "end": 367
+        "start": 349,
+        "end": 373
       },
       "symbol_dependencies": [
         {
@@ -498,8 +498,8 @@
     "infer_alternatives": {
       "source": {
         "file": "scripts/recommend.py",
-        "start": 370,
-        "end": 388
+        "start": 376,
+        "end": 394
       },
       "symbol_dependencies": [
         {
@@ -520,8 +520,8 @@
     "infer_complements": {
       "source": {
         "file": "scripts/recommend.py",
-        "start": 391,
-        "end": 413
+        "start": 397,
+        "end": 419
       },
       "symbol_dependencies": [
         {
@@ -542,8 +542,8 @@
     "resolve_relations": {
       "source": {
         "file": "scripts/recommend.py",
-        "start": 416,
-        "end": 437
+        "start": 422,
+        "end": 443
       },
       "symbol_dependencies": [
         {
@@ -551,7 +551,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 370,
+              "line": 376,
               "kind": "function",
               "language": "python"
             }
@@ -563,7 +563,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 391,
+              "line": 397,
               "kind": "function",
               "language": "python"
             }
@@ -575,7 +575,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 418,
+              "line": 424,
               "kind": "function",
               "language": "python"
             }
@@ -588,8 +588,8 @@
     "usable": {
       "source": {
         "file": "scripts/recommend.py",
-        "start": 418,
-        "end": 538
+        "start": 424,
+        "end": 544
       },
       "symbol_dependencies": [
         {
@@ -609,7 +609,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 370,
+              "line": 376,
               "kind": "function",
               "language": "python"
             }
@@ -621,7 +621,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 391,
+              "line": 397,
               "kind": "function",
               "language": "python"
             }
@@ -681,7 +681,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 416,
+              "line": 422,
               "kind": "function",
               "language": "python"
             }
@@ -693,7 +693,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 272,
+              "line": 278,
               "kind": "function",
               "language": "python"
             }
@@ -718,8 +718,8 @@
     "main": {
       "source": {
         "file": "scripts/recommend.py",
-        "start": 439,
-        "end": 559
+        "start": 445,
+        "end": 565
       },
       "symbol_dependencies": [
         {
@@ -739,7 +739,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 307,
+              "line": 313,
               "kind": "function",
               "language": "python"
             }
@@ -787,7 +787,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 259,
+              "line": 265,
               "kind": "function",
               "language": "python"
             }
@@ -799,7 +799,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 247,
+              "line": 253,
               "kind": "function",
               "language": "python"
             }
@@ -811,7 +811,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 416,
+              "line": 422,
               "kind": "function",
               "language": "python"
             }
@@ -823,7 +823,7 @@
           "definitions": [
             {
               "file": "scripts/recommend.py",
-              "line": 272,
+              "line": 278,
               "kind": "function",
               "language": "python"
             }
@@ -867,7 +867,7 @@
       "source": {
         "file": "scripts/validate_websites.py",
         "start": 33,
-        "end": 178
+        "end": 191
       },
       "symbol_dependencies": [
         {

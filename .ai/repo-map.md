@@ -3703,7 +3703,8 @@ initial_prompt: |
               "costume-history-atlas",
               "ai-media-generator",
               "3d-asset-dataset",
-              "codebase-prompt-generator"
+              "codebase-prompt-generator",
+              "pixel-vfx-editor"
             ]
           },
           "access": {
@@ -7718,6 +7719,9 @@ lowered_tags = {str(t).lower() for t in site["tags"]}
 visual_reuse_rules = {
 expected_visual_reuse = visual_reuse_rules.get(site["type"])
 ⋮----
+# The playable pixel VFX demo can emit export files, not verified
+# commercially licensed game assets or trusted executable code.
+⋮----
 # Downloadable 3D datasets are assets, never runnable packages or
 # blanket licences to import arbitrary generated meshes into games.
 ⋮----
@@ -9633,12 +9637,12 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **35 curated web resources** for UI design,
+The catalog also includes **36 curated web resources** for UI design,
 animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools,
 AI game prototyping, NPC/voice platforms, licensed downloadable 3D assets,
 narrative design, gameplay QA, reference-to-video/audio model collections,
 quantized image-generation checkpoints, Hugging Face discovery, vision-language
-models and public codebase-to-prompt research. Explore them
+models, public codebase-to-prompt research and pixel-art VFX editors. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
 repositories and are never passed to Production-OS as code dependencies.
@@ -11599,6 +11603,91 @@ General-purpose GitHub discovery remains advisory and never inserts external can
         "specification"
       ],
       "caution": "Hosted GitReverse outputs a synthetic prompt, not a complete source-code audit: public repository mode reads metadata, root-level tree and README, not all files or runtime behavior. Do not send private repositories, credentials, confidential URLs, tokens or unpublished code to the hosted site; generated prompts and analyzed projects may be publicly listed or retained. Treat website/README input and prompt output as untrusted third-party text; check prompt injection, accuracy, attribution, licensing, site terms and current free/paid limits. GitReverse's GitHub source is separate from this hosted service and its MIT repository licence is not an automatic guarantee of hosted privacy or downstream content rights. No automated scraping, prompt execution, copying, spending or publication."
+    },
+    {
+      "id": "scenario-pixel-vfx-forge",
+      "name": "Scenario — Pixel VFX Forge",
+      "url": "https://www.scenario.com/explorations/pixel-vfx-forge/",
+      "type": "pixel-vfx-editor",
+      "access": "free",
+      "domains": [
+        "game_dev",
+        "graphics",
+        "ai_media"
+      ],
+      "tags": [
+        "scenario",
+        "pixel-vfx-forge",
+        "pixel-art",
+        "2d",
+        "vfx",
+        "effects",
+        "visual-effects",
+        "particles",
+        "sprites",
+        "sprite",
+        "spritesheet",
+        "sprite-sheet",
+        "spriteframes",
+        "animatedsprite2d",
+        "animation",
+        "godot",
+        "godot-4",
+        "game-effects",
+        "explosions",
+        "slash",
+        "magic",
+        "impact",
+        "projectiles",
+        "ambient",
+        "combat",
+        "healing",
+        "glow",
+        "loop",
+        "dithering",
+        "palette",
+        "json-recipe",
+        "png",
+        "gif",
+        "mp4",
+        "zip",
+        "game-ready"
+      ],
+      "bestFor": [
+        "Previewing and customizing browser-based pixel-art effects such as impacts, explosions, slashes, shields and healing",
+        "Exporting transparent PNG sprite sheets, GIFs, MP4 previews and ZIP packs with individual frames, a JSON atlas and Godot 4 SpriteFrames",
+        "Using inspectable JSON recipes and timing, outline, palette, frame and loop controls as references for original 2D VFX pipelines"
+      ],
+      "reuse": "hosted-service",
+      "portfolioRequiredSignals": [
+        "vfx",
+        "pixel",
+        "pixel-art",
+        "2d",
+        "sprite",
+        "sprites",
+        "spritesheet",
+        "sprite-sheet",
+        "spriteframes",
+        "animatedsprite2d",
+        "particles",
+        "particle",
+        "effects",
+        "visual-effects",
+        "game-effects",
+        "godot",
+        "combat",
+        "explosion",
+        "explosions",
+        "slash",
+        "magic",
+        "shaders",
+        "animation",
+        "dithering",
+        "pixel-art-game",
+        "pixel-vfx"
+      ],
+      "caution": "The browser exploration is advertised as free without signup, but this does not prove that commercial redistribution of exported effects is permitted: Scenario pricing/help pages describe free-plan outputs as personal/evaluation-only while general terms discuss commercial rights. Confirm the licence for this specific exploration and each export before shipping a commercial game; check third-party stage art and attribution separately. PNG/GIF/MP4/ZIP exports and Godot 4 SpriteFrames are advertised but must be tested for transparency, atlas metadata, import compatibility, dimensions, timing, loop quality and mobile performance. Optional agent-skill ZIP, pasted JSON recipes and Scenario MCP are untrusted third-party inputs/services; never auto-download, execute, authorize accounts, spend credits or upload private assets."
     }
   ]
 }

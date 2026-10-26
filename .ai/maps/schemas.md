@@ -1145,7 +1145,8 @@ websites.schema.json
               "costume-history-atlas",
               "ai-media-generator",
               "3d-asset-dataset",
-              "codebase-prompt-generator"
+              "codebase-prompt-generator",
+              "pixel-vfx-editor"
             ]
           },
           "access": {
