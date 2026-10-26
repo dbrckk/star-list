@@ -787,4 +787,50 @@ reverse_site["reuse"] = "hosted-service"
 reverse_site["portfolioBaselineDomains"] = ["software_engineering"]
 assert validate_visual_websites(unsafe_reverse, animation_schema)
 
+# Pixel VFX Forge: explicit 2D/FX evidence routes to a reviewed hosted
+# visual editor; it is not a free commercial asset licence or code dependency.
+pixel_forge_id = "scenario-pixel-vfx-forge"
+pixel_forge = next(s for s in sites if s["id"] == pixel_forge_id)
+assert sum(s["id"] == pixel_forge_id for s in sites) == 1
+assert pixel_forge["url"] == "https://www.scenario.com/explorations/pixel-vfx-forge/"
+assert pixel_forge["type"] == "pixel-vfx-editor"
+assert pixel_forge["access"] == "free" and pixel_forge["reuse"] == "hosted-service"
+assert pixel_forge["portfolioRequiredSignals"] and not pixel_forge.get("portfolioBaselineDomains")
+pixel_query = run("godot pixel art 2d sprite vfx", "--websites", "--top-websites", "100")
+pixel_advice = next(s for s in pixel_query["websiteRecommendations"] if s["id"] == pixel_forge_id)
+assert pixel_advice["integrationEligible"] is False
+assert {
+    "pixel-vfx-export-commercial-licence-confirmation",
+    "sprite-sheet-godot-import-animation-and-mobile-review",
+    "external-agent-skill-archive-and-json-recipe-trust-review",
+    "hosted-terms-privacy-and-cost-review",
+} <= set(pixel_advice["reviewGates"])
+for project, domains in (
+    ({"name": "jumpy-frog", "description": "Godot jumping game", "topics": ["2d"]}, ["game_dev"]),
+    ({"name": "pixel-effects", "description": "Pixel art sprite and vfx animation", "topics": []}, ["graphics"]),
+):
+    decisions = {}
+    refs = website_references_for_project(project, {"domains": domains, "terms": set()}, assessment=decisions)
+    matched = next(s for s in refs if s["id"] == pixel_forge_id)
+    assert matched["integrationEligible"] is False
+    assert decisions[pixel_forge_id]["decision"] == "matched"
+    assert decisions[pixel_forge_id]["reviewGates"] == matched["reviewGates"]
+for unrelated, domains in (
+    ({"name": "generic-game", "description": "An online game", "topics": []}, ["game_dev"]),
+    ({"name": "production-os", "description": "Software coding automation", "topics": []}, ["software_engineering"]),
+    ({"name": "TTS", "description": "Audio speech generation", "topics": []}, ["ai_media"]),
+    ({"name": "promo-alimentaire", "description": "Food coupons", "topics": []}, []),
+):
+    decisions = {}
+    refs = website_references_for_project(unrelated, {"domains": domains, "terms": set()}, assessment=decisions)
+    assert pixel_forge_id not in {s["id"] for s in refs}, unrelated
+    assert decisions[pixel_forge_id]["decision"] == "not-relevant", unrelated
+unsafe_pixel = animation_copy.deepcopy(websites_catalog)
+unsafe_site = next(s for s in unsafe_pixel["websites"] if s["id"] == pixel_forge_id)
+unsafe_site["reuse"] = "open-source-upstream"
+assert validate_visual_websites(unsafe_pixel, animation_schema)
+unsafe_site["reuse"] = "hosted-service"
+unsafe_site["portfolioBaselineDomains"] = ["game_dev"]
+assert validate_visual_websites(unsafe_pixel, animation_schema)
+
 print("OK: recommendation engine smoke tests passed")
