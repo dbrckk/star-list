@@ -118,6 +118,12 @@ def website_review_gates(site):
         gates.append("creator-submitted-design-rights-review")
     if resource_type == "3d-pose-reference-tool":
         gates.append("pose-export-format-and-rights-review")
+    if resource_type == "pixel-vfx-editor":
+        gates.extend([
+            "pixel-vfx-export-commercial-licence-confirmation",
+            "sprite-sheet-godot-import-animation-and-mobile-review",
+            "external-agent-skill-archive-and-json-recipe-trust-review",
+        ])
     if resource_type == "3d-asset-dataset":
         gates.extend([
             "asset-level-license-and-attribution-review",

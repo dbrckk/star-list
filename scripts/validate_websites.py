@@ -113,6 +113,7 @@ def check_websites(data, schema):
             "3d-pose-reference-tool": "hosted-service",
             "costume-history-atlas": "license-per-item",
             "ai-media-generator": "hosted-service",
+            "pixel-vfx-editor": "hosted-service",
         }
         expected_visual_reuse = visual_reuse_rules.get(site["type"])
         if expected_visual_reuse is not None:
@@ -123,6 +124,18 @@ def check_websites(data, schema):
                 errors.append(
                     f"{identity}: visual reference service requires task-specific "
                     "signals, bounded creative domains and correct reuse rights"
+                )
+        # The playable pixel VFX demo can emit export files, not verified
+        # commercially licensed game assets or trusted executable code.
+        if site["type"] == "pixel-vfx-editor":
+            if (site.get("reuse") != "hosted-service"
+                    or not site.get("portfolioRequiredSignals")
+                    or site.get("portfolioBaselineDomains")
+                    or not set(site["domains"]) & {"game_dev", "graphics"}
+                    or site.get("mcpEndpoint") or site.get("sourceLicenseTag")):
+                errors.append(
+                    f"{identity}: pixel VFX editor requires specialist matching, "
+                    "hosted-source review and no implied commercial asset licence"
                 )
         # Downloadable 3D datasets are assets, never runnable packages or
         # blanket licences to import arbitrary generated meshes into games.
