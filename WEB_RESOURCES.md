@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **35 web resources** are curated alongside it in [`websites.json`](websites.json);
+These **36 web resources** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -43,6 +43,47 @@ the ability to browse a page.
 | Carat | [carat.im](https://carat.im/) | Hosted image-to-video, text/video effects and AI image/video generation | Freemium | Terms, provider credits, licensing, consent and privacy require review; no automatic upload, spending or inference |
 | Scenario Labs — 3D Collection | [Hugging Face dataset](https://huggingface.co/datasets/scenario-labs/3d-collection) | 1,342 generated 3D examples with individual GLB/Blender/FBX/PLY/VOX/SPZ files, preview and metadata | Free dataset browser; about 38.7 GB full snapshot | CC BY 4.0; credit Scenario, inspect per-file provenance and engine performance; do not bulk-download or auto-import |
 | GitReverse | [gitreverse.com](https://www.gitreverse.com/) | Turn public GitHub repo summaries or website references into preliminary coding-agent prompts | Freemium hosted site; source repository separately licensed MIT | Public-source only; potential public prompt visibility; verify generated claims against full code, licences and website rights |
+| Scenario — Pixel VFX Forge | [scenario.com/explorations/pixel-vfx-forge](https://www.scenario.com/explorations/pixel-vfx-forge/) | Remix 42 pixel-art VFX with color, layer, timing and seed controls; export PNG, GIF, MP4 or ZIP including Godot 4 SpriteFrames | Free browser exploration; downstream Scenario generation services use separate plans | Commercial status of free exploration exports not confirmed; confirm rights, engine imports, format, performance and any agent-skill ZIP before use |
+
+## Scenario Pixel VFX Forge: export pixel effects with review gates
+
+The [Pixel VFX Forge browser exploration](https://www.scenario.com/explorations/pixel-vfx-forge/)
+provides 42 remixable pixel-art effects (slashes, explosions, particles,
+magic, portals, healing and ambient effects), adjustable palettes,
+outline/dithering, layers, playback timing, frame counts, speed and
+repeatable JSON recipes. The page offers MP4, transparent GIF, PNG sprite
+sheets and ZIP packs of individual frames, atlas JSON, recipes and Godot 4
+SpriteFrames. The exploration is advertised as **free in-browser**, without
+sign-up. No source-code licence or embeddable runtime is promised by this link.
+
+**Rights:** Scenario's [pricing FAQ](https://www.scenario.com/pricing) and
+[free-plan documentation](https://help.scenario.com/articles/4276871610)
+state that free-plan outputs are for **personal/evaluation use**, whereas
+[general terms](https://www.scenario.com/terms-and-conditions) discuss
+commercial use of Generated Assets. These statements are not enough to
+establish that downloaded *exploration* effects may be shipped commercially.
+Verify the licence of the exact Pixel VFX Forge export with Scenario before
+incorporating any output into a commercial game. Check separate stage art,
+textures, fonts and attribution requirements. Do not conflate the free editor
+with paid Scenario MCP or account API access.
+
+**Quality:** inspect transparent background, frame alignment, nearest-neighbour
+scaling, sprite-sheet dimensions, atlas indices, loop seams and animation
+speed. Test ZIP/Godot 4 SpriteFrames with an actual Godot project before
+shipping; check memory and draw-call budgets on Android and other target
+hardware. The downloadable agent-skill ZIP and pasted recipes are untrusted
+inputs, never executable instructions. No automatic download, skill install,
+remote execution, login, credit spend or game integration occurs via Star List.
+
+Daily audits give a read-only advisory match to projects with explicit 2D,
+pixel-art, sprite, Godot or visual-effect signals. Other repositories still
+receive a full `not-relevant` assessment. All recommendations retain
+`integrationEligible: false` and explicit licence, import-quality and
+skill-archive trust gates.
+
+```bash
+python scripts/recommend.py "godot pixel art 2d sprite vfx" --websites --json
+```
 
 ## GitReverse: public repository and website briefs only
 
@@ -270,7 +311,7 @@ version automatically.
 
 ## How specialist game platforms are selected
 
-The daily portfolio scan inspects **all 35 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
+The daily portfolio scan inspects **all 36 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
 
 ## Search repositories and relevant websites together
 
