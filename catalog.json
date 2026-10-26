@@ -48486,6 +48486,250 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "ali-vilab/VACE",
+      "githubRepositoryId": 944908986,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "video-editing",
+        "video-generation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3996,
+        "forks": 289,
+        "openIssues": 59,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2025-10-17T05:46:57Z"
+      },
+      "bestFor": [
+        "[ICCV 2025] Official implementations for paper: VACE: All-in-One Video Creation and Editing"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "FireRedTeam/FireRed-OpenStoryline",
+      "githubRepositoryId": 1152159038,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "chatbot",
+        "langchain",
+        "mcp",
+        "skills",
+        "video",
+        "video-cut",
+        "video-editing",
+        "video-editing-tools"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3566,
+        "forks": 414,
+        "openIssues": 33,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-07-31T03:16:31Z"
+      },
+      "bestFor": [
+        "FireRed-OpenStoryline is an AI video editing agent that transforms manual editing into intention-driven directing through natural language interaction, LLM-powered planning, and precise tool orchestra"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "kijai/ComfyUI-WanVideoWrapper",
+      "githubRepositoryId": 938926134,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Génération de médias / IA",
+      "domain": "ai_media",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 6749,
+        "forks": 702,
+        "openIssues": 1285,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-05-24T13:07:20Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "Lightricks/LTX-2",
+      "githubRepositoryId": 1127234517,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "generative-ai",
+        "ltx",
+        "ltx-2"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 9894,
+        "forks": 1565,
+        "openIssues": 55,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-18T17:41:34Z"
+      },
+      "bestFor": [
+        "Official Python inference and LoRA trainer package for the LTX-2 audio–video generative model."
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "mifi/editly",
+      "githubRepositoryId": 255940939,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Graphisme / 3D",
+      "domain": "graphics",
+      "capabilities": [
+        "animations",
+        "cli",
+        "clips",
+        "command-line",
+        "editor",
+        "ffmpeg",
+        "images",
+        "opengl",
+        "slideshow",
+        "subtitle",
+        "transition",
+        "video"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5556,
+        "forks": 385,
+        "openIssues": 80,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2025-05-12T07:03:44Z"
+      },
+      "bestFor": [
+        "Slick, declarative command line video editing & API"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "modelscope/DiffSynth-Studio",
+      "githubRepositoryId": 728770766,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 13309,
+        "forks": 1324,
+        "openIssues": 573,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-26T06:43:50Z"
+      },
+      "bestFor": [
+        "Enjoy the magic of Diffusion models!"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
