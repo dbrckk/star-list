@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **36 web resources** are curated alongside it in [`websites.json`](websites.json);
+These **37 web resources** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -44,6 +44,48 @@ the ability to browse a page.
 | Scenario Labs — 3D Collection | [Hugging Face dataset](https://huggingface.co/datasets/scenario-labs/3d-collection) | 1,342 generated 3D examples with individual GLB/Blender/FBX/PLY/VOX/SPZ files, preview and metadata | Free dataset browser; about 38.7 GB full snapshot | CC BY 4.0; credit Scenario, inspect per-file provenance and engine performance; do not bulk-download or auto-import |
 | GitReverse | [gitreverse.com](https://www.gitreverse.com/) | Turn public GitHub repo summaries or website references into preliminary coding-agent prompts | Freemium hosted site; source repository separately licensed MIT | Public-source only; potential public prompt visibility; verify generated claims against full code, licences and website rights |
 | Scenario — Pixel VFX Forge | [scenario.com/explorations/pixel-vfx-forge](https://www.scenario.com/explorations/pixel-vfx-forge/) | Remix 42 pixel-art VFX with color, layer, timing and seed controls; export PNG, GIF, MP4 or ZIP including Godot 4 SpriteFrames | Free browser exploration; downstream Scenario generation services use separate plans | Commercial status of free exploration exports not confirmed; confirm rights, engine imports, format, performance and any agent-skill ZIP before use |
+| DarkUGC | [darkugc.com](https://darkugc.com/) | Free, curated TikTok/Instagram app-UGC examples, format research and manual creator-brief builder | Free research with normal-use limits | **Manual browsing only:** terms forbid bots/AI-agent crawling, scraping, bulk download, ML datasets and video reuse without rights |
+
+## DarkUGC: manual-only app UGC video research
+
+[DarkUGC](https://darkugc.com/) curates publicly posted TikTok and Instagram
+app-marketing UGC video examples by creator, brand, format and recorded
+engagement. It includes [format benchmarks](https://darkugc.com/benchmarks/app-ugc-formats),
+[methodology](https://darkugc.com/methods) and a
+[client-side creator brief builder](https://darkugc.com/tools/creator-brief).
+This is a **reference library**, not a video-generation backend, licensed
+asset pack, autonomous scraping API or source-code dependency.
+
+**Strict terms restriction:** DarkUGC's
+[Terms of Use](https://darkugc.com/terms), updated October 17, 2026,
+prohibit automated access (including AI agents, browser automation,
+headless browsing or crawling), bulk downloads, republishing the library,
+dataset building and model training/fine-tuning/evaluation with any site
+material. Free access remains subject to account and rate limits. The daily
+portfolio scan therefore **only evaluates the locally curated metadata**;
+it must not retrieve or monitor DarkUGC pages, bulk capture videos, or
+produce a dataset. Any human-selected examples are references for writing
+**new, original** briefs; their videos belong to original creators and
+DarkUGC's analysis/scripts retain separate rights.
+
+**Interpretation:** library clips are selected successful posts, with an
+entry floor of 50,000 recorded views; engagement/view figures are point-in-time
+snapshots and may include paid reach or repeated viewing. They cannot be
+used as a statistically representative baseline, predicted installs or
+campaign return on investment. Original post, publication date, creative
+context, source and licence must be checked manually. The site's brief
+builder keeps user-entered fields in the current browser tab and does not
+send them to an AI service.
+
+Star List matches this entry when a repository explicitly describes TikTok,
+UGC, Reels, short-form creator briefs, influencer work or app video marketing.
+It remains `integrationEligible: false` with explicit no-crawling,
+creator-rights, metric-bias and acceptable-use gates. Generic game, video
+editing and technical SEO projects should not receive an irrelevant match.
+
+```bash
+python scripts/recommend.py "ugc tiktok reels app marketing creator hooks" --websites --json
+```
 
 ## Scenario Pixel VFX Forge: export pixel effects with review gates
 
@@ -311,7 +353,7 @@ version automatically.
 
 ## How specialist game platforms are selected
 
-The daily portfolio scan inspects **all 36 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
+The daily portfolio scan inspects **all 37 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
 
 ## Search repositories and relevant websites together
 
