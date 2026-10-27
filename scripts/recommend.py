@@ -108,6 +108,13 @@ def website_review_gates(site):
         gates.append("factual-and-format-preservation-review")
         gates.append("source-and-target-language-review")
         gates.append("human-editor-approval-before-publication")
+    if resource_type == "ugc-video-research-library":
+        gates.extend([
+            "no-automated-access-scraping-bulk-download-or-dataset-use",
+            "video-creator-copyright-and-original-brief-review",
+            "ugc-survivorship-bias-and-snapshot-metrics-review",
+            "research-use-only-with-site-terms-and-account-limits",
+        ])
     if resource_type == "marketing-automation-service":
         gates.append("platform-anti-spam-and-account-policy-review")
         gates.append("manual-publication-and-consent-required")
