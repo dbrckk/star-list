@@ -48775,6 +48775,190 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "Ablation-Tool/ablation",
+      "githubRepositoryId": 1384236560,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "claude-code",
+        "codex",
+        "gemini",
+        "hermes-agent",
+        "kimi",
+        "opencode",
+        "reverse-engineering"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 262,
+        "forks": 39,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-27T14:28:55Z"
+      },
+      "bestFor": [
+        "Ablation is an AI-assisted reverse engineering (AIARE) framework"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "gitroomhq/postiz-app",
+      "githubRepositoryId": 664013991,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "nextjs",
+        "open-source",
+        "open-source-social-media-scheduling-tool",
+        "oss",
+        "postiz-cloud",
+        "postiz-hosted",
+        "redis",
+        "scheduling-tool",
+        "social-media-scheduling-tool",
+        "typescript"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 39074,
+        "forks": 7478,
+        "openIssues": 222,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "AGPL-3.0",
+        "pushedAt": "2026-10-24T18:27:21Z"
+      },
+      "bestFor": [
+        "📨 The ultimate agentic social media scheduling tool 🤖"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "JetBrains/thinkrail",
+      "githubRepositoryId": 1293238217,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agent",
+        "agent-skills",
+        "agentic-ai",
+        "agentic-workflow",
+        "ai-coding",
+        "ai-tools",
+        "pi-agent",
+        "pi-agent-extension",
+        "spec-driven",
+        "spec-driven-coding",
+        "spec-driven-development",
+        "vibe-coding"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3733,
+        "forks": 196,
+        "openIssues": 222,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-27T16:34:22Z"
+      },
+      "bestFor": [
+        "Vibe code with pi in a lightweight, real IDE that customises itself around the way you work — The Vibe You Need"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "YuJunZhiXue/dsh-purge",
+      "githubRepositoryId": 1339256252,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "deepseek",
+        "deepseek-harness",
+        "dsh-plugin",
+        "dsh-plugins",
+        "harness-jailbreak",
+        "jailbreak",
+        "llm-jailbreak"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 10894,
+        "forks": 2254,
+        "openIssues": 6,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-10-27T16:06:26Z"
+      },
+      "bestFor": [
+        "DeepSeek Harness 破甲：让所有模型都能破甲，不同模型可换不同提示词；默认提示词面向国模「小码酱」。Jailbreak for every model — swap prompts per model. 求 Star 收藏 ⭐ 如要二开，请查看署名要求部分"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
