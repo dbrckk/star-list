@@ -833,4 +833,57 @@ unsafe_site["reuse"] = "hosted-service"
 unsafe_site["portfolioBaselineDomains"] = ["game_dev"]
 assert validate_visual_websites(unsafe_pixel, animation_schema)
 
+# DarkUGC is a manual-only research library. Matching in the daily portfolio
+# scan must not be confused with permission to crawl, scrape, or copy videos.
+darkugc_id = "darkugc"
+darkugc = next(site for site in sites if site["id"] == darkugc_id)
+assert sum(site["id"] == darkugc_id for site in sites) == 1
+assert darkugc["url"] == "https://darkugc.com/"
+assert darkugc["type"] == "ugc-video-research-library"
+assert darkugc["access"] == "free" and darkugc["reuse"] == "reference-only"
+assert darkugc["portfolioRequiredSignals"] and not darkugc.get("portfolioBaselineDomains")
+darkugc_query = run("ugc tiktok reels app marketing creator hooks", "--websites", "--top-websites", "100")
+darkugc_recommendation = next(
+    site for site in darkugc_query["websiteRecommendations"] if site["id"] == darkugc_id
+)
+assert darkugc_recommendation["integrationEligible"] is False
+assert {"no-automated-access-scraping-bulk-download-or-dataset-use",
+        "video-creator-copyright-and-original-brief-review",
+        "ugc-survivorship-bias-and-snapshot-metrics-review",
+        "research-use-only-with-site-terms-and-account-limits",
+        "third-party-reuse-rights-review"} <= set(darkugc_recommendation["reviewGates"])
+for project, domains in (
+    ({"name": "app-ugc-campaign", "description": "TikTok UGC creator briefs",
+      "topics": ["social-media"]}, ["marketing"]),
+    ({"name": "video-creator-research", "description": "Instagram Reels hook research",
+      "topics": []}, ["ai_media", "marketing"]),
+):
+    decisions = {}
+    references = website_references_for_project(
+        project, {"domains": domains, "terms": set()}, assessment=decisions
+    )
+    matched = next(ref for ref in references if ref["id"] == darkugc_id)
+    assert matched["integrationEligible"] is False
+    assert decisions[darkugc_id]["decision"] == "matched"
+    assert decisions[darkugc_id]["reviewGates"] == matched["reviewGates"]
+for unrelated, domains in (
+    ({"name": "jumpy-frog", "description": "Godot platform game", "topics": []}, ["game_dev"]),
+    ({"name": "monteur-video", "description": "Automatic video montage", "topics": []}, ["ai_media"]),
+    ({"name": "seo-automation", "description": "Technical SEO audits", "topics": []}, ["marketing"]),
+    ({"name": "production-os", "description": "AI software automation", "topics": []}, ["software_engineering"]),
+):
+    decisions = {}
+    references = website_references_for_project(
+        unrelated, {"domains": domains, "terms": set()}, assessment=decisions
+    )
+    assert darkugc_id not in {ref["id"] for ref in references}, unrelated
+    assert decisions[darkugc_id]["decision"] == "not-relevant", unrelated
+unsafe_darkugc = animation_copy.deepcopy(websites_catalog)
+unsafe_darkugc_entry = next(s for s in unsafe_darkugc["websites"] if s["id"] == darkugc_id)
+unsafe_darkugc_entry["reuse"] = "hosted-service"
+assert validate_visual_websites(unsafe_darkugc, animation_schema)
+unsafe_darkugc_entry["reuse"] = "reference-only"
+unsafe_darkugc_entry["portfolioBaselineDomains"] = ["marketing"]
+assert validate_visual_websites(unsafe_darkugc, animation_schema)
+
 print("OK: recommendation engine smoke tests passed")

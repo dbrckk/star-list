@@ -137,6 +137,20 @@ def check_websites(data, schema):
                     f"{identity}: pixel VFX editor requires specialist matching, "
                     "hosted-source review and no implied commercial asset licence"
                 )
+        # DarkUGC is research content, not a programmatic video/data source.
+        # Website terms prohibit AI-agent crawling, scraping and dataset use.
+        if site["type"] == "ugc-video-research-library":
+            if (site["reuse"] != "reference-only"
+                    or not site.get("portfolioRequiredSignals")
+                    or site.get("portfolioBaselineDomains")
+                    or "marketing" not in site["domains"]
+                    or site.get("mcpEndpoint")
+                    or site.get("sourceLicenseTag")
+                    or site.get("upstreamModel")):
+                errors.append(
+                    f"{identity}: UGC video research library requires manual-only "
+                    "research, specific project signals and no automated access"
+                )
         # Downloadable 3D datasets are assets, never runnable packages or
         # blanket licences to import arbitrary generated meshes into games.
         if site["type"] == "3d-asset-dataset":
