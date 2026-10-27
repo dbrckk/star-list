@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "generated_by": "dbrckk/repo-brain",
-  "base": "13ea3e8164d230446caf3ac2a3be8ab7693e9422",
-  "head": "d720764fe450219d4b8db92d230b6e03a52feef9",
+  "base": "d720764fe450219d4b8db92d230b6e03a52feef9",
+  "head": "3e850e09f40c218103d01dd4fbe45af7cf588966",
   "index_mode": "incremental",
   "changed_files": [
     {
@@ -245,91 +245,91 @@
       "name": "recommend_websites",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 152
+      "line": 159
     },
     {
       "name": "activity_adjustment",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 201
+      "line": 208
     },
     {
       "name": "trend_adjustment",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 221
+      "line": 228
     },
     {
       "name": "delta",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 233
+      "line": 240
     },
     {
       "name": "guidance_weight",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 246
+      "line": 253
     },
     {
       "name": "ranking_review_gates",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 253
+      "line": 260
     },
     {
       "name": "metadata_review_gates",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 265
+      "line": 272
     },
     {
       "name": "score_repo",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 278
+      "line": 285
     },
     {
       "name": "explain_repo",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 313
+      "line": 320
     },
     {
       "name": "choose_stack",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 349
+      "line": 356
     },
     {
       "name": "infer_alternatives",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 376
+      "line": 383
     },
     {
       "name": "infer_complements",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 397
+      "line": 404
     },
     {
       "name": "resolve_relations",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 422
+      "line": 429
     },
     {
       "name": "usable",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 424
+      "line": 431
     },
     {
       "name": "main",
       "kind": "function",
       "file": "scripts/recommend.py",
-      "line": 445
+      "line": 452
     },
     {
       "name": "project",
@@ -365,7 +365,7 @@
       "name": "main",
       "kind": "function",
       "file": "scripts/validate_websites.py",
-      "line": 194
+      "line": 208
     }
   ],
   "selected_tests": [

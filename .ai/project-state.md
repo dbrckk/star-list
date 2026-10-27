@@ -113,13 +113,13 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-26T20:36:28Z
+Generated: 2026-10-27T20:38:58Z
 
 ### Git
 - Branch: `main`
-- Head: `d720764fe450`
-- Commit date: 2026-10-26T16:36:17-04:00
-- Commit: catalog: add Scenario Pixel VFX Forge with review gates (#187)
+- Head: `3e850e09f40c`
+- Commit date: 2026-10-27T16:38:47-04:00
+- Commit: catalog: add manual-only DarkUGC UGC research reference (#188)
 - Tracked files: 315
 
 ### Recently changed files

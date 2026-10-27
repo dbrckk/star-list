@@ -2,26 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "fix(security): block cross-origin API redirects before forwarding bearer tokens (#81)",
-      "terms": [
-        "81",
-        "api",
-        "bearer",
-        "before",
-        "block",
-        "cross-origin",
-        "forwarding",
-        "redirects",
-        "security",
-        "tokens"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/portfolio_daily.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "fix(portfolio): refuse autonomous dispatch after incomplete repository scan (#83)",
       "terms": [
         "83",
@@ -1365,6 +1345,26 @@
         "scripts/test_recommend.py",
         "scripts/validate_websites.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "catalog: add manual-only DarkUGC UGC research reference (#188)",
+      "terms": [
+        "188",
+        "add",
+        "catalog",
+        "darkugc",
+        "manual-only",
+        "reference",
+        "research",
+        "ugc"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/recommend.py",
+        "scripts/test_recommend.py",
+        "scripts/validate_websites.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1640,6 +1640,11 @@
       "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
     },
+    "188": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "19": {
       "scripts/audit_catalog_quality.py": 4,
       "scripts/test_catalog_quality.py": 4
@@ -1795,13 +1800,13 @@
       "scripts/agent_skill_discovery.py": 4,
       "scripts/audit_catalog_quality.py": 4,
       "scripts/portfolio_daily.py": 20,
-      "scripts/recommend.py": 32,
+      "scripts/recommend.py": 36,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_documentation.py": 4,
       "scripts/test_json_contracts.py": 4,
-      "scripts/test_recommend.py": 36,
+      "scripts/test_recommend.py": 40,
       "scripts/validate_catalog.py": 4,
-      "scripts/validate_websites.py": 28
+      "scripts/validate_websites.py": 32
     },
     "admission": {
       "scripts/admit_github_stars.py": 4,
@@ -2037,7 +2042,7 @@
       "scripts/audit_catalog_quality.py": 16,
       "scripts/infer_selection_guidance.py": 4,
       "scripts/portfolio_daily.py": 20,
-      "scripts/recommend.py": 28,
+      "scripts/recommend.py": 32,
       "scripts/refresh_github_metadata.py": 8,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
@@ -2045,12 +2050,12 @@
       "scripts/test_documentation.py": 16,
       "scripts/test_full_catalog_availability.py": 4,
       "scripts/test_json_contracts.py": 8,
-      "scripts/test_recommend.py": 24,
+      "scripts/test_recommend.py": 28,
       "scripts/test_refresh_github_metadata.py": 8,
       "scripts/test_sync_github_stars.py": 4,
       "scripts/test_verify_catalog_evidence.py": 8,
       "scripts/validate_catalog.py": 4,
-      "scripts/validate_websites.py": 12,
+      "scripts/validate_websites.py": 16,
       "scripts/verify_catalog_evidence.py": 8
     },
     "catalog-declared": {
@@ -2150,6 +2155,11 @@
       "scripts/sync_github_stars.py": 4,
       "scripts/test_documentation.py": 8,
       "scripts/test_sync_github_stars.py": 4
+    },
+    "darkugc": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "dashboard": {
       "scripts/portfolio_daily.py": 4,
@@ -2805,6 +2815,11 @@
     "manifests": {
       "scripts/portfolio_daily.py": 8
     },
+    "manual-only": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "marketing": {
       "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 4,
@@ -3126,6 +3141,11 @@
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
     },
+    "reference": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "reference-only": {
       "scripts/portfolio_daily.py": 4
     },
@@ -3230,9 +3250,9 @@
       "scripts/portfolio_daily.py": 4
     },
     "research": {
-      "scripts/recommend.py": 4,
-      "scripts/test_recommend.py": 4,
-      "scripts/validate_websites.py": 4
+      "scripts/recommend.py": 8,
+      "scripts/test_recommend.py": 8,
+      "scripts/validate_websites.py": 8
     },
     "resource": {
       "scripts/portfolio_daily.py": 4,
@@ -3633,6 +3653,11 @@
       "scripts/portfolio_daily.py": 4,
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4
+    },
+    "ugc": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "unavailable": {
       "scripts/portfolio_daily.py": 4

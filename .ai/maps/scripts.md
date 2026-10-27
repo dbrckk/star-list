@@ -4003,6 +4003,9 @@ expected_visual_reuse = visual_reuse_rules.get(site["type"])
 # The playable pixel VFX demo can emit export files, not verified
 # commercially licensed game assets or trusted executable code.
 ⋮----
+# DarkUGC is research content, not a programmatic video/data source.
+# Website terms prohibit AI-agent crawling, scraping and dataset use.
+⋮----
 # Downloadable 3D datasets are assets, never runnable packages or
 # blanket licences to import arbitrary generated meshes into games.
 ⋮----

@@ -3704,7 +3704,8 @@ initial_prompt: |
               "ai-media-generator",
               "3d-asset-dataset",
               "codebase-prompt-generator",
-              "pixel-vfx-editor"
+              "pixel-vfx-editor",
+              "ugc-video-research-library"
             ]
           },
           "access": {
@@ -7722,6 +7723,9 @@ expected_visual_reuse = visual_reuse_rules.get(site["type"])
 # The playable pixel VFX demo can emit export files, not verified
 # commercially licensed game assets or trusted executable code.
 ⋮----
+# DarkUGC is research content, not a programmatic video/data source.
+# Website terms prohibit AI-agent crawling, scraping and dataset use.
+⋮----
 # Downloadable 3D datasets are assets, never runnable packages or
 # blanket licences to import arbitrary generated meshes into games.
 ⋮----
@@ -9637,12 +9641,13 @@ For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **36 curated web resources** for UI design,
+The catalog also includes **37 curated web resources** for UI design,
 animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools,
 AI game prototyping, NPC/voice platforms, licensed downloadable 3D assets,
 narrative design, gameplay QA, reference-to-video/audio model collections,
 quantized image-generation checkpoints, Hugging Face discovery, vision-language
-models, public codebase-to-prompt research and pixel-art VFX editors. Explore them
+models, public codebase-to-prompt research, pixel-art VFX editors and
+manual-only short-form UGC marketing research. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
 repositories and are never passed to Production-OS as code dependencies.
@@ -11688,6 +11693,75 @@ General-purpose GitHub discovery remains advisory and never inserts external can
         "pixel-vfx"
       ],
       "caution": "The browser exploration is advertised as free without signup, but this does not prove that commercial redistribution of exported effects is permitted: Scenario pricing/help pages describe free-plan outputs as personal/evaluation-only while general terms discuss commercial rights. Confirm the licence for this specific exploration and each export before shipping a commercial game; check third-party stage art and attribution separately. PNG/GIF/MP4/ZIP exports and Godot 4 SpriteFrames are advertised but must be tested for transparency, atlas metadata, import compatibility, dimensions, timing, loop quality and mobile performance. Optional agent-skill ZIP, pasted JSON recipes and Scenario MCP are untrusted third-party inputs/services; never auto-download, execute, authorize accounts, spend credits or upload private assets."
+    },
+    {
+      "id": "darkugc",
+      "name": "DarkUGC — short-form app UGC research library",
+      "url": "https://darkugc.com/",
+      "type": "ugc-video-research-library",
+      "access": "free",
+      "domains": [
+        "marketing",
+        "ai_media"
+      ],
+      "tags": [
+        "ugc",
+        "user-generated-content",
+        "app-marketing",
+        "social-media",
+        "creator",
+        "creators",
+        "influencer",
+        "tiktok",
+        "instagram",
+        "reels",
+        "short-form",
+        "viral",
+        "hooks",
+        "hook",
+        "creative-research",
+        "video-marketing",
+        "product-demo",
+        "screen-demo",
+        "brand",
+        "campaign",
+        "creator-brief",
+        "script",
+        "brief",
+        "marketing-research",
+        "content-strategy",
+        "video-advertising",
+        "engagement",
+        "case-study",
+        "benchmarks",
+        "growth"
+      ],
+      "bestFor": [
+        "Manually researching short-form TikTok and Instagram UGC examples for app or brand campaigns",
+        "Comparing recorded video formats, opening hooks, creator styles and brand examples to write original marketing briefs",
+        "Using the browser-based creator brief builder and cited format methodology without reproducing creator videos"
+      ],
+      "reuse": "reference-only",
+      "portfolioRequiredSignals": [
+        "ugc",
+        "user-generated-content",
+        "app-marketing",
+        "video-marketing",
+        "short-form",
+        "reels",
+        "tiktok",
+        "instagram",
+        "creator",
+        "creators",
+        "influencer",
+        "hooks",
+        "hook",
+        "creator-brief",
+        "content-strategy",
+        "viral",
+        "screen-demo"
+      ],
+      "caution": "DarkUGC Terms updated 2026-10-17 explicitly prohibit scraping, crawling, bulk downloading, headless browsers, AI-agent automated access, dataset creation, and use of its text/data/videos for training, fine-tuning or evaluation; the daily Star List audit may match local catalog metadata only and must never fetch/crawl this site automatically. Research is free with normal-use limits; media remain copyrighted by their creators, while breakdowns and scripts are DarkUGC content. Examine originals and obtain individual rights before reuse; produce new creative briefs instead of copying clips or scripts. Recorded views and engagement are historical snapshots selected from successful posts (50K+ view floor), not live numbers, unique reach, app installs or evidence of expected campaign ROI. The local creator brief builder does not transmit entries to an AI service. Respect the site's accounts, rate limits and privacy terms."
     }
   ]
 }
