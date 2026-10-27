@@ -48730,6 +48730,51 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "exa-labs/exa-mcp-server",
+      "githubRepositoryId": 895291604,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "code-search",
+        "codesearch",
+        "crawling",
+        "mcp",
+        "mcp-server",
+        "model-context-protocol",
+        "web-search",
+        "websearch"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5179,
+        "forks": 404,
+        "openIssues": 20,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-19T19:23:37Z"
+      },
+      "bestFor": [
+        "Exa MCP for web search and web crawling!"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
