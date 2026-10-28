@@ -886,4 +886,47 @@ unsafe_darkugc_entry["reuse"] = "reference-only"
 unsafe_darkugc_entry["portfolioBaselineDomains"] = ["marketing"]
 assert validate_visual_websites(unsafe_darkugc, animation_schema)
 
+# The screenshot's 15 upstream MCP projects must be uniquely catalogued.
+# Their MCP servers are external development/runtime adapters; none should
+# be silently inserted as a native application code dependency.
+from portfolio_daily import EXTERNAL_MCP_SERVERS, recommendations as review_mcp_adapters
+hermes_mcp_repos = {
+    "upstash/context7",
+    "ChromeDevTools/chrome-devtools-mcp",
+    "DeusData/codebase-memory-mcp",
+    "microsoft/playwright-mcp",
+    "github/github-mcp-server",
+    "mksglu/context-mode",
+    "ahujasid/mcp-for-blender",
+    "tirth8205/code-review-graph",
+    "oraios/serena",
+    "czlonkowski/n8n-mcp",
+    "googleapis/mcp-toolbox",
+    "xpzouying/xiaohongshu-mcp",
+    "GLips/Figma-Context-MCP",
+    "CoplayDev/unity-mcp",
+    "apify/apify-mcp-server"
+}
+assert len(hermes_mcp_repos) == 15
+assert len({r["repo"].lower() for r in mod.load()[0]}) == len(mod.load()[0])
+hermes_index = {r["repo"].lower(): r for r in mod.load()[0]}
+assert {r.lower() for r in hermes_mcp_repos} <= hermes_index.keys()
+assert {r.lower() for r in hermes_mcp_repos} <= EXTERNAL_MCP_SERVERS
+for upstream in hermes_mcp_repos:
+    candidate = hermes_index[upstream.lower()]
+    assert candidate["bestFor"] and candidate["avoidWhen"]
+    assert candidate["domain"] not in {"other", "trading"}
+    assert "mcp" in candidate["capabilities"]
+    assert candidate["guidanceSource"] == "curated"
+    assert candidate["score"] >= 7
+    terms = mod.tokens(" ".join(candidate["capabilities"] + candidate["bestFor"]))
+    fake_target = {"full_name": "dbrckk/hermes-development","name": "hermes-development"}
+    profile = {"domains": {candidate["domain"]}, "language": (candidate.get("languages") or [""])[0],
+               "terms": terms, "dependencies": set(), "overview": ""}
+    audited = {}
+    advice = review_mcp_adapters(fake_target, profile, [candidate], assessment=audited)
+    assert audited[upstream]["integrationEligible"] is False, upstream
+    assert all(not row["integrationEligible"] for row in advice), upstream
+    assert all(row["mode"] != "native" for row in advice), upstream
+
 print("OK: recommendation engine smoke tests passed")

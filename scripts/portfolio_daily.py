@@ -93,6 +93,28 @@ EXTERNAL_CODING_AGENT_CLIS = frozenset({
     "anomalyco/opencode",
 })
 
+# External Model Context Protocol servers run as separately configured tools.
+# Even same-language, MIT/Apache-licensed servers are NOT libraries to copy
+# into a target app. Human-approved local/hosted setup and scoped credentials
+# are mandatory. Every source is still considered in daily advisory scans.
+EXTERNAL_MCP_SERVERS = frozenset({
+    "upstash/context7",
+    "chromedevtools/chrome-devtools-mcp",
+    "deusdata/codebase-memory-mcp",
+    "microsoft/playwright-mcp",
+    "github/github-mcp-server",
+    "mksglu/context-mode",
+    "ahujasid/mcp-for-blender",
+    "tirth8205/code-review-graph",
+    "oraios/serena",
+    "czlonkowski/n8n-mcp",
+    "googleapis/mcp-toolbox",
+    "xpzouying/xiaohongshu-mcp",
+    "glips/figma-context-mcp",
+    "coplaydev/unity-mcp",
+    "apify/apify-mcp-server",
+})
+
 MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
              "build.gradle.kts", "pubspec.yaml")
 
@@ -541,7 +563,7 @@ def recommendations(repo: dict, profile: dict, catalog: list[dict], count: int |
             "reference-review" if is_reference_candidate(tool) else
             "domain-review" if advisory_routing else
             "policy-review" if blockers else
-            "adapter-review" if external_studio_bridge or slug.lower() in EXTERNAL_CODING_AGENT_CLIS
+            "adapter-review" if external_studio_bridge or slug.lower() in (EXTERNAL_CODING_AGENT_CLIS | EXTERNAL_MCP_SERVERS)
             or not languages_match else
             "native" if capability_overlap else "capability-review"
         )
