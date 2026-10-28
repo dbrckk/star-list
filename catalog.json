@@ -498,10 +498,14 @@
       "repo": "mksglu/context-mode",
       "score": 8.5,
       "tier": "specialized",
-      "category": "Agents / IA / développement",
+      "category": "Agent context budget and tool-output management",
       "domain": "ai_agents",
       "capabilities": [
-        "agent"
+        "mcp",
+        "context-management",
+        "tool-output-filtering",
+        "token-reduction",
+        "agent-efficiency"
       ],
       "languages": [
         "typescript"
@@ -528,12 +532,12 @@
         "pushedAt": "2026-10-11T18:05:48Z"
       },
       "bestFor": [
-        "agentic workflows"
+        "Prevent large MCP tool responses and searches from flooding coding agents' context windows"
       ],
       "avoidWhen": [
-        "simple deterministic scripts without agent orchestration"
+        "Filtered output would hide evidence required for security or correctness review"
       ],
-      "guidanceSource": "inferred",
+      "guidanceSource": "curated",
       "licenseEvidence": "verified-file",
       "githubRepositoryId": 1164477708
     },
@@ -1550,16 +1554,22 @@
       "repo": "ChromeDevTools/chrome-devtools-mcp",
       "score": 9.5,
       "tier": "recommended",
-      "category": "Agents / IA / développement",
-      "domain": "ai_agents",
+      "category": "Browser debugging and developer tools",
+      "domain": "software_engineering",
       "capabilities": [
-        "agent"
+        "mcp",
+        "browser-debugging",
+        "chrome-devtools",
+        "web-performance",
+        "lighthouse",
+        "network-analysis",
+        "browser-automation"
       ],
       "languages": [
         "typescript"
       ],
       "platforms": [
-        "linux"
+        "cross-platform"
       ],
       "selfHosted": true,
       "runtime": [
@@ -1580,12 +1590,13 @@
         "pushedAt": "2026-10-12T11:47:54Z"
       },
       "bestFor": [
-        "agentic workflows"
+        "Debug and profile real Chrome tabs, inspect network activity and page runtime errors during agent-assisted web development"
       ],
       "avoidWhen": [
-        "simple deterministic scripts without agent orchestration"
+        "Chromium is unavailable or browser state contains sensitive logged-in data",
+        "Untrusted websites could redirect an agent into destructive actions"
       ],
-      "guidanceSource": "inferred",
+      "guidanceSource": "curated",
       "githubRepositoryId": 1054793726
     },
     {
@@ -12532,11 +12543,15 @@
       "repo": "DeusData/codebase-memory-mcp",
       "score": 9.2,
       "tier": "recommended",
-      "category": "AI / code memory",
+      "category": "Local codebase knowledge and graph memory",
       "domain": "ai_memory",
       "capabilities": [
-        "memory",
-        "market-data"
+        "codebase-memory",
+        "mcp",
+        "dependency-graph",
+        "code-navigation",
+        "semantic-search",
+        "context-retrieval"
       ],
       "languages": [
         "c"
@@ -12563,12 +12578,13 @@
         "pushedAt": "2026-10-12T04:32:09Z"
       },
       "bestFor": [
-        "retrieval and persistent-memory workflows"
+        "Index and navigate code relationships locally to answer architecture questions and reduce repeated full-file reads"
       ],
       "avoidWhen": [
-        "stateless applications with no retrieval or memory needs"
+        "Private project graph cannot be stored on the chosen machine",
+        "Indexing overhead outweighs benefit for a tiny repository"
       ],
-      "guidanceSource": "inferred",
+      "guidanceSource": "curated",
       "githubRepositoryId": 1166102148
     },
     {
@@ -21887,13 +21903,17 @@
     },
     {
       "repo": "oraios/serena",
-      "score": 7.2,
-      "tier": "indexed",
-      "category": "Navigation sémantique du code",
+      "score": 8.6,
+      "tier": "specialized",
+      "category": "Semantic code editing and navigation",
       "domain": "software_engineering",
       "capabilities": [
-        "code-search",
-        "refactoring"
+        "mcp",
+        "semantic-code-navigation",
+        "code-editing",
+        "symbol-lookup",
+        "refactoring",
+        "code-search"
       ],
       "languages": [
         "python"
@@ -21905,7 +21925,7 @@
       ],
       "resourceLevel": "low",
       "integrationComplexity": "medium",
-      "costModel": "unknown",
+      "costModel": "open-source",
       "github": {
         "stars": 30197,
         "forks": 2059,
@@ -21917,10 +21937,11 @@
         "pushedAt": "2026-10-12T10:54:31Z"
       },
       "bestFor": [
-        "Naviguer et éditer des projets via des outils sémantiques"
+        "Locate symbols and relationships before precise edits in large source code repositories"
       ],
       "avoidWhen": [
-        "Éditions sans tests ou revues de diff"
+        "Language server support is missing",
+        "Semantic edits would be applied without diffs and tests"
       ],
       "guidanceSource": "curated",
       "lifecycle": "active",
@@ -32058,7 +32079,7 @@
     {
       "repo": "78/xiaozhi-esp32",
       "githubRepositoryId": 850267588,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -32098,7 +32119,7 @@
     {
       "repo": "abraxas/pfsense-qinq-parent-if",
       "githubRepositoryId": 1417408240,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -32134,7 +32155,7 @@
     {
       "repo": "academa-labs/manimgx",
       "githubRepositoryId": 1406372374,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -32170,7 +32191,7 @@
     {
       "repo": "ace-step/ACE-Step-1.5",
       "githubRepositoryId": 1050131556,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -32208,7 +32229,7 @@
     {
       "repo": "activepieces/activepieces",
       "githubRepositoryId": 573661753,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -32257,7 +32278,7 @@
     {
       "repo": "Adaptix-Framework/AdaptixC2",
       "githubRepositoryId": 845681113,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -32293,7 +32314,7 @@
     {
       "repo": "Alibaba-NLP/DeepResearch",
       "githubRepositoryId": 914316754,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -32339,7 +32360,7 @@
     {
       "repo": "Anil-matcha/AI-Youtube-Shorts-Generator",
       "githubRepositoryId": 821280833,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -32388,7 +32409,7 @@
     {
       "repo": "antgroup/echomimic",
       "githubRepositoryId": 823448250,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -32431,7 +32452,7 @@
     {
       "repo": "anthropics/claude-agent-sdk-python",
       "githubRepositoryId": 1000486904,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -32465,7 +32486,7 @@
     {
       "repo": "anthropics/claude-quickstarts",
       "githubRepositoryId": 849553306,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -32501,7 +32522,7 @@
     {
       "repo": "apache/caldera",
       "githubRepositoryId": 112409981,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -32545,7 +32566,7 @@
     {
       "repo": "Armur-Ai/Pentest-Swarm-AI",
       "githubRepositoryId": 777597786,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -32589,7 +32610,7 @@
     {
       "repo": "Asad-Ismail/MoneyPrinterTurbo-Extended",
       "githubRepositoryId": 988352805,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -32625,7 +32646,7 @@
     {
       "repo": "assafelovic/gpt-researcher",
       "githubRepositoryId": 639835356,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -32673,7 +32694,7 @@
     {
       "repo": "ATH-MaaS/Pixelle-Video",
       "githubRepositoryId": 1091534692,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Génération de médias / IA",
       "domain": "ai_media",
@@ -32715,7 +32736,7 @@
     {
       "repo": "bdring/Grbl_Esp32",
       "githubRepositoryId": 142050049,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -32756,7 +32777,7 @@
     {
       "repo": "bearinmindcat/morphe-patches",
       "githubRepositoryId": 1384369772,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -32792,7 +32813,7 @@
     {
       "repo": "BishopFox/sliver",
       "githubRepositoryId": 166304026,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -32841,7 +32862,7 @@
     {
       "repo": "BitMaker-hub/NerdMiner_v2",
       "githubRepositoryId": 616222670,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -32881,7 +32902,7 @@
     {
       "repo": "black-forest-labs/flux2",
       "githubRepositoryId": 1103476826,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -32917,7 +32938,7 @@
     {
       "repo": "BojanJurca/Esp32_oscilloscope",
       "githubRepositoryId": 204138683,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -32957,7 +32978,7 @@
     {
       "repo": "BruceDevices/firmware",
       "githubRepositoryId": 795166961,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -33006,7 +33027,7 @@
     {
       "repo": "ccusage/ccusage",
       "githubRepositoryId": 992755069,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -33042,7 +33063,7 @@
     {
       "repo": "chatfire-AI/huobao-drama",
       "githubRepositoryId": 1128267392,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -33078,7 +33099,7 @@
     {
       "repo": "chatwoot/chatwoot",
       "githubRepositoryId": 202291859,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "DevOps / infrastructure",
       "domain": "devops",
@@ -33127,7 +33148,7 @@
     {
       "repo": "cifertech/ESP32-DIV",
       "githubRepositoryId": 698976765,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -33176,7 +33197,7 @@
     {
       "repo": "ckcr4lyf/EvilAppleJuice-ESP32",
       "githubRepositoryId": 690585078,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -33212,7 +33233,7 @@
     {
       "repo": "copperheadhq/copperhead",
       "githubRepositoryId": 1304752726,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -33261,7 +33282,7 @@
     {
       "repo": "cosmo-wander-ai/cosmo-edge",
       "githubRepositoryId": 1263549136,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -33310,7 +33331,7 @@
     {
       "repo": "cyberman54/ESP32-Paxcounter",
       "githubRepositoryId": 125756247,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -33359,7 +33380,7 @@
     {
       "repo": "daimajia/AndroidSwipeLayout",
       "githubRepositoryId": 23301468,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -33395,7 +33416,7 @@
     {
       "repo": "DroneBridge/ESP32",
       "githubRepositoryId": 145338929,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -33444,7 +33465,7 @@
     {
       "repo": "easytarget/esp32-cam-webserver",
       "githubRepositoryId": 222949196,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -33488,7 +33509,7 @@
     {
       "repo": "Edzelf/ESP32-Radio",
       "githubRepositoryId": 92173631,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -33524,7 +33545,7 @@
     {
       "repo": "elizaOS/eliza",
       "githubRepositoryId": 826170402,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Mémoire / IA",
       "domain": "ai_memory",
@@ -33573,7 +33594,7 @@
     {
       "repo": "EmenstaNougat/ESP32-BlueJammer",
       "githubRepositoryId": 825347997,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -33620,7 +33641,7 @@
     {
       "repo": "emsesp/EMS-ESP32",
       "githubRepositoryId": 347619427,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Productivité",
       "domain": "productivity",
@@ -33669,7 +33690,7 @@
     {
       "repo": "Err0r-ICA/TermuxCyberArmy",
       "githubRepositoryId": 255031199,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -33716,7 +33737,7 @@
     {
       "repo": "espressif/arduino-esp32",
       "githubRepositoryId": 70127218,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -33756,7 +33777,7 @@
     {
       "repo": "espressif/esp-at",
       "githubRepositoryId": 78652809,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -33805,7 +33826,7 @@
     {
       "repo": "espressif/esp-drone",
       "githubRepositoryId": 274066307,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -33845,7 +33866,7 @@
     {
       "repo": "espressif/esp32-camera",
       "githubRepositoryId": 157359627,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -33879,7 +33900,7 @@
     {
       "repo": "Forget-C/Jellyfish",
       "githubRepositoryId": 1174289380,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Génération de médias / IA",
       "domain": "ai_media",
@@ -33918,7 +33939,7 @@
     {
       "repo": "frappe/erpnext",
       "githubRepositoryId": 1864233,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -33967,7 +33988,7 @@
     {
       "repo": "frida/frida",
       "githubRepositoryId": 9405122,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -34007,7 +34028,7 @@
     {
       "repo": "fudan-generative-vision/hallo",
       "githubRepositoryId": 813932983,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -34047,7 +34068,7 @@
     {
       "repo": "fudan-generative-vision/hallo2",
       "githubRepositoryId": 873495890,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -34083,7 +34104,7 @@
     {
       "repo": "fudan-generative-vision/hallo3",
       "githubRepositoryId": 894800166,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -34119,7 +34140,7 @@
     {
       "repo": "geo-tp/ESP32-Bit-Pirate",
       "githubRepositoryId": 1014515436,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -34168,7 +34189,7 @@
     {
       "repo": "github/spec-kit",
       "githubRepositoryId": 1042367133,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -34212,7 +34233,7 @@
     {
       "repo": "h0m3us3r/eSpDR",
       "githubRepositoryId": 1387871388,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -34246,7 +34267,7 @@
     {
       "repo": "h0m3us3r/w1700k-sdr",
       "githubRepositoryId": 1414851145,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -34280,7 +34301,7 @@
     {
       "repo": "Hackertrackersj/Instabruteforce",
       "githubRepositoryId": 291504849,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -34323,7 +34344,7 @@
     {
       "repo": "happydog-intj/CircleProgress",
       "githubRepositoryId": 25979092,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -34359,7 +34380,7 @@
     {
       "repo": "HBAI-Ltd/Toonflow-app",
       "githubRepositoryId": 1145022970,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Génération de médias / IA",
       "domain": "ai_media",
@@ -34408,7 +34429,7 @@
     {
       "repo": "hexgrad/kokoro",
       "githubRepositoryId": 915054134,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -34444,7 +34465,7 @@
     {
       "repo": "hugohe3/ppt-master",
       "githubRepositoryId": 1113573066,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -34491,7 +34512,7 @@
     {
       "repo": "Humanive/cogfree",
       "githubRepositoryId": 1403010415,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -34525,7 +34546,7 @@
     {
       "repo": "icsharpcode/ILSpy",
       "githubRepositoryId": 1327739,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -34572,7 +34593,7 @@
     {
       "repo": "InternLM/MindSearch",
       "githubRepositoryId": 834688418,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -34619,7 +34640,7 @@
     {
       "repo": "ItzCrazyKns/Vane",
       "githubRepositoryId": 784181462,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Mémoire / IA",
       "domain": "ai_memory",
@@ -34668,7 +34689,7 @@
     {
       "repo": "joey-zhou/xiaozhi-esp32-server-java",
       "githubRepositoryId": 939839664,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -34717,7 +34738,7 @@
     {
       "repo": "KlingAIResearch/LivePortrait",
       "githubRepositoryId": 823745702,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -34758,7 +34779,7 @@
     {
       "repo": "krillinai/OpenCreator",
       "githubRepositoryId": 904490600,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -34807,7 +34828,7 @@
     {
       "repo": "langchain-ai/social-media-agent",
       "githubRepositoryId": 892240018,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -34843,7 +34864,7 @@
     {
       "repo": "LearningCircuit/local-deep-research",
       "githubRepositoryId": 929868765,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -34892,7 +34913,7 @@
     {
       "repo": "letscontrolit/ESPEasy",
       "githubRepositoryId": 42119846,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -34928,7 +34949,7 @@
     {
       "repo": "lipku/LiveTalking",
       "githubRepositoryId": 733283939,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -34977,7 +34998,7 @@
     {
       "repo": "liseami/CCBaga",
       "githubRepositoryId": 1413898431,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -35011,7 +35032,7 @@
     {
       "repo": "lmarzen/esp32-weather-epd",
       "githubRepositoryId": 467381275,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -35054,7 +35075,7 @@
     {
       "repo": "luigifcruz/BirriaSDR",
       "githubRepositoryId": 1416428935,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -35088,7 +35109,7 @@
     {
       "repo": "lyogavin/airllm",
       "githubRepositoryId": 652712035,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -35137,7 +35158,7 @@
     {
       "repo": "MaeKing/geospy",
       "githubRepositoryId": 226969141,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -35171,7 +35192,7 @@
     {
       "repo": "magnitudedev/magnitude",
       "githubRepositoryId": 1267145484,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -35207,7 +35228,7 @@
     {
       "repo": "makerspet/oomwoo",
       "githubRepositoryId": 1264722786,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -35256,7 +35277,7 @@
     {
       "repo": "manycore-research/SpatialLM",
       "githubRepositoryId": 948245457,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -35297,7 +35318,7 @@
     {
       "repo": "marc-shade/world-intel-mcp",
       "githubRepositoryId": 1106643041,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -35346,7 +35367,7 @@
     {
       "repo": "martin-ger/esp32_nat_router",
       "githubRepositoryId": 241046888,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -35395,7 +35416,7 @@
     {
       "repo": "me-no-dev/ESPAsyncWebServer",
       "githubRepositoryId": 48289924,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -35431,7 +35452,7 @@
     {
       "repo": "microsoft/BitNet",
       "githubRepositoryId": 838253246,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -35467,7 +35488,7 @@
     {
       "repo": "MiniMax-AI/Mini-Agent",
       "githubRepositoryId": 1086887314,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -35507,7 +35528,7 @@
     {
       "repo": "miqdadbadjuber/anti-slop",
       "githubRepositoryId": 1326531152,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -35554,7 +35575,7 @@
     {
       "repo": "mrexodia/ida-pro-mcp",
       "githubRepositoryId": 954963562,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -35600,7 +35621,7 @@
     {
       "repo": "multica-ai/andrej-karpathy-skills",
       "githubRepositoryId": 1142983825,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -35634,7 +35655,7 @@
     {
       "repo": "neilsonnn/image-blaster",
       "githubRepositoryId": 1216542069,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -35670,7 +35691,7 @@
     {
       "repo": "newliver666/apk-reverse",
       "githubRepositoryId": 1377172300,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -35706,7 +35727,7 @@
     {
       "repo": "nhovongoc0-max/meme-radar",
       "githubRepositoryId": 1366032081,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -35750,7 +35771,7 @@
     {
       "repo": "nodemcu/nodemcu-firmware",
       "githubRepositoryId": 26917568,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -35795,7 +35816,7 @@
     {
       "repo": "NVIDIA-AI-Blueprints/deep-researcher-agent",
       "githubRepositoryId": 931216241,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -35831,7 +35852,7 @@
     {
       "repo": "NVIDIA/garak",
       "githubRepositoryId": 639097338,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -35873,7 +35894,7 @@
     {
       "repo": "NVlabs/Sana",
       "githubRepositoryId": 871368615,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Data / Machine Learning",
       "domain": "data_ml",
@@ -35922,7 +35943,7 @@
     {
       "repo": "okalachev/flix",
       "githubRepositoryId": 293365149,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -35970,7 +35991,7 @@
     {
       "repo": "onehumanbeing/esp32-iphone-agent",
       "githubRepositoryId": 1414685342,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -36016,7 +36037,7 @@
     {
       "repo": "openbin-ai/binny",
       "githubRepositoryId": 1412775677,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -36059,7 +36080,7 @@
     {
       "repo": "OpenBMB/MiniCPM-V",
       "githubRepositoryId": 749647889,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -36100,7 +36121,7 @@
     {
       "repo": "openfw-game/OpenLiberty",
       "githubRepositoryId": 563558121,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -36148,7 +36169,7 @@
     {
       "repo": "OpenTalker/SadTalker",
       "githubRepositoryId": 569518584,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -36194,7 +36215,7 @@
     {
       "repo": "peng-zhihui/ESP32-PicoDK",
       "githubRepositoryId": 368728111,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -36228,7 +36249,7 @@
     {
       "repo": "PlummersSoftwareLLC/NightDriverStrip",
       "githubRepositoryId": 408525324,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -36270,7 +36291,7 @@
     {
       "repo": "pschatzmann/ESP32-A2DP",
       "githubRepositoryId": 250600247,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -36316,7 +36337,7 @@
     {
       "repo": "pytorch/pytorch",
       "githubRepositoryId": 65600975,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Data / Machine Learning",
       "domain": "data_ml",
@@ -36361,7 +36382,7 @@
     {
       "repo": "ranxianglei/billion-context",
       "githubRepositoryId": 1324949198,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -36399,7 +36420,7 @@
     {
       "repo": "RavenSystem/esp-homekit-devices",
       "githubRepositoryId": 119086992,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Mémoire / IA",
       "domain": "ai_memory",
@@ -36448,7 +36469,7 @@
     {
       "repo": "remotion-dev/remotion",
       "githubRepositoryId": 274495425,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement web",
       "domain": "web_frontend",
@@ -36488,7 +36509,7 @@
     {
       "repo": "remotion-dev/skills",
       "githubRepositoryId": 1137388347,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -36524,7 +36545,7 @@
     {
       "repo": "repowise-dev/repowise",
       "githubRepositoryId": 1189384516,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -36573,7 +36594,7 @@
     {
       "repo": "risinek/esp32-wifi-penetration-tool",
       "githubRepositoryId": 354963447,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -36615,7 +36636,7 @@
     {
       "repo": "roryclear/clearcam",
       "githubRepositoryId": 912164685,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -36661,7 +36682,7 @@
     {
       "repo": "rtk-ai/rtk",
       "githubRepositoryId": 1139971460,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -36710,7 +36731,7 @@
     {
       "repo": "Rudrabha/Wav2Lip",
       "githubRepositoryId": 285774113,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -36746,7 +36767,7 @@
     {
       "repo": "rzeldent/esp32cam-rtsp",
       "githubRepositoryId": 510936336,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -36795,7 +36816,7 @@
     {
       "repo": "s60sc/ESP32-CAM_MJPEG2SD",
       "githubRepositoryId": 238784472,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -36844,7 +36865,7 @@
     {
       "repo": "SamboyCoding/Cpp2IL",
       "githubRepositoryId": 192676329,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -36888,7 +36909,7 @@
     {
       "repo": "ScrapeCreators/social-media-research-skills",
       "githubRepositoryId": 1261571908,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -36937,7 +36958,7 @@
     {
       "repo": "ShawnPana/phone-harness",
       "githubRepositoryId": 1327214801,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Productivité",
       "domain": "productivity",
@@ -36980,7 +37001,7 @@
     {
       "repo": "SimoneAvogadro/android-reverse-engineering-skill",
       "githubRepositoryId": 1148127041,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -37016,7 +37037,7 @@
     {
       "repo": "slvDev/esp32-ai",
       "githubRepositoryId": 1310057619,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -37050,7 +37071,7 @@
     {
       "repo": "slymnoyann/hey.xyz",
       "githubRepositoryId": 471728341,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement web",
       "domain": "web_frontend",
@@ -37099,7 +37120,7 @@
     {
       "repo": "smoochiee/Bluetooth-jammer-esp32",
       "githubRepositoryId": 767912363,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -37135,7 +37156,7 @@
     {
       "repo": "souzatharsis/podcastfy",
       "githubRepositoryId": 865656561,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -37178,7 +37199,7 @@
     {
       "repo": "stanford-oval/storm",
       "githubRepositoryId": 776854298,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Mémoire / IA",
       "domain": "ai_memory",
@@ -37224,7 +37245,7 @@
     {
       "repo": "sudoingX/local-ai-on-your-gaming-gpu",
       "githubRepositoryId": 1377373768,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -37273,7 +37294,7 @@
     {
       "repo": "SWE-agent/mini-swe-agent",
       "githubRepositoryId": 1010318950,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -37316,7 +37337,7 @@
     {
       "repo": "sybil-solutions/local-studio",
       "githubRepositoryId": 1118209602,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -37362,7 +37383,7 @@
     {
       "repo": "T-vK/ESP32-BLE-Keyboard",
       "githubRepositoryId": 201084730,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -37406,7 +37427,7 @@
     {
       "repo": "T-vK/ESP32-BLE-Mouse",
       "githubRepositoryId": 200223585,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -37451,7 +37472,7 @@
     {
       "repo": "techjarves/Portable-Local-Studio",
       "githubRepositoryId": 1258932513,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Génération de médias / IA",
       "domain": "ai_media",
@@ -37492,7 +37513,7 @@
     {
       "repo": "TMElyralab/MuseTalk",
       "githubRepositoryId": 777554659,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -37531,7 +37552,7 @@
     {
       "repo": "totec448-spec/chat-on-steroids",
       "githubRepositoryId": 1342876750,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Productivité",
       "domain": "productivity",
@@ -37578,7 +37599,7 @@
     {
       "repo": "trailhq/Trail-Code",
       "githubRepositoryId": 1288325627,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -37627,7 +37648,7 @@
     {
       "repo": "twelvesec/gasmask",
       "githubRepositoryId": 116033360,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -37667,7 +37688,7 @@
     {
       "repo": "UncleRus/esp-idf-lib",
       "githubRepositoryId": 126475029,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -37716,7 +37737,7 @@
     {
       "repo": "v12-security/pocs",
       "githubRepositoryId": 1237484347,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -37752,7 +37773,7 @@
     {
       "repo": "waooAI/waoowaoo",
       "githubRepositoryId": 1139782619,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -37797,7 +37818,7 @@
     {
       "repo": "WerWolv/ImHex",
       "githubRepositoryId": 311683390,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -37846,7 +37867,7 @@
     {
       "repo": "wesammustafa/Claude-Code-Everything-You-Need-to-Know",
       "githubRepositoryId": 1039579222,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -37895,7 +37916,7 @@
     {
       "repo": "whitecatboard/Lua-RTOS-ESP32",
       "githubRepositoryId": 70908474,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -37942,7 +37963,7 @@
     {
       "repo": "witnessmenow/ESP32-Cheap-Yellow-Display",
       "githubRepositoryId": 642997489,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -37978,7 +37999,7 @@
     {
       "repo": "wled/WLED",
       "githubRepositoryId": 76990209,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -38020,7 +38041,7 @@
     {
       "repo": "wshobson/agents",
       "githubRepositoryId": 1025856648,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -38069,7 +38090,7 @@
     {
       "repo": "xinnan-tech/xiaozhi-esp32-server",
       "githubRepositoryId": 926087200,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Backend / API",
       "domain": "backend",
@@ -38113,7 +38134,7 @@
     {
       "repo": "xtool-org/xtool",
       "githubRepositoryId": 889784913,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -38156,7 +38177,7 @@
     {
       "repo": "yamadashy/repomix",
       "githubRepositoryId": 828119367,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -38205,7 +38226,7 @@
     {
       "repo": "YILS-LIN/short-video-factory",
       "githubRepositoryId": 1016509116,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Productivité",
       "domain": "productivity",
@@ -38254,7 +38275,7 @@
     {
       "repo": "yoursunny/esp32cam",
       "githubRepositoryId": 163605157,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -38295,7 +38316,7 @@
     {
       "repo": "Zejun-Yang/AniPortrait",
       "githubRepositoryId": 775873810,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -38331,7 +38352,7 @@
     {
       "repo": "0xNyk/awesome-hermes-agent",
       "githubRepositoryId": 1189234446,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -38376,7 +38397,7 @@
     {
       "repo": "1Panel-dev/1Panel",
       "githubRepositoryId": 515647260,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -38425,7 +38446,7 @@
     {
       "repo": "aaron-he-zhu/aaron-marketing-skills",
       "githubRepositoryId": 1118625972,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Productivité",
       "domain": "productivity",
@@ -38474,7 +38495,7 @@
     {
       "repo": "abundantbeing/hermes-browser-extension",
       "githubRepositoryId": 1278668528,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -38519,7 +38540,7 @@
     {
       "repo": "alchaincyf/hermes-agent-orange-book",
       "githubRepositoryId": 1204451436,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -38555,7 +38576,7 @@
     {
       "repo": "AlexAnys/awesome-openclaw-usecases-zh",
       "githubRepositoryId": 1164376059,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -38602,7 +38623,7 @@
     {
       "repo": "AMAP-ML/SkillClaw",
       "githubRepositoryId": 1206566990,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -38651,7 +38672,7 @@
     {
       "repo": "anysearch-ai/anysearch-skill",
       "githubRepositoryId": 1225178950,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -38694,7 +38715,7 @@
     {
       "repo": "bitwarden/server",
       "githubRepositoryId": 46755185,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Backend / API",
       "domain": "backend",
@@ -38742,7 +38763,7 @@
     {
       "repo": "CellularPrivacy/Android-IMSI-Catcher-Detector",
       "githubRepositoryId": 14640193,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -38780,7 +38801,7 @@
     {
       "repo": "conorbronsdon/avoid-ai-writing",
       "githubRepositoryId": 1174224707,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -38824,7 +38845,7 @@
     {
       "repo": "crafter-station/petdex",
       "githubRepositoryId": 1227102698,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement web",
       "domain": "web_frontend",
@@ -38873,7 +38894,7 @@
     {
       "repo": "EKKOLearnAI/ekko-studio",
       "githubRepositoryId": 1207639951,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -38922,7 +38943,7 @@
     {
       "repo": "EverMind-AI/Raven",
       "githubRepositoryId": 1245465729,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -38971,7 +38992,7 @@
     {
       "repo": "facebook/hermes",
       "githubRepositoryId": 154201259,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -39007,7 +39028,7 @@
     {
       "repo": "facebook/memlab",
       "githubRepositoryId": 496768943,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -39056,7 +39077,7 @@
     {
       "repo": "Faceplugin-ltd/Open-Source-Face-Recognition-SDK",
       "githubRepositoryId": 917979862,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -39101,7 +39122,7 @@
     {
       "repo": "FailproofAI/failproofai",
       "githubRepositoryId": 1202410617,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -39150,7 +39171,7 @@
     {
       "repo": "farion1231/cc-switch",
       "githubRepositoryId": 1031912724,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -39199,7 +39220,7 @@
     {
       "repo": "fathah/hermes-desktop",
       "githubRepositoryId": 1199668171,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -39242,7 +39263,7 @@
     {
       "repo": "garrytan/gbrain",
       "githubRepositoryId": 1202057891,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -39278,7 +39299,7 @@
     {
       "repo": "getpaseo/paseo",
       "githubRepositoryId": 1075381375,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -39327,7 +39348,7 @@
     {
       "repo": "Infisical/agent-vault",
       "githubRepositoryId": 1194056092,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -39367,7 +39388,7 @@
     {
       "repo": "iOfficeAI/AionUi",
       "githubRepositoryId": 1033778670,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -39416,7 +39437,7 @@
     {
       "repo": "jnMetaCode/superpowers-zh",
       "githubRepositoryId": 1186742994,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -39465,7 +39486,7 @@
     {
       "repo": "junhoyeo/tokscale",
       "githubRepositoryId": 1107676388,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -39514,7 +39535,7 @@
     {
       "repo": "K-Dense-AI/scientific-agent-skills",
       "githubRepositoryId": 1079456184,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -39563,7 +39584,7 @@
     {
       "repo": "langbot-app/LangBot",
       "githubRepositoryId": 575321313,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Mémoire / IA",
       "domain": "ai_memory",
@@ -39612,7 +39633,7 @@
     {
       "repo": "LearnPrompt/LearnPrompt",
       "githubRepositoryId": 631484230,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Génération de médias / IA",
       "domain": "ai_media",
@@ -39661,7 +39682,7 @@
     {
       "repo": "liaohch3/claude-tap",
       "githubRepositoryId": 1158479469,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -39710,7 +39731,7 @@
     {
       "repo": "lightseekorg/tokenspeed",
       "githubRepositoryId": 1230933500,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -39759,7 +39780,7 @@
     {
       "repo": "LoRexxar/Kunlun-M",
       "githubRepositoryId": 102699687,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -39795,7 +39816,7 @@
     {
       "repo": "matcornic/hermes",
       "githubRepositoryId": 86179273,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -39844,7 +39865,7 @@
     {
       "repo": "MemoriLabs/Memori",
       "githubRepositoryId": 1025381911,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Mémoire / IA",
       "domain": "ai_memory",
@@ -39893,7 +39914,7 @@
     {
       "repo": "MemTensor/MemOS",
       "githubRepositoryId": 1014729376,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Mémoire / IA",
       "domain": "ai_memory",
@@ -39942,7 +39963,7 @@
     {
       "repo": "MervinPraison/PraisonAI",
       "githubRepositoryId": 774497032,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Mémoire / IA",
       "domain": "ai_memory",
@@ -39991,7 +40012,7 @@
     {
       "repo": "mnemosyne-oss/mnemosyne",
       "githubRepositoryId": 1202070696,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -40034,7 +40055,7 @@
     {
       "repo": "nesquena/hermes-webui",
       "githubRepositoryId": 1196617276,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -40076,7 +40097,7 @@
     {
       "repo": "NousResearch/autonovel",
       "githubRepositoryId": 1181397760,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -40112,7 +40133,7 @@
     {
       "repo": "NousResearch/hermes-agent-self-evolution",
       "githubRepositoryId": 1176753219,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -40148,7 +40169,7 @@
     {
       "repo": "NousResearch/hermes-paperclip-adapter",
       "githubRepositoryId": 1178355842,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -40184,7 +40205,7 @@
     {
       "repo": "NVIDIA/NemoClaw",
       "githubRepositoryId": 1182547092,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -40229,7 +40250,7 @@
     {
       "repo": "ok1cdj/ESP32-ATV",
       "githubRepositoryId": 1418783436,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -40265,7 +40286,7 @@
     {
       "repo": "openai/whisper",
       "githubRepositoryId": 537603333,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -40301,7 +40322,7 @@
     {
       "repo": "Oros42/IMSI-catcher",
       "githubRepositoryId": 36830211,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -40347,7 +40368,7 @@
     {
       "repo": "outsourc-e/hermes-workspace",
       "githubRepositoryId": 1182887460,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement web",
       "domain": "web_frontend",
@@ -40391,7 +40412,7 @@
     {
       "repo": "penpot/penpot",
       "githubRepositoryId": 48769241,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -40435,7 +40456,7 @@
     {
       "repo": "qingchencloud/clawpanel",
       "githubRepositoryId": 1167607007,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -40484,7 +40505,7 @@
     {
       "repo": "rohitg00/agentmemory",
       "githubRepositoryId": 1166408297,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -40533,7 +40554,7 @@
     {
       "repo": "screenpipe/screenpipe",
       "githubRepositoryId": 817326197,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -40582,7 +40603,7 @@
     {
       "repo": "spinabot/brigade",
       "githubRepositoryId": 1274498048,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -40631,7 +40652,7 @@
     {
       "repo": "uzairansaruzi/hermex",
       "githubRepositoryId": 1287168491,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -40676,7 +40697,7 @@
     {
       "repo": "Waishnav/devspace",
       "githubRepositoryId": 1269395331,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -40720,7 +40741,7 @@
     {
       "repo": "xerj-org/xerj",
       "githubRepositoryId": 1284653133,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -40769,7 +40790,7 @@
     {
       "repo": "YeQing17-2026/OmniAgent",
       "githubRepositoryId": 1212568395,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -40809,7 +40830,7 @@
     {
       "repo": "yt-dlp/yt-dlp",
       "githubRepositoryId": 307260205,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -40853,7 +40874,7 @@
     {
       "repo": "100yenadmin/fish-audio-hermes",
       "githubRepositoryId": 1405168737,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -40898,7 +40919,7 @@
     {
       "repo": "richiemcilroy/Tov",
       "githubRepositoryId": 1396004915,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -40934,7 +40955,7 @@
     {
       "repo": "twostraws/SwiftUI-Agent-Skill",
       "githubRepositoryId": 1173845549,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -40968,7 +40989,7 @@
     {
       "repo": "radek-sixi/laya-as-judge",
       "githubRepositoryId": 1380981440,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -41011,7 +41032,7 @@
     {
       "repo": "baidu/Unlimited-OCR",
       "githubRepositoryId": 1273138090,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -41047,7 +41068,7 @@
     {
       "repo": "Liquid4All/cookbook",
       "githubRepositoryId": 1069004513,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -41090,7 +41111,7 @@
     {
       "repo": "oxylabs/web-api-mcp",
       "githubRepositoryId": 1344122020,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Backend / API",
       "domain": "backend",
@@ -41134,7 +41155,7 @@
     {
       "repo": "ScrapeGraphAI/Scrapegraph-ai",
       "githubRepositoryId": 749126547,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Mémoire / IA",
       "domain": "ai_memory",
@@ -41183,7 +41204,7 @@
     {
       "repo": "anishfn/shapeshift",
       "githubRepositoryId": 1381152958,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -41219,7 +41240,7 @@
     {
       "repo": "lukasz-madon/awesome-remote-job",
       "githubRepositoryId": 28699471,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -41257,7 +41278,7 @@
     {
       "repo": "proxysoul/Empryo",
       "githubRepositoryId": 1170138985,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -41306,7 +41327,7 @@
     {
       "repo": "stkw0/awesome-telegram-groups",
       "githubRepositoryId": 75951376,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -41343,7 +41364,7 @@
     {
       "repo": "Usagi-org/ai-goofish-monitor",
       "githubRepositoryId": 1020672081,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -41392,7 +41413,7 @@
     {
       "repo": "XiaomingX/ai-money-maker-handbook",
       "githubRepositoryId": 887171538,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Mémoire / IA",
       "domain": "ai_memory",
@@ -41431,7 +41452,7 @@
     {
       "repo": "audacity/audacity",
       "githubRepositoryId": 32921736,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -41475,7 +41496,7 @@
     {
       "repo": "excalidraw/excalidraw",
       "githubRepositoryId": 231283452,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Productivité",
       "domain": "productivity",
@@ -41519,7 +41540,7 @@
     {
       "repo": "FFmpeg/FFmpeg",
       "githubRepositoryId": 1614410,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -41568,7 +41589,7 @@
     {
       "repo": "fontsource/fontsource",
       "githubRepositoryId": 264742473,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -41617,7 +41638,7 @@
     {
       "repo": "googleworkspace/cli",
       "githubRepositoryId": 1171026502,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -41666,7 +41687,7 @@
     {
       "repo": "leepokai/jev-guard",
       "githubRepositoryId": 1374583864,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -41713,7 +41734,7 @@
     {
       "repo": "lucide-icons/lucide",
       "githubRepositoryId": 270722949,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -41760,23 +41781,31 @@
     {
       "repo": "microsoft/playwright-mcp",
       "githubRepositoryId": 952688112,
-      "score": 6.0,
-      "tier": "indexed",
-      "category": "Autres / à examiner",
-      "domain": "other",
+      "score": 8.7,
+      "tier": "specialized",
+      "category": "MCP browser automation and testing",
+      "domain": "software_engineering",
       "capabilities": [
         "mcp",
-        "playwright"
+        "playwright",
+        "browser-automation",
+        "web-testing",
+        "ui-testing",
+        "accessibility-snapshot"
       ],
       "languages": [
         "typescript"
       ],
-      "platforms": [],
-      "selfHosted": "unknown",
-      "runtime": [],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local"
+      ],
       "resourceLevel": "medium",
       "integrationComplexity": "medium",
-      "costModel": "unknown",
+      "costModel": "open-source",
       "github": {
         "stars": 38267,
         "forks": 3265,
@@ -41788,18 +41817,20 @@
         "pushedAt": "2026-10-16T22:43:43Z"
       },
       "bestFor": [
-        "Playwright MCP server"
+        "Operate web interfaces and inspect page state through Playwright in an agent review or test session"
       ],
       "avoidWhen": [
-        "production use before licensing and security review"
+        "Direct headless browsing of third-party websites violates access terms",
+        "Browser profile includes credentials or private data",
+        "Tool output is treated as trusted instructions"
       ],
-      "guidanceSource": "inferred",
-      "lifecycle": "reference"
+      "guidanceSource": "curated",
+      "lifecycle": "active"
     },
     {
       "repo": "svg/svgo",
       "githubRepositoryId": 5508088,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -41844,7 +41875,7 @@
     {
       "repo": "Goochbeater/Spiritual-Spell-Red-Teaming",
       "githubRepositoryId": 1117138770,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -41878,7 +41909,7 @@
     {
       "repo": "iBotPeaches/Apktool",
       "githubRepositoryId": 3766706,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -41921,7 +41952,7 @@
     {
       "repo": "Kablex/ComfyUI-Ref2VA-VSA",
       "githubRepositoryId": 1358168733,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Génération de médias / IA",
       "domain": "ai_media",
@@ -41955,7 +41986,7 @@
     {
       "repo": "LumaryLabsLLC/muxin",
       "githubRepositoryId": 1410747188,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -42002,7 +42033,7 @@
     {
       "repo": "MG1937/rust_ASC",
       "githubRepositoryId": 1421657964,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -42046,7 +42077,7 @@
     {
       "repo": "mw00/project-maya",
       "githubRepositoryId": 1407997858,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -42095,7 +42126,7 @@
     {
       "repo": "ReFirmLabs/binwalk",
       "githubRepositoryId": 14434734,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -42131,7 +42162,7 @@
     {
       "repo": "skylot/jadx",
       "githubRepositoryId": 8859474,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -42172,7 +42203,7 @@
     {
       "repo": "VITASID57/bluntcore-intimacy-lab",
       "githubRepositoryId": 1422357371,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -42206,7 +42237,7 @@
     {
       "repo": "xoreaxeaxeax/skitter-creek-bath-salts",
       "githubRepositoryId": 1333170396,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -42242,7 +42273,7 @@
     {
       "repo": "github/opensource.guide",
       "githubRepositoryId": 61204818,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -42285,7 +42316,7 @@
     {
       "repo": "alexngdev99/rork-restaurant-tycoon",
       "githubRepositoryId": 1415197387,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -42323,7 +42354,7 @@
     {
       "repo": "shiyu-coder/Kronos",
       "githubRepositoryId": 1011567289,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -42359,32 +42390,34 @@
     {
       "repo": "ahujasid/mcp-for-blender",
       "githubRepositoryId": 944414751,
-      "score": 6.0,
-      "tier": "indexed",
-      "category": "Développement de jeux",
+      "score": 8.6,
+      "tier": "specialized",
+      "category": "3D asset authoring via Blender MCP",
       "domain": "game_dev",
       "capabilities": [
-        "3d-modeling",
-        "ai",
-        "blender",
-        "blender-addon",
-        "blender-mcp",
-        "claude",
-        "generative-ai",
-        "llm",
         "mcp",
-        "model-context-protocol",
-        "python"
+        "blender",
+        "3d-modeling",
+        "materials",
+        "animation",
+        "rigging",
+        "asset-export",
+        "python-automation"
       ],
       "languages": [
         "python"
       ],
-      "platforms": [],
-      "selfHosted": "unknown",
-      "runtime": [],
-      "resourceLevel": "medium",
-      "integrationComplexity": "medium",
-      "costModel": "unknown",
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "desktop"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
       "github": {
         "stars": 31550,
         "forks": 2949,
@@ -42396,18 +42429,20 @@
         "pushedAt": "2026-10-18T15:42:25Z"
       },
       "bestFor": [
-        "Community plugin to control Blender 3D with any LLM of your choice. Not affiliated with the official Blender Foundation."
+        "Create and iterate Blender meshes, materials, rigging and animations using a supervised agent with an active Blender editor"
       ],
       "avoidWhen": [
-        "production use before licensing and security review"
+        "No Blender desktop/editor is available",
+        "Agent-generated Python code has not been reviewed or sandboxed",
+        "A direct Godot or Roblox runtime integration is expected without asset export and engine conversion"
       ],
-      "guidanceSource": "inferred",
-      "lifecycle": "reference"
+      "guidanceSource": "curated",
+      "lifecycle": "active"
     },
     {
       "repo": "BayatGames/SaveGameFree",
       "githubRepositoryId": 80331615,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -42456,7 +42491,7 @@
     {
       "repo": "Cysharp/UniTask",
       "githubRepositoryId": 187499284,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -42498,7 +42533,7 @@
     {
       "repo": "espressif/esp-emulator",
       "githubRepositoryId": 1237876767,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -42534,7 +42569,7 @@
     {
       "repo": "h8man/NavMeshPlus",
       "githubRepositoryId": 155978146,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -42582,7 +42617,7 @@
     {
       "repo": "KyryloKuzyk/PrimeTween",
       "githubRepositoryId": 641003290,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -42631,7 +42666,7 @@
     {
       "repo": "mikroverk/esp32sim",
       "githubRepositoryId": 1345842700,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -42667,7 +42702,7 @@
     {
       "repo": "mxgmn/WaveFunctionCollapse",
       "githubRepositoryId": 69662720,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -42710,7 +42745,7 @@
     {
       "repo": "real2nix/mineblox",
       "githubRepositoryId": 703227360,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -42751,7 +42786,7 @@
     {
       "repo": "scoyoc5/unity-ai-agent-rules",
       "githubRepositoryId": 1422574462,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -42785,7 +42820,7 @@
     {
       "repo": "SentientTurtle/RBXLX2VMF",
       "githubRepositoryId": 396110600,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -42823,7 +42858,7 @@
     {
       "repo": "ShiroKSH/skills",
       "githubRepositoryId": 1296622144,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -42868,7 +42903,7 @@
     {
       "repo": "songshikang0111/awesome-REA-cases",
       "githubRepositoryId": 1415075956,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -42909,7 +42944,7 @@
     {
       "repo": "withmarbleapp/os-taxonomy",
       "githubRepositoryId": 1293375068,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -42943,7 +42978,7 @@
     {
       "repo": "YarnSpinnerTool/YarnSpinner-Unity",
       "githubRepositoryId": 269093424,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -42983,7 +43018,7 @@
     {
       "repo": "yasirkula/UnityIngameDebugConsole",
       "githubRepositoryId": 61235116,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -43019,7 +43054,7 @@
     {
       "repo": "bobeff/open-source-games",
       "githubRepositoryId": 406930975,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -43059,7 +43094,7 @@
     {
       "repo": "myshell-ai/OpenVoice",
       "githubRepositoryId": 725089041,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -43100,7 +43135,7 @@
     {
       "repo": "RegeneratusLabs/physical-hermes",
       "githubRepositoryId": 1424195755,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -43132,7 +43167,7 @@
     {
       "repo": "wheresryan22/anatomy",
       "githubRepositoryId": 1410124849,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -43173,7 +43208,7 @@
     {
       "repo": "Xittered/xitter",
       "githubRepositoryId": 1418075921,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -43207,7 +43242,7 @@
     {
       "repo": "yetone/magpie",
       "githubRepositoryId": 1383809012,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -43250,7 +43285,7 @@
     {
       "repo": "ali-vilab/MangaNinjia",
       "githubRepositoryId": 907251846,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -43286,7 +43321,7 @@
     {
       "repo": "AskAillex/comic-maker",
       "githubRepositoryId": 1303321172,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -43320,7 +43355,7 @@
     {
       "repo": "CallmeTruong/Comic_Studio",
       "githubRepositoryId": 1356110174,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Génération de médias / IA",
       "domain": "ai_media",
@@ -43361,7 +43396,7 @@
     {
       "repo": "Dapeng960208/AI-Comic-Generator",
       "githubRepositoryId": 1136167732,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -43397,7 +43432,7 @@
     {
       "repo": "Flow-Tube/Flow",
       "githubRepositoryId": 1079329832,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -43444,7 +43479,7 @@
     {
       "repo": "HVision-NKU/StoryDiffusion",
       "githubRepositoryId": 789712717,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -43480,7 +43515,7 @@
     {
       "repo": "nicocha30/ligolo-ng",
       "githubRepositoryId": 390351016,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -43526,7 +43561,7 @@
     {
       "repo": "nv-tlabs/lyra",
       "githubRepositoryId": 1053508243,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -43568,7 +43603,7 @@
     {
       "repo": "Unity-Technologies/unity-agent-plugin",
       "githubRepositoryId": 1325377922,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -43604,7 +43639,7 @@
     {
       "repo": "Kruk2/jasna",
       "githubRepositoryId": 1137066830,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -43640,7 +43675,7 @@
     {
       "repo": "MadsLorentzen/ai-job-search",
       "githubRepositoryId": 1185389803,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -43689,7 +43724,7 @@
     {
       "repo": "genex-games/genex-desktop",
       "githubRepositoryId": 1402121018,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -43725,7 +43760,7 @@
     {
       "repo": "rmyndharis/OpenWA",
       "githubRepositoryId": 1147961398,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Productivité",
       "domain": "productivity",
@@ -43774,7 +43809,7 @@
     {
       "repo": "6abd/horus",
       "githubRepositoryId": 746412385,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -43823,7 +43858,7 @@
     {
       "repo": "Ahmad0Dev/MiniChat-ios-FakeCam",
       "githubRepositoryId": 1426345969,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -43859,7 +43894,7 @@
     {
       "repo": "amontlabs/lcu",
       "githubRepositoryId": 1381783784,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Productivité",
       "domain": "productivity",
@@ -43908,7 +43943,7 @@
     {
       "repo": "blender/blender",
       "githubRepositoryId": 213916896,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -43951,7 +43986,7 @@
     {
       "repo": "deepseek-ai/DeepInfer",
       "githubRepositoryId": 1421825221,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -43987,7 +44022,7 @@
     {
       "repo": "domlysz/BlenderGIS",
       "githubRepositoryId": 19577136,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -44036,7 +44071,7 @@
     {
       "repo": "Ebony-Vinyl/dsh-our-free-model",
       "githubRepositoryId": 1385896447,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -44083,7 +44118,7 @@
     {
       "repo": "EpicGames/BlenderTools",
       "githubRepositoryId": 274552814,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -44125,7 +44160,7 @@
     {
       "repo": "i5xx/SnapKM-openSource",
       "githubRepositoryId": 1423870523,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -44159,7 +44194,7 @@
     {
       "repo": "JoasASantos/REA-Prompts",
       "githubRepositoryId": 1426240325,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -44197,7 +44232,7 @@
     {
       "repo": "thesysdev/openui",
       "githubRepositoryId": 897268988,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -44244,7 +44279,7 @@
     {
       "repo": "tursodatabase/agentfs",
       "githubRepositoryId": 1082722503,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -44285,7 +44320,7 @@
     {
       "repo": "tursodatabase/libsql",
       "githubRepositoryId": 543276238,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -44327,7 +44362,7 @@
     {
       "repo": "tursodatabase/turso",
       "githubRepositoryId": 683347556,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -44369,7 +44404,7 @@
     {
       "repo": "LudwigKienle/ai-video-production-editor",
       "githubRepositoryId": 1228090585,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Génération de médias / IA",
       "domain": "ai_media",
@@ -44418,7 +44453,7 @@
     {
       "repo": "aradhyas8/Plume_Launcher",
       "githubRepositoryId": 1424720667,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Applications mobiles",
       "domain": "mobile",
@@ -44454,7 +44489,7 @@
     {
       "repo": "gamedev-skills/awesome-gamedev-agent-skills",
       "githubRepositoryId": 1278883735,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -44503,7 +44538,7 @@
     {
       "repo": "github/awesome-copilot",
       "githubRepositoryId": 1000362065,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -44548,7 +44583,7 @@
     {
       "repo": "higgsfield-ai/skills",
       "githubRepositoryId": 1206425593,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -44582,7 +44617,7 @@
     {
       "repo": "Jeffallan/claude-skills",
       "githubRepositoryId": 1080070047,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -44624,7 +44659,7 @@
     {
       "repo": "majidmanzarpour/threejs-game-skills",
       "githubRepositoryId": 1268895491,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -44660,7 +44695,7 @@
     {
       "repo": "omer-metin/skills-for-antigravity",
       "githubRepositoryId": 1139862645,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -44699,7 +44734,7 @@
     {
       "repo": "pluginagentmarketplace/custom-plugin-game-developer",
       "githubRepositoryId": 1099329268,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -44735,7 +44770,7 @@
     {
       "repo": "rivet-dev/skills",
       "githubRepositoryId": 1140411856,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -44771,7 +44806,7 @@
     {
       "repo": "9bie/php2shell-bypass-aslr-exp",
       "githubRepositoryId": 1428268121,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -44805,7 +44840,7 @@
     {
       "repo": "Anil-matcha/Open-AI-Design-Agent",
       "githubRepositoryId": 641440545,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -44854,7 +44889,7 @@
     {
       "repo": "athemeroy/awesome-claude-5-5-videos",
       "githubRepositoryId": 1386522258,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -44897,7 +44932,7 @@
     {
       "repo": "beiyege-01/dsh-voice-ai-girlfriend",
       "githubRepositoryId": 1335189481,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -44945,7 +44980,7 @@
     {
       "repo": "blendi-remade/prompt2rig",
       "githubRepositoryId": 1425388226,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -44981,7 +45016,7 @@
     {
       "repo": "clawvisual/clawvisual",
       "githubRepositoryId": 1173500133,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -45022,7 +45057,7 @@
     {
       "repo": "dyad-sh/dyad",
       "githubRepositoryId": 964395174,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -45071,7 +45106,7 @@
     {
       "repo": "every-app/open-seo",
       "githubRepositoryId": 1168753718,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Productivité",
       "domain": "productivity",
@@ -45119,7 +45154,7 @@
     {
       "repo": "garycaogan/ai-live-avatar",
       "githubRepositoryId": 1425306307,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -45155,7 +45190,7 @@
     {
       "repo": "gitroomhq/postiz-agent",
       "githubRepositoryId": 1157659618,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -45204,7 +45239,7 @@
     {
       "repo": "GoogleCloudPlatform/genmedia-izumi-agent",
       "githubRepositoryId": 1199868922,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -45238,7 +45273,7 @@
     {
       "repo": "ikow/php2shell-poc",
       "githubRepositoryId": 1428058681,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -45274,7 +45309,7 @@
     {
       "repo": "Jakeschincariol/replica-skill",
       "githubRepositoryId": 1403115747,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -45320,7 +45355,7 @@
     {
       "repo": "janhq/jan",
       "githubRepositoryId": 679506386,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -45365,7 +45400,7 @@
     {
       "repo": "JerryZLiu/Dayflow",
       "githubRepositoryId": 1062234789,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -45414,7 +45449,7 @@
     {
       "repo": "jianchang512/pyvideotrans",
       "githubRepositoryId": 699432836,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -45457,7 +45492,7 @@
     {
       "repo": "joeseesun/opus-video-prompts",
       "githubRepositoryId": 1389900426,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -45499,7 +45534,7 @@
     {
       "repo": "JohnHeibel/ClaudeAnimationBase",
       "githubRepositoryId": 1384159311,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -45535,7 +45570,7 @@
     {
       "repo": "KarakuriAgent/h3-motion-creator",
       "githubRepositoryId": 1427850125,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -45569,7 +45604,7 @@
     {
       "repo": "lemomo-ai/lemo-opuscar",
       "githubRepositoryId": 1389011744,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -45618,7 +45653,7 @@
     {
       "repo": "MaxLiu22/Motion2MixamoRig",
       "githubRepositoryId": 1350491629,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -45654,7 +45689,7 @@
     {
       "repo": "mexicat/pdoom-video",
       "githubRepositoryId": 1386391454,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -45690,7 +45725,7 @@
     {
       "repo": "mutonby/openshorts",
       "githubRepositoryId": 1119542383,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -45739,7 +45774,7 @@
     {
       "repo": "scenario-labs/blender-plugin",
       "githubRepositoryId": 1351289337,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -45788,7 +45823,7 @@
     {
       "repo": "StJudeWasHere/seonaut",
       "githubRepositoryId": 465254307,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "DevOps / infrastructure",
       "domain": "devops",
@@ -45835,7 +45870,7 @@
     {
       "repo": "Tencent-Hunyuan/Hy-MT2",
       "githubRepositoryId": 1242193963,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -45869,7 +45904,7 @@
     {
       "repo": "TheCraigHewitt/seomachine",
       "githubRepositoryId": 1086023098,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -45905,7 +45940,7 @@
     {
       "repo": "ThetaCursed/ComfyUI-MOSSImageTextEncoder",
       "githubRepositoryId": 1428204006,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Génération de médias / IA",
       "domain": "ai_media",
@@ -45949,7 +45984,7 @@
     {
       "repo": "towfiqi/serpbear",
       "githubRepositoryId": 570178488,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -45985,7 +46020,7 @@
     {
       "repo": "VAST-AI-Research/AniGen",
       "githubRepositoryId": 1168764387,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -46026,7 +46061,7 @@
     {
       "repo": "Vincentwei1021/mg-styles-15",
       "githubRepositoryId": 1401461555,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -46062,7 +46097,7 @@
     {
       "repo": "westpoint-io/mimik",
       "githubRepositoryId": 1187304686,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement web",
       "domain": "web_frontend",
@@ -46111,7 +46146,7 @@
     {
       "repo": "yihui-dev/awesome-opus5-5-videos",
       "githubRepositoryId": 1390273274,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -46155,7 +46190,7 @@
     {
       "repo": "ZensInk/awesome-open-source-seo",
       "githubRepositoryId": 1343621527,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -46202,7 +46237,7 @@
     {
       "repo": "kaomei/stickman-video-director",
       "githubRepositoryId": 1321408165,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -46251,7 +46286,7 @@
     {
       "repo": "mcncarl/jianying-headless",
       "githubRepositoryId": 1371378654,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -46287,7 +46322,7 @@
     {
       "repo": "mcncarl/yichen-skills",
       "githubRepositoryId": 1155113456,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -46321,7 +46356,7 @@
     {
       "repo": "nodetool-ai/nodetool",
       "githubRepositoryId": 777230015,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -46370,7 +46405,7 @@
     {
       "repo": "Noniv/web-ocean",
       "githubRepositoryId": 1422783076,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -46406,7 +46441,7 @@
     {
       "repo": "4ian/GDevelop",
       "githubRepositoryId": 21331090,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -46455,7 +46490,7 @@
     {
       "repo": "BabylonJS/Babylon.js",
       "githubRepositoryId": 11007313,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -46504,7 +46539,7 @@
     {
       "repo": "bevyengine/bevy",
       "githubRepositoryId": 234798675,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -46547,7 +46582,7 @@
     {
       "repo": "blacklanternsecurity/bbot",
       "githubRepositoryId": 468957086,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -46596,7 +46631,7 @@
     {
       "repo": "img2threejs/img2threejs",
       "githubRepositoryId": 1301140808,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -46643,7 +46678,7 @@
     {
       "repo": "love2d/love",
       "githubRepositoryId": 188601229,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -46685,7 +46720,7 @@
     {
       "repo": "opendataloader-project/opendataloader-pdf",
       "githubRepositoryId": 982587624,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Mémoire / IA",
       "domain": "ai_memory",
@@ -46734,7 +46769,7 @@
     {
       "repo": "Orama-Interactive/Pixelorama",
       "githubRepositoryId": 202983854,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -46783,7 +46818,7 @@
     {
       "repo": "phaserjs/phaser",
       "githubRepositoryId": 9393759,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -46832,7 +46867,7 @@
     {
       "repo": "renpy/renpy",
       "githubRepositoryId": 4815490,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -46874,7 +46909,7 @@
     {
       "repo": "stride3d/stride",
       "githubRepositoryId": 136570231,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -46920,7 +46955,7 @@
     {
       "repo": "UPBGE/upbge",
       "githubRepositoryId": 46817566,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -46962,7 +46997,7 @@
     {
       "repo": "luongnv89/claude-howto",
       "githubRepositoryId": 1092047360,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -47002,7 +47037,7 @@
     {
       "repo": "php/php-src",
       "githubRepositoryId": 1903522,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -47038,7 +47073,7 @@
     {
       "repo": "UCYBERS/PhoneHackScan",
       "githubRepositoryId": 1428784561,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -47087,7 +47122,7 @@
     {
       "repo": "88lin/video_vip",
       "githubRepositoryId": 989986510,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -47129,7 +47164,7 @@
     {
       "repo": "aicodeking/leanrea",
       "githubRepositoryId": 1422883896,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -47165,7 +47200,7 @@
     {
       "repo": "basketikun/infinite-canvas",
       "githubRepositoryId": 1242967652,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -47201,7 +47236,7 @@
     {
       "repo": "ERRRC/xingcezhenti",
       "githubRepositoryId": 1372648198,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -47235,7 +47270,7 @@
     {
       "repo": "gzxx-2025/aid-studio",
       "githubRepositoryId": 1305818123,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -47284,7 +47319,7 @@
     {
       "repo": "peach-mitao/peach",
       "githubRepositoryId": 1339970099,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement web",
       "domain": "web_frontend",
@@ -47329,7 +47364,7 @@
     {
       "repo": "seedds/nxnative",
       "githubRepositoryId": 1416502082,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -47365,7 +47400,7 @@
     {
       "repo": "wchao6891/PromptDirector",
       "githubRepositoryId": 1305766075,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -47414,7 +47449,7 @@
     {
       "repo": "WhiteTowerAI/ohmygame",
       "githubRepositoryId": 1330417082,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -47463,7 +47498,7 @@
     {
       "repo": "21st-dev/magic-mcp",
       "githubRepositoryId": 935450522,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement web",
       "domain": "web_frontend",
@@ -47508,7 +47543,7 @@
     {
       "repo": "AmanVarshney01/create-better-t-stack",
       "githubRepositoryId": 930459670,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement web",
       "domain": "web_frontend",
@@ -47557,7 +47592,7 @@
     {
       "repo": "jnsahaj/tweakcn",
       "githubRepositoryId": 948174507,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement web",
       "domain": "web_frontend",
@@ -47600,7 +47635,7 @@
     {
       "repo": "wesbos/3d-model-anything",
       "githubRepositoryId": 1428848843,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -47636,7 +47671,7 @@
     {
       "repo": "ddalcu/mlx-serve",
       "githubRepositoryId": 1159656889,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Génération de médias / IA",
       "domain": "ai_media",
@@ -47685,7 +47720,7 @@
     {
       "repo": "FireRedTeam/FireRedTTS3",
       "githubRepositoryId": 1333156486,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -47721,7 +47756,7 @@
     {
       "repo": "kyutai-labs/pocket-tts",
       "githubRepositoryId": 1129863360,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -47757,7 +47792,7 @@
     {
       "repo": "Leonxlnx/unlazy",
       "githubRepositoryId": 1329272295,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -47801,7 +47836,7 @@
     {
       "repo": "Narcooo/inkos",
       "githubRepositoryId": 1179413000,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -47849,7 +47884,7 @@
     {
       "repo": "Zyphra/Zonos",
       "githubRepositoryId": 928631159,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -47885,7 +47920,7 @@
     {
       "repo": "regaan/basilisk",
       "githubRepositoryId": 1171574648,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -47934,7 +47969,7 @@
     {
       "repo": "yorukot/superfile",
       "githubRepositoryId": 774468912,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -47982,7 +48017,7 @@
     {
       "repo": "Zagitta/gpu-unlock",
       "githubRepositoryId": 1423892373,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -48018,7 +48053,7 @@
     {
       "repo": "arxhr007/Aliens_eye",
       "githubRepositoryId": 409072882,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Cybersécurité",
       "domain": "cybersecurity",
@@ -48067,7 +48102,7 @@
     {
       "repo": "google-deepmind/alphafold3",
       "githubRepositoryId": 886637886,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -48103,7 +48138,7 @@
     {
       "repo": "ignotusnemo/paramo1d",
       "githubRepositoryId": 1432661546,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -48139,7 +48174,7 @@
     {
       "repo": "JustAResearcher/gpu-unlock-ada",
       "githubRepositoryId": 1431545439,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -48175,7 +48210,7 @@
     {
       "repo": "jwohlwend/boltz",
       "githubRepositoryId": 889915078,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -48215,7 +48250,7 @@
     {
       "repo": "limin112/min-skill",
       "githubRepositoryId": 1241933969,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -48249,7 +48284,7 @@
     {
       "repo": "makecindy/cindy",
       "githubRepositoryId": 1309102418,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -48298,7 +48333,7 @@
     {
       "repo": "Nutlope/hallmark",
       "githubRepositoryId": 1222917575,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -48334,7 +48369,7 @@
     {
       "repo": "pollen-robotics/microduck",
       "githubRepositoryId": 1315850547,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -48370,7 +48405,7 @@
     {
       "repo": "zapabob/Strata",
       "githubRepositoryId": 1407917370,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -48406,7 +48441,7 @@
     {
       "repo": "arjun988/blender-skills",
       "githubRepositoryId": 1289817225,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -48454,7 +48489,7 @@
     {
       "repo": "impacifist/Windows-GPU-UNLOCK",
       "githubRepositoryId": 1426503435,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -48490,7 +48525,7 @@
     {
       "repo": "ali-vilab/VACE",
       "githubRepositoryId": 944908986,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -48529,7 +48564,7 @@
     {
       "repo": "FireRedTeam/FireRed-OpenStoryline",
       "githubRepositoryId": 1152159038,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -48575,7 +48610,7 @@
     {
       "repo": "kijai/ComfyUI-WanVideoWrapper",
       "githubRepositoryId": 938926134,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Génération de médias / IA",
       "domain": "ai_media",
@@ -48609,7 +48644,7 @@
     {
       "repo": "Lightricks/LTX-2",
       "githubRepositoryId": 1127234517,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -48649,7 +48684,7 @@
     {
       "repo": "mifi/editly",
       "githubRepositoryId": 255940939,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Graphisme / 3D",
       "domain": "graphics",
@@ -48698,7 +48733,7 @@
     {
       "repo": "modelscope/DiffSynth-Studio",
       "githubRepositoryId": 728770766,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -48734,7 +48769,7 @@
     {
       "repo": "exa-labs/exa-mcp-server",
       "githubRepositoryId": 895291604,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -48779,7 +48814,7 @@
     {
       "repo": "Ablation-Tool/ablation",
       "githubRepositoryId": 1384236560,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -48823,7 +48858,7 @@
     {
       "repo": "gitroomhq/postiz-app",
       "githubRepositoryId": 664013991,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -48870,7 +48905,7 @@
     {
       "repo": "JetBrains/thinkrail",
       "githubRepositoryId": 1293238217,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -48919,7 +48954,7 @@
     {
       "repo": "YuJunZhiXue/dsh-purge",
       "githubRepositoryId": 1339256252,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -48963,7 +48998,7 @@
     {
       "repo": "CopilotKit/OpenDuet",
       "githubRepositoryId": 1428854046,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -48999,7 +49034,7 @@
     {
       "repo": "emilkowalski/skills",
       "githubRepositoryId": 1183325896,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -49035,7 +49070,7 @@
     {
       "repo": "kargulstudio/calender-app-design",
       "githubRepositoryId": 1434789878,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -49069,7 +49104,7 @@
     {
       "repo": "karpathy/micrograd",
       "githubRepositoryId": 255231293,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Data / Machine Learning",
       "domain": "data_ml",
@@ -49105,7 +49140,7 @@
     {
       "repo": "karpathy/minbpe",
       "githubRepositoryId": 758581331,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Agents / IA / développement",
       "domain": "ai_agents",
@@ -49141,7 +49176,7 @@
     {
       "repo": "karpathy/nn-zero-to-hero",
       "githubRepositoryId": 534397970,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -49177,7 +49212,7 @@
     {
       "repo": "NVlabs/motionbricks",
       "githubRepositoryId": 1217294667,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Autres / à examiner",
       "domain": "other",
@@ -49213,7 +49248,7 @@
     {
       "repo": "patch-gg/anymove",
       "githubRepositoryId": 1435425970,
-      "score": 6.0,
+      "score": 6,
       "tier": "indexed",
       "category": "Développement de jeux",
       "domain": "game_dev",
@@ -49254,6 +49289,298 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "tirth8205/code-review-graph",
+      "githubRepositoryId": 1167788341,
+      "score": 8.8,
+      "tier": "specialized",
+      "category": "Code review and graph-based impact analysis",
+      "domain": "software_engineering",
+      "capabilities": [
+        "mcp",
+        "code-review",
+        "code-graph",
+        "impact-analysis",
+        "dependency-graph",
+        "semantic-search",
+        "test-impact",
+        "pull-request-review"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "bestFor": [
+        "Build a local code graph and review symbol dependencies, impacted functions and test gaps before merging code changes"
+      ],
+      "avoidWhen": [
+        "Treating a static graph as proof of behavior without tests",
+        "Indexing large private codebases on untrusted computers"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "licenseEvidence": "verified-file"
+    },
+    {
+      "repo": "czlonkowski/n8n-mcp",
+      "githubRepositoryId": 997890921,
+      "score": 8.6,
+      "tier": "specialized",
+      "category": "n8n workflow automation MCP",
+      "domain": "ai_agents",
+      "capabilities": [
+        "mcp",
+        "n8n",
+        "workflow-automation",
+        "node-documentation",
+        "automation-design",
+        "workflow-validation"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "bestFor": [
+        "Discover n8n nodes and validated workflow configurations and draft automation plans for an existing n8n installation"
+      ],
+      "avoidWhen": [
+        "Assuming an n8n account, API or hosted instance exists",
+        "Creating or deploying workflows using production credentials without explicit authorization"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "licenseEvidence": "verified-file"
+    },
+    {
+      "repo": "googleapis/mcp-toolbox",
+      "githubRepositoryId": 812044182,
+      "score": 8.7,
+      "tier": "specialized",
+      "category": "Database tools for agents",
+      "domain": "backend",
+      "capabilities": [
+        "mcp",
+        "database",
+        "postgresql",
+        "sql",
+        "mysql",
+        "data-access",
+        "tool-authentication",
+        "schema-discovery"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "bestFor": [
+        "Connect agent tasks to an explicitly configured database through least-privilege prebuilt queries and audited schemas"
+      ],
+      "avoidWhen": [
+        "Production write access or unrestricted SQL is granted to an untrusted agent",
+        "Database network access, credentials and query limits are unspecified"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "licenseEvidence": "verified-file"
+    },
+    {
+      "repo": "xpzouying/xiaohongshu-mcp",
+      "githubRepositoryId": 1031215137,
+      "score": 7.4,
+      "tier": "indexed",
+      "category": "Xiaohongshu social platform adapter",
+      "domain": "productivity",
+      "capabilities": [
+        "mcp",
+        "xiaohongshu",
+        "social-media",
+        "platform-automation",
+        "posts",
+        "creator-tools",
+        "browser-automation"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "bestFor": [
+        "Evaluate optional Xiaohongshu workflows with explicit user account consent and compliance review"
+      ],
+      "avoidWhen": [
+        "Using unattended posting, scraping or session cookies without platform permission",
+        "Login cookies would leave a trusted device",
+        "A target project has no Xiaohongshu-specific requirements"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "licenseEvidence": "verified-file"
+    },
+    {
+      "repo": "GLips/Figma-Context-MCP",
+      "githubRepositoryId": 931892749,
+      "score": 8.5,
+      "tier": "specialized",
+      "category": "Figma design context for coding agents",
+      "domain": "web_frontend",
+      "capabilities": [
+        "mcp",
+        "figma",
+        "design-to-code",
+        "ui",
+        "design-tokens",
+        "layout-metadata"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "low",
+      "integrationComplexity": "medium",
+      "costModel": "open-source",
+      "bestFor": [
+        "Read authorized Figma frames and layout metadata to implement accurate UI components"
+      ],
+      "avoidWhen": [
+        "A Figma token is missing or the design file is not shared with this integration",
+        "Remote design data is sensitive and unauthorized for agent access"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "licenseEvidence": "verified-file"
+    },
+    {
+      "repo": "CoplayDev/unity-mcp",
+      "githubRepositoryId": 950564038,
+      "score": 8.6,
+      "tier": "specialized",
+      "category": "Unity editor agent integration",
+      "domain": "game_dev",
+      "capabilities": [
+        "mcp",
+        "unity",
+        "editor-automation",
+        "3d",
+        "game-development",
+        "assets",
+        "scene-editing",
+        "csharp"
+      ],
+      "languages": [
+        "c#",
+        "python"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "high",
+      "integrationComplexity": "high",
+      "costModel": "open-source",
+      "bestFor": [
+        "Operate a running Unity Editor to manage scenes, game objects and assets and validate game changes"
+      ],
+      "avoidWhen": [
+        "The target engine is Godot or Roblox, not Unity",
+        "No authorized Unity Editor is running or arbitrary editor scripts lack review"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "licenseEvidence": "verified-file"
+    },
+    {
+      "repo": "apify/apify-mcp-server",
+      "githubRepositoryId": 911256711,
+      "score": 8.1,
+      "tier": "specialized",
+      "category": "Apify hosted web automation adapter",
+      "domain": "ai_agents",
+      "capabilities": [
+        "mcp",
+        "apify",
+        "web-data",
+        "actors",
+        "browser-automation",
+        "data-extraction",
+        "crawler",
+        "hosted-service"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [
+        "cross-platform"
+      ],
+      "selfHosted": true,
+      "runtime": [
+        "local",
+        "self-hosted"
+      ],
+      "resourceLevel": "medium",
+      "integrationComplexity": "high",
+      "costModel": "mixed",
+      "bestFor": [
+        "Evaluate opt-in website data collection through explicitly permitted Apify Actors and quotas"
+      ],
+      "avoidWhen": [
+        "Website robots/terms forbid automation or personal data collection",
+        "Paid Actors or account credits could be consumed without approval",
+        "Assuming that an MIT server licence grants rights to scrape third-party content"
+      ],
+      "guidanceSource": "curated",
+      "lifecycle": "active",
+      "licenseEvidence": "verified-file"
     }
   ],
   "metadata": {
