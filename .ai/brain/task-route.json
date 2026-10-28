@@ -4,15 +4,15 @@
     "expand_to": 12,
     "max_files": 3,
     "requested_max_files": 12,
-    "score_margin": 9,
+    "score_margin": 12,
     "tier": "narrow",
-    "top_score": 63
+    "top_score": 66
   },
   "cache": {
-    "fingerprint": "bb4e112395ea26d20909ec6f76120ea74fca4f60bfcfdcd37a897d8aee5f5080",
+    "fingerprint": "b1aae1a32472ac8101eef992cebae03334d8924f233c70030d8e16c921710ef5",
     "hit": false
   },
-  "candidate_count": 18,
+  "candidate_count": 15,
   "fallback": "If bounded context is insufficient, expand only to budget.expand_to, then use architecture/segmented maps and targeted source search.",
   "files": [
     {
@@ -25,9 +25,10 @@
       "reasons": [
         "impact",
         "learning",
+        "recently-changed",
         "search-index"
       ],
-      "score": 63,
+      "score": 66,
       "symbols": [
         "SameOriginRedirect",
         "busy_integration_targets",
@@ -77,12 +78,10 @@
       ],
       "path": "scripts/recommend.py",
       "reasons": [
-        "impact",
         "learning",
-        "recently-changed",
         "search-index"
       ],
-      "score": 50,
+      "score": 41,
       "symbols": [
         "activity_adjustment",
         "choose_stack",

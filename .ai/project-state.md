@@ -113,24 +113,27 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-10-27T20:38:58Z
+Generated: 2026-10-28T11:03:45Z
 
 ### Git
 - Branch: `main`
-- Head: `3e850e09f40c`
-- Commit date: 2026-10-27T16:38:47-04:00
-- Commit: catalog: add manual-only DarkUGC UGC research reference (#188)
-- Tracked files: 315
+- Head: `ece845786d82`
+- Commit date: 2026-10-28T07:03:34-04:00
+- Commit: catalog: register and review all 15 Hermes MCP sources (#189)
+- Tracked files: 316
 
 ### Recently changed files
+- `MCP_HERMES_RESOURCES.md`
 - `README.md`
+- `catalog.json`
+- `scripts/portfolio_daily.py`
+- `scripts/test_catalog_domain_evidence.py`
+- `scripts/test_recommend.py`
 - `WEB_RESOURCES.md`
 - `schemas/websites.schema.json`
 - `scripts/recommend.py`
-- `scripts/test_recommend.py`
 - `scripts/validate_websites.py`
 - `websites.json`
-- `catalog.json`
 
 ### Project signals
 - No common build descriptor detected

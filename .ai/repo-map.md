@@ -5044,6 +5044,12 @@ EXISTING_ENGINE_SOURCES = {
 # native app dependency just because the implementation language matches.
 EXTERNAL_CODING_AGENT_CLIS = frozenset({
 ⋮----
+# External Model Context Protocol servers run as separately configured tools.
+# Even same-language, MIT/Apache-licensed servers are NOT libraries to copy
+# into a target app. Human-approved local/hosted setup and scoped credentials
+# are mandatory. Every source is still considered in daily advisory scans.
+EXTERNAL_MCP_SERVERS = frozenset({
+⋮----
 MANIFESTS = ("pyproject.toml", "package.json", "requirements.txt", "Cargo.toml",
 ⋮----
 # Only exact, declared dependency names may contribute framework evidence to
@@ -6603,6 +6609,14 @@ ranking_query = [
 ⋮----
 ranking = json.loads(subprocess.check_output(ranking_query, text=True, cwd=ROOT))
 ranked = next(row for row in ranking["recommendations"] if row["repo"] == required)
+⋮----
+# Playwright MCP was formerly an unclassified indexed source; it is now
+# explicitly curated as a software-engineering browser-testing MCP adapter.
+# This must NOT weaken the inference regression above or authorize native
+# application dependency installation.
+browser_mcp = by_name["microsoft/playwright-mcp"]
+⋮----
+matched = {row["repository"]: row for row in suggestions}
 ⋮----
 # No weak/reused topic labels become grounds for autonomous execution.
 unsafe = {
@@ -9638,6 +9652,15 @@ python scripts/test_pipeline_integration.py
 ```
 
 For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
+
+## Hermes Agent MCP project inventory
+
+The [15 MCP servers from the Hermes screenshot](MCP_HERMES_RESOURCES.md)
+are indexed in the **GitHub** repository catalog: 8 existing references were
+reviewed, and 7 missing repositories were added. Daily project analysis can
+suggest them when relevant. They remain external MCP development adapters,
+not installable application runtime dependencies. Credentials, web access,
+engine compatibility, account terms and any paid usage need explicit review.
 
 ## Website resources (in addition to GitHub repositories)
 

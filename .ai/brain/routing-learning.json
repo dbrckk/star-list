@@ -2,25 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "fix(portfolio): refuse autonomous dispatch after incomplete repository scan (#83)",
-      "terms": [
-        "83",
-        "after",
-        "autonomous",
-        "dispatch",
-        "incomplete",
-        "portfolio",
-        "refuse",
-        "repository",
-        "scan"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/portfolio_daily.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "fix(portfolio): distinguish throttled, blocked and idle integration scans (#84)",
       "terms": [
         "84",
@@ -1365,6 +1346,27 @@
         "scripts/test_recommend.py",
         "scripts/validate_websites.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "catalog: register and review all 15 Hermes MCP sources (#189)",
+      "terms": [
+        "15",
+        "189",
+        "all",
+        "catalog",
+        "hermes",
+        "mcp",
+        "register",
+        "review",
+        "sources"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/portfolio_daily.py",
+        "scripts/test_catalog_domain_evidence.py",
+        "scripts/test_recommend.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1500,6 +1502,11 @@
     "145": {
       "scripts/backfill_github_ids.py": 4,
       "scripts/test_documentation.py": 4
+    },
+    "15": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_catalog_domain_evidence.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "155": {
       "scripts/agent_skill_discovery.py": 4,
@@ -1644,6 +1651,11 @@
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
+    },
+    "189": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_catalog_domain_evidence.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "19": {
       "scripts/audit_catalog_quality.py": 4,
@@ -1857,13 +1869,14 @@
       "scripts/admit_github_stars.py": 8,
       "scripts/audit_catalog_quality.py": 4,
       "scripts/infer_selection_guidance.py": 4,
-      "scripts/portfolio_daily.py": 12,
+      "scripts/portfolio_daily.py": 16,
       "scripts/recommend.py": 8,
       "scripts/refresh_github_metadata.py": 4,
       "scripts/test_auto_stars_admission.py": 8,
+      "scripts/test_catalog_domain_evidence.py": 4,
       "scripts/test_catalog_quality.py": 4,
       "scripts/test_full_catalog_availability.py": 4,
-      "scripts/test_recommend.py": 4,
+      "scripts/test_recommend.py": 8,
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/test_verify_catalog_evidence.py": 8,
       "scripts/validate_catalog.py": 4,
@@ -2041,16 +2054,17 @@
       "scripts/admit_github_stars.py": 8,
       "scripts/audit_catalog_quality.py": 16,
       "scripts/infer_selection_guidance.py": 4,
-      "scripts/portfolio_daily.py": 20,
+      "scripts/portfolio_daily.py": 24,
       "scripts/recommend.py": 32,
       "scripts/refresh_github_metadata.py": 8,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
+      "scripts/test_catalog_domain_evidence.py": 4,
       "scripts/test_catalog_quality.py": 16,
       "scripts/test_documentation.py": 16,
       "scripts/test_full_catalog_availability.py": 4,
       "scripts/test_json_contracts.py": 8,
-      "scripts/test_recommend.py": 28,
+      "scripts/test_recommend.py": 32,
       "scripts/test_refresh_github_metadata.py": 8,
       "scripts/test_sync_github_stars.py": 4,
       "scripts/test_verify_catalog_evidence.py": 8,
@@ -2606,7 +2620,9 @@
       "scripts/validate_websites.py": 4
     },
     "hermes": {
-      "scripts/portfolio_daily.py": 4
+      "scripts/portfolio_daily.py": 8,
+      "scripts/test_catalog_domain_evidence.py": 4,
+      "scripts/test_recommend.py": 4
     },
     "hosts": {
       "scripts/test_json_contracts.py": 4
@@ -2830,10 +2846,11 @@
       "scripts/portfolio_daily.py": 20
     },
     "mcp": {
-      "scripts/portfolio_daily.py": 12,
+      "scripts/portfolio_daily.py": 16,
       "scripts/recommend.py": 4,
+      "scripts/test_catalog_domain_evidence.py": 4,
       "scripts/test_json_contracts.py": 4,
-      "scripts/test_recommend.py": 8,
+      "scripts/test_recommend.py": 12,
       "scripts/validate_websites.py": 4
     },
     "merge": {
@@ -3162,6 +3179,11 @@
     "refuse": {
       "scripts/portfolio_daily.py": 4
     },
+    "register": {
+      "scripts/portfolio_daily.py": 4,
+      "scripts/test_catalog_domain_evidence.py": 4,
+      "scripts/test_recommend.py": 4
+    },
     "reject": {
       "scripts/portfolio_daily.py": 4,
       "scripts/test_documentation.py": 4,
@@ -3284,10 +3306,11 @@
       "scripts/portfolio_failure_diagnostics.py": 4
     },
     "review": {
-      "scripts/portfolio_daily.py": 20,
+      "scripts/portfolio_daily.py": 24,
       "scripts/recommend.py": 36,
       "scripts/sync_github_stars.py": 4,
-      "scripts/test_recommend.py": 32,
+      "scripts/test_catalog_domain_evidence.py": 4,
+      "scripts/test_recommend.py": 36,
       "scripts/test_sync_github_stars.py": 4,
       "scripts/validate_websites.py": 20
     },
@@ -3466,10 +3489,11 @@
       "scripts/test_recommend.py": 4
     },
     "sources": {
-      "scripts/portfolio_daily.py": 12,
+      "scripts/portfolio_daily.py": 16,
       "scripts/recommend.py": 8,
       "scripts/refresh_github_metadata.py": 4,
-      "scripts/test_recommend.py": 4,
+      "scripts/test_catalog_domain_evidence.py": 4,
+      "scripts/test_recommend.py": 8,
       "scripts/test_refresh_github_metadata.py": 4,
       "scripts/test_verify_catalog_evidence.py": 4,
       "scripts/validate_websites.py": 4,

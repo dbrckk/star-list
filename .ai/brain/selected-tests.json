@@ -4,20 +4,18 @@
   "selected_test_files": [
     "scripts/test_catalog_domain_evidence.py",
     "scripts/test_full_catalog_availability.py",
-    "scripts/test_json_contracts.py",
     "scripts/test_other_domain_expansion.py",
     "scripts/test_readme_domain_evidence.py",
     "scripts/test_recommend.py"
   ],
   "commands": [
     {
-      "command": "python -m pytest scripts/test_catalog_domain_evidence.py scripts/test_full_catalog_availability.py scripts/test_json_contracts.py scripts/test_other_domain_expansion.py scripts/test_readme_domain_evidence.py scripts/test_recommend.py",
+      "command": "python -m pytest scripts/test_catalog_domain_evidence.py scripts/test_full_catalog_availability.py scripts/test_other_domain_expansion.py scripts/test_readme_domain_evidence.py scripts/test_recommend.py",
       "purpose": "targeted tests",
       "confidence": "high",
       "files": [
         "scripts/test_catalog_domain_evidence.py",
         "scripts/test_full_catalog_availability.py",
-        "scripts/test_json_contracts.py",
         "scripts/test_other_domain_expansion.py",
         "scripts/test_readme_domain_evidence.py",
         "scripts/test_recommend.py"
