@@ -47,6 +47,15 @@ python scripts/test_pipeline_integration.py
 
 For all recommender flags and examples, see [`RECOMMENDER.md`](RECOMMENDER.md).
 
+## Hermes Agent MCP project inventory
+
+The [15 MCP servers from the Hermes screenshot](MCP_HERMES_RESOURCES.md)
+are indexed in the **GitHub** repository catalog: 8 existing references were
+reviewed, and 7 missing repositories were added. Daily project analysis can
+suggest them when relevant. They remain external MCP development adapters,
+not installable application runtime dependencies. Credentials, web access,
+engine compatibility, account terms and any paid usage need explicit review.
+
 ## Website resources (in addition to GitHub repositories)
 
 The catalog also includes **37 curated web resources** for UI design,
