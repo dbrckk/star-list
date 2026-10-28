@@ -34,7 +34,6 @@ for name, domain in (
     ("ace-step/ACE-Step-1.5", "ai_media"),
     ("krillinai/OpenCreator", "ai_media"),
     ("tursodatabase/libsql", "backend"),
-    ("microsoft/playwright-mcp", "ai_agents"),
 ):
     assert name in by_name
     assert by_name[name]["domain"] == "other"
@@ -48,7 +47,6 @@ def project(domain, query, language="python"):
 
 for domain, query, required in (
     ("ai_media", "video editing voice music generation animation tts video production", "krillinai/OpenCreator"),
-    ("ai_agents", "mcp agent sdk tools orchestration coding agent", "microsoft/playwright-mcp"),
     ("backend", "database persistence sql orm backend", "tursodatabase/libsql"),
 ):
     target, profile = project(domain, query)
@@ -73,6 +71,26 @@ for domain, query, required in (
     ranked = next(row for row in ranking["recommendations"] if row["repo"] == required)
     assert ranked["reviewRequired"] is True
     assert "inferred-domain-needs-confirmation" in ranked["domainReviewGates"]
+
+
+# Playwright MCP was formerly an unclassified indexed source; it is now
+# explicitly curated as a software-engineering browser-testing MCP adapter.
+# This must NOT weaken the inference regression above or authorize native
+# application dependency installation.
+browser_mcp = by_name["microsoft/playwright-mcp"]
+assert browser_mcp["tier"] == "specialized"
+assert browser_mcp["domain"] == "software_engineering"
+assert browser_mcp["guidanceSource"] == "curated"
+target, profile = project(
+    "software_engineering", "playwright browser automation web testing", "typescript"
+)
+decisions = {}
+suggestions = recommendations(target, profile, repos, None, decisions)
+matched = {row["repository"]: row for row in suggestions}
+assert "microsoft/playwright-mcp" in matched
+assert matched["microsoft/playwright-mcp"]["mode"] == "adapter-review"
+assert matched["microsoft/playwright-mcp"]["integrationEligible"] is False
+assert decisions["microsoft/playwright-mcp"]["integrationEligible"] is False
 
 
 # No weak/reused topic labels become grounds for autonomous execution.
