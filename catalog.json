@@ -50036,6 +50036,413 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "Auburn/FastNoise2",
+      "githubRepositoryId": 240107617,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Graphisme / 3D",
+      "domain": "graphics",
+      "capabilities": [
+        "cross-platform",
+        "fastnoise",
+        "magnum",
+        "node-graph",
+        "noise",
+        "noise-algorithms",
+        "noise-generator",
+        "perlin-noise",
+        "procedural-generation",
+        "simd",
+        "simplex",
+        "terrain-generation"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1483,
+        "forks": 155,
+        "openIssues": 45,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-28T22:11:16Z"
+      },
+      "bestFor": [
+        "Modular node graph based noise generation library using SIMD, C++17 and templates"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "ConfettiFX/The-Forge",
+      "githubRepositoryId": 105600991,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Applications mobiles",
+      "domain": "mobile",
+      "capabilities": [
+        "android",
+        "directx",
+        "directx12",
+        "ios",
+        "linux",
+        "linux-ubuntu",
+        "macos",
+        "metal",
+        "multi-gpu",
+        "multi-threading",
+        "ps4",
+        "ps5"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 5727,
+        "forks": 584,
+        "openIssues": 15,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-08-27T22:50:15Z"
+      },
+      "bestFor": [
+        "The Forge Cross-Platform Framework PC Windows, Steamdeck (native), Ray Tracing, macOS / iOS, Android, XBOX, PS4, PS5, Switch, Quest 2"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "effekseer/Effekseer",
+      "githubRepositoryId": 13696235,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "directx",
+        "effekseer",
+        "game",
+        "opengl",
+        "particle-effects"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1872,
+        "forks": 297,
+        "openIssues": 89,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-29T14:46:04Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "guillaumeblanc/ozz-animation",
+      "githubRepositoryId": 41325282,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Graphisme / 3D",
+      "domain": "graphics",
+      "capabilities": [
+        "animation",
+        "collada",
+        "data-oriented",
+        "fbx",
+        "game",
+        "mit-license",
+        "simd",
+        "soa",
+        "sse"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3021,
+        "forks": 354,
+        "openIssues": 29,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-08-01T21:34:54Z"
+      },
+      "bestFor": [
+        "Open source c++ skeletal animation library and toolset"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "jrouwe/JoltPhysics",
+      "githubRepositoryId": 395341383,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "c-plus-plus",
+        "cpp",
+        "game-development",
+        "game-engine",
+        "physics",
+        "physics-engine",
+        "physics-simulation",
+        "simulation",
+        "vr"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 11876,
+        "forks": 970,
+        "openIssues": 13,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-26T22:17:41Z"
+      },
+      "bestFor": [
+        "A multi core friendly rigid body physics and collision detection library. Written in C++. Suitable for games and VR applications. Used by Horizon Forbidden West and Death Stranding 2."
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "recastnavigation/recastnavigation",
+      "githubRepositoryId": 12849977,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "ai",
+        "crowd-simulation",
+        "game",
+        "game-ai",
+        "game-dev",
+        "game-development",
+        "game-tool",
+        "gamedev",
+        "navigation",
+        "navmesh",
+        "navmesh-generation",
+        "pathfinding"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 8029,
+        "forks": 1829,
+        "openIssues": 147,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Zlib",
+        "pushedAt": "2026-02-27T07:17:13Z"
+      },
+      "bestFor": [
+        "Industry-standard navigation-mesh toolset for games"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "TokisanGames/Terrain3D",
+      "githubRepositoryId": 591945410,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "game-development",
+        "gamedev",
+        "gamedev-tool",
+        "gamedevelopment",
+        "godot",
+        "godot-addons",
+        "godot-engine",
+        "godot-plugin",
+        "godot4",
+        "heightmap",
+        "heightmap-terrain",
+        "terrain"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 4497,
+        "forks": 332,
+        "openIssues": 91,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-29T15:38:10Z"
+      },
+      "bestFor": [
+        "A high performance, editable terrain system for Godot 4."
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "wexloops/openfield",
+      "githubRepositoryId": 1436521226,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Génération de médias / IA",
+      "domain": "ai_media",
+      "capabilities": [],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 55,
+        "forks": 6,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-10-29T20:15:20Z"
+      },
+      "bestFor": [
+        "Open-source studio for video, stills and 3D on your own GPU through ComfyUI"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "zeux/meshoptimizer",
+      "githubRepositoryId": 67768325,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "compression",
+        "gltf",
+        "gpu",
+        "mesh-processing",
+        "optimization",
+        "simplification"
+      ],
+      "languages": [
+        "c++"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 8679,
+        "forks": 736,
+        "openIssues": 8,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "master",
+        "license": "MIT",
+        "pushedAt": "2026-10-14T17:27:17Z"
+      },
+      "bestFor": [
+        "Mesh optimization library that makes meshes smaller and faster to render"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
