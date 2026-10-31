@@ -50739,6 +50739,51 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "patch-gg/pixelfx",
+      "githubRepositoryId": 1439372976,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "agent-skills",
+        "animation",
+        "canvas",
+        "claude-code-plugin",
+        "gamedev",
+        "pixel-art",
+        "sprite-sheet",
+        "vfx"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1173,
+        "forks": 142,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-31T08:44:14Z"
+      },
+      "bestFor": [
+        "232 pixel art effects, every one a small piece of code. Plus a Claude Code skill to make your own."
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
