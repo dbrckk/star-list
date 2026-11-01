@@ -88,6 +88,19 @@ def check_websites(data, schema):
                     errors.append(
                         f"{identity}: reduced-refusal model requires safetyRisk declaration"
                     )
+        # AI-tool discovery directories do not grant model licences or API
+        # permissions and cannot opt into blanket project recommendations.
+        if site["type"] == "ai-tool-directory":
+            if (site.get("reuse") != "reference-only"
+                    or not site.get("portfolioRequiredSignals")
+                    or site.get("portfolioBaselineDomains")
+                    or not set(site["domains"]) & {"ai_agents", "ai_media", "software_engineering"}
+                    or site.get("mcpEndpoint") or site.get("sourceLicenseTag")
+                    or site.get("upstreamModel")):
+                errors.append(
+                    f"{identity}: AI directories require specific project-fit "
+                    "signals, reference-only use and no executable endpoint"
+                )
         if site["type"] == "model-hub":
             if site.get("reuse") != "reference-only":
                 errors.append(f"{identity}: generic model hub must remain reference-only")

@@ -1000,4 +1000,50 @@ for identity in new_ui_sites:
     site["reuse"] = "open-source-upstream"
     assert check_ui_websites(invalid, ui_schema)
 
+# AI directory discovery from the previous screenshot is now finished.
+# Listing tools does not authorize downloads, API access or subscriptions.
+taaft_id = "theres-an-ai-for-that"
+taaft = next(s for s in sites if s["id"] == taaft_id)
+assert sum(s["id"] == taaft_id for s in sites) == 1
+assert taaft["url"] == "https://theresanaiforthat.com/"
+assert taaft["type"] == "ai-tool-directory"
+assert taaft["reuse"] == "reference-only"
+assert taaft["portfolioRequiredSignals"] and not taaft.get("portfolioBaselineDomains")
+recommendations_taaft = run("ai tools discovery free alternatives directory",
+                            "--websites", "--top-websites", "100")["websiteRecommendations"]
+taaft_choice = next(s for s in recommendations_taaft if s["id"] == taaft_id)
+assert taaft_choice["integrationEligible"] is False
+assert {
+    "independent-vendor-price-license-and-privacy-review",
+    "directory-listings-freshness-and-sponsored-placements-review",
+    "directory-automated-access-and-terms-review",
+    "no-unapproved-scraping-signup-install-or-spending",
+    "third-party-reuse-rights-review",
+} <= set(taaft_choice["reviewGates"])
+matched_taaft_assessment = {}
+matched_taaft_refs = website_references_for_project(
+    {"name": "ai-tool-discovery", "description": "Find free AI tools alternatives",
+     "topics": ["tool-discovery"]},
+    {"domains": ["ai_agents"], "terms": set()}, assessment=matched_taaft_assessment
+)
+assert taaft_id in {s["id"] for s in matched_taaft_refs}
+assert matched_taaft_assessment[taaft_id]["decision"] == "matched"
+assert matched_taaft_assessment[taaft_id]["integrationEligible"] is False
+for repo, domains in (
+    ({"name": "jumpy-frog", "description": "Godot platform game", "topics": []}, ["game_dev"]),
+    ({"name": "production-os", "description": "AI code automation", "topics": []}, ["ai_agents"]),
+    ({"name": "video-editor", "description": "Automated montage", "topics": []}, ["ai_media"]),
+):
+    decisions = {}
+    refs = website_references_for_project(repo, {"domains": domains, "terms": set()}, assessment=decisions)
+    assert taaft_id not in {s["id"] for s in refs}, repo
+    assert decisions[taaft_id]["decision"] == "not-relevant", repo
+invalid_taaft = animation_copy.deepcopy(websites_catalog)
+taaft_entry = next(s for s in invalid_taaft["websites"] if s["id"] == taaft_id)
+taaft_entry["reuse"] = "open-source-upstream"
+assert validate_visual_websites(invalid_taaft, animation_schema)
+taaft_entry["reuse"] = "reference-only"
+taaft_entry["portfolioBaselineDomains"] = ["ai_agents"]
+assert validate_visual_websites(invalid_taaft, animation_schema)
+
 print("OK: recommendation engine smoke tests passed")
