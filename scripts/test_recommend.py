@@ -929,4 +929,75 @@ for upstream in hermes_mcp_repos:
     assert all(not row["integrationEligible"] for row in advice), upstream
     assert all(row["mode"] != "native" for row in advice), upstream
 
+# Screenshot-supplied UI reference sources: React Bits, Uiverse, Mobbin.
+# Only these three are new; 21st.dev, Magic UI and Aceternity already existed.
+new_ui_sites = {
+    "react-bits": ("https://reactbits.dev/", "licensed-material"),
+    "uiverse": ("https://uiverse.io/", "license-per-item"),
+    "mobbin": ("https://mobbin.com/", "reference-only"),
+}
+for identity, (url, reuse) in new_ui_sites.items():
+    matches = [s for s in sites if s["id"] == identity]
+    assert len(matches) == 1 and matches[0]["url"] == url
+    assert matches[0]["reuse"] == reuse
+    assert matches[0]["portfolioRequiredSignals"]
+    assert not matches[0].get("portfolioBaselineDomains")
+for existing in ("21st-dev", "magic-ui", "aceternity-ui"):
+    assert sum(s["id"] == existing for s in sites) == 1
+for query, expected_id, expected_gates in (
+    ("react nextjs animated components", "react-bits", {
+        "mit-commons-clause-no-component-library-resale-review",
+        "react-dependencies-reduced-motion-and-mobile-performance-review",
+        "free-versus-pro-component-license-review",
+    }),
+    ("css tailwind buttons forms", "uiverse", {
+        "community-mit-license-and-third-party-assets-review",
+        "community-css-accessibility-and-browser-review",
+    }),
+    ("mobile app ux onboarding user flow", "mobbin", {
+        "third-party-app-screens-reference-only-no-copying",
+        "free-plan-versus-paid-mcp-api-review",
+    }),
+):
+    entries = run(query, "--websites", "--top-websites", "100")["websiteRecommendations"]
+    chosen = next(s for s in entries if s["id"] == expected_id)
+    assert not chosen["integrationEligible"]
+    assert expected_gates <= set(chosen["reviewGates"])
+for project, domains, expected_id in (
+    ({"name": "react-product-ui", "description": "React Tailwind animated components",
+      "topics": ["react"]}, ["web_frontend"], "react-bits"),
+    ({"name": "css-forms", "description": "HTML CSS buttons and loaders",
+      "topics": ["css"]}, ["web_frontend"], "uiverse"),
+    ({"name": "mobile-ux-research", "description": "Mobile app onboarding and UX research",
+      "topics": ["onboarding"]}, ["mobile", "graphics"], "mobbin"),
+):
+    audit = {}
+    refs = website_references_for_project(project, {"domains": domains, "terms": set()}, assessment=audit)
+    assert expected_id in {x["id"] for x in refs}, project
+    assert audit[expected_id]["decision"] == "matched"
+    assert not audit[expected_id]["integrationEligible"]
+for unrelated, domains in (
+    ({"name": "trading-agent", "description": "Forex backtesting and execution",
+      "topics": []}, ["trading"]),
+    ({"name": "video-tts", "description": "English voice synthesis pipeline",
+      "topics": []}, ["ai_media"]),
+    ({"name": "roblox-shooter", "description": "Roblox FPS weapons",
+      "topics": []}, ["game_dev"]),
+):
+    audit = {}
+    refs = website_references_for_project(unrelated, {"domains": domains, "terms": set()}, assessment=audit)
+    assert not {x["id"] for x in refs} & set(new_ui_sites), unrelated
+    assert all(audit[id]["decision"] == "not-relevant" for id in new_ui_sites), unrelated
+from validate_websites import check_websites as check_ui_websites
+import copy as ui_copy
+ui_schema = json.loads((ROOT / "schemas/websites.schema.json").read_text(encoding="utf-8"))
+for identity in new_ui_sites:
+    invalid = ui_copy.deepcopy(websites_catalog)
+    site = next(s for s in invalid["websites"] if s["id"] == identity)
+    site["portfolioBaselineDomains"] = ["web_frontend"]
+    assert check_ui_websites(invalid, ui_schema)
+    site.pop("portfolioBaselineDomains")
+    site["reuse"] = "open-source-upstream"
+    assert check_ui_websites(invalid, ui_schema)
+
 print("OK: recommendation engine smoke tests passed")

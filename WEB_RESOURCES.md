@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **37 web resources** are curated alongside it in [`websites.json`](websites.json);
+These **40 web resources** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -15,6 +15,9 @@ the ability to browse a page.
 | 21st.dev | [21st.dev](https://21st.dev/) | React/Tailwind component discovery | Freemium | Check each community component's author/license |
 | Aceternity UI | [ui.aceternity.com](https://ui.aceternity.com/) | Animated React + Tailwind components | Freemium | Review the Aceternity/third-party component terms |
 | Magic UI | [magicui.design](https://magicui.design/) | Animated landing-page UI components | Freemium | Check source/component or premium template terms |
+| React Bits | [reactbits.dev](https://reactbits.dev/) | Animated React components, text/motion effects, backgrounds with CSS/Tailwind variants | Free components; separate paid Pro library | MIT + Commons Clause for free source: commercial app use allowed, no sale or repackaging as a component library |
+| Uiverse | [uiverse.io](https://uiverse.io/) | Community-built buttons, forms, loaders and CSS/Tailwind/React UI patterns | Free | Galaxy archive declares MIT; inspect actual item, assets, quality and accessibility |
+| Mobbin | [mobbin.com](https://mobbin.com/) | Mobile and web UX research, production screen flows, onboarding and interaction references | Freemium; paid plans for flows, animations, MCP/API | Third-party screenshots for research only; don't republish or copy proprietary designs |
 | Three.js | [threejs.org](https://threejs.org/) | JavaScript/WebGL/WebGPU 3D rendering | Free | Open-source core; independently license models/textures |
 | Shadertoy | [shadertoy.com](https://www.shadertoy.com/) | GLSL shader experiments and visual effects | Free browsing | Creator-specific shader rights and performance review |
 | Lovable | [lovable.dev](https://lovable.dev/) | AI-generated website/application prototypes | Freemium | Hosted service; check export/data/usage plans |
@@ -45,6 +48,42 @@ the ability to browse a page.
 | GitReverse | [gitreverse.com](https://www.gitreverse.com/) | Turn public GitHub repo summaries or website references into preliminary coding-agent prompts | Freemium hosted site; source repository separately licensed MIT | Public-source only; potential public prompt visibility; verify generated claims against full code, licences and website rights |
 | Scenario — Pixel VFX Forge | [scenario.com/explorations/pixel-vfx-forge](https://www.scenario.com/explorations/pixel-vfx-forge/) | Remix 42 pixel-art VFX with color, layer, timing and seed controls; export PNG, GIF, MP4 or ZIP including Godot 4 SpriteFrames | Free browser exploration; downstream Scenario generation services use separate plans | Commercial status of free exploration exports not confirmed; confirm rights, engine imports, format, performance and any agent-skill ZIP before use |
 | DarkUGC | [darkugc.com](https://darkugc.com/) | Free, curated TikTok/Instagram app-UGC examples, format research and manual creator-brief builder | Free research with normal-use limits | **Manual browsing only:** terms forbid bots/AI-agent crawling, scraping, bulk download, ML datasets and video reuse without rights |
+
+## UI component and UX references from the October 31 screenshot
+
+The screenshot contained six sources: **21st.dev, Magic UI and Aceternity UI**
+were already in the catalog, so they were not duplicated. The new additions
+are [React Bits](https://reactbits.dev/), [Uiverse](https://uiverse.io/)
+and [Mobbin](https://mobbin.com/).
+
+- **React Bits** provides source-level JavaScript/TypeScript React effects,
+  backgrounds and components, in plain CSS or Tailwind. Its
+  [source licence](https://github.com/DavidHDev/react-bits/blob/main/LICENSE.md)
+  is **MIT + Commons Clause**: shipping within your own commercial app is
+  permitted, but reselling, sublicensing or repackaging the components as a
+  library is restricted. [React Bits Pro](https://pro.reactbits.dev/license)
+  has a separate paid licence. Check third-party shaders, performance,
+  accessibility, reduced-motion behavior and compatibility before adoption.
+- **Uiverse** provides community-built HTML/CSS, Tailwind, React and Figma
+  elements. Its [Galaxy repository](https://github.com/uiverse-io/galaxy)
+  declares MIT for the collection. Independently review a selected element's
+  licence, attribution, assets, accessibility, security and browser behavior.
+- **Mobbin** curates real mobile/web design screens, flows and animations.
+  It is **inspiration and UX research**, not a library of licensed app assets.
+  The [official pricing](https://mobbin.com/pricing) limits free browsing;
+  Pro provides MCP and flows; Team includes API access. Original screenshots
+  and branded layouts remain third-party copyrighted content.
+
+These resources are matched to explicit React/HTML/CSS UI development or
+UX/onboarding/design research tasks. They are not universal design dependencies;
+Star List's daily scan records review-only recommendations and never runs
+remote CLI installers, copies copyrighted UI screenshots or pays for tools.
+
+```bash
+python scripts/recommend.py "react nextjs animated components" --websites --json
+python scripts/recommend.py "css tailwind buttons forms" --websites --json
+python scripts/recommend.py "mobile app ux onboarding user flow" --websites --json
+```
 
 ## DarkUGC: manual-only app UGC video research
 
@@ -353,7 +392,7 @@ version automatically.
 
 ## How specialist game platforms are selected
 
-The daily portfolio scan inspects **all 37 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
+The daily portfolio scan inspects **all 40 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
 
 ## Search repositories and relevant websites together
 

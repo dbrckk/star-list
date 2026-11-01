@@ -151,6 +151,24 @@ def check_websites(data, schema):
                     f"{identity}: UGC video research library requires manual-only "
                     "research, specific project signals and no automated access"
                 )
+        # Task-fit and source rights are independent for screenshot-supplied
+        # web design sources. Never offer proprietary app screens as assets.
+        ui_reference_rules = {
+            "react-bits": ("component-library", "licensed-material"),
+            "uiverse": ("component-marketplace", "license-per-item"),
+            "mobbin": ("inspiration-gallery", "reference-only"),
+        }
+        if identity in ui_reference_rules:
+            expected_type, expected_reuse = ui_reference_rules[identity]
+            if (site["type"] != expected_type or site["reuse"] != expected_reuse
+                    or not site.get("portfolioRequiredSignals")
+                    or site.get("portfolioBaselineDomains")
+                    or not set(site["domains"]) & {"web_frontend", "graphics"}
+                    or site.get("mcpEndpoint") or site.get("sourceLicenseTag")):
+                errors.append(
+                    f"{identity}: UI reference requires reviewed rights, "
+                    "bounded project-fit signals and no executable endpoint"
+                )
         # Downloadable 3D datasets are assets, never runnable packages or
         # blanket licences to import arbitrary generated meshes into games.
         if site["type"] == "3d-asset-dataset":
