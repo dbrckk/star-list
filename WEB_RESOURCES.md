@@ -1,7 +1,7 @@
 # Web resources: design, animation, 3D and AI builders
 
 The GitHub repository catalog in [`catalog.json`](catalog.json) is unchanged.
-These **40 web resources** are curated alongside it in [`websites.json`](websites.json);
+These **41 web resources** are curated alongside it in [`websites.json`](websites.json);
 they are not GitHub repositories, software licenses or automatically installable
 libraries. Access plans, implementation rights and attribution are separate from
 the ability to browse a page.
@@ -18,6 +18,7 @@ the ability to browse a page.
 | React Bits | [reactbits.dev](https://reactbits.dev/) | Animated React components, text/motion effects, backgrounds with CSS/Tailwind variants | Free components; separate paid Pro library | MIT + Commons Clause for free source: commercial app use allowed, no sale or repackaging as a component library |
 | Uiverse | [uiverse.io](https://uiverse.io/) | Community-built buttons, forms, loaders and CSS/Tailwind/React UI patterns | Free | Galaxy archive declares MIT; inspect actual item, assets, quality and accessibility |
 | Mobbin | [mobbin.com](https://mobbin.com/) | Mobile and web UX research, production screen flows, onboarding and interaction references | Freemium; paid plans for flows, animations, MCP/API | Third-party screenshots for research only; don't republish or copy proprietary designs |
+| There's An AI For That (TAAFT) | [theresanaiforthat.com](https://theresanaiforthat.com/) | Search and compare AI software by task, use Free mode to discover alternatives | Freemium discovery; paid/sponsored listing options and provider pricing vary | Reference only: review vendor licences, data privacy, real pricing and sponsored results; automated site access not authorized |
 | Three.js | [threejs.org](https://threejs.org/) | JavaScript/WebGL/WebGPU 3D rendering | Free | Open-source core; independently license models/textures |
 | Shadertoy | [shadertoy.com](https://www.shadertoy.com/) | GLSL shader experiments and visual effects | Free browsing | Creator-specific shader rights and performance review |
 | Lovable | [lovable.dev](https://lovable.dev/) | AI-generated website/application prototypes | Freemium | Hosted service; check export/data/usage plans |
@@ -48,6 +49,33 @@ the ability to browse a page.
 | GitReverse | [gitreverse.com](https://www.gitreverse.com/) | Turn public GitHub repo summaries or website references into preliminary coding-agent prompts | Freemium hosted site; source repository separately licensed MIT | Public-source only; potential public prompt visibility; verify generated claims against full code, licences and website rights |
 | Scenario — Pixel VFX Forge | [scenario.com/explorations/pixel-vfx-forge](https://www.scenario.com/explorations/pixel-vfx-forge/) | Remix 42 pixel-art VFX with color, layer, timing and seed controls; export PNG, GIF, MP4 or ZIP including Godot 4 SpriteFrames | Free browser exploration; downstream Scenario generation services use separate plans | Commercial status of free exploration exports not confirmed; confirm rights, engine imports, format, performance and any agent-skill ZIP before use |
 | DarkUGC | [darkugc.com](https://darkugc.com/) | Free, curated TikTok/Instagram app-UGC examples, format research and manual creator-brief builder | Free research with normal-use limits | **Manual browsing only:** terms forbid bots/AI-agent crawling, scraping, bulk download, ML datasets and video reuse without rights |
+
+## There's An AI For That: manual AI-tool discovery
+
+[There's An AI For That](https://theresanaiforthat.com/) (TAAFT) is an
+AI-tool directory searchable by task. A user-provided November 2026 screenshot
+shows its Free mode switch, AI-tool search, category navigation and Spotlight
+placements. It is a discovery service, **not** a single vetted software
+product, source repository or free unlimited inference API.
+
+The site's own current terms could not be fetched reliably in the verification
+environment. Other recent directory checks mention paid tool submissions and
+promoted placements. Discovery recommendations must therefore be independently
+checked against each vendor's official features, software licence, pricing,
+credit limits, privacy, security, data retention, quality and project fit.
+No one should infer an endorsement from the listing or paid position.
+
+Star List uses *only its locally stored metadata* to evaluate relevance.
+There is **no** automated crawling, mirroring, bulk-data extraction, sign-up,
+provider execution, paid listing purchase or tool installation. Any such
+future activity would require permission under the current website terms and
+separate review. The daily portfolio scan offers TAAFT only for explicit
+AI-tool research, alternatives or comparison tasks; every suggestion remains
+`integrationEligible: false` and must pass vendor and site-access gates.
+
+```bash
+python scripts/recommend.py "ai tools discovery free alternatives directory" --websites --json
+```
 
 ## UI component and UX references from the October 31 screenshot
 
@@ -392,7 +420,7 @@ version automatically.
 
 ## How specialist game platforms are selected
 
-The daily portfolio scan inspects **all 40 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
+The daily portfolio scan inspects **all 41 curated web entries**, without a top-N cutoff. Game projects receive **Rosebud AI, Ludo.ai and modl.ai as review-only baseline options** even when their descriptions are sparse; they are not installed or invoked automatically. Convai, Inworld AI, Sloyd and Charisma require specific project metadata signals (such as NPC dialogue, voice, narrative or 3D assets). The scanner still excludes services unrelated to the project. Every hosted resource remains `integrationEligible: false`; hosted logins, credits, build uploads and licences require separate review.
 
 ## Search repositories and relevant websites together
 
