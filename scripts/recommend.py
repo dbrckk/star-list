@@ -115,6 +115,22 @@ def website_review_gates(site):
             "ugc-survivorship-bias-and-snapshot-metrics-review",
             "research-use-only-with-site-terms-and-account-limits",
         ])
+    if site.get("id") == "react-bits":
+        gates.extend([
+            "mit-commons-clause-no-component-library-resale-review",
+            "react-dependencies-reduced-motion-and-mobile-performance-review",
+            "free-versus-pro-component-license-review",
+        ])
+    if site.get("id") == "uiverse":
+        gates.extend([
+            "community-mit-license-and-third-party-assets-review",
+            "community-css-accessibility-and-browser-review",
+        ])
+    if site.get("id") == "mobbin":
+        gates.extend([
+            "third-party-app-screens-reference-only-no-copying",
+            "free-plan-versus-paid-mcp-api-review",
+        ])
     if resource_type == "marketing-automation-service":
         gates.append("platform-anti-spam-and-account-policy-review")
         gates.append("manual-publication-and-consent-required")
