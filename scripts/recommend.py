@@ -97,6 +97,13 @@ def website_review_gates(site):
         gates.append("per-model-license-and-compute-review")
     elif resource_type == "model-hub":
         gates.append("per-item-license-and-provider-review")
+    elif resource_type == "ai-tool-directory":
+        gates.extend([
+            "independent-vendor-price-license-and-privacy-review",
+            "directory-listings-freshness-and-sponsored-placements-review",
+            "directory-automated-access-and-terms-review",
+            "no-unapproved-scraping-signup-install-or-spending",
+        ])
     if site.get("sourceLicenseTag") in {"other", "unknown"}:
         gates.append("unverified-hub-license-tag")
     if site.get("safetyRisk") == "reduced-refusal":
