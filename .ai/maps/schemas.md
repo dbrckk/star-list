@@ -1147,7 +1147,8 @@ websites.schema.json
               "3d-asset-dataset",
               "codebase-prompt-generator",
               "pixel-vfx-editor",
-              "ugc-video-research-library"
+              "ugc-video-research-library",
+              "ai-tool-directory"
             ]
           },
           "access": {

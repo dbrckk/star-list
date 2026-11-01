@@ -1,11 +1,12 @@
 # Change impact
 
-Base: 5f1fe47fcbbf36d5b0059decbd01b81588ca1dd7
-Head: 0c82c7862aa63e3e60b9413808e68e8d3bd705a6
+Base: 5a017892c7b7534f4f71fdd4b535d105324ebcab
+Head: 8d85a5f4d7de9d453a2bafbdce9af0d923505858
 
 ## Changed files
 - M README.md
 - M WEB_RESOURCES.md
+- M schemas/websites.schema.json
 - M scripts/recommend.py
 - M scripts/test_recommend.py
 - M scripts/validate_websites.py
@@ -13,6 +14,7 @@ Head: 0c82c7862aa63e3e60b9413808e68e8d3bd705a6
 
 ## Affected areas
 - (root)
+- schemas
 - scripts
 
 ## Related test candidates

@@ -113,18 +113,19 @@ Status: active
 <!-- AUTO:START -->
 ## Automatic repository state
 
-Generated: 2026-11-01T15:15:53Z
+Generated: 2026-11-01T15:22:32Z
 
 ### Git
 - Branch: `main`
-- Head: `0c82c7862aa6`
-- Commit date: 2026-11-01T10:15:43-05:00
-- Commit: catalog: add React Bits, Uiverse and Mobbin references (#190)
+- Head: `8d85a5f4d7de`
+- Commit date: 2026-11-01T10:22:23-05:00
+- Commit: catalog: finalize TAAFT directory with review gates (#191)
 - Tracked files: 317
 
 ### Recently changed files
 - `README.md`
 - `WEB_RESOURCES.md`
+- `schemas/websites.schema.json`
 - `scripts/recommend.py`
 - `scripts/test_recommend.py`
 - `scripts/validate_websites.py`

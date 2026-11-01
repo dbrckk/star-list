@@ -4005,6 +4005,9 @@ required_signals = site.get("portfolioRequiredSignals", [])
 ⋮----
 lowered_tags = {str(t).lower() for t in site["tags"]}
 ⋮----
+# AI-tool discovery directories do not grant model licences or API
+# permissions and cannot opt into blanket project recommendations.
+⋮----
 # Social network automation is hosted, credential-sensitive and
 # platform-policy sensitive. Never admit a blanket auto-publish tool.
 ⋮----

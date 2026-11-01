@@ -2,25 +2,6 @@
   "examples": [
     {
       "rejected": [],
-      "task": "fix(portfolio): stop further launches after uncertain Production-OS response (#85)",
-      "terms": [
-        "85",
-        "after",
-        "further",
-        "launches",
-        "portfolio",
-        "production-os",
-        "response",
-        "stop",
-        "uncertain"
-      ],
-      "tests": [],
-      "useful": [
-        "scripts/portfolio_daily.py"
-      ]
-    },
-    {
-      "rejected": [],
       "task": "fix(portfolio): do not recommend the Godot engine to games already using Godot (#86)",
       "terms": [
         "86",
@@ -1369,6 +1350,25 @@
         "scripts/test_recommend.py",
         "scripts/validate_websites.py"
       ]
+    },
+    {
+      "rejected": [],
+      "task": "catalog: finalize TAAFT directory with review gates (#191)",
+      "terms": [
+        "191",
+        "catalog",
+        "directory",
+        "finalize",
+        "gates",
+        "review",
+        "taaft"
+      ],
+      "tests": [],
+      "useful": [
+        "scripts/recommend.py",
+        "scripts/test_recommend.py",
+        "scripts/validate_websites.py"
+      ]
     }
   ],
   "generated_by": "dbrckk/repo-brain-learning-v1",
@@ -1664,6 +1664,11 @@
       "scripts/test_catalog_quality.py": 4
     },
     "190": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
+    "191": {
       "scripts/recommend.py": 4,
       "scripts/test_recommend.py": 4,
       "scripts/validate_websites.py": 4
@@ -2067,7 +2072,7 @@
       "scripts/audit_catalog_quality.py": 16,
       "scripts/infer_selection_guidance.py": 4,
       "scripts/portfolio_daily.py": 24,
-      "scripts/recommend.py": 36,
+      "scripts/recommend.py": 40,
       "scripts/refresh_github_metadata.py": 8,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_auto_stars_admission.py": 4,
@@ -2076,12 +2081,12 @@
       "scripts/test_documentation.py": 16,
       "scripts/test_full_catalog_availability.py": 4,
       "scripts/test_json_contracts.py": 8,
-      "scripts/test_recommend.py": 36,
+      "scripts/test_recommend.py": 40,
       "scripts/test_refresh_github_metadata.py": 8,
       "scripts/test_sync_github_stars.py": 4,
       "scripts/test_verify_catalog_evidence.py": 8,
       "scripts/validate_catalog.py": 4,
-      "scripts/validate_websites.py": 20,
+      "scripts/validate_websites.py": 24,
       "scripts/verify_catalog_evidence.py": 8
     },
     "catalog-declared": {
@@ -2259,6 +2264,11 @@
     },
     "diagnostics": {
       "scripts/portfolio_failure_diagnostics.py": 8
+    },
+    "directory": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "discover": {
       "scripts/portfolio_daily.py": 4,
@@ -2478,6 +2488,11 @@
       "scripts/portfolio_daily.py": 4,
       "scripts/portfolio_failure_diagnostics.py": 4
     },
+    "finalize": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
+    },
     "fit": {
       "scripts/portfolio_daily.py": 4
     },
@@ -2563,9 +2578,9 @@
     },
     "gates": {
       "scripts/portfolio_daily.py": 4,
-      "scripts/recommend.py": 16,
-      "scripts/test_recommend.py": 16,
-      "scripts/validate_websites.py": 8
+      "scripts/recommend.py": 20,
+      "scripts/test_recommend.py": 20,
+      "scripts/validate_websites.py": 12
     },
     "generic": {
       "scripts/catalog_domain_evidence.py": 4,
@@ -3329,12 +3344,12 @@
     },
     "review": {
       "scripts/portfolio_daily.py": 24,
-      "scripts/recommend.py": 36,
+      "scripts/recommend.py": 40,
       "scripts/sync_github_stars.py": 4,
       "scripts/test_catalog_domain_evidence.py": 4,
-      "scripts/test_recommend.py": 36,
+      "scripts/test_recommend.py": 40,
       "scripts/test_sync_github_stars.py": 4,
-      "scripts/validate_websites.py": 20
+      "scripts/validate_websites.py": 24
     },
     "review-gated": {
       "scripts/refresh_github_metadata.py": 4,
@@ -3617,6 +3632,11 @@
     "synchronize": {
       "scripts/sync_github_stars.py": 4,
       "scripts/test_sync_github_stars.py": 4
+    },
+    "taaft": {
+      "scripts/recommend.py": 4,
+      "scripts/test_recommend.py": 4,
+      "scripts/validate_websites.py": 4
     },
     "targeted": {
       "scripts/portfolio_daily.py": 4,

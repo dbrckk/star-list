@@ -3705,7 +3705,8 @@ initial_prompt: |
               "3d-asset-dataset",
               "codebase-prompt-generator",
               "pixel-vfx-editor",
-              "ugc-video-research-library"
+              "ugc-video-research-library",
+              "ai-tool-directory"
             ]
           },
           "access": {
@@ -7725,6 +7726,9 @@ required_signals = site.get("portfolioRequiredSignals", [])
 ⋮----
 lowered_tags = {str(t).lower() for t in site["tags"]}
 ⋮----
+# AI-tool discovery directories do not grant model licences or API
+# permissions and cannot opt into blanket project recommendations.
+⋮----
 # Social network automation is hosted, credential-sensitive and
 # platform-policy sensitive. Never admit a blanket auto-publish tool.
 ⋮----
@@ -9668,14 +9672,14 @@ engine compatibility, account terms and any paid usage need explicit review.
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **40 curated web resources** for UI design,
+The catalog also includes **41 curated web resources** for UI design,
 animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools,
 AI game prototyping, NPC/voice platforms, licensed downloadable 3D assets,
 narrative design, gameplay QA, reference-to-video/audio model collections,
 quantized image-generation checkpoints, Hugging Face discovery, vision-language
 models, public codebase-to-prompt research, pixel-art VFX editors and
 manual-only short-form UGC marketing research, React animation components,
-community CSS UI patterns and mobile/web UX references. Explore them
+community CSS UI patterns, mobile/web UX references and AI-tool discovery directories. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
 repositories and are never passed to Production-OS as code dependencies.
@@ -11963,6 +11967,65 @@ General-purpose GitHub discovery remains advisory and never inserts external can
         "design-research"
       ],
       "caution": "Mobbin screenshots show third-party copyrighted applications: use only for design research, not direct copying, asset extraction, screenshot republication or redistribution. Free access is limited; Pro unlocks flows, animations and MCP, Team plan is required for API access. Never assume free API/MCP, disclose private Figma designs or authorize paid services without review. Check actual plan, source rights and privacy/security before use."
+    },
+    {
+      "id": "theres-an-ai-for-that",
+      "name": "There's An AI For That",
+      "url": "https://theresanaiforthat.com/",
+      "type": "ai-tool-directory",
+      "access": "freemium",
+      "domains": [
+        "ai_agents",
+        "ai_media",
+        "software_engineering",
+        "graphics",
+        "game_dev",
+        "mobile",
+        "marketing"
+      ],
+      "tags": [
+        "taaft",
+        "ai-tools",
+        "tool-directory",
+        "ai-tool-discovery",
+        "task-based-search",
+        "ai-discovery",
+        "tool-comparison",
+        "free-ai-tools",
+        "free-mode",
+        "alternatives",
+        "ai-apps",
+        "ai-models",
+        "image-generation",
+        "video-generation",
+        "coding-agent",
+        "model-discovery"
+      ],
+      "bestFor": [
+        "Discovering AI tools for a specific coding, creative or productivity task",
+        "Comparing candidate tools using task, free-mode and category filters",
+        "Evaluating free alternatives after independently checking actual provider cost and licence"
+      ],
+      "reuse": "reference-only",
+      "portfolioRequiredSignals": [
+        "ai-tools",
+        "ai-tool-directory",
+        "ai-directory",
+        "tool-directory",
+        "tool-discovery",
+        "ai-discovery",
+        "software-discovery",
+        "tool-comparison",
+        "ai-tool-comparison",
+        "free-ai-tools",
+        "free-mode",
+        "alternatives",
+        "ai-tools-research",
+        "tool-research",
+        "ai-tool-search",
+        "ai-apps"
+      ],
+      "caution": "Task-based discovery reference only, not an executable dependency, model or API. Spotlight listings may be sponsored. Independently verify provider pricing, licence, trust, privacy, quality and hardware compatibility. Site terms were not independently accessible: do not crawl, bulk collect or programmatically request its pages. Daily Star List scans may consider this local metadata but cannot download site contents, register accounts, install tools, spend money or send private data."
     }
   ]
 }
