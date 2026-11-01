@@ -1,15 +1,15 @@
 # Change impact
 
-Base: 5cb473bdf5964e65ff36878f183dcf60c73e2bb5
-Head: ece845786d82831d89832a761745e101c3d58014
+Base: 5f1fe47fcbbf36d5b0059decbd01b81588ca1dd7
+Head: 0c82c7862aa63e3e60b9413808e68e8d3bd705a6
 
 ## Changed files
-- A MCP_HERMES_RESOURCES.md
 - M README.md
-- M catalog.json
-- M scripts/portfolio_daily.py
-- M scripts/test_catalog_domain_evidence.py
+- M WEB_RESOURCES.md
+- M scripts/recommend.py
 - M scripts/test_recommend.py
+- M scripts/validate_websites.py
+- M websites.json
 
 ## Affected areas
 - (root)

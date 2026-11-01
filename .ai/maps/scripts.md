@@ -4020,6 +4020,10 @@ expected_visual_reuse = visual_reuse_rules.get(site["type"])
 # DarkUGC is research content, not a programmatic video/data source.
 # Website terms prohibit AI-agent crawling, scraping and dataset use.
 ⋮----
+# Task-fit and source rights are independent for screenshot-supplied
+# web design sources. Never offer proprietary app screens as assets.
+ui_reference_rules = {
+⋮----
 # Downloadable 3D datasets are assets, never runnable packages or
 # blanket licences to import arbitrary generated meshes into games.
 ⋮----

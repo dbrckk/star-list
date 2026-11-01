@@ -1,18 +1,14 @@
 # CI status
 
-Summary: 3 success / 1 failure / 4 active
+Summary: 3 success / 0 failure / 2 active
 
-- Sync GitHub Stars: in_progress / pending (ece84578)
-- Refresh catalog quality on catalog changes: in_progress / pending (ece84578)
-- Validate catalog: in_progress / pending (ece84578)
-- Daily portfolio star-list integration: in_progress / pending (ece84578)
-- Validate catalog: completed / success (91a4ca10)
-- Portfolio discovery live smoke: completed / success (91a4ca10)
-- Validate catalog: completed / success (91a4ca10)
-- Validate catalog: completed / failure (271bcc5d)
-
-## Latest failed run structure
-- Job: validate
-  - Failed step: Test evidence-backed domain routing for indexed sources
+- Daily portfolio star-list integration: in_progress / pending (0c82c786)
+- Validate catalog: in_progress / pending (0c82c786)
+- Validate catalog: completed / success (e0400bad)
+- Portfolio discovery live smoke: completed / success (e0400bad)
+- Validate catalog: completed / success (e0400bad)
+- Validate catalog: completed / cancelled (1efe7c7f)
+- Validate catalog: completed / cancelled (b39d0894)
+- Validate catalog: completed / cancelled (9134101d)
 
 > Generated summary only; inspect GitHub Actions for full logs when needed.

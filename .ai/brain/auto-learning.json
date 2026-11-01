@@ -5,15 +5,14 @@
     "example_count": 64,
     "rejected_count": 0,
     "terms": [
-      "15",
-      "189",
-      "all",
+      "190",
+      "add",
+      "bits",
       "catalog",
-      "hermes",
-      "mcp",
-      "register",
-      "review",
-      "sources"
+      "mobbin",
+      "react",
+      "references",
+      "uiverse"
     ],
     "test_count": 0,
     "useful_count": 3
@@ -21,11 +20,11 @@
   "note": "Selected tests are routing hints; this artifact does not claim they executed successfully.",
   "rejected": [],
   "schema_version": 1,
-  "task": "catalog: register and review all 15 Hermes MCP sources (#189)",
+  "task": "catalog: add React Bits, Uiverse and Mobbin references (#190)",
   "tests_selected": [],
   "useful": [
-    "scripts/portfolio_daily.py",
-    "scripts/test_catalog_domain_evidence.py",
-    "scripts/test_recommend.py"
+    "scripts/recommend.py",
+    "scripts/test_recommend.py",
+    "scripts/validate_websites.py"
   ]
 }

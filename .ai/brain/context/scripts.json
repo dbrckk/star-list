@@ -2,7 +2,7 @@
   "area": "scripts",
   "files": [
     {
-      "path": "scripts/portfolio_daily.py",
+      "path": "scripts/recommend.py",
       "reasons": [
         "changed",
         "changed-source",
@@ -10,19 +10,7 @@
         "impact",
         "symbol-indexed"
       ],
-      "score": 580
-    },
-    {
-      "path": "scripts/test_catalog_domain_evidence.py",
-      "reasons": [
-        "changed",
-        "changed-source",
-        "impact",
-        "reverse-dependency-neighbor",
-        "selected-test",
-        "symbol-indexed"
-      ],
-      "score": 405
+      "score": 545
     },
     {
       "path": "scripts/test_recommend.py",
@@ -34,7 +22,38 @@
         "selected-test",
         "symbol-indexed"
       ],
-      "score": 405
+      "score": 465
+    },
+    {
+      "path": "scripts/portfolio_daily.py",
+      "reasons": [
+        "dependency-neighbor",
+        "impact",
+        "reverse-dependency-neighbor",
+        "symbol-indexed"
+      ],
+      "score": 365
+    },
+    {
+      "path": "scripts/validate_websites.py",
+      "reasons": [
+        "changed",
+        "changed-source",
+        "dependency-neighbor",
+        "impact",
+        "symbol-indexed"
+      ],
+      "score": 360
+    },
+    {
+      "path": "scripts/test_catalog_domain_evidence.py",
+      "reasons": [
+        "impact",
+        "reverse-dependency-neighbor",
+        "selected-test",
+        "symbol-indexed"
+      ],
+      "score": 215
     },
     {
       "path": "scripts/test_full_catalog_availability.py",
@@ -43,7 +62,7 @@
         "reverse-dependency-neighbor",
         "selected-test"
       ],
-      "score": 180
+      "score": 210
     },
     {
       "path": "scripts/test_other_domain_expansion.py",
@@ -52,7 +71,7 @@
         "reverse-dependency-neighbor",
         "selected-test"
       ],
-      "score": 180
+      "score": 210
     },
     {
       "path": "scripts/test_readme_domain_evidence.py",
@@ -61,37 +80,31 @@
         "reverse-dependency-neighbor",
         "selected-test"
       ],
-      "score": 180
+      "score": 210
     },
     {
-      "path": "scripts/portfolio_failure_diagnostics.py",
+      "path": "scripts/test_json_contracts.py",
       "reasons": [
         "impact",
         "reverse-dependency-neighbor",
+        "selected-test",
         "symbol-indexed"
       ],
-      "score": 150
-    },
-    {
-      "path": "scripts/recommend.py",
-      "reasons": [
-        "dependency-neighbor"
-      ],
-      "score": 150
+      "score": 185
     },
     {
       "path": "scripts/catalog_domain_evidence.py",
       "reasons": [
         "dependency-neighbor"
       ],
-      "score": 100
+      "score": 125
     },
     {
       "path": "scripts/agent_skill_discovery.py",
       "reasons": [
         "dependency-neighbor"
       ],
-      "score": 50
+      "score": 75
     },
     {
       "path": "scripts/report_domain_coverage.py",
@@ -101,7 +114,28 @@
       "score": 50
     },
     {
-      "path": "scripts/validate_websites.py",
+      "path": "scripts/portfolio_failure_diagnostics.py",
+      "reasons": [
+        "reverse-dependency-neighbor"
+      ],
+      "score": 30
+    },
+    {
+      "path": "scripts/find_replacements.py",
+      "reasons": [
+        "dependency-neighbor"
+      ],
+      "score": 25
+    },
+    {
+      "path": "scripts/health_score.py",
+      "reasons": [
+        "dependency-neighbor"
+      ],
+      "score": 25
+    },
+    {
+      "path": "scripts/validate_json_contract.py",
       "reasons": [
         "dependency-neighbor"
       ],
