@@ -58,14 +58,14 @@ engine compatibility, account terms and any paid usage need explicit review.
 
 ## Website resources (in addition to GitHub repositories)
 
-The catalog also includes **40 curated web resources** for UI design,
+The catalog also includes **41 curated web resources** for UI design,
 animation, browser 3D, shaders, game-art direction, optional PINOC MCP motion tools,
 AI game prototyping, NPC/voice platforms, licensed downloadable 3D assets,
 narrative design, gameplay QA, reference-to-video/audio model collections,
 quantized image-generation checkpoints, Hugging Face discovery, vision-language
 models, public codebase-to-prompt research, pixel-art VFX editors and
 manual-only short-form UGC marketing research, React animation components,
-community CSS UI patterns and mobile/web UX references. Explore them
+community CSS UI patterns, mobile/web UX references and AI-tool discovery directories. Explore them
 in [`WEB_RESOURCES.md`](WEB_RESOURCES.md) or use the structured
 [`websites.json`](websites.json) directory. They are **not** GitHub
 repositories and are never passed to Production-OS as code dependencies.
