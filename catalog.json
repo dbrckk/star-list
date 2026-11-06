@@ -51642,6 +51642,383 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "ConardLi/garden-skills",
+      "githubRepositoryId": 1216954187,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Mémoire / IA",
+      "domain": "ai_memory",
+      "capabilities": [
+        "agent",
+        "claude",
+        "gpt-image-2",
+        "rag",
+        "skills",
+        "web-design"
+      ],
+      "languages": [
+        "javascript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 14392,
+        "forks": 1664,
+        "openIssues": 26,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-25T13:45:33Z"
+      },
+      "bestFor": [
+        "ConardLi's open-source Skills collection, featuring web design, knowledge retrieval, image generation, and more."
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "floci-io/floci",
+      "githubRepositoryId": 1160497244,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "DevOps / infrastructure",
+      "domain": "devops",
+      "capabilities": [
+        "aws",
+        "aws-emulation",
+        "devops",
+        "docker",
+        "ec2",
+        "ecs",
+        "localstack",
+        "s3",
+        "sqs",
+        "testcontainers"
+      ],
+      "languages": [
+        "java"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 30662,
+        "forks": 3344,
+        "openIssues": 209,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-11-05T21:02:20Z"
+      },
+      "bestFor": [
+        "Light, fluffy, and always free - The AWS Local Emulator alternative"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "JiaFeiMiao-K-Cat/DiscImageStudio",
+      "githubRepositoryId": 1343344945,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "c#"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 7543,
+        "forks": 270,
+        "openIssues": 99,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "GPL-3.0",
+        "pushedAt": "2026-11-05T17:24:40Z"
+      },
+      "bestFor": [],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "lz4/lz4",
+      "githubRepositoryId": 18106269,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [
+        "c",
+        "compression",
+        "lz4"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 12500,
+        "forks": 1640,
+        "openIssues": 5,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "dev",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-11-06T06:35:56Z"
+      },
+      "bestFor": [
+        "Extremely Fast Compression algorithm"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "max-sixty/worktrunk",
+      "githubRepositoryId": 1078528927,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [
+        "agents",
+        "claude-code",
+        "codex",
+        "developer-tools",
+        "git",
+        "worktrees"
+      ],
+      "languages": [
+        "rust"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 11684,
+        "forks": 448,
+        "openIssues": 51,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "NOASSERTION",
+        "pushedAt": "2026-11-06T09:18:22Z"
+      },
+      "bestFor": [
+        "Worktrunk is a CLI for Git worktree management, designed for parallel AI agent workflows"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "microsoft/VibeVoice",
+      "githubRepositoryId": 1044296738,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 56302,
+        "forks": 6340,
+        "openIssues": 205,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-08T05:29:29Z"
+      },
+      "bestFor": [
+        "Open-Source Frontier Voice AI"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "NVIDIA/auto-ontology",
+      "githubRepositoryId": 1222953295,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Agents / IA / développement",
+      "domain": "ai_agents",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 8081,
+        "forks": 649,
+        "openIssues": 58,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-11-06T07:23:16Z"
+      },
+      "bestFor": [
+        "Auto Ontology is a Python framework for building semantic, graph-based reasoning layers over data. It enables deterministic query generation, better context retrieval, and more explainable AI for LLM "
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "SagarBiswas-MultiHAT/The-BlackHAT-roadmap",
+      "githubRepositoryId": 1388193962,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Cybersécurité",
+      "domain": "cybersecurity",
+      "capabilities": [
+        "active-directory",
+        "bug-bounty",
+        "ctf",
+        "cybersecurity",
+        "ethical-hacking",
+        "hacking",
+        "infosec",
+        "kali-linux",
+        "malware",
+        "mitre-attack",
+        "network-security",
+        "osint"
+      ],
+      "languages": [
+        "c"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 153,
+        "forks": 28,
+        "openIssues": 0,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-10-30T17:06:30Z"
+      },
+      "bestFor": [
+        "The complete hacking & penetration testing roadmap. From beginner to elite. 44,982 lines, 150+ Diagram across the roadmap: OPSEC, web security, Active Directory, binary exploitation, EDR evasion, and "
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "scenario-labs/skills",
+      "githubRepositoryId": 1331882604,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Développement de jeux",
+      "domain": "game_dev",
+      "capabilities": [
+        "3d-models",
+        "agent-skills",
+        "ai-agents",
+        "ai-art",
+        "blender",
+        "claude-code",
+        "claude-skills",
+        "codex",
+        "game-assets",
+        "game-development",
+        "generative-ai",
+        "image-generation"
+      ],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 3289,
+        "forks": 284,
+        "openIssues": 39,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-11-06T09:02:43Z"
+      },
+      "bestFor": [
+        "Get production-ready images, video, audio, and 3D from any AI agent: skills that pick the right model, price before spending, and keep characters and brands consistent through the Scenario MCP, plus e"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
