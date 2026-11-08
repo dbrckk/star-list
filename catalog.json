@@ -52406,6 +52406,120 @@
       ],
       "guidanceSource": "inferred",
       "lifecycle": "reference"
+    },
+    {
+      "repo": "dsx-ai-factory/nvke",
+      "githubRepositoryId": 1323115536,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "DevOps / infrastructure",
+      "domain": "devops",
+      "capabilities": [
+        "bare-metal",
+        "cluster-api",
+        "gpu",
+        "kubernetes",
+        "nvidia"
+      ],
+      "languages": [
+        "go"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 724,
+        "forks": 106,
+        "openIssues": 183,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "Apache-2.0",
+        "pushedAt": "2026-11-07T02:09:56Z"
+      },
+      "bestFor": [
+        "NVIDIA Kubernetes Engine (NVKE). A management plane for GPU Kubernetes on bare metal."
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "menloresearch/asimov-1",
+      "githubRepositoryId": 1204739178,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "python"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 1493,
+        "forks": 247,
+        "openIssues": 7,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "CERN-OHL-S-2.0",
+        "pushedAt": "2026-11-04T10:19:45Z"
+      },
+      "bestFor": [
+        "v1 of Asimov, an open-source humanoid robot"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
+    },
+    {
+      "repo": "meta/astryx",
+      "githubRepositoryId": 1131202426,
+      "score": 6.0,
+      "tier": "indexed",
+      "category": "Autres / à examiner",
+      "domain": "other",
+      "capabilities": [],
+      "languages": [
+        "typescript"
+      ],
+      "platforms": [],
+      "selfHosted": "unknown",
+      "runtime": [],
+      "resourceLevel": "medium",
+      "integrationComplexity": "medium",
+      "costModel": "unknown",
+      "github": {
+        "stars": 15465,
+        "forks": 1253,
+        "openIssues": 707,
+        "archived": false,
+        "disabled": false,
+        "defaultBranch": "main",
+        "license": "MIT",
+        "pushedAt": "2026-11-08T15:05:03Z"
+      },
+      "bestFor": [
+        "An open source design system that's fully customizable and agent ready"
+      ],
+      "avoidWhen": [
+        "automatic installation before license and security checks"
+      ],
+      "guidanceSource": "inferred",
+      "lifecycle": "reference"
     }
   ],
   "metadata": {
